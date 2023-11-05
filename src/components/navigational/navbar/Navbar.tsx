@@ -1,10 +1,12 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import NavItem from "./NavItem";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   return (
     <nav className="inline-flex flex-col gap-6">
@@ -15,31 +17,31 @@ export default function Navbar() {
         isActive={pathname === "/dashboard"}
       />
       <NavItem
-        href="dashboard/search"
+        href="/dashboard/search"
         icons={["bxs:search", "bx:search"]}
         title="Search"
         isActive={pathname.includes("search")}
       />
       <NavItem
-        href="dashboard/feeds"
+        href="/dashboard/feeds"
         icons={["bx:hash", "bx:hash"]}
         title="Feeds"
         isActive={pathname.includes("feeds")}
       />
       <NavItem
-        href="dashboard/notifications"
+        href="/dashboard/notifications"
         icons={["bxs:bell", "bx:bell"]}
         title="Notifications"
         isActive={pathname.includes("notifications")}
       />
       <NavItem
-        href="dashboard/profile"
+        href={`/dashboard/user/${session?.user.handle}`}
         icons={["bxs:user", "bx:user"]}
         title="Profile"
-        isActive={pathname.includes("profile")}
+        isActive={pathname === `/dashboard/user/${session?.user.handle}`}
       />
       <NavItem
-        href="dashboard/settings"
+        href="/dashboard/settings"
         icons={["bxs:cog", "bx:cog"]}
         title="Settings"
         isActive={pathname.includes("settings")}

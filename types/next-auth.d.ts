@@ -9,7 +9,7 @@ declare module "next-auth" {
     handle: string;
     email: string;
     emailConfirmed: boolean;
-    bskySession: AtpSessionData;
+    bskySession:AtpSessionData
   }
 
   interface Session {

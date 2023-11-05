@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex flex-col items-center gap-5 min-h-[100svh] justify-center">
-      <Image src="/logo.svg" alt="Ouranos logo" width={140} height={40} />
+      <Image src="/logo.svg" alt="Ouranos logo" width={160} height={50} />
       <div className="flex gap-3">
         <Link
           href="https://bsky.app"
