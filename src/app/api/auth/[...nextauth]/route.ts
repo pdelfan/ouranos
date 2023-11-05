@@ -35,6 +35,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (result.success && at.session) {
+          // TODO: remove everything except bskySession as they're the same data
           const user = {
             id: at.session.did,
             handle: at.session.handle,

@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <main className="flex justify-center gap-12 m-6">
       <SidePanel />
-      {children}      
+      {children}
       <Aside />
     </main>
   );

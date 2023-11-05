@@ -6,15 +6,24 @@ export const at = new BskyAgent({
   service: "https://bsky.social",
 });
 
+// TODO: move to route handlers
 export const getBskySession = async () => {
   const session = await getSessionFromServer();
-  return session?.user.bskySession;
+  if (session?.user.bskySession) {
+    at.session = session.user.bskySession;
+  }
+  return at;
 };
 
-export const getProfile = async (handle: string) => {
-  const session = await getBskySession();
-  await at.resumeSession(session);
-  const profile = await at.getProfile({ actor: handle });
+export const getAgent = async () => {
+  const bskyAgent = await getBskySession();
+  return bskyAgent;
+};
+
+export const getProfile = async (handle: string | undefined) => {
+  if (!handle) return;
+  const agent = await getAgent();
+  const profile = await agent.getProfile({ actor: handle });
 
   if (!profile.data) return null;
   return profile.data;

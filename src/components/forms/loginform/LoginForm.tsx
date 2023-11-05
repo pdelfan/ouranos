@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 
-export default function LoginForm() {
-  const router = useRouter();
+export default function LoginForm() {  
   const [handle, setHandle] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,7 +13,7 @@ export default function LoginForm() {
   const handleSignIn = async () => {
     setLoading(true);
 
-    const result = await signIn("bluesky", {
+    signIn("bluesky", {
       handle: handle,
       password: password,
       redirect: true,

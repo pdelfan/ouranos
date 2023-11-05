@@ -1,29 +1,34 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import { getAvatarSize } from "@/lib/utils/image";
 
 interface Props {
   size?: AvatarSize;
-  avatar: string;
+  avatar: string | undefined;
 }
 export default function Avatar(props: Props) {
-  const { size, avatar } = props;
-  const [image, setImage] = useState(avatar);
+  const { size, avatar } = props;  
   const [width, height] = getAvatarSize(size);
 
-  return (
-    <>
+  if (!avatar) {
+    return (
       <Image
-        src={image}
+        src={FallbackAvatar}
         alt="Avatar"
         width={width}
         height={height}
-        onError={() => setImage(FallbackAvatar.src)}
         className="rounded-full"
       />
-    </>
+    );
+  }
+
+  return (
+    <Image
+      src={avatar}
+      alt="Avatar"
+      width={width}
+      height={height}      
+      className="rounded-full"
+    />
   );
 }
