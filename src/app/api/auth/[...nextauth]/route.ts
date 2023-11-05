@@ -23,7 +23,6 @@ export const authOptions: NextAuthOptions = {
         password: { label: "App Password", type: "password" },
       },
 
-      // authorize user
       async authorize(credentials) {
         if (!credentials) {
           return null;
@@ -79,7 +78,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/login",    
+    signIn: "/login",
   },
 } satisfies NextAuthOptions;
 
