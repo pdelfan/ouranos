@@ -10,5 +10,9 @@ export default async function InventoryLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <main className="min-h-[100svh] flex items-center justify-center ">
+      {children}
+    </main>
+  );
 }

@@ -1,11 +1,12 @@
 import { JWT } from "next-auth/jwt";
 import NextAuth, { NextAuthOptions, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { BskyAgent } from "@atproto/api";
+import { agent } from "@/lib/api/bsky";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
+      id: "bluesky",
       name: "Bluesky",
       credentials: {
         handle: {
@@ -16,12 +17,8 @@ export const authOptions: NextAuthOptions = {
         password: { label: "App Password", type: "password" },
       },
 
+      // authorize user
       async authorize(credentials) {
-        // authorize user
-        const agent = new BskyAgent({
-          service: "https://bsky.social",
-        });
-
         if (!credentials) {
           return null;
         }
@@ -40,10 +37,10 @@ export const authOptions: NextAuthOptions = {
           };
           return user;
         } else {
-          // If you return null then an error will be displayed advising the user to check their details.
+          // an error will be displayed advising the user to check their details.
           return null;
 
-          // (Optional) You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+          // (Optional) can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
@@ -69,8 +66,12 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  pages: {
+    signIn: "/login",
+    signOut: "/",
+  },
 };
 
-export const handler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
