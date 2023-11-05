@@ -1,9 +1,15 @@
 import { JWT } from "next-auth/jwt";
 import NextAuth, { NextAuthOptions, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { agent } from "@/lib/api/bsky";
+import { at } from "@/lib/api/bsky";
+import type {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
+import { getServerSession } from "next-auth";
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       id: "bluesky",
@@ -23,17 +29,18 @@ const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const result = await agent.login({
+        const result = await at.login({
           identifier: credentials.handle,
           password: credentials.password,
         });
 
-        if (result.success && agent.session) {
+        if (result.success && at.session) {
           const user = {
-            id: agent.session.did,
-            handle: agent.session.handle,
-            email: agent.session.email!,
-            emailConfirmed: agent.session.emailConfirmed ?? false,
+            id: at.session.did,
+            handle: at.session.handle,
+            email: at.session.email!,
+            emailConfirmed: at.session.emailConfirmed ?? false,
+            bskySession: at.session,
           };
           return user;
         } else {
@@ -53,16 +60,20 @@ const authOptions: NextAuthOptions = {
         token.handle = user.handle;
         token.email = user.email;
         token.emailConfirmed = user.emailConfirmed;
+        token.bskySession = user.bskySession;
       }
       return token;
     },
+
     // add extra properties to session
     async session({ session, token }): Promise<Session> {
-      const typedToken = token as JWT & User;
-      session.user.id = typedToken.id;
-      session.user.handle = typedToken.handle;
-      session.user.email = typedToken.email;
-      session.user.emailConfirmed = typedToken.emailConfirmed;
+      const receivedToken = token as JWT & User;
+      session.user.email = receivedToken.email;
+      session.user.id = receivedToken.id;
+      session.user.handle = receivedToken.handle;
+      session.user.emailConfirmed = receivedToken.emailConfirmed;
+      session.user.bskySession = receivedToken.bskySession;
+
       return session;
     },
   },
@@ -70,8 +81,18 @@ const authOptions: NextAuthOptions = {
     signIn: "/login",
     signOut: "/",
   },
-};
+} satisfies NextAuthOptions;
 
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+
+// use this helper function instead of getServerSession so you won't need to pass authOptions
+export function getSessionFromServer(
+  ...args:
+    | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, authOptions);
+}
