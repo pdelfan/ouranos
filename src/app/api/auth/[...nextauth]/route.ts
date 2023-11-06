@@ -1,7 +1,7 @@
 import { JWT } from "next-auth/jwt";
 import NextAuth, { NextAuthOptions, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { at } from "@/lib/api/bsky";
+import { at } from "@/lib/api/bsky/agent";
 import type {
   GetServerSidePropsContext,
   NextApiRequest,
