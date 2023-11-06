@@ -8,7 +8,6 @@ function Skeleton() {
           <div className="bg-slate-200 w-20 h-3" />
         </div>
       </div>
-      <div className="bg-slate-200 w-6 h-6" />
     </article>
   );
 }

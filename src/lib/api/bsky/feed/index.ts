@@ -1,4 +1,4 @@
-import { AppBskyActorDefs } from "@atproto/api";
+import { type BskyAgent, AppBskyActorDefs } from "@atproto/api";
 import { getAgent } from "../agent";
 import { SavedFeed } from "../../../../../types/feed";
 
@@ -39,4 +39,49 @@ export const getSavedFeeds = async (): Promise<SavedFeed[]> => {
     ...feed,
     pinned: feedsPref.pinned.includes(feed.uri),
   }));
+};
+
+export const togglePinFeed = async (agent: BskyAgent, feed: string) => {
+  const prefs = await agent.app.bsky.actor.getPreferences();
+  if (!prefs.success) throw new Error("Could not fetch feeds");
+
+  for (const pref of prefs.data.preferences) {
+    if (
+      AppBskyActorDefs.isSavedFeedsPref(pref) &&
+      AppBskyActorDefs.validateSavedFeedsPref(pref).success
+    ) {
+      if (pref.pinned.includes(feed)) {
+        pref.pinned = pref.pinned.filter((f) => f !== feed);
+      } else {
+        pref.pinned.push(feed);
+      }
+    }
+  }
+
+  return await agent.app.bsky.actor.putPreferences({
+    preferences: prefs.data.preferences,
+  });
+};
+
+export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
+  const prefs = await agent.app.bsky.actor.getPreferences();
+  if (!prefs.success) throw new Error("Could not fetch feeds");
+
+  for (const pref of prefs.data.preferences) {
+    if (
+      AppBskyActorDefs.isSavedFeedsPref(pref) &&
+      AppBskyActorDefs.validateSavedFeedsPref(pref).success
+    ) {
+      if (pref.saved.includes(feed)) {
+        pref.pinned = pref.pinned.filter((f) => f !== feed);
+        pref.saved = pref.saved.filter((f) => f !== feed);
+      } else {
+        pref.saved.push(feed);
+      }
+    }
+  }
+
+  return await agent.app.bsky.actor.putPreferences({
+    preferences: prefs.data.preferences,
+  });
 };

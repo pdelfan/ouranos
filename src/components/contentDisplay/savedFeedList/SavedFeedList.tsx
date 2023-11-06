@@ -1,9 +1,8 @@
-import SavedFeedItem from "../savedFeedItem/SavedFeedItem";
 import { getSavedFeeds } from "@/lib/api/bsky/feed";
+import SavedFeedItem from "../savedFeedItem/SavedFeedItem";
 
 export default async function SavedFeedList() {
   const savedFeeds = await getSavedFeeds();
-
   return (
     <section className="flex flex-col">
       {savedFeeds &&
