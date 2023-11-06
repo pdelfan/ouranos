@@ -1,11 +1,26 @@
 import FeedList from "@/components/contentDisplay/feedList/FeedList";
-import { getPopularFeeds } from "@/lib/api/bsky/feed";
+import FeedListSkeleton from "@/components/contentDisplay/feedList/FeedListSkeleton";
+import SavedFeedList from "@/components/contentDisplay/savedFeedList/SavedFeedList";
+import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
+import { Suspense } from "react";
 
 export default async function Page() {
-  const popularFeeds = await getPopularFeeds();
   return (
-    <section>
-      <FeedList popular={popularFeeds} />
+    <section className="flex flex-col gap-5">
+      <section>
+        <h2 className="text-2xl font-semibold px-3 sm:px-0 mb-2">My feeds</h2>        
+        <Suspense fallback={<SavedFeedListSkeleton />}>
+          <SavedFeedList />
+        </Suspense>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold px-3 sm:px-0 mb-2">
+          Popular feeds
+        </h2>
+        <Suspense fallback={<FeedListSkeleton />}>
+          <FeedList />
+        </Suspense>
+      </section>
     </section>
   );
 }

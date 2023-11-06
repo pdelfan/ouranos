@@ -10,14 +10,14 @@ export default function FeedItem(props: Props) {
   const { feedItem } = props;
   const { avatar, displayName, description, likeCount, creator } = feedItem;
   return (
-    <article className="flex flex-col gap-2 p-3 border sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
-      <div className="flex flex-wrap gap-3 items-start">
+    <article className="flex flex-col gap-2 p-3 border border-x-0 sm:border-x sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+      <div className="flex flex-wrap gap-3 items-center">
         <Image
           src={avatar ?? FallbackFeed}
           alt={displayName}
           width={40}
           height={40}
-          className="rounded-lg"
+          className={`rounded-lg ${!avatar && "border"}`}
         />
         <div className="flex flex-col">
           <h2 className="text-neutral-700 font-semibold break-words">

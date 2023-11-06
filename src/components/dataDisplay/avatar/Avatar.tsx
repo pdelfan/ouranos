@@ -1,34 +1,26 @@
 import Image from "next/image";
+import Link from "next/link";
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import { getAvatarSize } from "@/lib/utils/image";
+import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 
 interface Props {
   size?: AvatarSize;
-  avatar: string | undefined;
+  profile: ProfileViewDetailed | null | undefined;
 }
 export default function Avatar(props: Props) {
-  const { size, avatar } = props;  
+  const { size, profile } = props;
   const [width, height] = getAvatarSize(size);
 
-  if (!avatar) {
-    return (
+  return (
+    <Link href={`/dashboard/user/${profile?.handle}`}>
       <Image
-        src={FallbackAvatar}
+        src={profile?.avatar ?? FallbackAvatar}
         alt="Avatar"
         width={width}
         height={height}
         className="rounded-full"
       />
-    );
-  }
-
-  return (
-    <Image
-      src={avatar}
-      alt="Avatar"
-      width={width}
-      height={height}      
-      className="rounded-full"
-    />
+    </Link>
   );
 }

@@ -1,16 +1,12 @@
-import { GeneratorView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
+import { getPopularFeeds } from "@/lib/api/bsky/feed";
 import FeedItem from "../feedItem/FeedItem";
 
-interface Props {
-  popular: GeneratorView[];
-}
-
-export default function FeedList(props: Props) {
-  const { popular } = props;
+export default async function FeedList() {
+  const popularFeeds = await getPopularFeeds();
   return (
     <section className="flex flex-col">
-      {popular &&
-        popular.map((feed) => <FeedItem key={feed.cid} feedItem={feed} />)}
+      {popularFeeds &&
+        popularFeeds.map((feed) => <FeedItem key={feed.cid} feedItem={feed} />)}
     </section>
   );
 }
