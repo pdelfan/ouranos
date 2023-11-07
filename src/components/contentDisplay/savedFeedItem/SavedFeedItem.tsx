@@ -20,11 +20,9 @@ export default function SavedFeedItem(props: Props) {
           height={40}
           className={`rounded-lg ${!avatar && "border"}`}
         />
-        <div className="flex flex-col">
-          <h2 className="text-neutral-700 font-semibold break-words">
-            {feedItem.displayName}
-          </h2>
-        </div>
+        <h2 className="text-neutral-700 font-semibold break-words">
+          {feedItem.displayName}
+        </h2>
       </div>
     </article>
   );

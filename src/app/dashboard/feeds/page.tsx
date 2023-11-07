@@ -4,7 +4,7 @@ import SavedFeedList from "@/components/contentDisplay/savedFeedList/SavedFeedLi
 import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
 import { Suspense } from "react";
 
-export default async function Page() {  
+export default async function Page() {
   return (
     <section className="flex flex-col gap-5">
       <section>
