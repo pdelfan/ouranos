@@ -1,4 +1,4 @@
-import { getProfile } from "@/lib/api/bsky/actor";
+import { getProfile, getSuggestions } from "@/lib/api/bsky/actor";
 import Image from "next/image";
 
 interface Props {
@@ -31,7 +31,9 @@ export default async function ProfileHeader(props: Props) {
       <div className="p-5 mt-10">
         <h1 className="text-2xl font-semibold">{profile?.displayName}</h1>
         <h2 className="text-neutral-400 font-medium">@{profile?.handle}</h2>
-        <p className="text-neutral-600 leading-5 mt-3">{profile?.description}</p>
+        <p className="text-neutral-600 leading-5 mt-3">
+          {profile?.description}
+        </p>
         <div className="flex flex-gap items-center mt-3 gap-3">
           <div className="flex gap-1">
             <span className="font-semibold text-neutral-600">

@@ -9,7 +9,7 @@ export default async function Aside() {
   const profile = await getProfile(session?.user.bskySession.handle);
 
   return (
-    <aside className="sticky h-screen top-6 hidden lg:block">
+    <aside className="sticky h-full top-6 hidden lg:block">
       <div className="flex gap-3 items-center">
         <div className="flex flex-col items-end">
           <Link
