@@ -38,7 +38,7 @@ export default function Navbar() {
         href={`/dashboard/user/${session?.user.handle}`}
         icons={["bxs:user", "bx:user"]}
         title="Profile"
-        isActive={pathname === `/dashboard/user/${session?.user.handle}`}
+        isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
       />
       <NavItem
         href="/dashboard/settings"

@@ -17,7 +17,7 @@ export default function TabItem(props: Props) {
     <Link
       href={path}
       role="tab"
-      className={`shrink-0 border-b-3 px-3 pb-2 font-semibold ${
+      className={`shrink-0 border-b-3 px-3 pb-2 font-semibold hover:text-primary ${
         isAvtive
           ? "border-primary-600 text-primary border-primary"
           : "border-transparent text-neutral-500"
