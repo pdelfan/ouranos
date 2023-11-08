@@ -1,5 +1,5 @@
-import { type BskyAgent, AppBskyActorDefs, AtpSessionData } from "@atproto/api";
-import { at, getAgent } from "../agent";
+import { type BskyAgent, AppBskyActorDefs } from "@atproto/api";
+import { getAgent } from "../agent";
 import { SavedFeed } from "../../../../../types/feed";
 
 export const getPopularFeeds = async (search?: string) => {

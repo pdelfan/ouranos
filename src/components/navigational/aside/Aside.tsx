@@ -20,7 +20,12 @@ export default async function Aside() {
           </Link>
           <SignOut />
         </div>
-        <Avatar profile={profile} />
+        <Link
+          href={`/dashboard/user/${profile?.handle}`}
+          className="font-semibold max-w-[7rem] truncate hover:brightness-75"
+        >
+          <Avatar profile={profile} />
+        </Link>
       </div>
     </aside>
   );

@@ -26,7 +26,7 @@ export default function Search(props: Props) {
   }, 300);
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0 mx-3 sm:mx-0">
+    <div className="relative grow flex-shrink-0 mx-3 sm:mx-0">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
