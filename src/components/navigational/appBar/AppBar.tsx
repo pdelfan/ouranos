@@ -9,7 +9,7 @@ export default function AppBar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="flex justify-between p-3 border-t gap-6 fixed bottom-0 z-50 w-full sm:hidden bg-white">
+    <nav className="flex justify-between py-3 px-6 border-t gap-6 fixed bottom-0 z-50 w-full md:hidden bg-white">
       <NavItem
         href="/dashboard"
         icons={["bxs:home", "bx:home"]}
