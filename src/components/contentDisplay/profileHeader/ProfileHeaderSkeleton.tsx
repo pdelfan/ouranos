@@ -1,14 +1,24 @@
+import Image from "next/image";
+import FallbackBanner from "@/assets/images/fallbackBanner.png";
+
 export default function ProfileHeaderSkeleton() {
   return (
     <section className="border sm:rounded-2xl overflow-hidden animate-pulse">
-      <div className="relative bg-gray-300 max-h-48 min-h-[9rem]">
+      <div className="relative ">
+        <Image
+          src={FallbackBanner}
+          alt="Banner"
+          width={700}
+          height={100}
+          className="object-cover min-h-[9rem] animate-pulse"
+        />
         <div className="w-full h-full" />
-        <div className="absolute bottom-0 transform translate-y-1/2 px-4">
+        <div className="absolute bottom-0 transform translate-y-1/2 px-3">
           <div className="w-[95px] h-[95px] bg-gray-200 rounded-full border-4 border-white" />
         </div>
       </div>
 
-      <div className="p-5 mt-10">
+      <div className="p-4 mt-10">
         <div className="h-6 bg-gray-200 rounded w-2/6 mb-2" />
         <div className="h-4 bg-gray-200 rounded w-1/2 mb-5" />
         <div className="h-4 bg-gray-200 rounded w-full mb-4" />

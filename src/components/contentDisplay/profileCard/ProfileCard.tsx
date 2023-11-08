@@ -22,7 +22,7 @@ export default function ProfileCard(props: Props) {
             <Avatar profile={profile} />
             <div className="flex flex-col">
               <h2 className="font-semibold">{profile?.displayName}</h2>
-              <h3 className="text-neutral-400 font-medium">
+              <h3 className="text-neutral-400 font-medium break-all">
                 @{profile?.handle}
               </h3>
             </div>
@@ -30,7 +30,9 @@ export default function ProfileCard(props: Props) {
           {/* Follow Button */}
         </div>
         <div>
-          <p className="text-neutral-600 leading-5 break-words">{profile?.description}</p>
+          <p className="text-neutral-600 leading-5 break-words">
+            {profile?.description}
+          </p>
         </div>
       </article>
     </Link>

@@ -14,7 +14,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex justify-center gap-20 pb-20 sm:mt-6">
+    <main className="flex justify-center gap-12 pb-20 sm:mt-6">
       <SidePanel />
       <section className="w-full sm:max-w-xl">{children}</section>
       <Aside />

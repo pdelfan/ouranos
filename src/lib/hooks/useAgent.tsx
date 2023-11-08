@@ -13,7 +13,7 @@ export default function useAgent() {
       setAgent(at);
     };
     getAgent();
-  }, [session?.user.bskySession]);
+  }, [session]);
 
   return agent;
 }

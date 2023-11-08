@@ -1,22 +1,13 @@
-import FeedList from "@/components/contentDisplay/feedList/FeedList";
-import SavedFeedList from "@/components/contentDisplay/savedFeedList/SavedFeedList";
+import FeedListSkeleton from "@/components/contentDisplay/feedList/FeedListSkeleton";
+import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
 import Search from "@/components/filter/search/Search";
 
-interface Props {
-  searchParams: {
-    query?: string;
-  };
-}
-
-export default async function Page(props: Props) {
-  const { searchParams } = props;
-  const query = searchParams?.query || "";
-
+export default function Loading() {
   return (
     <section className="flex flex-col gap-5">
       <section>
         <h2 className="text-2xl font-semibold mx-3 sm:mx-0 mb-2">My feeds</h2>
-        <SavedFeedList />
+        <SavedFeedListSkeleton />
       </section>
       <section>
         <h2 className="text-2xl font-semibold mx-3 sm:mx-0 mb-2">
@@ -24,7 +15,7 @@ export default async function Page(props: Props) {
         </h2>
         <div className="flex flex-col gap-2">
           <Search placeholder="Search for feeds" />
-          <FeedList query={query} />
+          <FeedListSkeleton />
         </div>
       </section>
     </section>
