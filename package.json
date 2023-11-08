@@ -15,7 +15,8 @@
     "next-auth": "^4.24.4",
     "react": "^18",
     "react-dom": "^18",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",

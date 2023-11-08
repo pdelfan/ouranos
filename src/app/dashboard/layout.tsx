@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SidePanel from "@/components/navigational/sidePanel/SidePanel";
 import Aside from "@/components/navigational/aside/Aside";
+import AppBar from "@/components/navigational/appBar/AppBar";
 
 export const metadata: Metadata = {
   title: "Ouranos",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardLayout({
-  children,  
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -17,6 +18,7 @@ export default function DashboardLayout({
       <SidePanel />
       <section className="w-full sm:max-w-xl">{children}</section>
       <Aside />
+      <AppBar />
     </main>
   );
 }

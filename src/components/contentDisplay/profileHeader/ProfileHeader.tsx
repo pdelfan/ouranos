@@ -1,3 +1,4 @@
+import FollowInfo from "@/components/dataDisplay/followInfo/FollowInfo";
 import { getProfile, getSuggestions } from "@/lib/api/bsky/actor";
 import Image from "next/image";
 
@@ -34,18 +35,10 @@ export default async function ProfileHeader(props: Props) {
         <p className="text-neutral-600 leading-5 mt-3">
           {profile?.description}
         </p>
-        <div className="flex flex-gap items-center mt-3 gap-3">
-          <div className="flex gap-1">
-            <span className="font-semibold text-neutral-600">
-              {profile?.followsCount}
-            </span>
-            <span className="font-medium text-neutral-400">Following</span>
-          </div>
-          <div className="flex gap-1">
-            <span className="font-semibold">{profile?.followersCount}</span>
-            <span className="font-medium text-neutral-400">Followers</span>
-          </div>
-        </div>
+        <FollowInfo
+          followersCount={profile?.followersCount ?? 0}
+          followsCount={profile?.followsCount ?? 0}
+        />
       </div>
     </section>
   );

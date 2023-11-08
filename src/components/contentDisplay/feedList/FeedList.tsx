@@ -1,9 +1,14 @@
 import FeedItem from "../feedItem/FeedItem";
 import { getPopularFeeds, getSavedFeeds } from "@/lib/api/bsky/feed";
 
-export default async function FeedList() {
+interface Props {
+  query: string;
+}
+
+export default async function FeedList(props: Props) {
+  const { query } = props;
   const savedFeeds = await getSavedFeeds();
-  const popularFeeds = await getPopularFeeds();
+  const popularFeeds = await getPopularFeeds(query);
 
   return (
     <section className="flex flex-col">
