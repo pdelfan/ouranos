@@ -18,7 +18,7 @@ export default function AppBar() {
       />
       <NavItem
         href="/dashboard/search"
-        icons={["bxs:search", "bx:search"]}
+        icons={["mingcute:search-fill", "bx:search"]}
         title="Search"
         isActive={pathname.includes("search")}
       />

@@ -13,7 +13,9 @@ export default function Search(props: Props) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleSearch = useDebouncedCallback((term: string) => {
+  const handleSearch = useDebouncedCallback((term) => {
+    console.log(`Searching... ${term}`);
+
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);
@@ -21,7 +23,7 @@ export default function Search(props: Props) {
       params.delete("query");
     }
     replace(`${pathname}?${params.toString()}`);
-  });
+  }, 300);
 
   return (
     <div className="relative flex flex-1 flex-shrink-0 mx-3 sm:mx-0">
