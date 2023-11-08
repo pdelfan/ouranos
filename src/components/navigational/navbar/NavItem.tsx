@@ -17,7 +17,10 @@ export default function NavItem(props: Props) {
       href={href}
       className="flex items-center gap-3 text-neutral-500 hover:text-neutral-700"
     >
-      <Icon icon={activeIcon} className={`text-3xl ${activeStyle}`} />
+      <Icon
+        icon={activeIcon}
+        className={`text-2xl md:text-3xl ${activeStyle}`}
+      />
       <span className={`hidden lg:inline text-lg font-medium ${activeStyle}`}>
         {title}
       </span>

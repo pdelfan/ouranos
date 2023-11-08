@@ -11,7 +11,7 @@ function Skeleton() {
       <div className="bg-slate-200 w-4/5 h-2 mt-2" />
       <div className="bg-slate-200 w-3/4 h-2" />
       <div className="bg-slate-200 w-5/6 h-2" />
-      <div className="bg-slate-200 w-32 h-2 mt-2" />
+      <div className="bg-slate-200 w-16 h-2 mt-2" />
     </article>
   );
 }

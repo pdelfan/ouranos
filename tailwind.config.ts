@@ -12,6 +12,9 @@ const config: Config = {
         primary: "#A94AFF",
         secondary: "#ffba28",
       },
+      borderWidth: {
+        "3": "3px",
+      },
     },
   },
   plugins: [],
