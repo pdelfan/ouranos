@@ -1,24 +1,21 @@
-"use client";
-
+import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 interface Props {
   label: string;
-  path: string;
+  path: string | Url;
+  isActive: boolean;
 }
 
 export default function TabItem(props: Props) {
-  const { label, path } = props;
-  const pathname = usePathname();
-  const isAvtive = pathname === path;
+  const { label, path, isActive } = props;
 
   return (
     <Link
       href={path}
       role="tab"
       className={`shrink-0 border-b-3 px-3 pb-2 font-semibold hover:text-primary ${
-        isAvtive
+        isActive
           ? "border-primary-600 text-primary border-primary"
           : "border-transparent text-neutral-500"
       }`}

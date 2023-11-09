@@ -85,3 +85,15 @@ export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
     preferences: prefs.data.preferences,
   });
 };
+
+export const getTimeline = async () => {
+  const agent = await getAgent();
+  const timeline = await agent.getTimeline();
+  return timeline;
+};
+
+export const getFeed = async (uri: string) => {
+  const agent = await getAgent();
+  const feed = await agent.app.bsky.feed.getFeed({ feed: uri });
+  return feed;
+};

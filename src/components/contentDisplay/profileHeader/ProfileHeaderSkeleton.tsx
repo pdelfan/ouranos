@@ -1,12 +1,12 @@
 import Image from "next/image";
-import FallbackBanner from "@/assets/images/fallbackBanner.png";
+import SkeletonBanner from "@/assets/images/skeletonBanner.png";
 
 export default function ProfileHeaderSkeleton() {
   return (
     <section className="border sm:rounded-2xl overflow-hidden animate-pulse">
       <div className="relative ">
         <Image
-          src={FallbackBanner}
+          src={SkeletonBanner}
           alt="Banner"
           width={700}
           height={100}

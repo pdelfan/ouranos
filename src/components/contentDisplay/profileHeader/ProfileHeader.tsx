@@ -35,7 +35,7 @@ export default async function ProfileHeader(props: Props) {
       </div>
       <div className="p-4 mt-10">
         <h1 className="text-2xl font-semibold break-all">
-          {profile?.displayName}
+          {profile?.displayName ?? profile?.handle}
         </h1>
         <h2 className="text-neutral-400 font-medium break-all">
           @{profile?.handle}

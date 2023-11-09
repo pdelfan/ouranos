@@ -15,6 +15,6 @@ export const getBskySession = async () => {
 };
 
 export const getAgent = async () => {
-  const bskyAgent = await getBskySession();  
+  const bskyAgent = await getBskySession();
   return bskyAgent;
 };

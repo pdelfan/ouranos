@@ -16,13 +16,13 @@ export default async function Aside() {
             href={`/dashboard/user/${profile?.handle}`}
             className="font-semibold max-w-[7rem] truncate"
           >
-            {profile?.displayName}
+            {profile?.displayName ?? profile?.handle}
           </Link>
           <SignOut />
         </div>
         <Link
           href={`/dashboard/user/${profile?.handle}`}
-          className="font-semibold max-w-[7rem] truncate hover:brightness-75"
+          className="font-semibold max-w-[7rem] truncate hover:brightness-90"
         >
           <Avatar profile={profile} />
         </Link>
