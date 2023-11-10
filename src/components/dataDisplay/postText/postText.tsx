@@ -26,7 +26,7 @@ export default function PostText(props: Props) {
       content.push(
         <Link
           className="text-primary"
-          href={`dashboard/user/${getHandle(segment.text)}`}
+          href={`/dashboard/user/${getHandle(segment.text)}`}
           key={segment.text + segment.facet}
         >
           {segment.text}
