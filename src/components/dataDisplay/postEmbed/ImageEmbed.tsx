@@ -20,7 +20,7 @@ export default function ImageEmbed(props: Props) {
         return (
           <div className="flex flex-nowrap object-cover gap-1">
             {images.map((image, i) => (
-              <div key={i}>
+              <div key={i} className="relative">
                 <Image
                   src={image.thumb}
                   alt={image.alt}
@@ -28,6 +28,7 @@ export default function ImageEmbed(props: Props) {
                   height={900}
                   className="rounded-md h-full max-h-72 object-cover"
                 />
+                {image.alt && <AltTag />}
               </div>
             ))}
           </div>
