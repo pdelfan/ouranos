@@ -10,7 +10,7 @@ export default function ExternalEmbed(props: Props) {
   const { embed } = props;
 
   return (
-    <article className="border rounded-2xl bg-white">
+    <article className="border rounded-2xl bg-white hover:brightness-95">
       <Link href={embed.external.uri} target="blank">
         {embed.external.thumb && (
           <div className="relative w-full h-44">
@@ -18,7 +18,7 @@ export default function ExternalEmbed(props: Props) {
               src={embed.external.thumb}
               alt={embed.external.description}
               fill
-              className="rounded-t-xl object-cover"
+              className="rounded-t-2xl object-cover"
             />
           </div>
         )}
@@ -26,9 +26,7 @@ export default function ExternalEmbed(props: Props) {
           <span className="break-all text-sm text-gray-500">
             {getHostname(embed.external.uri)}
           </span>
-          <span className="break-all font-medium">
-            {embed.external.title}
-          </span>
+          <span className="break-all font-medium">{embed.external.title}</span>
         </div>
       </Link>
     </article>
