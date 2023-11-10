@@ -38,7 +38,7 @@ export default async function ProfileHeader(props: Props) {
       {profile?.viewer && session?.user.handle !== handle && (
         <div className="flex mr-3 mt-3">
           <div className="ml-auto">
-            <Follow viewer={profile.viewer} />
+            <Follow viewer={profile.viewer} userDID={profile.did} />
           </div>
         </div>
       )}

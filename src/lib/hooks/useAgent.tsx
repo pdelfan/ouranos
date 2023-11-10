@@ -9,7 +9,7 @@ export default function useAgent() {
   useEffect(() => {
     const getAgent = async () => {
       if (!session) return;
-      at.session = session?.user.bskySession;
+      at.resumeSession(session.user.bskySession);
       setAgent(at);
     };
     getAgent();
