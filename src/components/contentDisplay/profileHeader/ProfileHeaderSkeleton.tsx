@@ -40,7 +40,7 @@ export default function ProfileHeaderSkeleton() {
         </div>
       </div>
 
-      <div className="p-4 mt-4">
+      <div className="p-4">
         <div className="h-6 bg-gray-200 rounded w-2/6 mb-2" />
         <div className="h-4 bg-gray-200 rounded w-1/2 mb-5" />
         <div className="h-4 bg-gray-200 rounded w-full mb-4" />
