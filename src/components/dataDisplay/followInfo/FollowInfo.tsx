@@ -13,7 +13,7 @@ export default function FollowInfo(props: Props) {
   return (
     <div className="flex flex-gap items-center mt-3 gap-3">
       <Link
-        href={`/dashboard/user/${handle}/follows`}
+        href={`/dashboard/user/${handle}/following`}
         className="flex gap-1 font-semibold text-neutral-600"
       >
         {abbreviateNumber(followsCount)}
