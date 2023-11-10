@@ -34,7 +34,8 @@ export default async function ProfileHeader(props: Props) {
       </div>
       <div className="p-4 mt-10">
         <h1 className="text-2xl font-semibold break-all">
-          {profile?.displayName ?? profile?.handle}
+          {profile?.displayName ||
+            (profile?.handle && (profile?.displayName ?? profile?.handle))}
         </h1>
         <h2 className="text-neutral-400 font-medium break-all">
           @{profile?.handle}
@@ -42,10 +43,13 @@ export default async function ProfileHeader(props: Props) {
         <p className="text-neutral-600 leading-5 mt-3 break-words">
           {profile?.description}
         </p>
-        <FollowInfo
-          followersCount={profile?.followersCount ?? 0}
-          followsCount={profile?.followsCount ?? 0}
-        />
+        {profile?.handle && (
+          <FollowInfo
+            handle={profile?.handle}
+            followersCount={profile?.followersCount ?? 0}
+            followsCount={profile?.followsCount ?? 0}
+          />
+        )}
       </div>
       <ProfileTabs />
     </section>

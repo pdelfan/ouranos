@@ -132,7 +132,7 @@ export const getUserMediaPosts = async (handle: string) => {
 
 export const getUserLikes = async (handle: string) => {
   const agent = await getAgent();
-  const likes = await agent.getActorLikes({ actor: handle });
+  const likes = await agent.api.app.bsky.feed.getActorLikes({ actor: handle });
 
   if (!likes.success) throw new Error("Could not fetch likes");
   return likes;

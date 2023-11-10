@@ -19,7 +19,7 @@ function Skeleton() {
   );
 }
 
-export default function SuggestionsListSkeleton() {
+export default function ProfileCardSkeleton() {
   return (
     <section className="flex flex-col">
       <Skeleton />

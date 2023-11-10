@@ -9,14 +9,14 @@ interface Props {
 
 export default async function Page(props: Props) {
   const { handle } = props.params;
-  const posts = await getUserPosts(handle);
+  const posts = await getUserPosts(handle);  
 
   return (
     <>
       {posts.data.feed &&
-        posts.data.feed.map((post, i) => (
+        posts.data.feed.map((post, i) => (          
           <FeedPost key={post.post.uri} post={post} />
-        ))}
+        ))}        
     </>
   );
 }

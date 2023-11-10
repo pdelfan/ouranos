@@ -1,27 +1,32 @@
 import { abbreviateNumber } from "@/lib/utils/number";
+import Link from "next/link";
 
 interface Props {
+  handle: string;
   followsCount: number;
   followersCount: number;
 }
 
 export default function FollowInfo(props: Props) {
-  const { followsCount, followersCount } = props;
+  const { handle, followsCount, followersCount } = props;
 
   return (
     <div className="flex flex-gap items-center mt-3 gap-3">
-      <div className="flex gap-1">
-        <span className="font-semibold text-neutral-600">
-          {abbreviateNumber(followsCount)}
-        </span>
+      <Link
+        href={`/dashboard/user/${handle}/follows`}
+        className="flex gap-1 font-semibold text-neutral-600"
+      >
+        {abbreviateNumber(followsCount)}
         <span className="font-medium text-neutral-400">Following</span>
-      </div>
-      <div className="flex gap-1">
-        <span className="font-semibold">
-          {abbreviateNumber(followersCount)}
-        </span>
+      </Link>
+
+      <Link
+        href={`/dashboard/user/${handle}/followers`}
+        className="flex gap-1 font-semibold text-neutral-600"
+      >
+        {abbreviateNumber(followersCount)}
         <span className="font-medium text-neutral-400">Followers</span>
-      </div>
+      </Link>
     </div>
   );
 }
