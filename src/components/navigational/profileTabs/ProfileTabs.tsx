@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import TabItem from "../tabs/TabItem";
 import Tabs from "../tabs/Tabs";
 import { usePathname } from "next/navigation";
@@ -7,6 +8,7 @@ import { usePathname } from "next/navigation";
 export default function FeedTabs() {
   const pathname = usePathname();
   const basePath = pathname.split("/").slice(0, 4).join("/");
+  const { data: session } = useSession();
 
   return (
     <Tabs>
@@ -25,11 +27,13 @@ export default function FeedTabs() {
         path={`${basePath}/media`}
         isActive={pathname === `${basePath}/media`}
       />
-      <TabItem
-        label="Likes"
-        path={`${basePath}/likes`}
-        isActive={pathname === `${basePath}/likes`}
-      />
+      {session?.user?.handle === pathname.split("/")[3] && (
+        <TabItem
+          label="Likes"
+          path={`${basePath}/likes`}
+          isActive={pathname === `${basePath}/likes`}
+        />
+      )}
     </Tabs>
   );
 }

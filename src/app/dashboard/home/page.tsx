@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <div>
       {timeline.data.feed &&
-        timeline.data.feed.map((post, i) => (
+        timeline.data.feed.map((post) => (
           <FeedPost key={post.post.uri} post={post} />
         ))}
     </div>

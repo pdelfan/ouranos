@@ -4,6 +4,8 @@ import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import FallbackBanner from "@/assets/images/fallbackBanner.png";
 import Image from "next/image";
 import ProfileTabs from "@/components/navigational/profileTabs/ProfileTabs";
+import Follow from "@/components/actions/follow/Follow";
+import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 
 interface Props {
   handle: string;
@@ -11,6 +13,7 @@ interface Props {
 export default async function ProfileHeader(props: Props) {
   const { handle } = props;
   const profile = await getProfile(handle);
+  const session = await getSessionFromServer();
 
   return (
     <section className="border sm:rounded-t-2xl overflow-hidden">
@@ -32,7 +35,14 @@ export default async function ProfileHeader(props: Props) {
           />
         </div>
       </div>
-      <div className="p-4 mt-10">
+      {profile?.viewer && session?.user.handle !== handle && (
+        <div className="flex mr-3 mt-3">
+          <div className="ml-auto">
+            <Follow viewer={profile.viewer} />
+          </div>
+        </div>
+      )}
+      <div className={`p-4 ${session?.user.handle == handle && "mt-10"}`}>
         <h1 className="text-2xl font-semibold break-all">
           {profile?.displayName ||
             (profile?.handle && (profile?.displayName ?? profile?.handle))}

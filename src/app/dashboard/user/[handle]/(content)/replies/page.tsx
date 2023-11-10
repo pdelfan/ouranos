@@ -16,7 +16,7 @@ export default async function Page(props: Props) {
       {posts.data.feed &&
         posts.data.feed
           .filter((post) => post.reply)
-          .map((post, i) => <FeedPost key={post.post.uri} post={post} />)}
+          .map((post) => <FeedPost key={post.post.uri} post={post} />)}
     </>
   );
 }

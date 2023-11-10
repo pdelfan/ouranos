@@ -13,8 +13,10 @@ export default async function Page(props: Props) {
 
   return (
     <section>
-      <h2 className="text-2xl font-semibold px-3 sm:px-0">Following</h2>
-      <h3 className="text-lg text-neutral-500">@{handle}</h3>
+      <div className="px-3 sm:px-0">
+        <h2 className="text-2xl font-semibold">Following</h2>
+        <h3 className="text-lg text-neutral-500">@{handle}</h3>
+      </div>
       <section className="flex flex-col mt-2">
         {follows &&
           follows.data.follows.map((profile) => (
