@@ -11,10 +11,10 @@ export default function Navbar() {
   return (
     <nav className="inline-flex flex-col gap-6">
       <NavItem
-        href="/dashboard"
+        href="/dashboard/home"
         icons={["bxs:home", "bx:home"]}
         title="Home"
-        isActive={pathname === "/dashboard"}
+        isActive={pathname === "/dashboard/home"}
       />
       <NavItem
         href="/dashboard/search"

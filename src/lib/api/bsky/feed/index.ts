@@ -15,8 +15,10 @@ export const getPopularFeeds = async (search?: string) => {
   return popularFeeds.data.feeds;
 };
 
-export const getSavedFeeds = async (): Promise<SavedFeed[]> => {
-  const agent = await getAgent();
+export const getSavedFeeds = async (
+  agent?: BskyAgent
+): Promise<SavedFeed[]> => {
+  if (!agent) agent = await getAgent();
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not fetch feeds");
 
@@ -96,4 +98,42 @@ export const getFeed = async (uri: string) => {
   const agent = await getAgent();
   const feed = await agent.app.bsky.feed.getFeed({ feed: uri });
   return feed;
+};
+
+export const getUserPosts = async (handle: string) => {
+  const agent = await getAgent();
+  const posts = await agent.getAuthorFeed({ actor: handle });
+
+  if (!posts.success) throw new Error("Could not fetch posts");
+  return posts;
+};
+
+export const getUserReplyPosts = async (handle: string) => {
+  const agent = await getAgent();
+  const posts = await agent.getAuthorFeed({
+    actor: handle,
+    filter: "posts_with_replies",
+  });
+
+  if (!posts.success) throw new Error("Could not fetch replies");
+  return posts;
+};
+
+export const getUserMediaPosts = async (handle: string) => {
+  const agent = await getAgent();
+  const posts = await agent.getAuthorFeed({
+    actor: handle,
+    filter: "posts_with_media",
+  });
+
+  if (!posts.success) throw new Error("Could not fetch media posts");
+  return posts;
+};
+
+export const getUserLikes = async (handle: string) => {
+  const agent = await getAgent();
+  const likes = await agent.getActorLikes({ actor: handle });
+
+  if (!likes.success) throw new Error("Could not fetch likes");
+  return likes;
 };

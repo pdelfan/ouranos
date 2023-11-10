@@ -5,21 +5,23 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   icon?: string;
   iconColor?: string;
-  color?: string;
-  bgColor?: string;
+  className?: string;
 }
 
 export default function Button(props: Props) {
-  const { children, icon, iconColor, color, bgColor, ...rest } = props;
+  const { children, icon, iconColor, color, className, ...rest } = props;
 
   return (
     <button
-      className={`flex items-center justify-center gap-2 p-2 border rounded-lg font-medium text-sm ${
-        bgColor ? bgColor : "bg-neutral-50"
-      } ${color ? color : "text-neutral-500"} ${
-        props.disabled &&
-        "opacity-30 contrast-75 hover:brightness-100 cursor-not-allowed"
-      } hover:brightness-95 disabled:cursor-not-allowed`}
+      className={`flex items-center justify-center gap-1 font-medium text-sm rounded-lg  disabled:cursor-not-allowed ${
+        className
+          ? className
+          : "p-2 bg-neutral-50 text-neutral-500 border hover:brightness-95"
+      }
+  ${
+    props.disabled &&
+    "opacity-30 contrast-75 hover:brightness-100 cursor-not-allowed"
+  }`}
       {...rest}
     >
       {icon && <Icon icon={icon} className={`text-lg ${iconColor}`} />}

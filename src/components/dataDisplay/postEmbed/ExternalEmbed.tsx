@@ -26,7 +26,7 @@ export default function ExternalEmbed(props: Props) {
           <span className="break-all text-sm text-gray-500">
             {getHostname(embed.external.uri)}
           </span>
-          <span className="break-words font-medium">
+          <span className="break-all font-medium">
             {embed.external.title}
           </span>
         </div>

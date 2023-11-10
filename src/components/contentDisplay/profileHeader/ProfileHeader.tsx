@@ -3,8 +3,7 @@ import { getProfile } from "@/lib/api/bsky/actor";
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import FallbackBanner from "@/assets/images/fallbackBanner.png";
 import Image from "next/image";
-import Tabs from "@/components/navigational/tabs/Tabs";
-import TabItem from "@/components/navigational/tabs/TabItem";
+import ProfileTabs from "@/components/navigational/profileTabs/ProfileTabs";
 
 interface Props {
   handle: string;
@@ -48,17 +47,7 @@ export default async function ProfileHeader(props: Props) {
           followsCount={profile?.followsCount ?? 0}
         />
       </div>
-      <Tabs>
-        <TabItem label="Posts" path={`/dashboard/user/${handle}`} />
-        <TabItem
-          label="Posts & replies"
-          path={`/dashboard/user/${handle}/replies`}
-        />
-        <TabItem label="Media" path={`/dashboard/user/${handle}/media`} />
-        <TabItem label="Likes" path={`/dashboard/user/${handle}/likes`} />
-        <TabItem label="Lists" path={`/dashboard/user/${handle}/lists`} />
-        <TabItem label="Feeds" path={`/dashboard/user/${handle}/feeds`} />
-      </Tabs>
+      <ProfileTabs />
     </section>
   );
 }

@@ -8,7 +8,7 @@ import Compose from "@/components/actions/compose/Compose";
 export default function SidePanel() {
   return (
     <menu className="hidden md:inline-flex items-center lg:items-start flex-col sticky  top-6 h-full">
-      <Link href="/dashboard" className="inline mb-12">
+      <Link href="/dashboard/home" className="inline mb-12">
         <Image
           src="/ouranos.svg"
           alt="Ouranos logo"

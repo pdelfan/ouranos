@@ -1,7 +1,8 @@
+"use client";
+
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
-import ExternalEmbed from "@/components/dataDisplay/postEmbed/ExternalEmbed";
-import ImageEmbed from "@/components/dataDisplay/postEmbed/ImageEmbed";
-import PostEmbed from "@/components/dataDisplay/postEmbed/postEmbed";
+import PostActions from "@/components/dataDisplay/postActions/PostActions";
+import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyEmbedImages, AppBskyFeedDefs } from "@atproto/api";
@@ -16,14 +17,9 @@ export default function FeedPost(props: Props) {
   const { author, indexedAt } = post.post;
 
   return (
-    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
+    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x sm:last:rounded-b-2xl first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
       <div className="flex items-start gap-3">
-        <Link
-          href={`/dashboard/user/${author.handle}`}
-          className="shrink-0 hover:brightness-90"
-        >
-          <Avatar profile={author} size="md" />
-        </Link>
+        <Avatar profile={author} size="md" />
         <div className="flex flex-col">
           <div className="flex">
             <Link
@@ -44,7 +40,8 @@ export default function FeedPost(props: Props) {
           <div>
             <PostText post={post.post} />
           </div>
-          <PostEmbed content={post.post.embed} />
+          {post.post.embed && <PostEmbed content={post.post.embed} />}
+          <PostActions post={post.post} />
         </div>
       </div>
     </div>

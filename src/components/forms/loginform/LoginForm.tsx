@@ -21,7 +21,7 @@ export default function LoginForm() {
       handle: handle,
       password: password,
       redirect: false,
-      callbackUrl: "/dashboard",
+      callbackUrl: "/dashboard/home",
     });
 
     if (result?.error) {

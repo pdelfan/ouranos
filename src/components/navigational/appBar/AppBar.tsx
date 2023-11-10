@@ -11,10 +11,10 @@ export default function AppBar() {
   return (
     <nav className="flex justify-between py-3 px-6 border-t gap-6 fixed bottom-0 z-50 w-full md:hidden bg-white">
       <NavItem
-        href="/dashboard"
+        href="/dashboard/home"
         icons={["bxs:home", "bx:home"]}
         title="Home"
-        isActive={pathname === "/dashboard"}
+        isActive={pathname === "/dashboard/home"}
       />
       <NavItem
         href="/dashboard/search"
