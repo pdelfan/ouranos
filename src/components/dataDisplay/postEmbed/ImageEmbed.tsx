@@ -19,7 +19,7 @@ export default function ImageEmbed(props: Props) {
           width={image.aspectRatio?.width ?? 700}
           height={image.aspectRatio?.height ?? 200}
           className={`${
-            imageCount > 1 && "w-[49%] max-h-64"
+            imageCount > 1 && "w-[49%]"
           } rounded-md object-cover`}
         />
       ))}

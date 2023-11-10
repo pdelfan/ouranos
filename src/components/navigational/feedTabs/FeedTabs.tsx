@@ -18,7 +18,7 @@ export default function FeedTabs() {
   const uri = searchParams.get("uri");
 
   return (
-    <div className="sticky top-0 md:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50 over">
+    <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50 over">
       {isLoading && <FeedTabsSkeleton />}
       <Tabs>
         {!isLoading && (
