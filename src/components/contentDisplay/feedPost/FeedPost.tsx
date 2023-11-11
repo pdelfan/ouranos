@@ -5,7 +5,7 @@ import PostActions from "@/components/dataDisplay/postActions/PostActions";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import { getRelativeTime } from "@/lib/utils/time";
-import { AppBskyEmbedImages, AppBskyFeedDefs } from "@atproto/api";
+import { AppBskyFeedDefs } from "@atproto/api";
 import Link from "next/link";
 
 interface Props {
@@ -17,7 +17,7 @@ export default function FeedPost(props: Props) {
   const { author, indexedAt } = post.post;
 
   return (
-    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x sm:last:rounded-b-2xl first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
+    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
       <div className="flex items-start gap-3">
         <Avatar profile={author} size="md" />
         <div className="flex flex-col">

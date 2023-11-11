@@ -1,6 +1,6 @@
 export default function FeedPostSkeleton() {
   return (
-    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x sm:last:rounded-b-2xl first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
+    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
       <div className="flex items-start gap-3 w-full">
         <div className="flex-shrink-0 flex-grow-0 bg-gray-300 rounded-full w-12 h-12" />
         <div className="flex flex-col grow">

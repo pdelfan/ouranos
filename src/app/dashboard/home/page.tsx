@@ -1,18 +1,8 @@
-import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
-import { getTimeline } from "@/lib/api/bsky/feed";
+import FeedContainer from "@/containers/FeedContainer";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function Home() {
-  const timeline = await getTimeline();  
-
-  return (
-    <div>
-      {timeline.data.feed &&
-        timeline.data.feed.map((post) => (
-          <FeedPost key={post.post.uri} post={post} />
-        ))}
-    </div>
-  );
+export default function Home() {
+  return <FeedContainer feed="timeline" />;
 }

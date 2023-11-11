@@ -88,15 +88,19 @@ export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
   });
 };
 
-export const getTimeline = async () => {
-  const agent = await getAgent();
-  const timeline = await agent.getTimeline();
+export const getTimeline = async (agent: BskyAgent, cursor?: string) => {
+  if (!agent) agent = await getAgent();
+  const timeline = await agent.getTimeline({ cursor: cursor });
   return timeline;
 };
 
-export const getFeed = async (uri: string) => {
-  const agent = await getAgent();
-  const feed = await agent.app.bsky.feed.getFeed({ feed: uri });
+export const getFeed = async (
+  agent: BskyAgent,
+  uri: string,
+  cursor: string
+) => {
+  if (!agent) agent = await getAgent();
+  const feed = await agent.app.bsky.feed.getFeed({ feed: uri, cursor: cursor });
   return feed;
 };
 
