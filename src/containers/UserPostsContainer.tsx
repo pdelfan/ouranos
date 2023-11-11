@@ -3,37 +3,38 @@
 import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
-import useFeed from "@/lib/hooks/useFeed";
+import useProfilePosts from "@/lib/hooks/useProfilePosts";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface Props {
-  feed: string;
+  mode: UserPostMode;
+  handle: string;
 }
 
-export default function FeedContainer(props: Props) {
-  const { feed } = props;
+export default function UserPostsConatiner(props: Props) {
+  const { mode, handle } = props;
   const {
     observerRef,
-    feedStatus,
-    feedData,
-    feedError,
-    isLoadingFeed,
-    isFetchingFeed,
-    isFetchingFeedNextPage,
-    feedHasNextPage,
-  } = useFeed(feed);
+    userPostsStatus,
+    userPostsData,
+    userPostsError,
+    isLoadingUserPosts,
+    isFetchingUserPosts,
+    isFetchingUserPostsNextPage,
+    userPostsHasNextPage,
+  } = useProfilePosts({ mode: mode, handle: handle });
 
   return (
     <div>
-      {feedData &&
-        feedData?.pages.map((page, i) => (
+      {userPostsData &&
+        userPostsData?.pages.map((page, i) => (
           <div key={i}>
             {page.data.feed.map((post, i) => (
               <FeedPost key={post.post.uri + i} post={post} />
             ))}
           </div>
         ))}
-      {isFetchingFeed && !isFetchingFeedNextPage && (
+      {isFetchingUserPosts && !isFetchingUserPostsNextPage && (
         <section>
           <FeedPostSkeleton />
           <FeedPostSkeleton />
@@ -45,12 +46,12 @@ export default function FeedContainer(props: Props) {
           <FeedPostSkeleton />
         </section>
       )}
-      {isFetchingFeedNextPage && (
+      {isFetchingUserPostsNextPage && (
         <section className="flex flex-1 justify-center mt-3">
           <Icon icon="eos-icons:loading" className="text-xl" />
         </section>
       )}
-      {!isFetchingFeed && !feedHasNextPage && <EndOfFeed />}
+      {!isFetchingUserPosts && !userPostsHasNextPage && <EndOfFeed />}
       <div ref={observerRef}></div>
     </div>
   );

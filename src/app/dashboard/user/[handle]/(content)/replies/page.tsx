@@ -1,5 +1,4 @@
-import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
-import { getUserReplyPosts } from "@/lib/api/bsky/feed";
+import UserPostsConatiner from "@/containers/UserPostsContainer";
 
 interface Props {
   params: {
@@ -9,14 +8,6 @@ interface Props {
 
 export default async function Page(props: Props) {
   const { handle } = props.params;
-  const posts = await getUserReplyPosts(handle);
 
-  return (
-    <>
-      {posts.data.feed &&
-        posts.data.feed
-          .filter((post) => post.reply)
-          .map((post, i) => <FeedPost key={post.post.uri + i} post={post} />)}
-    </>
-  );
+  return <UserPostsConatiner mode="reposts" handle={handle} />;
 }

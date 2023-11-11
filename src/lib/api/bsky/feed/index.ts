@@ -104,39 +104,60 @@ export const getFeed = async (
   return feed;
 };
 
-export const getUserPosts = async (handle: string) => {
-  const agent = await getAgent();
-  const posts = await agent.getAuthorFeed({ actor: handle });
+export const getUserPosts = async (
+  agent: BskyAgent,
+  handle: string,
+  cursor: string
+) => {
+  if (!agent) agent = await getAgent();
+  const posts = await agent.getAuthorFeed({ actor: handle, cursor: cursor });
 
   if (!posts.success) throw new Error("Could not fetch posts");
   return posts;
 };
 
-export const getUserReplyPosts = async (handle: string) => {
-  const agent = await getAgent();
+export const getUserReplyPosts = async (
+  agent: BskyAgent,
+  handle: string,
+  cursor: string
+) => {
+  if (!agent) agent = await getAgent();
   const posts = await agent.getAuthorFeed({
     actor: handle,
     filter: "posts_with_replies",
+    cursor: cursor,
   });
 
   if (!posts.success) throw new Error("Could not fetch replies");
   return posts;
 };
 
-export const getUserMediaPosts = async (handle: string) => {
-  const agent = await getAgent();
+export const getUserMediaPosts = async (
+  agent: BskyAgent,
+  handle: string,
+  cursor: string
+) => {
+  if (!agent) agent = await getAgent();
   const posts = await agent.getAuthorFeed({
     actor: handle,
     filter: "posts_with_media",
+    cursor: cursor,
   });
 
   if (!posts.success) throw new Error("Could not fetch media posts");
   return posts;
 };
 
-export const getUserLikes = async (handle: string) => {
-  const agent = await getAgent();
-  const likes = await agent.api.app.bsky.feed.getActorLikes({ actor: handle });
+export const getUserLikes = async (
+  agent: BskyAgent,
+  handle: string,
+  cursor: string
+) => {
+  if (!agent) agent = await getAgent();
+  const likes = await agent.api.app.bsky.feed.getActorLikes({
+    actor: handle,
+    cursor: cursor,
+  });
 
   if (!likes.success) throw new Error("Could not fetch likes");
   return likes;

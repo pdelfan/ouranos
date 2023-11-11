@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { getHandle } from "@/lib/utils/text";
 import { RichText as RichTextHelper, AppBskyFeedPost } from "@atproto/api";
@@ -38,14 +38,14 @@ export default function PostText(props: Props) {
           className="text-primary break-all"
           href={segment.link?.uri!}
           target="blank"
-          key={segment.text + segment.facet}
+          key={segment.text + segment.link?.uri}
         >
           {segment.text}
         </Link>
       );
     } else if (segment.isTag()) {
       content.push(
-        <span key={segment.text + segment.facet} className="text-primary">
+        <span key={segment.text} className="text-primary">
           {segment.text}
         </span>
       );
