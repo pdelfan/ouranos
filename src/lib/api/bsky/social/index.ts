@@ -25,6 +25,6 @@ export const follow = async (agent: BskyAgent, did: string) => {
 };
 
 export const unfollow = async (agent: BskyAgent, did: string) => {
-  const unfollow = await agent.deleteFollow(did);  
+  const unfollow = await agent.deleteFollow(did);
   return unfollow;
 };

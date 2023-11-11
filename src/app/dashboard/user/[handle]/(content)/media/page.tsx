@@ -14,8 +14,8 @@ export default async function Page(props: Props) {
   return (
     <>
       {posts.data.feed &&
-        posts.data.feed.map((post) => (
-          <FeedPost key={post.post.uri} post={post} />
+        posts.data.feed.map((post, i) => (
+          <FeedPost key={post.post.uri + i} post={post} />
         ))}
     </>
   );

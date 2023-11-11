@@ -13,7 +13,7 @@ export default function Button(props: Props) {
 
   return (
     <button
-      className={`flex items-center justify-center gap-1 font-medium text-sm  disabled:cursor-not-allowed ${
+      className={`flex items-center justify-center gap-1 font-medium text-sm disabled:cursor-not-allowed ${
         className
           ? className
           : "rounded-lg p-2 bg-neutral-50 text-neutral-500 border hover:brightness-95"
