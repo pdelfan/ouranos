@@ -33,18 +33,7 @@ export default function FeedContainer(props: Props) {
             ))}
           </div>
         ))}
-      {isFetchingFeed && !isFetchingFeedNextPage && (
-        <section>
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-        </section>
-      )}
+      {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
       {isFetchingFeedNextPage && (
         <section className="flex flex-1 justify-center mt-3">
           <Icon icon="eos-icons:loading" className="text-xl" />

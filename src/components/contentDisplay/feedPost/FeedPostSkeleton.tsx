@@ -1,4 +1,4 @@
-export default function FeedPostSkeleton() {
+function Skeleton() {
   return (
     <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
       <div className="flex items-start gap-3 w-full">
@@ -19,5 +19,20 @@ export default function FeedPostSkeleton() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function FeedPostSkeleton() {
+  return (
+    <>
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+    </>
   );
 }

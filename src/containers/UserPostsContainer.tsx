@@ -35,16 +35,7 @@ export default function UserPostsConatiner(props: Props) {
           </div>
         ))}
       {isFetchingUserPosts && !isFetchingUserPostsNextPage && (
-        <section>
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-          <FeedPostSkeleton />
-        </section>
+        <FeedPostSkeleton />
       )}
       {isFetchingUserPostsNextPage && (
         <section className="flex flex-1 justify-center mt-3">
