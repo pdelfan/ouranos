@@ -162,3 +162,23 @@ export const getUserLikes = async (
   if (!likes.success) throw new Error("Could not fetch likes");
   return likes;
 };
+
+export const likePost = async (agent: BskyAgent, uri: string, cid: string) => {
+  if (!agent) agent = await getAgent();
+  try {
+    const like = await agent.like(uri, cid);
+    return like;
+  } catch (e) {
+    throw new Error("Could not like post");
+  }
+};
+
+export const unlikePost = async (agent: BskyAgent, likeUri: string) => {
+  if (!agent) agent = await getAgent();
+  try {
+    const unlike = await agent.deleteLike(likeUri);
+    return unlike;
+  } catch (e) {
+    throw new Error("Could not unlike post");
+  }
+};

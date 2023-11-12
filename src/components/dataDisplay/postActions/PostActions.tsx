@@ -1,4 +1,5 @@
 import Button from "@/components/actions/button/Button";
+import useLike from "@/lib/hooks/useLike";
 import type { AppBskyFeedDefs } from "@atproto/api";
 
 interface Props {
@@ -7,6 +8,10 @@ interface Props {
 
 export default function PostActions(props: Props) {
   const { post } = props;
+  const { liked, handleToggleLike, likeCount } = useLike({
+    post: post,
+  });
+
   return (
     <div className="flex gap-x-8 mt-2">
       <Button
@@ -15,8 +20,14 @@ export default function PostActions(props: Props) {
       >
         {post.replyCount}
       </Button>
-      <Button className="text-neutral-500 hover:text-red-600" icon="bx:heart">
-        {post.likeCount}
+      <Button
+        onClick={() => handleToggleLike.mutate()}
+        className={
+          liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
+        }
+        icon={liked ? "bxs:heart" : "bx:heart"}
+      >
+        {likeCount}
       </Button>
       <Button className="text-neutral-500 hover:text-primary" icon="bx:repost">
         {post.repostCount}
