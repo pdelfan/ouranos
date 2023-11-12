@@ -11,8 +11,7 @@ export default function useAgent() {
   useEffect(() => {
     const getAgent = async () => {
       if (!session?.user.bskySession) router.push("/");
-      const bskySession = session?.user.bskySession;
-      const result = await at.resumeSession(bskySession);
+      const bskySession = session?.user.bskySession;      
       try {
         const result = await at.resumeSession(bskySession);
         if (!result.success) router.push("/");
