@@ -3,7 +3,7 @@ import type { AppBskyEmbedImages } from "@atproto/api";
 import Image from "next/image";
 
 interface Props {
-  content: AppBskyEmbedImages.View;
+  content: any;
 }
 
 export default function ImageEmbed(props: Props) {

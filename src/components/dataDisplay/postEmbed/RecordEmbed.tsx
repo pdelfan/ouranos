@@ -2,7 +2,7 @@ import { AppBskyEmbedRecord, AppBskyEmbedRecordWithMedia } from "@atproto/api";
 import PostText from "../postText/postText";
 import Avatar from "../avatar/Avatar";
 import { getRelativeTime } from "@/lib/utils/time";
-import ImageEmbed from "./ImageEmbed";
+import PostEmbed from "./PostEmbed";
 
 interface Props {
   record: AppBskyEmbedRecord.View["record"];
@@ -39,6 +39,9 @@ export default function RecordEmbed(props: Props) {
               <div>
                 <PostText record={record.value} truncate={true} />
               </div>
+              {record.embeds && record.embeds.length > 0 && (
+                <PostEmbed content={record.embeds[0]} />
+              )}
             </div>
           </div>
         </div>

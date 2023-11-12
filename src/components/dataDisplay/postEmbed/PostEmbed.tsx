@@ -5,10 +5,11 @@ import {
   AppBskyEmbedImages,
   AppBskyEmbedRecord,
   AppBskyEmbedRecordWithMedia,
+  AppBskyGraphDefs,
   type AppBskyFeedDefs,
 } from "@atproto/api";
 import RecordEmbed from "./RecordEmbed";
-import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
+import ListEmbed from "./ListEmbed";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
@@ -18,51 +19,37 @@ export default function PostEmbed(props: Props) {
   const { content } = props;
 
   // function newgetEmbed(embed: any): JSX.Element | null {
-  //   if (!embed) return null;
-
   //   switch (embed.$type) {
-  //     case "app.bsky.embed.external#view":
-  //       return <ExternalEmbed embed={embed} />;
-  //     case "app.bsky.embed.record#view":
-  //       return <RecordEmbed embed={embed} />;
-  //     case "app.bsky.embed.images#view":
-  //       return <ImageEmbed content={embed} />;
-  //     // case "app.bsky.embed.images#view":
   //     //   if (post) return <MediaWithThread {...(post as PostView)} />;
-
-  //       // return <Images images={embed.images} />;
-  //     // case "app.bsky.embed.recordWithMedia#view":
-  //     //   return <RecordWithMedia {...post} />;
-  //     // case "app.bsky.richtext.facet#link":
-  //     //   if (embed.uri.includes("bsky.app"))
-  //     //     return <AsyncEmbedPost uri={embed.uri} />;
-
-  //       // return (
-  //       //   <SocialEmbed
-  //       //     uri={embed.uri}
-  //       //     fallback={<OpenGraph url={embed.uri} />}
-  //       //   />
-  //       // );
-  //     default:
-  //       return null;
-  //   }
-  // }
 
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
       return <ImageEmbed content={content} />;
     } else if (AppBskyEmbedExternal.isView(content)) {
       return <ExternalEmbed embed={content} />;
+    } else if (
+      AppBskyGraphDefs.isListView(content?.record) &&
+      content?.record
+    ) {
+      let type = "List";
+      switch (content.record.purpose) {
+        case AppBskyGraphDefs.MODLIST:
+          type = "Modertaion List";
+          break;
+        case AppBskyGraphDefs.CURATELIST:
+          type = "Curation List";
+          break;
+      }
+      return <ListEmbed list={content?.record} type={type} />;
     } else if (AppBskyEmbedRecord.isView(content)) {
       let record: AppBskyEmbedRecord.View["record"] | null = null;
       let media: AppBskyEmbedRecordWithMedia.View["media"] | null = null;
-
       if (AppBskyEmbedRecord.isView(content)) {
         record = content.record;
       }
 
       if (AppBskyEmbedRecordWithMedia.isView(content)) {
-        record = content.record.record;
+        record = content.record;
         media = content.media;
       }
 
