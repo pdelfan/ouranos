@@ -15,7 +15,7 @@ export default function FeedContainer(props: Props) {
   const {
     observerRef,
     feedStatus,
-    feedData,    
+    feedData,
     feedError,
     isLoadingFeed,
     isFetchingFeed,

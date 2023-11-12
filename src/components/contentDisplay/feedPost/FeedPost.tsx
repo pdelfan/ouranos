@@ -38,7 +38,7 @@ export default function FeedPost(props: Props) {
             </span>
           </div>
           <div>
-            <PostText post={post.post} />
+            <PostText record={post.post.record} />
           </div>
           {post.post.embed && <PostEmbed content={post.post.embed} />}
           <PostActions post={post.post} />

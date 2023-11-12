@@ -13,6 +13,8 @@ export default function useLike(props: Props) {
   const agent = useAgent();
   const [liked, setLiked] = useState(!!post.viewer?.like);
   const [likeUri, setLikeUri] = useState(post.viewer?.like);
+  const likeCount =
+    (liked ? 1 : 0) - (post.viewer?.like ? 1 : 0) + (post.likeCount || 0);
 
   const handleToggleLike = useMutation({
     mutationKey: ["like", post.uri],
@@ -40,7 +42,6 @@ export default function useLike(props: Props) {
   return {
     liked,
     handleToggleLike,
-    likeCount:
-      (liked ? 1 : 0) - (post.viewer?.like ? 1 : 0) + (post.likeCount || 0),
+    likeCount: likeCount,
   };
 }

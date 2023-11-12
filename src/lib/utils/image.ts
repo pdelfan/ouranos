@@ -1,5 +1,7 @@
 export function getAvatarSize(size?: AvatarSize): number[] {
   switch (size) {
+    case "xs":
+      return [20, 20];
     case "sm":
       return [30, 30];
     case "md":

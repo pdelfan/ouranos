@@ -6,13 +6,14 @@ import type { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs
 import Link from "next/link";
 
 interface Props {
-  post: PostView;
+  record: PostView["record"];
+  truncate?: boolean;
 }
 
 export default function PostText(props: Props) {
-  const { post } = props;
-  const text = AppBskyFeedPost.isRecord(post.record) && post.record.text;
-  const facet = AppBskyFeedPost.isRecord(post.record) && post.record.facets;
+  const { record, truncate } = props;
+  const text = AppBskyFeedPost.isRecord(record) && record.text;
+  const facet = AppBskyFeedPost.isRecord(record) && record.facets;
 
   const richText = new RichTextHelper({
     text: text.toString(),
@@ -54,5 +55,5 @@ export default function PostText(props: Props) {
     }
   }
 
-  return content;
+  return <div className={`${truncate && "line-clamp-6"}`}>{content}</div>;
 }

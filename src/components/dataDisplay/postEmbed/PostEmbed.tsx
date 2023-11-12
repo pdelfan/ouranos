@@ -65,7 +65,7 @@ export default function PostEmbed(props: Props) {
         record = content.record.record;
         media = content.media;
       }
-      
+
       if (record && !media) {
         return <RecordEmbed record={record} />;
       } else if (record && media) {
