@@ -8,12 +8,14 @@ interface Props {
 
 export default function ListEmbed(props: Props) {
   const { list, type } = props;
-  console.log(list);
+  const selectedIcon =
+    type === "Moderation List" ? "mdi:person-block" : "bi:people-fill";
+
   return (
     <div className="p-3 border rounded-xl bg-white hover:brightness-95">
       <div className="flex items-start gap-2">
         <div className="bg-primary p-2.5 rounded-lg">
-          <Icon icon="bi:people-fill" className="text-white text-xl" />
+          <Icon icon={selectedIcon} className="text-white text-xl" />
         </div>
         <div className="flex flex-col">
           <span className="font-semibold break-all line-clamp-1 overflow-ellipsis hover:text-neutral-600">

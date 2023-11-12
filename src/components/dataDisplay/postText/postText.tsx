@@ -55,5 +55,7 @@ export default function PostText(props: Props) {
     }
   }
 
-  return <div className={`${truncate && "line-clamp-6"}`}>{content}</div>;
+  return (
+    <div className={`leading-5 ${truncate && "line-clamp-6"}`}>{content}</div>
+  );
 }

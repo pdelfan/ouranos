@@ -79,7 +79,7 @@ export default function ImageEmbed(props: Props) {
         );
       case 4:
         return (
-          <div className="grid grid-cols-2 gap-1">
+          <div className="grid grid-cols-2 gap-1 aspect-square">
             {images.map((image, i) => (
               <div key={i} className="relative">
                 <Image
@@ -87,7 +87,7 @@ export default function ImageEmbed(props: Props) {
                   alt={image.alt}
                   width={images[i].aspectRatio?.width ?? 450}
                   height={images[i].aspectRatio?.height ?? 450}
-                  className="max-h-40 object-cover rounded-md h-full"
+                  className="object-cover rounded-md h-full max-h-64"
                 />
                 {images[i].alt && <AltTag />}
               </div>

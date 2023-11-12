@@ -6,10 +6,11 @@ import {
   AppBskyEmbedRecord,
   AppBskyEmbedRecordWithMedia,
   AppBskyGraphDefs,
-  type AppBskyFeedDefs,
+  AppBskyFeedDefs,
 } from "@atproto/api";
 import RecordEmbed from "./RecordEmbed";
 import ListEmbed from "./ListEmbed";
+import FeedEmbed from "./FeedEmbed";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
@@ -28,13 +29,18 @@ export default function PostEmbed(props: Props) {
     } else if (AppBskyEmbedExternal.isView(content)) {
       return <ExternalEmbed embed={content} />;
     } else if (
+      AppBskyFeedDefs.isGeneratorView(content?.record) &&
+      content?.record
+    ) {
+      return <FeedEmbed feed={content?.record} />;
+    } else if (
       AppBskyGraphDefs.isListView(content?.record) &&
       content?.record
     ) {
       let type = "List";
       switch (content.record.purpose) {
         case AppBskyGraphDefs.MODLIST:
-          type = "Modertaion List";
+          type = "Moderation List";
           break;
         case AppBskyGraphDefs.CURATELIST:
           type = "Curation List";
