@@ -4,6 +4,7 @@ import { getHandle } from "@/lib/utils/text";
 import { RichText as RichTextHelper, AppBskyFeedPost } from "@atproto/api";
 import type { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import Link from "next/link";
+import { Fragment } from "react";
 
 interface Props {
   record: PostView["record"];
@@ -20,42 +21,66 @@ export default function PostText(props: Props) {
     facets: facet ? facet : [],
   });
 
-  const content: (JSX.Element | string)[] = [];
+  const content: { text: string; component: JSX.Element }[] = [];
 
   for (const segment of richText.segments()) {
     if (segment.isMention()) {
-      content.push(
-        <Link
-          className="text-primary"
-          href={`/dashboard/user/${getHandle(segment.text)}`}
-          key={segment.text + segment.facet}
-        >
-          {segment.text}
-        </Link>
-      );
+      content.push({
+        text: segment.text,
+        component: (
+          <Link
+            className="text-primary break-words"
+            href={`/dashboard/user/${getHandle(segment.text)}`}
+            key={segment.mention?.did}
+          >
+            {segment.text}
+          </Link>
+        ),
+      });
     } else if (segment.isLink()) {
-      content.push(
-        <Link
-          className="text-primary break-all"
-          href={segment.link?.uri!}
-          target="blank"
-          key={segment.text + segment.link?.uri}
-        >
-          {segment.text}
-        </Link>
-      );
+      content.push({
+        text: segment.text,
+        component: (
+          <Link
+            className="text-primary break-all"
+            href={segment.link?.uri!}
+            target="blank"
+            key={segment.link?.uri}
+          >
+            {segment.text}
+          </Link>
+        ),
+      });
     } else if (segment.isTag()) {
-      content.push(
-        <span key={segment.text} className="text-primary">
-          {segment.text}
-        </span>
-      );
+      content.push({
+        text: segment.text,
+        component: (
+          <span key={segment.text} className="text-primary break-all">
+            {segment.text}
+          </span>
+        ),
+      });
     } else {
-      content.push(segment.text);
+      content.push({
+        text: segment.text,
+        component: (
+          <span className="break-words " key={segment.text}>
+            {segment.text}
+          </span>
+        ),
+      });
     }
   }
 
   return (
-    <div className={`leading-5 ${truncate && "line-clamp-6"}`}>{content}</div>
+    <div
+      className={`leading-5 whitespace-pre-wrap break-words	${
+        truncate && "line-clamp-6"
+      }`}
+    >
+      {content.map((segment, i) => (
+        <Fragment key={`${i}+${text}`}>{segment.component}</Fragment>
+      ))}
+    </div>
   );
 }
