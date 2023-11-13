@@ -7,13 +7,6 @@
     --foreground-rgb: 0, 0, 0;
     --background-color: #ffffff;
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --foreground-rgb: 255, 255, 255;
-      --background-color: #1c1917;
-    }
-  }
 }
 
 @layer utilities {

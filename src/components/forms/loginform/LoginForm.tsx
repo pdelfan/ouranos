@@ -34,11 +34,11 @@ export default function LoginForm() {
     }
   };
   return (
-    <section className="bg-white border rounded-2xl max-w-xs p-5 dark:bg-neutral-700 dark:border-neutral-600">
-      <h1 className="text-xl font-semibold text-gray-800 mb-1 mt-3 dark:text-neutral-100">
+    <section className="bg-white border rounded-2xl max-w-xs p-5">
+      <h1 className="text-xl font-semibold text-gray-800 mb-1 mt-3">
         Welcome Back
       </h1>
-      <h2 className="text-sm font-medium text-gray-500 dark:text-neutral-400">
+      <h2 className="text-sm font-medium text-gray-500">
         We recommend using an app password to log in.{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
@@ -84,7 +84,7 @@ export default function LoginForm() {
           />
         </span>
         {error && (
-          <small className="block text-red-500 font-medium mt-1 animate-fade dark:text-red-400">
+          <small className="block text-red-500 font-medium mt-1">
             {error}
           </small>
         )}
