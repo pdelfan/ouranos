@@ -14,25 +14,22 @@ import FeedEmbed from "./FeedEmbed";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
+  depth: number;
 }
 
 export default function PostEmbed(props: Props) {
-  const { content } = props;
-
-  // function newgetEmbed(embed: any): JSX.Element | null {
-  //   switch (embed.$type) {
-  //     //   if (post) return <MediaWithThread {...(post as PostView)} />;
+  const { content, depth = 0 } = props;
 
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
-      return <ImageEmbed content={content} />;
+      return <ImageEmbed content={content} depth={depth} />;
     } else if (AppBskyEmbedExternal.isView(content)) {
-      return <ExternalEmbed embed={content} />;
+      return <ExternalEmbed embed={content} depth={depth} />;
     } else if (
       AppBskyFeedDefs.isGeneratorView(content?.record) &&
       content?.record
     ) {
-      return <FeedEmbed feed={content?.record} />;
+      return <FeedEmbed feed={content?.record} depth={depth} />;
     } else if (
       AppBskyGraphDefs.isListView(content?.record) &&
       content?.record
@@ -46,7 +43,7 @@ export default function PostEmbed(props: Props) {
           type = "Curation List";
           break;
       }
-      return <ListEmbed list={content?.record} type={type} />;
+      return <ListEmbed list={content?.record} type={type} depth={depth} />;
     } else if (AppBskyEmbedRecord.isView(content)) {
       let record: AppBskyEmbedRecord.View["record"] | null = null;
       let media: AppBskyEmbedRecordWithMedia.View["media"] | null = null;
@@ -60,9 +57,9 @@ export default function PostEmbed(props: Props) {
       }
 
       if (record && !media) {
-        return <RecordEmbed record={record} />;
+        return <RecordEmbed record={record} depth={depth} />;
       } else if (record && media) {
-        return <RecordEmbed record={record} media={media} />;
+        return <RecordEmbed record={record} media={media} depth={depth} />;
       }
     }
   };

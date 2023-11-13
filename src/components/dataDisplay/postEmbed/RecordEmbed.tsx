@@ -7,10 +7,11 @@ import PostEmbed from "./PostEmbed";
 interface Props {
   record: AppBskyEmbedRecord.View["record"];
   media?: AppBskyEmbedRecordWithMedia.View["media"];
+  depth: number;
 }
 
 export default function RecordEmbed(props: Props) {
-  const { record, media } = props;
+  const { record, media, depth } = props;
   const isBlocked = AppBskyEmbedRecord.isViewBlocked(record);
   const notFound = AppBskyEmbedRecord.isViewNotFound(record);
   const isViewable = AppBskyEmbedRecord.isViewRecord(record);
@@ -18,7 +19,7 @@ export default function RecordEmbed(props: Props) {
 
   return (
     <>
-      {isViewable && (
+      {isViewable && depth < 1 && (
         <div className="flex justify-between items-center gap-2 p-3 border rounded-xl bg-white hover:brightness-95">
           <div className="flex items-start gap-2">
             <Avatar profile={record.author} size="xs" />
@@ -40,7 +41,7 @@ export default function RecordEmbed(props: Props) {
                 <PostText record={record.value} truncate={true} />
               </div>
               {record.embeds && record.embeds.length > 0 && (
-                <PostEmbed content={record.embeds[0]} />
+                <PostEmbed content={record.embeds[0]} depth={depth + 1} />
               )}
             </div>
           </div>

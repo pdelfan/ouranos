@@ -4,10 +4,11 @@ import Image from "next/image";
 
 interface Props {
   content: any;
+  depth: number;
 }
 
 export default function ImageEmbed(props: Props) {
-  const { content } = props;
+  const { content, depth } = props;
   const imageCount = content.images.length;
 
   const generateImageLayout = (
@@ -111,5 +112,11 @@ export default function ImageEmbed(props: Props) {
     }
   };
 
-  return <article>{generateImageLayout(imageCount, content.images)}</article>;
+  return (
+    <>
+      {depth < 2 && (
+        <article>{generateImageLayout(imageCount, content.images)}</article>
+      )}
+    </>
+  );
 }
