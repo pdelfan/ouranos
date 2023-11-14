@@ -1,8 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import { AppBskyEmbedImages } from "@atproto/api";
-import { KeyboardEvent, useState, useEffect } from "react";
+import { KeyboardEvent, useState, useEffect, useCallback } from "react";
 import Button from "@/components/actions/button/Button";
 
 interface Props {
@@ -16,55 +14,57 @@ export default function Gallery(props: Props) {
   const imageCount = images.length - 1;
   const [currentIndex, setCurrentIndex] = useState(startingIndex);
 
-  const handleBackward = () => {
+  const handleBackward = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
-  };
+  }, [currentIndex]);
 
-  const handleForward = () => {
+  const handleForward = useCallback(() => {
     if (currentIndex < imageCount) {
       setCurrentIndex(currentIndex + 1);
     }
-  };
+  }, [currentIndex, imageCount]);
 
-  const handleKeyboard = (e: Event) => {
-    const { key } = e as unknown as KeyboardEvent;
-    switch (key) {
-      case "ArrowRight":
-        handleForward();
-        break;
-      case "ArrowLeft":
-        handleBackward();
-        break;
-      case "Escape":
-        onClose();
-        break;
-      default:
-        break;
-    }
-  };
+  const handleKeyboard = useCallback(
+    (e: Event) => {
+      const { key } = e as unknown as KeyboardEvent;
+      switch (key) {
+        case "ArrowRight":
+          handleForward();
+          break;
+        case "ArrowLeft":
+          handleBackward();
+          break;
+        case "Escape":
+          onClose();
+          break;
+        default:
+          break;
+      }
+    },
+    [handleBackward, handleForward, onClose]
+  );
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyboard);
 
     return () => window.removeEventListener("keydown", handleKeyboard);
-  }, [handleBackward, handleForward, onClose]);
+  }, [handleKeyboard, handleBackward, handleForward, onClose]);
 
   return (
     <section
       className="z-50 bg-black/80 fixed inset-0 w-screen h-screen"
-      tabIndex={0}
       onClick={onClose}
     >
       <Button
-        className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-white/10"
+        className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
         icon="ph:x-bold"
         onClick={onClose}
       />
       {currentIndex > 0 && (
         <Button
-          className="z-50  fixed left-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-white/10"
+          className="z-50  fixed left-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="bx:left-arrow-alt"
           onClick={(e) => {
             e.stopPropagation();
@@ -74,7 +74,7 @@ export default function Gallery(props: Props) {
       )}
       {currentIndex < imageCount && (
         <Button
-          className="z-50 fixed right-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-white/10"
+          className="z-50 fixed right-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="bx:right-arrow-alt"
           onClick={(e) => {
             e.stopPropagation();

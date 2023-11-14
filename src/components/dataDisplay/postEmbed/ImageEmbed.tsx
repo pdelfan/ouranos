@@ -35,7 +35,7 @@ export default function ImageEmbed(props: Props) {
                   className="rounded-md h-full max-h-72 object-cover cursor-pointer hover:brightness-90"
                   onClick={() => setShowImage(i)}
                 />
-                {image.alt && <AltTag />}
+                {image.alt && <AltTag text={image.alt} />}
               </div>
             ))}
           </div>
@@ -55,7 +55,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
                     onClick={() => setShowImage(0)}
                   />
-                  {images[0].alt && <AltTag />}
+                  {images[0].alt && <AltTag text={images[0].alt} />}
                 </div>
                 <div className="relative min-h-0 grow basis-0">
                   <Image
@@ -67,7 +67,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
                     onClick={() => setShowImage(1)}
                   />
-                  {images[1].alt && <AltTag />}
+                  {images[1].alt && <AltTag text={images[1].alt} />}
                 </div>
               </div>
               <div className="flex grow basis-0 flex-col gap-1">
@@ -81,7 +81,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
                     onClick={() => setShowImage(2)}
                   />
-                  {images[2].alt && <AltTag />}
+                  {images[2].alt && <AltTag text={images[2].alt} />}
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function ImageEmbed(props: Props) {
                   className="object-cover rounded-md h-full max-h-64 cursor-pointer hover:brightness-90"
                   onClick={() => setShowImage(i)}
                 />
-                {images[i].alt && <AltTag />}
+                {images[i].alt && <AltTag text={images[i].alt} />}
               </div>
             ))}
           </div>
@@ -117,7 +117,7 @@ export default function ImageEmbed(props: Props) {
               className="rounded-md object-cover cursor-pointer hover:brightness-90"
               onClick={() => setShowImage(0)}
             />
-            {images[0].alt && <AltTag />}
+            {images[0].alt && <AltTag text={images[0].alt} />}
           </div>
         );
     }
