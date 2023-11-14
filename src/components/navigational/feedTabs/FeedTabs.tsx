@@ -10,12 +10,12 @@ import FeedTabsSkeleton from "./FeedTabsSkeleton";
 
 export default function FeedTabs() {
   const agent = useAgent();
-  const { data: savedFeeds, isLoading } = useSWR("savedFeeds", () =>
-    getSavedFeeds(agent)
-  );
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const uri = searchParams.get("uri");
+  const { data: savedFeeds, isLoading } = useSWR("savedFeeds", () =>
+    getSavedFeeds(agent)
+  );
 
   return (
     <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50 over">
