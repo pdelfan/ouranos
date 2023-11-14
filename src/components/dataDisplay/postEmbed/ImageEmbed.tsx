@@ -55,8 +55,10 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
                     onClick={() => setShowImage(0)}
                   />
-                  {images[0].alt && <AltTag text={images[0].alt} />}
+                  {images[2].alt && <AltTag text={images[2].alt} />}
                 </div>
+              </div>
+              <div className="flex grow basis-0 flex-col gap-1">
                 <div className="relative min-h-0 grow basis-0">
                   <Image
                     key={1}
@@ -65,12 +67,10 @@ export default function ImageEmbed(props: Props) {
                     width={images[1].aspectRatio?.width ?? 450}
                     height={images[1].aspectRatio?.height ?? 450}
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
-                    onClick={() => setShowImage(1)}
+                    onClick={() => setShowImage(0)}
                   />
                   {images[1].alt && <AltTag text={images[1].alt} />}
                 </div>
-              </div>
-              <div className="flex grow basis-0 flex-col gap-1">
                 <div className="relative min-h-0 grow basis-0">
                   <Image
                     key={2}
