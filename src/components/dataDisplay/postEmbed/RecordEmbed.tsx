@@ -20,7 +20,7 @@ export default function RecordEmbed(props: Props) {
   return (
     <>
       {isViewable && depth < 1 && (
-        <div className="flex justify-between items-center gap-2 p-3 border rounded-xl bg-white hover:brightness-95">
+        <div className="flex justify-between items-center gap-2 p-3 border rounded-xl bg-white">
           <div className="flex items-start gap-2">
             <Avatar profile={record.author} size="xs" />
             <div className="flex flex-col">

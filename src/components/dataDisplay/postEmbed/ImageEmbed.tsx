@@ -1,6 +1,10 @@
+"use client";
+
 import AltTag from "@/components/feedback/altTag/AltTag";
 import type { AppBskyEmbedImages } from "@atproto/api";
 import Image from "next/image";
+import { useState } from "react";
+import Gallery from "../gallery/Gallery";
 
 interface Props {
   content: any;
@@ -10,6 +14,7 @@ interface Props {
 export default function ImageEmbed(props: Props) {
   const { content, depth } = props;
   const imageCount = content.images.length;
+  const [showImage, setShowImage] = useState<number | undefined>(undefined);
 
   const generateImageLayout = (
     count: number,
@@ -27,7 +32,8 @@ export default function ImageEmbed(props: Props) {
                   alt={image.alt}
                   width={250}
                   height={250}
-                  className="rounded-md h-full max-h-72 object-cover"
+                  className="rounded-md h-full max-h-72 object-cover cursor-pointer hover:brightness-90"
+                  onClick={() => setShowImage(i)}
                 />
                 {image.alt && <AltTag />}
               </div>
@@ -46,18 +52,20 @@ export default function ImageEmbed(props: Props) {
                     alt={images[0].alt}
                     width={images[0].aspectRatio?.width ?? 450}
                     height={images[0].aspectRatio?.height ?? 450}
-                    className="rounded-md object-cover w-full h-full"
+                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
+                    onClick={() => setShowImage(0)}
                   />
                   {images[0].alt && <AltTag />}
                 </div>
                 <div className="relative min-h-0 grow basis-0">
                   <Image
-                    key={0}
+                    key={1}
                     src={images[1].thumb}
                     alt={images[1].alt}
                     width={images[1].aspectRatio?.width ?? 450}
                     height={images[1].aspectRatio?.height ?? 450}
-                    className="rounded-md object-cover w-full h-full"
+                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
+                    onClick={() => setShowImage(1)}
                   />
                   {images[1].alt && <AltTag />}
                 </div>
@@ -65,12 +73,13 @@ export default function ImageEmbed(props: Props) {
               <div className="flex grow basis-0 flex-col gap-1">
                 <div className="relative min-h-0 grow basis-0">
                   <Image
-                    key={0}
+                    key={2}
                     src={images[2].thumb}
                     alt={images[2].alt}
                     width={images[2].aspectRatio?.width ?? 450}
                     height={images[2].aspectRatio?.height ?? 450}
-                    className="rounded-md object-cover w-full h-full"
+                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
+                    onClick={() => setShowImage(2)}
                   />
                   {images[2].alt && <AltTag />}
                 </div>
@@ -88,7 +97,8 @@ export default function ImageEmbed(props: Props) {
                   alt={image.alt}
                   width={images[i].aspectRatio?.width ?? 450}
                   height={images[i].aspectRatio?.height ?? 450}
-                  className="object-cover rounded-md h-full max-h-64"
+                  className="object-cover rounded-md h-full max-h-64 cursor-pointer hover:brightness-90"
+                  onClick={() => setShowImage(i)}
                 />
                 {images[i].alt && <AltTag />}
               </div>
@@ -104,7 +114,8 @@ export default function ImageEmbed(props: Props) {
               alt={images[0].alt}
               width={images[0].aspectRatio?.width ?? 900}
               height={images[0].aspectRatio?.height ?? 900}
-              className="rounded-md object-cover"
+              className="rounded-md object-cover cursor-pointer hover:brightness-90"
+              onClick={() => setShowImage(0)}
             />
             {images[0].alt && <AltTag />}
           </div>
@@ -114,6 +125,13 @@ export default function ImageEmbed(props: Props) {
 
   return (
     <>
+      {showImage !== undefined && (
+        <Gallery
+          images={content.images}
+          startingIndex={showImage}
+          onClose={() => setShowImage(undefined)}
+        />
+      )}
       {depth < 2 && (
         <article>{generateImageLayout(imageCount, content.images)}</article>
       )}
