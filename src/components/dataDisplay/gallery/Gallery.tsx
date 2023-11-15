@@ -11,17 +11,17 @@ interface Props {
 
 export default function Gallery(props: Props) {
   const { images, startingIndex = 0, onClose } = props;
-  const imageCount = Array.isArray(images) ? images.length - 1 : 0;
+  const imageCount = Array.isArray(images) ? images.length : 0;
   const [currentIndex, setCurrentIndex] = useState(startingIndex);
 
   const handleBackward = useCallback(() => {
-    if (currentIndex > 0) {
+    if (imageCount > 1 && currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
-  }, [currentIndex]);
+  }, [currentIndex, imageCount]);
 
   const handleForward = useCallback(() => {
-    if (currentIndex < imageCount) {
+    if (imageCount > 1 && currentIndex < imageCount - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   }, [currentIndex, imageCount]);
@@ -72,7 +72,7 @@ export default function Gallery(props: Props) {
           }}
         />
       )}
-      {imageCount > 1 && currentIndex < imageCount && (
+      {imageCount > 1 && currentIndex < imageCount - 1 && (
         <Button
           className="z-50 fixed right-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="bx:right-arrow-alt"
