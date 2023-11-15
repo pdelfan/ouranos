@@ -1,20 +1,21 @@
-"use client";
-
 import { ProfileView } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import Link from "next/link";
 
 interface Props {
   profile: ProfileView;
+  rounded?: boolean;
 }
 
 export default function ProfileCard(props: Props) {
-  const { profile } = props;
+  const { profile, rounded = true } = props;
 
   return (
     <Link
       href={`/dashboard/user/${profile.handle}`}
-      className="p-3 border border-x-0 sm:border-x sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+      className={`p-3 border border-x-0 sm:border-x ${
+        rounded && "sm:first:rounded-t-2xl"
+      } sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50`}
     >
       <article className="flex flex-col gap-2">
         <div className="flex flex-wrap justify-between gap-3">
@@ -27,7 +28,6 @@ export default function ProfileCard(props: Props) {
               </h3>
             </div>
           </div>
-          {/* Follow Button */}
         </div>
         <div>
           <p className="text-neutral-600 leading-5 break-words">

@@ -29,7 +29,7 @@ export default function FeedContainer(props: Props) {
         feedData?.pages.map((page, i) => (
           <div key={i}>
             {page.data.feed.map((post, i) => (
-              <FeedPost key={post.post.uri + i} post={post} />
+              <FeedPost key={post.post.uri + i} post={post.post} />
             ))}
           </div>
         ))}

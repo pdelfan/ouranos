@@ -9,12 +9,12 @@ import { AppBskyFeedDefs } from "@atproto/api";
 import Link from "next/link";
 
 interface Props {
-  post: AppBskyFeedDefs.FeedViewPost;
+  post: AppBskyFeedDefs.PostView;
 }
 
 export default function FeedPost(props: Props) {
   const { post } = props;
-  const { author, indexedAt } = post.post;
+  const { author, indexedAt } = post;
   
   return (
     <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
@@ -43,10 +43,10 @@ export default function FeedPost(props: Props) {
             </span>
           </div>
           <div>
-            <PostText record={post.post.record} />            
+            <PostText record={post.record} />            
           </div>          
-          {post.post.embed && <PostEmbed content={post.post.embed} depth={0} />}
-          <PostActions post={post.post} />
+          {post.embed && <PostEmbed content={post.embed} depth={0} />}
+          <PostActions post={post} />
         </div>
       </div>
     </div>

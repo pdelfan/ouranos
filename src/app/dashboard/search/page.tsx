@@ -16,7 +16,7 @@ export default function Page(props: Props) {
     <section className="flex flex-col gap-5">
       <section>
         <h2 className="text-2xl font-semibold px-3 sm:px-0 mb-2">Search</h2>
-        <Search placeholder="Search for users or posts" enableKeypress={true} />
+        <Search placeholder="Search for users or posts" />
         {query && <SearchList query={query} />}
       </section>
       {!query && (

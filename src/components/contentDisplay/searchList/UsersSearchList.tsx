@@ -47,12 +47,16 @@ export default function UsersSearchList(props: Props) {
         {profiles &&
           profiles.pages
             .flatMap((page) => page?.actors)
-            .map((profile) => (
-              <>
+            .map((profile, i) => (
+              <Fragment key={i}>
                 {profile && (
-                  <ProfileCard profile={profile} key={profile?.handle} />
+                  <ProfileCard
+                    key={profile?.handle + i}
+                    profile={profile}
+                    rounded={false}
+                  />
                 )}
-              </>
+              </Fragment>
             ))}
       </section>
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
