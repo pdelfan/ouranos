@@ -20,6 +20,9 @@ export default function PostActions(props: Props) {
       >
         {post.replyCount}
       </Button>
+      <Button className="text-neutral-500 hover:text-primary" icon="bx:repost">
+        {post.repostCount}
+      </Button>
       <Button
         onClick={() => handleToggleLike.mutate()}
         className={
@@ -28,9 +31,6 @@ export default function PostActions(props: Props) {
         icon={liked ? "bxs:heart" : "bx:heart"}
       >
         {likeCount}
-      </Button>
-      <Button className="text-neutral-500 hover:text-primary" icon="bx:repost">
-        {post.repostCount}
       </Button>
     </div>
   );
