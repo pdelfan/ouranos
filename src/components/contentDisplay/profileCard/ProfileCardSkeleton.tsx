@@ -1,6 +1,15 @@
-function Skeleton() {
+interface Props {
+  rounded?: boolean;
+}
+
+function Skeleton(props: Props) {
+  const { rounded = true } = props;
   return (
-    <article className="p-3 border border-x-0 sm:border-x sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
+    <article
+      className={`p-3 border border-x-0 sm:border-x ${
+        rounded && "sm:first:rounded-t-2xl"
+      } sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50`}
+    >
       <div className="flex flex-wrap justify-between gap-3">
         <div className="flex flex-wrap gap-2 items-center">
           {/* Avatar */}
@@ -19,15 +28,16 @@ function Skeleton() {
   );
 }
 
-export default function ProfileCardSkeleton() {
+export default function ProfileCardSkeleton(props: Props) {
+  const { rounded = true } = props;
   return (
     <section className="flex flex-col">
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
     </section>
   );
 }

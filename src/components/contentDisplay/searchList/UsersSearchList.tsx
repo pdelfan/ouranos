@@ -59,7 +59,9 @@ export default function UsersSearchList(props: Props) {
               </Fragment>
             ))}
       </section>
-      {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
+      {isFetching && !isFetchingNextPage && (
+        <ProfileCardSkeleton rounded={false} />
+      )}
       {isFetchingNextPage && (
         <section className="flex flex-1 justify-center mt-3">
           <Icon icon="eos-icons:loading" className="text-xl" />
