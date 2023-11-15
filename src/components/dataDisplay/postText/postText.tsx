@@ -74,7 +74,8 @@ export default function PostText(props: Props) {
 
   return (
     <div
-      className={`leading-5 whitespace-pre-wrap break-words	${
+      dir="auto"
+      className={`leading-5 whitespace-pre-wrap break-words ${
         truncate && "line-clamp-6"
       }`}
     >

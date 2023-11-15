@@ -5,23 +5,32 @@ import { useRouter } from "next/navigation";
 
 export default function useAgent() {
   const [agent, setAgent] = useState(at);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
+    if (status === "loading") return;
+    if (!session?.user.bskySession) {
+      router.push("/");
+      return;
+    }
+
     const getAgent = async () => {
-      if (!session?.user.bskySession) router.push("/");
-      const bskySession = session?.user.bskySession;      
+      const bskySession = session.user.bskySession;
       try {
         const result = await at.resumeSession(bskySession);
-        if (!result.success) router.push("/");
-        setAgent(at);
+        if (!result.success) {
+          router.push("/");
+        } else {
+          setAgent(at);
+        }
       } catch (e) {
         router.push("/");
       }
     };
+
     getAgent();
-  }, [router, session]);
+  }, [router, session, status]);
 
   return agent;
 }

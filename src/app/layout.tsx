@@ -5,7 +5,7 @@ import SessionProvider from "./providers/session";
 import { getSessionFromServer } from "./api/auth/[...nextauth]/route";
 import QueryProvider from "./providers/query";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Ouranos",
@@ -21,7 +21,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable}`}>
         <SessionProvider session={session}>
           <QueryProvider>{children}</QueryProvider>
         </SessionProvider>

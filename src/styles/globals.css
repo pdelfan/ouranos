@@ -7,6 +7,15 @@
     --foreground-rgb: 0, 0, 0;
     --background-color: #ffffff;
   }
+
+  body {
+    box-sizing: border-box;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    background-color: var(--background-color);
+  }
 }
 
 @layer utilities {
@@ -20,13 +29,4 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
-}
-
-body {
-  box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
-  background-color: var(--background-color);
 }

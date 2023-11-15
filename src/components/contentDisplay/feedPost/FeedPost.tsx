@@ -6,7 +6,7 @@ import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import Reason from "@/components/dataDisplay/reason/Reason";
 import { getRelativeTime } from "@/lib/utils/time";
-import { AppBskyFeedDefs } from "@atproto/api";
+import { AppBskyFeedDefs, parseLanguage } from "@atproto/api";
 import Link from "next/link";
 
 interface Props {
@@ -18,8 +18,8 @@ interface Props {
 export default function FeedPost(props: Props) {
   const { post } = props;
   const { author, indexedAt } = post.post;
-  const { reason } = post;
-
+  const { reason } = post;  
+  
   return (
     <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
       {reason && <Reason reason={reason} />}
@@ -30,7 +30,7 @@ export default function FeedPost(props: Props) {
         >
           <Avatar profile={author} size="md" />
         </Link>
-        <div className="flex flex-col">
+        <div className="flex flex-col grow">
           <div className="flex">
             <Link
               href={`/dashboard/user/${author.handle}`}
@@ -47,9 +47,7 @@ export default function FeedPost(props: Props) {
               &nbsp;· {getRelativeTime(indexedAt)}
             </span>
           </div>
-          <div>
-            <PostText record={post.post.record} />
-          </div>
+          <PostText record={post.post.record} />
           {post.post.embed && <PostEmbed content={post.post.embed} depth={0} />}
           <PostActions post={post.post} />
         </div>

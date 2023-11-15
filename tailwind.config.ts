@@ -15,6 +15,10 @@ const config: Config = {
       borderWidth: {
         "3": "3px",
       },
+      fontFamily: {
+        arabic: ["var(--font-noto-sans-arabic"],
+        latin: ["var(--font-inter)"],
+      },
     },
   },
   plugins: [],
