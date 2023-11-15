@@ -42,10 +42,20 @@ export default function ProfileHeader(props: Props) {
       {profile && (
         <section className="border sm:rounded-t-2xl overflow-hidden">
           <div className="relative">
-            <Button
-              className="hover:brightness-90"
-              onClick={() => setShowBanner(true)}
-            >
+            {profile.banner ? (
+              <Button
+                className="hover:brightness-90"
+                onClick={() => setShowBanner(true)}
+              >
+                <Image
+                  src={profile?.banner ?? FallbackBanner}
+                  alt="Banner"
+                  width={700}
+                  height={100}
+                  className="object-cover min-h-[9rem]"
+                />
+              </Button>
+            ) : (
               <Image
                 src={profile?.banner ?? FallbackBanner}
                 alt="Banner"
@@ -53,12 +63,23 @@ export default function ProfileHeader(props: Props) {
                 height={100}
                 className="object-cover min-h-[9rem]"
               />
-            </Button>
+            )}
+
             <div className="absolute bottom-0 transform translate-y-1/2 px-3">
-              <Button
-                className="hover:brightness-90"
-                onClick={() => setShowAvatar(true)}
-              >
+              {profile.avatar ? (
+                <Button
+                  className="hover:brightness-90"
+                  onClick={() => setShowAvatar(true)}
+                >
+                  <Image
+                    src={profile?.avatar ?? FallbackAvatar}
+                    alt="Avatar"
+                    width={95}
+                    height={95}
+                    className="object-cover rounded-full border-4 border-white"
+                  />
+                </Button>
+              ) : (
                 <Image
                   src={profile?.avatar ?? FallbackAvatar}
                   alt="Avatar"
@@ -66,7 +87,7 @@ export default function ProfileHeader(props: Props) {
                   height={95}
                   className="object-cover rounded-full border-4 border-white"
                 />
-              </Button>
+              )}
             </div>
           </div>
           {profile?.viewer && session?.user.handle !== handle && (
