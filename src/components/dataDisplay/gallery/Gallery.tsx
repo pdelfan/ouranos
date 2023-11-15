@@ -4,14 +4,14 @@ import { KeyboardEvent, useState, useEffect, useCallback } from "react";
 import Button from "@/components/actions/button/Button";
 
 interface Props {
-  images: AppBskyEmbedImages.ViewImage[];
-  startingIndex: number;
+  images: AppBskyEmbedImages.ViewImage[] | string;
+  startingIndex?: number;
   onClose: () => void;
 }
 
 export default function Gallery(props: Props) {
-  const { images, startingIndex, onClose } = props;
-  const imageCount = images.length - 1;
+  const { images, startingIndex = 0, onClose } = props;
+  const imageCount = Array.isArray(images) ? images.length - 1 : 0;
   const [currentIndex, setCurrentIndex] = useState(startingIndex);
 
   const handleBackward = useCallback(() => {
@@ -62,7 +62,7 @@ export default function Gallery(props: Props) {
         icon="ph:x-bold"
         onClick={onClose}
       />
-      {currentIndex > 0 && (
+      {imageCount > 1 && currentIndex > 0 && (
         <Button
           className="z-50  fixed left-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="bx:left-arrow-alt"
@@ -72,7 +72,7 @@ export default function Gallery(props: Props) {
           }}
         />
       )}
-      {currentIndex < imageCount && (
+      {imageCount > 1 && currentIndex < imageCount && (
         <Button
           className="z-50 fixed right-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="bx:right-arrow-alt"
@@ -83,13 +83,25 @@ export default function Gallery(props: Props) {
         />
       )}
 
-      <Image
-        src={images[currentIndex].fullsize}
-        alt={images[currentIndex].alt}
-        width={images[currentIndex].aspectRatio?.width ?? 900}
-        height={images[currentIndex].aspectRatio?.height ?? 900}
-        className="object-contain z-40 fixed inset-0 h-full w-fit mx-auto"
-      />
+      {Array.isArray(images) && (
+        <Image
+          src={images[currentIndex].fullsize}
+          alt={images[currentIndex].alt}
+          width={images[currentIndex].aspectRatio?.width ?? 900}
+          height={images[currentIndex].aspectRatio?.height ?? 900}
+          className="object-contain z-40 fixed inset-0 h-full w-fit mx-auto"
+        />
+      )}
+
+      {typeof images === "string" && (
+        <Image
+          src={images}
+          alt={"Image"}
+          width={900}
+          height={900}
+          className="object-contain z-40 fixed inset-0 h-full w-fit mx-auto"
+        />
+      )}
     </section>
   );
 }

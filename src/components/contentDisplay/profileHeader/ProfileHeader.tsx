@@ -11,12 +11,17 @@ import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import useAgent from "@/lib/hooks/useAgent";
 import ProfileHeaderSkeleton from "./ProfileHeaderSkeleton";
+import { useState } from "react";
+import Button from "@/components/actions/button/Button";
+import Gallery from "@/components/dataDisplay/gallery/Gallery";
 
 interface Props {
   handle: string;
 }
 export default function ProfileHeader(props: Props) {
   const { handle } = props;
+  const [showAvatar, setShowAvatar] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
   const { data: session } = useSession();
   const agent = useAgent();
   const {
@@ -37,21 +42,31 @@ export default function ProfileHeader(props: Props) {
       {profile && (
         <section className="border sm:rounded-t-2xl overflow-hidden">
           <div className="relative">
-            <Image
-              src={profile?.banner ?? FallbackBanner}
-              alt="Banner"
-              width={700}
-              height={100}
-              className="object-cover min-h-[9rem]"
-            />
-            <div className="absolute bottom-0 transform translate-y-1/2 px-3">
+            <Button
+              className="hover:brightness-90"
+              onClick={() => setShowBanner(true)}
+            >
               <Image
-                src={profile?.avatar ?? FallbackAvatar}
-                alt="Avatar"
-                width={95}
-                height={95}
-                className="object-cover rounded-full border-4 border-white"
+                src={profile?.banner ?? FallbackBanner}
+                alt="Banner"
+                width={700}
+                height={100}
+                className="object-cover min-h-[9rem]"
               />
+            </Button>
+            <div className="absolute bottom-0 transform translate-y-1/2 px-3">
+              <Button
+                className="hover:brightness-90"
+                onClick={() => setShowAvatar(true)}
+              >
+                <Image
+                  src={profile?.avatar ?? FallbackAvatar}
+                  alt="Avatar"
+                  width={95}
+                  height={95}
+                  className="object-cover rounded-full border-4 border-white"
+                />
+              </Button>
             </div>
           </div>
           {profile?.viewer && session?.user.handle !== handle && (
@@ -85,6 +100,19 @@ export default function ProfileHeader(props: Props) {
             )}
           </div>
           <ProfileTabs />
+
+          {showAvatar && profile.avatar && (
+            <Gallery
+              images={profile.avatar}
+              onClose={() => setShowAvatar(false)}
+            />
+          )}
+          {showBanner && profile.banner && (
+            <Gallery
+              images={profile.banner}
+              onClose={() => setShowBanner(false)}
+            />
+          )}
         </section>
       )}
     </>

@@ -15,11 +15,11 @@ interface Props {
 
 export default function Follow(props: Props) {
   const { viewer, userDID, userHandle } = props;
+  const agent = useAgent();
+  const queryClient = useQueryClient();
   const [isFollowing, setIsFollowing] = useState<boolean>(
     viewer?.following ? true : false
   );
-  const agent = useAgent();
-  const queryClient = useQueryClient();
 
   const updateFollowCount = (mode: "decrease" | "increase") => {
     queryClient.setQueryData(["profile", userHandle], (oldData: any) => {
