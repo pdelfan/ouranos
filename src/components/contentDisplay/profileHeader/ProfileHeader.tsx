@@ -102,10 +102,18 @@ export default function ProfileHeader(props: Props) {
             </div>
           )}
           <div className={`p-4 ${session?.user.handle == handle && "mt-10"}`}>
-            <h1 className="text-2xl font-semibold break-all">
-              {profile?.displayName ||
-                (profile?.handle && (profile?.displayName ?? profile?.handle))}
-            </h1>
+            <div className="flex flex-wrap items-center gap-x-2">
+              <h1 className="text-2xl font-semibold break-all">
+                {profile?.displayName ||
+                  (profile?.handle &&
+                    (profile?.displayName ?? profile?.handle))}
+              </h1>
+              {profile.viewer?.followedBy && (
+                <small className="bg-neutral-200 text-neutral-500 font-medium py-0.5 px-1 rounded">
+                  Follows you
+                </small>
+              )}
+            </div>
             <h2 className="text-neutral-400 font-medium break-all">
               @{profile?.handle}
             </h2>
