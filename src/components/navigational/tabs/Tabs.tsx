@@ -17,12 +17,12 @@ export default function Tabs(props: Props) {
   return (
     <div
       role="tablist"
-      aria-orientation="horizontal"
-      className="flex flex-nowrap gap-3 px-4 overflow-auto no-scrollbar"
+      aria-orientation="horizontal"      
       ref={draggableContainerRef}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
+      className="flex flex-nowrap gap-3 px-4 overflow-auto no-scrollbar"
       style={{ cursor: isDragging ? "grabbing" : "grab" }}
     >
       {children}

@@ -18,7 +18,7 @@ export default function FeedTabs() {
   );
 
   return (
-    <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50 over">
+    <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50">
       {isLoading && <FeedTabsSkeleton />}
       <Tabs>
         {!isLoading && (

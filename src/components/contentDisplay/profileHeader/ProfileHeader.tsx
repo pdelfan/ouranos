@@ -18,6 +18,7 @@ import Gallery from "@/components/dataDisplay/gallery/Gallery";
 interface Props {
   handle: string;
 }
+
 export default function ProfileHeader(props: Props) {
   const { handle } = props;
   const [showAvatar, setShowAvatar] = useState(false);
@@ -128,6 +129,7 @@ export default function ProfileHeader(props: Props) {
               />
             )}
           </div>
+          
           <ProfileTabs />
 
           {showAvatar && profile.avatar && (
