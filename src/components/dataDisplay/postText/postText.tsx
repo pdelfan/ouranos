@@ -64,7 +64,7 @@ export default function PostText(props: Props) {
       content.push({
         text: segment.text,
         component: (
-          <span className="break-words " key={segment.text}>
+          <span className="[overflow-wrap:anywhere]" key={segment.text}>
             {segment.text}
           </span>
         ),
