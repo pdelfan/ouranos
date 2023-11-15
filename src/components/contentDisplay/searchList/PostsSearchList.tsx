@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import FeedPostSkeleton from "../feedPost/FeedPostSkeleton";
 import { Fragment } from "react";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
+import SearchPost from "../searchPost/SearchPost";
 
 interface Props {
   query: string;
@@ -32,7 +33,7 @@ export default function PostsSearchList(props: Props) {
         {posts &&
           posts.map((post, i) => (
             <Fragment key={i}>
-              <FeedPost key={i} post={post} />
+              <SearchPost key={i} post={post} />
             </Fragment>
           ))}
       </section>

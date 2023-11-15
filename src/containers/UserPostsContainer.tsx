@@ -30,7 +30,7 @@ export default function UserPostsConatiner(props: Props) {
         userPostsData?.pages.map((page, i) => (
           <div key={i}>
             {page.data.feed.map((post, i) => (
-              <FeedPost key={post.post.uri + i} post={post.post} />
+              <FeedPost key={post.post.uri + i} post={post} />
             ))}
           </div>
         ))}

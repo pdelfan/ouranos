@@ -4,25 +4,22 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import PostActions from "@/components/dataDisplay/postActions/PostActions";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
-import Reason from "@/components/dataDisplay/reason/Reason";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import Link from "next/link";
 
 interface Props {
-  post: AppBskyFeedDefs.FeedViewPost;
+  post: AppBskyFeedDefs.PostView;
   isReply?: boolean;
   hasReply?: boolean;
 }
 
-export default function FeedPost(props: Props) {
+export default function SearchPost(props: Props) {
   const { post } = props;
-  const { author, indexedAt } = post.post;
-  const { reason } = post;
+  const { author, indexedAt } = post;
 
   return (
-    <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
-      {reason && <Reason reason={reason} />}
+    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
       <div className="flex items-start gap-3">
         <Link
           href={`/dashboard/user/${author.handle}`}
@@ -48,10 +45,10 @@ export default function FeedPost(props: Props) {
             </span>
           </div>
           <div>
-            <PostText record={post.post.record} />
+            <PostText record={post.record} />
           </div>
-          {post.post.embed && <PostEmbed content={post.post.embed} depth={0} />}
-          <PostActions post={post.post} />
+          {post.embed && <PostEmbed content={post.embed} depth={0} />}
+          <PostActions post={post} />
         </div>
       </div>
     </div>
