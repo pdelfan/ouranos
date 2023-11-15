@@ -20,8 +20,8 @@ export const getFollows = async (handle: string) => {
 export const follow = async (agent: BskyAgent, did: string) => {
   const follow = await agent.follow(did);
 
-  if (!follow) throw new Error("Could not follow");
-  return follow;
+  if (!follow.uri) throw new Error("Could not follow");
+  return;
 };
 
 export const unfollow = async (agent: BskyAgent, did: string) => {

@@ -1,9 +1,12 @@
 import { BskyAgent } from "@atproto/api";
 import { getAgent } from "../agent";
 
-export const getProfile = async (handle: string | undefined) => {
+export const getProfile = async (
+  handle: string | undefined,
+  agent?: BskyAgent
+) => {
   if (!handle) return;
-  const agent = await getAgent();
+  if (!agent) agent = await getAgent();
   const profile = await agent.getProfile({ actor: handle });
 
   if (!profile.data) return null;

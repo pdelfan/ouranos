@@ -22,7 +22,7 @@ export default function Page(props: Props) {
       {!query && (
         <section>
           <h2 className="text-2xl font-semibold px-3 sm:px-0 mb-2">
-            Suggested Follows
+            Suggestions
           </h2>
           <SuggestionsList />
         </section>
