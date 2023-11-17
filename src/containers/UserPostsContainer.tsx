@@ -50,13 +50,24 @@ export default function UserPostsConatiner(props: Props) {
         userPostsData &&
         userPostsData?.pages.map((page, i) => (
           <div key={i}>
-            {page.data.feed.map((post, i) => (
-              <PostContainer
-                key={post.post.uri + i}
-                post={post}
-                isReply={!!post.reply}
-              />
-            ))}
+            {mode === "posts" &&
+              page.data.feed
+                .filter((post) => !post.reply)
+                .map((post, i) => (
+                  <PostContainer
+                    key={post.post.uri + i}
+                    post={post}
+                    isReply={!!post.reply}
+                  />
+                ))}
+            {mode !== "posts" &&
+              page.data.feed.map((post, i) => (
+                <PostContainer
+                  key={post.post.uri + i}
+                  post={post}
+                  isReply={!!post.reply}
+                />
+              ))}
           </div>
         ))}
       {!isBlocked && isFetchingUserPosts && !isFetchingUserPostsNextPage && (
