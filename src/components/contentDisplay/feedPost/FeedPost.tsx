@@ -5,9 +5,9 @@ import PostActions from "@/components/dataDisplay/postActions/PostActions";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import Reason from "@/components/dataDisplay/reason/Reason";
+import { getPostId } from "@/lib/utils/link";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
-import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import Link from "next/link";
 
 interface Props {
@@ -22,7 +22,11 @@ export default function FeedPost(props: Props) {
   const { reason, reply } = post;
 
   return (
-    <div>
+    <Link
+      href={`/dashboard/user/${post.post.author.handle}/post/${getPostId(
+        post.post.uri
+      )}`}
+    >
       {reason && <Reason reason={reason} />}
       <div className="relative flex items-start gap-3">
         <Link
@@ -56,6 +60,6 @@ export default function FeedPost(props: Props) {
           <PostActions post={post.post} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

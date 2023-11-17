@@ -37,7 +37,7 @@ export default function FeedContainer(props: Props) {
               <PostContainer
                 key={post.post.uri + i}
                 post={post}
-                isReply={!!post.reply}
+                isReply={!!post.reply}                
               />
             ))}
           </div>
