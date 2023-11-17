@@ -24,7 +24,10 @@ export default function PostActions(props: Props) {
         {post.repostCount}
       </Button>
       <Button
-        onClick={() => toggleLike.mutate()}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleLike.mutate();
+        }}
         className={
           liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
         }

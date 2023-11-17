@@ -17,16 +17,8 @@ export default function useAgent() {
 
     const getAgent = async () => {
       const bskySession = session.user.bskySession;
-      try {
-        const result = await at.resumeSession(bskySession);
-        if (!result.success) {
-          router.push("/");
-        } else {
-          setAgent(at);
-        }
-      } catch (e) {
-        router.push("/");
-      }
+      at.session = bskySession;
+      setAgent(at);
     };
 
     getAgent();
