@@ -1,10 +1,11 @@
 "use client";
 
-import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
-import useFeed from "@/lib/hooks/useFeed";
+import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import useFeed from "@/lib/hooks/bsky/feed/useFeed";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import PostContainer from "./PostContainer";
 
 interface Props {
   feed: string;
@@ -22,6 +23,10 @@ export default function FeedContainer(props: Props) {
     isFetchingFeedNextPage,
     feedHasNextPage,
   } = useFeed(feed);
+  const isEmpty =
+    !isFetchingFeed &&
+    !isFetchingFeedNextPage &&
+    feedData?.pages[0]?.data?.feed?.length === 0;
 
   return (
     <div>
@@ -29,7 +34,11 @@ export default function FeedContainer(props: Props) {
         feedData?.pages.map((page, i) => (
           <div key={i}>
             {page.data.feed.map((post, i) => (
-              <FeedPost key={post.post.uri + i} post={post} />
+              <PostContainer
+                key={post.post.uri + i}
+                post={post}
+                isReply={!!post.reply}
+              />
             ))}
           </div>
         ))}
@@ -39,7 +48,13 @@ export default function FeedContainer(props: Props) {
           <Icon icon="eos-icons:loading" className="text-xl" />
         </section>
       )}
-      {!isFetchingFeed && !feedHasNextPage && <EndOfFeed />}
+      {feedError && (
+        <FeedAlert variant="badResponse" message="Something went wrong" />
+      )}
+      {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
+      {!feedError && !isFetchingFeed && !isFetchingFeedNextPage && !isEmpty && (
+        <EndOfFeed />
+      )}
       <div ref={observerRef}></div>
     </div>
   );

@@ -1,8 +1,10 @@
 import { useInView } from "react-intersection-observer";
-import useAgent from "./useAgent";
+import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { getFeed, getTimeline } from "../api/bsky/feed";
+import { getFeed, getTimeline } from "../../../api/bsky/feed";
+
+export const useFeedKey = (feed: string) => [feed];
 
 export default function useFeed(feed: string) {
   const agent = useAgent();
@@ -17,7 +19,7 @@ export default function useFeed(feed: string) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: [feed],
+    queryKey: useFeedKey(feed),
     queryFn: ({ pageParam }) =>
       feed === "timeline"
         ? getTimeline(agent, pageParam)

@@ -21,7 +21,7 @@ function FeedTabsSkeleton() {
 
 export default function ProfileHeaderSkeleton() {
   return (
-    <section className="border sm:rounded-2xl overflow-hidden animate-pulse">
+    <section className="border sm:rounded-t-2xl overflow-hidden animate-pulse">
       <div className="relative ">
         <Image
           src={SkeletonBanner}

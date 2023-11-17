@@ -18,3 +18,11 @@ export type FeedSearchResult = {
     user: string; // handle
   };
 };
+
+export type FeedAlert =
+  | "empty"
+  | "doesNotExist"
+  | "misconfigured"
+  | "badResponse"
+  | "offline"
+  | "blocked";

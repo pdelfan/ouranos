@@ -6,31 +6,35 @@ import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import Reason from "@/components/dataDisplay/reason/Reason";
 import { getRelativeTime } from "@/lib/utils/time";
-import { AppBskyFeedDefs, parseLanguage } from "@atproto/api";
+import { AppBskyFeedDefs } from "@atproto/api";
+import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import Link from "next/link";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
+  isParent?: boolean;
   isReply?: boolean;
-  hasReply?: boolean;
 }
 
 export default function FeedPost(props: Props) {
-  const { post } = props;
+  const { post, isReply, isParent } = props;
   const { author, indexedAt } = post.post;
-  const { reason } = post;  
-  
+  const { reason, reply } = post;
+
   return (
-    <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
+    <div>
       {reason && <Reason reason={reason} />}
-      <div className="flex items-start gap-3">
+      <div className="relative flex items-start gap-3">
         <Link
           href={`/dashboard/user/${author.handle}`}
-          className="shrink-0 hover:brightness-90"
+          className="shrink-0 hover:brightness-90 z-20"
         >
           <Avatar profile={author} size="md" />
         </Link>
-        <div className="flex flex-col grow">
+        <div className={`flex flex-col grow ${isParent && "pb-6"}`}>
+          {isParent && !reason && (
+            <div className="absolute left-6 top-0 z-10 h-full border-l-2" />
+          )}
           <div className="flex">
             <Link
               href={`/dashboard/user/${author.handle}`}

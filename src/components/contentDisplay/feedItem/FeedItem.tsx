@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Button from "@/components/actions/button/Button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import useAgent from "@/lib/hooks/useAgent";
+import useAgent from "@/lib/hooks/bsky/useAgent";
 import { toggleSaveFeed } from "@/lib/api/bsky/feed";
 
 interface Props {

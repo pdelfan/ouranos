@@ -4,8 +4,8 @@ import {
   getUserReplyPosts,
   getUserMediaPosts,
   getUserLikes,
-} from "../api/bsky/feed";
-import useAgent from "./useAgent";
+} from "../../../api/bsky/feed";
+import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 
@@ -13,6 +13,10 @@ interface Props {
   mode: UserPostMode;
   handle: string;
 }
+
+export const useProfilePostsKey = (mode: string, handle: string) => [
+  mode + handle,
+];
 
 export default function useProfilePosts(props: Props) {
   const { mode, handle } = props;
@@ -45,7 +49,7 @@ export default function useProfilePosts(props: Props) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: [mode + handle],
+    queryKey: useProfilePostsKey(mode, handle),
     queryFn: ({ pageParam }) =>
       chooseFetchFunction(mode)(agent, actor, pageParam),
     initialPageParam: "",

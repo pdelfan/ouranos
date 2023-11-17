@@ -1,6 +1,6 @@
 import { searchPosts } from "@/lib/api/bsky/actor";
 import FeedPost from "../feedPost/FeedPost";
-import useAgent from "@/lib/hooks/useAgent";
+import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
 import FeedPostSkeleton from "../feedPost/FeedPostSkeleton";
 import { Fragment } from "react";

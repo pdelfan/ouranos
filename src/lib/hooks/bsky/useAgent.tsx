@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { at } from "../api/bsky/agent";
+import { at } from "../../api/bsky/agent";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 

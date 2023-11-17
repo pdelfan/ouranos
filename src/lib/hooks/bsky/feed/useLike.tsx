@@ -1,12 +1,14 @@
 import { AppBskyFeedDefs } from "@atproto/api";
-import useAgent from "./useAgent";
+import useAgent from "../useAgent";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { likePost, unlikePost } from "../api/bsky/feed";
+import { likePost, unlikePost } from "../../../api/bsky/feed";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
 }
+
+export const useLikeKey = (postUri: string) => ["like", postUri];
 
 export default function useLike(props: Props) {
   const { post } = props;
@@ -16,8 +18,8 @@ export default function useLike(props: Props) {
   const likeCount =
     (liked ? 1 : 0) - (post.viewer?.like ? 1 : 0) + (post.likeCount || 0);
 
-  const handleToggleLike = useMutation({
-    mutationKey: ["like", post.uri],
+  const toggleLike = useMutation({
+    mutationKey: useLikeKey(post.uri),
     mutationFn: async () => {
       if (!likeUri) {
         try {
@@ -37,11 +39,11 @@ export default function useLike(props: Props) {
         }
       }
     },
-  });
+  });  
 
   return {
     liked,
-    handleToggleLike,
+    toggleLike,
     likeCount: likeCount,
   };
 }

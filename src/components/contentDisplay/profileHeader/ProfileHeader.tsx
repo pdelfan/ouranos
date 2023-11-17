@@ -1,19 +1,18 @@
 "use client";
 
 import FollowInfo from "@/components/dataDisplay/followInfo/FollowInfo";
-import { getProfile } from "@/lib/api/bsky/actor";
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import FallbackBanner from "@/assets/images/fallbackBanner.png";
 import Image from "next/image";
 import ProfileTabs from "@/components/navigational/profileTabs/ProfileTabs";
 import Follow from "@/components/actions/follow/Follow";
 import { useSession } from "next-auth/react";
-import { useQuery } from "@tanstack/react-query";
-import useAgent from "@/lib/hooks/useAgent";
 import ProfileHeaderSkeleton from "./ProfileHeaderSkeleton";
 import { useState } from "react";
 import Button from "@/components/actions/button/Button";
 import Gallery from "@/components/dataDisplay/gallery/Gallery";
+import Alert from "@/components/feedback/alert/Alert";
+import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 
 interface Props {
   handle: string;
@@ -24,16 +23,15 @@ export default function ProfileHeader(props: Props) {
   const [showAvatar, setShowAvatar] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const { data: session } = useSession();
-  const agent = useAgent();
   const {
     data: profile,
     isLoading,
     isFetching,
     isRefetching,
-  } = useQuery({
-    queryKey: ["profile", handle],
-    queryFn: () => getProfile(handle, agent),
-  });
+    toggleFollow,
+  } = useProfile(handle);
+  const isBlocked = profile?.viewer?.blocking ? true : false;
+  const isMuted = profile?.viewer?.muted ? true : false;
 
   return (
     <>
@@ -46,6 +44,7 @@ export default function ProfileHeader(props: Props) {
             {profile.banner ? (
               <Button
                 className="hover:brightness-90"
+                disabled={isBlocked}
                 onClick={() => setShowBanner(true)}
               >
                 <Image
@@ -70,6 +69,7 @@ export default function ProfileHeader(props: Props) {
               {profile.avatar ? (
                 <Button
                   className="hover:brightness-90"
+                  disabled={isBlocked}
                   onClick={() => setShowAvatar(true)}
                 >
                   <Image
@@ -94,11 +94,7 @@ export default function ProfileHeader(props: Props) {
           {profile?.viewer && session?.user.handle !== handle && (
             <div className="flex mr-3 mt-3">
               <div className="ml-auto">
-                <Follow
-                  viewer={profile.viewer}
-                  userDID={profile.did}
-                  userHandle={handle}
-                />
+                <Follow viewer={profile.viewer} onToggleFollow={toggleFollow} />
               </div>
             </div>
           )}
@@ -128,8 +124,18 @@ export default function ProfileHeader(props: Props) {
                 followsCount={profile?.followsCount ?? 0}
               />
             )}
+            {isMuted && (
+              <div className="mt-2">
+                <Alert variant="warning" message="You have muted this user" />
+              </div>
+            )}
+            {isBlocked && (
+              <div className="mt-2">
+                <Alert variant="error" message="You have blocked this user" />
+              </div>
+            )}
           </div>
-          
+
           <ProfileTabs />
 
           {showAvatar && profile.avatar && (

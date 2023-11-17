@@ -1,7 +1,7 @@
 "use client";
 
 import { searchProfiles } from "@/lib/api/bsky/actor";
-import useAgent from "@/lib/hooks/useAgent";
+import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCard from "../profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";

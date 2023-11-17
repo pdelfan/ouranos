@@ -1,5 +1,5 @@
 import Button from "@/components/actions/button/Button";
-import useLike from "@/lib/hooks/useLike";
+import useLike from "@/lib/hooks/bsky/feed/useLike";
 import type { AppBskyFeedDefs } from "@atproto/api";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 export default function PostActions(props: Props) {
   const { post } = props;
-  const { liked, handleToggleLike, likeCount } = useLike({
+  const { liked, toggleLike, likeCount } = useLike({
     post: post,
   });
 
@@ -24,7 +24,7 @@ export default function PostActions(props: Props) {
         {post.repostCount}
       </Button>
       <Button
-        onClick={() => handleToggleLike.mutate()}
+        onClick={() => toggleLike.mutate()}
         className={
           liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
         }

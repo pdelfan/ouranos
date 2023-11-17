@@ -11,29 +11,31 @@ export default function FeedTabs() {
   const { data: session } = useSession();
 
   return (
-    <Tabs>
-      <TabItem
-        label="Posts"
-        path={`${basePath}`}
-        isActive={pathname === `${basePath}`}
-      />
-      <TabItem
-        label="Posts & replies"
-        path={`${basePath}/replies`}
-        isActive={pathname === `${basePath}/replies`}
-      />
-      <TabItem
-        label="Media"
-        path={`${basePath}/media`}
-        isActive={pathname === `${basePath}/media`}
-      />
-      {session?.user?.handle === pathname.split("/")[3] && (
+    <div className="no-scrollbar">
+      <Tabs>
         <TabItem
-          label="Likes"
-          path={`${basePath}/likes`}
-          isActive={pathname === `${basePath}/likes`}
+          label="Posts"
+          path={`${basePath}`}
+          isActive={pathname === `${basePath}`}
         />
-      )}
-    </Tabs>
+        <TabItem
+          label="Posts & replies"
+          path={`${basePath}/replies`}
+          isActive={pathname === `${basePath}/replies`}
+        />
+        <TabItem
+          label="Media"
+          path={`${basePath}/media`}
+          isActive={pathname === `${basePath}/media`}
+        />
+        {session?.user?.handle === pathname.split("/")[3] && (
+          <TabItem
+            label="Likes"
+            path={`${basePath}/likes`}
+            isActive={pathname === `${basePath}/likes`}
+          />
+        )}
+      </Tabs>
+    </div>
   );
 }

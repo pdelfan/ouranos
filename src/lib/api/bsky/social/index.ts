@@ -1,4 +1,4 @@
-import { BskyAgent } from "@atproto/api";
+import { AtUri, BskyAgent } from "@atproto/api";
 import { getAgent } from "../agent";
 
 export const getFollowers = async (handle: string) => {
@@ -27,4 +27,17 @@ export const follow = async (agent: BskyAgent, did: string) => {
 export const unfollow = async (agent: BskyAgent, did: string) => {
   const unfollow = await agent.deleteFollow(did);
   return unfollow;
+};
+
+export const unBlock = async (
+  agent: BskyAgent,
+  did: string,
+  viewer: string
+) => {
+  const { rkey } = new AtUri(viewer);
+  const res = await agent.app.bsky.graph.block.delete({
+    repo: did,
+    rkey,
+  });
+  return res;
 };

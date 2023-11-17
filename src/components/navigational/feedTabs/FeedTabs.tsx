@@ -1,6 +1,6 @@
 "use client";
 
-import useAgent from "@/lib/hooks/useAgent";
+import useAgent from "@/lib/hooks/bsky/useAgent";
 import TabItem from "../tabs/TabItem";
 import Tabs from "../tabs/Tabs";
 import { getSavedFeeds } from "@/lib/api/bsky/feed";
@@ -18,7 +18,7 @@ export default function FeedTabs() {
   );
 
   return (
-    <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50">
+    <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50 overflow-x-hidden hover:overflow-x-scroll">
       {isLoading && <FeedTabsSkeleton />}
       <Tabs>
         {!isLoading && (
