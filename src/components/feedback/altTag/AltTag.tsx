@@ -36,7 +36,10 @@ export default function AltTag(props: Props) {
   return (
     <>
       <Button
-        onClick={handleShowAlt}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleShowAlt();
+        }}
         className="absolute bottom-1.5 left-1.5 text-xs font-semibold px-2 py-0.5 rounded-md text-white bg-black/50 hover:bg-neutral-500/90"
       >
         ALT
@@ -44,14 +47,20 @@ export default function AltTag(props: Props) {
       {showAlt && (
         <section
           className="z-50 bg-black/80 fixed inset-0 w-screen h-screen flex items-center justify-center"
-          onClick={handleCloseAlt}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleCloseAlt();
+          }}
         >
           <Button
             className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
             icon="ph:x-bold"
-            onClick={handleCloseAlt}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCloseAlt();
+            }}
           />
-          <div className="z-40 max-w-2xl max-h-[calc(100%-3rem)] overflow-auto p-4  text-white rounded-xl">
+          <div className="z-40 bg-black/60 m-3.5 max-w-xl max-h-[calc(100%-3rem)] overflow-auto p-4  text-white rounded-xl">
             <h3 className="text-xl font-semibold">Alternative text</h3>
             <p className="mt-2">{text}</p>
           </div>

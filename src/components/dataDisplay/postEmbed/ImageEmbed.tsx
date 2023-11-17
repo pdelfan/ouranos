@@ -33,7 +33,10 @@ export default function ImageEmbed(props: Props) {
                   width={250}
                   height={250}
                   className="rounded-md h-full max-h-72 object-cover cursor-pointer hover:brightness-90"
-                  onClick={() => setShowImage(i)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowImage(i);
+                  }}
                 />
                 {image.alt && <AltTag text={image.alt} />}
               </div>
@@ -53,7 +56,10 @@ export default function ImageEmbed(props: Props) {
                     width={images[0].aspectRatio?.width ?? 450}
                     height={images[0].aspectRatio?.height ?? 450}
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
-                    onClick={() => setShowImage(0)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowImage(0);
+                    }}
                   />
                   {images[2].alt && <AltTag text={images[2].alt} />}
                 </div>
@@ -67,7 +73,10 @@ export default function ImageEmbed(props: Props) {
                     width={images[1].aspectRatio?.width ?? 450}
                     height={images[1].aspectRatio?.height ?? 450}
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
-                    onClick={() => setShowImage(0)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowImage(0);
+                    }}
                   />
                   {images[1].alt && <AltTag text={images[1].alt} />}
                 </div>
@@ -79,7 +88,10 @@ export default function ImageEmbed(props: Props) {
                     width={images[2].aspectRatio?.width ?? 450}
                     height={images[2].aspectRatio?.height ?? 450}
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
-                    onClick={() => setShowImage(2)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowImage(2);
+                    }}
                   />
                   {images[2].alt && <AltTag text={images[2].alt} />}
                 </div>
@@ -98,7 +110,10 @@ export default function ImageEmbed(props: Props) {
                   width={images[i].aspectRatio?.width ?? 450}
                   height={images[i].aspectRatio?.height ?? 450}
                   className="object-cover rounded-md h-full max-h-64 cursor-pointer hover:brightness-90"
-                  onClick={() => setShowImage(i)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowImage(i);
+                  }}
                 />
                 {images[i].alt && <AltTag text={images[i].alt} />}
               </div>
@@ -115,7 +130,10 @@ export default function ImageEmbed(props: Props) {
               width={images[0].aspectRatio?.width ?? 900}
               height={images[0].aspectRatio?.height ?? 900}
               className="rounded-md object-cover cursor-pointer hover:brightness-90"
-              onClick={() => setShowImage(0)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowImage(0);
+              }}
             />
             {images[0].alt && <AltTag text={images[0].alt} />}
           </div>

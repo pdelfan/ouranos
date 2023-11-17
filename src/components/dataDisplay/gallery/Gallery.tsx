@@ -55,12 +55,18 @@ export default function Gallery(props: Props) {
   return (
     <section
       className="z-50 bg-black/80 fixed inset-0 w-screen h-screen"
-      onClick={onClose}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
     >
       <Button
         className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
         icon="ph:x-bold"
-        onClick={onClose}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
       />
       {imageCount > 1 && currentIndex > 0 && (
         <Button
