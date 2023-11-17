@@ -3,6 +3,8 @@ import PostText from "../postText/postText";
 import Avatar from "../avatar/Avatar";
 import { getRelativeTime } from "@/lib/utils/time";
 import PostEmbed from "./PostEmbed";
+import NotFoundEmbed from "./NotFoundEmbed";
+import BlockedEmbed from "./BlockedEmbed";
 
 interface Props {
   record: AppBskyEmbedRecord.View["record"];
@@ -15,10 +17,12 @@ export default function RecordEmbed(props: Props) {
   const isBlocked = AppBskyEmbedRecord.isViewBlocked(record);
   const notFound = AppBskyEmbedRecord.isViewNotFound(record);
   const isViewable = AppBskyEmbedRecord.isViewRecord(record);
-  const isViewableWithMedia = AppBskyEmbedRecordWithMedia.isView(media);
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
+      {isBlocked && <BlockedEmbed depth={depth} />}
+      {notFound && <NotFoundEmbed depth={depth} />}
+      {media && <PostEmbed content={media} depth={depth + 1} />}
       {isViewable && depth < 1 && (
         <div className="flex justify-between items-center gap-2 p-3 border rounded-xl bg-white hover:brightness-95">
           <div className="flex items-start gap-2">
@@ -45,6 +49,6 @@ export default function RecordEmbed(props: Props) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -43,7 +43,6 @@ export default function useProfile(handle: string) {
         if (isCurrentlyFollowing && data.viewer?.following) {
           await unfollow(agent, data.viewer.following);
         } else {
-          console.log(data.did);
           await follow(agent, data.did);
         }
       } catch (error) {

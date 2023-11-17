@@ -45,22 +45,15 @@ export default function PostEmbed(props: Props) {
       }
       return <ListEmbed list={content?.record} type={type} depth={depth} />;
     } else if (AppBskyEmbedRecord.isView(content)) {
-      let record: AppBskyEmbedRecord.View["record"] | null = null;
-      let media: AppBskyEmbedRecordWithMedia.View["media"] | null = null;
-      if (AppBskyEmbedRecord.isView(content)) {
-        record = content.record;
-      }
-
-      if (AppBskyEmbedRecordWithMedia.isView(content)) {
-        record = content.record;
-        media = content.media;
-      }
-
-      if (record && !media) {
-        return <RecordEmbed record={record} depth={depth} />;
-      } else if (record && media) {
-        return <RecordEmbed record={record} media={media} depth={depth} />;
-      }
+      return <RecordEmbed record={content.record} depth={depth} />;
+    } else if (AppBskyEmbedRecordWithMedia.isView(content)) {
+      return (
+        <RecordEmbed
+          record={content.record.record}
+          media={content.media}
+          depth={depth}
+        />
+      );
     }
   };
 
