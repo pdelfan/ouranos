@@ -11,7 +11,7 @@ export default function FeedTabs() {
   const { data: session } = useSession();
 
   return (
-    <div className="no-scrollbar">
+    <div className="overflow-x-hidden hover:overflow-x-scroll">
       <Tabs>
         <TabItem
           label="Posts"
