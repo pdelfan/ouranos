@@ -60,3 +60,10 @@ export const searchPosts = async (term: string, agent?: BskyAgent) => {
     throw new Error("Could not search for posts");
   }
 };
+
+export const getPreferences = async (agent?: BskyAgent) => {
+  if (!agent) agent = await getAgent();
+  const prefs = await agent.app.bsky.actor.getPreferences();
+  if (!prefs.success) throw new Error("Could not get preferences");
+  return prefs.data.preferences;
+};

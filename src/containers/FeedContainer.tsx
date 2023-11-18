@@ -37,7 +37,7 @@ export default function FeedContainer(props: Props) {
               <PostContainer
                 key={post.post.uri + i}
                 post={post}
-                isReply={!!post.reply}                
+                isReply={!!post.reply}
               />
             ))}
           </div>
@@ -52,7 +52,7 @@ export default function FeedContainer(props: Props) {
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
       {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
-      {!feedError && !isFetchingFeed && !isFetchingFeedNextPage && !isEmpty && (
+      {!feedError && !isFetchingFeed && !isFetchingFeedNextPage && (
         <EndOfFeed />
       )}
       <div ref={observerRef}></div>

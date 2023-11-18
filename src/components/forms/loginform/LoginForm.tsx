@@ -34,7 +34,7 @@ export default function LoginForm() {
     }
   };
   return (
-    <section className="bg-white border rounded-2xl max-w-xs p-5">
+    <section className=" border rounded-2xl max-w-xs p-5">
       <h1 className="text-xl font-semibold text-gray-800 mb-1 mt-3">
         Welcome Back
       </h1>
@@ -90,7 +90,7 @@ export default function LoginForm() {
         )}
         <button
           type="submit"
-          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 w-full rounded-full bg-primary text-white disabled:cursor-not-allowed hover:brightness-95"
+          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 w-full rounded-lg bg-primary text-white disabled:cursor-not-allowed hover:brightness-95"
           disabled={loading}
           aria-disabled={loading}
         >

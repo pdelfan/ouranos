@@ -90,8 +90,7 @@ export default function UserPostsConatiner(props: Props) {
       {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
       {!userPostsError &&
         !isFetchingUserPosts &&
-        !isFetchingUserPostsNextPage &&
-        !isEmpty && <EndOfFeed />}
+        !isFetchingUserPostsNextPage && <EndOfFeed />}
       <div ref={observerRef}></div>
     </div>
   );
