@@ -8,7 +8,7 @@ import Reason from "@/components/dataDisplay/reason/Reason";
 import { getPostId } from "@/lib/utils/link";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
-import Link from "next/link";
+import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -26,7 +26,6 @@ export default function FeedPost(props: Props) {
   return (
     <>
       {reason && <Reason reason={reason} />}
-
       <article
         onClick={(e) => {
           e.stopPropagation();
