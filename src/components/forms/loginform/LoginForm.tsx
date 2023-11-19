@@ -34,19 +34,18 @@ export default function LoginForm() {
     }
   };
   return (
-    <section className=" border rounded-2xl max-w-xs p-5">
-      <h1 className="text-xl font-semibold text-gray-800 mb-1 mt-3">
-        Welcome Back
-      </h1>
+    <section className="bg-neutral-100/80  rounded-2xl max-w-xs p-5">
+      <h1 className="text-xl font-semibold text-gray-800 mb-1">Welcome Back</h1>
       <h2 className="text-sm font-medium text-gray-500">
-        We recommend using an app password to log in.{" "}
+        We recommend using an app password to log in{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
           target="_blank"
           className="text-primary hover:brightness-95"
         >
-          Learn more
+          (learn more)
         </Link>
+        .
       </h2>
       <form
         className="text-sm font-medium text-gray-400 mt-5"
@@ -61,6 +60,7 @@ export default function LoginForm() {
             required
             type="text"
             name="handle"
+            icon="ic:baseline-alternate-email"
             placeholder="handle.bsky.social"
             value={handle}
             onChange={(e) => {
@@ -75,6 +75,7 @@ export default function LoginForm() {
             required
             type="password"
             name="password"
+            icon="bxs:lock-alt"
             placeholder="password"
             value={password}
             onChange={(e) => {
@@ -84,13 +85,11 @@ export default function LoginForm() {
           />
         </span>
         {error && (
-          <small className="block text-red-500 font-medium mt-1">
-            {error}
-          </small>
+          <small className="block text-red-500 font-medium mt-1">{error}</small>
         )}
         <button
           type="submit"
-          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 w-full rounded-lg bg-primary text-white disabled:cursor-not-allowed hover:brightness-95"
+          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:brightness-95"
           disabled={loading}
           aria-disabled={loading}
         >
