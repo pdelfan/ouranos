@@ -3,8 +3,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center gap-5 min-h-[100svh] justify-center">
-      <Image src="/logo.svg" alt="Ouranos logo" width={160} height={50} />
+    <main className="flex flex-col items-center gap-8 min-h-[100svh] justify-center">
+      <div className="flex flex-col items-center gap-2">
+        <Image src="/logo.svg" alt="Ouranos logo" width={160} height={50} />
+        <h1 className="text-lg font-medium text-neutral-600">
+          🌸 A Bluesky client for the web 🌸
+        </h1>
+      </div>
       <div className="flex gap-3">
         <Link
           href="https://bsky.app"

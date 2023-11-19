@@ -6,6 +6,7 @@ import { signIn } from "next-auth/react";
 import Input from "@/components/inputs/input/Input";
 import Label from "@/components/inputs/label/Label";
 import { useRouter } from "next/navigation";
+import Button from "@/components/actions/button/Button";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -87,15 +88,16 @@ export default function LoginForm() {
         {error && (
           <small className="block text-red-500 font-medium mt-1">{error}</small>
         )}
-        <button
+        <Button
           type="submit"
           className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:brightness-95"
           disabled={loading}
           aria-disabled={loading}
+          icon="mdi:sign-in"
         >
           {loading && "Logging in..."}
           {!loading && "Log in"}
-        </button>
+        </Button>
       </form>
     </section>
   );
