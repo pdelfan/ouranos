@@ -24,7 +24,7 @@ export default function RecordEmbed(props: Props) {
       {notFound && <NotFoundEmbed depth={depth} />}
       {media && <PostEmbed content={media} depth={depth + 1} />}
       {isViewable && depth < 1 && (
-        <div className="flex justify-between items-center gap-2 p-3 border rounded-xl bg-white">
+        <div className="flex justify-between items-center gap-2 p-3 border rounded-xl">
           <div className="flex items-start gap-2">
             <Avatar profile={record.author} size="xs" />
             <div className="flex flex-col">

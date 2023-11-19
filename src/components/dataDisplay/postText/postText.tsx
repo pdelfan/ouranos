@@ -63,11 +63,7 @@ export default function PostText(props: Props) {
     } else {
       content.push({
         text: segment.text,
-        component: (
-          <span className="[overflow-wrap:anywhere]" key={segment.text}>
-            {segment.text}
-          </span>
-        ),
+        component: <span key={segment.text}>{segment.text}</span>,
       });
     }
   }
@@ -75,7 +71,7 @@ export default function PostText(props: Props) {
   return (
     <div
       dir="auto"
-      className={`leading-5 whitespace-pre-wrap break-words ${
+      className={`leading-5 whitespace-pre-wrap [overflow-wrap:anywhere] ${
         truncate && "line-clamp-6"
       }`}
     >
