@@ -26,3 +26,18 @@ export type FeedAlert =
   | "badResponse"
   | "offline"
   | "blocked";
+
+export type ContentFilter = {
+  type: string;
+  label: string;
+  visiblity: string;    
+  adult: boolean;
+  message: string;
+};
+
+
+
+export type FilterResult = {  
+  visibility: "warn" | "hide";
+  message: string;
+} | null;
