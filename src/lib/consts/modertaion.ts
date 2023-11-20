@@ -7,7 +7,7 @@ export const contentFilterOptions: ContentFilter[] = [
     visiblity: "warn",
     values: ["porn", "nsfl"],
     adult: true,
-    message: "This post contains explicit sexual images",
+    message: "Post contains explicit sexual images",
   },
   {
     type: "nudity",
@@ -15,7 +15,7 @@ export const contentFilterOptions: ContentFilter[] = [
     visiblity: "warn",
     values: ["nudity"],
     adult: true,
-    message: "This post contains nudity",
+    message: "Post contains nudity",
   },
   {
     type: "suggestive",
@@ -23,7 +23,7 @@ export const contentFilterOptions: ContentFilter[] = [
     visiblity: "show",
     values: ["sexual"],
     adult: true,
-    message: "This post contains sexually suggestive content",
+    message: "Post contains sexually suggestive content",
   },
   {
     type: "gore",
@@ -31,7 +31,7 @@ export const contentFilterOptions: ContentFilter[] = [
     visiblity: "hide",
     values: ["gore", "self-harm", "torture", "nsfl", "corpse"],
     adult: true,
-    message: "This post contains violent or bloody content",
+    message: "Post contains violent/bloody content",
   },
   {
     type: "hate",
@@ -39,7 +39,7 @@ export const contentFilterOptions: ContentFilter[] = [
     visiblity: "warn",
     values: ["icon-kkk", "icon-nazi", "icon-intolerant", "behavior-intolerant"],
     adult: false,
-    message: "This post has political hate content",
+    message: "Post has political hate content",
   },
   {
     type: "spam",
@@ -47,7 +47,7 @@ export const contentFilterOptions: ContentFilter[] = [
     visiblity: "hide",
     values: ["spam"],
     adult: false,
-    message: "This post has been flagged as spam",
+    message: "Post has been flagged as spam",
   },
   {
     type: "impersonation",

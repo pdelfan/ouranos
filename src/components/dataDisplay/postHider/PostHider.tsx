@@ -13,9 +13,9 @@ export default function PostHider(props: Props) {
   const { message, hidden, onToggleVisibility, showToggle } = props;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 bg-neutral-100 p-3 rounded-lg font-medium text-neutral-600">
-      <div className="flex gap-2">
-        <Icon icon="material-symbols:no-adult-content" className="text-2xl" />
+    <div className="flex items-center justify-between gap-2 bg-neutral-100 p-3 rounded-lg font-medium text-neutral-600">
+      <div className="flex items-center gap-2">
+        <Icon icon="material-symbols:no-adult-content" className="shrink-0 text-2xl" />
         <span>{message}</span>
       </div>
       {showToggle && (
