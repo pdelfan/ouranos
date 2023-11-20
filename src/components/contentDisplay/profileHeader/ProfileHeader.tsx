@@ -31,6 +31,7 @@ export default function ProfileHeader(props: Props) {
     toggleFollow,
   } = useProfile(handle);
   const isBlocked = profile?.viewer?.blocking ? true : false;
+  const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
   const isMuted = profile?.viewer?.muted ? true : false;
 
   return (
@@ -44,7 +45,7 @@ export default function ProfileHeader(props: Props) {
             {profile.banner ? (
               <Button
                 className="hover:brightness-90"
-                disabled={isBlocked}
+                disabled={isBlocked || hasBlockedYou}
                 onClick={() => setShowBanner(true)}
               >
                 <Image
@@ -69,7 +70,7 @@ export default function ProfileHeader(props: Props) {
               {profile.avatar ? (
                 <Button
                   className="hover:brightness-90"
-                  disabled={isBlocked}
+                  disabled={isBlocked || hasBlockedYou}
                   onClick={() => setShowAvatar(true)}
                 >
                   <Image
@@ -134,9 +135,17 @@ export default function ProfileHeader(props: Props) {
                 <Alert variant="error" message="You have blocked this user" />
               </div>
             )}
+            {hasBlockedYou && (
+              <div className="mt-2">
+                <Alert
+                  variant="error"
+                  message="You have been blocked by this user"
+                />
+              </div>
+            )}
           </div>
 
-          <ProfileTabs />
+          {!hasBlockedYou && <ProfileTabs />}
 
           {showAvatar && profile.avatar && (
             <Gallery

@@ -11,12 +11,13 @@ interface Props {
 
 export default function Follow(props: Props) {
   const { onToggleFollow, viewer } = props;
-  const hasBlocked = viewer.blocking ? true : false;
+  const isBlocked = viewer.blocking ? true : false;
+  const hasBlockedYou = viewer.blockedBy ? true : false;
   const isFollowing = viewer.following ? true : false;
 
   return (
     <>
-      {!hasBlocked && (
+      {!isBlocked && !hasBlockedYou && (
         <Button
           onClick={() => onToggleFollow.mutate()}
           className={`rounded-full px-4 py-2 ${
@@ -30,13 +31,26 @@ export default function Follow(props: Props) {
         </Button>
       )}
 
-      {hasBlocked && (
+      {hasBlockedYou && (
+        <Button
+          disabled={true}
+          className={`rounded-full px-4 py-2 ${
+            isFollowing
+              ? "bg-neutral-100 hover:brightness-95"
+              : "bg-neutral-700 text-white hover:brightness-90"
+          }`}
+        >
+          Blocked
+        </Button>
+      )}
+
+      {isBlocked && (
         // TODO: Add unblock functionality
         <Button
           onClick={() => {}}
           className="rounded-full px-4 py-2 bg-neutral-100 hover:brightness-95"
         >
-          Unblock          
+          Unblock
         </Button>
       )}
     </>

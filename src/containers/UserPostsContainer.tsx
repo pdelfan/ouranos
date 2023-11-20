@@ -31,6 +31,8 @@ export default function UserPostsConatiner(props: Props) {
     queryFn: () => getProfile(handle, agent),
   });
   const isBlocked = profile?.viewer?.blocking ? true : false;
+  const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
+
   const {
     observerRef,
     userPostsStatus,
@@ -49,11 +51,12 @@ export default function UserPostsConatiner(props: Props) {
 
   const { preferences } = usePreferences();
   const contentFilter = useContentFilter(preferences);
-  const { feedFilter } = useFeedFilter(preferences);  
+  const { feedFilter } = useFeedFilter(preferences);
 
   return (
     <div>
       {!isBlocked &&
+        !hasBlockedYou &&
         userPostsData &&
         userPostsData?.pages.map((page, i) => (
           <div key={i}>
@@ -79,15 +82,16 @@ export default function UserPostsConatiner(props: Props) {
               ))}
           </div>
         ))}
-      {!isBlocked && isFetchingUserPosts && !isFetchingUserPostsNextPage && (
-        <FeedPostSkeleton />
-      )}
+      {!isBlocked &&
+        !hasBlockedYou &&
+        isFetchingUserPosts &&
+        !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
       {isFetchingUserPostsNextPage && (
         <section className="flex flex-1 justify-center mt-3">
           <Icon icon="eos-icons:loading" className="text-xl" />
         </section>
       )}
-      {!isBlocked && userPostsError && (
+      {!isBlocked && !hasBlockedYou && userPostsError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
       {isBlocked && (
@@ -96,6 +100,14 @@ export default function UserPostsConatiner(props: Props) {
           message={`Unblock @${handle} to view their posts`}
         />
       )}
+
+      {hasBlockedYou && (
+        <FeedAlert
+          variant="empty"
+          message={`@${handle}'s activity is not available`}
+        />
+      )}
+
       {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
       {!userPostsError &&
         !isFetchingUserPosts &&
