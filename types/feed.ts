@@ -30,14 +30,14 @@ export type FeedAlert =
 export type ContentFilter = {
   type: string;
   label: string;
-  visiblity: string;    
+  visiblity: string;
+  values: string[];
   adult: boolean;
   message: string;
 };
 
-
-
-export type FilterResult = {  
-  visibility: "warn" | "hide";
-  message: string;
-} | null;
+export type FilterResult = {
+  isAdultContentHidden: boolean;
+  contentFilters: ContentFilter[];
+  adultContentFilters: ContentFilter[];
+};

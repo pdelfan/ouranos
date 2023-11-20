@@ -6,8 +6,8 @@ import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import useFeed from "@/lib/hooks/bsky/feed/useFeed";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import PostContainer from "./PostContainer";
-import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
+import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
 import useFeedFilter from "@/lib/hooks/bsky/actor/useFeedFilter";
 
 interface Props {
@@ -32,7 +32,7 @@ export default function FeedContainer(props: Props) {
     feedData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const { contentFilter } = useContentFilter(preferences);
+  const contentFilter = useContentFilter(preferences);
   const { feedFilter } = useFeedFilter(preferences);
 
   return (
@@ -40,11 +40,12 @@ export default function FeedContainer(props: Props) {
       {feedData &&
         feedData?.pages.map((page, i) => (
           <div key={i}>
-            {page.data.feed.map((post, i) => (
+            {page.data.feed.map((post, j) => (
               <PostContainer
-                key={post.post.uri + i}
+                key={post.post.uri + j}
                 post={post}
-                isReply={!!post.reply}
+                isReply={post.reply ? true : false}
+                filter={contentFilter}
               />
             ))}
           </div>

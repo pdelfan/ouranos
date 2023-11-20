@@ -9,17 +9,39 @@ import { getPostId } from "@/lib/utils/link";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { useRouter } from "next/navigation";
+import { FilterResult } from "../../../../types/feed";
+import { useState } from "react";
+import PostHider from "@/components/dataDisplay/postHider/PostHider";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
   isParent?: boolean;
   isReply?: boolean;
+  filter: FilterResult;
 }
 
 export default function FeedPost(props: Props) {
-  const { post, isReply, isParent } = props;
+  const { post, isReply, isParent, filter } = props;
   const { author, indexedAt } = post.post;
   const { reason, reply } = post;
+
+  const { isAdultContentHidden, contentFilters, adultContentFilters } = filter;
+  const label = post.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
+  const message =
+    adultContentFilters.find((f) => f.values.includes(label))?.message ??
+    "Adult content";
+  const visibility = adultContentFilters.find((f) =>
+    f.values.includes(label)
+  )?.visiblity;
+
+  const [hidden, setHidden] = useState(
+    isAdultContentHidden
+      ? true
+      : visibility === "hide" || visibility === "warn"
+      ? true
+      : false
+  );
+
   const router = useRouter();
 
   return (
@@ -69,9 +91,24 @@ export default function FeedPost(props: Props) {
                 &nbsp;· {getRelativeTime(indexedAt)}
               </span>
             </div>
-            <PostText record={post.post.record} />
-            {post.post.embed && (
-              <PostEmbed content={post.post.embed} depth={0} />
+            {visibility !== "show" && visibility !== "ignore" && label && (
+              <div className="my-2">                
+                <PostHider
+                  message={message}
+                  hidden={hidden}
+                  onToggleVisibility={setHidden}
+                  showToggle={visibility === "warn"}
+                />
+              </div>
+            )}
+
+            {!hidden && (
+              <>
+                <PostText record={post.post.record} />
+                {post.post.embed && (
+                  <PostEmbed content={post.post.embed} depth={0} />
+                )}
+              </>
             )}
             <PostActions post={post.post} />
           </div>

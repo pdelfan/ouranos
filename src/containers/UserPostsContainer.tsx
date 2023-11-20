@@ -9,6 +9,9 @@ import useProfilePosts from "@/lib/hooks/bsky/feed/useProfilePosts";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
+import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
+import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
+import useFeedFilter from "@/lib/hooks/bsky/actor/useFeedFilter";
 
 interface Props {
   mode: UserPostMode;
@@ -44,6 +47,10 @@ export default function UserPostsConatiner(props: Props) {
     !isFetchingUserPostsNextPage &&
     userPostsData?.pages[0]?.data?.feed?.length === 0;
 
+  const { preferences } = usePreferences();
+  const contentFilter = useContentFilter(preferences);
+  const { feedFilter } = useFeedFilter(preferences);  
+
   return (
     <div>
       {!isBlocked &&
@@ -58,6 +65,7 @@ export default function UserPostsConatiner(props: Props) {
                     key={post.post.uri + i}
                     post={post}
                     isReply={!!post.reply}
+                    filter={contentFilter}
                   />
                 ))}
             {mode !== "posts" &&
@@ -66,6 +74,7 @@ export default function UserPostsConatiner(props: Props) {
                   key={post.post.uri + i}
                   post={post}
                   isReply={!!post.reply}
+                  filter={contentFilter}
                 />
               ))}
           </div>
