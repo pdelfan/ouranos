@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { FilterResult } from "../../../../types/feed";
 import { useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
+import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -25,13 +26,18 @@ export default function FeedPost(props: Props) {
   const { author, indexedAt } = post.post;
   const { reason, reply } = post;
 
-  const { isAdultContentHidden, contentFilters, adultContentFilters } = filter;
+  const { isAdultContentHidden, adultContentFilters } = filter;
   const label = post.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
+  const embedLabel =
+    post.post.embed && post.post.embed.record
+      ? (post.post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ??
+        ""
+      : "";
   const message =
-    adultContentFilters.find((f) => f.values.includes(label))?.message ??
-    "Adult content";
+    adultContentFilters.find((f) => f.values.includes(label || embedLabel))
+      ?.message ?? "Adult content";
   const visibility = adultContentFilters.find((f) =>
-    f.values.includes(label)
+    f.values.includes(label || embedLabel)
   )?.visiblity;
 
   const [hidden, setHidden] = useState(
@@ -43,6 +49,10 @@ export default function FeedPost(props: Props) {
   );
 
   const router = useRouter();
+
+  // if (post.post.embed) {
+  //   console.log(post.post.embed?.record?.labels && post.post.embed?.record?.labels[0]?.val);
+  // }
 
   return (
     <>
@@ -91,22 +101,26 @@ export default function FeedPost(props: Props) {
                 &nbsp;· {getRelativeTime(indexedAt)}
               </span>
             </div>
-            {visibility !== "show" && visibility !== "ignore" && label && (
-              <div className="my-2">                
-                <PostHider
-                  message={message}
-                  hidden={hidden}
-                  onToggleVisibility={setHidden}
-                  showToggle={visibility === "warn"}
-                />
-              </div>
-            )}
+            {visibility !== "show" &&
+              visibility !== "ignore" &&
+              (label || embedLabel) && (
+                <div className="my-2">
+                  <PostHider
+                    message={message}
+                    hidden={hidden}
+                    onToggleVisibility={setHidden}
+                    showToggle={visibility === "warn"}
+                  />
+                </div>
+              )}
 
             {!hidden && (
               <>
                 <PostText record={post.post.record} />
                 {post.post.embed && (
-                  <PostEmbed content={post.post.embed} depth={0} />
+                  <>
+                    <PostEmbed content={post.post.embed} depth={0} />
+                  </>
                 )}
               </>
             )}
