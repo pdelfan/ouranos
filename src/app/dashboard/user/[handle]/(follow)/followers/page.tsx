@@ -1,5 +1,4 @@
-import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import { getFollowers } from "@/lib/api/bsky/social";
+import FollowersContainer from "@/containers/FollowersContainer";
 
 interface Props {
   params: {
@@ -9,7 +8,6 @@ interface Props {
 
 export default async function Page(props: Props) {
   const { handle } = props.params;
-  const follows = await getFollowers(handle);
 
   return (
     <section>
@@ -19,10 +17,7 @@ export default async function Page(props: Props) {
       </div>
 
       <section className="flex flex-col mt-2">
-        {follows &&
-          follows.data.followers.map((profile) => (
-            <ProfileCard key={profile.did} profile={profile} />
-          ))}
+        <FollowersContainer handle={handle} />
       </section>
     </section>
   );

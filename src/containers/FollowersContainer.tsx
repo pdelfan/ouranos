@@ -1,20 +1,20 @@
 "use client";
 
-import { searchProfiles } from "@/lib/api/bsky/actor";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import ProfileCard from "../profileCard/ProfileCard";
+import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
+import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
-import ProfileCardSkeleton from "../profileCard/ProfileCardSkeleton";
 import { useInView } from "react-intersection-observer";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { getFollowers } from "@/lib/api/bsky/social";
 
 interface Props {
-  query: string;
+  handle: string;
 }
 
-export default function UsersSearchList(props: Props) {
-  const { query } = props;
+export default function FollowersContainer(props: Props) {
+  const { handle } = props;
   const agent = useAgent();
   const { ref, inView } = useInView();
 
@@ -28,10 +28,10 @@ export default function UsersSearchList(props: Props) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["searchProfiles", query],
-    queryFn: ({ pageParam }) => searchProfiles(agent, query, pageParam),
+    queryKey: ["getFollowers", handle],
+    queryFn: ({ pageParam }) => getFollowers(handle, agent, pageParam),
     initialPageParam: "",
-    getNextPageParam: (lastPage) => lastPage?.cursor,
+    getNextPageParam: (lastPage) => lastPage.data.cursor,
   });
 
   useEffect(() => {
@@ -45,22 +45,16 @@ export default function UsersSearchList(props: Props) {
       <section className="flex flex-col">
         {profiles &&
           profiles.pages
-            .flatMap((page) => page?.actors)
+            .flatMap((page) => page?.data.followers)
             .map((profile, i) => (
               <Fragment key={i}>
                 {profile && (
-                  <ProfileCard
-                    key={profile?.handle + i}
-                    profile={profile}
-                    rounded={false}
-                  />
+                  <ProfileCard key={profile?.handle + i} profile={profile} />
                 )}
               </Fragment>
             ))}
       </section>
-      {isFetching && !isFetchingNextPage && (
-        <ProfileCardSkeleton rounded={false} />
-      )}
+      {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
       {isFetchingNextPage && (
         <section className="flex flex-1 justify-center mt-3">
           <Icon icon="eos-icons:loading" className="text-xl" />

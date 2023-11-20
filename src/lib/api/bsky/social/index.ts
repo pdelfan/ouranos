@@ -1,17 +1,22 @@
 import { AtUri, BskyAgent } from "@atproto/api";
-import { getAgent } from "../agent";
 
-export const getFollowers = async (handle: string) => {
-  const agent = await getAgent();
-  const followers = await agent.getFollowers({ actor: handle });
+export const getFollowers = async (
+  handle: string,
+  agent: BskyAgent,
+  cursor: string
+) => {
+  const followers = await agent.getFollowers({ actor: handle, cursor: cursor });
 
   if (!followers.success) throw new Error("Could not fetch followers");
   return followers;
 };
 
-export const getFollows = async (handle: string) => {
-  const agent = await getAgent();
-  const follows = await agent.getFollows({ actor: handle });
+export const getFollows = async (
+  handle: string,
+  agent: BskyAgent,
+  cursor: string
+) => {
+  const follows = await agent.getFollows({ actor: handle, cursor: cursor });
 
   if (!follows.success) throw new Error("Could not fetch follows");
   return follows;

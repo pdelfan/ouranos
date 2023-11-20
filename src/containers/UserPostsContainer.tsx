@@ -100,14 +100,12 @@ export default function UserPostsConatiner(props: Props) {
           message={`Unblock @${handle} to view their posts`}
         />
       )}
-
       {hasBlockedYou && (
         <FeedAlert
           variant="empty"
           message={`@${handle}'s activity is not available`}
         />
       )}
-
       {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
       {!userPostsError &&
         !isFetchingUserPosts &&
