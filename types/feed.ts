@@ -36,8 +36,17 @@ export type ContentFilter = {
   message: string;
 };
 
-export type FilterResult = {
+export type ContentFilterResult = {
   isAdultContentHidden: boolean;
   contentFilters: ContentFilter[];
   adultContentFilters: ContentFilter[];
+};
+
+export type FeedFilterResult = {
+  feed: string;
+  hideReplies: boolean;
+  hideRepliesByLikeCount: number;
+  hideRepliesByUnfollowed: boolean;
+  hideReposts: boolean;
+  hideQuotePosts: boolean;
 };

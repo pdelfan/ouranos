@@ -9,6 +9,7 @@ import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
 import useFeedFilter from "@/lib/hooks/bsky/actor/useFeedFilter";
+import { filterFeed } from "@/lib/utils/feed";
 
 interface Props {
   feed: string;
@@ -33,21 +34,26 @@ export default function FeedContainer(props: Props) {
 
   const { preferences } = usePreferences();
   const contentFilter = useContentFilter(preferences);
-  const { feedFilter } = useFeedFilter(preferences);
+  const feedFilter = useFeedFilter(preferences);
 
   return (
     <div>
       {feedData &&
+        feedFilter &&
         feedData?.pages.map((page, i) => (
           <div key={i}>
-            {page.data.feed.map((post, j) => (
-              <PostContainer
-                key={post.post.uri + j}
-                post={post}
-                isReply={post.reply ? true : false}
-                filter={contentFilter}
-              />
-            ))}
+            {page.data.feed
+              .filter((f) =>
+                feed === "timeline" ? filterFeed(f, feedFilter) : true
+              )
+              .map((post, j) => (
+                <PostContainer
+                  key={post.post.uri + j}
+                  post={post}
+                  isReply={post.reply ? true : false}
+                  filter={contentFilter}
+                />
+              ))}
           </div>
         ))}
       {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}

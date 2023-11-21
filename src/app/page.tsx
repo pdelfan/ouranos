@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex flex-col items-center gap-2">
         <Image src="/logo.svg" alt="Ouranos logo" width={160} height={50} />
         <h1 className="text-lg font-medium text-neutral-600">
-          🌸 A Bluesky client for the web 🌸
+          A Bluesky client for the web
         </h1>
       </div>
       <div className="flex gap-3">

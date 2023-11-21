@@ -3,12 +3,12 @@
 import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import { FilterResult } from "../../types/feed";
+import { ContentFilterResult } from "../../types/feed";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
   isReply?: boolean;
-  filter: FilterResult;
+  filter: ContentFilterResult;
 }
 
 export default function PostContainer(props: Props) {

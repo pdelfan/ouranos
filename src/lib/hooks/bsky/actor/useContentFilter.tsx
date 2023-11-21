@@ -1,11 +1,11 @@
 import { Preferences } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import { contentFilterOptions } from "@/lib/consts/modertaion";
 import { AppBskyActorDefs } from "@atproto/api";
-import { ContentFilter, FilterResult } from "../../../../../types/feed";
+import { ContentFilter, ContentFilterResult } from "../../../../../types/feed";
 
 export default function useContentFilter(
   preferences: Preferences | undefined
-): FilterResult {
+): ContentFilterResult {
   const getFilters = (prefs?: Preferences) => {
     const contentFilters: ContentFilter[] = [];
     const adultContentFilters: ContentFilter[] = [];

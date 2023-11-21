@@ -9,7 +9,7 @@ import { getPostId } from "@/lib/utils/link";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { useRouter } from "next/navigation";
-import { FilterResult } from "../../../../types/feed";
+import { ContentFilterResult } from "../../../../types/feed";
 import { useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
@@ -18,7 +18,7 @@ interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
   isParent?: boolean;
   isReply?: boolean;
-  filter: FilterResult;
+  filter: ContentFilterResult;
 }
 
 export default function FeedPost(props: Props) {
@@ -56,7 +56,7 @@ export default function FeedPost(props: Props) {
 
   return (
     <>
-      {reason && <Reason reason={reason} />}
+      {reason && <Reason reason={reason} />}      
       <article
         onClick={(e) => {
           e.stopPropagation();

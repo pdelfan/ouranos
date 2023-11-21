@@ -17,7 +17,7 @@ export default async function FeedList(props: Props) {
           <FeedItem
             key={feed.cid}
             feedItem={feed}
-            saved={savedFeeds.some((savedFeed) => savedFeed.uri === feed.uri)}
+            saved={savedFeeds.some((savedFeed) => savedFeed.uri === feed.uri)}            
           />
         ))}
     </section>

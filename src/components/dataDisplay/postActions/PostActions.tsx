@@ -20,7 +20,7 @@ export default function PostActions(props: Props) {
       >
         {post.replyCount}
       </Button>
-      <Button className="text-neutral-500 hover:text-primary" icon="bx:repost">
+      <Button className="text-neutral-500 hover:text-neutral-600" icon="bx:repost">
         {post.repostCount}
       </Button>
       <Button

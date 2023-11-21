@@ -21,13 +21,18 @@ export default function useFeedFilter(preferences: Preferences | undefined) {
       (prefs.find(
         (x) => AppBskyActorDefs.isFeedViewPref(x) && x.feed === "home"
       ) as AppBskyActorDefs.FeedViewPref | undefined) ?? defaultFeedViewPref;
-
+    
     return feedViewPref;
   };
 
   const filters = getFilters(preferences);
 
   return {
-    feedFilter: filters,
+    feed: filters.feed,
+    hideReplies: filters.hideReplies ?? false,
+    hideRepliesByLikeCount: filters.hideRepliesByLikeCount ?? 0,
+    hideRepliesByUnfollowed: filters.hideRepliesByUnfollowed ?? false,
+    hideReposts: filters.hideReposts ?? false,
+    hideQuotePosts: filters.hideQuotePosts ?? false,
   };
 }
