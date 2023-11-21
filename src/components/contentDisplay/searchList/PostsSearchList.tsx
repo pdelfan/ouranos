@@ -13,6 +13,7 @@ interface Props {
 
 export default function PostsSearchList(props: Props) {
   const { query } = props;
+  const decoded = decodeURIComponent(query);
   const agent = useAgent();
 
   const {
@@ -22,8 +23,8 @@ export default function PostsSearchList(props: Props) {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ["searchPosts", query],
-    queryFn: () => searchPosts(query, agent),
+    queryKey: ["searchPosts", decoded],
+    queryFn: () => searchPosts(decoded, agent),
   });
 
   return (
