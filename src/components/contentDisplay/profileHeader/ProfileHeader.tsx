@@ -115,7 +115,7 @@ export default function ProfileHeader(props: Props) {
             <h2 className="text-neutral-400 font-medium break-all">
               @{profile?.handle}
             </h2>
-            <p className="text-neutral-600 leading-5 mt-3 break-words">
+            <p className="text-neutral-600 leading-5 mt-3 break-words whitespace-pre-wrap">
               {profile?.description}
             </p>
             {profile?.handle && (

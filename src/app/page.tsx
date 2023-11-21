@@ -19,7 +19,7 @@ export default function Home() {
         </Link>
         <Link
           href="/login"
-          className="bg-neutral-100 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"
+          className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"
         >
           Log in
         </Link>
