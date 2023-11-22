@@ -89,7 +89,6 @@ export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
 };
 
 export const getTimeline = async (agent: BskyAgent, cursor?: string) => {
-  if (!agent) agent = await getAgent();
   const timeline = await agent.getTimeline({ cursor: cursor });
   return timeline;
 };
@@ -99,7 +98,6 @@ export const getFeed = async (
   uri: string,
   cursor: string
 ) => {
-  if (!agent) agent = await getAgent();
   const feed = await agent.app.bsky.feed.getFeed({ feed: uri, cursor: cursor });
   return feed;
 };
@@ -109,7 +107,6 @@ export const getUserPosts = async (
   handle: string,
   cursor: string
 ) => {
-  if (!agent) agent = await getAgent();
   const posts = await agent.getAuthorFeed({ actor: handle, cursor: cursor });
 
   if (!posts.success) throw new Error("Could not fetch posts");
@@ -121,7 +118,6 @@ export const getUserReplyPosts = async (
   handle: string,
   cursor: string
 ) => {
-  if (!agent) agent = await getAgent();
   const posts = await agent.getAuthorFeed({
     actor: handle,
     filter: "posts_with_replies",
@@ -137,7 +133,6 @@ export const getUserMediaPosts = async (
   handle: string,
   cursor: string
 ) => {
-  if (!agent) agent = await getAgent();
   const posts = await agent.getAuthorFeed({
     actor: handle,
     filter: "posts_with_media",
@@ -164,7 +159,6 @@ export const getUserLikes = async (
 };
 
 export const likePost = async (agent: BskyAgent, uri: string, cid: string) => {
-  if (!agent) agent = await getAgent();
   try {
     const like = await agent.like(uri, cid);
     return like;
@@ -174,11 +168,29 @@ export const likePost = async (agent: BskyAgent, uri: string, cid: string) => {
 };
 
 export const unlikePost = async (agent: BskyAgent, likeUri: string) => {
-  if (!agent) agent = await getAgent();
   try {
     const unlike = await agent.deleteLike(likeUri);
     return unlike;
   } catch (e) {
     throw new Error("Could not unlike post");
+  }
+};
+
+export const getPost = async (agent: BskyAgent, uri: string) => {  
+  try {
+    const post = await agent.getPostThread({ uri: uri, depth: 1 });
+    if (!post.success) throw new Error("Could not fetch post");
+    return post;
+  } catch (e) {
+    throw new Error("Could not fetch post");
+  }
+};
+
+export const getPostThread = async (agent: BskyAgent, uri: string) => {
+  try {
+    const posts = await agent.getPostThread({ uri: uri });
+    return posts;
+  } catch (e) {
+    throw new Error("Could not fetch post thread");
   }
 };

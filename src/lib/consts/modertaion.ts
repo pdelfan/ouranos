@@ -1,6 +1,6 @@
 import { ContentFilter } from "../../../types/feed";
 
-export const contentFilterOptions: ContentFilter[] = [
+export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "nsfw",
     label: "Explicit Sexual Images",

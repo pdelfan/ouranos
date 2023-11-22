@@ -1,10 +1,14 @@
+import PostThreadContainer from "@/containers/PostThreadContainer";
+
 interface Props {
   params: {
     id: string;
+    handle: string;
   };
 }
 
-export default function Page(props: Props) {
-  const { params } = props;
-  return <h1>Post</h1>;
+export default async function Page(props: Props) {
+  const { id, handle } = props.params;
+
+  return <PostThreadContainer id={id} handle={handle} />;
 }

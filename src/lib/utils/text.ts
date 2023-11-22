@@ -12,3 +12,16 @@ export function getHostname(url: string) {
   // extract hostname (return name with no www)
   return matches ? matches[1] : url.replace(/^www\./, "");
 }
+
+export function getNotificationLabel(reason: string) {
+  switch (reason) {
+    case "like":
+      return "liked your post";
+    case "follow":
+      return "followed you";
+    case "repost":
+      return "reposted your post";
+    default:
+      return "";
+  }
+}

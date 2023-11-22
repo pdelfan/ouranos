@@ -56,7 +56,7 @@ export default function FeedPost(props: Props) {
 
   return (
     <>
-      {reason && <Reason reason={reason} />}      
+      {reason && <Reason reason={reason} />}
       <article
         onClick={(e) => {
           e.stopPropagation();

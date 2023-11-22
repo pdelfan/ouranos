@@ -11,7 +11,6 @@ import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
-import useFeedFilter from "@/lib/hooks/bsky/actor/useFeedFilter";
 
 interface Props {
   mode: UserPostMode;
@@ -50,8 +49,7 @@ export default function UserPostsConatiner(props: Props) {
     userPostsData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const contentFilter = useContentFilter(preferences);
-  const { feedFilter } = useFeedFilter(preferences);
+  const contentFilter = useContentFilter(preferences);  
 
   return (
     <div>

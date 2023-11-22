@@ -1,5 +1,5 @@
 import { Preferences } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import { contentFilterOptions } from "@/lib/consts/modertaion";
+import { CONTENT_FILTER_OPTIONS } from "@/lib/consts/modertaion";
 import { AppBskyActorDefs } from "@atproto/api";
 import { ContentFilter, ContentFilterResult } from "../../../../../types/feed";
 
@@ -27,7 +27,7 @@ export default function useContentFilter(
       // general content pref (hate, spam, impersonation)
       if (isContentPref) {
         const label = pref.label;
-        const filter = contentFilterOptions.find(
+        const filter = CONTENT_FILTER_OPTIONS.find(
           (f) => !f.adult && f.type === label
         );
         if (filter) {
@@ -44,7 +44,7 @@ export default function useContentFilter(
       // adult pref
       if (isContentPref) {
         const label = pref.label;
-        const filter = contentFilterOptions.find(
+        const filter = CONTENT_FILTER_OPTIONS.find(
           (f) => f.adult && f.type === label
         );
 

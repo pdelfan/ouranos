@@ -15,12 +15,12 @@ export default function PostActions(props: Props) {
   return (
     <div className="flex gap-x-8 mt-2">
       <Button
-        className="text-neutral-500 hover:text-green-600"
+        className="text-neutral-500 hover:text-primary"
         icon="bx:message-rounded"
       >
         {post.replyCount}
       </Button>
-      <Button className="text-neutral-500 hover:text-neutral-600" icon="bx:repost">
+      <Button className="text-neutral-500 hover:text-green-600" icon="bx:repost">
         {post.repostCount}
       </Button>
       <Button
