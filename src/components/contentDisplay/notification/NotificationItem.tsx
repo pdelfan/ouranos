@@ -8,8 +8,6 @@ import Link from "next/link";
 import { ContentFilterResult } from "../../../../types/feed";
 import NotificationPost from "./NotificationPost";
 import NotificationContnet from "./NotificationContent";
-import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
 import { AppBskyNotificationListNotifications } from "@atproto/api";
 
 interface Props {
@@ -30,7 +28,7 @@ export default function NotificationItem(props: Props) {
       case "repost":
         return <Icon icon="bx:repost" className="text-2xl text-green-600 shrink-0" />;
       case "follow":
-        return <Icon icon="bxs:user-plus" className="text-2xl text-blue-500 shrink-0" />;
+        return <Icon icon="bxs:user-plus" className="text-2xl text-primary shrink-0" />;
       default:
         return null;
     }
@@ -38,7 +36,7 @@ export default function NotificationItem(props: Props) {
 
   if (GROUPABLE_NOTIFICATIONS.includes(reason)) {
     return (
-      <article className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 sm:first:rounded-t-2xl hover:bg-neutral-50">
+      <article className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 sm:first:rounded-t-2xl">
         <div className="flex gap-2">
           {getNotificationIcon(reason)}
           <div className="flex flex-col gap-2">
@@ -62,7 +60,7 @@ export default function NotificationItem(props: Props) {
                 <span className="text-neutral-400 font-medium whitespace-nowrap">
                   &nbsp;· {getRelativeTime(indexedAt)}
                 </span>
-                {reason !== "follow" && subjectUri && (
+                {subjectUri && (
                   <NotificationContnet uri={subjectUri} filter={filter} />
                 )}
               </div>

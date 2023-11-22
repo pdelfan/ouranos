@@ -61,7 +61,7 @@ export default function NotificationsContainer() {
       {notificationError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
-      {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
+      {isEmpty && <FeedAlert variant="empty" message="There are no notifications to show... yet" />}
       {!notificationError &&
         !isFetchingNotification &&
         !isFetchingNotificationNextPage && <EndOfFeed />}
