@@ -21,8 +21,8 @@ export default function useContentFilter(
 
     Object.entries(prefs).map(([_, pref]) => {
       const isContentPref = AppBskyActorDefs.isContentLabelPref(pref);
-      const isAdultContentPref = AppBskyActorDefs.isAdultContentPref(pref);      
-      
+      const isAdultContentPref = AppBskyActorDefs.isAdultContentPref(pref);
+
       // general content pref (hate, spam, impersonation)
       if (isContentPref) {
         const label = pref.label;

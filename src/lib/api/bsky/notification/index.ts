@@ -9,5 +9,6 @@ export const getNotifications = async (agent: BskyAgent, cursor: string) => {
   return notifications;
 };
 
-// await agent.countUnreadNotifications(params, opts);
-// await agent.updateSeenNotifications();
+export const updateSeenNotifications = async (agent: BskyAgent) => {
+  return await agent.updateSeenNotifications();
+};

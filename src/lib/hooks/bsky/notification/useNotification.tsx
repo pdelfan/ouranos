@@ -2,7 +2,10 @@ import { useInView } from "react-intersection-observer";
 import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { getNotifications } from "@/lib/api/bsky/notification";
+import {
+  getNotifications,
+  updateSeenNotifications,
+} from "@/lib/api/bsky/notification";
 
 export default function useNotification() {
   const agent = useAgent();
@@ -18,7 +21,11 @@ export default function useNotification() {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["notifications"],
-    queryFn: async ({ pageParam }) => getNotifications(agent, pageParam),
+    queryFn: async ({ pageParam }) => {
+      const res = await getNotifications(agent, pageParam);
+      await updateSeenNotifications(agent);
+      return res;
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
   });

@@ -17,18 +17,27 @@ interface Props {
 
 export default function NotificationItem(props: Props) {
   const { notification, filter } = props;
-  const { reason, author, indexedAt } = notification;
+  const { reason, author, indexedAt, isRead } = notification;
   const subjectUri =
     notification.reasonSubject as AppBskyNotificationListNotifications.Notification["reasonSubject"];
 
   const getNotificationIcon = (reason: string) => {
     switch (reason) {
       case "like":
-        return <Icon icon="bxs:heart" className="text-2xl text-red-500 shrink-0" />;
+        return (
+          <Icon icon="bxs:heart" className="text-2xl text-red-500 shrink-0" />
+        );
       case "repost":
-        return <Icon icon="bx:repost" className="text-2xl text-green-600 shrink-0" />;
+        return (
+          <Icon icon="bx:repost" className="text-2xl text-green-600 shrink-0" />
+        );
       case "follow":
-        return <Icon icon="bxs:user-plus" className="text-2xl text-primary shrink-0" />;
+        return (
+          <Icon
+            icon="bxs:user-plus"
+            className="text-2xl text-primary shrink-0"
+          />
+        );
       default:
         return null;
     }
@@ -36,7 +45,11 @@ export default function NotificationItem(props: Props) {
 
   if (GROUPABLE_NOTIFICATIONS.includes(reason)) {
     return (
-      <article className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 sm:first:rounded-t-2xl">
+      <article
+        className={`flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 sm:first:rounded-t-2xl ${
+          !isRead && "bg-neutral-100"
+        }`}
+      >
         <div className="flex gap-2">
           {getNotificationIcon(reason)}
           <div className="flex flex-col gap-2">
@@ -71,7 +84,11 @@ export default function NotificationItem(props: Props) {
     );
   } else {
     return (
-      <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 first:sm:rounded-t-2xl hover:bg-neutral-50">
+      <div
+        className={`flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 first:sm:rounded-t-2xl hover:bg-neutral-50 ${
+          !isRead && "bg-neutral-100"
+        }`}
+      >
         <NotificationPost uri={notification.uri} filter={filter} />
       </div>
     );
