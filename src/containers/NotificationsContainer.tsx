@@ -29,7 +29,7 @@ export default function NotificationsContainer() {
     !isFetchingNotification &&
     !isFetchingNotificationNextPage &&
     notificationData?.pages[0]?.data?.notifications.length === 0;
-
+    
   return (
     <section>
       <section className="flex flex-col">

@@ -5,21 +5,26 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { getRelativeTime } from "@/lib/utils/time";
 import { GROUPABLE_NOTIFICATIONS } from "@/lib/consts/notification";
 import Link from "next/link";
-import { ContentFilterResult } from "../../../../types/feed";
+import {
+  ContentFilterResult,
+  GroupedNotification,
+} from "../../../../types/feed";
 import NotificationPost from "./NotificationPost";
 import NotificationContnet from "./NotificationContent";
 import { AppBskyNotificationListNotifications } from "@atproto/api";
 
 interface Props {
-  notification: Notification;
+  notification: GroupedNotification;
   filter: ContentFilterResult;
 }
 
 export default function NotificationItem(props: Props) {
   const { notification, filter } = props;
-  const { reason, author, indexedAt, isRead } = notification;
+  const { reason, author, indexedAt, isRead, allAuthors } = notification;
   const subjectUri =
     notification.reasonSubject as AppBskyNotificationListNotifications.Notification["reasonSubject"];
+  
+    const MAX_AUTHORS_SHOWN = 6;
 
   const getNotificationIcon = (reason: string) => {
     switch (reason) {
@@ -53,20 +58,49 @@ export default function NotificationItem(props: Props) {
         <div className="flex gap-2">
           {getNotificationIcon(reason)}
           <div className="flex flex-col gap-2">
-            <Link
-              href={`/dashboard/user/${author.handle}`}
-              className="max-w-fit hover:brightness-90"
-            >
-              <Avatar profile={notification.author} />
-            </Link>
+            <div className="flex items-center gap-1">
+              {allAuthors && allAuthors.length > 0 && (
+                <>
+                  {allAuthors.slice(0, MAX_AUTHORS_SHOWN).map((author) => (
+                    <Link
+                      key={author.handle}
+                      href={`/dashboard/user/${author.handle}`}
+                      className="max-w-fit hover:brightness-90"
+                    >
+                      <Avatar profile={author} />
+                    </Link>
+                  ))}
+                  {allAuthors.length > MAX_AUTHORS_SHOWN && (
+                    <span className="font-medium text-neutral-600">
+                      +{allAuthors.length - MAX_AUTHORS_SHOWN}
+                    </span>
+                  )}
+                </>
+              )}
+            </div>
             <div className="flex flex-wrap gap-1">
               <div>
-                <Link
-                  href={`/dashboard/user/${author.handle}`}
-                  className="font-semibold break-all hover:text-neutral-600"
-                >
-                  {author.displayName ?? author.handle}{" "}
-                </Link>
+                {allAuthors && allAuthors.length > 1 && (
+                  <>
+                    <Link
+                      key={author.handle}
+                      href={`/dashboard/user/${author.handle}`}
+                      className="font-semibold break-all hover:text-neutral-600"
+                    >
+                      {author.displayName ?? author.handle}{" "}
+                    </Link>
+                    and {allAuthors.length - 1}{" "}
+                    {allAuthors.length - 1 > 2 ? "others" : "other"}{" "}
+                  </>
+                )}
+                {allAuthors?.length === 1 && (
+                  <Link
+                    href={`/dashboard/user/${author.handle}`}
+                    className="font-semibold break-all hover:text-neutral-600"
+                  >
+                    {author.displayName ?? author.handle}{" "}
+                  </Link>
+                )}
                 <span className="text-neutral-500 font-medium break-words">
                   {getNotificationLabel(reason)}
                 </span>

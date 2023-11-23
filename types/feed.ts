@@ -1,5 +1,7 @@
 import {} from "@atproto/api";
+import { ProfileView } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import { GeneratorView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
+import { Notification } from "@atproto/api/dist/client/types/app/bsky/notification/listNotifications";
 
 export type SavedFeed = GeneratorView & {
   pinned: boolean;
@@ -49,4 +51,8 @@ export type FeedFilterResult = {
   hideRepliesByUnfollowed: boolean;
   hideReposts: boolean;
   hideQuotePosts: boolean;
+};
+
+export type GroupedNotification = Notification & {
+  allAuthors?: ProfileView[];
 };
