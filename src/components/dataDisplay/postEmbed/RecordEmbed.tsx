@@ -21,24 +21,26 @@ export default function RecordEmbed(props: Props) {
   const isBlocked = AppBskyEmbedRecord.isViewBlocked(record);
   const notFound = AppBskyEmbedRecord.isViewNotFound(record);
   const isViewable = AppBskyEmbedRecord.isViewRecord(record);
-  const { handle } = record.author as RecordView;
-  const uri = record.uri as string;
   const router = useRouter();
 
   return (
     <>
-      <article
-        onClick={(e) => {
-          router.push(`/dashboard/user/${handle}/post/${getPostId(uri)}`);
-          e.stopPropagation();
-        }}
-        className="flex flex-col gap-2 hover:bg-neutral-50"
-      >
+      <article className="flex flex-col gap-2 hover:bg-neutral-50">
         {isBlocked && <BlockedEmbed depth={depth} />}
         {notFound && <NotFoundEmbed depth={depth} />}
         {media && <PostEmbed content={media} depth={depth + 1} />}
         {isViewable && depth < 1 && (
-          <div className="flex justify-between items-center gap-2 p-3 border rounded-xl">
+          <div
+            onClick={(e) => {
+              router.push(
+                `/dashboard/user/${record.author.handle}/post/${getPostId(
+                  record.uri
+                )}`
+              );
+              e.stopPropagation();
+            }}
+            className="flex justify-between items-center gap-2 p-3 border rounded-xl"
+          >
             <div className="flex items-start gap-2">
               <Avatar profile={record.author} size="xs" />
               <div className="flex flex-col">
