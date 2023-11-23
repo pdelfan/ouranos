@@ -2,6 +2,8 @@ import Image from "next/image";
 import { AppBskyFeedDefs } from "@atproto/api";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
   feed: AppBskyFeedDefs.GeneratorView;
@@ -10,10 +12,23 @@ interface Props {
 
 export default function FeedEmbed(props: Props) {
   const { feed, depth } = props;
+  const router = useRouter();
+
   return (
     <>
       {depth < 2 && (
-        <article className="flex flex-col gap-2 p-3 bg-white border rounded-2xl hover:brightness-95">
+        <Link
+          href={{
+            pathname: `/dashboard/feeds/${encodeURIComponent(
+              feed.uri.split(":")[3].split("/")[0]
+            )}`,
+            query: { uri: feed.uri },
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="flex flex-col gap-2 p-3 bg-white border rounded-2xl hover:brightness-95"
+        >
           <div className="flex flex-wrap gap-3 items-center justify-between">
             <div className="flex flex-wrap gap-3 items-center">
               <Image
@@ -40,7 +55,7 @@ export default function FeedEmbed(props: Props) {
             <Icon icon="bxs:heart" />
             <span>{feed.likeCount ?? 0}</span>
           </small>
-        </article>
+        </Link>
       )}
     </>
   );

@@ -13,6 +13,7 @@ import { ContentFilterResult } from "../../../../types/feed";
 import { useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
+import Link from "next/link";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -83,10 +84,10 @@ export default function FeedPost(props: Props) {
               <div className="absolute left-6 top-0 z-10 h-full border-l-2" />
             )}
             <div className="flex">
-              <button
+              <Link
+                href={`/dashboard/user/${author.handle}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  router.push(`/dashboard/user/${author.handle}`);
                 }}
                 className="flex gap-1"
               >
@@ -96,7 +97,7 @@ export default function FeedPost(props: Props) {
                 <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
                   @{author.handle}
                 </span>
-              </button>
+              </Link>
               <span className="text-neutral-400 font-medium whitespace-nowrap">
                 &nbsp;· {getRelativeTime(indexedAt)}
               </span>
@@ -118,9 +119,7 @@ export default function FeedPost(props: Props) {
               <>
                 <PostText record={post.post.record} />
                 {post.post.embed && (
-                  <>
-                    <PostEmbed content={post.post.embed} depth={0} />
-                  </>
+                  <PostEmbed content={post.post.embed} depth={0} />
                 )}
               </>
             )}
