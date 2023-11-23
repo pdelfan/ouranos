@@ -59,7 +59,7 @@ export default function FeedPost(props: Props) {
     <>
       {reason && <Reason reason={reason} />}
       <article
-        onClick={(e) => {
+        onClick={(e) => {          
           e.stopPropagation();
           router.push(
             `/dashboard/user/${post.post.author.handle}/post/${getPostId(

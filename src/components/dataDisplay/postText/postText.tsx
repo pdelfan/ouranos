@@ -32,6 +32,7 @@ export default function PostText(props: Props) {
             className="text-primary break-words hover:text-primary-dark"
             href={`/dashboard/user/${getHandle(segment.text)}`}
             key={segment.mention?.did}
+            onClick={(e) => e.stopPropagation()}
           >
             {segment.text}
           </Link>
@@ -46,6 +47,7 @@ export default function PostText(props: Props) {
             href={segment.link?.uri!}
             target="blank"
             key={segment.link?.uri}
+            onClick={(e) => e.stopPropagation()}
           >
             {segment.text}
           </Link>
@@ -60,6 +62,7 @@ export default function PostText(props: Props) {
             href={`/dashboard/search?query=${encodedTag}`}
             key={segment.text}
             className="text-primary break-all hover:text-primary-dark"
+            onClick={(e) => e.stopPropagation()}
           >
             {segment.text}
           </Link>

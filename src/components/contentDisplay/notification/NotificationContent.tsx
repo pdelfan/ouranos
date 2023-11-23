@@ -85,7 +85,7 @@ export default function NotificationContnet(props: Props) {
             `/dashboard/user/${post?.post.author.handle}/post/${getPostId(uri)}`
           );
         }}
-        className="cursor-pointer"
+        className="cursor-pointer text-neutral-500 text-[0.93rem]"
       >
         {!hidden && (
           <>

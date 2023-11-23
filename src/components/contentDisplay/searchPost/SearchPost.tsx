@@ -19,7 +19,7 @@ export default function SearchPost(props: Props) {
   const { author, indexedAt } = post;
 
   return (
-    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
+    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-gray-50">
       <div className="flex items-start gap-3">
         <Link
           href={`/dashboard/user/${author.handle}`}

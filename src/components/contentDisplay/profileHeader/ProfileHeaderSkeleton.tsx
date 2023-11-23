@@ -4,7 +4,7 @@ import SkeletonBanner from "@/assets/images/skeletonBanner.png";
 function Skeleton() {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-neutral-200 w-20 h-6" />
+      <div className="bg-gray-200 w-20 h-6" />
     </div>
   );
 }
