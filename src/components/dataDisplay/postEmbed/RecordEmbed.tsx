@@ -5,6 +5,10 @@ import { getRelativeTime } from "@/lib/utils/time";
 import PostEmbed from "./PostEmbed";
 import NotFoundEmbed from "./NotFoundEmbed";
 import BlockedEmbed from "./BlockedEmbed";
+import Link from "next/link";
+import { getPostId } from "@/lib/utils/link";
+import { RecordView } from "@atproto/api/dist/client/types/com/atproto/admin/defs";
+import { useRouter } from "next/navigation";
 
 interface Props {
   record: AppBskyEmbedRecord.View["record"];
@@ -17,10 +21,19 @@ export default function RecordEmbed(props: Props) {
   const isBlocked = AppBskyEmbedRecord.isViewBlocked(record);
   const notFound = AppBskyEmbedRecord.isViewNotFound(record);
   const isViewable = AppBskyEmbedRecord.isViewRecord(record);
+  const { handle } = record.author as RecordView;
+  const uri = record.uri as string;
+  const router = useRouter();
 
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <article
+        onClick={(e) => {
+          router.push(`/dashboard/user/${handle}/post/${getPostId(uri)}`);
+          e.stopPropagation();
+        }}
+        className="flex flex-col gap-2 hover:bg-neutral-50"
+      >
         {isBlocked && <BlockedEmbed depth={depth} />}
         {notFound && <NotFoundEmbed depth={depth} />}
         {media && <PostEmbed content={media} depth={depth + 1} />}
@@ -50,7 +63,7 @@ export default function RecordEmbed(props: Props) {
             </div>
           </div>
         )}
-      </div>
+      </article>
     </>
   );
 }
