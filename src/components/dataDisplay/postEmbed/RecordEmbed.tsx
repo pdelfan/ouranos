@@ -23,11 +23,7 @@ export default function RecordEmbed(props: Props) {
       <div className="flex flex-col gap-2">
         {isBlocked && <BlockedEmbed depth={depth} />}
         {notFound && <NotFoundEmbed depth={depth} />}
-        {media && (
-          <div className="mt-2">
-            <PostEmbed content={media} depth={depth + 1} />
-          </div>
-        )}
+        {media && <PostEmbed content={media} depth={depth + 1} />}
         {isViewable && depth < 1 && (
           <div className="flex justify-between items-center gap-2 p-3 border rounded-xl">
             <div className="flex items-start gap-2">
@@ -47,10 +43,8 @@ export default function RecordEmbed(props: Props) {
                   </span>
                 </div>
                 <PostText record={record.value} truncate={true} />
-                {record.embeds && record.embeds.length > 0 && depth < 1 && (
-                  <div className="mt-2">
-                    <PostEmbed content={record.embeds[0]} depth={depth + 1} />
-                  </div>
+                {record.embeds && record.embeds.length > 0 && (
+                  <PostEmbed content={record.embeds[0]} depth={depth + 1} />
                 )}
               </div>
             </div>

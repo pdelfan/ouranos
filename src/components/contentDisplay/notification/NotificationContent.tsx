@@ -91,7 +91,7 @@ export default function NotificationContnet(props: Props) {
           <>
             {post && <PostText record={post.post.record} />}
             {post?.post.embed && (
-              <div className="max-w-xs mt-2">                
+              <div className="max-w-xs">
                 <PostEmbed content={post.post.embed} depth={0} />
               </div>
             )}

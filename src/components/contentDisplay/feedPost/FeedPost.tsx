@@ -59,7 +59,7 @@ export default function FeedPost(props: Props) {
     <>
       {reason && <Reason reason={reason} />}
       <article
-        onClick={(e) => {
+        onClick={(e) => {          
           e.stopPropagation();
           router.push(
             `/dashboard/user/${post.post.author.handle}/post/${getPostId(
@@ -119,9 +119,7 @@ export default function FeedPost(props: Props) {
               <>
                 <PostText record={post.post.record} />
                 {post.post.embed && (
-                  <div className="mt-2">
-                    <PostEmbed content={post.post.embed} depth={0} />
-                  </div>
+                  <PostEmbed content={post.post.embed} depth={0} />
                 )}
               </>
             )}
