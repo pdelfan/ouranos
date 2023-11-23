@@ -26,7 +26,7 @@ export default function Navbar() {
         href="/dashboard/feeds"
         icons={["bx:hash", "bx:hash"]}
         title="Feeds"
-        isActive={pathname.includes("feeds")}
+        isActive={pathname === "/dashboard/feeds"}
       />
       <NavItem
         href="/dashboard/notifications"

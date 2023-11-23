@@ -49,7 +49,7 @@ export default function UserPostsConatiner(props: Props) {
     userPostsData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const contentFilter = useContentFilter(preferences);  
+  const contentFilter = useContentFilter(preferences);
 
   return (
     <div>
@@ -104,9 +104,10 @@ export default function UserPostsConatiner(props: Props) {
           message={`@${handle}'s activity is not available`}
         />
       )}
-      {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
-      {!userPostsError &&
+      {isEmpty && <FeedAlert variant="empty" message="There are not posts... yet" />}
+      {!isEmpty && !userPostsError &&
         !isFetchingUserPosts &&
+        !userPostsHasNextPage &&
         !isFetchingUserPostsNextPage && <EndOfFeed />}
       <div ref={observerRef}></div>
     </div>

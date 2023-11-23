@@ -66,7 +66,7 @@ export default function FeedContainer(props: Props) {
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
       {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
-      {!feedError && !isFetchingFeed && !isFetchingFeedNextPage && (
+      {!isEmpty && !feedError && !isFetchingFeed && !feedHasNextPage && !isFetchingFeedNextPage && (
         <EndOfFeed />
       )}
       <div ref={observerRef}></div>
