@@ -102,6 +102,12 @@ export const getFeed = async (
   return feed;
 };
 
+export const getFeedInfo = async (agent: BskyAgent, uri: string) => {
+  const feed = await agent.app.bsky.feed.getFeedGenerator({ feed: uri });
+  if (!feed.success) throw new Error("Could not fetch feed info");
+  return feed.data;
+};
+
 export const getUserPosts = async (
   agent: BskyAgent,
   handle: string,
@@ -176,7 +182,7 @@ export const unlikePost = async (agent: BskyAgent, likeUri: string) => {
   }
 };
 
-export const getPost = async (agent: BskyAgent, uri: string) => {  
+export const getPost = async (agent: BskyAgent, uri: string) => {
   try {
     const post = await agent.getPostThread({ uri: uri, depth: 1 });
     if (!post.success) throw new Error("Could not fetch post");

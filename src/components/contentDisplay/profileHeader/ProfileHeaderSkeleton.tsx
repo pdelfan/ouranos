@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SkeletonBanner from "@/assets/images/skeletonBanner.png";
 
-function TabSkeleton() {
+function Skeleton() {
   return (
     <div className="flex flex-col items-center">
       <div className="bg-neutral-200 w-20 h-6" />
@@ -9,12 +9,12 @@ function TabSkeleton() {
   );
 }
 
-function FeedTabsSkeleton() {
+function TabsSkeleton() {
   return (
     <div className="flex flex-nowrap gap-5 px-4 overflow-auto no-scrollbar">
-      <TabSkeleton />
-      <TabSkeleton />
-      <TabSkeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
     </div>
   );
 }
@@ -55,7 +55,7 @@ export default function ProfileHeaderSkeleton() {
           </div>
         </div>
       </div>
-      <FeedTabsSkeleton />
+      <TabsSkeleton />
     </section>
   );
 }

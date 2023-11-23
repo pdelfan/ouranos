@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { toggleSaveFeed } from "@/lib/api/bsky/feed";
+import Link from "next/link";
 
 interface Props {
   feedItem: GeneratorView;
@@ -38,7 +39,15 @@ export default function FeedItem(props: Props) {
   };
 
   return (
-    <article className="flex flex-col gap-2 p-3 border border-x-0 sm:border-x sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50">
+    <Link
+      href={{
+        pathname: `/dashboard/feeds/${encodeURIComponent(
+          feedItem.uri.split(":")[3].split("/")[0]
+        )}`,
+        query: { uri: feedItem.uri },
+      }}
+      className="flex flex-col gap-2 p-3 border border-x-0 sm:border-x sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+    >
       <div className="flex flex-wrap gap-3 items-center justify-between">
         <div className="flex flex-wrap gap-3 items-center">
           <Image
@@ -58,8 +67,8 @@ export default function FeedItem(props: Props) {
           </div>
         </div>
         <Button
-          icon="bxs:heart"
-          iconColor={`${isSaved ? "text-red-500" : "text-neutral-300"}`}
+          icon={`${isSaved ? "bx:trash" : "bx:plus"}`}
+          iconColor={`${isSaved ? "text-red-500" : "text-green-600"}`}
           onClick={handleSave}
         />
       </div>
@@ -68,6 +77,6 @@ export default function FeedItem(props: Props) {
         <Icon icon="bxs:heart" />
         <span>{likeCount ?? 0}</span>
       </small>
-    </article>
+    </Link>
   );
 }

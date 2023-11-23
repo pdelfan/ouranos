@@ -100,7 +100,11 @@ export default function NotificationContnet(props: Props) {
       </div>
       {isFetching && <NotificationContentSkeleton />}
       {error && (
-        <FeedAlert variant="badResponse" message="Something went wrong" standalone={true} />
+        <FeedAlert
+          variant="badResponse"
+          message="Something went wrong"
+          standalone={true}
+        />
       )}
     </>
   );
