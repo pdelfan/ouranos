@@ -23,8 +23,8 @@ export default function NotificationItem(props: Props) {
   const { reason, author, indexedAt, isRead, allAuthors } = notification;
   const subjectUri =
     notification.reasonSubject as AppBskyNotificationListNotifications.Notification["reasonSubject"];
-  
-    const MAX_AUTHORS_SHOWN = 6;
+
+  const MAX_AUTHORS_SHOWN = 6;
 
   const getNotificationIcon = (reason: string) => {
     switch (reason) {
@@ -90,7 +90,7 @@ export default function NotificationItem(props: Props) {
                       {author.displayName ?? author.handle}{" "}
                     </Link>
                     and {allAuthors.length - 1}{" "}
-                    {allAuthors.length - 1 > 2 ? "others" : "other"}{" "}
+                    {allAuthors.length - 1 > 1 ? "others" : "other"}{" "}
                   </>
                 )}
                 {allAuthors?.length === 1 && (
