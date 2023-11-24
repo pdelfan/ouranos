@@ -2,8 +2,12 @@ import Button from "@/components/actions/button/Button";
 import Dropdown from "@/components/actions/dropdown/Dropdown";
 import useLike from "@/lib/hooks/bsky/feed/useLike";
 import useRepost from "@/lib/hooks/bsky/feed/useRepost";
-import type { AppBskyFeedDefs } from "@atproto/api";
-import { useRouter } from "next/navigation";
+import { useClipboard } from "use-clipboard-copy";
+import type { AppBskyEmbedRecord, AppBskyFeedDefs } from "@atproto/api";
+import { useCallback } from "react";
+import { getPostId } from "@/lib/utils/link";
+import useMuteUser from "@/lib/hooks/bsky/feed/useMuteUser";
+import { useSession } from "next-auth/react";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -11,9 +15,26 @@ interface Props {
 
 export default function PostActions(props: Props) {
   const { post } = props;
+  const { data: session } = useSession();
   const { liked, toggleLike, likeCount } = useLike({ post: post });
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
-  const router = useRouter();
+  const { muted, toggleMuteUser } = useMuteUser({ author: post.author });
+  const clipboard = useClipboard({ copiedTimeout: 3500 });
+
+  const handleShare = useCallback(() => {
+    const postId = getPostId(post.uri);
+    const shareUrl = `https://bsky.app/profile/${post.author.handle}/post/${postId}`;
+    clipboard.copy(shareUrl);
+  }, [clipboard.copy, post.uri]);
+
+  const handleCopyPostText = useCallback(() => {
+    const record = post.record as AppBskyEmbedRecord.View["record"];
+    const text = record.text || "";
+
+    clipboard.copy(text);
+  }, [clipboard.copy, post.uri]);
+
+  if (!session) return null;
 
   return (
     <div className="flex gap-x-8 mt-2">
@@ -81,20 +102,24 @@ export default function PostActions(props: Props) {
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.MenuItem
-            onSelect={() => {}}
+            onSelect={handleShare}
             text="Share"
             icon="bxs:share"
           />
           <Dropdown.MenuItem
-            onSelect={() => {}}
+            onSelect={handleCopyPostText}
             text="Copy Post Text"
             icon="bxs:copy"
           />
-          <Dropdown.MenuItem
-            onSelect={() => {}}
-            text="Mute User"
-            icon="bxs:bell-off"
-          />
+          {session.user?.handle !== post.author.handle && (
+            <Dropdown.MenuItem
+              onSelect={() => {
+                toggleMuteUser.mutate();
+              }}
+              text={`${muted ? "Unmute User" : "Mute User"}`}
+              icon="bxs:bell-off"
+            />
+          )}
         </Dropdown.Menu>
       </Dropdown>
     </div>
