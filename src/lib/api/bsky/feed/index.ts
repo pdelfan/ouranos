@@ -182,6 +182,24 @@ export const unlikePost = async (agent: BskyAgent, likeUri: string) => {
   }
 };
 
+export const repost = async (agent: BskyAgent, uri: string, cid: string) => {
+  try {
+    const like = await agent.repost(uri, cid);
+    return like;
+  } catch (e) {
+    throw new Error("Could not repost");
+  }
+};
+
+export const unRepost = async (agent: BskyAgent, repostUri: string) => {
+  try {
+    const unlike = await agent.deleteRepost(repostUri);
+    return unlike;
+  } catch (e) {
+    throw new Error("Could not delete repost");
+  }
+};
+
 export const getPost = async (agent: BskyAgent, uri: string) => {
   try {
     const post = await agent.getPostThread({ uri: uri, depth: 1 });

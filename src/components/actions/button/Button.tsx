@@ -1,18 +1,19 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef, ButtonHTMLAttributes } from "react";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   icon?: string;
   iconColor?: string;
   className?: string;
 }
 
-export default function Button(props: Props) {
+const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
   const { children, icon, iconColor, color, className, ...rest } = props;
 
   return (
     <button
+      ref={ref}
       className={`flex items-center justify-center gap-1 font-medium text-sm disabled:cursor-not-allowed ${
         className
           ? className
@@ -28,4 +29,6 @@ export default function Button(props: Props) {
       {children}
     </button>
   );
-}
+});
+
+export default Button;

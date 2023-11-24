@@ -39,11 +39,11 @@ export default function useLike(props: Props) {
         }
       }
     },
-  });  
+  });
 
   return {
     liked,
     toggleLike,
-    likeCount: likeCount,
+    likeCount,
   };
 }
