@@ -8,7 +8,7 @@ interface Props {
   post: AppBskyFeedDefs.PostView;
 }
 
-export const useRepostKey = (postUri: string) => ["like", postUri];
+export const useRepostKey = (postUri: string) => ["repost", postUri];
 
 export default function useLike(props: Props) {
   const { post } = props;

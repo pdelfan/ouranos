@@ -14,7 +14,11 @@ export default function ExternalEmbed(props: Props) {
     <>
       {depth < 2 && (
         <article className="border rounded-2xl bg-white hover:brightness-95">
-          <Link href={embed.external.uri} target="blank">
+          <Link
+            href={embed.external.uri}
+            target="blank"
+            onClick={(e) => e.stopPropagation()}
+          >
             {embed.external.thumb && (
               <div className="relative w-full h-44">
                 <Image

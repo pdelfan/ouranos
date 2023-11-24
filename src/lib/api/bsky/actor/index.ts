@@ -67,3 +67,17 @@ export const getPreferences = async (agent?: BskyAgent) => {
   if (!prefs.success) throw new Error("Could not get preferences");
   return prefs.data.preferences;
 };
+
+export const muteUser = async (did: string, agent?: BskyAgent) => {
+  if (!agent) agent = await getAgent();
+  const mute = await agent.mute(did);
+  if (!mute.success) throw new Error("Could not mute user");
+  return mute.success;
+};
+
+export const unMuteUser = async (did: string, agent?: BskyAgent) => {
+  if (!agent) agent = await getAgent();
+  const mute = await agent.unmute(did);
+  if (!mute.success) throw new Error("Could not unmute user");
+  return mute.success;
+};
