@@ -99,7 +99,7 @@ export default function ProfileHeader(props: Props) {
               </div>
             </div>
           )}
-          <div className={`p-4 ${session?.user.handle == handle && "mt-10"}`}>
+          <div className={`p-3 ${session?.user.handle == handle && "mt-10"}`}>
             <div className="flex flex-wrap items-center gap-x-2">
               <h1 className="text-2xl font-semibold break-all">
                 {profile?.displayName ||
