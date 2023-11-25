@@ -54,7 +54,7 @@ export default function Follow(props: Props) {
         </Button>
       )}
 
-      {(isBlocked) && (
+      {isBlocked && (
         <Button
           onClick={() => {
             toggleBlockUser.mutate();

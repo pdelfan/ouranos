@@ -14,6 +14,7 @@ import Gallery from "@/components/dataDisplay/gallery/Gallery";
 import Alert from "@/components/feedback/alert/Alert";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 import UserActions from "@/components/dataDisplay/userActions/UserActions";
+import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 
 interface Props {
   handle: string;
@@ -120,11 +121,11 @@ export default function ProfileHeader(props: Props) {
                   (profile?.handle &&
                     (profile?.displayName ?? profile?.handle))}
               </h1>
-              {profile.viewer?.followedBy && (
-                <small className="bg-neutral-200 text-neutral-500 font-medium py-0.5 px-1 rounded">
-                  Follows you
-                </small>
-              )}
+              <div className="flex flex-wrap gap-1.5">
+                {profile.viewer?.followedBy && (
+                  <ViewerInfo text="Follows you" />
+                )}
+              </div>
             </div>
             <h2 className="text-neutral-400 font-medium break-all">
               @{profile?.handle}

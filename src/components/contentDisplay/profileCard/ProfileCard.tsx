@@ -1,6 +1,7 @@
 import { ProfileView } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import Link from "next/link";
+import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 
 interface Props {
   profile: ProfileView;
@@ -26,6 +27,12 @@ export default function ProfileCard(props: Props) {
               <h3 className="text-neutral-400 font-medium break-all">
                 @{profile?.handle}
               </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {profile.viewer?.followedBy && (
+                  <ViewerInfo text="Follows you" />
+                )}
+                {profile.viewer?.muted && <ViewerInfo text="Muted user" />}
+              </div>
             </div>
           </div>
         </div>

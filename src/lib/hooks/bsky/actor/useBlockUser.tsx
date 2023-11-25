@@ -43,6 +43,18 @@ export default function useBlockUser(props: Props) {
           );
         } catch (err) {
           setBlocked(false);
+          queryClient.setQueryData(
+            profileKey(author.handle),
+            (oldData: any) => {
+              return {
+                ...oldData,
+                viewer: {
+                  ...oldData.viewer,
+                  blocking: undefined,
+                },
+              };
+            }
+          );
         }
       } else {
         try {
@@ -63,6 +75,18 @@ export default function useBlockUser(props: Props) {
           );
         } catch (err) {
           setBlocked(true);
+          queryClient.setQueryData(
+            profileKey(author.handle),
+            (oldData: any) => {
+              return {
+                ...oldData,
+                viewer: {
+                  ...oldData.viewer,
+                  blocking: author.did,
+                },
+              };
+            }
+          );
         }
       }
     },
