@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="mx-auto p-3 mt-0 md:mt-24">
+    <main className="mx-auto p-5 mt-0 md:mt-24">
       <header className="flex justify-between items-center max-w-xl mx-auto">
         <Image src="/logo.svg" alt="Ouranos logo" width={120} height={35} />
         <Link href="/about" className="font-medium text-neutral-500">
