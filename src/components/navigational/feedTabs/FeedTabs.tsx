@@ -7,6 +7,8 @@ import { getSavedFeeds } from "@/lib/api/bsky/feed";
 import useSWR from "swr";
 import { usePathname, useSearchParams } from "next/navigation";
 import FeedTabsSkeleton from "./FeedTabsSkeleton";
+import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
+import React from "react";
 
 export default function FeedTabs() {
   const agent = useAgent();
@@ -16,9 +18,14 @@ export default function FeedTabs() {
   const { data: savedFeeds, isLoading } = useSWR("savedFeeds", () =>
     getSavedFeeds(agent)
   );
+  const show = useHideOnScroll();
 
   return (
-    <div className="sticky top-0 sm:relative pt-2 bg-white border sm:border-t sm:rounded-t-2xl z-50 overflow-x-hidden hover:overflow-x-scroll">
+    <div
+      className={`py-4 sm:pt-2 bg-white border-x-0 border-t-0 border-b sm:border sm:rounded-t-2xl overflow-x-hidden hover:overflow-x-scroll sm:opacity-100 ${
+        show ? "translate-y-0" : "-translate-y-20"
+      } transition-translate ease-in-out duration-300 sticky top-0 sm:translate-y-0  sm:relative z-50 sm:z-40`}
+    >
       {isLoading && <FeedTabsSkeleton />}
       <Tabs>
         {!isLoading && (

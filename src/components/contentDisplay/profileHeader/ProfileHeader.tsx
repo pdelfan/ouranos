@@ -42,7 +42,7 @@ export default function ProfileHeader(props: Props) {
         <ProfileHeaderSkeleton />
       )}
       {profile && (
-        <section className="border border-x-0 sm:border-x sm:rounded-t-2xl overflow-hidden">
+        <section className="border-0 sm:border-x sm:rounded-t-2xl overflow-hidden">
           <div className="relative">
             {profile.banner ? (
               <Button
