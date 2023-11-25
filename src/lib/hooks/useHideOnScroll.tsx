@@ -1,7 +1,6 @@
-// Inside useHideOnScroll.ts
 import { useCallback, useEffect, useState } from "react";
 
-const DEBOUNCE_DELAY = 15; // Adjust as needed
+const DEBOUNCE_DELAY = 15;
 
 export default function useHideOnScroll() {
   const [show, setShow] = useState(true);
@@ -9,8 +8,10 @@ export default function useHideOnScroll() {
 
   const controlNavbar = useCallback(() => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
- 
-    if (scrollY > prevScrollY && show) {
+
+    if (scrollY === 0) {
+      setShow(true); // explicitly set show to true when at the top of the page (fix for Safari)
+    } else if (scrollY > prevScrollY && show) {
       setShow(false);
     } else if (scrollY <= prevScrollY && !show) {
       setShow(true);
@@ -19,18 +20,18 @@ export default function useHideOnScroll() {
     setPrevScrollY(scrollY);
   }, [prevScrollY, show]);
 
-  const debouncedControlNavbar = useCallback(
-    debounce(controlNavbar, DEBOUNCE_DELAY),
-    [controlNavbar]
-  );
-
   useEffect(() => {
+    const debouncedControlNavbar = debounce(
+      () => controlNavbar(),
+      DEBOUNCE_DELAY
+    );
+
     window.addEventListener("scroll", debouncedControlNavbar);
 
     return () => {
       window.removeEventListener("scroll", debouncedControlNavbar);
     };
-  }, [debouncedControlNavbar]);
+  }, [controlNavbar]);
 
   return show;
 }

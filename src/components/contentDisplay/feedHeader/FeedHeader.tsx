@@ -37,7 +37,7 @@ export default function FeedHeader(props: Props) {
     };
 
     updateFeedInfo();
-  }, [feedInfo]);
+  }, [feedInfo, agent, feed]);
 
   const handleSave = async () => {
     if (!agent) return;

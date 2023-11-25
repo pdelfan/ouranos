@@ -13,7 +13,7 @@ export default async function TopBar() {
     <div className="flex justify-between bg-white border-b sm:border-b-0 px-3 py-2.5 sticky md:relative top-0 z-50 lg:hidden">
       <Link
         href={`/dashboard/user/${profile?.handle}`}
-        className="font-semibold max-w-[7rem] truncate"
+        className="hover:brightness-90"
       >
         <Avatar profile={profile} size="sm" />
       </Link>

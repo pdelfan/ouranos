@@ -3,26 +3,46 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center gap-8 min-h-[100svh] justify-center">
-      <div className="flex flex-col items-center gap-2">
-        <Image src="/logo.svg" alt="Ouranos logo" width={160} height={50} />
-        <h1 className="text-lg font-medium text-neutral-600">
-          A Bluesky client for the web
+    <main className="mx-auto p-3 mt-0 md:mt-24">
+      <header className="flex justify-between items-center max-w-xl mx-auto">
+        <Image src="/logo.svg" alt="Ouranos logo" width={120} height={35} />
+        <Link href="/about" className="font-medium text-neutral-500">
+          About
+        </Link>
+      </header>
+      <section className="mt-16 max-w-xl mx-auto">
+        <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
+          Your friendly Bluesky client for the web
         </h1>
-      </div>
-      <div className="flex gap-3">
-        <Link
-          href="https://bsky.app"
-          className="bg-zinc-600 text-white font-medium px-5 py-3 rounded-full hover:brightness-95"
-        >
-          Sign up on Bluesky
-        </Link>
-        <Link
-          href="/login"
-          className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"
-        >
-          Log in
-        </Link>
+
+        <ul className="mt-5 text-lg font-medium text-neutral-500">
+          <li>Enhanced with additional features</li>
+          <li>Designed for simplicity</li>
+          <li>Open-source</li>
+        </ul>
+
+        <div className="flex gap-3 mt-10">
+          <Link
+            href="https://bsky.app"
+            className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"
+          >
+            Sign up on Bluesky
+          </Link>
+          <Link
+            href="/login"
+            className="bg-zinc-600 text-white font-medium px-5 py-3 rounded-full hover:brightness-95"
+          >
+            Log in
+          </Link>
+        </div>
+      </section>
+      <div className="mx-auto max-w-fit mt-12">
+        <Image
+          src="/images/screenshot.png"
+          alt="Ouranos desktop screenshot"
+          width={1200}
+          height={763}
+        />
       </div>
     </main>
   );

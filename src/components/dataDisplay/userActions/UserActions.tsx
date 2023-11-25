@@ -28,7 +28,7 @@ export default function UserActions(props: Props) {
   const handleShare = useCallback(() => {
     const shareUrl = `https://bsky.app/profile/${author.handle}`;
     clipboard.copy(shareUrl);
-  }, [clipboard.copy, author]);
+  }, [clipboard, author]);
 
   return (
     <Dropdown>

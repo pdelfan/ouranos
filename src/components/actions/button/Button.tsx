@@ -4,11 +4,14 @@ import { ReactNode, forwardRef, ButtonHTMLAttributes } from "react";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   icon?: string;
-  iconColor?: string;  
+  iconColor?: string;
   className?: string;
 }
 
-const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+export default forwardRef<HTMLButtonElement, Props>(function Button(
+  props,
+  ref
+) {
   const { children, icon, iconColor, color, className, ...rest } = props;
 
   return (
@@ -19,10 +22,10 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
           ? className
           : "rounded-lg p-2 bg-neutral-50 text-neutral-500 border hover:brightness-95"
       }
-  ${
-    props.disabled &&
-    "opacity-30 contrast-75 hover:brightness-100 cursor-not-allowed"
-  }`}
+      ${
+        props.disabled &&
+        "opacity-30 contrast-75 hover:brightness-100 cursor-not-allowed"
+      }`}
       {...rest}
     >
       {icon && <Icon icon={icon} className={`text-lg ${iconColor}`} />}
@@ -30,5 +33,3 @@ const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     </button>
   );
 });
-
-export default Button;

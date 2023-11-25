@@ -25,14 +25,14 @@ export default function PostActions(props: Props) {
     const postId = getPostId(post.uri);
     const shareUrl = `https://bsky.app/profile/${post.author.handle}/post/${postId}`;
     clipboard.copy(shareUrl);
-  }, [clipboard.copy, post.uri]);
+  }, [clipboard, post.uri, post.author.handle]);
 
   const handleCopyPostText = useCallback(() => {
     const record = post.record as AppBskyEmbedRecord.View["record"];
     const text = record.text || "";
 
     clipboard.copy(text);
-  }, [clipboard.copy, post.uri]);
+  }, [clipboard, post.record]);
 
   if (!session) return null;
 
