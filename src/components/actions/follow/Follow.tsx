@@ -25,6 +25,8 @@ export default function Follow(props: Props) {
     viewerDID: viewerDID,
   });
 
+  if (author.did === viewerDID) return null;
+
   return (
     <>
       {!isBlocked && !hasBlockedYou && (

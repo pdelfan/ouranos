@@ -94,27 +94,25 @@ export default function ProfileHeader(props: Props) {
               )}
             </div>
           </div>
-          {profile?.viewer &&
-            session?.user.handle &&
-            session?.user.handle !== handle && (
-              <div className="flex mr-3 mt-3">
-                <div className="flex gap-2 ml-auto">
-                  <UserActions
-                    author={profile}
-                    viewer={profile.viewer}
-                    viewerHandle={session?.user.handle}
-                    viewerDID={session?.user.id}
-                  />
-                  <Follow
-                    onToggleFollow={toggleFollow}
-                    author={profile}
-                    viewer={profile.viewer}
-                    viewerDID={session?.user.id}
-                  />
-                </div>
+          {profile?.viewer && session?.user.handle && (
+            <div className="flex mr-3 mt-3">
+              <div className="flex gap-2 ml-auto">
+                <UserActions
+                  author={profile}
+                  viewer={profile.viewer}
+                  viewerHandle={session?.user.handle}
+                  viewerDID={session?.user.id}
+                />
+                <Follow
+                  onToggleFollow={toggleFollow}
+                  author={profile}
+                  viewer={profile.viewer}
+                  viewerDID={session?.user.id}
+                />
               </div>
-            )}
-          <div className={`p-3 ${session?.user.handle == handle && "mt-10"}`}>
+            </div>
+          )}
+          <div className="p-3">
             <div className="flex flex-wrap items-center gap-x-2">
               <h1 className="text-2xl font-semibold break-all">
                 {profile?.displayName ||
