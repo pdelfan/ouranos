@@ -3,17 +3,27 @@
 import { ViewerState } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Button from "../button/Button";
 import { UseMutationResult } from "@tanstack/react-query";
+import useBlockUser from "@/lib/hooks/bsky/actor/useBlockUser";
+import { AppBskyFeedDefs } from "@atproto/api";
 
 interface Props {
   onToggleFollow: UseMutationResult<void, Error, void, unknown>;
+  author: AppBskyFeedDefs.PostView["author"];
   viewer: ViewerState;
+  viewerDID: string;
 }
 
 export default function Follow(props: Props) {
-  const { onToggleFollow, viewer } = props;
+  const { onToggleFollow, author, viewer, viewerDID } = props;
   const isBlocked = viewer.blocking ? true : false;
   const hasBlockedYou = viewer.blockedBy ? true : false;
   const isFollowing = viewer.following ? true : false;
+
+  const { blocked, toggleBlockUser } = useBlockUser({
+    author: author,
+    viewer: viewer,
+    viewerDID: viewerDID,
+  });
 
   return (
     <>
@@ -44,10 +54,11 @@ export default function Follow(props: Props) {
         </Button>
       )}
 
-      {isBlocked && (
-        // TODO: Add unblock functionality
+      {(isBlocked) && (
         <Button
-          onClick={() => {}}
+          onClick={() => {
+            toggleBlockUser.mutate();
+          }}
           className="rounded-full px-4 py-2 bg-neutral-100 hover:brightness-95"
         >
           Unblock

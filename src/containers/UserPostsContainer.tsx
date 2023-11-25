@@ -84,7 +84,7 @@ export default function UserPostsConatiner(props: Props) {
         !hasBlockedYou &&
         isFetchingUserPosts &&
         !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
-      {isFetchingUserPostsNextPage && (
+      {!isBlocked && isFetchingUserPostsNextPage && (
         <section className="flex flex-1 justify-center mt-3">
           <Icon icon="eos-icons:loading" className="text-xl" />
         </section>

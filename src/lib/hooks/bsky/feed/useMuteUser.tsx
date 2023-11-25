@@ -1,8 +1,9 @@
 import { AppBskyFeedDefs } from "@atproto/api";
 import useAgent from "../useAgent";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { muteUser, unMuteUser } from "@/lib/api/bsky/actor";
+import { profileKey } from "../actor/useProfile";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -14,6 +15,8 @@ export default function useLike(props: Props) {
   const { author } = props;
   const agent = useAgent();
   const [muted, setMuted] = useState(!!author.viewer?.muted);
+  const queryClient = useQueryClient();
+  const queryKey = profileKey(author.handle);
 
   const toggleMuteUser = useMutation({
     mutationKey: useMuteKey(author.did),
@@ -21,7 +24,8 @@ export default function useLike(props: Props) {
       if (!muted) {
         try {
           setMuted(true);
-          const result = await muteUser(author.did, agent);
+          await muteUser(author.did, agent);
+          queryClient.invalidateQueries({ queryKey });
         } catch (err) {
           setMuted(false);
         }
@@ -29,6 +33,7 @@ export default function useLike(props: Props) {
         try {
           setMuted(false);
           await unMuteUser(author.did, agent);
+          queryClient.invalidateQueries({ queryKey });
         } catch (err) {
           setMuted(true);
         }

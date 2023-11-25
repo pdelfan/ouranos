@@ -13,6 +13,7 @@ import Button from "@/components/actions/button/Button";
 import Gallery from "@/components/dataDisplay/gallery/Gallery";
 import Alert from "@/components/feedback/alert/Alert";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
+import UserActions from "@/components/dataDisplay/userActions/UserActions";
 
 interface Props {
   handle: string;
@@ -92,13 +93,26 @@ export default function ProfileHeader(props: Props) {
               )}
             </div>
           </div>
-          {profile?.viewer && session?.user.handle !== handle && (
-            <div className="flex mr-3 mt-3">
-              <div className="ml-auto">
-                <Follow viewer={profile.viewer} onToggleFollow={toggleFollow} />
+          {profile?.viewer &&
+            session?.user.handle &&
+            session?.user.handle !== handle && (
+              <div className="flex mr-3 mt-3">
+                <div className="flex gap-2 ml-auto">
+                  <UserActions
+                    author={profile}
+                    viewer={profile.viewer}
+                    viewerHandle={session?.user.handle}
+                    viewerDID={session?.user.id}
+                  />
+                  <Follow
+                    onToggleFollow={toggleFollow}
+                    author={profile}
+                    viewer={profile.viewer}
+                    viewerDID={session?.user.id}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
           <div className={`p-3 ${session?.user.handle == handle && "mt-10"}`}>
             <div className="flex flex-wrap items-center gap-x-2">
               <h1 className="text-2xl font-semibold break-all">

@@ -81,3 +81,28 @@ export const unMuteUser = async (did: string, agent?: BskyAgent) => {
   if (!mute.success) throw new Error("Could not unmute user");
   return mute.success;
 };
+
+export const blockUser = async (
+  viewerDid: string,
+  did: string,
+  agent?: BskyAgent
+) => {
+  if (!agent) agent = await getAgent();
+  await agent.app.bsky.graph.block.create(
+    { repo: viewerDid },
+    { createdAt: new Date().toISOString(), subject: did }
+  );
+};
+
+export const unBlockUser = async (
+  viewerDid: string,
+  did: string,
+  rkey: string,
+  agent?: BskyAgent
+) => {
+  if (!agent) agent = await getAgent();
+  await agent.app.bsky.graph.block.delete(
+    { rkey: rkey, repo: viewerDid },
+    { createdAt: new Date().toISOString(), subject: did }
+  );
+};

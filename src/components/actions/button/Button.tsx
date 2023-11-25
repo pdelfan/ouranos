@@ -4,7 +4,7 @@ import { ReactNode, forwardRef, ButtonHTMLAttributes } from "react";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   icon?: string;
-  iconColor?: string;
+  iconColor?: string;  
   className?: string;
 }
 
