@@ -9,10 +9,11 @@ import { Fragment } from "react";
 interface Props {
   record: PostView["record"];
   truncate?: boolean;
+  mode?: "thread" | "feed";
 }
 
 export default function PostText(props: Props) {
-  const { record, truncate } = props;
+  const { record, truncate, mode = "feed" } = props;
   const text = AppBskyFeedPost.isRecord(record) && record.text;
   const facet = AppBskyFeedPost.isRecord(record) && record.facets;
 
@@ -79,9 +80,9 @@ export default function PostText(props: Props) {
   return (
     <div
       dir="auto"
-      className={`leading-5 whitespace-pre-wrap [overflow-wrap:anywhere] ${
+      className={`whitespace-pre-wrap [overflow-wrap:anywhere] ${
         truncate && "line-clamp-6"
-      }`}
+      } ${mode === "feed" ? "text-base leading-5" : "text-lg leading-6"}`}
     >
       {content.map((segment, i) => (
         <Fragment key={`${i}+${text}`}>{segment.component}</Fragment>

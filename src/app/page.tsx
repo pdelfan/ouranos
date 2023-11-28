@@ -16,12 +16,12 @@ export default function Home() {
         </h1>
 
         <ul className="mt-5 text-lg font-medium text-neutral-500">
-          <li>Enhanced with additional features</li>
           <li>Designed for simplicity</li>
+          <li>Enhanced features</li>
           <li>Open-source</li>
         </ul>
 
-        <div className="flex gap-3 mt-10">
+        <div className="flex gap-3 mt-6">
           <Link
             href="https://bsky.app"
             className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"

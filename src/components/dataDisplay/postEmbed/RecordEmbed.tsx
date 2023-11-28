@@ -25,7 +25,7 @@ export default function RecordEmbed(props: Props) {
 
   return (
     <>
-      <article className="flex flex-col gap-2 hover:bg-neutral-50">
+      <article className="flex flex-col gap-2 hover:bg-neutral-50 hover:cursor-pointer">
         {isBlocked && <BlockedEmbed depth={depth} />}
         {notFound && <NotFoundEmbed depth={depth} />}
         {media && <PostEmbed content={media} depth={depth + 1} />}

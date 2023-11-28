@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function PostThreadContainer(props: Props) {
-  const { id, handle } = props;  
+  const { id, handle } = props;
   const agent = useAgent();
 
   // parents { parent, post, replies}
@@ -27,7 +27,6 @@ export default function PostThreadContainer(props: Props) {
     },
   });
 
-  console.log(thread.data?.data.thread)
 
-  return <></>
+  return <></>;
 }

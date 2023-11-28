@@ -5,6 +5,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   icon?: string;
   iconColor?: string;
+  iconSize?: string;
   className?: string;
 }
 
@@ -12,7 +13,8 @@ export default forwardRef<HTMLButtonElement, Props>(function Button(
   props,
   ref
 ) {
-  const { children, icon, iconColor, color, className, ...rest } = props;
+  const { children, icon, iconColor, iconSize, color, className, ...rest } =
+    props;
 
   return (
     <button
@@ -28,7 +30,9 @@ export default forwardRef<HTMLButtonElement, Props>(function Button(
       }`}
       {...rest}
     >
-      {icon && <Icon icon={icon} className={`text-lg ${iconColor}`} />}
+      {icon && (
+        <Icon icon={icon} className={`text-lg ${iconColor} ${iconSize}`} />
+      )}
       {children}
     </button>
   );

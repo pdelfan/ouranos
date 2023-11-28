@@ -4,9 +4,7 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import PostActions from "@/components/dataDisplay/postActions/PostActions";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
-import Reason from "@/components/dataDisplay/reason/Reason";
-import { getPostId } from "@/lib/utils/link";
-import { getRelativeTime } from "@/lib/utils/time";
+import { getFormattedDate, getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { useRouter } from "next/navigation";
 import { ContentFilterResult } from "../../../../types/feed";
@@ -16,23 +14,21 @@ import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record
 import Link from "next/link";
 
 interface Props {
-  post: AppBskyFeedDefs.FeedViewPost;
+  post: AppBskyFeedDefs.PostView;
   isParent?: boolean;
   isReply?: boolean;
   filter: ContentFilterResult;
 }
 
-export default function FeedPost(props: Props) {
+export default function ThreadPost(props: Props) {
   const { post, isReply, isParent, filter } = props;
-  const { author, indexedAt } = post.post;
-  const { reason, reply } = post;
+  const { author, indexedAt, reply } = post;
 
   const { isAdultContentHidden, adultContentFilters } = filter;
-  const label = post.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
+  const label = post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
   const embedLabel =
-    post.post.embed && post.post.embed.record
-      ? (post.post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ??
-        ""
+    post.embed && post.embed.record
+      ? (post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ?? ""
       : "";
   const message =
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))
@@ -51,24 +47,9 @@ export default function FeedPost(props: Props) {
 
   const router = useRouter();
 
-  // if (post.post.embed) {
-  //   console.log(post.post.embed?.record?.labels && post.post.embed?.record?.labels[0]?.val);
-  // }
-
   return (
     <>
-      {reason && <Reason reason={reason} />}
-      <article
-        onClick={(e) => {
-          e.stopPropagation();
-          router.push(
-            `/dashboard/user/${post.post.author.handle}/post/${getPostId(
-              post.post.uri
-            )}`
-          );
-        }}
-        className="cursor-pointer"
-      >
+      <article className="p-3 border-x border-t last:border-b last:rounded-b-2xl">
         <div className="relative flex items-start gap-3">
           <button
             onClick={(e) => {
@@ -80,10 +61,10 @@ export default function FeedPost(props: Props) {
             <Avatar profile={author} size="md" />
           </button>
           <div className={`flex flex-col grow ${isParent && "pb-6"}`}>
-            {isParent && !reason && (
+            {isParent && (
               <div className="absolute left-6 top-0 z-10 h-full border-l-2" />
             )}
-            <div className="flex">
+            <div className="flex flex-col">
               <Link
                 href={`/dashboard/user/${author.handle}`}
                 onClick={(e) => {
@@ -94,39 +75,37 @@ export default function FeedPost(props: Props) {
                 <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis hover:text-neutral-600">
                   {author.displayName ?? author.handle}{" "}
                 </span>
-                <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
-                  @{author.handle}
-                </span>
               </Link>
-              <span className="text-neutral-400 font-medium whitespace-nowrap">
-                &nbsp;· {getRelativeTime(indexedAt)}
+              <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+                @{author.handle}
               </span>
-            </div>
-            {visibility !== "show" &&
-              visibility !== "ignore" &&
-              (label || embedLabel) && (
-                <div className="my-2">
-                  <PostHider
-                    message={message}
-                    hidden={hidden}
-                    onToggleVisibility={setHidden}
-                    showToggle={visibility === "warn"}
-                  />
-                </div>
-              )}
-            {!hidden && (
-              <>
-                <PostText record={post.post.record} />
-                {post.post.embed && (
-                  <PostEmbed content={post.post.embed} depth={0} />
-                )}
-              </>
-            )}
-            <div className="mt-2">
-              <PostActions post={post.post} />
             </div>
           </div>
         </div>
+        <div className="mt-3">
+          {visibility !== "show" &&
+            visibility !== "ignore" &&
+            (label || embedLabel) && (
+              <div className="my-2">
+                <PostHider
+                  message={message}
+                  hidden={hidden}
+                  onToggleVisibility={setHidden}
+                  showToggle={visibility === "warn"}
+                />
+              </div>
+            )}
+          {!hidden && (
+            <>
+              <PostText record={post.record} mode="thread" />
+              {post.embed && <PostEmbed content={post.embed} depth={0} />}
+            </>
+          )}
+          <div className="mt-3 text-neutral-400 font-medium">
+            {getFormattedDate(post.indexedAt)}
+          </div>
+        </div>
+        <PostActions post={post} mode="thread" />
       </article>
     </>
   );

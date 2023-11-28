@@ -15,3 +15,21 @@ export function getRelativeTime(dates: string) {
   const count = Math.floor(seconds / interval.seconds);
   return `${count}${interval.label}`;
 }
+
+export function getFormattedDate(date: string): string {
+  const options: Intl.DateTimeFormatOptions = {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  const formattedDate: string = new Date(date).toLocaleString("en-US", options);
+
+  // Append "at" between the date and time
+  const formattedWithAt: string = formattedDate.replace(", ", " at ");
+
+  return formattedWithAt;
+}

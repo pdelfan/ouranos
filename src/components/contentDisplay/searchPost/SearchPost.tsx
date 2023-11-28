@@ -43,10 +43,12 @@ export default function SearchPost(props: Props) {
             <span className="text-neutral-400 font-medium whitespace-nowrap">
               &nbsp;· {getRelativeTime(indexedAt)}
             </span>
-          </div>          
-            <PostText record={post.record} />          
+          </div>
+          <PostText record={post.record} />
           {post.embed && <PostEmbed content={post.embed} depth={0} />}
-          <PostActions post={post} />
+          <div className="mt-2">
+            <PostActions post={post} />
+          </div>
         </div>
       </div>
     </div>
