@@ -1,4 +1,4 @@
-import PostThreadContainer from "@/containers/PostThreadContainer";
+import PostThreadContainer from "@/containers/thread/PostThreadContainer";
 
 interface Props {
   params: {

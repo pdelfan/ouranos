@@ -15,13 +15,11 @@ import Link from "next/link";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
-  isParent?: boolean;
-  isReply?: boolean;
   filter: ContentFilterResult;
 }
 
 export default function ThreadPost(props: Props) {
-  const { post, isReply, isParent, filter } = props;
+  const { post, filter } = props;
   const { author, indexedAt, reply } = post;
 
   const { isAdultContentHidden, adultContentFilters } = filter;
@@ -49,7 +47,7 @@ export default function ThreadPost(props: Props) {
 
   return (
     <>
-      <article className="p-3 border-x border-t last:border-b last:rounded-b-2xl">
+      <article className="p-3 sm:border-x border-t last:border-b sm:last:rounded-b-2xl">
         <div className="relative flex items-start gap-3">
           <button
             onClick={(e) => {
@@ -60,10 +58,7 @@ export default function ThreadPost(props: Props) {
           >
             <Avatar profile={author} size="md" />
           </button>
-          <div className={`flex flex-col grow ${isParent && "pb-6"}`}>
-            {isParent && (
-              <div className="absolute left-6 top-0 z-10 h-full border-l-2" />
-            )}
+          <div className={`flex flex-col grow`}>
             <div className="flex flex-col">
               <Link
                 href={`/dashboard/user/${author.handle}`}

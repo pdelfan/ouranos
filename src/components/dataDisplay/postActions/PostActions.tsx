@@ -43,7 +43,6 @@ export default function PostActions(props: Props) {
         <Button
           className="text-neutral-500 hover:text-primary"
           icon="bx:message-rounded"
-          iconSize="text-[1.7rem]"
         />
 
         <Dropdown>
@@ -58,7 +57,6 @@ export default function PostActions(props: Props) {
                   : "text-neutral-500 hover:text-green-600"
               }
               icon="bx:repost"
-              iconSize="text-[1.7rem]"
             />
           </Dropdown.Trigger>
           <Dropdown.Menu>
@@ -86,7 +84,6 @@ export default function PostActions(props: Props) {
             liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
           }
           icon={liked ? "bxs:heart" : "bx:heart"}
-          iconSize="text-[1.7rem]"
         />
 
         <Dropdown>
@@ -96,7 +93,6 @@ export default function PostActions(props: Props) {
                 e.stopPropagation();
               }}
               icon="bx:dots-horizontal-rounded"
-              iconSize="text-[1.7rem]"
               className="text-neutral-500 hover:text-neutral-600"
             />
           </Dropdown.Trigger>
