@@ -4,9 +4,11 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import PostActions from "@/components/dataDisplay/postActions/PostActions";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
+import { getPostId } from "@/lib/utils/link";
 import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -17,9 +19,18 @@ interface Props {
 export default function SearchPost(props: Props) {
   const { post } = props;
   const { author, indexedAt } = post;
+  const router = useRouter();
 
   return (
-    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-gray-50">
+    <article
+      onClick={(e) => {
+        e.stopPropagation();
+        router.push(
+          `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`
+        );
+      }}
+      className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:cursor-pointer"
+    >
       <div className="flex items-start gap-3">
         <Link
           href={`/dashboard/user/${author.handle}`}
@@ -51,6 +62,6 @@ export default function SearchPost(props: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
