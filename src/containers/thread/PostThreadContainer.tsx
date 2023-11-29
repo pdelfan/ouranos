@@ -99,7 +99,7 @@ export default function PostThreadContainer(props: Props) {
       {parentChain && parentChain.length > 0 && (
         <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
           {parentChain.map((parent, i) => (
-            <>
+            <div key={parent.post.uri}>
               {AppBskyFeedDefs.isBlockedPost(parent) && (
                 <BlockedEmbed depth={0} />
               )}
@@ -112,13 +112,12 @@ export default function PostThreadContainer(props: Props) {
 
               {AppBskyFeedDefs.isThreadViewPost(parent) && (
                 <FeedPost
-                  key={parent.post.uri + i}
                   post={parent}
                   filter={contentFilter}
                   isParent={i < parentChain.length - 1}
                 />
               )}
-            </>
+            </div>
           ))}
         </div>
       )}
@@ -126,14 +125,15 @@ export default function PostThreadContainer(props: Props) {
       {thread && (
         <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
       )}
+
       {replyChains &&
         replyChains.map((replyArr, i) => (
           <div
-            className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t-0 last:border-b last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+            className="p-3 border border-x-0 sm:border-x first:border-t-0 last:border-b sm:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
             key={i}
           >
             {replyArr.map((reply, j) => (
-              <>
+              <div className={reply.post.uri} key={reply.post.uri}>
                 {AppBskyFeedDefs.isBlockedPost(reply) && (
                   <BlockedEmbed depth={0} />
                 )}
@@ -146,13 +146,12 @@ export default function PostThreadContainer(props: Props) {
 
                 {AppBskyFeedDefs.isThreadViewPost(reply) && j < MAX_REPLIES && (
                   <FeedPost
-                    key={j + reply.post.uri}
                     post={reply}
                     filter={contentFilter}
                     isParent={j < replyArr.length - 1 && j < MAX_REPLIES - 1}
                   />
                 )}
-              </>
+              </div>
             ))}
           </div>
         ))}
