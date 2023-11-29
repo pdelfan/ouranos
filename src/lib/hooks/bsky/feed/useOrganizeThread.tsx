@@ -14,7 +14,7 @@ interface Props {
 
 export default function useOrganizeThread(props: Props) {
   const { thread } = props;
-  
+
   const replies = (thread?.replies as AppBskyFeedDefs.ThreadViewPost[]) || [];
 
   const getConnectedReplies = (

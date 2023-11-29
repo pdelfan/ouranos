@@ -18,7 +18,7 @@ export default function PostContainer(props: Props) {
   };
 
   return (
-    <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+    <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
       {parent?.post && (
         <FeedPost
           post={parent}
