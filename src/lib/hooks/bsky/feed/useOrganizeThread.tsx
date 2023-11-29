@@ -14,8 +14,7 @@ interface Props {
 
 export default function useOrganizeThread(props: Props) {
   const { thread } = props;
-
-  // TODO: check for not found, blocked
+  
   const replies = (thread?.replies as AppBskyFeedDefs.ThreadViewPost[]) || [];
 
   const getConnectedReplies = (
@@ -46,7 +45,6 @@ export default function useOrganizeThread(props: Props) {
     return currentChain;
   };
 
-  // TODO: check for not found, blocked
   const getParentChain = (post: AppBskyFeedDefs.ThreadViewPost) => {
     const chain: AppBskyFeedDefs.ThreadViewPost[] = [];
     let currentPost = post;

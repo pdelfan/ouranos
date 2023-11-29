@@ -13,7 +13,9 @@ export default function BlockedEmbed(props: Props) {
         <div className="p-3 border rounded-xl bg-white">
           <div className="flex gap-2">
             <Icon icon="fluent:shield-error-24-filled" className="text-2xl" />
-            <span>Post is from a blocked user</span>
+            <span>
+              Post is from a blocked user or someone who has blocked you.
+            </span>
           </div>
         </div>
       )}
