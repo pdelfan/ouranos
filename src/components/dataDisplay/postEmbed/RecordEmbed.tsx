@@ -44,7 +44,7 @@ export default function RecordEmbed(props: Props) {
                 <div className="flex">
                   <span className="flex items-center gap-1">
                     <Avatar profile={record.author} size="xs" />
-                    <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis hover:text-neutral-600">
+                    <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis">
                       {record.author.displayName ?? record.author.handle}{" "}
                     </span>
                     <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
