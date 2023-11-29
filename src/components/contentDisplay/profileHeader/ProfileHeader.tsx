@@ -129,14 +129,11 @@ export default function ProfileHeader(props: Props) {
             <h2 className="text-neutral-400 font-medium break-all">
               @{profile?.handle}
             </h2>
-            <p
-              dir="auto"
-              className="leading-5 mt-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
-            >
-              {profile?.description && (
-                <ProfileBio description={profile.description} />
-              )}
-            </p>
+
+            {profile?.description && (
+              <ProfileBio description={profile.description} />
+            )}
+
             {profile?.handle && (
               <FollowInfo
                 handle={profile?.handle}

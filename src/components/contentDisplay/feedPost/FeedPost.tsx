@@ -70,15 +70,15 @@ export default function FeedPost(props: Props) {
         className="cursor-pointer"
       >
         <div className="relative flex items-start gap-3">
-          <button
+          <Link
+            href={`/dashboard/user/${author.handle}`}
             onClick={(e) => {
               e.stopPropagation();
-              router.push(`/dashboard/user/${author.handle}`);
             }}
             className="z-20 shrink-0 hover:brightness-90"
           >
             <Avatar profile={author} size="md" />
-          </button>
+          </Link>
           <div className={`flex flex-col grow ${isParent && "pb-6"}`}>
             {isParent && !reason && (
               <div className="absolute left-6 top-0 z-10 h-full border-l-2" />
