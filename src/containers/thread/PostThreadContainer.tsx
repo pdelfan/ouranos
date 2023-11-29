@@ -60,7 +60,7 @@ export default function PostThreadContainer(props: Props) {
       <>
         <div className="sm:border  sm:border-x sm:rounded-t-2xl">
           <h2 className="text-xl text-center font-semibold px-3 py-2">
-            Thread
+            Post
           </h2>
         </div>
         <section className="border border-t-0 rounded-b-2xl p-3">
@@ -91,7 +91,7 @@ export default function PostThreadContainer(props: Props) {
   return (
     <>
       <div className="sm:border sm:border-b-0 border-b-0 sm:border-x sm:rounded-t-2xl">
-        <h2 className="text-xl text-center font-semibold px-3 py-2">Thread</h2>
+        <h2 className="text-xl text-center font-semibold px-3 py-2">Post</h2>
       </div>
 
       {(isFetching || isLoading) && <FeedPostSkeleton />}

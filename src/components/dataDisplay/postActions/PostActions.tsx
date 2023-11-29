@@ -50,7 +50,9 @@ export default function PostActions(props: Props) {
             className="flex gap-1 font-semibold text-neutral-600 hover:brightness-110"
           >
             {abbreviateNumber(repostCount)}
-            <span className="font-medium text-neutral-400">Reposts</span>
+            <span className="font-medium text-neutral-400">
+              Repost{repostCount > 1 && "s"}
+            </span>
           </Link>
           <Link
             href={`/dashboard/user/${post.author.handle}/post/${getPostId(
@@ -59,7 +61,9 @@ export default function PostActions(props: Props) {
             className="flex gap-1 font-semibold text-neutral-600 hover:brightness-110"
           >
             {abbreviateNumber(likeCount)}
-            <span className="font-medium text-neutral-400">Likes</span>
+            <span className="font-medium text-neutral-400">
+              Like{likeCount > 1 && "s"}
+            </span>
           </Link>
         </div>
         <div className="flex gap-x-8 mt-3">
