@@ -15,6 +15,7 @@ import Alert from "@/components/feedback/alert/Alert";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 import UserActions from "@/components/dataDisplay/userActions/UserActions";
 import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
+import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 
 interface Props {
   handle: string;
@@ -132,7 +133,9 @@ export default function ProfileHeader(props: Props) {
               dir="auto"
               className="leading-5 mt-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
             >
-              {profile?.description}
+              {profile?.description && (
+                <ProfileBio description={profile.description} />
+              )}
             </p>
             {profile?.handle && (
               <FollowInfo
