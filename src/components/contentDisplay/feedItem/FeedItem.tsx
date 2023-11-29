@@ -69,7 +69,10 @@ export default function FeedItem(props: Props) {
         <Button
           icon={`${isSaved ? "bx:trash" : "bx:plus"}`}
           iconColor={`${isSaved ? "text-red-500" : "text-green-600"}`}
-          onClick={handleSave}
+          onClick={(e) => {
+            e.preventDefault();
+            handleSave();
+          }}
         />
       </div>
       <p className="text-neutral-700 break-words">{description}</p>

@@ -25,8 +25,8 @@ export default function SavedFeedItem(props: Props) {
         <Image
           src={avatar ?? FallbackFeed}
           alt={displayName}
-          width={40}
-          height={40}
+          width={30}
+          height={30}
           className={`rounded-lg ${!avatar && "border"}`}
         />
         <h2 className="text-neutral-700 font-semibold break-words">
