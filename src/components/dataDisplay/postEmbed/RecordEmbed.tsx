@@ -5,9 +5,7 @@ import { getRelativeTime } from "@/lib/utils/time";
 import PostEmbed from "./PostEmbed";
 import NotFoundEmbed from "./NotFoundEmbed";
 import BlockedEmbed from "./BlockedEmbed";
-import Link from "next/link";
 import { getPostId } from "@/lib/utils/link";
-import { RecordView } from "@atproto/api/dist/client/types/com/atproto/admin/defs";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -42,10 +40,10 @@ export default function RecordEmbed(props: Props) {
             className="flex justify-between items-center gap-2 p-3 border rounded-xl"
           >
             <div className="flex items-start gap-2">
-              <Avatar profile={record.author} size="xs" />
               <div className="flex flex-col">
                 <div className="flex">
-                  <span className="flex gap-1">
+                  <span className="flex items-center gap-1">
+                    <Avatar profile={record.author} size="xs" />
                     <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis hover:text-neutral-600">
                       {record.author.displayName ?? record.author.handle}{" "}
                     </span>
