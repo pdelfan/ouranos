@@ -2,7 +2,7 @@ import FeedTabs from "@/components/navigational/feedTabs/FeedTabs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ouranos",
+  title: "Ouranos — Home",
   description: "Home",
 };
 
