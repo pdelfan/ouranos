@@ -31,7 +31,10 @@ export default function ProfileCard(props: Props) {
                 {profile.viewer?.followedBy && (
                   <ViewerInfo text="Follows you" />
                 )}
-                {profile.viewer?.muted && <ViewerInfo text="Muted user" />}
+                {profile.viewer?.muted ||
+                  (profile.viewer?.mutedByList && (
+                    <ViewerInfo text="Muted user" />
+                  ))}
               </div>
             </div>
           </div>

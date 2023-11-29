@@ -15,7 +15,7 @@ interface Props {
 
 export default function Follow(props: Props) {
   const { onToggleFollow, author, viewer, viewerDID } = props;
-  const isBlocked = viewer.blocking ? true : false;
+  const isBlocked = viewer.blocking || viewer.blockingByList ? true : false;
   const hasBlockedYou = viewer.blockedBy ? true : false;
   const isFollowing = viewer.following ? true : false;
 
