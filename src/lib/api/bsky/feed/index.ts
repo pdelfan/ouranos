@@ -218,3 +218,33 @@ export const getPostThread = async (agent: BskyAgent, uri: string) => {
     throw new Error("Could not fetch post thread");
   }
 };
+
+export const getPostLikes = async (
+  agent: BskyAgent,
+  uri: string,
+  cursor: string
+) => {
+  try {
+    const likes = await agent.getLikes({ uri: uri, cursor: cursor, limit: 50 });
+    return likes.data;
+  } catch (e) {
+    throw new Error("Could not fetch post likes");
+  }
+};
+
+export const getPostReposts = async (
+  agent: BskyAgent,
+  uri: string,
+  cursor: string
+) => {
+  try {
+    const likes = await agent.getRepostedBy({
+      uri: uri,
+      cursor: cursor,
+      limit: 50,
+    });
+    return likes.data;
+  } catch (e) {
+    throw new Error("Could not fetch post reposts");
+  }
+};
