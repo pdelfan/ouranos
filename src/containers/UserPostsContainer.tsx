@@ -105,7 +105,7 @@ export default function UserPostsConatiner(props: Props) {
         />
       )}
       {isEmpty && (
-        <FeedAlert variant="empty" message="There are not posts... yet" />
+        <FeedAlert variant="empty" message="There are no posts... yet" />
       )}
       {!isEmpty &&
         !userPostsError &&
