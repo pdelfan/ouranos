@@ -74,11 +74,13 @@ export default function RepostedByContainer(props: Props) {
         </section>
       )}
       {isEmpty && (
-        <FeedAlert
-          variant="empty"
-          message="No one has reposted... yet"
-          standalone={true}
-        />
+        <div className="px-3">
+          <FeedAlert
+            variant="empty"
+            message="No one has reposted... yet"
+            standalone={true}
+          />
+        </div>
       )}
       <div ref={ref} />
     </section>

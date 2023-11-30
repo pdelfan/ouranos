@@ -77,11 +77,13 @@ export default function LikedByContainer(props: Props) {
         </section>
       )}
       {isEmpty && (
-        <FeedAlert
-          variant="empty"
-          message="No one has liked this post... yet"
-          standalone={true}
-        />
+        <div className="px-3">
+          <FeedAlert
+            variant="empty"
+            message="No one has liked this post... yet"
+            standalone={true}
+          />
+        </div>
       )}
       <div ref={ref} />
     </section>

@@ -70,7 +70,7 @@ export default function Page() {
         <p>
           The current goal is to implement all the functionalities provided by
           the official app, and more (without storing anything on our side).
-          Some of the current enhancements include a draft feature, a
+          Some of the current enhancements include a draft feature,
           comprehensive content filtering, and the ability to view profile
           headers.
         </p>
@@ -84,6 +84,11 @@ export default function Page() {
           However, that may change after achieving the project's current goal
           (see previous answer).
         </p>
+
+        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+          Is there a dark mode?
+        </h3>
+        <p>Not at the moment, but it will be added soon.</p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
           How can I provide feedback?
