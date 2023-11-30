@@ -200,6 +200,15 @@ export const unRepost = async (agent: BskyAgent, repostUri: string) => {
   }
 };
 
+export const removePost = async (agent: BskyAgent, uri: string) => {
+  try {
+    const post = await agent.deletePost(uri);
+    return post;
+  } catch (e) {
+    throw new Error("Could not delete post");
+  }
+};
+
 export const getPost = async (agent: BskyAgent, uri: string) => {
   try {
     const post = await agent.getPostThread({ uri: uri, depth: 1 });

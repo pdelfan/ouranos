@@ -10,6 +10,7 @@ import useMuteUser from "@/lib/hooks/bsky/feed/useMuteUser";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { abbreviateNumber } from "@/lib/utils/number";
+import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -19,6 +20,7 @@ interface Props {
 export default function PostActions(props: Props) {
   const { post, mode = "feed" } = props;
   const { data: session } = useSession();
+  const { deletePost } = useDeletePost({ post: post });
   const { liked, toggleLike, likeCount } = useLike({ post: post });
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
   const { muted, toggleMuteUser } = useMuteUser({ author: post.author });
@@ -232,6 +234,15 @@ export default function PostActions(props: Props) {
               }}
               text={`${muted ? "Unmute User" : "Mute User"}`}
               icon="bxs:bell-off"
+            />
+          )}
+          {session.user?.handle === post.author.handle && (
+            <Dropdown.MenuItem
+              onSelect={() => {
+                deletePost.mutate();
+              }}
+              text="Delete Post"
+              icon="bxs:trash"
             />
           )}
         </Dropdown.Menu>
