@@ -55,6 +55,6 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     visiblity: "warn",
     values: ["impersonation"],
     adult: false,
-    message: "This post has been flagged as impersonation",
+    message: "This account has been flagged as an impersonation",
   },
 ];
