@@ -128,8 +128,8 @@ export default function PostActions(props: Props) {
             <Dropdown.Menu>
               <Dropdown.MenuItem
                 onSelect={handleShare}
-                text="Share"
-                icon="bxs:share"
+                text="Copy Link to Post"
+                icon="bx:link"
               />
               <Dropdown.MenuItem
                 onSelect={handleCopyPostText}
@@ -219,8 +219,8 @@ export default function PostActions(props: Props) {
         <Dropdown.Menu>
           <Dropdown.MenuItem
             onSelect={handleShare}
-            text="Share"
-            icon="bxs:share"
+            text="Copy Link to Post"
+            icon="bx:link"
           />
           <Dropdown.MenuItem
             onSelect={handleCopyPostText}

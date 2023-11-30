@@ -44,8 +44,8 @@ export default function UserActions(props: Props) {
       <Dropdown.Menu>
         <Dropdown.MenuItem
           onSelect={handleShare}
-          text="Share"
-          icon="bxs:share"
+          text="Copy Link to Profile"
+          icon="bx:link"
         />
 
         {viewerHandle !== author.handle && (
