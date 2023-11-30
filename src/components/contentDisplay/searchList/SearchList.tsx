@@ -21,7 +21,7 @@ export default function SearchList(props: Props) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className="flex flex-nowrap gap-3 px-3 sm:px-0 overflow-auto no-scrollbar"
+        className="flex flex-nowrap gap-3 px-3 md:px-0 overflow-auto no-scrollbar"
       >
         <button
           role="tab"

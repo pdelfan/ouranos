@@ -11,7 +11,7 @@ export default async function Page(props: Props) {
 
   return (
     <section>
-      <div className="px-3 sm:px-0">
+      <div className="px-3 md:px-0">
         <h2 className="text-2xl font-semibold">Following</h2>
         <h3 className="text-lg text-neutral-500">@{handle}</h3>
       </div>

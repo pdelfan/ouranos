@@ -21,12 +21,12 @@ function TabsSkeleton() {
 
 export default function ProfileHeaderSkeleton() {
   return (
-    <section className="border sm:rounded-t-2xl overflow-hidden animate-pulse">
+    <section className="border md:rounded-t-2xl overflow-hidden animate-pulse">
       <div className="relative ">
         <Image
           src={SkeletonBanner}
           alt="Banner"
-          width={700}
+          width={800}
           height={100}
           className="object-cover min-h-[9rem] animate-pulse"
         />

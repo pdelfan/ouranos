@@ -1,6 +1,6 @@
 function SkeletonTest() {
   return (
-    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
+    <div className="flex justify-between items-center gap-2 p-3 border border-x-0 md:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
       <div className="flex items-start gap-3 w-full">
         <div className="flex-shrink-0 flex-grow-0 bg-gray-300 rounded-full w-12 h-12" />
         <div className="flex flex-col grow">
@@ -24,7 +24,7 @@ function SkeletonTest() {
 
 function Skeleton() {
   return (
-    <article className="flex flex-col justify-between p-3 border border-x-0 sm:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 sm:first:rounded-t-2xl">
+    <article className="flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 md:first:rounded-t-2xl">
       <div className="flex flex-wrap gap-2">
         <div className="bg-gray-200 rounded w-5 h-5" />
         <div className="flex flex-col gap-1 grow">

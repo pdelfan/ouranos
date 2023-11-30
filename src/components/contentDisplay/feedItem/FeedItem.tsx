@@ -46,7 +46,7 @@ export default function FeedItem(props: Props) {
         )}`,
         query: { uri: feedItem.uri },
       }}
-      className="flex flex-col gap-2 p-3 border border-x-0 sm:border-x sm:first:rounded-t-2xl sm:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+      className="flex flex-col gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
     >
       <div className="flex flex-wrap gap-3 items-center justify-between">
         <div className="flex flex-wrap gap-3 items-center">

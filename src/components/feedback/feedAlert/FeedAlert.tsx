@@ -12,7 +12,7 @@ export default function FeedAlert(props: Props) {
   const icon = getFeedAlertIcon(variant);
   const selectedClass = standalone
     ? "border rounded-2xl"
-    : "border-b border-x-0 sm:border-x sm:rounded-b-2xl";
+    : "border-b border-x-0 md:border-x md:rounded-b-2xl";
 
   return (
     <section

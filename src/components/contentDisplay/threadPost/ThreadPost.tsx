@@ -46,7 +46,7 @@ export default function ThreadPost(props: Props) {
   const router = useRouter();
 
   return (
-    <article className="p-3 sm:border-x border-t last:border-b sm:last:rounded-b-2xl">
+    <article className="p-3 md:border-x border-t last:border-b md:last:rounded-b-2xl">
       <div className="relative flex items-start gap-3">
         <button
           onClick={(e) => {

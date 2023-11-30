@@ -12,7 +12,7 @@ export default async function Page(props: Props) {
 
   return (
     <section>
-      <h2 className="text-2xl font-semibold px-3 sm:px-0 mb-2">Liked by</h2>
+      <h2 className="text-2xl font-semibold px-3 md:px-0 mb-2">Liked by</h2>
       <LikedByContainer handle={handle} id={id} />
     </section>
   );

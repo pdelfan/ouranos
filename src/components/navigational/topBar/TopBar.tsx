@@ -10,7 +10,7 @@ export default async function TopBar() {
   const profile = await getProfile(session?.user.bskySession.handle);
 
   return (
-    <div className="flex justify-between bg-white border-b sm:border-b-0 px-3 sm:px-0 py-2.5 sticky md:relative top-0 z-50 lg:hidden">
+    <div className="flex justify-between bg-white border-b md:border-b-0 px-3 md:px-0 py-2.5 sticky md:relative top-0 z-50 lg:hidden">
       <Link
         href={`/dashboard/user/${profile?.handle}`}
         className="hover:brightness-90"

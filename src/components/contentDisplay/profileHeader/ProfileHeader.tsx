@@ -43,7 +43,7 @@ export default function ProfileHeader(props: Props) {
         <ProfileHeaderSkeleton />
       )}
       {profile && (
-        <section className="border-0 border-b sm:border-x sm:rounded-t-2xl overflow-hidden">
+        <section className="border-0 border-b md:border-x md:rounded-t-2xl overflow-hidden">
           <div className="relative">
             {profile.banner ? (
               <Button
@@ -54,7 +54,7 @@ export default function ProfileHeader(props: Props) {
                 <Image
                   src={profile?.banner ?? FallbackBanner}
                   alt="Banner"
-                  width={700}
+                  width={800}
                   height={100}
                   className="object-cover min-h-[9rem]"
                 />
@@ -63,7 +63,7 @@ export default function ProfileHeader(props: Props) {
               <Image
                 src={profile?.banner ?? FallbackBanner}
                 alt="Banner"
-                width={700}
+                width={800}
                 height={100}
                 className="object-cover min-h-[9rem]"
               />

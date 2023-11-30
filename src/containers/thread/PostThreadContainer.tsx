@@ -58,12 +58,12 @@ export default function PostThreadContainer(props: Props) {
   ) {
     return (
       <>
-        <div className="sm:border  sm:border-x sm:rounded-t-2xl">
+        <div className="md:border  md:border-x md:rounded-t-2xl">
           <h2 className="text-xl text-center font-semibold px-3 py-2">
             Post
           </h2>
         </div>
-        <section className="border border-t-0 sm:rounded-b-2xl p-3">
+        <section className="border border-t-0 md:rounded-b-2xl p-3">
           {AppBskyFeedDefs.isBlockedPost(thread) && <BlockedEmbed depth={0} />}
           {AppBskyFeedDefs.isNotFoundPost(thread) && (
             <NotFoundEmbed depth={0} />
@@ -90,14 +90,14 @@ export default function PostThreadContainer(props: Props) {
 
   return (
     <>
-      <div className="sm:border sm:border-b-0 border-b-0 sm:border-x sm:rounded-t-2xl">
+      <div className="md:border md:border-b-0 border-b-0 md:border-x md:rounded-t-2xl">
         <h2 className="text-xl text-center font-semibold px-3 py-2">Post</h2>
       </div>
 
       {(isFetching || isLoading) && <FeedPostSkeleton />}
 
       {parentChain && parentChain.length > 0 && (
-        <div className="flex flex-col justify-between p-3 border border-x-0 sm:border-x  first:border-t-0 last:border-b last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+        <div className="flex flex-col justify-between p-3 border border-x-0 md:border-x  first:border-t-0 last:border-b last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
           {parentChain.map((parent, i) => (
             <div key={parent.post.uri}>
               {AppBskyFeedDefs.isBlockedPost(parent) && (
@@ -129,7 +129,7 @@ export default function PostThreadContainer(props: Props) {
       {replyChains &&
         replyChains.map((replyArr, i) => (
           <div
-            className="p-3 border border-x-0 sm:border-x first:border-t-0 last:border-b sm:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+            className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b md:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
             key={i}
           >
             {replyArr.map((reply, j) => (
