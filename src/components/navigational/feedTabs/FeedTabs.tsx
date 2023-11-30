@@ -4,20 +4,29 @@ import useAgent from "@/lib/hooks/bsky/useAgent";
 import TabItem from "../tabs/TabItem";
 import Tabs from "../tabs/Tabs";
 import { getSavedFeeds } from "@/lib/api/bsky/feed";
-import useSWR from "swr";
 import { usePathname, useSearchParams } from "next/navigation";
 import FeedTabsSkeleton from "./FeedTabsSkeleton";
 import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function FeedTabs() {
   const agent = useAgent();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const uri = searchParams.get("uri");
-  const { data: savedFeeds, isLoading } = useSWR("savedFeeds", () =>
-    getSavedFeeds(agent)
-  );
+
+  const {
+    status,
+    data: savedFeeds,
+    error,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["savedFeeds"],
+    queryFn: () => getSavedFeeds(agent),
+  });
+
   const show = useHideOnScroll();
 
   return (
@@ -26,9 +35,9 @@ export default function FeedTabs() {
         show ? "translate-y-0" : "-translate-y-20"
       } transition-translate ease-in-out duration-300 sticky top-0 sm:translate-y-0  sm:relative z-50 sm:z-40`}
     >
-      {isLoading && <FeedTabsSkeleton />}
+      {isFetching && <FeedTabsSkeleton />}
       <Tabs>
-        {!isLoading && (
+        {!isFetching && (
           <>
             <TabItem
               key={"Following"}
