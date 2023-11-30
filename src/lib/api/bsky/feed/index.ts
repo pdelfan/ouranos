@@ -113,7 +113,11 @@ export const getUserPosts = async (
   handle: string,
   cursor: string
 ) => {
-  const posts = await agent.getAuthorFeed({ actor: handle, cursor: cursor });
+  const posts = await agent.getAuthorFeed({
+    actor: handle,
+    cursor: cursor,
+    filter: "posts_no_replies",
+  });
 
   if (!posts.success) throw new Error("Could not fetch posts");
   return posts;
