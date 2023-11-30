@@ -74,7 +74,7 @@ export default function RepostedByContainer(props: Props) {
         </section>
       )}
       {isEmpty && (
-        <div className="px-3">
+        <div className="px-3 sm:px-0">
           <FeedAlert
             variant="empty"
             message="No one has reposted... yet"
