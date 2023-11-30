@@ -51,10 +51,6 @@ export default function FeedPost(props: Props) {
 
   const router = useRouter();
 
-  // if (post.post.embed) {
-  //   console.log(post.post.embed?.record?.labels && post.post.embed?.record?.labels[0]?.val);
-  // }
-
   return (
     <>
       {reason && <Reason reason={reason} />}
