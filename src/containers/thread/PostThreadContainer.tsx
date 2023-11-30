@@ -63,7 +63,7 @@ export default function PostThreadContainer(props: Props) {
             Post
           </h2>
         </div>
-        <section className="border border-t-0 rounded-b-2xl p-3">
+        <section className="border border-t-0 sm:rounded-b-2xl p-3">
           {AppBskyFeedDefs.isBlockedPost(thread) && <BlockedEmbed depth={0} />}
           {AppBskyFeedDefs.isNotFoundPost(thread) && (
             <NotFoundEmbed depth={0} />
