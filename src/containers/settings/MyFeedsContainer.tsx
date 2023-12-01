@@ -14,6 +14,7 @@ import { SavedFeed } from "../../../types/feed";
 import Button from "@/components/actions/button/Button";
 import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
 import useSaveFeed from "@/lib/hooks/bsky/feed/useSaveFeed";
+import Alert from "@/components/feedback/alert/Alert";
 
 interface FeedItemProps {
   feedItem: SavedFeed;
@@ -92,6 +93,9 @@ export default function MyFeedsContainer() {
             data
               .filter((feed) => feed.pinned)
               .map((feed) => <FeedItem key={feed.cid} feedItem={feed} />)}
+          {data && data.filter((feed) => feed.pinned).length === 0 && (
+            <Alert variant="info" message="You don't have any pinned feeds" />
+          )}
         </section>
       </section>
 
@@ -105,6 +109,9 @@ export default function MyFeedsContainer() {
             data
               .filter((feed) => !feed.pinned)
               .map((feed) => <FeedItem key={feed.cid} feedItem={feed} />)}
+          {data && data.filter((feed) => !feed.pinned).length === 0 && (
+            <Alert variant="info" message="You don't have any saved feeds" />
+          )}
         </section>
       </section>
     </section>
