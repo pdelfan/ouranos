@@ -87,7 +87,7 @@ export default function MyFeedsContainer() {
         <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
           Pinned Feeds
         </h2>
-        {isFetching && <SavedFeedListSkeleton />}
+        {(isLoading || isFetching) && <SavedFeedListSkeleton />}
         <section className="flex flex-col">
           {data &&
             data
@@ -103,7 +103,7 @@ export default function MyFeedsContainer() {
         <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
           Saved Feeds
         </h2>
-        {isFetching && <SavedFeedListSkeleton />}
+        {(isLoading || isFetching) && <SavedFeedListSkeleton />}
         <section className="flex flex-col">
           {data &&
             data
