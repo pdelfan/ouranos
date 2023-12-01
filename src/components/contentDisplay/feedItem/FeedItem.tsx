@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { toggleSaveFeed } from "@/lib/api/bsky/feed";
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import { savedFeedsQueryKey } from "@/containers/settings/MyFeedsContainer";
 
 interface Props {
   feedItem: GeneratorView;
@@ -22,6 +24,7 @@ export default function FeedItem(props: Props) {
   const [isSaved, setIsSaved] = useState(saved);
   const router = useRouter();
   const agent = useAgent();
+  const queryClient = useQueryClient();
 
   const handleSave = async () => {
     if (!agent) return;
@@ -35,6 +38,7 @@ export default function FeedItem(props: Props) {
       setIsSaved((prev) => !prev);
     } finally {
       router.refresh();
+      queryClient.invalidateQueries({ queryKey: savedFeedsQueryKey });
     }
   };
 

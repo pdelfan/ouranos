@@ -6,10 +6,16 @@ import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Button from "@/components/actions/button/Button";
 import { useEffect, useState } from "react";
-import { getSavedFeeds, toggleSaveFeed } from "@/lib/api/bsky/feed";
+import {
+  getSavedFeeds,
+  togglePinFeed,
+  toggleSaveFeed,
+} from "@/lib/api/bsky/feed";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useRouter } from "next/navigation";
 import FeedHeaderSkeleton from "./FeedHeaderSkeleton";
+import { useQueryClient } from "@tanstack/react-query";
+import { savedFeedsQueryKey } from "@/containers/settings/MyFeedsContainer";
 
 interface Props {
   feed: string;
@@ -19,7 +25,9 @@ export default function FeedHeader(props: Props) {
   const { feed } = props;
   const router = useRouter();
   const agent = useAgent();
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState<boolean | null>(null);
+  const [isPinned, setIsPinned] = useState<boolean | null>(null);
+  const queryClient = useQueryClient();
   const {
     feedInfo,
     isLoadingFeedInfo,
@@ -33,13 +41,18 @@ export default function FeedHeader(props: Props) {
       if (feedInfo && agent) {
         const savedFeeds = await getSavedFeeds(agent);
         setIsSaved(savedFeeds.some((savedFeed) => savedFeed.uri === feed));
+        setIsPinned(
+          savedFeeds.some(
+            (savedFeed) => savedFeed.uri === feed && savedFeed.pinned
+          )
+        );
       }
     };
 
     updateFeedInfo();
   }, [feedInfo, agent, feed]);
 
-  const handleSave = async () => {
+  const toggleSave = async () => {
     if (!agent) return;
     setIsSaved((prev) => !prev);
     try {
@@ -51,6 +64,23 @@ export default function FeedHeader(props: Props) {
       setIsSaved((prev) => !prev);
     } finally {
       router.refresh();
+      queryClient.invalidateQueries({ queryKey: savedFeedsQueryKey });
+    }
+  };
+
+  const togglePin = async () => {
+    if (!agent) return;
+    setIsPinned((prev) => !prev);
+    try {
+      const response = await togglePinFeed(agent, feed);
+      if (!response.success) {
+        setIsPinned((prev) => !prev);
+      }
+    } catch (error) {
+      setIsPinned((prev) => !prev);
+    } finally {
+      router.refresh();
+      queryClient.invalidateQueries({ queryKey: savedFeedsQueryKey });
     }
   };
 
@@ -78,13 +108,22 @@ export default function FeedHeader(props: Props) {
                   </h3>
                 </div>
               </div>
-              <div className="flex">
-                <Button
-                  icon={`${isSaved ? "bx:trash" : "bx:plus"}`}
-                  iconColor={`${isSaved ? "text-red-500" : "text-green-600"}`}
-                  onClick={handleSave}
-                />
-              </div>
+              {isSaved !== null && isPinned !== null && (
+                <div className="flex flex-wrap gap-3">
+                  <Button
+                    icon={`${isSaved ? "bx:trash" : "bx:plus"}`}
+                    iconColor={`${isSaved ? "text-red-500" : "text-green-600"}`}
+                    onClick={toggleSave}
+                  />
+                  <Button
+                    icon="bxs:bookmark-alt"
+                    iconColor={`${
+                      isPinned ? "text-green-600" : "text-neutral-300"
+                    }`}
+                    onClick={togglePin}
+                  />{" "}
+                </div>
+              )}
             </div>
             <p className="text-neutral-700 break-words" dir="auto">
               {feedInfo.view.description}

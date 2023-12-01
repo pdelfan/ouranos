@@ -35,10 +35,10 @@ export default function AppBar() {
         isActive={pathname.includes("notifications")}
       />
       <NavItem
-        href={`/dashboard/user/${session?.user.handle}`}
-        icons={["bxs:user", "bx:user"]}
-        title="Profile"
-        isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
+        href="/dashboard/settings"
+        icons={["bxs:cog", "bx:cog"]}
+        title="Settings"
+        isActive={pathname.includes("settings")}
       />
     </nav>
   );

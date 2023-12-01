@@ -40,12 +40,12 @@ export default function Navbar() {
         title="Profile"
         isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
       />
-      {/* <NavItem
+      <NavItem
         href="/dashboard/settings"
         icons={["bxs:cog", "bx:cog"]}
         title="Settings"
         isActive={pathname.includes("settings")}
-      /> */}
+      />
     </nav>
   );
 }

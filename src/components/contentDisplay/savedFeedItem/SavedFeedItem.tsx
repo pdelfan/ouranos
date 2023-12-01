@@ -1,3 +1,5 @@
+"use client";
+
 import { SavedFeed } from "../../../../types/feed";
 import Image from "next/image";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
@@ -25,8 +27,8 @@ export default function SavedFeedItem(props: Props) {
         <Image
           src={avatar ?? FallbackFeed}
           alt={displayName}
-          width={30}
-          height={30}
+          width={40}
+          height={40}
           className={`rounded-lg ${!avatar && "border"}`}
         />
         <h2 className="text-neutral-700 font-semibold break-words">
