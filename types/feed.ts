@@ -53,6 +53,12 @@ export type FeedFilterResult = {
   hideQuotePosts: boolean;
 };
 
+export type ThreadViewResult = {
+  sort: string;
+  prioritizeFollowedUsers: boolean;
+  lab_treeViewEnabled: boolean;
+};
+
 export type GroupedNotification = Notification & {
   allAuthors?: ProfileView[];
 };

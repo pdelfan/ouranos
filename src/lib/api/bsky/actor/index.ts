@@ -1,4 +1,8 @@
-import { AppBskyFeedDefs, BskyAgent } from "@atproto/api";
+import {
+  AppBskyFeedDefs,
+  BskyAgent,
+  BskyThreadViewPreference,
+} from "@atproto/api";
 import { getAgent } from "../agent";
 import { FeedSearchResult } from "../../../../../types/feed";
 
@@ -66,6 +70,15 @@ export const getPreferences = async (agent?: BskyAgent) => {
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not get preferences");
   return prefs.data.preferences;
+};
+
+export const updateThreadViewPreferences = async (
+  pref: Partial<BskyThreadViewPreference>,
+  agent?: BskyAgent
+) => {
+  if (!agent) agent = await getAgent();
+  const prefs = await agent.setThreadViewPrefs(pref);
+  return prefs;
 };
 
 export const muteUser = async (did: string, agent?: BskyAgent) => {

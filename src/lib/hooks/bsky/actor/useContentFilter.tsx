@@ -1,5 +1,5 @@
 import { Preferences } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import { CONTENT_FILTER_OPTIONS } from "@/lib/consts/modertaion";
+import { CONTENT_FILTER_OPTIONS } from "@/lib/consts/moderation";
 import { AppBskyActorDefs } from "@atproto/api";
 import { ContentFilter, ContentFilterResult } from "../../../../../types/feed";
 
