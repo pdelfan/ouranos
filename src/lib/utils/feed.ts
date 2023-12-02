@@ -10,6 +10,10 @@ import {
   AppBskyEmbedRecordWithMedia,
   AppBskyFeedDefs,
 } from "@atproto/api";
+import { Preferences } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
+import { AppBskyActorDefs } from "@atproto/api";
+import { CONTENT_FILTER_OPTIONS } from "../consts/moderation";
+import { THREAD_VIEW_PREFS } from "../consts/settings";
 
 export function filterFeed(feed: FeedViewPost, feedFilter: FeedFilterResult) {
   const post = feed.post;
@@ -39,11 +43,6 @@ export function filterFeed(feed: FeedViewPost, feedFilter: FeedFilterResult) {
     return true;
   }
 }
-
-import { Preferences } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import { AppBskyActorDefs } from "@atproto/api";
-import { CONTENT_FILTER_OPTIONS } from "../consts/moderation";
-import { THREAD_VIEW_PREFS } from "../consts/settings";
 
 export function getFeedFilter(
   preferences: Preferences | undefined

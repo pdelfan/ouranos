@@ -23,13 +23,13 @@ export default function NotificationsContainer() {
   } = useNotification();
 
   const { preferences } = usePreferences();
-  const contentFilter = getContentFilter(preferences);
+  const contentFilter = preferences.contentFilter;
 
   const isEmpty =
     !isFetchingNotification &&
     !isFetchingNotificationNextPage &&
     notificationData?.pages[0]?.data?.notifications.length === 0;
-    
+
   return (
     <section>
       <section className="flex flex-col">
@@ -61,7 +61,12 @@ export default function NotificationsContainer() {
       {notificationError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
-      {isEmpty && <FeedAlert variant="empty" message="There are no notifications to show... yet" />}
+      {isEmpty && (
+        <FeedAlert
+          variant="empty"
+          message="There are no notifications to show... yet"
+        />
+      )}
       {!notificationError &&
         !isFetchingNotification &&
         !isFetchingNotificationNextPage && <EndOfFeed />}

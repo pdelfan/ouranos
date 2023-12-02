@@ -62,3 +62,9 @@ export type ThreadViewResult = {
 export type GroupedNotification = Notification & {
   allAuthors?: ProfileView[];
 };
+
+export type PreferencesResult = {
+  contentFilter: ContentFilterResult;
+  feedFilter: FeedFilterResult;
+  threadPreferences: ThreadViewResult;
+};

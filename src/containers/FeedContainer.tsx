@@ -31,8 +31,8 @@ export default function FeedContainer(props: Props) {
     feedData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const contentFilter = getContentFilter(preferences);
-  const feedFilter = getFeedFilter(preferences);
+  const contentFilter = preferences.contentFilter;
+  const feedFilter = preferences.feedFilter;
 
   return (
     <div>

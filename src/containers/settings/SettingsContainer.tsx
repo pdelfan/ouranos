@@ -30,7 +30,8 @@ export default function SettingsContainer() {
         <Icon icon="bx:hash" className="text-neutral-600 text-xl" />
         My Feeds
       </Link>
-      <Link
+      {/* TODO: Add the following settings */}
+      {/* <Link
         href="/dashboard/settings/languages"
         className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
       >
@@ -46,7 +47,7 @@ export default function SettingsContainer() {
       >
         <Icon icon="mdi:person-block" className="text-neutral-600 text-xl" />
         Moderation
-      </Link>
+      </Link> */}
     </section>
   );
 }

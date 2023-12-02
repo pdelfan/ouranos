@@ -17,7 +17,6 @@ import UserActions from "@/components/dataDisplay/userActions/UserActions";
 import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import { getContentFilter } from "@/lib/utils/feed";
 
 interface Props {
   handle: string;
@@ -39,7 +38,7 @@ export default function ProfileHeader(props: Props) {
   const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
   const isMuted = profile?.viewer?.muted ? true : false;
   const { preferences } = usePreferences();
-  const contentFilter = getContentFilter(preferences);
+  const contentFilter = preferences.contentFilter;
   const showImpersonationWarning =
     profile?.labels?.find((label) => label.val === "impersonation") &&
     contentFilter.contentFilters.find((item) => item.type === "impersonation")

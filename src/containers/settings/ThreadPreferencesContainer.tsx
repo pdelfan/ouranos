@@ -9,8 +9,9 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import getThreadPreferences from "@/lib/utils/feed";
 import { BskyThreadViewPreference } from "@atproto/api";
-import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { PreferencesResult } from "../../../types/feed";
 
 export function SortReplyItemSkeleton() {
   return (
@@ -38,19 +39,25 @@ function SortReplyItem(props: ItemProps) {
 
 export default function ThreadPreferencesContainer() {
   const { isFetchingPreferences, preferences } = usePreferences();
-  const threadPreferences = getThreadPreferences(preferences);
   const agent = useAgent();
-  const [shouldPrioritizeFollowedUsers, setShouldPrioritizeFollowedUsers] =
-    useState(threadPreferences.prioritizeFollowedUsers);
-
-  useEffect(() => {
-    setShouldPrioritizeFollowedUsers(threadPreferences.prioritizeFollowedUsers);
-  }, [threadPreferences.prioritizeFollowedUsers]);
+  const queryClient = useQueryClient();
 
   const updateThreadPrefs = useMutation({
     mutationKey: ["preferences"],
     mutationFn: async (prefs: Partial<BskyThreadViewPreference>) => {
       try {
+        queryClient.setQueryData(
+          ["preferences"],
+          (oldData: PreferencesResult) => {
+            return {
+              ...oldData,
+              threadPreferences: {
+                ...oldData.threadPreferences,
+                ...prefs,
+              },
+            };
+          }
+        );
         await updateThreadViewPreferences(prefs, agent);
       } catch (error) {
         console.log(error);
@@ -58,7 +65,7 @@ export default function ThreadPreferencesContainer() {
     },
   });
 
-  if (isFetchingPreferences && !preferences) {
+  if (isFetchingPreferences) {
     return (
       <section className="flex flex-col gap-5">
         <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
@@ -98,7 +105,7 @@ export default function ThreadPreferencesContainer() {
         </h3>
         <section className="flex flex-col">
           <RadioGroup
-            defaultValue={threadPreferences.sort}
+            defaultValue={preferences?.threadPreferences.sort}
             onValueChange={async (value) => {
               updateThreadPrefs.mutate({ sort: value });
             }}
@@ -120,15 +127,19 @@ export default function ThreadPreferencesContainer() {
         <section className="flex flex-col">
           <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
             <Switch
-              checked={shouldPrioritizeFollowedUsers}
+              checked={preferences?.threadPreferences.prioritizeFollowedUsers}
               onCheckedChange={async (value) => {
-                setShouldPrioritizeFollowedUsers(value);
+                // TODO: update local state
                 updateThreadPrefs.mutate({
                   prioritizeFollowedUsers: value,
                 });
               }}
             />
-            <Label>{shouldPrioritizeFollowedUsers ? "Yes" : "No"}</Label>
+            <Label>
+              {preferences?.threadPreferences.prioritizeFollowedUsers
+                ? "Yes"
+                : "No"}
+            </Label>
           </div>
         </section>
       </section>

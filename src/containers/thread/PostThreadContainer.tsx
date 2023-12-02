@@ -48,7 +48,7 @@ export default function PostThreadContainer(props: Props) {
   });
 
   const { preferences } = usePreferences();
-  const contentFilter = getContentFilter(preferences);
+  const contentFilter = preferences?.contentFilter;
 
   if (
     AppBskyFeedDefs.isBlockedPost(thread) ||
@@ -108,7 +108,7 @@ export default function PostThreadContainer(props: Props) {
                 <BlockedEmbed depth={0} />
               )}
 
-              {AppBskyFeedDefs.isThreadViewPost(parent) && (
+              {AppBskyFeedDefs.isThreadViewPost(parent) && contentFilter && (
                 <FeedPost
                   post={parent}
                   filter={contentFilter}
@@ -120,11 +120,12 @@ export default function PostThreadContainer(props: Props) {
         </div>
       )}
 
-      {thread && (
+      {thread && contentFilter && (
         <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
       )}
 
-      {replyChains &&
+      {contentFilter &&
+        replyChains &&
         replyChains.map((replyArr, i) => (
           <div
             className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b md:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"

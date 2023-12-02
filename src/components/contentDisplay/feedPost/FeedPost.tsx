@@ -27,7 +27,7 @@ export default function FeedPost(props: Props) {
   const { author, indexedAt } = post.post;
   const { reason, reply } = post;
 
-  const { isAdultContentHidden, adultContentFilters } = filter;
+  const { isAdultContentHidden, adultContentFilters, contentFilters } = filter;
   const label = post.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
   const embedLabel =
     post.post.embed && post.post.embed.record
@@ -36,7 +36,9 @@ export default function FeedPost(props: Props) {
       : "";
   const message =
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))
-      ?.message ?? "Adult content";
+      ?.message ||
+    contentFilters.find((f) => f.values.includes(label))?.message ||
+    "Hidden content";
   const visibility = adultContentFilters.find((f) =>
     f.values.includes(label || embedLabel)
   )?.visiblity;

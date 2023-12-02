@@ -1,14 +1,13 @@
 "use client";
 
 import useAgent from "@/lib/hooks/bsky/useAgent";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { Switch } from "@/components/inputs/switch/Switch";
-import { useEffect, useState } from "react";
 import { BskyFeedViewPreference } from "@atproto/api";
 import { updateHomeFeedPreferences } from "@/lib/api/bsky/actor";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { getFeedFilter } from "@/lib/utils/feed";
+import { PreferencesResult } from "../../../types/feed";
 
 export function HomeFeedItemSkeleton() {
   return (
@@ -22,17 +21,25 @@ export function HomeFeedItemSkeleton() {
 export default function HomeFeedContainer() {
   const agent = useAgent();
   const { isFetchingPreferences, preferences } = usePreferences();
-  const feedFilter = getFeedFilter(preferences);
-  const [homeFeedPrefs, setHomeFeedPrefs] = useState(feedFilter);
-
-  useEffect(() => {
-    setHomeFeedPrefs(feedFilter);
-  }, [feedFilter]);
-
+  const feedFilter = preferences?.feedFilter;
+  const queryClient = useQueryClient();
+  
   const updateHomeFeedPrefs = useMutation({
     mutationKey: ["preferences"],
     mutationFn: async (prefs: Partial<BskyFeedViewPreference>) => {
       try {
+        queryClient.setQueryData(
+          ["preferences"],
+          (oldData: PreferencesResult) => {
+            return {
+              ...oldData,
+              feedFilter: {
+                ...oldData.feedFilter,
+                ...prefs,
+              },
+            };
+          }
+        );
         await updateHomeFeedPreferences(prefs, agent);
       } catch (error) {
         console.log(error);
@@ -96,19 +103,14 @@ export default function HomeFeedContainer() {
         <section className="flex flex-col">
           <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
             <Switch
-              checked={homeFeedPrefs.hideReplies}
+              checked={feedFilter?.hideReplies}
               onCheckedChange={async (value) => {
-                setHomeFeedPrefs((prev) => ({
-                  ...prev,
-                  hideReplies: value,
-                }));
-
                 updateHomeFeedPrefs.mutate({
                   hideReplies: value,
                 });
               }}
             />
-            <Label>{homeFeedPrefs.hideReplies ? "Yes" : "No"}</Label>
+            <Label>{feedFilter?.hideReplies ? "Yes" : "No"}</Label>
           </div>
         </section>
       </section>
@@ -119,21 +121,19 @@ export default function HomeFeedContainer() {
         <section className="flex flex-col">
           <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
             <Switch
-              checked={homeFeedPrefs.hideRepliesByUnfollowed}
+              checked={feedFilter?.hideRepliesByUnfollowed}
               onCheckedChange={async (value) => {
-                setHomeFeedPrefs((prev) => ({
-                  ...prev,
-                  hideRepliesByUnfollowed: value,
-                }));
+                // setHomeFeedPrefs((prev) => ({
+                //   ...prev,
+                //   hideRepliesByUnfollowed: value,
+                // }));
 
                 updateHomeFeedPrefs.mutate({
                   hideRepliesByUnfollowed: value,
                 });
               }}
             />
-            <Label>
-              {homeFeedPrefs.hideRepliesByUnfollowed ? "Yes" : "No"}
-            </Label>
+            <Label>{feedFilter?.hideRepliesByUnfollowed ? "Yes" : "No"}</Label>
           </div>
         </section>
       </section>
@@ -144,19 +144,19 @@ export default function HomeFeedContainer() {
         <section className="flex flex-col">
           <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
             <Switch
-              checked={homeFeedPrefs.hideReposts}
+              checked={feedFilter?.hideReposts}
               onCheckedChange={async (value) => {
-                setHomeFeedPrefs((prev) => ({
-                  ...prev,
-                  hideReposts: value,
-                }));
+                // setHomeFeedPrefs((prev) => ({
+                //   ...prev,
+                //   hideReposts: value,
+                // }));
 
                 updateHomeFeedPrefs.mutate({
                   hideReposts: value,
                 });
               }}
             />
-            <Label>{homeFeedPrefs.hideReposts ? "Yes" : "No"}</Label>
+            <Label>{feedFilter?.hideReposts ? "Yes" : "No"}</Label>
           </div>
         </section>
       </section>
@@ -167,19 +167,19 @@ export default function HomeFeedContainer() {
         <section className="flex flex-col">
           <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
             <Switch
-              checked={homeFeedPrefs.hideQuotePosts}
+              checked={feedFilter?.hideQuotePosts}
               onCheckedChange={async (value) => {
-                setHomeFeedPrefs((prev) => ({
-                  ...prev,
-                  hideQuotePosts: value,
-                }));
+                // setHomeFeedPrefs((prev) => ({
+                //   ...prev,
+                //   hideQuotePosts: value,
+                // }));
 
                 updateHomeFeedPrefs.mutate({
                   hideQuotePosts: value,
                 });
               }}
             />
-            <Label>{homeFeedPrefs.hideQuotePosts ? "Yes" : "No"}</Label>
+            <Label>{feedFilter?.hideQuotePosts ? "Yes" : "No"}</Label>
           </div>
         </section>
       </section>
