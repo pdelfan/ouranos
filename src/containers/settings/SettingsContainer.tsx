@@ -39,9 +39,7 @@ export default function SettingsContainer() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
-          Feeds and Threads
-        </h3>
+        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Moderation</h3>
         <section className="flex flex-col">
           <Link
             href="/dashboard/settings/content-filtering"
