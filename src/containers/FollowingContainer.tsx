@@ -8,6 +8,7 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { getFollows } from "@/lib/api/bsky/social";
+import Alert from "@/components/feedback/alert/Alert";
 
 interface Props {
   handle: string;
@@ -54,6 +55,14 @@ export default function FollowingContainer(props: Props) {
               </Fragment>
             ))}
       </section>
+      {profiles?.pages[0].data.follows.length === 0 && (
+        <div className="mx-3 md:mx-0">
+          <Alert
+            variant="info"
+            message={`${handle} has not followed anyone... yet`}
+          />
+        </div>
+      )}
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
       {isFetchingNextPage && (
         <section className="flex flex-1 justify-center mt-3">
