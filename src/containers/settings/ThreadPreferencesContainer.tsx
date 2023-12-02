@@ -6,11 +6,11 @@ import { Switch } from "@/components/inputs/switch/Switch";
 import { updateThreadViewPreferences } from "@/lib/api/bsky/actor";
 import { THREAD_VIEW_OPTIONS } from "@/lib/consts/settings";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import useThreadPreferences from "@/lib/hooks/bsky/actor/useThreadPreferences";
 import useAgent from "@/lib/hooks/bsky/useAgent";
+import getThreadPreferences from "@/lib/utils/feed";
 import { BskyThreadViewPreference } from "@atproto/api";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function SortReplyItemSkeleton() {
   return (
@@ -38,10 +38,14 @@ function SortReplyItem(props: ItemProps) {
 
 export default function ThreadPreferencesContainer() {
   const { isFetchingPreferences, preferences } = usePreferences();
-  const threadPreferences = useThreadPreferences(preferences);
+  const threadPreferences = getThreadPreferences(preferences);
   const agent = useAgent();
   const [shouldPrioritizeFollowedUsers, setShouldPrioritizeFollowedUsers] =
     useState(threadPreferences.prioritizeFollowedUsers);
+
+  useEffect(() => {
+    setShouldPrioritizeFollowedUsers(threadPreferences.prioritizeFollowedUsers);
+  }, [threadPreferences.prioritizeFollowedUsers]);
 
   const updateThreadPrefs = useMutation({
     mutationKey: ["preferences"],
@@ -57,10 +61,13 @@ export default function ThreadPreferencesContainer() {
   if (isFetchingPreferences && !preferences) {
     return (
       <section className="flex flex-col gap-5">
+        <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+          Thread Preferences
+        </h2>
         <section>
-          <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+          <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
             Sort Replies
-          </h2>
+          </h3>
           <section className="flex flex-col">
             <SortReplyItemSkeleton />
             <SortReplyItemSkeleton />
@@ -69,9 +76,9 @@ export default function ThreadPreferencesContainer() {
           </section>
         </section>
         <section>
-          <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+          <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
             Prioritize Your Follows
-          </h2>
+          </h3>
           <section className="flex flex-col">
             <SortReplyItemSkeleton />
           </section>
@@ -82,10 +89,13 @@ export default function ThreadPreferencesContainer() {
 
   return (
     <section className="flex flex-col gap-5">
+      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+        Thread Preferences
+      </h2>
       <section>
-        <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
           Sort Replies
-        </h2>
+        </h3>
         <section className="flex flex-col">
           <RadioGroup
             defaultValue={threadPreferences.sort}
@@ -104,9 +114,9 @@ export default function ThreadPreferencesContainer() {
         </section>
       </section>
       <section>
-        <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
           Prioritize Your Follows
-        </h2>
+        </h3>
         <section className="flex flex-col">
           <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
             <Switch

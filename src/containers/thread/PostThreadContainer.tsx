@@ -8,7 +8,6 @@ import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import useOrganizeThread from "@/lib/hooks/bsky/feed/useOrganizeThread";
 import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
 import ThreadPost from "@/components/contentDisplay/threadPost/ThreadPost";
 import BlockedEmbed from "@/components/dataDisplay/postEmbed/BlockedEmbed";
 import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
@@ -16,6 +15,7 @@ import Button from "@/components/actions/button/Button";
 import { useRouter } from "next/navigation";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import { getContentFilter } from "@/lib/utils/feed";
 
 interface Props {
   id: string;
@@ -48,7 +48,7 @@ export default function PostThreadContainer(props: Props) {
   });
 
   const { preferences } = usePreferences();
-  const contentFilter = useContentFilter(preferences);
+  const contentFilter = getContentFilter(preferences);
 
   if (
     AppBskyFeedDefs.isBlockedPost(thread) ||
@@ -59,9 +59,7 @@ export default function PostThreadContainer(props: Props) {
     return (
       <>
         <div className="md:border  md:border-x md:rounded-t-2xl">
-          <h2 className="text-xl text-center font-semibold px-3 py-2">
-            Post
-          </h2>
+          <h2 className="text-xl text-center font-semibold px-3 py-2">Post</h2>
         </div>
         <section className="border border-t-0 md:rounded-b-2xl p-3">
           {AppBskyFeedDefs.isBlockedPost(thread) && <BlockedEmbed depth={0} />}

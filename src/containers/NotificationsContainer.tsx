@@ -4,9 +4,9 @@ import NotificationItem from "@/components/contentDisplay/notification/Notificat
 import NotificationSkeleton from "@/components/contentDisplay/notification/NotificationSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useNotification from "@/lib/hooks/bsky/notification/useNotification";
+import { getContentFilter } from "@/lib/utils/feed";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment } from "react";
 
@@ -23,7 +23,7 @@ export default function NotificationsContainer() {
   } = useNotification();
 
   const { preferences } = usePreferences();
-  const contentFilter = useContentFilter(preferences);
+  const contentFilter = getContentFilter(preferences);
 
   const isEmpty =
     !isFetchingNotification &&

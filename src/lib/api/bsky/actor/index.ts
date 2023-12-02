@@ -1,6 +1,7 @@
 import {
   AppBskyFeedDefs,
   BskyAgent,
+  BskyFeedViewPreference,
   BskyThreadViewPreference,
 } from "@atproto/api";
 import { getAgent } from "../agent";
@@ -78,6 +79,14 @@ export const updateThreadViewPreferences = async (
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setThreadViewPrefs(pref);
+  return prefs;
+};
+export const updateHomeFeedPreferences = async (
+  pref: Partial<BskyFeedViewPreference>,
+  agent?: BskyAgent
+) => {
+  if (!agent) agent = await getAgent();
+  const prefs = await agent.setFeedViewPrefs("home", pref);
   return prefs;
 };
 

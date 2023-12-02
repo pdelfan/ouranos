@@ -10,7 +10,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import useContentFilter from "@/lib/hooks/bsky/actor/useContentFilter";
+import { getContentFilter } from "@/lib/utils/feed";
 
 interface Props {
   mode: UserPostMode;
@@ -49,7 +49,7 @@ export default function UserPostsConatiner(props: Props) {
     userPostsData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const contentFilter = useContentFilter(preferences);
+  const contentFilter = getContentFilter(preferences);
 
   return (
     <div>
