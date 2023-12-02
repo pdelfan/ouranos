@@ -46,3 +46,23 @@ export const unBlock = async (
   });
   return res;
 };
+
+export const getMutedUsers = async (agent: BskyAgent, cursor: string) => {
+  const mutedUsers = await agent.api.app.bsky.graph.getMutes({
+    cursor: cursor,
+  });
+  if (!mutedUsers.success) {
+    throw new Error("Could not fetch muted users");
+  }
+  return mutedUsers.data;
+};
+
+export const getBlockedUsers = async (agent: BskyAgent, cursor: string) => {
+  const blockedUsers = await agent.api.app.bsky.graph.getBlocks({
+    cursor: cursor,
+  });
+  if (!blockedUsers.success) {
+    throw new Error("Could not fetch muted users");
+  }
+  return blockedUsers.data;
+};
