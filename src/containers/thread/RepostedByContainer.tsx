@@ -73,7 +73,7 @@ export default function RepostedByContainer(props: Props) {
           <Icon icon="eos-icons:loading" className="text-xl" />
         </section>
       )}
-      {isEmpty && (
+      {isEmpty && !hasNextPage && (
         <div className="px-3 md:px-0">
           <FeedAlert
             variant="empty"

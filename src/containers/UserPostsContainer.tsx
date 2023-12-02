@@ -105,7 +105,7 @@ export default function UserPostsConatiner(props: Props) {
           message={`@${handle}'s activity is not available`}
         />
       )}
-      {isEmpty && (
+      {isEmpty && !userPostsHasNextPage && (
         <FeedAlert variant="empty" message="There are no posts... yet" />
       )}
       {!isEmpty &&

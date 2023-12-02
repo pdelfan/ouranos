@@ -64,7 +64,9 @@ export default function FeedContainer(props: Props) {
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
-      {isEmpty && <FeedAlert variant="empty" message="This feed is empty" />}
+      {isEmpty && !feedHasNextPage && (
+        <FeedAlert variant="empty" message="This feed is empty" />
+      )}
       {!isEmpty &&
         !feedError &&
         !isFetchingFeed &&
