@@ -49,13 +49,14 @@ export default function UserPostsConatiner(props: Props) {
     userPostsData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const contentFilter = preferences.contentFilter;
+  const contentFilter = preferences?.contentFilter;
 
   return (
     <div>
       {!isBlocked &&
         !hasBlockedYou &&
         userPostsData &&
+        contentFilter &&
         userPostsData?.pages.map((page, i) => (
           <div key={i}>
             {mode === "posts" &&

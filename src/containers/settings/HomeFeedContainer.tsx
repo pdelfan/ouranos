@@ -23,7 +23,7 @@ export default function HomeFeedContainer() {
   const { isFetchingPreferences, preferences } = usePreferences();
   const feedFilter = preferences?.feedFilter;
   const queryClient = useQueryClient();
-  
+
   const updateHomeFeedPrefs = useMutation({
     mutationKey: ["preferences"],
     mutationFn: async (prefs: Partial<BskyFeedViewPreference>) => {
@@ -146,11 +146,6 @@ export default function HomeFeedContainer() {
             <Switch
               checked={feedFilter?.hideReposts}
               onCheckedChange={async (value) => {
-                // setHomeFeedPrefs((prev) => ({
-                //   ...prev,
-                //   hideReposts: value,
-                // }));
-
                 updateHomeFeedPrefs.mutate({
                   hideReposts: value,
                 });
@@ -169,11 +164,6 @@ export default function HomeFeedContainer() {
             <Switch
               checked={feedFilter?.hideQuotePosts}
               onCheckedChange={async (value) => {
-                // setHomeFeedPrefs((prev) => ({
-                //   ...prev,
-                //   hideQuotePosts: value,
-                // }));
-
                 updateHomeFeedPrefs.mutate({
                   hideQuotePosts: value,
                 });

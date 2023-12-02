@@ -38,10 +38,10 @@ export default function ProfileHeader(props: Props) {
   const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
   const isMuted = profile?.viewer?.muted ? true : false;
   const { preferences } = usePreferences();
-  const contentFilter = preferences.contentFilter;
+  const contentFilter = preferences?.contentFilter;
   const showImpersonationWarning =
     profile?.labels?.find((label) => label.val === "impersonation") &&
-    contentFilter.contentFilters.find((item) => item.type === "impersonation")
+    contentFilter?.contentFilters.find((item) => item.type === "impersonation")
       ?.visiblity === "warn";
 
   return (

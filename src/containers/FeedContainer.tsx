@@ -31,12 +31,13 @@ export default function FeedContainer(props: Props) {
     feedData?.pages[0]?.data?.feed?.length === 0;
 
   const { preferences } = usePreferences();
-  const contentFilter = preferences.contentFilter;
-  const feedFilter = preferences.feedFilter;
+  const contentFilter = preferences?.contentFilter;
+  const feedFilter = preferences?.feedFilter;
 
   return (
     <div>
       {feedData &&
+        contentFilter &&
         feedFilter &&
         feedData?.pages.map((page, i) => (
           <div key={i}>

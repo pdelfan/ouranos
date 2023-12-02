@@ -23,7 +23,7 @@ export default function NotificationsContainer() {
   } = useNotification();
 
   const { preferences } = usePreferences();
-  const contentFilter = preferences.contentFilter;
+  const contentFilter = preferences?.contentFilter;
 
   const isEmpty =
     !isFetchingNotification &&
