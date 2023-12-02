@@ -29,11 +29,14 @@ export default function SearchPost(props: Props) {
           `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`
         );
       }}
-      className="flex justify-between items-center gap-2 p-3 border border-x-0 md:border-x  first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:cursor-pointer"
+      className="flex justify-between items-center gap-2 p-3 border border-x-0 md:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:cursor-pointer"
     >
       <div className="flex items-start gap-3">
         <Link
           href={`/dashboard/user/${author.handle}`}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           className="shrink-0 hover:brightness-90"
         >
           <Avatar profile={author} size="md" />

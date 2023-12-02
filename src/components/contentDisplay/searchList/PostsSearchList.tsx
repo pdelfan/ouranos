@@ -38,7 +38,7 @@ export default function PostsSearchList(props: Props) {
             </Fragment>
           ))}
       </section>
-      {posts && posts.length > 1 && <EndOfFeed />}
+      {posts && posts.length > 0 && <EndOfFeed />}
     </>
   );
 }

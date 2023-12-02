@@ -71,8 +71,7 @@ export default function Page() {
           The current goal is to implement all the functionalities provided by
           the official app, and more (without storing anything on our side).
           Some of the current enhancements include a draft feature,
-          comprehensive content filtering, and the ability to view profile
-          headers.
+          comprehensive content filtering, and profile previews.
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">

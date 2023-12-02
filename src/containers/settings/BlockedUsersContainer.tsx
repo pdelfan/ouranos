@@ -62,7 +62,7 @@ export default function BlockedUsersContainer() {
             <div className="mx-3 md:mx-0">
               <Alert
                 variant="info"
-                message="You have not blocked any users... yet."
+                message="You have not blocked any users... yet"
               />
             </div>
           )}

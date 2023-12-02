@@ -59,7 +59,7 @@ export default function MutedUsersContainer() {
               <div className="mx-3 md:mx-0">
                 <Alert
                   variant="info"
-                  message="You have not muted any users... yet."
+                  message="You have not muted any users... yet"
                 />
               </div>
             )}
