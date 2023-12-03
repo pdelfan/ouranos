@@ -7,7 +7,7 @@ import useFeed from "@/lib/hooks/bsky/feed/useFeed";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import { filterFeed, getContentFilter, getFeedFilter } from "@/lib/utils/feed";
+import { filterFeed } from "@/lib/utils/feed";
 
 interface Props {
   feed: string;
