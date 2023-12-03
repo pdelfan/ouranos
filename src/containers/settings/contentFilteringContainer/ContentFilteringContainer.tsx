@@ -53,8 +53,11 @@ interface ItemProps {
 function Item(props: ItemProps) {
   const { item, children } = props;
   return (
-    <div className="flex flex-wrap justify-between items-center gap-3 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
-      {item.label}
+    <div className="flex  justify-between items-center gap-3 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+      <div className="flex flex-col">
+        <span className="font-medium">{item.label}</span>
+        <span className="text-neutral-500">{item.description}</span>
+      </div>
       {children}
     </div>
   );

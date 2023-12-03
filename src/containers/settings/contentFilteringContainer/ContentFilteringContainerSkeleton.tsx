@@ -10,7 +10,10 @@ function HideAdultSwitchSkeleton() {
 function FilterTabItemSkeleton() {
   return (
     <div className="flex flex-wrap justify-between items-center gap-3 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
-      <div className="w-24 h-6 rounded-full bg-gray-200" />
+      <div className="flex flex-col gap-1 grow">
+        <div className="w-24 h-6 rounded-full bg-gray-200" />
+        <div className="w-2/5 h-6 rounded-full bg-gray-200" />
+      </div>
       <div className="w-32 h-9 rounded-full bg-gray-200" />
     </div>
   );

@@ -72,7 +72,7 @@ export default function FeedContainer(props: Props) {
         !isFetchingFeed &&
         !feedHasNextPage &&
         !isFetchingFeedNextPage && <EndOfFeed />}
-      <div ref={observerRef}></div>
+      <div ref={observerRef} />
     </div>
   );
 }

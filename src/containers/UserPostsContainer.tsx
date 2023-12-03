@@ -113,7 +113,7 @@ export default function UserPostsConatiner(props: Props) {
         !isFetchingUserPosts &&
         !userPostsHasNextPage &&
         !isFetchingUserPostsNextPage && <EndOfFeed />}
-      <div ref={observerRef}></div>
+      <div ref={observerRef} />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 function SortReplyItemSkeleton() {
   return (
     <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
-      <div className="w-8 h-6 rounded-full bg-gray-200"></div>
-      <div className="w-1/3 h-6 rounded-full bg-gray-200"></div>
+      <div className="w-8 h-6 rounded-full bg-gray-200" />
+      <div className="w-1/3 h-6 rounded-full bg-gray-200" />
     </div>
   );
 }

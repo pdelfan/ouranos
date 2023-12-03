@@ -35,6 +35,7 @@ export type ContentFilter = {
   type: string;
   label: string;
   visibility: string;
+  description: string;
   values: string[];
   adult: boolean;
   message: string;
