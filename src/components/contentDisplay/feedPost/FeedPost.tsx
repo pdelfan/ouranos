@@ -26,12 +26,14 @@ export default function FeedPost(props: Props) {
   const { post, isReply, isParent, filter } = props;
   const { author, indexedAt } = post.post;
   const { reason, reply } = post;
-
   const { isAdultContentHidden, adultContentFilters, contentFilters } = filter;
   const label = post.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
+  const embedRecordLabel = (post?.post?.embed?.record as ViewRecord)
+    ?.record as ViewRecord;
   const embedLabel =
     post.post.embed && post.post.embed.record
       ? (post.post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ??
+        embedRecordLabel?.labels?.map((l) => l.val)[0] ??
         ""
       : "";
   const message =
