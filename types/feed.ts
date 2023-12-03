@@ -29,6 +29,8 @@ export type FeedAlert =
   | "offline"
   | "blocked";
 
+export type ContentFilterLabel = "hate" | "spam" | "impersonation";
+
 export type ContentFilter = {
   type: string;
   label: string;

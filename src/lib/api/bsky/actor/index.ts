@@ -2,10 +2,14 @@ import {
   AppBskyFeedDefs,
   BskyAgent,
   BskyFeedViewPreference,
+  BskyLabelPreference,
   BskyThreadViewPreference,
 } from "@atproto/api";
 import { getAgent } from "../agent";
-import { FeedSearchResult } from "../../../../../types/feed";
+import {
+  ContentFilterLabel,
+  FeedSearchResult,
+} from "../../../../../types/feed";
 
 export const getProfile = async (
   handle: string | undefined,
@@ -87,6 +91,25 @@ export const updateHomeFeedPreferences = async (
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setFeedViewPrefs("home", pref);
+  return prefs;
+};
+
+export const updateIsAdultContentEnabled = async (
+  value: boolean,
+  agent?: BskyAgent
+) => {
+  if (!agent) agent = await getAgent();
+  const prefs = await agent.setAdultContentEnabled(value);
+  return prefs;
+};
+
+export const updateContentFilterPreferences = async (
+  pref: ContentFilterLabel,
+  value: BskyLabelPreference,
+  agent?: BskyAgent
+) => {
+  if (!agent) agent = await getAgent();
+  const prefs = await agent.setContentLabelPref(pref, value);
   return prefs;
 };
 

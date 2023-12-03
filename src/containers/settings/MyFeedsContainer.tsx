@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  getSavedFeeds,
-  togglePinFeed,
-  toggleSaveFeed,
-} from "@/lib/api/bsky/feed";
+import { getSavedFeeds } from "@/lib/api/bsky/feed";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -101,9 +97,7 @@ export default function MyFeedsContainer() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
-          Saved Feeds
-        </h2>
+        <h2 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Saved Feeds</h2>
         {(isLoading || isFetching) && <SavedFeedListSkeleton />}
         <section className="flex flex-col">
           {data &&
