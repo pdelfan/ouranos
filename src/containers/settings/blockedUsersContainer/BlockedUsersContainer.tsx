@@ -9,6 +9,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 
 export default function BlockedUsersContainer() {
   const agent = useAgent();
@@ -35,6 +36,10 @@ export default function BlockedUsersContainer() {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
+  if (isFetching && !isFetchingNextPage) {
+    return <BlockedUsersContainerSkeleton />;
+  }
 
   return (
     <>
@@ -66,7 +71,6 @@ export default function BlockedUsersContainer() {
               />
             </div>
           )}
-          {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
           {isFetchingNextPage && (
             <section className="flex flex-1 justify-center mt-3">
               <Icon icon="eos-icons:loading" className="text-xl" />

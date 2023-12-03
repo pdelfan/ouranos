@@ -36,6 +36,8 @@ export default function MutedUsersContainer() {
     }
   }, [fetchNextPage, inView]);
 
+  if (isFetching && !isFetchingNextPage) return <MutedUsersContainerSkeleton />;
+
   return (
     <>
       <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Muted Users</h2>
@@ -64,8 +66,6 @@ export default function MutedUsersContainer() {
               </div>
             )}
           </section>
-
-          {isFetching && !isFetchingNextPage && <MutedUsersContainerSkeleton />}
           {isFetchingNextPage && (
             <section className="flex flex-1 justify-center mt-3">
               <Icon icon="eos-icons:loading" className="text-xl" />
