@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="mx-auto p-5 mt-0 md:mt-24">
+    <main className="mx-auto p-5 mt-0 md:mt-16">
       <header className="flex justify-between items-center max-w-xl mx-auto">
         <Image src="/logo.svg" alt="Ouranos logo" width={120} height={35} />
         <Link href="/about" className="font-medium text-neutral-500">
@@ -36,12 +36,12 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <div className="mx-auto max-w-fit mt-12">
+      <div className="mx-auto max-w-fit mt-8">
         <Image
           src="/images/screenshot.png"
           alt="Ouranos desktop screenshot"
-          width={1200}
-          height={763}
+          width={900}
+          height={500}
         />
       </div>
     </main>
