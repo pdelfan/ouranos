@@ -109,7 +109,7 @@ export function getContentFilter(
           (f) => !f.adult && f.type === label
         );
         if (filter) {
-          filter.visiblity = pref.visibility ?? filter?.visiblity;
+          filter.visibility = pref.visibility ?? filter?.visibility;
           contentFilters.push(filter);
         }
       }
@@ -127,7 +127,7 @@ export function getContentFilter(
         );
 
         if (filter) {
-          filter.visiblity = pref.visibility ?? filter?.visiblity;
+          filter.visibility = pref.visibility ?? filter?.visibility;
           adultContentFilters.push(filter);
         }
       }
@@ -142,10 +142,18 @@ export function getContentFilter(
 
   const filters = getFilters(preferences);
 
+  const sortedContentFilters = filters.contentFilters.sort((a, b) =>
+    a.label.localeCompare(b.label)
+  );
+
+  const sortedAdultContentFilters = filters.adultContentFilters.sort((a, b) =>
+    a.label.localeCompare(b.label)
+  );
+
   return {
-    contentFilters: filters.contentFilters,
+    contentFilters: sortedContentFilters,
     isAdultContentHidden: filters.isAdultContentHidden,
-    adultContentFilters: filters.adultContentFilters,
+    adultContentFilters: sortedAdultContentFilters,
   };
 }
 

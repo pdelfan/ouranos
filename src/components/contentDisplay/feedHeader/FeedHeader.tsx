@@ -15,7 +15,7 @@ import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useRouter } from "next/navigation";
 import FeedHeaderSkeleton from "./FeedHeaderSkeleton";
 import { useQueryClient } from "@tanstack/react-query";
-import { savedFeedsQueryKey } from "@/containers/settings/MyFeedsContainer";
+import { savedFeedsQueryKey } from "@/containers/settings/myFeedsContainer/MyFeedsContainer";
 
 interface Props {
   feed: string;

@@ -42,7 +42,7 @@ export default function ProfileHeader(props: Props) {
   const showImpersonationWarning =
     profile?.labels?.find((label) => label.val === "impersonation") &&
     contentFilter?.contentFilters.find((item) => item.type === "impersonation")
-      ?.visiblity === "warn";
+      ?.visibility === "warn";
 
   return (
     <>

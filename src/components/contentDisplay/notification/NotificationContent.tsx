@@ -43,7 +43,7 @@ export default function NotificationContnet(props: Props) {
       ?.message ?? "Adult content";
   const visibility = adultContentFilters.find((f) =>
     f.values.includes(label || embedLabel)
-  )?.visiblity;
+  )?.visibility;
 
   const [hidden, setHidden] = useState(
     isAdultContentHidden

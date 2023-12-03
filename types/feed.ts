@@ -34,7 +34,7 @@ export type ContentFilterLabel = "hate" | "spam" | "impersonation";
 export type ContentFilter = {
   type: string;
   label: string;
-  visiblity: string;
+  visibility: string;
   values: string[];
   adult: boolean;
   message: string;

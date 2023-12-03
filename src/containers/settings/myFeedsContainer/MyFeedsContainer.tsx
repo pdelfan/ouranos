@@ -6,11 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import Image from "next/image";
-import { SavedFeed } from "../../../types/feed";
+import { SavedFeed } from "../../../../types/feed";
 import Button from "@/components/actions/button/Button";
 import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
 import useSaveFeed from "@/lib/hooks/bsky/feed/useSaveFeed";
 import Alert from "@/components/feedback/alert/Alert";
+import MyFeedsContainerSkeleton from "./MyFeedsContainerSkeleton";
 
 interface FeedItemProps {
   feedItem: SavedFeed;
@@ -77,6 +78,8 @@ export default function MyFeedsContainer() {
     queryFn: () => getSavedFeeds(agent),
   });
 
+  if (isLoading || isFetching) return <MyFeedsContainerSkeleton />;
+
   return (
     <section className="flex flex-col gap-5">
       <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">My Feeds</h2>
@@ -84,7 +87,6 @@ export default function MyFeedsContainer() {
         <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
           Pinned Feeds
         </h3>
-        {(isLoading || isFetching) && <SavedFeedListSkeleton />}
         <section className="flex flex-col">
           {data &&
             data
@@ -98,7 +100,6 @@ export default function MyFeedsContainer() {
 
       <section>
         <h2 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Saved Feeds</h2>
-        {(isLoading || isFetching) && <SavedFeedListSkeleton />}
         <section className="flex flex-col">
           {data &&
             data

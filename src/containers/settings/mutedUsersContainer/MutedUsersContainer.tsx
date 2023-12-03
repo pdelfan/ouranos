@@ -1,7 +1,6 @@
 "use client";
 
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import Alert from "@/components/feedback/alert/Alert";
 import { getMutedUsers } from "@/lib/api/bsky/social";
 import useAgent from "@/lib/hooks/bsky/useAgent";
@@ -9,6 +8,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import MutedUsersContainerSkeleton from "./MutedUsersContainerSkeleton";
 
 export default function MutedUsersContainer() {
   const agent = useAgent();
@@ -65,7 +65,7 @@ export default function MutedUsersContainer() {
             )}
           </section>
 
-          {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
+          {isFetching && !isFetchingNextPage && <MutedUsersContainerSkeleton />}
           {isFetchingNextPage && (
             <section className="flex flex-1 justify-center mt-3">
               <Icon icon="eos-icons:loading" className="text-xl" />

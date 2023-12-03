@@ -4,7 +4,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "nsfw",
     label: "Explicit Sexual Images",
-    visiblity: "warn",
+    visibility: "warn",
     values: ["porn", "nsfl"],
     adult: true,
     message: "Post contains explicit sexual images",
@@ -12,7 +12,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "nudity",
     label: "Other Nudity",
-    visiblity: "warn",
+    visibility: "warn",
     values: ["nudity"],
     adult: true,
     message: "Post contains nudity",
@@ -20,7 +20,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "suggestive",
     label: "Sexually Suggestive",
-    visiblity: "show",
+    visibility: "show",
     values: ["sexual"],
     adult: true,
     message: "Post contains sexually suggestive content",
@@ -28,7 +28,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "gore",
     label: "Violent / Bloody",
-    visiblity: "hide",
+    visibility: "hide",
     values: ["gore", "self-harm", "torture", "nsfl", "corpse"],
     adult: true,
     message: "Post contains violent/bloody content",
@@ -36,7 +36,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "hate",
     label: "Political Hate-Groups",
-    visiblity: "warn",
+    visibility: "warn",
     values: ["icon-kkk", "icon-nazi", "icon-intolerant", "behavior-intolerant"],
     adult: false,
     message: "Post has political hate content",
@@ -44,7 +44,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "spam",
     label: "Spam",
-    visiblity: "hide",
+    visibility: "hide",
     values: ["spam"],
     adult: false,
     message: "Post has been flagged as spam",
@@ -52,7 +52,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
   {
     type: "impersonation",
     label: "Impersonation",
-    visiblity: "warn",
+    visibility: "warn",
     values: ["impersonation"],
     adult: false,
     message: "This account has been flagged as an impersonation",

@@ -1,4 +1,4 @@
-import MutedUsersContainer from "@/containers/settings/MutedUsersContainer";
+import MutedUsersContainer from "@/containers/settings/mutedUsersContainer/MutedUsersContainer";
 
 export default function Page() {
   return <MutedUsersContainer />;

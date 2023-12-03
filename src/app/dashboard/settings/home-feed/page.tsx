@@ -1,4 +1,4 @@
-import HomeFeedContainer from "@/containers/settings/HomeFeedContainer";
+import HomeFeedContainer from "@/containers/settings/homeFeedContainer/HomeFeedContainer";
 
 export default function Page() {
   return <HomeFeedContainer />;
