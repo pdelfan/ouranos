@@ -21,7 +21,7 @@ export default function Home() {
           <li>Open-source</li>
         </ul>
 
-        <div className="flex gap-3 mt-6">
+        <div className="flex flex-wrap gap-3 mt-6">
           <Link
             href="https://bsky.app"
             className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"
@@ -40,8 +40,8 @@ export default function Home() {
         <Image
           src="/images/screenshot.png"
           alt="Ouranos desktop screenshot"
-          width={900}
-          height={500}
+          width={1200}
+          height={830}
         />
       </div>
     </main>

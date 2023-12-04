@@ -34,12 +34,9 @@ export default function Page() {
         </p>
 
         <p className="mt-3">
-          The app is being developed and designed by me,{" "}
-          <Link href="https://github.com/pdelfan" className="underline">
-            Pouria
-          </Link>
-          . I started the project to learn more about the AT Protocol and
-          practice my skills while I look for a full-time role after graduation.
+          The app is being developed and designed by me, Pouria. I started the
+          project to learn more about the AT Protocol and as fun way to practice
+          my skills while I look for a full-time role after graduation.
         </p>
 
         <h2 className="mt-12 mb-6 text-2xl font-medium text-neutral-600">
@@ -69,9 +66,8 @@ export default function Page() {
         </h3>
         <p>
           The current goal is to implement all the functionalities provided by
-          the official app, and more (without storing anything on our side).
-          Some of the current enhancements include a draft feature,
-          comprehensive content filtering, and profile previews.
+          the official app, and more enhancements (without storing anything on
+          our side).
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
@@ -97,9 +93,14 @@ export default function Page() {
           <Link href="" className="underline">
             repository
           </Link>{" "}
-          and create an issue. You can also mention me on Bluesky (my handle is
-          @contrapunctus.bsky.social). If you enjoy using Ouranos, let me know!
-          I'd love to hear from you.
+          and create an issue. You can also mention me on Bluesky (my handle is{" "}
+          <Link
+            href="https://bsky.app/profile/contrapunctus.bsky.social"
+            className="underline"
+          >
+            @contrapunctus.bsky.social
+          </Link>
+          ). If you enjoy using Ouranos, let me know! I'd love to hear from you.
         </p>
       </section>
     </main>

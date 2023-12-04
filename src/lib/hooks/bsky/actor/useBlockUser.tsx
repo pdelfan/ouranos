@@ -5,8 +5,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { blockUser, unBlockUser } from "@/lib/api/bsky/actor";
 import { profileKey } from "../actor/useProfile";
 import { ViewerState } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import { profilePostsKey } from "../feed/useProfilePosts";
-import { useSession } from "next-auth/react";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
