@@ -57,7 +57,7 @@ export default function ThreadPost(props: Props) {
         >
           <Avatar profile={author} size="md" />
         </button>
-        <div className={`flex flex-col grow`}>
+        <div className="flex flex-col grow">
           <div className="flex flex-col">
             <Link
               href={`/dashboard/user/${author.handle}`}

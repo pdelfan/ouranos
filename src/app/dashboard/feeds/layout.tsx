@@ -1,3 +1,4 @@
+import Layout from "@/containers/Layout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,5 +11,5 @@ export default function FeedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <Layout>{children}</Layout>;
 }
