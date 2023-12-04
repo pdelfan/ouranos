@@ -4,7 +4,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function FollowersLayout(props: Props) {
+export default function FollowingLayout(props: Props) {
   const { children } = props;
   return <Layout>{children}</Layout>;
 }
