@@ -59,5 +59,5 @@ export default function PostEmbed(props: Props) {
 
   const chosenEmbed = getEmbed(content);
 
-  return <>{chosenEmbed && <div className="mt-2">{chosenEmbed}</div>}</>;
+  return <>{chosenEmbed && <div>{chosenEmbed}</div>}</>;
 }

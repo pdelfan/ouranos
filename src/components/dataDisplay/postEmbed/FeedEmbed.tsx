@@ -27,7 +27,7 @@ export default function FeedEmbed(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="flex flex-col gap-2 p-3 bg-white border rounded-2xl hover:brightness-95"
+          className="flex flex-col gap-2 p-3 mt-2 bg-white border rounded-2xl hover:brightness-95"
         >
           <div className="flex flex-wrap gap-3 items-center justify-between">
             <div className="flex flex-wrap gap-3 items-center">

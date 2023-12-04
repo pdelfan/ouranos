@@ -23,7 +23,7 @@ export default function RecordEmbed(props: Props) {
 
   return (
     <>
-      <article className="flex flex-col gap-2 rounded-xl hover:bg-neutral-50 hover:cursor-pointer">
+      <article className="flex flex-col rounded-xl hover:bg-neutral-50 hover:cursor-pointer">
         {isBlocked && <BlockedEmbed depth={depth} />}
         {notFound && <NotFoundEmbed depth={depth} />}
         {media && <PostEmbed content={media} depth={depth + 1} />}
@@ -37,7 +37,7 @@ export default function RecordEmbed(props: Props) {
               );
               e.stopPropagation();
             }}
-            className="flex justify-between items-center gap-2 p-3 border rounded-xl"
+            className="flex justify-between items-center gap-2 p-3 mt-2 border rounded-xl"
           >
             <div className="flex items-start gap-2">
               <div className="flex flex-col">

@@ -15,7 +15,7 @@ export default function ListEmbed(props: Props) {
   return (
     <>
       {depth < 1 && (
-        <div className="p-3 border rounded-xl bg-white hover:brightness-95">
+        <div className="p-3 mt-2 border rounded-xl bg-white hover:brightness-95">
           <div className="flex items-start gap-2">
             <div className="bg-primary p-2.5 rounded-lg">
               <Icon icon={selectedIcon} className="text-white text-xl" />

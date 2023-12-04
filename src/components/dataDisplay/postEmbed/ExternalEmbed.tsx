@@ -13,7 +13,7 @@ export default function ExternalEmbed(props: Props) {
   return (
     <>
       {depth < 2 && (
-        <article className="border rounded-2xl bg-white hover:brightness-95">
+        <article className="mt-2 border rounded-2xl bg-white hover:brightness-95">
           <Link
             href={embed.external.uri}
             target="blank"

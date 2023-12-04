@@ -151,7 +151,7 @@ export default function ImageEmbed(props: Props) {
         />
       )}
       {depth < 2 && (
-        <article>{generateImageLayout(imageCount, content.images)}</article>
+        <article className="mt-2">{generateImageLayout(imageCount, content.images)}</article>
       )}
     </>
   );
