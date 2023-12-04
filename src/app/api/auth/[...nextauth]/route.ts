@@ -8,6 +8,7 @@ import type {
   NextApiResponse,
 } from "next";
 import { getServerSession } from "next-auth";
+import { jwtDecode } from "jwt-decode";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -54,7 +55,7 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
+      if (user && user.bskySession) {
         token.id = user.id;
         token.handle = user.handle;
         token.email = user.email;
@@ -67,12 +68,42 @@ export const authOptions: NextAuthOptions = {
     // add extra properties to session
     async session({ session, token }): Promise<Session> {
       const receivedToken = token as JWT & User;
+
       session.user.email = receivedToken.email;
       session.user.id = receivedToken.id;
       session.user.handle = receivedToken.handle;
       session.user.emailConfirmed = receivedToken.emailConfirmed;
       session.user.bskySession = receivedToken.bskySession;
 
+      const refreshToken: { iat: number; exp: number } = jwtDecode(
+        receivedToken.bskySession.refreshJwt
+      );
+
+      const now = Date.now() / 1000;
+
+      if (now >= refreshToken.exp) {
+        throw new Error("Refresh token expired");
+      }
+
+      const accessToken: { iat: number; exp: number } = jwtDecode(
+        receivedToken.bskySession.accessJwt
+      );
+
+      if (now >= accessToken.exp) {
+        console.log("Access token expired, refreshing");
+        const { data } = await at.api.com.atproto.server.refreshSession(
+          undefined,
+          {
+            headers: {
+              authorization: "Bearer " + session.user.bskySession.refreshJwt,
+            },
+          }
+        );
+        session.user.bskySession.refreshJwt = data.refreshJwt;
+        session.user.bskySession.accessJwt = data.accessJwt;
+        session.user.handle = data.handle;
+        session.user.id = data.did;
+      }
       return session;
     },
   },
