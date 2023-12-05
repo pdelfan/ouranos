@@ -13,7 +13,7 @@ export default function SignOut(props: Props) {
   return (
     <button
       onClick={() => signOut({ callbackUrl: "/" })}
-      className="font-medium text-neutral-500"
+      className="font-medium text-neutral-500 hover:text-neutral-400"
     >
       {iconOnly ? (
         <Icon icon="bx:log-out" className="text-neutral-600 text-2xl" />

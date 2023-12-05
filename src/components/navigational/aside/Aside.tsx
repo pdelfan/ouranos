@@ -14,7 +14,7 @@ export default async function Aside() {
         <div className="flex flex-col items-end">
           <Link
             href={`/dashboard/user/${profile?.handle}`}
-            className="font-semibold max-w-[7rem] truncate"
+            className="font-semibold max-w-[7rem] truncate hover:text-neutral-600"
           >
             {profile?.displayName ?? profile?.handle}
           </Link>
