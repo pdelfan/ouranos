@@ -31,7 +31,10 @@ export default forwardRef<HTMLButtonElement, Props>(function Button(
       {...rest}
     >
       {icon && (
-        <Icon icon={icon} className={`text-lg ${iconColor} ${iconSize}`} />
+        <Icon
+          icon={icon}
+          className={`${iconColor} ${iconSize ? iconSize : "text-lg"}`}
+        />
       )}
       {children}
     </button>
