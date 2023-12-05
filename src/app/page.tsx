@@ -6,7 +6,10 @@ export default function Home() {
     <main className="mx-auto p-5 mt-0 md:mt-16">
       <header className="flex justify-between items-center max-w-xl mx-auto">
         <Image src="/logo.svg" alt="Ouranos logo" width={120} height={35} />
-        <Link href="/about" className="font-medium text-neutral-500">
+        <Link
+          href="/about"
+          className="font-medium text-neutral-500 hover:text-neutral-600"
+        >
           About
         </Link>
       </header>
@@ -24,13 +27,13 @@ export default function Home() {
         <div className="flex flex-wrap gap-3 mt-6">
           <Link
             href="https://bsky.app"
-            className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:brightness-95"
+            className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:bg-neutral-300/60"
           >
             Sign up on Bluesky
           </Link>
           <Link
             href="/login"
-            className="bg-zinc-600 text-white font-medium px-5 py-3 rounded-full hover:brightness-95"
+            className="bg-zinc-600 text-white font-medium px-5 py-3 rounded-full hover:bg-zinc-700"
           >
             Log in
           </Link>

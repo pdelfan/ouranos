@@ -94,7 +94,6 @@ export default function ThreadPreferencesContainer() {
             <Switch
               checked={preferences?.threadPreferences.prioritizeFollowedUsers}
               onCheckedChange={async (value) => {
-                // TODO: update local state
                 updateThreadPrefs.mutate({
                   prioritizeFollowedUsers: value,
                 });

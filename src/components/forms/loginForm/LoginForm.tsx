@@ -90,7 +90,7 @@ export default function LoginForm() {
         )}
         <Button
           type="submit"
-          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:brightness-95"
+          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:bg-zinc-700"
           disabled={loading}
           aria-disabled={loading}
           icon="mdi:sign-in"
