@@ -24,7 +24,7 @@ function Skeleton() {
 
 export default function FeedPostSkeleton() {
   return (
-    <div className="first:border-t-0">
+    <div>
       <Skeleton />
       <Skeleton />
       <Skeleton />

@@ -6,6 +6,7 @@ import FeedPostSkeleton from "../feedPost/FeedPostSkeleton";
 import { Fragment } from "react";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import SearchPost from "../searchPost/SearchPost";
+import Alert from "@/components/feedback/alert/Alert";
 
 interface Props {
   query: string;
@@ -30,7 +31,7 @@ export default function PostsSearchList(props: Props) {
   return (
     <>
       {isFetching && <FeedPostSkeleton />}
-      <section className="flex flex-col border-t">
+      <section className="flex flex-col">
         {posts &&
           posts.map((post, i) => (
             <Fragment key={i}>
@@ -38,6 +39,11 @@ export default function PostsSearchList(props: Props) {
             </Fragment>
           ))}
       </section>
+      {posts && posts.length === 0 && (
+        <div className="mt-2 mx-3 md:mx-0">
+          <Alert variant="info" message="No posts found" />
+        </div>
+      )}
       {posts && posts.length > 0 && <EndOfFeed />}
     </>
   );

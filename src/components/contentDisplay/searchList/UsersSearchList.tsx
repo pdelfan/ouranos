@@ -8,6 +8,7 @@ import { Fragment, useEffect } from "react";
 import ProfileCardSkeleton from "../profileCard/ProfileCardSkeleton";
 import { useInView } from "react-intersection-observer";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Alert from "@/components/feedback/alert/Alert";
 
 interface Props {
   query: string;
@@ -67,6 +68,11 @@ export default function UsersSearchList(props: Props) {
         </section>
       )}
       <div ref={ref} />
+      {profiles?.pages[0]?.actors.length === 0 && (
+        <div className="mt-2 mx-3 md:mx-0">
+          <Alert variant="info" message="No users found" />
+        </div>
+      )}
     </section>
   );
 }
