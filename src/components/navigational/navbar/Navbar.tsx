@@ -9,7 +9,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="inline-flex flex-col gap-6">
+    <nav className="inline-flex flex-col gap-6 lg:ml-1.5">
       <NavItem
         href="/dashboard/home"
         icons={["bxs:home", "bx:home"]}
