@@ -79,7 +79,7 @@ export default function ProfileHeader(props: Props) {
             <div className="absolute bottom-0 transform translate-y-1/2 px-3">
               {profile.avatar ? (
                 <Button
-                  className="hover:brightness-90"
+                  className="rounded-full border-4 border-white"
                   disabled={isBlocked || hasBlockedYou}
                   onClick={() => setShowAvatar(true)}
                 >
@@ -88,7 +88,7 @@ export default function ProfileHeader(props: Props) {
                     alt="Avatar"
                     width={95}
                     height={95}
-                    className="object-cover rounded-full border-4 border-white"
+                    className="object-cover rounded-full hover:brightness-90"
                   />
                 </Button>
               ) : (

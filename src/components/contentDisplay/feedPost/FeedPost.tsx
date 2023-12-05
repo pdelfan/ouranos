@@ -40,7 +40,7 @@ export default function FeedPost(props: Props) {
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))
       ?.message ||
     contentFilters.find((f) => f.values.includes(label))?.message ||
-    "Hidden content";
+    "Marked content";
   const visibility = adultContentFilters.find((f) =>
     f.values.includes(label || embedLabel)
   )?.visibility;

@@ -30,7 +30,7 @@ export default function ThreadPost(props: Props) {
       : "";
   const message =
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))
-      ?.message ?? "Adult content";
+      ?.message ?? "Marked content";
   const visibility = adultContentFilters.find((f) =>
     f.values.includes(label || embedLabel)
   )?.visibility;
