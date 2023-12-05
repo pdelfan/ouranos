@@ -1,12 +1,12 @@
 "use client";
 
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import NavItem from "./NavItem";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
   return (
     <nav className="inline-flex flex-col gap-6">
@@ -34,12 +34,12 @@ export default function Navbar() {
         title="Notifications"
         isActive={pathname.includes("notifications")}
       />
-      {/* <NavItem
+      <NavItem
         href={`/dashboard/user/${session?.user.handle}`}
         icons={["bxs:user", "bx:user"]}
         title="Profile"
         isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
-      /> */}
+      />
       <NavItem
         href="/dashboard/settings"
         icons={["bxs:cog", "bx:cog"]}
