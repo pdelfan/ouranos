@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { filterFeed } from "@/lib/utils/feed";
+import Refetch from "@/components/actions/refetch/Refetch";
 
 interface Props {
   feed: string;
@@ -17,6 +18,7 @@ export default function FeedContainer(props: Props) {
   const { feed } = props;
   const {
     observerRef,
+    refetchFeed,
     feedStatus,
     feedData,
     feedError,
@@ -36,6 +38,12 @@ export default function FeedContainer(props: Props) {
 
   return (
     <div>
+      <Refetch
+        onRefetch={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          refetchFeed();
+        }}
+      />
       {feedData &&
         contentFilter &&
         feedFilter &&

@@ -55,8 +55,7 @@ export default function useProfilePosts(props: Props) {
       chooseFetchFunction(mode)(agent, actor, pageParam),
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
-    refetchInterval: 15000,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 
   useEffect(() => {

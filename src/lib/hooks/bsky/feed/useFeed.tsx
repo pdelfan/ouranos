@@ -1,8 +1,9 @@
 import { useInView } from "react-intersection-observer";
 import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFeed, getTimeline } from "../../../api/bsky/feed";
+import { FeedViewPost } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 
 export const useFeedKey = (feed: string) => [feed];
 
@@ -12,6 +13,7 @@ export default function useFeed(feed: string) {
   const {
     status,
     data: timeline,
+    refetch,
     error,
     isLoading,
     isFetching,
@@ -26,7 +28,6 @@ export default function useFeed(feed: string) {
         : getFeed(agent, feed, pageParam),
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
-    refetchInterval: 15000,
     refetchOnWindowFocus: false,
   });
 
@@ -38,6 +39,7 @@ export default function useFeed(feed: string) {
 
   return {
     observerRef: ref,
+    refetchFeed: refetch,
     feedStatus: status,
     feedData: timeline,
     feedError: error,

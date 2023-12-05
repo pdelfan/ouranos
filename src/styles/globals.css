@@ -8,13 +8,16 @@
     --background-color: #ffffff;
   }
 
+  html {
+    scroll-behavior: smooth !important;
+  }
+
   body {
     box-sizing: border-box;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
     background-color: var(--background-color);
   }
 }

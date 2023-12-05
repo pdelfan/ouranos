@@ -56,8 +56,8 @@ export default function useNotification() {
     },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
-    refetchInterval: 15000,
-    refetchOnWindowFocus: false,
+    refetchInterval: 20000,
+    refetchOnWindowFocus: true,
   });
 
   useEffect(() => {
