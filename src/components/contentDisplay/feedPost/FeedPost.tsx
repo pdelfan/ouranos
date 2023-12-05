@@ -102,6 +102,7 @@ export default function FeedPost(props: Props) {
                 &nbsp;· {getRelativeTime(indexedAt)}
               </span>
             </div>
+            <PostText record={post.post.record} />
             {visibility !== "show" &&
               visibility !== "ignore" &&
               (label || embedLabel) && (
@@ -116,7 +117,6 @@ export default function FeedPost(props: Props) {
               )}
             {!hidden && (
               <>
-                <PostText record={post.post.record} />
                 {post.post.embed && (
                   <PostEmbed content={post.post.embed} depth={0} />
                 )}
