@@ -26,6 +26,8 @@ export default function useFeed(feed: string) {
         : getFeed(agent, feed, pageParam),
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
+    refetchInterval: 15000,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
