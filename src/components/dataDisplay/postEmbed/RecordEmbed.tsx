@@ -53,7 +53,9 @@ export default function RecordEmbed(props: Props) {
                 &nbsp;· {getRelativeTime(record.indexedAt)}
               </span>
             </div>
-            <PostText record={record.value} truncate={true} />
+            <div className="mt-1">
+              <PostText record={record.value} truncate={true} />
+            </div>
             {record.embeds && record.embeds.length > 0 && (
               <PostEmbed content={record.embeds[0]} depth={depth + 1} />
             )}
