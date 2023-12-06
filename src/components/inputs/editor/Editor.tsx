@@ -5,6 +5,7 @@ import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
+import { useState } from "react";
 
 interface Props {
   onCancel: () => void;
@@ -13,6 +14,7 @@ interface Props {
 
 export default function Editor(props: Props) {
   const { onCancel, isReply } = props;
+  const [label, setLabel] = useState("");
 
   const editor = useEditor({
     extensions: [
@@ -37,10 +39,12 @@ export default function Editor(props: Props) {
   return (
     <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl">
       <div className="mx-auto max-w-2xl">
-        <TopEditorBar onCancel={onCancel} />
+        <TopEditorBar onCancel={onCancel} label={label} />
         <TextEdit editor={editor} />
         <BottomEditorBar
           editor={editor}
+          label={label}
+          onSelectLabel={setLabel}
           charCount={editor?.storage.characterCount.characters()}
         />
       </div>

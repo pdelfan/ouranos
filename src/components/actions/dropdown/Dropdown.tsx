@@ -63,11 +63,12 @@ Dropdown.Menu = DropdownMenu;
 interface DropdownMenuItemProps {
   onSelect: () => void;
   text: string;
+  textColor?: string;
   icon?: string;
 }
 
 function DropdownMenuItem(props: DropdownMenuItemProps) {
-  const { onSelect, text, icon } = props;
+  const { onSelect, text, textColor, icon } = props;
   let { closeMenu } = useContext(DropdownMenuContext);
 
   return (
@@ -77,7 +78,9 @@ function DropdownMenuItem(props: DropdownMenuItemProps) {
         closeMenu();
         onSelect();
       }}
-      className="flex justify-between items-center gap-5 py-1 px-2 text-neutral-600 rounded-md hover:bg-neutral-100 hover:outline-none hover:cursor-pointer"
+      className={`flex justify-between items-center gap-5 py-1 px-2 ${
+        textColor ? textColor : "text-neutral-600"
+      } rounded-md hover:bg-neutral-100 hover:outline-none hover:cursor-pointer`}
     >
       <span className="font-medium">{text}</span>
       {icon && <Icon icon={icon} className="text-xl" />}

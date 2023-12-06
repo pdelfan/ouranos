@@ -9,15 +9,20 @@ import LanguagePicker from "./LanguagePicker";
 interface Props {
   editor: Editor;
   charCount: number;
+  label: string;
+  onSelectLabel: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function BottomEditorBar(props: Props) {
-  const { editor, charCount } = props;
+  const { editor, charCount, label, onSelectLabel } = props;
   return (
-    <div className="flex justify-between border-t py-3">
+    <div className="flex flex-wrap justify-between gap-5 border-t py-3">
       <div className="flex gap-4">
         <EmojiPicker onEmojiSelect={editor.commands.insertContent} />
-        <AdultContentPicker />
+        <AdultContentPicker
+          onSelectLabel={onSelectLabel}
+          selectedLabel={label}
+        />
         <ImagePicker />
         <LinkPicker />
       </div>
