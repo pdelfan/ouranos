@@ -155,7 +155,7 @@ export default function PostActions(props: Props) {
   return (
     <div className="flex gap-x-8">
       <Button
-        className="text-neutral-500 hover:text-primary"
+        className="text-sm font-medium text-neutral-500 hover:text-primary"
         icon="bx:message-rounded"
       >
         {post.replyCount}
@@ -167,11 +167,13 @@ export default function PostActions(props: Props) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className={
-              reposted
-                ? "text-green-600"
-                : "text-neutral-500 hover:text-green-600"
-            }
+            className={`text-sm font-medium
+              ${
+                reposted
+                  ? "text-green-600"
+                  : "text-neutral-500 hover:text-green-600"
+              }
+            `}
             icon="bx:repost"
           >
             {repostCount}
@@ -198,9 +200,9 @@ export default function PostActions(props: Props) {
           e.stopPropagation();
           toggleLike.mutate();
         }}
-        className={
-          liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
-        }
+        className={`text-sm font-medium
+          ${liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"}
+          `}
         icon={liked ? "bxs:heart" : "bx:heart"}
       >
         {likeCount}
