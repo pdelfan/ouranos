@@ -14,7 +14,10 @@ export default function EmojiPicker(props: Props) {
   return (
     <div>
       <Button
-        onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setShowEmojiPicker(!showEmojiPicker);
+        }}
         icon="bx:smile"
         iconColor="text-primary"
         iconSize="text-2xl"
@@ -24,7 +27,14 @@ export default function EmojiPicker(props: Props) {
         <div className="absolute mt-2 md:bottom-14">
           <Picker
             data={data}
-            onEmojiSelect={(emoji: EmojiData) => onEmojiSelect(emoji.native)}
+            onEmojiSelect={(emoji: EmojiData, e: React.MouseEvent) => {
+              e.stopPropagation();
+              onEmojiSelect(emoji.native);
+              setShowEmojiPicker(false);
+            }}
+            onClickOutside={() => {
+              setShowEmojiPicker(false);
+            }}
           />
         </div>
       )}

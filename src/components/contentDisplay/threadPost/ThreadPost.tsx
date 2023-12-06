@@ -77,6 +77,7 @@ export default function ThreadPost(props: Props) {
         </div>
       </div>
       <div className="mt-3">
+        <PostText record={post.record} mode="thread" />
         {visibility !== "show" &&
           visibility !== "ignore" &&
           (label || embedLabel) && (
@@ -90,10 +91,7 @@ export default function ThreadPost(props: Props) {
             </div>
           )}
         {!hidden && (
-          <>
-            <PostText record={post.record} mode="thread" />
-            {post.embed && <PostEmbed content={post.embed} depth={0} />}
-          </>
+          <>{post.embed && <PostEmbed content={post.embed} depth={0} />}</>
         )}
         <div className="mt-3 text-neutral-400 font-medium">
           {getFormattedDate(post.indexedAt)}
