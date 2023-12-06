@@ -42,7 +42,11 @@ export default function Editor(props: Props) {
   return (
     <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl">
       <div className="mx-auto max-w-2xl">
-        <TopEditorBar onCancel={onCancel} label={label} />
+        <TopEditorBar
+          onCancel={onCancel}
+          label={label}
+          onRemoveLabel={() => setLabel("")}
+        />
         <TextEdit editor={editor} />
         <BottomEditorBar
           editor={editor}
