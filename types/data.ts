@@ -6,3 +6,8 @@ interface EmojiData {
   shortcodes: string[];
   unified: string;
 }
+
+interface Language {
+  code: string;
+  name: string;
+}

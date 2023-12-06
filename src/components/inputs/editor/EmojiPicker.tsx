@@ -19,7 +19,7 @@ export default function EmojiPicker(props: Props) {
           setShowEmojiPicker(!showEmojiPicker);
         }}
         icon="bx:smile"
-        iconColor="text-primary"
+        iconColor="text-primary hover:text-primary-dark"
         iconSize="text-2xl"
         className="p-0"
       />

@@ -8,10 +8,10 @@ interface Props {
 export default function TopEditorBar(props: Props) {
   const { onCancel, label } = props;
   return (
-    <div className="flex flex-wrap justify-between items-center">
+    <div className="flex flex-wrap justify-between items-center gap-2">
       <Button
         onClick={onCancel}
-        className="px-3 py-2 font-semibold border rounded-full hover:bg-neutral-50"
+        className="px-3 py-2 text-sm font-semibold border rounded-full hover:bg-neutral-50"
       >
         Cancel
       </Button>
@@ -22,7 +22,7 @@ export default function TopEditorBar(props: Props) {
           <span className="font-medium text-neutral-600">{label}</span>
         </div>
       )}
-      <Button className="bg-primary text-white font-semibold px-6 py-2 rounded-full hover:bg-primary-dark">
+      <Button className="bg-primary text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-primary-dark">
         Post
       </Button>
     </div>

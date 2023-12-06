@@ -15,6 +15,7 @@ interface Props {
 export default function Editor(props: Props) {
   const { onCancel, isReply } = props;
   const [label, setLabel] = useState("");
+  const [languages, setLanguages] = useState<Language[]>([]);
 
   const editor = useEditor({
     extensions: [
@@ -24,6 +25,8 @@ export default function Editor(props: Props) {
       }),
       Placeholder.configure({
         placeholder: `${isReply ? "Write your reply" : "What's up?"}`,
+        emptyEditorClass:
+          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none",
       }),
     ],
     editorProps: {
@@ -46,6 +49,8 @@ export default function Editor(props: Props) {
           label={label}
           onSelectLabel={setLabel}
           charCount={editor?.storage.characterCount.characters()}
+          languages={languages}
+          onSelectLanguages={setLanguages}
         />
       </div>
     </section>

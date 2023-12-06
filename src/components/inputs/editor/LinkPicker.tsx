@@ -5,7 +5,7 @@ export default function LinkPicker() {
     <div>
       <Button
         icon="bx:link"
-        iconColor="text-primary"
+        iconColor="text-primary hover:text-primary-dark"
         iconSize="text-2xl"
         className="p-0"
       />

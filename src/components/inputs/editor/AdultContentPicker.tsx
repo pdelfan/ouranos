@@ -24,7 +24,7 @@ export default function AdultContentPicker(props: Props) {
             e.stopPropagation();
           }}
           iconSize="text-xl"
-          iconColor="text-primary"
+          iconColor="text-primary hover:text-primary-dark"
           icon="octicon:shield-16"
           className="p-0"
         />
@@ -44,7 +44,7 @@ export default function AdultContentPicker(props: Props) {
           <Dropdown.MenuItem
             text="Remove Label"
             textColor="text-red-500"
-            icon="octicon:trash-16"
+            icon="bx:trash"
             onSelect={() => onSelectLabel("")}
           />
         )}

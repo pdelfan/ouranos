@@ -10,11 +10,21 @@ interface Props {
   editor: Editor;
   charCount: number;
   label: string;
+  languages: Language[];
   onSelectLabel: React.Dispatch<React.SetStateAction<string>>;
+  onSelectLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
 }
 
 export default function BottomEditorBar(props: Props) {
-  const { editor, charCount, label, onSelectLabel } = props;
+  const {
+    editor,
+    charCount,
+    label,
+    languages,
+    onSelectLabel,
+    onSelectLanguages,
+  } = props;
+
   return (
     <div className="flex flex-wrap justify-between gap-5 border-t py-3">
       <div className="flex gap-4">
@@ -26,8 +36,11 @@ export default function BottomEditorBar(props: Props) {
         <ImagePicker />
         <LinkPicker />
       </div>
-      <div className="flex gap-5">
-        <LanguagePicker />
+      <div className="flex flex-wrap just gap-x-5 gap-y-2">
+        <LanguagePicker
+          languages={languages}
+          onSelectLanguages={onSelectLanguages}
+        />
         <CharacterCount charCount={charCount} />
       </div>
     </div>
