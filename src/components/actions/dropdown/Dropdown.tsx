@@ -48,7 +48,7 @@ function DropdownMenu({ children }: { children: ReactNode }) {
               e.preventDefault(); // remove outline on close
             }}
             align="center"
-            className="z-50 min-w-[200px] mt-2 bg-white rounded-xl p-1 drop-shadow-lg border"
+            className="z-50 min-w-fit mt-2 mb-2 bg-white rounded-xl p-1 drop-shadow-lg border"
           >
             {children}
           </RadixDropdownMenu.Content>
@@ -63,7 +63,7 @@ Dropdown.Menu = DropdownMenu;
 interface DropdownMenuItemProps {
   onSelect: () => void;
   text: string;
-  icon: string;
+  icon?: string;
 }
 
 function DropdownMenuItem(props: DropdownMenuItemProps) {
@@ -77,10 +77,10 @@ function DropdownMenuItem(props: DropdownMenuItemProps) {
         closeMenu();
         onSelect();
       }}
-      className="flex justify-between items-center py-1 px-2 text-neutral-600 rounded-md hover:bg-neutral-100 hover:outline-none hover:cursor-pointer"
+      className="flex justify-between items-center gap-5 py-1 px-2 text-neutral-600 rounded-md hover:bg-neutral-100 hover:outline-none hover:cursor-pointer"
     >
       <span className="font-medium">{text}</span>
-      <Icon icon={icon} className="text-xl" />
+      {icon && <Icon icon={icon} className="text-xl" />}
     </RadixDropdownMenu.Item>
   );
 }
