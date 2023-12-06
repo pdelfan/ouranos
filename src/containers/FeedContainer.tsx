@@ -9,6 +9,7 @@ import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { filterFeed } from "@/lib/utils/feed";
 import Refetch from "@/components/actions/refetch/Refetch";
+import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 
 interface Props {
   feed: string;
@@ -44,6 +45,7 @@ export default function FeedContainer(props: Props) {
           refetchFeed();
         }}
       />
+      <ComposeButton mode="float" />
       {feedData &&
         contentFilter &&
         feedFilter &&

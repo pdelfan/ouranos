@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Navbar from "../navbar/Navbar";
 import Image from "next/image";
-import Compose from "@/components/actions/compose/Compose";
+import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 
 export default function SidePanel() {
   return (
@@ -20,7 +20,7 @@ export default function SidePanel() {
       </Link>
       <Navbar />
       <div className="mt-28">
-        <Compose />
+        <ComposeButton mode="fixed" />
       </div>
     </menu>
   );
