@@ -79,9 +79,9 @@ export const authOptions: NextAuthOptions = {
         receivedToken.bskySession.refreshJwt
       );
 
-      const now = Date.now() / 1000;
+      const now = Date.now();
 
-      if (now >= refreshToken.exp) {
+      if (now >= refreshToken.exp * 1000) {
         throw new Error("Refresh token expired");
       }
 
@@ -89,7 +89,7 @@ export const authOptions: NextAuthOptions = {
         receivedToken.bskySession.accessJwt
       );
 
-      if (now >= accessToken.exp) {
+      if (now >= accessToken.exp * 1000) {
         console.log("Access token expired, refreshing");
         const { data } = await at.api.com.atproto.server.refreshSession(
           undefined,
