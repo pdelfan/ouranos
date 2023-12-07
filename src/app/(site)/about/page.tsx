@@ -112,7 +112,7 @@ export default function Page() {
           Can I support the project?
         </h3>
         <p className="mt-3">
-          If you would like to support the project and help keep the site up and
+          If you like to support the project and help keep the site up and
           running, stay tuned for more information!
         </p>
       </section>
