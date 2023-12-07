@@ -39,10 +39,9 @@ export default function LinkPicker(props: Props) {
             if (editor.isActive("link")) {
               setShowLinkPicker(false);
               onLinkRemove();
-              return;
+            } else {
+              setShowLinkPicker(true);
             }
-
-            setShowLinkPicker(true);
           }}
           icon={editor.isActive("link") ? "bx:unlink" : "bx:link"}
           iconColor="text-primary hover:text-primary-dark"
@@ -59,11 +58,15 @@ export default function LinkPicker(props: Props) {
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   onLinkAdd(e.currentTarget.value);
+                  setShowLinkPicker(false);
                 }
               }}
             />
             <Button
               onClick={() => {
+                if (editor.isActive("link")) {
+                  setShowLinkPicker(false);
+                }
                 onLinkAdd(href);
               }}
               icon="bx:plus"
