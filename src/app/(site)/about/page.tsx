@@ -37,9 +37,16 @@ export default function Page() {
         </p>
 
         <p className="mt-3">
-          The app is being developed and designed by me, Pouria. I started the
-          project to learn more about the AT Protocol and as fun way to practice
-          my skills while I look for a full-time role after graduation.
+          The app is being developed and designed by me,{" "}
+          <Link
+            href="https://bsky.app/profile/contrapunctus.bsky.social"
+            className="underline"
+          >
+            Pouria
+          </Link>
+          . I started the project to learn more about the AT Protocol and as fun
+          way to practice my skills while I look for a full-time role after
+          graduation.
         </p>
 
         <h2 className="mt-12 mb-6 text-2xl font-medium text-neutral-600">
@@ -69,8 +76,8 @@ export default function Page() {
         </h3>
         <p>
           The current goal is to implement all the functionalities provided by
-          the official app, and more enhancements (without storing anything on
-          our side).
+          the official app, and add more enhancements (some are currently
+          implemented) without storing anything on our side.
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
@@ -97,15 +104,21 @@ export default function Page() {
             repository
           </Link>{" "}
           and create an issue. You can also mention me on Bluesky (my handle is{" "}
-          <Link
-            href="https://bsky.app/profile/contrapunctus.bsky.social"
-            className="underline"
-          >
-            @contrapunctus.bsky.social
-          </Link>
-          ). If you enjoy using Ouranos, let me know! I'd love to hear from you.
+          @contrapunctus.bsky.social). If you enjoy using Ouranos, let me know!
+          I'd love to hear from you.
+        </p>
+
+        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+          Can I support the project?
+        </h3>
+        <p className="mt-3">
+          If you would like to support the project and help keep the site up and
+          running, stay tuned for more information!
         </p>
       </section>
+      <footer className="mt-16 text-center text-sm font-mono text-neutral-500">
+        OURANOS · PUBLIC BETA · {new Date().getFullYear()}
+      </footer>
     </main>
   );
 }
