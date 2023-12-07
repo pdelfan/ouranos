@@ -74,7 +74,10 @@ export default function ProfileBio(props: Props) {
   }
 
   return (
-    <div dir="auto" className="whitespace-pre-wrap [overflow-wrap:anywhere]">
+    <div
+      dir="auto"
+      className="mt-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
+    >
       {content.map((segment, i) => (
         <Fragment key={`${i}+${description}`}>{segment.component}</Fragment>
       ))}

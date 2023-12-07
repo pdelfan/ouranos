@@ -17,8 +17,8 @@ export default function Input(props: Props) {
       <input
         {...props}
         className={`${
-          icon ? "pr-4 pl-8" : "px-4"
-        } py-2.5 mt-1  w-full rounded-lg text-gray-600 border focus:outline-gray-400`}
+          icon ? "pr-4 pl-8 mt-1" : "px-4"
+        } py-2.5  w-full rounded-lg text-gray-600 border focus:outline-gray-400`}
       />
     </div>
   );
