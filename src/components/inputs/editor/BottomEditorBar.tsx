@@ -34,7 +34,7 @@ export default function BottomEditorBar(props: Props) {
           selectedLabel={label}
         />
         <ImagePicker />
-        <LinkPicker />
+        <LinkPicker editor={editor} />
       </div>
       <div className="flex flex-wrap just gap-x-5 gap-y-2">
         <LanguagePicker

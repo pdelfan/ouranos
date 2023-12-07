@@ -4,6 +4,8 @@ import TopEditorBar from "./TopEditorBar";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
+import Paragraph from "@tiptap/extension-paragraph";
+import Link from "@tiptap/extension-link";
 import CharacterCount from "@tiptap/extension-character-count";
 import { useState } from "react";
 
@@ -19,7 +21,18 @@ export default function Editor(props: Props) {
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        codeBlock: false,
+        bold: false,
+        italic: false,
+        code: false,
+        bulletList: false,
+        orderedList: false,
+        blockquote: false,
+        heading: false,
+        strike: false,
+        listItem: false,
+      }),
       CharacterCount.configure({
         limit: 600,
       }),
@@ -27,6 +40,15 @@ export default function Editor(props: Props) {
         placeholder: `${isReply ? "Write your reply" : "What's up?"}`,
         emptyEditorClass:
           "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none",
+      }),
+      Paragraph,
+      Link.extend({ inclusive: false }).configure({
+        autolink: true,
+        openOnClick: false,
+        linkOnPaste: true,
+        HTMLAttributes: {
+          class: "text-primary hover:text-primary-dark",
+        },
       }),
     ],
     editorProps: {

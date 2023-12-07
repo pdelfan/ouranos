@@ -19,6 +19,8 @@
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@tanstack/react-query": "^5.7.2",
     "@tiptap/extension-character-count": "^2.1.13",
+    "@tiptap/extension-link": "^2.1.13",
+    "@tiptap/extension-paragraph": "^2.1.13",
     "@tiptap/extension-placeholder": "^2.1.13",
     "@tiptap/pm": "^2.1.13",
     "@tiptap/react": "^2.1.13",
