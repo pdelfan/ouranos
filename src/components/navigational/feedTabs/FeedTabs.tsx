@@ -31,7 +31,7 @@ export default function FeedTabs() {
 
   return (
     <div
-      className={`pt-4 md:pt-2 bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-scroll md:opacity-100 ${
+      className={`pt-4 md:pt-2 bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 ${
         show ? "translate-y-0" : "-translate-y-20"
       } transition-translate ease-in-out duration-300 sticky top-0 md:translate-y-0  md:relative z-50 md:z-40`}
     >

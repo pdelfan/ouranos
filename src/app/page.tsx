@@ -15,7 +15,7 @@ export default function Home() {
       </header>
       <section className="mt-16 max-w-xl mx-auto animate-fade-up animate-delay-150">
         <small className="inline-block px-3 py-2 mb-1 rounded-full bg-primary/10 font-semibold text-xs text-primary">
-          In Public Beta
+          In Public Beta 🎉
         </small>
         <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
           Your friendly Bluesky client for the web
