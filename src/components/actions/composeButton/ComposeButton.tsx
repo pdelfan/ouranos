@@ -36,7 +36,6 @@ export default function ComposeButton(props: Props) {
           </button>
         </Dialog.Trigger>
       )}
-
       <Dialog.Portal>
         <Dialog.Content>
           <Editor onCancel={() => setShowEditor(false)} />

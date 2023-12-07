@@ -54,7 +54,7 @@ export default function Gallery(props: Props) {
 
   return (
     <section
-      className="z-50 bg-black/80 fixed inset-0 w-screen h-screen"
+      className="z-50 bg-black/80 fixed inset-0 w-screen h-screen animate-fade animate-duration-200"
       onClick={(e) => {
         e.stopPropagation();
         onClose();

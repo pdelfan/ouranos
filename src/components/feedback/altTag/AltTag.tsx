@@ -46,7 +46,7 @@ export default function AltTag(props: Props) {
       </Button>
       {showAlt && (
         <section
-          className="z-50 bg-black/80 fixed inset-0 w-screen h-screen flex items-center justify-center"
+          className="z-50 bg-black/80 fixed inset-0 w-screen h-screen flex items-center justify-center animate-fade animate-duration-200"
           onClick={(e) => {
             e.stopPropagation();
             handleCloseAlt();

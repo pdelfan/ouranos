@@ -24,7 +24,7 @@ export default function EmojiPicker(props: Props) {
         className="p-0"
       />
       {showEmojiPicker && (
-        <div className="absolute mt-2 md:bottom-14">
+        <div className="absolute mt-2 md:bottom-14 animate-fade animate-duration-200">
           <Picker
             data={data}
             onEmojiSelect={(emoji: EmojiData, e: React.MouseEvent) => {

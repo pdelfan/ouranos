@@ -62,7 +62,7 @@ export default function Editor(props: Props) {
   if (!editor) return null;
 
   return (
-    <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl">
+    <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl animate-fade-up animate-duration-200">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
           onCancel={onCancel}

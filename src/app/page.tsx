@@ -13,7 +13,7 @@ export default function Home() {
           About
         </Link>
       </header>
-      <section className="mt-16 max-w-xl mx-auto">
+      <section className="mt-16 max-w-xl mx-auto animate-fade-up animate-delay-150">
         <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
           Your friendly Bluesky client for the web
         </h1>
@@ -39,7 +39,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <div className="mx-auto max-w-fit mt-8">
+      <div className="mx-auto max-w-fit mt-8 animate-fade-up animate-delay-300">
         <Image
           src="/images/screenshot.png"
           alt="Ouranos desktop screenshot"
