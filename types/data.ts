@@ -11,3 +11,9 @@ interface Language {
   code: string;
   name: string;
 }
+
+interface UploadImage {
+  url: string;
+  path?: string;
+  altText?: string;
+}

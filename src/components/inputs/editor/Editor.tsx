@@ -41,7 +41,6 @@ export default function Editor(props: Props) {
         emptyEditorClass:
           "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none",
       }),
-      Paragraph,
       Link.extend({ inclusive: false }).configure({
         autolink: true,
         openOnClick: false,
@@ -62,7 +61,7 @@ export default function Editor(props: Props) {
   if (!editor) return null;
 
   return (
-    <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl animate-fade-up animate-duration-200">
+    <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl overflow-auto animate-fade-up animate-duration-200">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
           onCancel={onCancel}
