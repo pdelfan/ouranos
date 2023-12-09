@@ -14,15 +14,16 @@ import { ComposerOptions } from "@/app/providers/compoter";
 import ReplyToPreview from "./ReplyToPreview";
 import QuoteToPreview from "./QuotePreview";
 import { getComposerPlaceholder } from "@/lib/utils/text";
+import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 
 interface Props {
   onCancel: () => void;
   options: ComposerOptions | null;
+  author: ProfileViewDetailed | null | undefined;
 }
 
 export default function Editor(props: Props) {
-  const { onCancel, options } = props;
-  const isReply = options?.replyTo !== undefined;
+  const { onCancel, options, author } = props;
   const { replyTo, onPost, quote, mention } = options ?? {};
   const [label, setLabel] = useState("");
   const [languages, setLanguages] = useState<Language[]>([]);
@@ -30,7 +31,6 @@ export default function Editor(props: Props) {
   const searchUsers = useSearchUsers();
   const replyAuthor = replyTo?.author.displayName ?? replyTo?.author.handle;
   const quoteAuthor = quote?.author.displayName ?? quote?.author.handle;
-
   const placeholderText = getComposerPlaceholder(
     replyTo ? "reply" : quote ? "quote" : "post",
     replyAuthor ?? quoteAuthor
@@ -56,19 +56,19 @@ export default function Editor(props: Props) {
       Placeholder.configure({
         placeholder: placeholderText,
         emptyEditorClass:
-          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none",
+          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none text-lg",
       }),
       Link.extend({ inclusive: false }).configure({
         autolink: true,
         openOnClick: false,
         linkOnPaste: true,
         HTMLAttributes: {
-          class: "text-primary hover:text-primary-dark",
+          class: "text-primary hover:text-primary-dark text-lg",
         },
       }),
       Mention.configure({
         HTMLAttributes: {
-          class: "text-primary",
+          class: "text-primary text-lg",
         },
         // TODO: Clean this up
         suggestion: CreateMentionSuggestions({ autoComplete: searchUsers }),
@@ -76,7 +76,7 @@ export default function Editor(props: Props) {
     ],
     editorProps: {
       attributes: {
-        class: "focus:outline-none h-48 overflow-y-auto",
+        class: "focus:outline-none h-48 overflow-y-auto text-lg",
       },
     },
     autofocus: true,
@@ -93,7 +93,11 @@ export default function Editor(props: Props) {
           onRemoveLabel={() => setLabel("")}
         />
         {replyTo && <ReplyToPreview post={replyTo} />}
-        <TextEdit editor={editor} />
+        <TextEdit
+          editor={editor}
+          author={author}
+          isReply={replyAuthor ? true : false}
+        />
         {quote && <QuoteToPreview post={quote} />}
         <BottomEditorBar
           editor={editor}

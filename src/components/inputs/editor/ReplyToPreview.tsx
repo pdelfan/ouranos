@@ -11,13 +11,14 @@ export default function ReplyToPreview(props: Props) {
   const { author } = post || {};
 
   return (
-    <article className="flex items-center gap-3 p-2 mt-3 border rounded-2xl">
+    <article className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative">
+      <div className="absolute left-8 top-0 mt-5 z-10 h-full border-l-2" />
       <Image
         src={author.avatar ?? FallbackAvatar}
         alt="Avatar"
         width={50}
         height={50}
-        className="rounded-full"
+        className="rounded-full z-50"
       />
       <div className="flex flex-col">
         <div className="flex gap-1">

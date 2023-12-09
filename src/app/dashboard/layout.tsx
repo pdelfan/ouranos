@@ -4,20 +4,25 @@ import Aside from "@/components/navigational/aside/Aside";
 import AppBar from "@/components/navigational/appBar/AppBar";
 import TopBar from "@/components/navigational/topBar/TopBar";
 import Composer from "@/components/actions/composer/Composer";
+import { getSessionFromServer } from "../api/auth/[...nextauth]/route";
+import { getProfile } from "@/lib/api/bsky/actor";
 
 export const metadata: Metadata = {
   title: "Ouranos",
   description: "Home",
 };
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSessionFromServer();
+  const profile = await getProfile(session?.user.bskySession.handle);
+
   return (
     <main className="flex justify-center gap-12 pb-20 md:mt-6">
-      <Composer />
+      {profile && <Composer author={profile} />}
       <SidePanel />
       <section className="w-full md:max-w-xl">
         <TopBar />
