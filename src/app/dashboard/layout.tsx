@@ -3,6 +3,7 @@ import SidePanel from "@/components/navigational/sidePanel/SidePanel";
 import Aside from "@/components/navigational/aside/Aside";
 import AppBar from "@/components/navigational/appBar/AppBar";
 import TopBar from "@/components/navigational/topBar/TopBar";
+import Composer from "@/components/actions/composer/Composer";
 
 export const metadata: Metadata = {
   title: "Ouranos",
@@ -16,6 +17,7 @@ export default function DashboardLayout({
 }) {
   return (
     <main className="flex justify-center gap-12 pb-20 md:mt-6">
+      <Composer />
       <SidePanel />
       <section className="w-full md:max-w-xl">
         <TopBar />

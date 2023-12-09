@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import SessionProvider from "./providers/session";
 import { getSessionFromServer } from "./api/auth/[...nextauth]/route";
 import QueryProvider from "./providers/query";
+import { ComposerProvider } from "./providers/compoter";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -23,7 +24,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.variable}`}>
         <SessionProvider session={session}>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <ComposerProvider>{children}</ComposerProvider>
+          </QueryProvider>
         </SessionProvider>
       </body>
     </html>
