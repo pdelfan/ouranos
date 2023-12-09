@@ -11,7 +11,7 @@ let DropdownContext = createContext<{
 });
 
 export default function Dropdown({ children }: { children: ReactNode }) {
-  let [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <DropdownContext.Provider value={{ open, setOpen }}>

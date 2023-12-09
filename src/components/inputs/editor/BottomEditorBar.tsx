@@ -15,6 +15,8 @@ interface Props {
   charCount: number;
   label: string;
   languages: Language[];
+  images?: UploadImage[];
+  onUpdateImages: React.Dispatch<React.SetStateAction<UploadImage[] | undefined>>;
   onSelectLabel: React.Dispatch<React.SetStateAction<string>>;
   onSelectLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
 }
@@ -25,30 +27,33 @@ export default function BottomEditorBar(props: Props) {
     charCount,
     label,
     languages,
+    images,
+    onUpdateImages,
     onSelectLabel,
     onSelectLanguages,
   } = props;
 
   const [showDropzone, setShowDropzone] = useState(false);
-  const [previews, setPreviews] = useState<UploadImage[]>();
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    multiple: true,
-    onDrop: (files) => {
-      const updatedPreviews = [
-        ...(previews ?? []),
-        // limit to four images
-        ...files.slice(0, 4).map((file) =>
-          Object.assign(file, {
-            url: URL.createObjectURL(file),
-          })
-        ),
-      ];
-
-      setPreviews(updatedPreviews);
-      console.log(updatedPreviews);
-    },
-  });
+  const { getRootProps, getInputProps, isDragActive, isDragReject } =
+    useDropzone({
+      multiple: true,
+      accept: {
+        "image/*": [".jpeg", ".png"],
+      },
+      onDrop: (files) => {
+        const updatedImages = [
+          ...(images ?? []),
+          // Bluesky's limit is 4 images
+          ...files.slice(0, 4).map((file) =>
+            Object.assign(file, {
+              url: URL.createObjectURL(file),
+            })
+          ),
+        ];
+        onUpdateImages(updatedImages);
+      },
+    });
 
   return (
     <section>
@@ -70,7 +75,9 @@ export default function BottomEditorBar(props: Props) {
           <CharacterCount charCount={charCount} />
         </div>
       </div>
-      {previews && previews.length > 0 && <UploadPreview images={previews} onUpdate={setPreviews} />}
+      {images && images.length > 0 && (
+        <UploadPreview images={images} onUpdate={onUpdateImages} />
+      )}
       {showDropzone && (
         <div
           {...getRootProps()}
@@ -86,10 +93,19 @@ export default function BottomEditorBar(props: Props) {
 
           <div className="flex flex-col items-center gap-2 text-sm font-medium">
             <Icon icon="bx:upload" className="text-2xl text-neutral-600" />
-            <span className="text-neutral-600">
-              Drag and drop your images or click to select images <br /> You can
-              upload up to 4 images
-            </span>
+            <>
+              {!isDragReject && (
+                <span className="text-neutral-600">
+                  Drag and drop your images or click to select images <br /> You
+                  can upload up to 4 images
+                </span>
+              )}
+              {isDragReject && (
+                <span className="text-neutral-600">
+                  You cannot upload this file type
+                </span>
+              )}
+            </>
           </div>
         </div>
       )}

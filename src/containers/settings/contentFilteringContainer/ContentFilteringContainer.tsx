@@ -70,7 +70,6 @@ export default function ContentFilteringContainer() {
   const isAdultContentHidden = preferences?.contentFilter.isAdultContentHidden;
   const agent = useAgent();
   const queryClient = useQueryClient();
-  console.log(preferences);
 
   const updateIsAdultContentHidden = useMutation({
     mutationKey: ["preferences"],

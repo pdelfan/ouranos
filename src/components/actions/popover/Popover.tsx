@@ -1,6 +1,5 @@
 import * as RadixPopover from "@radix-ui/react-popover";
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { Icon } from "@iconify/react/dist/iconify.js";
 
 let PopoverContext = createContext<{
   open: boolean;
@@ -10,12 +9,18 @@ let PopoverContext = createContext<{
   setOpen: () => {},
 });
 
-export default function Popover({ children }: { children: ReactNode }) {
-  let [open, setOpen] = useState(false);
+interface PopoverProps
+  extends React.ComponentPropsWithoutRef<typeof RadixPopover.Root> {
+  children: ReactNode;
+}
+
+export default function Popover(props: PopoverProps) {
+  const { children } = props;
+  const [open, setOpen] = useState(false);
 
   return (
     <PopoverContext.Provider value={{ open, setOpen }}>
-      <RadixPopover.Root open={open} onOpenChange={setOpen}>
+      <RadixPopover.Root open={open} onOpenChange={setOpen} {...props}>
         {children}
       </RadixPopover.Root>
     </PopoverContext.Provider>

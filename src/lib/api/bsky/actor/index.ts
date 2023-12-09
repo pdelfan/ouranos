@@ -45,6 +45,20 @@ export const searchProfiles = async (
   }
 };
 
+export const searchProfilesTypehead = async (
+  agent: BskyAgent,
+  term: string
+) => {
+  try {
+    const results = await agent.searchActorsTypeahead({ term, limit: 5 });
+    if (!results.success) return null;
+    return results.data;
+  } catch (e) {
+    console.error(e);
+    throw new Error("Could not search for users typehead");
+  }
+};
+
 export const searchPosts = async (term: string, agent?: BskyAgent) => {
   if (!agent) agent = await getAgent();
   try {

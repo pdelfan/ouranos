@@ -1,3 +1,5 @@
+import { JSONContent } from "@tiptap/react";
+
 export function getHandle(mention: string) {
   return mention.slice(1);
 }
@@ -24,4 +26,33 @@ export function getNotificationLabel(reason: string) {
     default:
       return "";
   }
+}
+
+export function jsonToText(json: JSONContent) {
+  const content = json.content;
+  let text = "";
+
+  content?.forEach((p, index) => {
+    if (index > 0) {
+      text = text + "\n";
+    }
+
+    if (p.content) {
+      p.content.forEach((item) => {
+        if (item.type === "hardBreak") {
+          text = text + "\n";
+        }
+
+        if (item.text) {
+          text = text + item.text;
+        }
+
+        if (item.type === "mention") {
+          text = text + "@" + item.attrs?.id;
+        }
+      });
+    }
+  });
+
+  return text;
 }

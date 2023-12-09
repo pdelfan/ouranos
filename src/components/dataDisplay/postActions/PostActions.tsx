@@ -155,6 +155,9 @@ export default function PostActions(props: Props) {
   return (
     <div className="flex gap-x-8">
       <Button
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         className="text-sm font-medium text-neutral-500 hover:text-primary"
         icon="bx:message-rounded"
       >

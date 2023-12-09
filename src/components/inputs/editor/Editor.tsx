@@ -4,10 +4,12 @@ import TopEditorBar from "./TopEditorBar";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import Paragraph from "@tiptap/extension-paragraph";
 import Link from "@tiptap/extension-link";
+import Mention from "@tiptap/extension-mention";
 import CharacterCount from "@tiptap/extension-character-count";
 import { useState } from "react";
+import { CreateMentionSuggestions } from "./CreateMentionSuggestions";
+import useSearchUsers from "@/lib/hooks/bsky/actor/useSearchUsers";
 
 interface Props {
   onCancel: () => void;
@@ -18,6 +20,8 @@ export default function Editor(props: Props) {
   const { onCancel, isReply } = props;
   const [label, setLabel] = useState("");
   const [languages, setLanguages] = useState<Language[]>([]);
+  const [images, setImages] = useState<UploadImage[]>();
+  const searchUsers = useSearchUsers();
 
   const editor = useEditor({
     extensions: [
@@ -49,6 +53,13 @@ export default function Editor(props: Props) {
           class: "text-primary hover:text-primary-dark",
         },
       }),
+      Mention.configure({
+        HTMLAttributes: {
+          class: "text-primary",
+        },
+        // TODO: Clean this up
+        suggestion: CreateMentionSuggestions({ autoComplete: searchUsers }),
+      }),
     ],
     editorProps: {
       attributes: {
@@ -76,6 +87,8 @@ export default function Editor(props: Props) {
           charCount={editor?.storage.characterCount.characters()}
           languages={languages}
           onSelectLanguages={setLanguages}
+          images={images}
+          onUpdateImages={setImages}
         />
       </div>
     </section>

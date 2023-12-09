@@ -14,7 +14,7 @@ export default function ComposeButton(props: Props) {
   const show = useHideOnScroll();
 
   return (
-    <Dialog.Root open={showEditor} onOpenChange={setShowEditor}>
+    <Dialog.Root open={showEditor} onOpenChange={setShowEditor} modal={false}>
       {mode === "float" && (
         <Dialog.Trigger asChild>
           <button
@@ -37,7 +37,10 @@ export default function ComposeButton(props: Props) {
         </Dialog.Trigger>
       )}
       <Dialog.Portal>
-        <Dialog.Content>
+        <Dialog.Content
+          onEscapeKeyDown={(e) => e.preventDefault()}
+          onInteractOutside={(e) => e.preventDefault()}
+        >
           <Editor onCancel={() => setShowEditor(false)} />
         </Dialog.Content>
       </Dialog.Portal>

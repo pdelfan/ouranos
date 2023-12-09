@@ -26,12 +26,9 @@ export default function UploadPreview(props: Props) {
     <section>
       <div className="grid grid-cols-2 gap-2 my-2 w-full">
         {images.map((image) => (
-          <div
-            key={image.url}
-            className="relative cursor-pointer h-fit animate-fade"
-          >
+          <div key={image.url} className="relative h-fit animate-fade">
             <Button
-              className="absolute top-0  m-2 p-2 bg-black/50 text-white rounded-full hover:bg-neutral-700"
+              className="absolute top-0 m-2 p-2 bg-black/50 text-white rounded-full hover:bg-neutral-700"
               icon="ph:x-bold"
               onClick={(e) => {
                 e.preventDefault();
@@ -74,7 +71,7 @@ export default function UploadPreview(props: Props) {
                               disabilities and helps give context to everyone.
                             </small>
                           </div>
-                          <div className="mt-2 mb-10 md:max-w-xl mx-auto">
+                          <div className="mt-2 md:max-w-xl mx-auto">
                             <Textarea
                               rows={6}
                               autoFocus={false}
@@ -83,6 +80,7 @@ export default function UploadPreview(props: Props) {
                               onChange={(e) =>
                                 setAltText(e.currentTarget.value)
                               }
+                              className="resize-none"
                             />
                             <div className="flex justify-end gap-3 mt-1">
                               <Button
@@ -110,7 +108,7 @@ export default function UploadPreview(props: Props) {
                                     )
                                   );
                                 }}
-                                className="bg-primary py-2 px-6 rounded-full text-white hover:bg-primary-dark"
+                                className="bg-primary py-2 px-6 rounded-full text-sm text-white font-semibold hover:bg-primary-dark"
                               >
                                 Save
                               </Button>
