@@ -19,7 +19,7 @@ export default function Composer() {
           onEscapeKeyDown={(e) => e.preventDefault()}
           onInteractOutside={(e) => e.preventDefault()}
         >
-          <Editor onCancel={() => closeComposer()} />
+          <Editor onCancel={() => closeComposer()} options={options} />
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

@@ -1,5 +1,6 @@
 "use client";
 
+import { AppBskyEmbedRecord } from "@atproto/api";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 export interface ComposerOptionsPostRef {
@@ -24,7 +25,7 @@ export interface ComposerOptionsQuote {
     displayName?: string;
     avatar?: string;
   };
-  embeds?: any[]; // Replace 'any' with the actual type of AppBskyEmbedRecord.ViewRecord["embeds"]
+  embeds?: AppBskyEmbedRecord.ViewRecord["embeds"];
 }
 
 export interface ComposerOptions {

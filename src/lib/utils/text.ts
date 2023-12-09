@@ -28,6 +28,17 @@ export function getNotificationLabel(reason: string) {
   }
 }
 
+export function getComposerPlaceholder(type: string, name?: string) {
+  switch (type) {
+    case "reply":
+      return `Replying to ${name}`;
+    case "quote":
+      return `Quoting ${name}`;
+    default:
+      return "What's up?";
+  }
+}
+
 export function jsonToText(json: JSONContent) {
   const content = json.content;
   let text = "";

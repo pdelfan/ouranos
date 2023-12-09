@@ -16,7 +16,9 @@ interface Props {
   label: string;
   languages: Language[];
   images?: UploadImage[];
-  onUpdateImages: React.Dispatch<React.SetStateAction<UploadImage[] | undefined>>;
+  onUpdateImages: React.Dispatch<
+    React.SetStateAction<UploadImage[] | undefined>
+  >;
   onSelectLabel: React.Dispatch<React.SetStateAction<string>>;
   onSelectLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
 }

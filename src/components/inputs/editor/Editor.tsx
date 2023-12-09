@@ -10,18 +10,31 @@ import CharacterCount from "@tiptap/extension-character-count";
 import { useState } from "react";
 import { CreateMentionSuggestions } from "./CreateMentionSuggestions";
 import useSearchUsers from "@/lib/hooks/bsky/actor/useSearchUsers";
+import { ComposerOptions } from "@/app/providers/compoter";
+import ReplyToPreview from "./ReplyToPreview";
+import QuoteToPreview from "./QuotePreview";
+import { getComposerPlaceholder } from "@/lib/utils/text";
 
 interface Props {
   onCancel: () => void;
-  isReply?: boolean;
+  options: ComposerOptions | null;
 }
 
 export default function Editor(props: Props) {
-  const { onCancel, isReply } = props;
+  const { onCancel, options } = props;
+  const isReply = options?.replyTo !== undefined;
+  const { replyTo, onPost, quote, mention } = options ?? {};
   const [label, setLabel] = useState("");
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
   const searchUsers = useSearchUsers();
+  const replyAuthor = replyTo?.author.displayName ?? replyTo?.author.handle;
+  const quoteAuthor = quote?.author.displayName ?? quote?.author.handle;
+
+  const placeholderText = getComposerPlaceholder(
+    replyTo ? "reply" : quote ? "quote" : "post",
+    replyAuthor ?? quoteAuthor
+  );
 
   const editor = useEditor({
     extensions: [
@@ -41,7 +54,7 @@ export default function Editor(props: Props) {
         limit: 600,
       }),
       Placeholder.configure({
-        placeholder: `${isReply ? "Write your reply" : "What's up?"}`,
+        placeholder: placeholderText,
         emptyEditorClass:
           "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none",
       }),
@@ -79,7 +92,9 @@ export default function Editor(props: Props) {
           label={label}
           onRemoveLabel={() => setLabel("")}
         />
+        {replyTo && <ReplyToPreview post={replyTo} />}
         <TextEdit editor={editor} />
+        {quote && <QuoteToPreview post={quote} />}
         <BottomEditorBar
           editor={editor}
           label={label}

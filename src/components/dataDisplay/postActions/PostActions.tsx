@@ -3,7 +3,11 @@ import Dropdown from "@/components/actions/dropdown/Dropdown";
 import useLike from "@/lib/hooks/bsky/feed/useLike";
 import useRepost from "@/lib/hooks/bsky/feed/useRepost";
 import { useClipboard } from "use-clipboard-copy";
-import type { AppBskyEmbedRecord, AppBskyFeedDefs } from "@atproto/api";
+import {
+  AppBskyFeedPost,
+  type AppBskyEmbedRecord,
+  type AppBskyFeedDefs,
+} from "@atproto/api";
 import { useCallback } from "react";
 import { getPostId } from "@/lib/utils/link";
 import useMuteUser from "@/lib/hooks/bsky/feed/useMuteUser";
@@ -11,6 +15,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { abbreviateNumber } from "@/lib/utils/number";
 import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
+import { useComposerContext } from "@/app/providers/compoter";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -25,6 +30,7 @@ export default function PostActions(props: Props) {
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
   const { muted, toggleMuteUser } = useMuteUser({ author: post.author });
   const clipboard = useClipboard({ copiedTimeout: 3500 });
+  const { isOpen, options, openComposer, closeComposer } = useComposerContext();
 
   const handleShare = useCallback(() => {
     const postId = getPostId(post.uri);
@@ -70,6 +76,27 @@ export default function PostActions(props: Props) {
         </div>
         <div className="flex gap-x-8 mt-3">
           <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isOpen) closeComposer();
+              else {
+                const text =
+                  AppBskyFeedPost.isRecord(post.record) && post.record.text;
+
+                openComposer({
+                  replyTo: {
+                    uri: post.uri,
+                    cid: post.cid,
+                    text: text.toString(),
+                    author: {
+                      handle: post.author.handle,
+                      displayName: post.author.displayName,
+                      avatar: post.author.avatar,
+                    },
+                  },
+                });
+              }
+            }}
             className="text-neutral-500 hover:text-primary"
             icon="bx:message-rounded"
           />
@@ -97,7 +124,28 @@ export default function PostActions(props: Props) {
                 icon="bx:repost"
               />
               <Dropdown.MenuItem
-                onSelect={() => {}}
+                onSelect={() => {
+                  if (isOpen) closeComposer();
+                  else {
+                    const text =
+                      AppBskyFeedPost.isRecord(post.record) && post.record.text;
+
+                    openComposer({
+                      quote: {
+                        uri: post.uri,
+                        cid: post.cid,
+                        text: text.toString(),
+                        indexedAt: post.indexedAt,
+                        author: {
+                          did: post.author.did,
+                          handle: post.author.handle,
+                          displayName: post.author.displayName,
+                          avatar: post.author.avatar,
+                        },
+                      },
+                    });
+                  }
+                }}
                 text="Quote Post"
                 icon="bxs:quote-alt-right"
               />
@@ -157,6 +205,24 @@ export default function PostActions(props: Props) {
       <Button
         onClick={(e) => {
           e.stopPropagation();
+          if (isOpen) closeComposer();
+          else {
+            const text =
+              AppBskyFeedPost.isRecord(post.record) && post.record.text;
+
+            openComposer({
+              replyTo: {
+                uri: post.uri,
+                cid: post.cid,
+                text: text.toString(),
+                author: {
+                  handle: post.author.handle,
+                  displayName: post.author.displayName,
+                  avatar: post.author.avatar,
+                },
+              },
+            });
+          }
         }}
         className="text-sm font-medium text-neutral-500 hover:text-primary"
         icon="bx:message-rounded"
@@ -191,7 +257,28 @@ export default function PostActions(props: Props) {
             icon="bx:repost"
           />
           <Dropdown.MenuItem
-            onSelect={() => {}}
+            onSelect={() => {
+              if (isOpen) closeComposer();
+              else {
+                const text =
+                  AppBskyFeedPost.isRecord(post.record) && post.record.text;
+
+                openComposer({
+                  quote: {
+                    uri: post.uri,
+                    cid: post.cid,
+                    text: text.toString(),
+                    indexedAt: post.indexedAt,
+                    author: {
+                      did: post.author.did,
+                      handle: post.author.handle,
+                      displayName: post.author.displayName,
+                      avatar: post.author.avatar,
+                    },
+                  },
+                });
+              }
+            }}
             text="Quote Post"
             icon="bxs:quote-alt-right"
           />

@@ -1,8 +1,5 @@
 import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
-import Editor from "@/components/inputs/editor/Editor";
 import { useComposerContext } from "@/app/providers/compoter";
 
 interface Props {
@@ -11,7 +8,6 @@ interface Props {
 
 export default function ComposeButton(props: Props) {
   const { mode } = props;
-  const [showEditor, setShowEditor] = useState(false);
   const show = useHideOnScroll();
   const { isOpen, options, openComposer, closeComposer } = useComposerContext();
 
@@ -42,7 +38,6 @@ export default function ComposeButton(props: Props) {
           <span className="hidden lg:inline">Write a post</span>
         </button>
       )}
-    
     </>
   );
 }
