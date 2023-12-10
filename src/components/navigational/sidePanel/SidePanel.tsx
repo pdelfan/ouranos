@@ -23,7 +23,7 @@ export default function SidePanel() {
         />
       </Button>
       <Navbar />
-      <div className="mt-28">
+      <div className="mt-20">
         <ComposeButton mode="fixed" />
       </div>
     </menu>

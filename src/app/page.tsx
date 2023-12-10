@@ -14,8 +14,8 @@ export default function Home() {
         </Link>
       </header>
       <section className="mt-16 max-w-xl mx-auto animate-fade-up animate-delay-150">
-        <small className="inline-block px-3 py-2 mb-1 rounded-full bg-primary/10 font-semibold text-xs text-primary">
-          In Public Beta 🎉
+        <small className="inline-block px-3 py-2 mb-1 rounded-full bg-primary/10 font-medium text-[0.7rem] text-primary">
+          In Early Access 🎉
         </small>
         <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
           Your friendly Bluesky client for the web
@@ -51,7 +51,7 @@ export default function Home() {
         />
       </div>
       <footer className="mt-16 text-center text-sm font-mono text-neutral-500 animate-fade-up animate-delay-500">
-        OURANOS · PUBLIC BETA · {new Date().getFullYear()}
+        OURANOS · EARLY ACCESS · {new Date().getFullYear()}
       </footer>
     </main>
   );

@@ -14,7 +14,7 @@ export default function Page() {
           Home
         </Link>
       </header>
-      <section className="mt-16 max-w-xl mx-auto">
+      <section className="mt-16 max-w-xl mx-auto animate-fade">
         <h1 className="mb-6 text-4xl font-medium text-neutral-600 max-w-lg">
           About
         </h1>
@@ -117,7 +117,7 @@ export default function Page() {
         </p>
       </section>
       <footer className="mt-16 text-center text-sm font-mono text-neutral-500">
-        OURANOS · PUBLIC BETA · {new Date().getFullYear()}
+        OURANOS · EARLY ACCESS · {new Date().getFullYear()}
       </footer>
     </main>
   );

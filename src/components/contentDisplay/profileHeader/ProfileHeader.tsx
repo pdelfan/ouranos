@@ -50,7 +50,7 @@ export default function ProfileHeader(props: Props) {
         <ProfileHeaderSkeleton />
       )}
       {profile && contentFilter && (
-        <section className="border-0 border-b md:border-x md:rounded-t-2xl overflow-hidden">
+        <section className="border-0 border-y md:border-x md:rounded-t-2xl overflow-hidden">
           <div className="relative">
             {profile.banner ? (
               <Button

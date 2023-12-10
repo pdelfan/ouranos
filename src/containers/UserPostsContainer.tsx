@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { getContentFilter } from "@/lib/utils/feed";
+import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 
 interface Props {
   mode: UserPostMode;
@@ -53,6 +54,7 @@ export default function UserPostsConatiner(props: Props) {
 
   return (
     <div>
+      <ComposeButton mode="float" />
       {!isBlocked &&
         !hasBlockedYou &&
         userPostsData &&

@@ -32,7 +32,7 @@ export default function ComposeButton(props: Props) {
       {mode === "fixed" && (
         <button
           onClick={toggleComposer}
-          className="p-3 flex items-center gap-2 bg-primary lg:px-3 lg:py-2 rounded-full text-white font-semibold hover:brightness-95"
+          className="p-3.5 flex items-center gap-2 bg-primary lg:px-3 lg:py-2.5 rounded-full text-white font-semibold hover:brightness-95"
         >
           <Icon icon="mdi:feather" className="text-2xl" />
           <span className="hidden lg:inline">Write a post</span>

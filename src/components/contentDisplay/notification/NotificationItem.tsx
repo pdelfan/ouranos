@@ -119,7 +119,7 @@ export default function NotificationItem(props: Props) {
   } else {
     return (
       <div
-        className={`flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 first:md:rounded-t-2xl hover:bg-neutral-50 ${
+        className={`flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 first:md:rounded-t-2xl ${
           !isRead && "bg-neutral-100"
         }`}
       >

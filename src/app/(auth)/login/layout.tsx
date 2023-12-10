@@ -11,7 +11,7 @@ export default async function InventoryLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-[100svh] flex items-center justify-center ">
+    <main className="min-h-[100svh] flex items-center justify-center animate-fade animate-duration-200">
       {children}
     </main>
   );
