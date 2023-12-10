@@ -127,8 +127,8 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
                 <Image
                   src={item?.avatar ?? FallbackAvatar}
                   alt="Avatar"
-                  width={40}
-                  height={40}
+                  width={35}
+                  height={35}
                   className="rounded-full"
                 />
                 <div className="flex flex-col">
