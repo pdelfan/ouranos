@@ -1,15 +1,22 @@
 import { useCallback, useEffect, useState } from "react";
 
+interface Props {
+  showOnTop?: boolean;
+}
+
 const DEBOUNCE_DELAY = 15;
 
-export default function useHideOnScroll() {
+export default function useHideOnScroll(props: Props) {
+  const { showOnTop = true } = props;
   const [show, setShow] = useState(true);
   const [prevScrollY, setPrevScrollY] = useState(0);
 
   const controlNavbar = useCallback(() => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    if (scrollY === 0) {
+    if (!showOnTop && scrollY === 0) {
+      setShow(false);
+    } else if (scrollY === 0) {
       setShow(true); // explicitly set show to true when at the top of the page (fix for Safari)
     } else if (scrollY > prevScrollY && show) {
       setShow(false);

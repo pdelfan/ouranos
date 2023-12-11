@@ -52,7 +52,7 @@ export default function UploadPreview(props: Props) {
                 <Dialog.Portal>
                   <Dialog.Content>
                     {selectedImage && (
-                      <section className="flex flex-col justify-between bg-white p-3 bottom-0 z-50 fixed  w-full h-full md:h-fit md:border-t shadow-xl rounded-t-3xl overflow-scroll animate-fade-up animate-duration-200">
+                      <section className="flex flex-col justify-between bg-white p-3 bottom-0 z-50 fixed  w-full h-full md:h-fit md:border-t shadow-2xl rounded-t-3xl overflow-scroll animate-fade-up animate-duration-200">
                         <div>
                           <Image
                             src={selectedImage.url}

@@ -27,7 +27,7 @@ export default function FeedTabs() {
     queryFn: () => getSavedFeeds(agent),
   });
 
-  const show = useHideOnScroll();
+  const show = useHideOnScroll({});
 
   return (
     <div

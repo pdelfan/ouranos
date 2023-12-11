@@ -43,6 +43,7 @@ export default function FeedContainer(props: Props) {
         onRefetch={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
           refetchFeed();
+          console.log('refe')
         }}
       />
       <ComposeButton mode="float" />

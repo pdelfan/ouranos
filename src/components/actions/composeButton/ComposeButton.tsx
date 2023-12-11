@@ -8,7 +8,7 @@ interface Props {
 
 export default function ComposeButton(props: Props) {
   const { mode } = props;
-  const show = useHideOnScroll();
+  const show = useHideOnScroll({});
   const { isOpen, options, openComposer, closeComposer } = useComposerContext();
 
   const toggleComposer = () => {

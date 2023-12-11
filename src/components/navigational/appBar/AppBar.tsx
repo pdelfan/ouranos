@@ -6,7 +6,7 @@ import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
 
 export default function AppBar() {
   const pathname = usePathname();
-  const show = useHideOnScroll();
+  const show = useHideOnScroll({});
 
   return (
     <nav
