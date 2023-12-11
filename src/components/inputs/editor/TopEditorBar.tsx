@@ -1,13 +1,22 @@
 import Button from "@/components/actions/button/Button";
+import { useEffect } from "react";
 
 interface Props {
   onCancel: () => void;
   label: string;
   onRemoveLabel: () => void;
+  numberOfImages?: number;
 }
 
 export default function TopEditorBar(props: Props) {
-  const { onCancel, label, onRemoveLabel } = props;
+  const { onCancel, label, onRemoveLabel, numberOfImages } = props;
+
+  useEffect(() => {
+    if (numberOfImages === 0 && label !== "") {
+      onRemoveLabel();
+    }
+  }, [numberOfImages, label, onRemoveLabel]);
+
   return (
     <div className="flex flex-wrap justify-between items-center gap-2">
       <Button

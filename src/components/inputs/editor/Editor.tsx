@@ -102,6 +102,7 @@ export default function Editor(props: Props) {
           onCancel={onCancel}
           label={label}
           onRemoveLabel={() => setLabel("")}
+          numberOfImages={images?.length ?? 0}
         />
         {replyTo && <ReplyToPreview post={replyTo} />}
         <TextEdit
