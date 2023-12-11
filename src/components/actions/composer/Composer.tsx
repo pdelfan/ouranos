@@ -19,11 +19,13 @@ export default function Composer(props: Props) {
   };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={toggleComposer} modal={false}>
+    <Dialog.Root open={isOpen} onOpenChange={toggleComposer}>
       <Dialog.Portal>
+        <Dialog.Overlay />
         <Dialog.Content
           onEscapeKeyDown={(e) => e.preventDefault()}
           onInteractOutside={(e) => e.preventDefault()}
+          id="composer"
         >
           <Editor
             author={author}

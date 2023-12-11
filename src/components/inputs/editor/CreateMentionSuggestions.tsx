@@ -36,7 +36,7 @@ export function CreateMentionSuggestions({
 }): MentionOptions["suggestion"] {
   return {
     items: async ({ query }) => {
-      // TODO: add debounce
+      // TODO: add debounc
       const suggestions = await autoComplete(query);
       if (!suggestions) return [];
       return suggestions.map((suggestion) => ({
@@ -54,6 +54,7 @@ export function CreateMentionSuggestions({
     render: () => {
       let component: ReactRenderer<SuggestionListRef> | undefined;
       let popup: TippyInstance | undefined;
+      let parent: HTMLDivElement | null = document.querySelector("#composer");
 
       return {
         onStart: (props) => {
@@ -65,7 +66,7 @@ export function CreateMentionSuggestions({
           popup = tippy("body", {
             getReferenceClientRect: () =>
               props.clientRect?.() ?? DOM_RECT_FALLBACK,
-            appendTo: () => document.body,
+            appendTo: parent ?? "parent",
             content: component.element,
             showOnCreate: true,
             interactive: true,
