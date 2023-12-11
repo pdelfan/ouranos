@@ -78,7 +78,7 @@ export default function BottomEditorBar(props: Props) {
         </div>
       </div>
       {images && images.length > 0 && (
-        <UploadPreview images={images} onUpdate={onUpdateImages} />
+        <UploadPreview images={images.slice(0, 4)} onUpdate={onUpdateImages} />
       )}
       {showDropzone && (
         <div
