@@ -15,6 +15,9 @@ import ReplyToPreview from "./ReplyToPreview";
 import QuoteToPreview from "./QuotePreview";
 import { getComposerPlaceholder } from "@/lib/utils/text";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
+import { detectLinksInEditor } from "@/lib/utils/link";
+import LinkCardPrompt from "./LinkCardPrompt";
+import LinkCard from "./LinkCard";
 
 interface Props {
   onCancel: () => void;
@@ -28,6 +31,10 @@ export default function Editor(props: Props) {
   const [label, setLabel] = useState("");
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
+  const [embedSuggestions, setEmbedSuggestions] = useState<Set<string>>(
+    new Set("")
+  );
+  const [linkEmbed, setLinkEmbed] = useState("");
   const searchUsers = useSearchUsers();
   const replyAuthor = replyTo?.author.displayName ?? replyTo?.author.handle;
   const quoteAuthor = quote?.author.displayName ?? quote?.author.handle;
@@ -80,6 +87,9 @@ export default function Editor(props: Props) {
       },
     },
     autofocus: true,
+    onUpdate: ({ editor }) => {
+      setEmbedSuggestions(detectLinksInEditor(editor.getJSON()));
+    },
   });
 
   if (!editor) return null;
@@ -99,6 +109,23 @@ export default function Editor(props: Props) {
           isReply={replyAuthor ? true : false}
         />
         {quote && <QuoteToPreview post={quote} />}
+        {embedSuggestions.size > 0 &&
+          Array.from(embedSuggestions).map((link) => (
+            <LinkCardPrompt
+              key={link}
+              link={link}
+              onAddLinkCard={() => {
+                setLinkEmbed(link);
+                setEmbedSuggestions(new Set(""));
+              }}
+            />
+          ))}
+        {linkEmbed !== "" && (
+          <LinkCard
+            link={linkEmbed}
+            onRemoveLinkCard={() => setLinkEmbed("")}
+          />
+        )}
         <BottomEditorBar
           editor={editor}
           label={label}
