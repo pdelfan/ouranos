@@ -15,7 +15,15 @@ export default function LinkCard(props: Props) {
   const { status, data, error, isLoading, isFetching } = useGetLinkMeta(link);
 
   if (isLoading || isFetching) {
-    return <>Loading...</>;
+    return (
+      <article className="relative border rounded-2xl animate-pulse">
+        <div className="relative w-full h-44 rounded-t-2xl bg-gray-200" />
+        <div className="flex flex-col grow p-3 gap-3">
+          <div className="w-2/5 h-5 bg-gray-200" />
+          <div className="w-full h-5 bg-gray-200" />
+        </div>
+      </article>
+    );
   }
 
   if (error) {
@@ -25,7 +33,7 @@ export default function LinkCard(props: Props) {
   }
 
   return (
-    <article className="relative border rounded-2xl bg-white hover:brightness-95">
+    <article className="relative border rounded-2xl bg-white">
       <Button
         className="absolute z-50 top-0 m-2 p-2 bg-black/50 text-white rounded-full hover:bg-neutral-700"
         icon="ph:x-bold"
