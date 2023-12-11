@@ -22,9 +22,17 @@ export default function Dropdown({ children }: { children: ReactNode }) {
   );
 }
 
-function DropdownTrigger({ children }: { children: ReactNode }) {
+function DropdownTrigger({
+  children,
+  disabled,
+}: {
+  children: ReactNode;
+  disabled?: boolean;
+}) {
   return (
-    <RadixDropdownMenu.Trigger asChild>{children}</RadixDropdownMenu.Trigger>
+    <RadixDropdownMenu.Trigger asChild disabled={disabled}>
+      {children}
+    </RadixDropdownMenu.Trigger>
   );
 }
 

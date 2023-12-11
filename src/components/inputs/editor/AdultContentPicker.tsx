@@ -11,18 +11,20 @@ const options = [
 interface Props {
   onSelectLabel: React.Dispatch<React.SetStateAction<string>>;
   selectedLabel: string;
+  disabled: boolean;
 }
 
 export default function AdultContentPicker(props: Props) {
-  const { onSelectLabel, selectedLabel } = props;
+  const { onSelectLabel, selectedLabel, disabled } = props;
 
   return (
     <Dropdown>
-      <Dropdown.Trigger>
+      <Dropdown.Trigger disabled={disabled}>
         <Button
           onClick={(e) => {
             e.stopPropagation();
           }}
+          disabled={disabled}
           iconSize="text-xl"
           iconColor="text-primary hover:text-primary-dark"
           icon="octicon:shield-16"

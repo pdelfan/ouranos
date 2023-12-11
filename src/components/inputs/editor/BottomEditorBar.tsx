@@ -65,6 +65,7 @@ export default function BottomEditorBar(props: Props) {
           <AdultContentPicker
             onSelectLabel={onSelectLabel}
             selectedLabel={label}
+            disabled={!images || images.length === 0}
           />
           <ImagePicker onShow={setShowDropzone} />
           <LinkPicker editor={editor} />
