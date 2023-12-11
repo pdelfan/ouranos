@@ -35,7 +35,8 @@ export default function LinkPicker(props: Props) {
       <Popover.Trigger>
         <Button
           disabled={!editor.isActive("link") && selection.empty}
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             if (editor.isActive("link")) {
               setShowLinkPicker(false);
               onLinkRemove();
