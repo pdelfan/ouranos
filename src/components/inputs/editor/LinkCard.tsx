@@ -19,7 +19,7 @@ export default function LinkCard(props: Props) {
     if (data) {
       onAddLinkCard(data);
     }
-  }, [data]);
+  }, [data, onAddLinkCard]);
 
   if (isLoading || isFetching) {
     return (
