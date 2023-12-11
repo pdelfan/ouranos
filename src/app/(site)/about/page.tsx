@@ -57,13 +57,21 @@ export default function Page() {
           Is anything stored on your servers?
         </h3>
         <p>
-          Nothing is stored, every request goes to the official Bluesky servers.
-          When you log in, your session is stored using cookies on your web
-          browser.
+          Nothing is stored, every request goes through the official Bluesky
+          servers. When you log in, your session is stored using cookies on your
+          web browser. Any extra feature that exists (or will be added) stores
+          information{" "}
+          <Link
+            href="https://javascript.info/localstorage"
+            className="underline"
+          >
+            locally
+          </Link>{" "}
+          on your web browser.
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
-          Why do you recommend using an app password?
+          Why do you recommend using an app password to log in?
         </h3>
         <p>
           App passwords allow you to log in and use the app, but restrict
@@ -104,8 +112,7 @@ export default function Page() {
             repository
           </Link>{" "}
           and create an issue. You can also mention me on Bluesky (my handle is{" "}
-          @contrapunctus.bsky.social). If you enjoy using Ouranos, let me know!
-          I'd love to hear from you.
+          @contrapunctus.bsky.social).
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
@@ -113,7 +120,8 @@ export default function Page() {
         </h3>
         <p className="mt-3">
           If you like to support the project and help keep the site up and
-          running, stay tuned for more information!
+          running, stay tuned for more information! If you enjoy using Ouranos,
+          let me know! I'd love to hear from you.
         </p>
       </section>
       <footer className="mt-16 text-center text-sm font-mono text-neutral-500">
