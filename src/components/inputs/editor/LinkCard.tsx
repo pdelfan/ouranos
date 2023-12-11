@@ -1,6 +1,6 @@
 import Image from "next/image";
 import useGetLinkMeta from "@/lib/hooks/useGetLinkMeta";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { getHostname } from "@/lib/utils/text";
 import Button from "@/components/actions/button/Button";
 import Alert from "@/components/feedback/alert/Alert";
@@ -8,11 +8,18 @@ import Alert from "@/components/feedback/alert/Alert";
 interface Props {
   link: string;
   onRemoveLinkCard: Dispatch<SetStateAction<string>>;
+  onAddLinkCard: Dispatch<SetStateAction<LinkMeta | null>>;
 }
 
 export default function LinkCard(props: Props) {
-  const { link, onRemoveLinkCard } = props;
+  const { link, onRemoveLinkCard, onAddLinkCard } = props;
   const { status, data, error, isLoading, isFetching } = useGetLinkMeta(link);
+
+  useEffect(() => {
+    if (data) {
+      onAddLinkCard(data);
+    }
+  }, [data]);
 
   if (isLoading || isFetching) {
     return (
@@ -35,7 +42,7 @@ export default function LinkCard(props: Props) {
   return (
     <article className="relative border rounded-2xl bg-white">
       <Button
-        className="absolute z-50 top-0 m-2 p-2 bg-black/50 text-white rounded-full hover:bg-neutral-700"
+        className="absolute z-50 top-0 right-0 m-2 p-1 bg-black/50 text-white rounded-full hover:bg-neutral-700"
         icon="ph:x-bold"
         onClick={(e) => {
           e.preventDefault();

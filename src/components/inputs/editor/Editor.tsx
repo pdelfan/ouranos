@@ -35,6 +35,7 @@ export default function Editor(props: Props) {
     new Set("")
   );
   const [linkEmbed, setLinkEmbed] = useState("");
+  const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
   const searchUsers = useSearchUsers();
   const replyAuthor = replyTo?.author.displayName ?? replyTo?.author.handle;
   const quoteAuthor = quote?.author.displayName ?? quote?.author.handle;
@@ -111,7 +112,7 @@ export default function Editor(props: Props) {
         <div className="mb-3">
           {quote && <QuoteToPreview post={quote} />}
           {embedSuggestions.size > 0 && (
-            <div className="flex gap-y-3">
+            <div className="flex flex-col gap-y-3 mb-3">
               {Array.from(embedSuggestions).map((link) => (
                 <LinkCardPrompt
                   key={link}
@@ -127,7 +128,11 @@ export default function Editor(props: Props) {
           {linkEmbed !== "" && (
             <LinkCard
               link={linkEmbed}
-              onRemoveLinkCard={() => setLinkEmbed("")}
+              onRemoveLinkCard={() => {
+                setLinkEmbed("");
+                setLinkCard(null);
+              }}
+              onAddLinkCard={setLinkCard}
             />
           )}
         </div>

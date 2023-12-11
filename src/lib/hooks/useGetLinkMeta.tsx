@@ -19,11 +19,12 @@ export default function useGetLinkMeta(url: string) {
         throw new Error("Link meta returned an error");
       }
 
-      const linkMeta = {
+      const linkMeta: LinkMeta = {
         url: body.url,
         title: body.title,
         description: body.description,
         image: body.image,
+        likelyType: body.likelyType,
       };
 
       return linkMeta;
