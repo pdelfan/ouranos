@@ -17,3 +17,22 @@ interface UploadImage {
   path?: string;
   altText?: string;
 }
+
+enum LikelyType {
+  HTML,
+  Text,
+  Image,
+  Video,
+  Audio,
+  AptData,
+  Other,
+}
+
+interface LinkMeta {
+  error?: string;
+  likelyType: LikelyType;
+  url: string;
+  title?: string;
+  description?: string;
+  image?: string;
+}

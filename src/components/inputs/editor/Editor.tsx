@@ -108,24 +108,29 @@ export default function Editor(props: Props) {
           author={author}
           isReply={replyAuthor ? true : false}
         />
-        {quote && <QuoteToPreview post={quote} />}
-        {embedSuggestions.size > 0 &&
-          Array.from(embedSuggestions).map((link) => (
-            <LinkCardPrompt
-              key={link}
-              link={link}
-              onAddLinkCard={() => {
-                setLinkEmbed(link);
-                setEmbedSuggestions(new Set(""));
-              }}
+        <div className="mb-3">
+          {quote && <QuoteToPreview post={quote} />}
+          {embedSuggestions.size > 0 && (
+            <div className="flex gap-y-3">
+              {Array.from(embedSuggestions).map((link) => (
+                <LinkCardPrompt
+                  key={link}
+                  link={link}
+                  onAddLinkCard={() => {
+                    setLinkEmbed(link);
+                    setEmbedSuggestions(new Set(""));
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          {linkEmbed !== "" && (
+            <LinkCard
+              link={linkEmbed}
+              onRemoveLinkCard={() => setLinkEmbed("")}
             />
-          ))}
-        {linkEmbed !== "" && (
-          <LinkCard
-            link={linkEmbed}
-            onRemoveLinkCard={() => setLinkEmbed("")}
-          />
-        )}
+          )}
+        </div>
         <BottomEditorBar
           editor={editor}
           label={label}

@@ -12,7 +12,7 @@ export default function QuoteToPreview(props: Props) {
   const { author } = post || {};
 
   return (
-    <article className="flex items-start gap-1 p-2 mb-3 border rounded-2xl">
+    <article className="flex items-start gap-1 p-2 border rounded-2xl">
       <Image
         src={author.avatar ?? FallbackAvatar}
         alt="Avatar"
