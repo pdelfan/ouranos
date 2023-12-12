@@ -38,7 +38,7 @@ export default function usePublishPost(props: Props) {
     mutationKey: ["publishPost"],
     mutationFn: async () => {
       const richText = new RichText({ text: jsonToText(text).trimEnd() });
-      await richText.detectFacets(agent);      
+      await richText.detectFacets(agent);
 
       if (richText.graphemeLength > MAX_POST_LENGTH) {
         throw new Error(
@@ -193,6 +193,12 @@ export default function usePublishPost(props: Props) {
             embed = embedExternal;
           }
         }
+      }
+
+      if (!embed && richText.graphemeLength === 0) {
+        throw new Error(
+          "Your post must contain at least some text or image to submit"
+        );
       }
 
       await agent.post({
