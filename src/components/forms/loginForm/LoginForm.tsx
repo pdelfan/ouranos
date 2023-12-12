@@ -15,15 +15,6 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    if (status === "loading") return;
-
-    if (session) {
-      router.push("/dashboard/home");
-    }
-  }, [router, session, status]);
 
   const handleSignIn = async () => {
     setLoading(true);
