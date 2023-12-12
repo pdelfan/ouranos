@@ -1,8 +1,9 @@
 import { AppBskyFeedDefs } from "@atproto/api";
 import useAgent from "../useAgent";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { repost, unRepost } from "../../../api/bsky/feed";
+import toast from "react-hot-toast";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -13,6 +14,7 @@ export const useRepostKey = (postUri: string) => ["repost", postUri];
 export default function useLike(props: Props) {
   const { post } = props;
   const agent = useAgent();
+  const queryClient = useQueryClient();
   const [reposted, setReposted] = useState(!!post.viewer?.repost);
   const [repostUri, setRepostUri] = useState(post.viewer?.repost);
   const repostCount =
@@ -40,6 +42,13 @@ export default function useLike(props: Props) {
           setReposted(true);
         }
       }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["timeline"] });
+      queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
+    },
+    onError: () => {
+      toast.error("Could not repost");
     },
   });
 

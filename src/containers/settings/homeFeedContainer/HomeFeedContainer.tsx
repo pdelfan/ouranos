@@ -9,6 +9,7 @@ import { updateHomeFeedPreferences } from "@/lib/api/bsky/actor";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { PreferencesResult } from "../../../../types/feed";
 import HomeFeedContainerSkeleton from "./HomeFeedContainerSkeleton";
+import toast from "react-hot-toast";
 
 export default function HomeFeedContainer() {
   const agent = useAgent();
@@ -36,6 +37,9 @@ export default function HomeFeedContainer() {
       } catch (error) {
         console.log(error);
       }
+    },
+    onError: () => {
+      toast.error("Could not update preferences");
     },
   });
 

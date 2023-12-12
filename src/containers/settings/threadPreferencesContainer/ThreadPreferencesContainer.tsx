@@ -11,6 +11,7 @@ import { BskyThreadViewPreference } from "@atproto/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PreferencesResult } from "../../../../types/feed";
 import ThreadPreferencesContainerSkeleton from "./ThreadPreferencesContainerSkeleton";
+import toast from "react-hot-toast";
 
 interface ItemProps {
   value: string;
@@ -52,6 +53,9 @@ export default function ThreadPreferencesContainer() {
       } catch (error) {
         console.log(error);
       }
+    },
+    onError: () => {
+      toast.error("Could not update preferences");
     },
   });
 

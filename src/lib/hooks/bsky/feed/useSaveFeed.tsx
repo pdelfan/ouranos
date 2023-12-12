@@ -3,6 +3,7 @@ import { SavedFeed } from "../../../../../types/feed";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { togglePinFeed, toggleSaveFeed } from "@/lib/api/bsky/feed";
 import useAgent from "../useAgent";
+import toast from "react-hot-toast";
 
 interface Props {
   feedItem: SavedFeed;
@@ -56,6 +57,9 @@ export default function useSaveFeed(props: Props) {
         setIsPinned(isCurrentlyPinned);
       }
     },
+    onError: () => {
+      toast.error(`Could not ${feedItem.pinned ? "unpin" : "pin"} feed`);
+    },
   });
 
   const deleteFeed = useMutation({
@@ -68,6 +72,9 @@ export default function useSaveFeed(props: Props) {
         updateSavedFeeds("add");
       }
     },
+    onError: () => {
+      toast.error(`Could not delete feed`);
+    },
   });
 
   const saveFeed = useMutation({
@@ -79,6 +86,9 @@ export default function useSaveFeed(props: Props) {
       } catch (error) {
         updateSavedFeeds("remove");
       }
+    },
+    onError: () => {
+      toast.error(`Could not save feed`);
     },
   });
 

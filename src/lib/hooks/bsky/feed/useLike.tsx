@@ -3,6 +3,7 @@ import useAgent from "../useAgent";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { likePost, unlikePost } from "../../../api/bsky/feed";
+import toast from "react-hot-toast";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -38,6 +39,9 @@ export default function useLike(props: Props) {
           setLiked(true);
         }
       }
+    },
+    onError: () => {
+      toast.error("Could not like post");
     },
   });
 

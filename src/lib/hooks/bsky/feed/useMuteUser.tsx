@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { muteUser, unMuteUser } from "@/lib/api/bsky/actor";
 import { profileKey } from "../actor/useProfile";
+import toast from "react-hot-toast";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -38,6 +39,9 @@ export default function useLike(props: Props) {
           setMuted(true);
         }
       }
+    },
+    onError: () => {
+      toast.error("Could not mute user");
     },
   });
 

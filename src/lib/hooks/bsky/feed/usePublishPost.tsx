@@ -16,8 +16,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { detectLanguage, jsonToText } from "@/lib/utils/text";
 import { compressImage } from "@/lib/utils/image";
 import { JSONContent } from "@tiptap/react";
-import { useFeedKey } from "./useFeed";
-import { useProfilePostsKey } from "./useProfilePosts";
+import toast from "react-hot-toast";
 
 interface Props {
   text: JSONContent;
@@ -208,6 +207,10 @@ export default function usePublishPost(props: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["timeline"] });
       queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
-    }, 
+      toast.success("Post published");
+    },
+    onError: (e) => {
+      toast.error(e.message);
+    },
   });
 }

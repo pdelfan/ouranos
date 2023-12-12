@@ -8,7 +8,6 @@ import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import Image from "next/image";
 import { SavedFeed } from "../../../../types/feed";
 import Button from "@/components/actions/button/Button";
-import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
 import useSaveFeed from "@/lib/hooks/bsky/feed/useSaveFeed";
 import Alert from "@/components/feedback/alert/Alert";
 import MyFeedsContainerSkeleton from "./MyFeedsContainerSkeleton";

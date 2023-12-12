@@ -2,6 +2,7 @@ import { AppBskyFeedDefs } from "@atproto/api";
 import useAgent from "../useAgent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removePost } from "../../../api/bsky/feed";
+import toast from "react-hot-toast";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -26,6 +27,10 @@ export default function useDeletePost(props: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["timeline"] });
       queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
+      toast.success("Post deleted");
+    },
+    onError: () => {
+      toast.error("Could not delete post");
     },
   });
 

@@ -21,6 +21,7 @@ import {
 } from "@/components/inputs/tabGroup/TabGroup";
 import { ReactNode } from "react";
 import ContentFilteringContainerSkeleton from "./ContentFilteringContainerSkeleton";
+import toast from "react-hot-toast";
 
 interface OptionsProps {
   item: ContentFilter;
@@ -92,6 +93,9 @@ export default function ContentFilteringContainer() {
         console.log(error);
       }
     },
+    onError: () => {
+      toast.error("Could not update preferences");
+    },
   });
 
   const updateContentFilter = useMutation({
@@ -129,6 +133,9 @@ export default function ContentFilteringContainer() {
         console.log(error);
       }
     },
+    onError: () => {
+      toast.error("Could not update preferences");
+    },
   });
 
   const updateAdultContentFilter = useMutation({
@@ -165,6 +172,9 @@ export default function ContentFilteringContainer() {
       } catch (error) {
         console.log(error);
       }
+    },
+    onError: () => {
+      toast.error("Could not update preferences");
     },
   });
 
