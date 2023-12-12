@@ -22,7 +22,7 @@ export default async function InventoryLayout({
         alt="Numerous ouranos logos"
         width={1000}
         height={200}
-        className="z-0 absolute bottom-0 w-screen h-[50svh] object-cover animate-fade-up animate-delay-300 animate-duration-[900ms]"
+        className="z-0 fixed bottom-0 w-screen h-[50svh] object-cover animate-fade-up animate-delay-300 animate-duration-[900ms]"
       />
     </>
   );
