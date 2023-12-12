@@ -122,7 +122,7 @@ export default function Page() {
         </h3>
         <p>
           If you have an account on GitHub, you can go to the project's{" "}
-          <Link href="" className="underline">
+          <Link href="https://github.com/pdelfan/ouranos" className="underline">
             repository
           </Link>{" "}
           and create an issue. You can also mention me on Bluesky (my handle is{" "}
