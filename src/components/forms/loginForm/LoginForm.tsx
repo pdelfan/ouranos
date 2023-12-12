@@ -7,6 +7,7 @@ import Input from "@/components/inputs/input/Input";
 import Label from "@/components/inputs/label/Label";
 import { useRouter } from "next/navigation";
 import Button from "@/components/actions/button/Button";
+import Image from "next/image";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -35,7 +36,8 @@ export default function LoginForm() {
     }
   };
   return (
-    <section className="bg-neutral-100/80  rounded-2xl max-w-xs p-5">
+    <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
+      <Image src="/logo.svg" alt="Ouranos logo" width={150} height={50} className="mx-auto mb-3" />
       <h1 className="text-xl font-semibold text-gray-800 mb-1">Welcome Back</h1>
       <h2 className="text-sm font-medium text-gray-500">
         We recommend using an app password to log in{" "}
@@ -90,7 +92,9 @@ export default function LoginForm() {
         )}
         <Button
           type="submit"
-          className="flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:bg-zinc-700"
+          className={`flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:bg-zinc-700 ${
+            loading && "animate-pulse"
+          }`}
           disabled={loading}
           aria-disabled={loading}
           icon="mdi:sign-in"
