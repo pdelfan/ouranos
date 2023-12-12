@@ -37,9 +37,15 @@ export default function LoginForm() {
   };
   return (
     <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
-      <Image src="/logo.svg" alt="Ouranos logo" width={150} height={50} className="mx-auto mb-3" />
+      <Image
+        src="/logo.svg"
+        alt="Ouranos logo"
+        width={150}
+        height={50}
+        className="mx-auto mb-3"
+      />
       <h1 className="text-xl font-semibold text-gray-800 mb-1">Welcome Back</h1>
-      <h2 className="text-sm font-medium text-gray-500">
+      <p className="text-sm font-medium text-gray-500 mb-3">
         We recommend using an app password to log in{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
@@ -49,7 +55,10 @@ export default function LoginForm() {
           (learn more)
         </Link>
         .
-      </h2>
+      </p>
+      <p className="text-sm font-medium text-gray-500">
+        We are currently in early access, some features may not work as intended.
+      </p>
       <form
         className="text-sm font-medium text-gray-400 mt-5"
         onSubmit={(e) => {

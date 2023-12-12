@@ -5,7 +5,21 @@ export default function Home() {
   return (
     <main className="mx-auto p-5 mt-0 md:mt-16">
       <header className="flex justify-between items-center max-w-xl mx-auto">
-        <Image src="/logo.svg" alt="Ouranos logo" width={120} height={35} />
+        <div className="flex items-center gap-3">
+          <Image
+            src="/ouranos.svg"
+            alt="Ouranos logo"
+            width={40}
+            height={40}
+            className="block transition-transform ease-in-out duration-700 hover:rotate-180"
+          />
+          <Image
+            src="/ouranosText.svg"
+            alt="Ouranos text"
+            width={70}
+            height={20}
+          />
+        </div>
         <Link
           href="/about"
           className="font-medium text-neutral-500 hover:text-neutral-600"

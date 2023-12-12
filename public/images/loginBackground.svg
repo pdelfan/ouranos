@@ -20,7 +20,7 @@
 <defs>
 <linearGradient id="paint0_linear_612_93" x1="864" y1="65" x2="864" y2="598" gradientUnits="userSpaceOnUse">
 <stop stop-color="#A94AFF" stop-opacity="0"/>
-<stop offset="1" stop-color="#A94AFF" stop-opacity="0.15"/>
+<stop offset="1" stop-color="#A94AFF" stop-opacity="0.2"/>
 </linearGradient>
 </defs>
 </svg>
