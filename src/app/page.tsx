@@ -14,7 +14,7 @@ export default function Home() {
         </Link>
       </header>
       <section className="mt-16 max-w-xl mx-auto animate-fade-up animate-delay-150">
-        <small className="inline-block px-3 py-2 mb-1 rounded-full bg-primary/10 font-semibold text-[0.6rem] text-primary animate-fade animate-delay-[1200ms]">
+        <small className="inline-block px-3 py-2 mb-1 rounded-full bg-primary/10 font-semibold text-[0.6rem] text-primary animate-fade animate-delay-[800ms]">
           In Early Access 🎉
         </small>
         <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
