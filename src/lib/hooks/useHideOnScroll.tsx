@@ -25,7 +25,7 @@ export default function useHideOnScroll(props: Props) {
     }
 
     setPrevScrollY(scrollY);
-  }, [prevScrollY, show]);
+  }, [prevScrollY, show, showOnTop]);
 
   useEffect(() => {
     const debouncedControlNavbar = debounce(
