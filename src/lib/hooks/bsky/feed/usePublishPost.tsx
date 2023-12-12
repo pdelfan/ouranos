@@ -38,6 +38,7 @@ export default function usePublishPost(props: Props) {
     mutationKey: ["publishPost"],
     mutationFn: async () => {
       const richText = new RichText({ text: jsonToText(text).trimEnd() });
+      await richText.detectFacets(agent);      
 
       if (richText.graphemeLength > MAX_POST_LENGTH) {
         throw new Error(

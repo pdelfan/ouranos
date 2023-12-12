@@ -19,7 +19,7 @@ export default function LinkPicker(props: Props) {
       .chain()
       .focus()
       .extendMarkRange("link")
-      .setLink({ href })
+      .setLink({ href: href })
       .focus()
       .run();
   };

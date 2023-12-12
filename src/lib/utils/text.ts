@@ -1,3 +1,4 @@
+import { BskyAgent, RichText } from "@atproto/api";
 import { JSONContent } from "@tiptap/react";
 
 export function getHandle(mention: string) {

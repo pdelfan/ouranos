@@ -2,7 +2,6 @@ import EmojiPicker from "./EmojiPicker";
 import type { Editor } from "@tiptap/react";
 import AdultContentPicker from "./AdultContentPicker";
 import ImagePicker from "./ImagePicker";
-import LinkPicker from "./LinkPicker";
 import CharacterCount from "./CharacterCount";
 import LanguagePicker from "./LanguagePicker";
 import { useState } from "react";
@@ -68,7 +67,7 @@ export default function BottomEditorBar(props: Props) {
             disabled={!images || images.length === 0}
           />
           <ImagePicker onShow={setShowDropzone} />
-          <LinkPicker editor={editor} />
+          {/* <LinkPicker editor={editor} /> */}
         </div>
         <div className="flex flex-wrap just gap-x-5 gap-y-2">
           <LanguagePicker
