@@ -18,6 +18,7 @@ import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/act
 import { detectLinksInEditor } from "@/lib/utils/link";
 import LinkCardPrompt from "./LinkCardPrompt";
 import LinkCard from "./LinkCard";
+import usePublishPost from "@/lib/hooks/bsky/feed/usePublishPost";
 
 interface Props {
   onCancel: () => void;
@@ -93,13 +94,24 @@ export default function Editor(props: Props) {
     },
   });
 
+  const sendPost = usePublishPost({
+    text: editor?.getJSON() ?? {},
+    linkCard,
+    replyTo,
+    quote,
+    languages: languages.map((lang) => lang.code),
+    images,
+    label,
+  });
+
   if (!editor) return null;
 
   return (
     <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:max-h-[80svh] md:h-fit md:border-t shadow-2xl rounded-t-3xl overflow-auto animate-fade-up animate-duration-200">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
-          onCancel={onCancel}
+          onClose={onCancel}
+          onPublish={sendPost}
           label={label}
           onRemoveLabel={() => setLabel("")}
           numberOfImages={images?.length ?? 0}

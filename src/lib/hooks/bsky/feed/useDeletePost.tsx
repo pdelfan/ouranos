@@ -1,6 +1,6 @@
 import { AppBskyFeedDefs } from "@atproto/api";
 import useAgent from "../useAgent";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removePost } from "../../../api/bsky/feed";
 
 interface Props {
@@ -12,6 +12,7 @@ export const useDeletePostKey = (postUri: string) => ["deletePost", postUri];
 export default function useDeletePost(props: Props) {
   const { post } = props;
   const agent = useAgent();
+  const queryClient = useQueryClient();
 
   const deletePost = useMutation({
     mutationKey: useDeletePostKey(post.uri),
@@ -21,6 +22,10 @@ export default function useDeletePost(props: Props) {
       } catch (err) {
         console.error(err);
       }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["timeline"] });
+      queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
     },
   });
 

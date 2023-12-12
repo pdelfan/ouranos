@@ -36,7 +36,7 @@ export default function LinkPicker(props: Props) {
         <Button
           disabled={!editor.isActive("link") && selection.empty}
           onClick={(e) => {
-            e.preventDefault();
+            e.stopPropagation();
             if (editor.isActive("link")) {
               setShowLinkPicker(false);
               onLinkRemove();

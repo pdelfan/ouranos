@@ -21,7 +21,7 @@ export default function ComposeButton(props: Props) {
       {mode === "float" && (
         <button
           onClick={toggleComposer}
-          className={`z-50 p-3.5 rounded-full fixed md:hidden right-3 bottom-20 md:bottom-5 bg-primary text-white hover:bg-primary-dark outline-none ${
+          className={`z-40 p-3.5 rounded-full fixed md:hidden right-3 bottom-20 md:bottom-5 bg-primary text-white hover:bg-primary-dark outline-none ${
             show ? "translate-y-0" : "translate-y-36"
           } transition-translate ease-in-out duration-300`}
         >

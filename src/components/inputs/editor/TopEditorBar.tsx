@@ -1,15 +1,17 @@
 import Button from "@/components/actions/button/Button";
+import { UseMutationResult } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 interface Props {
-  onCancel: () => void;
+  onClose: () => void;
   label: string;
   onRemoveLabel: () => void;
   numberOfImages?: number;
+  onPublish: UseMutationResult<void, Error, void, unknown>;
 }
 
 export default function TopEditorBar(props: Props) {
-  const { onCancel, label, onRemoveLabel, numberOfImages } = props;
+  const { onClose, label, onRemoveLabel, numberOfImages, onPublish } = props;
 
   useEffect(() => {
     if (numberOfImages === 0 && label !== "") {
@@ -20,7 +22,7 @@ export default function TopEditorBar(props: Props) {
   return (
     <div className="flex flex-wrap justify-between items-center gap-2">
       <Button
-        onClick={onCancel}
+        onClick={onClose}
         className="px-4 py-2 text-sm font-semibold border rounded-full hover:bg-neutral-50"
       >
         Cancel
@@ -37,8 +39,20 @@ export default function TopEditorBar(props: Props) {
             : label.charAt(0).toUpperCase() + label.slice(1)}
         </Button>
       )}
-      <Button className="bg-primary text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-primary-dark">
-        Post
+      <Button
+        onClick={() => {
+          onPublish.mutate(undefined, {
+            onSuccess: () => {
+              onClose();
+            },
+          });
+        }}
+        className={`bg-primary text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-primary-dark ${
+          onPublish.isPending && "animate-pulse"
+        }`}
+        disabled={onPublish.isPending}
+      >
+        {onPublish.isPending ? "Posting..." : "Post"}
       </Button>
     </div>
   );

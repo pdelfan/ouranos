@@ -67,3 +67,16 @@ export function jsonToText(json: JSONContent) {
 
   return text;
 }
+
+export async function detectLanguage(text: string) {
+  if (text === "") return;
+  const res = await fetch(`/api/language-detection`, {
+    method: "post",
+    body: JSON.stringify({
+      text: text,
+    }),
+  });
+
+  const detectedLanguage: string = await res.json();
+  return [detectedLanguage.trim()];
+}

@@ -193,6 +193,15 @@ export default function PostActions(props: Props) {
                   icon="bxs:bell-off"
                 />
               )}
+              {session.user?.handle === post.author.handle && (
+                <Dropdown.MenuItem
+                  onSelect={() => {
+                    deletePost.mutate();
+                  }}
+                  text="Delete Post"
+                  icon="bxs:trash"
+                />
+              )}
             </Dropdown.Menu>
           </Dropdown>
         </div>

@@ -14,9 +14,9 @@ interface Props {
   handle: string;
 }
 
-export const profilePostsKey = (handle: string, mode: UserPostMode) => [
+export const useProfilePostsKey = (handle?: string, mode?: UserPostMode) => [
   "profilePosts",
-  handle + mode,
+  (handle || "handle") + (mode || "mode"),
 ];
 
 export default function useProfilePosts(props: Props) {
@@ -50,7 +50,7 @@ export default function useProfilePosts(props: Props) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: profilePostsKey(handle, mode),
+    queryKey: useProfilePostsKey(handle, mode),
     queryFn: ({ pageParam }) =>
       chooseFetchFunction(mode)(agent, actor, pageParam),
     initialPageParam: "",

@@ -101,7 +101,7 @@ export default function ImageEmbed(props: Props) {
         );
       case 4:
         return (
-          <div className="grid grid-cols-2 gap-1 aspect-square">
+          <div className="grid grid-cols-2 gap-1 ">
             {images.map((image, i) => (
               <div key={i} className="relative">
                 <Image

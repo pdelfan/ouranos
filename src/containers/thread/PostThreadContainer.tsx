@@ -68,7 +68,7 @@ export default function PostThreadContainer(props: Props) {
           )}
           {AppBskyFeedDefs.isBlockedAuthor(thread) && (
             <BlockedEmbed depth={0} />
-          )}
+          )}          
           {isError && (
             <FeedAlert
               variant="badResponse"

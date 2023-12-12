@@ -12,7 +12,7 @@ interface Language {
   name: string;
 }
 
-interface UploadImage {
+interface UploadImage extends File {
   url: string;
   path?: string;
   altText?: string;

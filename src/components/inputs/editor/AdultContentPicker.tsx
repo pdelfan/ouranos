@@ -3,9 +3,9 @@ import Dropdown from "@/components/actions/dropdown/Dropdown";
 import React from "react";
 
 const options = [
-  { label: "Suggestive", value: "suggestive" },
+  { label: "Suggestive", value: "sexual" },
   { label: "Nudity", value: "nudity" },
-  { label: "Porn", value: "nsfw" },
+  { label: "Porn", value: "porn" },
 ];
 
 interface Props {
