@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import useMuteUser from "@/lib/hooks/bsky/feed/useMuteUser";
 import useBlockUser from "@/lib/hooks/bsky/actor/useBlockUser";
 import { ViewerState } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
+import toast from "react-hot-toast";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -28,6 +29,7 @@ export default function UserActions(props: Props) {
   const handleShare = useCallback(() => {
     const shareUrl = `https://bsky.app/profile/${author.handle}`;
     clipboard.copy(shareUrl);
+    toast.success("Link to profile copied to clipboard");
   }, [clipboard, author]);
 
   return (

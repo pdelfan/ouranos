@@ -16,6 +16,7 @@ import Link from "next/link";
 import { abbreviateNumber } from "@/lib/utils/number";
 import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
 import { useComposerContext } from "@/app/providers/compoter";
+import toast from "react-hot-toast";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -36,12 +37,13 @@ export default function PostActions(props: Props) {
     const postId = getPostId(post.uri);
     const shareUrl = `https://bsky.app/profile/${post.author.handle}/post/${postId}`;
     clipboard.copy(shareUrl);
+    toast.success("Link to post copied to clipboard");
   }, [clipboard, post.uri, post.author.handle]);
 
   const handleCopyPostText = useCallback(() => {
     const record = post.record as AppBskyEmbedRecord.View["record"];
     const text = record.text || "";
-
+    toast.success("Post text copied to clipboard");
     clipboard.copy(text);
   }, [clipboard, post.record]);
 
