@@ -23,7 +23,7 @@ export default function TopEditorBar(props: Props) {
     <div className="flex flex-wrap justify-between items-center gap-2">
       <Button
         onClick={onClose}
-        className="px-4 py-2 text-sm font-semibold border rounded-full hover:bg-neutral-50"
+        className="px-4 py-2 text-sm text-neutral-600g font-semibold border rounded-full hover:bg-neutral-50"
       >
         Cancel
       </Button>
@@ -47,7 +47,8 @@ export default function TopEditorBar(props: Props) {
             },
           });
         }}
-        className={`bg-primary text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-primary-dark ${
+        icon="mingcute:send-plane-fill"
+        className={`bg-primary text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-primary-dark ${
           onPublish.isPending && "animate-pulse"
         }`}
         disabled={onPublish.isPending}

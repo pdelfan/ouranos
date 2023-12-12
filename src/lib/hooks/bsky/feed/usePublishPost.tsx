@@ -197,7 +197,7 @@ export default function usePublishPost(props: Props) {
 
       if (!embed && richText.graphemeLength === 0) {
         throw new Error(
-          "Your post must contain at least some text or image to submit"
+          "Your post must contain at least some text or image"
         );
       }
 
