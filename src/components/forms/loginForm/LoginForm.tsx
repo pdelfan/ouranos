@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import Input from "@/components/inputs/input/Input";
 import Label from "@/components/inputs/label/Label";
 import { useRouter } from "next/navigation";
@@ -15,6 +15,15 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "loading") return;
+
+    if (session) {
+      router.push("/dashboard/home");
+    }
+  }, [router, session, status]);
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -35,6 +44,7 @@ export default function LoginForm() {
       router.push("/dashboard/home");
     }
   };
+
   return (
     <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
       <Image
@@ -57,7 +67,8 @@ export default function LoginForm() {
         .
       </p>
       <p className="text-sm font-medium text-gray-500">
-        We are currently in early access, some features may not work as intended.
+        We are currently in early access, some features may not work as
+        intended.
       </p>
       <form
         className="text-sm font-medium text-gray-400 mt-5"

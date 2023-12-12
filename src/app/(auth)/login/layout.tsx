@@ -1,7 +1,5 @@
-import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Ouranos — Login",
@@ -13,8 +11,6 @@ export default async function InventoryLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSessionFromServer();
-  if (session?.user.bskySession) redirect("/dashboard/home");
   
   return (
     <>
