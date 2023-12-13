@@ -8,10 +8,11 @@ export default function useAgent() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    if (status === "loading") return;
+  useEffect(() => {    
+    if (status === "loading") return;        
+    console.log(session)
     if (!session?.user.bskySession) {
-      router.push("/");
+      // router.push("/");
       return;
     }
 

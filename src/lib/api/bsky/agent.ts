@@ -10,11 +10,14 @@ export const at = new BskyAgent({
 export const getBskySession = async () => {
   try {
     const session = await getSessionFromServer();
-    if (!session?.user.bskySession) redirect("/");
-    const result = await at.resumeSession(session.user.bskySession);
-    if (!result.success) redirect("/");
+    // if (!session?.user.bskySession) redirect("/");
+    if (session?.user) {
+      await at.resumeSession(session.user.bskySession);
+      // const result = await at.resumeSession(session.user.bskySession);
+      // if (!result.success) redirect("/");
+    }
   } catch (e) {
-    redirect("/");
+    // redirect("/");
   }
 
   return at;
