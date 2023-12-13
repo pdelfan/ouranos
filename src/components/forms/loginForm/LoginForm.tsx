@@ -26,6 +26,8 @@ export default function LoginForm() {
       callbackUrl: "/dashboard/home",
     });
 
+    console.log(result);
+
     if (result?.error) {
       setError(result.error);
       setLoading(false);
