@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 import Input from "@/components/inputs/input/Input";
 import Label from "@/components/inputs/label/Label";
 import { useRouter } from "next/navigation";
@@ -26,8 +26,6 @@ export default function LoginForm() {
       callbackUrl: "/dashboard/home",
     });
 
-    console.log(result);
-
     if (result?.error) {
       setError(result.error);
       setLoading(false);
@@ -37,7 +35,6 @@ export default function LoginForm() {
       router.push("/dashboard/home");
     }
   };
-
   return (
     <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
       <Image

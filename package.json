@@ -31,7 +31,7 @@
     "emoji-mart": "^5.5.2",
     "jwt-decode": "^4.0.0",
     "next": "14.0.1",
-    "next-auth": "^4.24.4",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18",
