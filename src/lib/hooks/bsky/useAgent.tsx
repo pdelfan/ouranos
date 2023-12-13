@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { createAgent } from "@/lib/api/bsky/agent";
 
 export default function useAgent() {
-  const at = createAgent();
-  const [agent, setAgent] = useState(at);
+  const [agent, setAgent] = useState(createAgent());
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -18,12 +17,11 @@ export default function useAgent() {
 
     const getAgent = async () => {
       const bskySession = session.user.bskySession;
-      at.session = bskySession;
-      setAgent(at);
+      agent.session = bskySession;      
     };
 
     getAgent();
-  }, [at, router, session?.user.bskySession, status]);
+  }, [agent, router, session?.user.bskySession, status]);
 
   return agent;
 }
