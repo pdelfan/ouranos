@@ -1,5 +1,5 @@
 import EmojiPicker from "./EmojiPicker";
-import type { Editor } from "@tiptap/react";
+import type { Editor, JSONContent } from "@tiptap/react";
 import AdultContentPicker from "./AdultContentPicker";
 import ImagePicker from "./ImagePicker";
 import CharacterCount from "./CharacterCount";
@@ -8,10 +8,12 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import UploadPreview from "./UploadPreview";
+import { RichText } from "@atproto/api";
+import { jsonToText } from "@/lib/utils/text";
 
 interface Props {
   editor: Editor;
-  charCount: number;
+  text: JSONContent;
   label: string;
   languages: Language[];
   images?: UploadImage[];
@@ -25,7 +27,7 @@ interface Props {
 export default function BottomEditorBar(props: Props) {
   const {
     editor,
-    charCount,
+    text,
     label,
     languages,
     images,
@@ -35,6 +37,8 @@ export default function BottomEditorBar(props: Props) {
   } = props;
 
   const [showDropzone, setShowDropzone] = useState(false);
+  const richText = new RichText({ text: jsonToText(text) });
+  const charCount = richText.graphemeLength;
 
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
