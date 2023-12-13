@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { at } from "../../api/bsky/agent";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { createAgent } from "@/lib/api/bsky/agent";
 
 export default function useAgent() {
+  const at = createAgent();
   const [agent, setAgent] = useState(at);
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function useAgent() {
     };
 
     getAgent();
-  }, [router, session, status]);
+  }, [at, router, session?.user.bskySession, status]);
 
   return agent;
 }

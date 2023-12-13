@@ -2,12 +2,20 @@ import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 import { BskyAgent } from "@atproto/api";
 import { redirect } from "next/navigation";
 
-export const at = new BskyAgent({
-  // TODO: allow PDS URL — using bsky.social for now
-  service: "https://bsky.social",
-});
+export const createAgent = () => {
+  const at = new BskyAgent({
+    service: "https://bsky.social",
+  });
+
+  return at;
+};
 
 export const getBskySession = async () => {
+  // TODO: allow PDS URL — using bsky.social for now
+  const at = new BskyAgent({
+    service: "https://bsky.social",
+  });
+
   try {
     const session = await getSessionFromServer();
     if (!session?.user.bskySession) redirect("/");

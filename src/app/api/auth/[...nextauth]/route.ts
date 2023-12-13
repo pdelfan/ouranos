@@ -1,7 +1,6 @@
 import { JWT } from "next-auth/jwt";
 import NextAuth, { NextAuthOptions, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { at } from "@/lib/api/bsky/agent";
 import type {
   GetServerSidePropsContext,
   NextApiRequest,
@@ -9,6 +8,7 @@ import type {
 } from "next";
 import { getServerSession } from "next-auth";
 import { jwtDecode } from "jwt-decode";
+import { createAgent } from "@/lib/api/bsky/agent";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -28,6 +28,8 @@ export const authOptions: NextAuthOptions = {
         if (!credentials) {
           return null;
         }
+
+        const at = createAgent();
 
         const result = await at.login({
           identifier: credentials.handle,
@@ -67,6 +69,8 @@ export const authOptions: NextAuthOptions = {
 
     // add extra properties to session
     async session({ session, token }): Promise<Session> {
+      const at = createAgent();
+
       const receivedToken = token as JWT & User;
 
       session.user.email = receivedToken.email;
