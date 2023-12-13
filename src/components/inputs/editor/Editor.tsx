@@ -60,7 +60,7 @@ export default function Editor(props: Props) {
         listItem: false,
       }),
       CharacterCount.configure({
-        limit: 600,
+        limit: 600,        
       }),
       Placeholder.configure({
         placeholder: placeholderText,
@@ -153,7 +153,7 @@ export default function Editor(props: Props) {
           editor={editor}
           label={label}
           onSelectLabel={setLabel}
-          charCount={editor?.storage.characterCount.characters()}
+          text={editor.getJSON()}
           languages={languages}
           onSelectLanguages={setLanguages}
           images={images}
