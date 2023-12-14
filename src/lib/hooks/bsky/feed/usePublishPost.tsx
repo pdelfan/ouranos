@@ -37,7 +37,7 @@ export default function usePublishPost(props: Props) {
   return useMutation({
     mutationKey: ["publishPost"],
     mutationFn: async () => {
-      const richText = new RichText({ text: jsonToText(text)});
+      const richText = new RichText({ text: jsonToText(text) });
       await richText.detectFacets(agent);
 
       if (richText.graphemeLength > MAX_POST_LENGTH) {
@@ -196,9 +196,7 @@ export default function usePublishPost(props: Props) {
       }
 
       if (!embed && richText.graphemeLength === 0) {
-        throw new Error(
-          "Your post must contain at least some text or image"
-        );
+        throw new Error("Your post must contain at least some text or image");
       }
 
       await agent.post({
@@ -214,6 +212,7 @@ export default function usePublishPost(props: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["timeline"] });
       queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
+      queryClient.invalidateQueries({ queryKey: ["postThread"] });
       toast.success("Post published");
     },
     onError: (e) => {

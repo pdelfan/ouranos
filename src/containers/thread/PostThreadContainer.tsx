@@ -15,7 +15,6 @@ import Button from "@/components/actions/button/Button";
 import { useRouter } from "next/navigation";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import { getContentFilter } from "@/lib/utils/feed";
 
 interface Props {
   id: string;
