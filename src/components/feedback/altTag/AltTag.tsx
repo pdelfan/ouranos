@@ -1,5 +1,6 @@
 import Button from "@/components/actions/button/Button";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 
 interface Props {
   text: string;
@@ -17,22 +18,6 @@ export default function AltTag(props: Props) {
     setShowAlt(false);
   };
 
-  const handleKeyboard = useCallback(
-    (e: Event) => {
-      const { key } = e as unknown as KeyboardEvent;
-      if (key === "Escape") {
-        setShowAlt(false);
-      }
-    },
-    [setShowAlt]
-  );
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyboard);
-
-    return () => window.removeEventListener("keydown", handleKeyboard);
-  }, [handleKeyboard]);
-
   return (
     <>
       <Button
@@ -44,28 +29,32 @@ export default function AltTag(props: Props) {
       >
         ALT
       </Button>
-      {showAlt && (
-        <section
-          className="z-50 bg-black/80 fixed inset-0 w-screen h-screen flex items-center justify-center animate-fade animate-duration-200"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleCloseAlt();
-          }}
-        >
-          <Button
-            className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
-            icon="ph:x-bold"
+
+      <Dialog.Root open={showAlt} onOpenChange={handleCloseAlt}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 animate-fade animate-duration-200" />
+          <Dialog.Content
             onClick={(e) => {
               e.stopPropagation();
-              handleCloseAlt();
             }}
-          />
-          <div className="z-40 bg-black/60 m-3.5 max-w-xl max-h-[calc(100%-3rem)] overflow-auto p-4  text-white rounded-xl">
-            <h3 className="text-xl font-semibold">Alternative text</h3>
-            <p className="mt-2">{text}</p>
-          </div>
-        </section>
-      )}
+            onInteractOutside={() => console.log("efsf")}
+            className="flex items-center justify-center fixed inset-0 z-50 "
+          >
+            <Dialog.Close asChild>
+              <Button
+                className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
+                icon="ph:x-bold"
+              />
+            </Dialog.Close>
+            <div className="cursor-text fixed z-50 bg-black/60 m-3.5 max-w-xl max-h-[calc(100%-3rem)] overflow-auto p-4  text-white rounded-xl">
+              <Dialog.Title className="text-xl font-semibold">
+                Alternative text
+              </Dialog.Title>
+              <Dialog.Description className="mt-2">{text}</Dialog.Description>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </>
   );
 }
