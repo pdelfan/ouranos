@@ -32,7 +32,7 @@ export default function ImageEmbed(props: Props) {
                   alt={image.alt}
                   width={250}
                   height={250}
-                  className="rounded-md h-full max-h-62 object-cover cursor-pointer hover:brightness-90"
+                  className="rounded-md h-full w-full max-h-62 object-cover cursor-pointer hover:brightness-90"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowImage(i);
@@ -151,7 +151,9 @@ export default function ImageEmbed(props: Props) {
         />
       )}
       {depth < 2 && (
-        <article className="mt-2">{generateImageLayout(imageCount, content.images)}</article>
+        <article className="mt-2">
+          {generateImageLayout(imageCount, content.images)}
+        </article>
       )}
     </>
   );
