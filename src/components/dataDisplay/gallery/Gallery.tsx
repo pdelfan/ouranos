@@ -61,7 +61,7 @@ export default function Gallery(props: Props) {
         className="z-50"
       >
         <Button
-          className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
+          className="z-[70] fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="ph:x-bold"
           onClick={(e) => {
             e.stopPropagation();
@@ -70,7 +70,7 @@ export default function Gallery(props: Props) {
         />
         {imageCount > 1 && currentIndex > 0 && (
           <Button
-            className="z-50 fixed left-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
+            className="z-[70] fixed left-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
             icon="bx:left-arrow-alt"
             onClick={(e) => {
               e.stopPropagation();
@@ -80,7 +80,7 @@ export default function Gallery(props: Props) {
         )}
         {imageCount > 1 && currentIndex < imageCount - 1 && (
           <Button
-            className="z-50 fixed right-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
+            className="z-[70] fixed right-3 top-1/2 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
             icon="bx:right-arrow-alt"
             onClick={(e) => {
               e.stopPropagation();
@@ -95,7 +95,7 @@ export default function Gallery(props: Props) {
             alt={images[currentIndex].alt}
             width={images[currentIndex].aspectRatio?.width ?? 900}
             height={images[currentIndex].aspectRatio?.height ?? 900}
-            className="object-contain z-40 fixed inset-0 h-full w-fit mx-auto"
+            className="object-contain z-[60] fixed inset-0 h-full w-fit mx-auto"
           />
         )}
 
@@ -105,7 +105,7 @@ export default function Gallery(props: Props) {
             alt={"Image"}
             width={900}
             height={900}
-            className="object-contain z-40 fixed inset-0 h-full w-fit mx-auto"
+            className="object-contain z-[60] fixed inset-0 h-full w-fit mx-auto"
           />
         )}
       </Dialog.Content>

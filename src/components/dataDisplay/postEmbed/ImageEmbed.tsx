@@ -24,15 +24,15 @@ export default function ImageEmbed(props: Props) {
     switch (count) {
       case 2:
         return (
-          <div className="flex flex-nowrap aspect-video gap-1">
+          <div className="flex flex-nowrap aspect-video gap-1 z-50">
             {images.map((image, i) => (
               <div key={i} className="relative">
                 <Image
                   src={image.thumb}
                   alt={image.alt}
-                  width={250}
+                  width={500}
                   height={250}
-                  className="rounded-md h-full w-full max-h-62 object-cover cursor-pointer hover:brightness-90"
+                  className="rounded-md h-full max-h-62 object-cover cursor-pointer hover:brightness-90"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowImage(i);
@@ -55,7 +55,7 @@ export default function ImageEmbed(props: Props) {
                     alt={images[0].alt}
                     width={images[0].aspectRatio?.width ?? 450}
                     height={images[0].aspectRatio?.height ?? 450}
-                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
+                    className="rounded-md object-cover h-full cursor-pointer hover:brightness-90"
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowImage(0);
