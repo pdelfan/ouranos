@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import SessionProvider from "./providers/session";
@@ -27,13 +28,12 @@ export default async function RootLayout({
       <body className={`${inter.variable}`}>
         <SessionProvider session={session}>
           <QueryProvider>
-            <ComposerProvider>
-              {children}              
-            </ComposerProvider>
+            <ComposerProvider>{children}</ComposerProvider>
           </QueryProvider>
           <ToastProvider />
         </SessionProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
