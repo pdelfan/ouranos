@@ -168,8 +168,16 @@ export default function Page() {
             repository
           </Link>{" "}
           and create an issue with a provided label (feature request, bug,
-          question, etc). You can also mention me on Bluesky (my handle is{" "}
-          @contrapunctus.bsky.social).
+          question, etc). For general questions and anything that else that
+          comes to your mind, there is{" "}
+          <Link
+            href="https://github.com/pdelfan/ouranos/discussions"
+            className="underline underline-offset-2"
+          >
+            Discussions
+          </Link>
+          . If you are not on GitHub, you can also mention me on Bluesky (my
+          handle is @contrapunctus.bsky.social).
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
