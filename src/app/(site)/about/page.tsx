@@ -34,15 +34,24 @@ export default function Page() {
         </h1>
         <p>
           Ouranos is an open-source{" "}
-          <Link href="https://blueskyweb.xyz/" className="underline">
+          <Link
+            href="https://blueskyweb.xyz/"
+            className="underline underline-offset-2"
+          >
             Bluesky
           </Link>{" "}
           client for the web, built using{" "}
-          <Link href="https://nextjs.org/" className="underline">
+          <Link
+            href="https://nextjs.org/"
+            className="underline underline-offset-2"
+          >
             Next.js
           </Link>
           . Similar to the official Bluesky app, it uses the{" "}
-          <Link href="https://blueskyweb.xyz/" className="underline">
+          <Link
+            href="https://blueskyweb.xyz/"
+            className="underline underline-offset-2"
+          >
             AT Protocol
           </Link>
           , a decentralized networking technology for social media. This is
@@ -54,7 +63,7 @@ export default function Page() {
           The app is being developed and designed by me,{" "}
           <Link
             href="https://bsky.app/profile/contrapunctus.bsky.social"
-            className="underline"
+            className="underline underline-offset-2"
           >
             Pouria
           </Link>
@@ -71,17 +80,33 @@ export default function Page() {
           Is anything stored on your servers?
         </h3>
         <p>
-          Nothing is stored, every request goes through the official Bluesky
-          servers. When you log in, your session is stored using cookies on your
-          web browser. Any extra feature that exists (or will be added) stores
-          information{" "}
+          Nothing from Bluesky is stored, every request goes through the
+          official Bluesky servers. When you log in, your session is stored
+          using cookies on your web browser. Any extra feature that exists (or
+          will be added) stores information{" "}
           <Link
             href="https://javascript.info/localstorage"
-            className="underline"
+            className="underline underline-offset-2"
           >
             locally
           </Link>{" "}
           on your web browser.
+        </p>
+
+        <p className="mt-3">
+          Note: When you visit the site,{" "}
+          <Link
+            href="https://vercel.com/analytics"
+            className="underline underline-offset-2"
+          >
+            Vercel Analytics
+          </Link>{" "}
+          is used to gather anonymized information to help me get a general idea
+          and provide better support. These include number of visitors, top
+          visited pages, countries, operating systems, and web browsers. These
+          are general data, no cookies and nothing personal is collected that
+          can be linked back to you. However, if you would like to disable
+          tracking, you can use an ad blocker of your choice to do so.
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
@@ -118,14 +143,32 @@ export default function Page() {
         <p>Not at the moment, but it will be added soon.</p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+          Where can I see progress updates?
+        </h3>
+        <p>
+          For the moment, you can see what is being worked on under{" "}
+          <Link
+            href="https://github.com/users/pdelfan/projects/1"
+            className="underline underline-offset-2"
+          >
+            projects
+          </Link>{" "}
+          on GitHub.{" "}
+        </p>
+
+        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
           How can I provide feedback?
         </h3>
         <p>
           If you have an account on GitHub, you can go to the project's{" "}
-          <Link href="https://github.com/pdelfan/ouranos" className="underline">
+          <Link
+            href="https://github.com/pdelfan/ouranos"
+            className="underline underline-offset-2"
+          >
             repository
           </Link>{" "}
-          and create an issue. You can also mention me on Bluesky (my handle is{" "}
+          and create an issue with a provided label (feature request, bug,
+          question, etc). You can also mention me on Bluesky (my handle is{" "}
           @contrapunctus.bsky.social).
         </p>
 
