@@ -30,42 +30,45 @@ export default function FeedTabs() {
   const show = useHideOnScroll({});
 
   return (
-    <div
-      className={`pt-4 md:pt-2 bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 ${
-        show ? "translate-y-0" : "-translate-y-20"
-      } transition-translate ease-in-out duration-300 sticky top-0 md:translate-y-0  md:relative z-50 md:z-40`}
-    >
-      {isFetching && <FeedTabsSkeleton />}
-      <Tabs>
-        {!isFetching && (
-          <>
-            <TabItem
-              key={"Following"}
-              isActive={pathname === "/dashboard/home"}
-              label={"Following"}
-              path={"/dashboard/home"}
-            />
-            {savedFeeds &&
-              savedFeeds
-                .filter((feed) => feed.pinned)
-                .map((feed) => {
-                  return (
-                    <TabItem
-                      key={feed.cid}
-                      isActive={feed.uri === uri}
-                      label={feed.displayName}
-                      path={{
-                        pathname: `/dashboard/home/${encodeURIComponent(
-                          feed.uri.split(":")[3].split("/")[0]
-                        )}`,
-                        query: { uri: feed.uri },
-                      }}
-                    />
-                  );
-                })}
-          </>
-        )}
-      </Tabs>
-    </div>
+    <>
+      <div className="z-40 hidden md:block fixed bg-white top-0 lg:p-5 md:p-5 max-w-xl w-full" />
+      <div
+        className={`pt-4 md:pt-2 bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 ${
+          show ? "translate-y-0" : "-translate-y-20"
+        } transition-translate ease-in-out duration-300 sticky top-0 md:top-6 md:translate-y-0  z-50 md:z-50`}
+      >
+        {isFetching && <FeedTabsSkeleton />}
+        <Tabs>
+          {!isFetching && (
+            <>
+              <TabItem
+                key={"Following"}
+                isActive={pathname === "/dashboard/home"}
+                label={"Following"}
+                path={"/dashboard/home"}
+              />
+              {savedFeeds &&
+                savedFeeds
+                  .filter((feed) => feed.pinned)
+                  .map((feed) => {
+                    return (
+                      <TabItem
+                        key={feed.cid}
+                        isActive={feed.uri === uri}
+                        label={feed.displayName}
+                        path={{
+                          pathname: `/dashboard/home/${encodeURIComponent(
+                            feed.uri.split(":")[3].split("/")[0]
+                          )}`,
+                          query: { uri: feed.uri },
+                        }}
+                      />
+                    );
+                  })}
+            </>
+          )}
+        </Tabs>
+      </div>
+    </>
   );
 }
