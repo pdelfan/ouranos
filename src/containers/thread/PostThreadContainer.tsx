@@ -15,6 +15,8 @@ import Button from "@/components/actions/button/Button";
 import { useRouter } from "next/navigation";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import { ThreadViewResult } from "../../../types/feed";
+import { sortThread } from "@/lib/utils/feed";
 
 interface Props {
   id: string;
@@ -48,6 +50,7 @@ export default function PostThreadContainer(props: Props) {
 
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
+  const threadPreferences = preferences?.threadPreferences;
 
   if (
     AppBskyFeedDefs.isBlockedPost(thread) ||
@@ -67,7 +70,7 @@ export default function PostThreadContainer(props: Props) {
           )}
           {AppBskyFeedDefs.isBlockedAuthor(thread) && (
             <BlockedEmbed depth={0} />
-          )}          
+          )}
           {isError && (
             <FeedAlert
               variant="badResponse"
@@ -124,35 +127,41 @@ export default function PostThreadContainer(props: Props) {
       )}
 
       {contentFilter &&
+        threadPreferences &&
         replyChains &&
-        replyChains.map((replyArr, i) => (
-          <div
-            className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b md:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
-            key={i}
-          >
-            {replyArr.map((reply, j) => (
-              <div className={reply.post.uri} key={reply.post.uri}>
-                {AppBskyFeedDefs.isBlockedPost(reply) && (
-                  <BlockedEmbed depth={0} />
-                )}
-                {AppBskyFeedDefs.isNotFoundPost(reply) && (
-                  <NotFoundEmbed depth={0} />
-                )}
-                {AppBskyFeedDefs.isBlockedAuthor(reply) && (
-                  <BlockedEmbed depth={0} />
-                )}
+        replyChains
+          .sort((a, b) => sortThread(a[0], b[0], threadPreferences))
+          .map((replyArr, i) => (
+            <div
+              className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b md:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+              key={i}
+            >
+              {replyArr.map((reply, j) => (
+                <div className={reply.post.uri} key={reply.post.uri}>
+                  {AppBskyFeedDefs.isBlockedPost(reply) && (
+                    <BlockedEmbed depth={0} />
+                  )}
+                  {AppBskyFeedDefs.isNotFoundPost(reply) && (
+                    <NotFoundEmbed depth={0} />
+                  )}
+                  {AppBskyFeedDefs.isBlockedAuthor(reply) && (
+                    <BlockedEmbed depth={0} />
+                  )}
 
-                {AppBskyFeedDefs.isThreadViewPost(reply) && j < MAX_REPLIES && (
-                  <FeedPost
-                    post={reply}
-                    filter={contentFilter}
-                    isParent={j < replyArr.length - 1 && j < MAX_REPLIES - 1}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
+                  {AppBskyFeedDefs.isThreadViewPost(reply) &&
+                    j < MAX_REPLIES && (
+                      <FeedPost
+                        post={reply}
+                        filter={contentFilter}
+                        isParent={
+                          j < replyArr.length - 1 && j < MAX_REPLIES - 1
+                        }
+                      />
+                    )}
+                </div>
+              ))}
+            </div>
+          ))}
     </>
   );
 }

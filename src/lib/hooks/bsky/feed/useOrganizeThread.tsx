@@ -23,16 +23,16 @@ export default function useOrganizeThread(props: Props) {
   ) => {
     currentChain.push(post);
 
-    // Check if the post has replies
+    // check if the post has replies
     if (post.replies && post.replies.length > 0) {
       let longestChain = currentChain;
 
-      // Iterate through replies and call the function recursively
+      // iterate through replies and call the function recursively
       for (const reply of post.replies) {
         if (AppBskyFeedDefs.isThreadViewPost(reply)) {
           const chain = getConnectedReplies(reply, currentChain.slice());
 
-          // Update the longest chain if the new one is longer
+          // update the longest chain if the new one is longer
           if (chain.length > longestChain.length) {
             longestChain = chain;
           }

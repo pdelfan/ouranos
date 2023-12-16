@@ -185,3 +185,35 @@ export default function getThreadPreferences(
 
   return filters;
 }
+
+export const sortThread = (
+  a: AppBskyFeedDefs.ThreadViewPost,
+  b: AppBskyFeedDefs.ThreadViewPost,
+  threadPrefs: ThreadViewResult
+) => {
+  if (threadPrefs.sort === "oldest") {
+    const aDate = new Date(a.post.indexedAt);
+    const bDate = new Date(b.post.indexedAt);
+    return aDate.getTime() - bDate.getTime();
+  } else if (threadPrefs.sort === "newest") {
+    const aDate = new Date(a.post.indexedAt);
+    const bDate = new Date(b.post.indexedAt);
+    return bDate.getTime() - aDate.getTime();
+  } else if (threadPrefs.sort === "most-likes") {
+    const aLikes = a.post.likeCount || 0;
+    const bLikes = b.post.likeCount || 0;
+    return bLikes - aLikes;
+  } else if (threadPrefs.sort === "random") {
+    return Math.random() - 0.5;
+  }
+
+  if (threadPrefs.prioritizeFollowedUsers) {
+    const aIsFollowed = a.post.author.viewer?.following;
+    const bIsFollowed = b.post.author.viewer?.following;
+    if (aIsFollowed && !bIsFollowed) return -1;
+    if (!aIsFollowed && bIsFollowed) return 1;
+    return 0;
+  }
+
+  return 0;
+};
