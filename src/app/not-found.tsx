@@ -22,12 +22,6 @@ export default function NotFound() {
       <h1 className="text-center text-lg sm:text-xl mt-2">
         The page you are looking for could not be found
       </h1>
-      <Link
-        className="mt-8 bg-zinc-600 text-white font-medium px-5 py-3 rounded-full hover:bg-zinc-700 "
-        href="/"
-      >
-        Return home
-      </Link>
     </main>
   );
 }
