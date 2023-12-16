@@ -207,6 +207,7 @@ export const sortThread = (
     return Math.random() - 0.5;
   }
 
+  // this is applied in addition to the sort
   if (threadPrefs.prioritizeFollowedUsers) {
     const aIsFollowed = a.post.author.viewer?.following;
     const bIsFollowed = b.post.author.viewer?.following;
