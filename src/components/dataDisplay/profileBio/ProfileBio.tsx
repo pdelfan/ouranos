@@ -1,6 +1,6 @@
 "use client";
 
-import { getHandle } from "@/lib/utils/text";
+import { getHandle, getHostname, getShortAddress } from "@/lib/utils/text";
 import { RichText as RichTextHelper } from "@atproto/api";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -40,13 +40,13 @@ export default function ProfileBio(props: Props) {
         text: segment.text,
         component: (
           <Link
-            className="text-primary break-all hover:text-primary-dark"
-            href={segment.link?.uri!}
+            className="inline-block text-primary break-all hover:text-primary-dark"
+            href={segment.link!.uri}
             target="blank"
-            key={segment.link?.uri}
+            key={segment.link!.uri}
             onClick={(e) => e.stopPropagation()}
           >
-            {segment.text}
+            {getShortAddress(segment.link!.uri)}
           </Link>
         ),
       });
