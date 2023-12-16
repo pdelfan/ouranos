@@ -85,7 +85,7 @@ export default function NotificationItem(props: Props) {
                     <Link
                       key={author.handle}
                       href={`/dashboard/user/${author.handle}`}
-                      className="font-semibold break-all text-neutral-700 hover:text-neutral-600"
+                      className="font-semibold break-all text-neutral-700 hover:text-neutral-500"
                     >
                       {author.displayName ?? author.handle}{" "}
                     </Link>
@@ -98,7 +98,7 @@ export default function NotificationItem(props: Props) {
                 {allAuthors?.length === 1 && (
                   <Link
                     href={`/dashboard/user/${author.handle}`}
-                    className="font-semibold break-all text-neutral-700 hover:text-neutral-600"
+                    className="font-semibold break-all text-neutral-700 hover:text-neutral-500"
                   >
                     {author.displayName ?? author.handle}{" "}
                   </Link>

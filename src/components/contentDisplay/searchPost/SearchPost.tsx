@@ -47,7 +47,7 @@ export default function SearchPost(props: Props) {
               href={`/dashboard/user/${author.handle}`}
               className="flex gap-1"
             >
-              <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700 hover:text-neutral-600">
+              <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700 hover:text-neutral-500">
                 {author.displayName ?? author.handle}{" "}
               </span>
               <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
