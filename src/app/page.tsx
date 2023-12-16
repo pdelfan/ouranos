@@ -69,6 +69,7 @@ export default function Home() {
           alt="Ouranos desktop screenshot"
           width={1200}
           height={830}
+          priority
         />
       </div>
       <footer className="mt-16 text-center text-sm font-mono text-neutral-500 animate-fade-up animate-delay-500">
