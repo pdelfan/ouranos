@@ -29,7 +29,7 @@ export default function ReplyToPreview(props: Props) {
             @{author.handle}
           </span>
         </div>
-        <p className="line-clamp-2">{post.text}</p>
+        <p className="max-h-48 overflow-auto">{post.text}</p>
       </div>
     </article>
   );
