@@ -13,7 +13,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Ouranos",
-  description: "Your Bluesky web client",
+  description: "Your friendly Bluesky client for the web",
+  metadataBase: new URL("https://useouranos.app"),
 };
 
 export default async function RootLayout({

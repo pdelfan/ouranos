@@ -16,8 +16,8 @@ Run `npm run dev` and open [http://localhost:3000](http://localhost:3000) with y
 
 The following environment variables are required:
 
-- NEXTAUTH_SECRET (generate one using `openssl rand -base64 32` or visit [https://generate-secret.vercel.app/32](https://generate-secret.vercel.app/32)). You won't need to prefix it with `NEXT_PUBLIC` if you are deploying to Vercel.
-- NEXTAUTH_URL (`http://localhost:3000` while running locally. You won't need this variable in production if you're deploying to Vercel.)
+- `NEXTAUTH_SECRET` (generate one using `openssl rand -base64 32` or visit [https://generate-secret.vercel.app/32](https://generate-secret.vercel.app/32)). You won't need to prefix it with `NEXT_PUBLIC` if you are deploying to Vercel.
+- `NEXTAUTH_URL` (`http://localhost:3000` while running locally. You won't need this variable in production if you're deploying to Vercel.)
 
 ## Project Roadmap
 
