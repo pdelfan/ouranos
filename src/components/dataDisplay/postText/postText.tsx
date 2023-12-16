@@ -72,7 +72,7 @@ export default function PostText(props: Props) {
     } else {
       content.push({
         text: segment.text,
-        component: <span key={segment.text}>{segment.text}</span>,
+        component: <span key={segment.text} className="text-neutral-700">{segment.text}</span>,
       });
     }
   }

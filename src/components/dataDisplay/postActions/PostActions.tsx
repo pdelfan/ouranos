@@ -57,7 +57,7 @@ export default function PostActions(props: Props) {
             href={`/dashboard/user/${post.author.handle}/post/${getPostId(
               post.uri
             )}/reposted-by`}
-            className="flex gap-1 font-semibold text-neutral-600 hover:brightness-110"
+            className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
           >
             {abbreviateNumber(repostCount)}
             <span className="font-medium text-neutral-400">
@@ -68,7 +68,7 @@ export default function PostActions(props: Props) {
             href={`/dashboard/user/${post.author.handle}/post/${getPostId(
               post.uri
             )}/liked-by`}
-            className="flex gap-1 font-semibold text-neutral-600 hover:brightness-110"
+            className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
           >
             {abbreviateNumber(likeCount)}
             <span className="font-medium text-neutral-400">

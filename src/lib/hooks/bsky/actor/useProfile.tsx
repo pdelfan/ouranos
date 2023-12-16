@@ -13,6 +13,8 @@ export default function useProfile(handle: string) {
     queryFn: () => getProfile(handle, agent),
   });
 
+  console.log(data)
+
   const updateFollowCount = (mode: "decrease" | "increase") => {
     queryClient.setQueryData(profileKey(handle), (oldData: any) => {
       return {
