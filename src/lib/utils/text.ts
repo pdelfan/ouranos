@@ -1,4 +1,3 @@
-import { BskyAgent, RichText } from "@atproto/api";
 import { JSONContent } from "@tiptap/react";
 
 export function getHandle(mention: string) {
@@ -14,6 +13,17 @@ export function getHostname(url: string) {
   const matches = url.match(/\/([^\/?#]+)(?:[\/?#]|$)/i);
   // extract hostname (return name with no www)
   return matches ? matches[1] : url.replace(/^www\./, "");
+}
+
+export function getShortAddress(url: string) {
+  const newURL = new URL(url);
+  const text = newURL.hostname + newURL.pathname;
+
+  if (text.endsWith("/")) {
+    return text.slice(0, -1);
+  }
+
+  return text;
 }
 
 export function getNotificationLabel(reason: string) {
