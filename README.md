@@ -1,22 +1,28 @@
-Ouranos
+![logo](./public/logo.svg)
+
+# Ouranos
+
+Your friendly Bluesky client for the web. Made with Next.js.
 
 ## Getting Started
 
-First, run the development server:
+Install NPM packages in the project directory.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run `npm run dev` and open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You'll need these environment variables:
+The following environment variables are required:
 
-- NEXTAUTH_SECRET (generate one using `openssl rand -base64 32`)
-- NEXTAUTH_URL (`http://localhost:3000` while running locally)
+- NEXTAUTH_SECRET (generate one using `openssl rand -base64 32` or visit [https://generate-secret.vercel.app/32](https://generate-secret.vercel.app/32)). You won't need to prefix it with `NEXT_PUBLIC` if you are deploying to Vercel.
+- NEXTAUTH_URL (`http://localhost:3000` while running locally. You won't need this variable in production if you're deploying to Vercel.)
+
+## Project Roadmap
+
+Latest changes and updates are added to `Ouranos Roadmap` under [Projects](https://github.com/users/pdelfan/projects/1).
+
+## FAQ
+
+Please visit [https://useouranos.app/about](https://useouranos.app/about).
