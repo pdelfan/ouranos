@@ -178,7 +178,9 @@ export default function usePublishPost(props: Props) {
             if (linkCard.image) {
               try {
                 const image = await fetch(linkCard.image);
-                const blob = await image.blob();
+                const blob = await compressImage(
+                  (await image.blob()) as UploadImage
+                );
                 const uploaded = await agent.uploadBlob(
                   new Uint8Array(await blob.arrayBuffer()),
                   {
