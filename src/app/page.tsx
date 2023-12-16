@@ -28,9 +28,16 @@ export default function Home() {
         </Link>
       </header>
       <section className="mt-16 max-w-xl mx-auto animate-fade-up animate-delay-150">
-        <small className="inline-block px-3 py-2 mb-1 rounded-full bg-primary/10 font-semibold text-[0.6rem] text-primary animate-fade-up animate-delay-[1000ms]">
-          In Early Access 🎉
+        <small className="inline-flex gap-1 items-center px-3 py-2 mb-1 rounded-full bg-primary/10 font-bold text-[0.6rem] text-primary animate-fade-up animate-delay-[1000ms]">
+          In Early Access
+          <Image
+            src="/images/confetti.png"
+            alt="Confetti emoji"
+            width={14}
+            height={14}
+          />
         </small>
+
         <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
           Your friendly Bluesky client for the web
         </h1>
