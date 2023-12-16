@@ -22,14 +22,14 @@ export default function ReplyToPreview(props: Props) {
       />
       <div className="flex flex-col">
         <div className="flex gap-1">
-          <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis">
+          <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
             {author.displayName ?? author.handle}
           </span>
           <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
             @{author.handle}
           </span>
         </div>
-        <p className="line-clamp-2">{post.text}</p>
+        <p className="max-h-48 overflow-auto">{post.text}</p>
       </div>
     </article>
   );

@@ -85,23 +85,25 @@ export default function NotificationItem(props: Props) {
                     <Link
                       key={author.handle}
                       href={`/dashboard/user/${author.handle}`}
-                      className="font-semibold break-all hover:text-neutral-600"
+                      className="font-semibold break-all text-neutral-700 hover:text-neutral-500"
                     >
                       {author.displayName ?? author.handle}{" "}
                     </Link>
-                    and {allAuthors.length - 1}{" "}
-                    {allAuthors.length - 1 > 1 ? "others" : "other"}{" "}
+                    <span className="text-neutral-700">
+                      and {allAuthors.length - 1}{" "}
+                      {allAuthors.length - 1 > 1 ? "others" : "other"}{" "}
+                    </span>
                   </>
                 )}
                 {allAuthors?.length === 1 && (
                   <Link
                     href={`/dashboard/user/${author.handle}`}
-                    className="font-semibold break-all hover:text-neutral-600"
+                    className="font-semibold break-all text-neutral-700 hover:text-neutral-500"
                   >
                     {author.displayName ?? author.handle}{" "}
                   </Link>
                 )}
-                <span className="text-neutral-500 font-medium break-words">
+                <span className="text-neutral-700 font-medium break-words">
                   {getNotificationLabel(reason)}
                 </span>
                 <span className="text-neutral-400 font-medium whitespace-nowrap">

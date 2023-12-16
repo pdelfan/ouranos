@@ -16,7 +16,7 @@ export default function FeedAlert(props: Props) {
 
   return (
     <section
-      className={`flex flex-col justify-center gap-2 p-3 ${selectedClass} text-neutral-600`}
+      className={`flex flex-col justify-center gap-2 p-3 ${selectedClass} text-neutral-700`}
     >
       <span className="mx-auto">{icon}</span>
       <span className="text-center font-medium">{message}</span>

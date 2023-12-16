@@ -21,7 +21,7 @@ export default function ListEmbed(props: Props) {
               <Icon icon={selectedIcon} className="text-white text-xl" />
             </div>
             <div className="flex flex-col">
-              <span className="font-semibold break-all line-clamp-1 overflow-ellipsis hover:text-neutral-600">
+              <span className="font-semibold break-all line-clamp-1 overflow-ellipsis text-neutral-700 hover:text-neutral-600">
                 {list.name}
               </span>
               <span className="text-neutral-400 font-medium break-all">

@@ -40,7 +40,7 @@ export default function ProfileCard(props: Props) {
           </div>
         </div>
         <div>
-          <p className="text-neutral-600 leading-5 break-words">
+          <p className="text-neutral-700 leading-5 break-words">
             {profile?.description}
           </p>
         </div>

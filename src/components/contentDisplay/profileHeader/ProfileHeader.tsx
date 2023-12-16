@@ -122,7 +122,7 @@ export default function ProfileHeader(props: Props) {
           )}
           <div className="p-3">
             <div className="flex flex-wrap items-center gap-x-2">
-              <h1 className="text-2xl font-semibold break-all">
+              <h1 className="text-2xl font-semibold break-all text-neutral-700">
                 {profile?.displayName ||
                   (profile?.handle &&
                     (profile?.displayName ?? profile?.handle))}
