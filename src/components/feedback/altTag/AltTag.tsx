@@ -37,7 +37,6 @@ export default function AltTag(props: Props) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            onInteractOutside={() => console.log("efsf")}
             className="flex items-center justify-center fixed inset-0 z-50 "
           >
             <Dialog.Close asChild>
