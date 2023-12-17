@@ -1,4 +1,3 @@
-import * as ScrollArea from "@radix-ui/react-scroll-area";
 import Button from "@/components/actions/button/Button";
 import Dropdown from "@/components/actions/dropdown/Dropdown";
 import { LANGUAGES } from "@/lib/consts/languages";
@@ -28,41 +27,33 @@ export default function LanguagePicker(props: Props) {
         </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>
-        <ScrollArea.Root>
-          <ScrollArea.Viewport>
-            {languages.length > 0 && (
-              <Dropdown.MenuItem
-                text="Remove All Languages"
-                icon="bx:trash"
-                textColor="text-red-500"
-                onSelect={() => onSelectLanguages([])}
-              />
-            )}
-            {LANGUAGES.map((option) => (
-              <Dropdown.MenuItem
-                key={option.name}
-                text={option.name}
-                icon={
-                  languages.includes(option) ? "octicon:check-16" : undefined
-                }
-                onSelect={() => {
-                  // can only select 3 languages
-                  if (languages.length === 3 && !languages.includes(option)) {
-                    return;
-                  }
+        {languages.length > 0 && (
+          <Dropdown.MenuItem
+            text="Remove All Languages"
+            icon="bx:trash"
+            textColor="text-red-500"
+            onSelect={() => onSelectLanguages([])}
+          />
+        )}
+        {LANGUAGES.map((option) => (
+          <Dropdown.MenuItem
+            key={option.name}
+            text={option.name}
+            icon={languages.includes(option) ? "octicon:check-16" : undefined}
+            onSelect={() => {
+              // can only select 3 languages
+              if (languages.length === 3 && !languages.includes(option)) {
+                return;
+              }
 
-                  if (languages.includes(option)) {
-                    onSelectLanguages(
-                      languages.filter((lang) => lang !== option)
-                    );
-                  } else {
-                    onSelectLanguages([...languages, option]);
-                  }
-                }}
-              />
-            ))}
-          </ScrollArea.Viewport>
-        </ScrollArea.Root>
+              if (languages.includes(option)) {
+                onSelectLanguages(languages.filter((lang) => lang !== option));
+              } else {
+                onSelectLanguages([...languages, option]);
+              }
+            }}
+          />
+        ))}
       </Dropdown.Menu>
     </Dropdown>
   );
