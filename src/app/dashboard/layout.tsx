@@ -25,7 +25,7 @@ export default async function DashboardLayout({
       {profile && <Composer author={profile} />}
       <SidePanel />
       <section className="w-full md:max-w-xl">
-        <TopBar />
+        {profile && <TopBar profile={profile} />}
         {children}
       </section>
       <Aside />

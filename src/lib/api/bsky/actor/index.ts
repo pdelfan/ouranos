@@ -19,7 +19,7 @@ export const getProfile = async (
   if (!agent) agent = await getAgent();
   const profile = await agent.getProfile({ actor: handle });
 
-  if (!profile.data) return null;
+  if (!profile.success) throw new Error("Could not get profile");
   return profile.data;
 };
 
