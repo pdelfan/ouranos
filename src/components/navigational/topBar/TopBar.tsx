@@ -1,13 +1,15 @@
-import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 import SignOut from "@/components/actions/signOut/SignOut";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
-import { getProfile } from "@/lib/api/bsky/actor";
+import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function TopBar() {
-  const session = await getSessionFromServer();
-  const profile = await getProfile(session?.user.bskySession.handle);
+interface Props {
+  profile: ProfileViewDetailed;
+}
+
+export default function TopBar(props: Props) {
+  const { profile } = props;
 
   return (
     <div className="flex justify-between bg-white border-b md:border-b-0 px-3 md:px-0 py-2.5 md:pt-0 sticky md:relative top-0 z-50 lg:hidden">
