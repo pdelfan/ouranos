@@ -56,15 +56,19 @@ export const searchProfilesTypehead = async (
   }
 };
 
-export const searchPosts = async (term: string, agent?: BskyAgent) => {
+export const searchPosts = async (
+  term: string,
+  cursor: string,
+  agent?: BskyAgent
+) => {
   if (!agent) agent = await getAgent();
   try {
-    const response = await agent.app.bsky.feed.searchPosts({ q: term });
-    if (response.success) {
-      if (response.data.length === 0) return [];
-
-      const posts: AppBskyFeedDefs.PostView[] = response.data.posts;
-      return posts;
+    const response = await agent.app.bsky.feed.searchPosts({
+      q: term,
+      cursor: cursor,
+    });
+    if (response.success) {    
+      return response;
     }
   } catch (e) {
     console.error(e);
