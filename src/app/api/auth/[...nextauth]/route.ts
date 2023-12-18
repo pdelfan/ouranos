@@ -116,10 +116,6 @@ export const authOptions: NextAuthOptions = {
   },
 } satisfies NextAuthOptions;
 
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
-
 // use this helper function instead of getServerSession so you won't need to pass authOptions
 export function getSessionFromServer(
   ...args:
@@ -129,3 +125,9 @@ export function getSessionFromServer(
 ) {
   return getServerSession(...args, authOptions);
 }
+
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
+
