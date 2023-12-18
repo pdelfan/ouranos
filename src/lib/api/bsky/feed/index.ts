@@ -228,7 +228,7 @@ export const getPostThread = async (agent: BskyAgent, uri: string) => {
     const posts = await agent.getPostThread({ uri: uri });
     return posts.data.thread;
   } catch (e) {
-    throw new Error("Could not fetch post thread");
+    throw e;
   }
 };
 

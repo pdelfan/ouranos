@@ -1,15 +1,8 @@
 import { AppBskyFeedDefs } from "@atproto/api";
+import { Thread } from "../../../../../types/feed";
 
 interface Props {
-  thread:
-    | AppBskyFeedDefs.ThreadViewPost
-    | AppBskyFeedDefs.NotFoundPost
-    | AppBskyFeedDefs.BlockedPost
-    | {
-        [k: string]: unknown;
-        $type: string;
-      }
-    | undefined;
+  thread: Thread;
 }
 
 export default function useOrganizeThread(props: Props) {
@@ -45,13 +38,13 @@ export default function useOrganizeThread(props: Props) {
     return currentChain;
   };
 
-  const getParentChain = (post: AppBskyFeedDefs.ThreadViewPost) => {
-    const chain: AppBskyFeedDefs.ThreadViewPost[] = [];
+  const getParentChain = (post: Thread) => {
+    const chain: Thread[] = [];
     let currentPost = post;
     while (currentPost && currentPost.parent) {
-      if (AppBskyFeedDefs.isThreadViewPost(currentPost.parent)) {
-        chain.push(currentPost.parent);
-        currentPost = currentPost.parent;
+      if (currentPost.parent) {
+        chain.push(currentPost.parent as Thread);
+        currentPost = currentPost.parent as Thread;
       }
     }
     return chain.reverse();
