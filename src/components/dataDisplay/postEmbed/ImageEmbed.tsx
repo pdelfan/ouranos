@@ -75,7 +75,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setShowImage(0);
+                      setShowImage(1);
                     }}
                   />
                   {images[1].alt && <AltTag text={images[1].alt} />}
