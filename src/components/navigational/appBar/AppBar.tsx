@@ -6,13 +6,13 @@ import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
 
 export default function AppBar() {
   const pathname = usePathname();
-  const show = useHideOnScroll({});
+  const show = useHideOnScroll();
 
   return (
     <nav
       className={`flex justify-between py-4 px-6 border-t gap-6 fixed bottom-0 z-40 w-full md:hidden bg-white ${
-        show ? "translate-y-0" : "translate-y-36"
-      } transition-translate ease-in-out duration-300`}
+        show ? "translate-y-0 opacity-100" : "translate-y-36 opacity-0"
+      } transition-all ease-in-out duration-500`}
     >
       <NavItem
         href="/dashboard/home"
