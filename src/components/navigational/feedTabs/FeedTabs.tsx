@@ -27,15 +27,15 @@ export default function FeedTabs() {
     queryFn: () => getSavedFeeds(agent),
   });
 
-  const show = useHideOnScroll({});
+  const show = useHideOnScroll();
 
   return (
     <>
       <div className="z-40 hidden md:block fixed bg-white top-0 lg:p-5 md:p-5 max-w-xl w-full" />
       <div
         className={`pt-4 md:pt-2 bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 ${
-          show ? "translate-y-0" : "-translate-y-20"
-        } transition-translate ease-in-out duration-300 sticky top-0 md:top-6 md:translate-y-0  z-50 md:z-50`}
+          show ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
+        } transition-all ease-in-out duration-500 sticky top-0 md:top-6 md:translate-y-0  z-50 md:z-50`}
       >
         {isFetching && <FeedTabsSkeleton />}
         <Tabs>

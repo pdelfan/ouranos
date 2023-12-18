@@ -8,7 +8,7 @@ interface Props {
 
 export default function ComposeButton(props: Props) {
   const { mode } = props;
-  const show = useHideOnScroll({});
+  const show = useHideOnScroll();
   const { isOpen, options, openComposer, closeComposer } = useComposerContext();
 
   const toggleComposer = () => {
@@ -22,8 +22,8 @@ export default function ComposeButton(props: Props) {
         <button
           onClick={toggleComposer}
           className={`z-40 p-3.5 rounded-full fixed md:hidden right-3 bottom-20 md:bottom-5 bg-primary text-white hover:bg-primary-dark outline-none ${
-            show ? "translate-y-0" : "translate-y-36"
-          } transition-translate ease-in-out duration-300`}
+            show ? "translate-y-0 opacity-100" : "translate-y-36 opacity-0"
+          } transition-all ease-in-out duration-500`}
         >
           <Icon icon="mdi:feather" className="text-2xl" />
         </button>
