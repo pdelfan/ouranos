@@ -24,7 +24,7 @@ export default function TextEdit(props: Props) {
           className={`rounded-full z-50 mb-2 ${isReply && "ml-2"}`}
         />
         <div className="flex flex-col">
-          <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis hover:text-neutral-600">
+          <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis">
             {author?.displayName ?? author?.handle}
           </span>
           <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">

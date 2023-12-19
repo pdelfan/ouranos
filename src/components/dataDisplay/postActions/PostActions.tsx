@@ -35,7 +35,7 @@ export default function PostActions(props: Props) {
 
   const handleShare = useCallback(() => {
     const postId = getPostId(post.uri);
-    const shareUrl = `https://bsky.app/profile/${post.author.handle}/post/${postId}`;
+    const shareUrl = `https://useouranos.app/dashboard/user/${post.author.handle}/post/${postId}`;
     clipboard.copy(shareUrl);
     toast.success("Link to post copied to clipboard");
   }, [clipboard, post.uri, post.author.handle]);
