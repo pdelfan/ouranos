@@ -61,7 +61,7 @@ export default function Follow(props: Props) {
           onClick={() => {
             toggleBlockUser.mutate();
           }}
-          className="rounded-full px-4 py-2 bg-neutral-100 hover:brightness-95"
+          className="rounded-full px-4 py-2 font-medium text-sm bg-neutral-100 hover:brightness-95"
         >
           Unblock
         </Button>
