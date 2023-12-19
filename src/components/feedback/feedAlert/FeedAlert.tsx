@@ -19,7 +19,7 @@ export default function FeedAlert(props: Props) {
       className={`flex flex-col justify-center gap-2 p-3 ${selectedClass} text-neutral-700`}
     >
       <span className="mx-auto">{icon}</span>
-      <span className="text-center font-medium">{message}</span>
+      <span className="text-center font-medium break-words">{message}</span>
     </section>
   );
 }
