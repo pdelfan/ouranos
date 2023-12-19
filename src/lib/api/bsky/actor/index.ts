@@ -6,10 +6,7 @@ import {
   BskyThreadViewPreference,
 } from "@atproto/api";
 import { getAgent } from "../agent";
-import {
-  ContentFilterLabel,
-  FeedSearchResult,
-} from "../../../../../types/feed";
+import { ContentFilterLabel } from "../../../../../types/feed";
 
 export const getProfile = async (
   handle: string | undefined,
@@ -59,24 +56,20 @@ export const searchProfilesTypehead = async (
   }
 };
 
-export const searchPosts = async (term: string, agent?: BskyAgent) => {
+export const searchPosts = async (
+  term: string,
+  cursor: string,
+  agent?: BskyAgent
+) => {
   if (!agent) agent = await getAgent();
   try {
-    const response = await fetch(
-      `https://search.bsky.social/search/posts?q=${term}`
-    );
-    if (response.ok) {
-      const results: FeedSearchResult[] = await response.json();
-      if (results.length === 0) return [];
-
-      const uris = results.map(
-        (result) => `at://${result.user.did}/${result.tid}`
-      );
-
-      // 25 is max limit for getPosts by BlueSky
-      const postResponse = await agent.getPosts({ uris: uris.slice(0, 25) });
-      const posts: AppBskyFeedDefs.PostView[] = postResponse.data.posts;
-      return posts;
+    const response = await agent.app.bsky.feed.searchPosts({
+      q: term,
+      cursor: cursor,
+      limit: 25,
+    });
+    if (response.success) {    
+      return response.data;
     }
   } catch (e) {
     console.error(e);

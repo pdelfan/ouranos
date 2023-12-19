@@ -30,6 +30,7 @@ export default function PostThreadContainer(props: Props) {
 
   const {
     data: thread,
+    error,
     isError,
     isFetching,
     isLoading,
@@ -73,7 +74,7 @@ export default function PostThreadContainer(props: Props) {
           {isError && (
             <FeedAlert
               variant="badResponse"
-              message="Something went wrong"
+              message={error.message}
               standalone={true}
             />
           )}
@@ -98,15 +99,15 @@ export default function PostThreadContainer(props: Props) {
       {parentChain && parentChain.length > 0 && (
         <div className="flex flex-col justify-between p-3 border border-x-0 md:border-x  first:border-t-0 last:border-b last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
           {parentChain.map((parent, i) => (
-            <div key={parent.post.uri}>
+            <div key={i}>
               {AppBskyFeedDefs.isBlockedPost(parent) && (
-                <BlockedEmbed depth={0} />
+                <BlockedEmbed depth={0} isReply={i < parentChain.length - 1} />
               )}
               {AppBskyFeedDefs.isNotFoundPost(parent) && (
-                <NotFoundEmbed depth={0} />
+                <NotFoundEmbed depth={0} isReply={i < parentChain.length - 1} />
               )}
               {AppBskyFeedDefs.isBlockedAuthor(parent) && (
-                <BlockedEmbed depth={0} />
+                <BlockedEmbed depth={0} isReply={i < parentChain.length - 1} />
               )}
 
               {AppBskyFeedDefs.isThreadViewPost(parent) && contentFilter && (

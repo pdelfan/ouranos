@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import UsersSearchList from "./UsersSearchList";
-import PostsSearchList from "./PostsSearchList";
+import PostSearchContainer from "@/containers/search/PostSearchContainer";
+import UserSearchContainer from "@/containers/search/UserSearchContainer";
 
 interface Props {
   query: string;
@@ -47,8 +47,8 @@ export default function SearchList(props: Props) {
         </button>
       </div>
 
-      {currenTab === "posts" && <PostsSearchList query={query} />}
-      {currenTab === "users" && <UsersSearchList query={query} />}
+      {currenTab === "posts" && <PostSearchContainer query={query} />}
+      {currenTab === "users" && <UserSearchContainer query={query} />}
     </section>
   );
 }

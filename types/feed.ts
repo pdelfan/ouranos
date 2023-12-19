@@ -1,4 +1,4 @@
-import {} from "@atproto/api";
+import { AppBskyFeedDefs } from "@atproto/api";
 import { ProfileView } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import { GeneratorView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import { Notification } from "@atproto/api/dist/client/types/app/bsky/notification/listNotifications";
@@ -71,3 +71,13 @@ export type PreferencesResult = {
   feedFilter: FeedFilterResult;
   threadPreferences: ThreadViewResult;
 };
+
+export type Thread =
+  | AppBskyFeedDefs.ThreadViewPost
+  | AppBskyFeedDefs.NotFoundPost
+  | AppBskyFeedDefs.BlockedPost
+  | {
+      [k: string]: unknown;
+      $type: string;
+    }
+  | undefined;

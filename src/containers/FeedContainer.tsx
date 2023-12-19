@@ -28,6 +28,7 @@ export default function FeedContainer(props: Props) {
     isFetchingFeedNextPage,
     feedHasNextPage,
   } = useFeed(feed);
+
   const isEmpty =
     !isFetchingFeed &&
     !isFetchingFeedNextPage &&
@@ -42,7 +43,7 @@ export default function FeedContainer(props: Props) {
       <Refetch
         onRefetch={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
-          refetchFeed();          
+          refetchFeed();
         }}
       />
       <ComposeButton mode="float" />

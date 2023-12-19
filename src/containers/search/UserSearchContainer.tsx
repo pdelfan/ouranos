@@ -3,21 +3,21 @@
 import { searchProfiles } from "@/lib/api/bsky/actor";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import ProfileCard from "../profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
-import ProfileCardSkeleton from "../profileCard/ProfileCardSkeleton";
 import { useInView } from "react-intersection-observer";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
+import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 
 interface Props {
   query: string;
 }
 
-export default function UsersSearchList(props: Props) {
+export default function UserSearchContainer(props: Props) {
   const { query } = props;
   const agent = useAgent();
-  const { ref, inView } = useInView();
+  const { ref: observerRef, inView } = useInView();
 
   const {
     status,
@@ -34,6 +34,11 @@ export default function UsersSearchList(props: Props) {
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
+
+  const isEmpty =
+    !isFetching &&
+    !isFetchingNextPage &&
+    profiles?.pages[0]?.actors?.length === 0;
 
   useEffect(() => {
     if (inView) {
@@ -59,6 +64,11 @@ export default function UsersSearchList(props: Props) {
               </Fragment>
             ))}
       </section>
+      {isEmpty && (
+        <div className="mx-3 md:mx-0 border-t">
+          <FeedAlert variant="empty" message="No users found" />
+        </div>
+      )}
       {isFetching && !isFetchingNextPage && (
         <ProfileCardSkeleton rounded={false} />
       )}
@@ -67,15 +77,7 @@ export default function UsersSearchList(props: Props) {
           <Icon icon="eos-icons:loading" className="text-xl" />
         </section>
       )}
-      <div ref={ref} />
-      {profiles?.pages[0]?.actors.length === 0 && (
-        <div className="mx-3 md:mx-0 border-t">
-          <FeedAlert
-            variant="empty"
-            message="No users found"            
-          />
-        </div>
-      )}
+      <div ref={observerRef} />
     </section>
   );
 }
