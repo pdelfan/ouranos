@@ -27,7 +27,7 @@ export default function UserActions(props: Props) {
   const clipboard = useClipboard({ copiedTimeout: 3500 });
 
   const handleShare = useCallback(() => {
-    const shareUrl = `https://bsky.app/profile/${author.handle}`;
+    const shareUrl = `https://useouranos.app/dashboard/user/${author.handle}`;
     clipboard.copy(shareUrl);
     toast.success("Link to profile copied to clipboard");
   }, [clipboard, author]);
