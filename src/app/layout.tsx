@@ -26,6 +26,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        {/* for making the page fullscreen on iOS when added to home */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+      </head>
       <body className={`${inter.variable}`}>
         <SessionProvider session={session}>
           <QueryProvider>
