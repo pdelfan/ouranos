@@ -28,16 +28,14 @@ export default function PostSearchContainer(props: Props) {
     hasNextPage,
     fetchNextPage,
   } = useInfiniteQuery({
-    queryKey: ["searchPosts", decoded],
+    queryKey: ["searchPosts", query],
     queryFn: ({ pageParam }) => searchPosts(decoded, pageParam, agent),
     initialPageParam: "",
-    getNextPageParam: (lastPage) => lastPage?.data.cursor,
+    getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
   const isEmpty =
-    !isFetching &&
-    !isFetchingNextPage &&
-    posts?.pages[0]?.data?.posts?.length === 0;
+    !isFetching && !isFetchingNextPage && posts?.pages[0]?.posts?.length === 0;
 
   const { ref: observerRef, inView } = useInView();
 
@@ -48,11 +46,10 @@ export default function PostSearchContainer(props: Props) {
   }, [fetchNextPage, inView]);
 
   return (
-    <>
-      {isFetching && <FeedPostSkeleton />}
+    <div>
       <section className="flex flex-col">
         {posts?.pages
-          .flatMap((page) => page?.data.posts)
+          .flatMap((page) => page?.posts)
           .map((post, i) => (
             <Fragment key={i}>
               {post && <SearchPost key={i} post={post} />}
@@ -79,6 +76,6 @@ export default function PostSearchContainer(props: Props) {
         !hasNextPage &&
         !isFetchingNextPage && <EndOfFeed />}
       <div ref={observerRef} />
-    </>
+    </div>
   );
 }

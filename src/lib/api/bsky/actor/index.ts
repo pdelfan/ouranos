@@ -66,9 +66,10 @@ export const searchPosts = async (
     const response = await agent.app.bsky.feed.searchPosts({
       q: term,
       cursor: cursor,
+      limit: 25,
     });
     if (response.success) {    
-      return response;
+      return response.data;
     }
   } catch (e) {
     console.error(e);
