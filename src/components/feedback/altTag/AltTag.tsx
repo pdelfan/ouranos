@@ -41,7 +41,7 @@ export default function AltTag(props: Props) {
           >
             <Dialog.Close asChild>
               <Button
-                className="z-50 fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
+                className="z-50 fixed left-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
                 icon="ph:x-bold"
               />
             </Dialog.Close>

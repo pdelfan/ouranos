@@ -61,7 +61,7 @@ export default function Gallery(props: Props) {
         className="z-50"
       >
         <Button
-          className="z-[70] fixed right-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
+          className="z-[70] fixed left-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
           icon="ph:x-bold"
           onClick={(e) => {
             e.stopPropagation();
