@@ -1,6 +1,6 @@
 "use client";
 
-import { useComposerContext } from "@/app/providers/compoter";
+import { useComposerContext } from "@/app/providers/composer";
 import Editor from "@/components/inputs/editor/Editor";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import * as Dialog from "@radix-ui/react-dialog";

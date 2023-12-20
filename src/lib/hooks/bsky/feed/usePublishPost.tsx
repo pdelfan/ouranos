@@ -1,7 +1,7 @@
 import {
   ComposerOptionsPostRef,
   ComposerOptionsQuote,
-} from "@/app/providers/compoter";
+} from "@/app/providers/composer";
 import {
   AppBskyEmbedExternal,
   AppBskyEmbedImages,

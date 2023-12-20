@@ -1,5 +1,5 @@
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
-import { ComposerOptionsPostRef } from "@/app/providers/compoter";
+import { ComposerOptionsPostRef } from "@/app/providers/composer";
 import Image from "next/image";
 
 interface Props {

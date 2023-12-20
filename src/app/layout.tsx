@@ -6,7 +6,7 @@ import "../styles/globals.css";
 import SessionProvider from "./providers/session";
 import { getSessionFromServer } from "./api/auth/[...nextauth]/route";
 import QueryProvider from "./providers/query";
-import { ComposerProvider } from "./providers/compoter";
+import { ComposerProvider } from "./providers/composer";
 import ToastProvider from "./providers/toast";
 import { ScrollProvider } from "./providers/scroll";
 

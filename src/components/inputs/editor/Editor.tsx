@@ -10,7 +10,7 @@ import CharacterCount from "@tiptap/extension-character-count";
 import { useState } from "react";
 import { CreateMentionSuggestions } from "./CreateMentionSuggestions";
 import useSearchUsers from "@/lib/hooks/bsky/actor/useSearchUsers";
-import { ComposerOptions } from "@/app/providers/compoter";
+import { ComposerOptions } from "@/app/providers/composer";
 import ReplyToPreview from "./ReplyToPreview";
 import QuoteToPreview from "./QuotePreview";
 import { getComposerPlaceholder } from "@/lib/utils/text";

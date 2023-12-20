@@ -1,5 +1,5 @@
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
-import { ComposerOptionsQuote } from "@/app/providers/compoter";
+import { ComposerOptionsQuote } from "@/app/providers/composer";
 import Image from "next/image";
 import { getRelativeTime } from "@/lib/utils/time";
 

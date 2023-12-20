@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { abbreviateNumber } from "@/lib/utils/number";
 import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
-import { useComposerContext } from "@/app/providers/compoter";
+import { useComposerContext } from "@/app/providers/composer";
 import toast from "react-hot-toast";
 
 interface Props {
