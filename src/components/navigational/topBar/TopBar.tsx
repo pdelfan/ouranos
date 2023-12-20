@@ -1,5 +1,6 @@
 "use client";
 
+import { useScrollContext } from "@/app/providers/scroll";
 import Button from "@/components/actions/button/Button";
 import SignOut from "@/components/actions/signOut/SignOut";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
@@ -13,6 +14,7 @@ interface Props {
 
 export default function TopBar(props: Props) {
   const { profile } = props;
+  const show = useScrollContext();
 
   return (
     <div className="flex justify-between bg-white border-b md:border-b-0 px-3 md:px-0 py-2.5 md:pt-0 sticky md:relative top-0 z-50 lg:hidden">

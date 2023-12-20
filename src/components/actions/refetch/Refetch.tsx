@@ -1,4 +1,6 @@
-import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
+"use client"
+
+import { useScrollContext } from "@/app/providers/scroll";
 import Button from "../button/Button";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -8,7 +10,7 @@ interface Props {
 
 export default function Refetch(props: Props) {
   const { onRefetch } = props;
-  const show = useHideOnScroll();
+  const show = useScrollContext();
   const debouncedRefetch = useDebouncedCallback(onRefetch, 300);
 
   return (

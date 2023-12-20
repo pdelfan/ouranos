@@ -6,9 +6,9 @@ import Tabs from "../tabs/Tabs";
 import { getSavedFeeds } from "@/lib/api/bsky/feed";
 import { usePathname, useSearchParams } from "next/navigation";
 import FeedTabsSkeleton from "./FeedTabsSkeleton";
-import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useScrollContext } from "@/app/providers/scroll";
 
 export default function FeedTabs() {
   const agent = useAgent();
@@ -27,7 +27,7 @@ export default function FeedTabs() {
     queryFn: () => getSavedFeeds(agent),
   });
 
-  const show = useHideOnScroll();
+  const show = useScrollContext();
 
   return (
     <>
