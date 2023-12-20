@@ -2,11 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import NavItem from "../navbar/NavItem";
-import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
+import { useScrollContext } from "@/app/providers/scroll";
 
 export default function AppBar() {
   const pathname = usePathname();
-  const show = useHideOnScroll();
+  const show = useScrollContext();
 
   return (
     <nav

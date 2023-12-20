@@ -68,7 +68,7 @@ export const searchPosts = async (
       cursor: cursor,
       limit: 25,
     });
-    if (response.success) {    
+    if (response.success) {
       return response.data;
     }
   } catch (e) {
@@ -140,21 +140,19 @@ export const blockUser = async (
   agent?: BskyAgent
 ) => {
   if (!agent) agent = await getAgent();
-  await agent.app.bsky.graph.block.create(
+  const res = await agent.app.bsky.graph.block.create(
     { repo: viewerDid },
     { createdAt: new Date().toISOString(), subject: did }
   );
+
+  return res;
 };
 
 export const unBlockUser = async (
   viewerDid: string,
-  did: string,
   rkey: string,
   agent?: BskyAgent
 ) => {
   if (!agent) agent = await getAgent();
-  await agent.app.bsky.graph.block.delete(
-    { rkey: rkey, repo: viewerDid },
-    { createdAt: new Date().toISOString(), subject: did }
-  );
+  await agent.app.bsky.graph.block.delete({ rkey: rkey, repo: viewerDid });
 };

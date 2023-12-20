@@ -1,6 +1,8 @@
-import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
+"use client"
+
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useComposerContext } from "@/app/providers/compoter";
+import { useScrollContext } from "@/app/providers/scroll";
 
 interface Props {
   mode: "float" | "fixed";
@@ -8,7 +10,7 @@ interface Props {
 
 export default function ComposeButton(props: Props) {
   const { mode } = props;
-  const show = useHideOnScroll();
+  const show = useScrollContext();
   const { isOpen, options, openComposer, closeComposer } = useComposerContext();
 
   const toggleComposer = () => {
