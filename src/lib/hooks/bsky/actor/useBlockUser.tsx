@@ -26,7 +26,7 @@ export default function useBlockUser(props: Props) {
       if (!blocked) {
         try {
           setBlocked(true);
-          await blockUser(viewerDID, author.did, agent);
+          const res = await blockUser(viewerDID, author.did, agent);
           queryClient.setQueryData(
             profileKey(author.handle),
             (oldData: any) => {
@@ -34,7 +34,7 @@ export default function useBlockUser(props: Props) {
                 ...oldData,
                 viewer: {
                   ...oldData.viewer,
-                  blocking: author.did,
+                  blocking: res.uri,
                 },
               };
             }
@@ -57,8 +57,8 @@ export default function useBlockUser(props: Props) {
       } else {
         try {
           setBlocked(false);
-          const rkey = viewer!.blocking!.split("/").pop()!;
-          await unBlockUser(viewerDID, author.did, rkey, agent);
+          const rkey = viewer!.blocking!.split("/").pop()!;          
+          await unBlockUser(viewerDID, rkey, agent);
           queryClient.setQueryData(
             profileKey(author.handle),
             (oldData: any) => {

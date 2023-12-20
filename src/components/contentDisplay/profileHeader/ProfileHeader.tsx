@@ -52,10 +52,17 @@ export default function ProfileHeader(props: Props) {
       {profile && contentFilter && (
         <section className="border-0 border-y md:border-x md:rounded-t-2xl overflow-hidden">
           <div className="relative">
-            {profile.banner ? (
+            {isBlocked || hasBlockedYou ? (
+              <Image
+                src={profile?.banner ?? FallbackBanner}
+                alt="Banner"
+                width={800}
+                height={100}
+                className="object-cover min-h-[9rem] opacity-30 contrast-75"
+              />
+            ) : (
               <Button
                 className="hover:brightness-90"
-                disabled={isBlocked || hasBlockedYou}
                 onClick={() => setShowBanner(true)}
               >
                 <Image
@@ -66,21 +73,20 @@ export default function ProfileHeader(props: Props) {
                   className="object-cover min-h-[9rem]"
                 />
               </Button>
-            ) : (
-              <Image
-                src={profile?.banner ?? FallbackBanner}
-                alt="Banner"
-                width={800}
-                height={100}
-                className="object-cover min-h-[9rem]"
-              />
             )}
 
             <div className="absolute bottom-0 transform translate-y-1/2 px-3">
-              {profile.avatar ? (
+              {isBlocked || hasBlockedYou ? (
+                <Image
+                  src={profile?.avatar ?? FallbackAvatar}
+                  alt="Avatar"
+                  width={95}
+                  height={95}
+                  className="object-cover rounded-full border-4 border-white opacity-30 contrast-75"
+                />
+              ) : (
                 <Button
                   className="rounded-full border-4 border-white"
-                  disabled={isBlocked || hasBlockedYou}
                   onClick={() => setShowAvatar(true)}
                 >
                   <Image
@@ -91,14 +97,6 @@ export default function ProfileHeader(props: Props) {
                     className="object-cover rounded-full hover:brightness-90"
                   />
                 </Button>
-              ) : (
-                <Image
-                  src={profile?.avatar ?? FallbackAvatar}
-                  alt="Avatar"
-                  width={95}
-                  height={95}
-                  className="object-cover rounded-full border-4 border-white"
-                />
               )}
             </div>
           </div>
