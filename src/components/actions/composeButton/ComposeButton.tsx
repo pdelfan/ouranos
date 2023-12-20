@@ -1,7 +1,7 @@
 "use client"
 
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useComposerContext } from "@/app/providers/compoter";
+import { useComposerContext } from "@/app/providers/composer";
 import { useScrollContext } from "@/app/providers/scroll";
 
 interface Props {
