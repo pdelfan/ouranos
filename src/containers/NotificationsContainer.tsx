@@ -6,7 +6,6 @@ import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useNotification from "@/lib/hooks/bsky/notification/useNotification";
-import { getContentFilter } from "@/lib/utils/feed";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment } from "react";
 
