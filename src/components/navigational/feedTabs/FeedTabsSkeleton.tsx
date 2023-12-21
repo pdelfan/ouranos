@@ -8,7 +8,7 @@ function TabSkeleton() {
 
 export default function FeedTabsSkeleton() {
   return (
-    <div className="flex flex-nowrap gap-3 px-4 py-2 overflow-auto no-scrollbar">
+    <div className="flex flex-nowrap gap-3 px-4 py-3 overflow-auto no-scrollbar">
       <TabSkeleton />
       <TabSkeleton />
       <TabSkeleton />

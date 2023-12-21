@@ -17,7 +17,11 @@ export default function TopBar(props: Props) {
   const show = useScrollContext();
 
   return (
-    <div className="flex justify-between bg-white border-b md:border-b-0 px-3 md:px-0 py-2.5 md:pt-0 sticky md:relative top-0 z-50 lg:hidden">
+    <div
+      className={`flex justify-between bg-white border-b md:border-b-0 px-3 md:px-0 py-2.5 md:pt-0 sticky md:relative top-0 z-50 lg:hidden ${
+        show ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
+      } transition-all ease-in-out duration-500`}
+    >
       <Link
         href={`/dashboard/user/${profile?.handle}`}
         className="hover:brightness-90"
