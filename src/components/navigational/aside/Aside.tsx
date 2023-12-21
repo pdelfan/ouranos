@@ -1,8 +1,8 @@
 import { getProfile } from "@/lib/api/bsky/actor";
-import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import SignOut from "@/components/actions/signOut/SignOut";
 import Link from "next/link";
+import { getSessionFromServer } from "@/lib/api/auth/session";
 
 export default async function Aside() {
   const session = await getSessionFromServer();

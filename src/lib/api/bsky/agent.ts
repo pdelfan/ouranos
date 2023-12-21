@@ -1,6 +1,6 @@
-import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 import { BskyAgent } from "@atproto/api";
 import { redirect } from "next/navigation";
+import { getSessionFromServer } from "../auth/session";
 
 export const createAgent = () => {
   const at = new BskyAgent({
