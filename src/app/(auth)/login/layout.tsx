@@ -1,4 +1,4 @@
-import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
+import { getSessionFromServer } from "@/lib/api/auth/session";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { redirect } from "next/navigation";

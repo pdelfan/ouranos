@@ -4,11 +4,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import SessionProvider from "./providers/session";
-import { getSessionFromServer } from "./api/auth/[...nextauth]/route";
 import QueryProvider from "./providers/query";
 import { ComposerProvider } from "./providers/composer";
 import ToastProvider from "./providers/toast";
 import { ScrollProvider } from "./providers/scroll";
+import { getSessionFromServer } from "@/lib/api/auth/session";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

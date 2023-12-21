@@ -4,8 +4,8 @@ import Aside from "@/components/navigational/aside/Aside";
 import AppBar from "@/components/navigational/appBar/AppBar";
 import TopBar from "@/components/navigational/topBar/TopBar";
 import Composer from "@/components/actions/composer/Composer";
-import { getSessionFromServer } from "../api/auth/[...nextauth]/route";
 import { getProfile } from "@/lib/api/bsky/actor";
+import { getSessionFromServer } from "@/lib/api/auth/session";
 
 export const metadata: Metadata = {
   title: "Ouranos",

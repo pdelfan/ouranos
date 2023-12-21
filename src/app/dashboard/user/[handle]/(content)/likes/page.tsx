@@ -1,5 +1,5 @@
-import { getSessionFromServer } from "@/app/api/auth/[...nextauth]/route";
 import UserPostsConatiner from "@/containers/UserPostsContainer";
+import { getSessionFromServer } from "@/lib/api/auth/session";
 import { redirect } from "next/navigation";
 
 interface Props {
