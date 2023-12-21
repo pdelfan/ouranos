@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useComposerContext } from "@/app/providers/composer";
@@ -23,7 +23,7 @@ export default function ComposeButton(props: Props) {
       {mode === "float" && (
         <button
           onClick={toggleComposer}
-          className={`z-40 p-3.5 rounded-full fixed md:hidden right-3 bottom-28 bg-primary text-white hover:bg-primary-dark outline-none ${
+          className={`z-40 p-3.5 rounded-full fixed md:hidden right-3 bottom-28 sm:bottom-24 bg-primary text-white hover:bg-primary-dark outline-none ${
             show ? "translate-y-0 opacity-100" : "translate-y-36 opacity-0"
           } transition-all ease-in-out duration-500`}
         >
