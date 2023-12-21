@@ -19,7 +19,7 @@ export default function NavItem(props: Props) {
     >
       <Icon
         icon={activeIcon}
-        className={`text-2xl md:text-3xl ${activeStyle}`}
+        className={`text-2xl md:text-3xl m-2 sm:m-0 ${activeStyle}`}
       />
       <span className={`hidden lg:inline text-lg font-medium ${activeStyle}`}>
         {title}
