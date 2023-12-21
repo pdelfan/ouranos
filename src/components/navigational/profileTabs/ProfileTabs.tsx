@@ -5,7 +5,7 @@ import TabItem from "../tabs/TabItem";
 import Tabs from "../tabs/Tabs";
 import { usePathname } from "next/navigation";
 
-export default function FeedTabs() {
+export default function ProfileTabs() {
   const pathname = usePathname();
   const basePath = pathname.split("/").slice(0, 4).join("/");
   const { data: session } = useSession();

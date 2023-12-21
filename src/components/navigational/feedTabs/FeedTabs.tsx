@@ -38,36 +38,34 @@ export default function FeedTabs() {
         } transition-all ease-in-out duration-500 sticky top-[3.2rem] md:top-6 md:translate-y-0  z-50 md:z-50`}
       >
         {isFetching && <FeedTabsSkeleton />}
-        <Tabs>
-          {!isFetching && (
-            <>
-              <TabItem
-                key={"Following"}
-                isActive={pathname === "/dashboard/home"}
-                label={"Following"}
-                path={"/dashboard/home"}
-              />
-              {savedFeeds &&
-                savedFeeds
-                  .filter((feed) => feed.pinned)
-                  .map((feed) => {
-                    return (
-                      <TabItem
-                        key={feed.cid}
-                        isActive={feed.uri === uri}
-                        label={feed.displayName}
-                        path={{
-                          pathname: `/dashboard/home/${encodeURIComponent(
-                            feed.uri.split(":")[3].split("/")[0]
-                          )}`,
-                          query: { uri: feed.uri },
-                        }}
-                      />
-                    );
-                  })}
-            </>
-          )}
-        </Tabs>
+        {savedFeeds && (
+          <Tabs>
+            <TabItem
+              key={"Following"}
+              isActive={pathname === "/dashboard/home"}
+              label={"Following"}
+              path={"/dashboard/home"}
+            />
+            {savedFeeds &&
+              savedFeeds
+                .filter((feed) => feed.pinned)
+                .map((feed) => {
+                  return (
+                    <TabItem
+                      key={feed.cid}
+                      isActive={feed.uri === uri}
+                      label={feed.displayName}
+                      path={{
+                        pathname: `/dashboard/home/${encodeURIComponent(
+                          feed.uri.split(":")[3].split("/")[0]
+                        )}`,
+                        query: { uri: feed.uri },
+                      }}
+                    />
+                  );
+                })}
+          </Tabs>
+        )}
       </div>
     </>
   );
