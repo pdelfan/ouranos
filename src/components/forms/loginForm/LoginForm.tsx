@@ -46,19 +46,18 @@ export default function LoginForm() {
       />
       <h1 className="text-xl font-semibold text-gray-800 mb-1">Welcome Back</h1>
       <p className="text-sm font-medium text-gray-500 mb-3">
-        We recommend using an app password to log in{" "}
+        We recommend using an{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
           target="_blank"
-          className="text-primary hover:brightness-95"
+          className="text-primary hover:text-primary-dark"
         >
-          (learn more)
-        </Link>
-        .
+          app password
+        </Link>{" "}
+        to log in.
       </p>
       <p className="text-sm font-medium text-gray-500">
-        We are currently in early access, some features may not work as
-        intended.
+        Ouranos is in early access, some features may not work as intended.
       </p>
       <form
         className="text-sm font-medium text-gray-400 mt-5"
