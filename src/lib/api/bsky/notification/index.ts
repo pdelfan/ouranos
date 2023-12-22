@@ -12,3 +12,10 @@ export const getNotifications = async (agent: BskyAgent, cursor: string) => {
 export const updateSeenNotifications = async (agent: BskyAgent) => {
   return await agent.updateSeenNotifications();
 };
+
+export const getUnreadNotificationsCount = async (agent: BskyAgent) => {
+  const count = await agent.countUnreadNotifications();
+  if (!count.success)
+    throw new Error("Could not get unread notifications count");  
+  return count.data.count;
+};
