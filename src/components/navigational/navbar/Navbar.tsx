@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import useAgent from "@/lib/hooks/bsky/useAgent";
-import Badge from "@/components/feedback/badge/Badge";
 
 export default function Navbar() {
   const pathname = usePathname();
