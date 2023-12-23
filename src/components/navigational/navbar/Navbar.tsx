@@ -18,7 +18,7 @@ export default function Navbar() {
   } = useQuery({
     queryKey: ["notificationsCount"],
     queryFn: () => getUnreadNotificationsCount(agent),
-    refetchInterval: 15000,
+    refetchInterval: 10000,
   });
 
   return (
@@ -45,20 +45,14 @@ export default function Navbar() {
         className="sm:m-0"
       />
 
-      <div className="relative">
-        <NavItem
-          href="/dashboard/notifications"
-          icons={["mdi:bell", "mdi:bell-outline"]}
-          title="Notifications"
-          isActive={pathname.includes("notifications")}
-          className="sm:m-0"
-        />
-        {notificationsCount !== undefined && notificationsCount > 0 && (
-          <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-primary border-2 border-white rounded-full -top-2 start-3 dark:border-gray-900 animate-fade animate-duration-300">
-            {notificationsCount < 10 ? notificationsCount : "9+"}
-          </div>
-        )}
-      </div>
+      <NavItem
+        href="/dashboard/notifications"
+        icons={["mdi:bell", "mdi:bell-outline"]}
+        title="Notifications"
+        isActive={pathname.includes("notifications")}
+        className="sm:m-0"
+        badge={notificationsCount ?? 0}
+      />
 
       <NavItem
         href={`/dashboard/user/${session?.user.handle}`}
