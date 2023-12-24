@@ -1,6 +1,9 @@
 "use client";
 
-import { useComposerContext } from "@/app/providers/composer";
+import {
+  useComposerControls,
+  useComposerState,
+} from "@/app/providers/composer";
 import Editor from "@/components/inputs/editor/Editor";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -11,15 +14,11 @@ interface Props {
 
 export default function Composer(props: Props) {
   const { author } = props;
-  const { isOpen, options, openComposer, closeComposer } = useComposerContext();
-
-  const toggleComposer = () => {
-    if (isOpen) closeComposer();
-    else openComposer({});
-  };
+  const { openComposer, closeComposer } = useComposerControls();
+  const { isOpen, options } = useComposerState();
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={toggleComposer}>
+    <Dialog.Root open={isOpen} onOpenChange={() => openComposer()}>
       <Dialog.Portal>
         <Dialog.Overlay />
         <Dialog.Content

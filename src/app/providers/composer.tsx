@@ -1,7 +1,7 @@
 "use client";
 
 import { AppBskyEmbedRecord } from "@atproto/api";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useState, ReactNode } from "react";
 
 export interface ComposerOptionsPostRef {
   uri: string;
@@ -35,26 +35,25 @@ export interface ComposerOptions {
   mention?: string;
 }
 
-interface ComposerContextType {
+interface StateContext {
   isOpen: boolean;
   options: ComposerOptions | null;
+}
+
+interface ControlsContext {
   openComposer: (initialOptions?: ComposerOptions) => void;
   closeComposer: () => void;
 }
 
-const ComposerContext = createContext<ComposerContextType | undefined>(
-  undefined
-);
+const StateContext = createContext<StateContext>({
+  isOpen: false,
+  options: null,
+});
 
-export const useComposerContext = (): ComposerContextType => {
-  const context = useContext(ComposerContext);
-  if (!context) {
-    throw new Error(
-      "useComposerContext must be used within a ComposerProvider"
-    );
-  }
-  return context;
-};
+const ControlsContext = createContext<ControlsContext>({
+  openComposer: () => {},
+  closeComposer: () => {},
+});
 
 interface ComposerProviderProps {
   children: ReactNode;
@@ -76,16 +75,30 @@ export const ComposerProvider: React.FC<ComposerProviderProps> = ({
     setIsOpen(false);
   };
 
-  const contextValue: ComposerContextType = {
+  const controls = React.useMemo(
+    () => ({
+      openComposer,
+      closeComposer,
+    }),
+    []
+  );
+
+  const state = {
     isOpen,
     options,
-    openComposer,
-    closeComposer,
   };
 
   return (
-    <ComposerContext.Provider value={contextValue}>
-      {children}
-    </ComposerContext.Provider>
+    <ControlsContext.Provider value={controls}>
+      <StateContext.Provider value={state}>{children}</StateContext.Provider>
+    </ControlsContext.Provider>
   );
 };
+
+export function useComposerState() {
+  return React.useContext(StateContext);
+}
+
+export function useComposerControls() {
+  return React.useContext(ControlsContext);
+}
