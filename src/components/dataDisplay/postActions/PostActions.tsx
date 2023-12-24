@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { abbreviateNumber } from "@/lib/utils/number";
 import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
-import { useComposerContext } from "@/app/providers/composer";
+import { useComposerControls } from "@/app/providers/composer";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -31,7 +31,7 @@ export default function PostActions(props: Props) {
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
   const { muted, toggleMuteUser } = useMuteUser({ author: post.author });
   const clipboard = useClipboard({ copiedTimeout: 3500 });
-  const { isOpen, options, openComposer, closeComposer } = useComposerContext();
+  const { openComposer } = useComposerControls();
 
   const handleShare = useCallback(() => {
     const postId = getPostId(post.uri);
@@ -80,24 +80,21 @@ export default function PostActions(props: Props) {
           <Button
             onClick={(e) => {
               e.stopPropagation();
-              if (isOpen) closeComposer();
-              else {
-                const text =
-                  AppBskyFeedPost.isRecord(post.record) && post.record.text;
+              const text =
+                AppBskyFeedPost.isRecord(post.record) && post.record.text;
 
-                openComposer({
-                  replyTo: {
-                    uri: post.uri,
-                    cid: post.cid,
-                    text: text.toString(),
-                    author: {
-                      handle: post.author.handle,
-                      displayName: post.author.displayName,
-                      avatar: post.author.avatar,
-                    },
+              openComposer({
+                replyTo: {
+                  uri: post.uri,
+                  cid: post.cid,
+                  text: text.toString(),
+                  author: {
+                    handle: post.author.handle,
+                    displayName: post.author.displayName,
+                    avatar: post.author.avatar,
                   },
-                });
-              }
+                },
+              });
             }}
             className="text-neutral-500 hover:text-primary"
             icon="bx:message-rounded"
@@ -127,26 +124,23 @@ export default function PostActions(props: Props) {
               />
               <Dropdown.MenuItem
                 onSelect={() => {
-                  if (isOpen) closeComposer();
-                  else {
-                    const text =
-                      AppBskyFeedPost.isRecord(post.record) && post.record.text;
+                  const text =
+                    AppBskyFeedPost.isRecord(post.record) && post.record.text;
 
-                    openComposer({
-                      quote: {
-                        uri: post.uri,
-                        cid: post.cid,
-                        text: text.toString(),
-                        indexedAt: post.indexedAt,
-                        author: {
-                          did: post.author.did,
-                          handle: post.author.handle,
-                          displayName: post.author.displayName,
-                          avatar: post.author.avatar,
-                        },
+                  openComposer({
+                    quote: {
+                      uri: post.uri,
+                      cid: post.cid,
+                      text: text.toString(),
+                      indexedAt: post.indexedAt,
+                      author: {
+                        did: post.author.did,
+                        handle: post.author.handle,
+                        displayName: post.author.displayName,
+                        avatar: post.author.avatar,
                       },
-                    });
-                  }
+                    },
+                  });
                 }}
                 text="Quote Post"
                 icon="bxs:quote-alt-right"
@@ -216,24 +210,22 @@ export default function PostActions(props: Props) {
       <Button
         onClick={(e) => {
           e.stopPropagation();
-          if (isOpen) closeComposer();
-          else {
-            const text =
-              AppBskyFeedPost.isRecord(post.record) && post.record.text;
 
-            openComposer({
-              replyTo: {
-                uri: post.uri,
-                cid: post.cid,
-                text: text.toString(),
-                author: {
-                  handle: post.author.handle,
-                  displayName: post.author.displayName,
-                  avatar: post.author.avatar,
-                },
+          const text =
+            AppBskyFeedPost.isRecord(post.record) && post.record.text;
+
+          openComposer({
+            replyTo: {
+              uri: post.uri,
+              cid: post.cid,
+              text: text.toString(),
+              author: {
+                handle: post.author.handle,
+                displayName: post.author.displayName,
+                avatar: post.author.avatar,
               },
-            });
-          }
+            },
+          });
         }}
         className="text-sm font-medium text-neutral-500 hover:text-primary"
         icon="bx:message-rounded"
@@ -269,26 +261,23 @@ export default function PostActions(props: Props) {
           />
           <Dropdown.MenuItem
             onSelect={() => {
-              if (isOpen) closeComposer();
-              else {
-                const text =
-                  AppBskyFeedPost.isRecord(post.record) && post.record.text;
+              const text =
+                AppBskyFeedPost.isRecord(post.record) && post.record.text;
 
-                openComposer({
-                  quote: {
-                    uri: post.uri,
-                    cid: post.cid,
-                    text: text.toString(),
-                    indexedAt: post.indexedAt,
-                    author: {
-                      did: post.author.did,
-                      handle: post.author.handle,
-                      displayName: post.author.displayName,
-                      avatar: post.author.avatar,
-                    },
+              openComposer({
+                quote: {
+                  uri: post.uri,
+                  cid: post.cid,
+                  text: text.toString(),
+                  indexedAt: post.indexedAt,
+                  author: {
+                    did: post.author.did,
+                    handle: post.author.handle,
+                    displayName: post.author.displayName,
+                    avatar: post.author.avatar,
                   },
-                });
-              }
+                },
+              });
             }}
             text="Quote Post"
             icon="bxs:quote-alt-right"
