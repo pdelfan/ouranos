@@ -6,7 +6,7 @@ import CharacterCount from "./CharacterCount";
 import LanguagePicker from "./LanguagePicker";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiUpload } from "react-icons/bi";
 import UploadPreview from "./UploadPreview";
 import { RichText } from "@atproto/api";
 import { jsonToText } from "@/lib/utils/text";
@@ -98,7 +98,7 @@ export default function BottomEditorBar(props: Props) {
           <input {...getInputProps()} />
 
           <div className="flex flex-col items-center gap-2 text-sm font-medium">
-            <Icon icon="bx:upload" className="text-2xl text-neutral-600" />
+            <BiUpload className="text-2xl text-neutral-600" />
             <>
               {!isDragReject && (
                 <span className="text-neutral-600">

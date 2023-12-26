@@ -1,6 +1,8 @@
 import Button from "@/components/actions/button/Button";
 import { UseMutationResult } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { HiOutlineShieldExclamation } from "react-icons/hi";
+import { BiLogoTelegram } from "react-icons/bi";
 
 interface Props {
   onClose: () => void;
@@ -31,9 +33,9 @@ export default function TopEditorBar(props: Props) {
       {label !== "" && (
         <Button
           onClick={onRemoveLabel}
-          icon="octicon:shield-16"
           className="px-4 py-2 rounded-full text-sm text-neutral-600 font-semibold bg-neutral-100 hover:bg-neutral-600 hover:text-neutral-100"
         >
+          <HiOutlineShieldExclamation className="text-xl" />
           {label === "nsfw"
             ? "Porn"
             : label.charAt(0).toUpperCase() + label.slice(1)}
@@ -47,12 +49,12 @@ export default function TopEditorBar(props: Props) {
             },
           });
         }}
-        icon="mingcute:send-plane-fill"
         className={`bg-primary text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-primary-dark ${
           onPublish.isPending && "animate-pulse"
         }`}
         disabled={onPublish.isPending}
       >
+        <BiLogoTelegram className="text-xl" />
         {onPublish.isPending ? "Posting..." : "Post"}
       </Button>
     </div>

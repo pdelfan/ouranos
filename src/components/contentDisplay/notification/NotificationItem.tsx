@@ -1,7 +1,8 @@
-import type { Notification } from "@atproto/api/dist/client/types/app/bsky/notification/listNotifications";
 import { getNotificationLabel } from "@/lib/utils/text";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiSolidHeart } from "react-icons/bi";
+import { BiRepost } from "react-icons/bi";
+import { BiSolidUserPlus } from "react-icons/bi";
 import { getRelativeTime } from "@/lib/utils/time";
 import { GROUPABLE_NOTIFICATIONS } from "@/lib/consts/notification";
 import Link from "next/link";
@@ -29,20 +30,11 @@ export default function NotificationItem(props: Props) {
   const getNotificationIcon = (reason: string) => {
     switch (reason) {
       case "like":
-        return (
-          <Icon icon="bxs:heart" className="text-2xl text-red-500 shrink-0" />
-        );
+        return <BiSolidHeart className="text-2xl text-red-500 shrink-0" />;
       case "repost":
-        return (
-          <Icon icon="bx:repost" className="text-2xl text-green-600 shrink-0" />
-        );
+        return <BiRepost className="text-2xl text-green-600 shrink-0" />;
       case "follow":
-        return (
-          <Icon
-            icon="bxs:user-plus"
-            className="text-2xl text-primary shrink-0"
-          />
-        );
+        return <BiSolidUserPlus className="text-2xl text-primary shrink-0" />;
       default:
         return null;
     }

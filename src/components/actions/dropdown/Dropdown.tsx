@@ -1,6 +1,11 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
-import React, { createContext, ReactNode, useContext, useState } from "react";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import React, {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useState,
+} from "react";
 
 let DropdownContext = createContext<{
   open: boolean;
@@ -72,7 +77,7 @@ interface DropdownMenuItemProps {
   onSelect: () => void;
   text: string;
   textColor?: string;
-  icon?: string;
+  icon?: ReactElement;
 }
 
 function DropdownMenuItem(props: DropdownMenuItemProps) {
@@ -91,7 +96,7 @@ function DropdownMenuItem(props: DropdownMenuItemProps) {
       } rounded-md hover:bg-neutral-100 hover:outline-none hover:cursor-pointer`}
     >
       <span className="font-medium">{text}</span>
-      {icon && <Icon icon={icon} className="text-xl" />}
+      <span className="text-xl">{icon}</span>
     </RadixDropdownMenu.Item>
   );
 }

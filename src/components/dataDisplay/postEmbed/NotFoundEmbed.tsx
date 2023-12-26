@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { PiWarningCircleFill } from "react-icons/pi";
 
 interface Props {
   depth: number;
@@ -16,7 +16,7 @@ export default function NotFoundEmbed(props: Props) {
           className={`relative p-3 border rounded-xl bg-white ${replyStyle}`}
         >
           <div className="flex gap-2">
-            <Icon icon="ep:warning-filled" className="text-2xl" />
+            <PiWarningCircleFill className="text-2xl" />
             <span>Deleted post</span>
           </div>
           {isReply && (

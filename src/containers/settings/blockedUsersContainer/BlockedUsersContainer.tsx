@@ -3,12 +3,12 @@
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { getBlockedUsers } from "@/lib/api/bsky/social";
 import useAgent from "@/lib/hooks/bsky/useAgent";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function BlockedUsersContainer() {
   const agent = useAgent();
@@ -73,7 +73,7 @@ export default function BlockedUsersContainer() {
           )}
           {isFetchingNextPage && (
             <section className="flex flex-1 justify-center mt-3">
-              <Icon icon="eos-icons:loading" className="text-xl" />
+              <AiOutlineLoading3Quarters className="text-xl" />
             </section>
           )}
           <div ref={ref} />

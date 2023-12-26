@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { HiMiniShieldExclamation } from "react-icons/hi2";
 
 interface Props {
   depth: number;
@@ -16,7 +16,7 @@ export default function BlockedEmbed(props: Props) {
           className={`relative p-3 border rounded-xl bg-white ${replyStyle}`}
         >
           <div className="flex gap-2">
-            <Icon icon="fluent:shield-error-24-filled" className="text-2xl" />
+            <HiMiniShieldExclamation className="text-2xl" />
             <span>
               Post is from a blocked user or someone who has blocked you.
             </span>

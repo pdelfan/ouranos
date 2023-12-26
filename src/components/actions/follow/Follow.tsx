@@ -5,6 +5,8 @@ import Button from "../button/Button";
 import { UseMutationResult } from "@tanstack/react-query";
 import useBlockUser from "@/lib/hooks/bsky/actor/useBlockUser";
 import { AppBskyFeedDefs } from "@atproto/api";
+import { BiPlus } from "react-icons/bi";
+import { BiCheck } from "react-icons/bi";
 
 interface Props {
   onToggleFollow: UseMutationResult<void, Error, void, unknown>;
@@ -37,8 +39,12 @@ export default function Follow(props: Props) {
               ? "bg-neutral-100 hover:brightness-95"
               : "bg-neutral-700 text-white hover:brightness-90"
           }`}
-          icon={isFollowing ? "bx:check" : "bx:plus"}
         >
+          {isFollowing ? (
+            <BiCheck className="text-xl" />
+          ) : (
+            <BiPlus className="text-lg" />
+          )}
           {isFollowing ? "Following" : "Follow"}
         </Button>
       )}

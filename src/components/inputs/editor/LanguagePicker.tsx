@@ -1,6 +1,8 @@
 import Button from "@/components/actions/button/Button";
 import Dropdown from "@/components/actions/dropdown/Dropdown";
 import { LANGUAGES } from "@/lib/consts/languages";
+import { BiCheck, BiTrash } from "react-icons/bi";
+import { IoLanguage } from "react-icons/io5";
 
 interface Props {
   languages: Language[];
@@ -17,10 +19,9 @@ export default function LanguagePicker(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          icon={languages.length === 0 ? "mdi:language" : undefined}
-          iconSize="text-2xl"
           className="text-start font-semibold text-primary hover:text-primary-dark"
         >
+          {languages.length === 0 && <IoLanguage className="text-2xl" />}
           {languages.length === 0 && "(Auto)"}
           {languages.length > 0 &&
             languages.map((lang) => lang.name).join(", ")}
@@ -30,7 +31,7 @@ export default function LanguagePicker(props: Props) {
         {languages.length > 0 && (
           <Dropdown.MenuItem
             text="Remove All Languages"
-            icon="bx:trash"
+            icon={<BiTrash />}
             textColor="text-red-500"
             onSelect={() => onSelectLanguages([])}
           />
@@ -39,7 +40,7 @@ export default function LanguagePicker(props: Props) {
           <Dropdown.MenuItem
             key={option.name}
             text={option.name}
-            icon={languages.includes(option) ? "octicon:check-16" : undefined}
+            icon={languages.includes(option) ? <BiCheck /> : undefined}
             onSelect={() => {
               // can only select 3 languages
               if (languages.length === 3 && !languages.includes(option)) {

@@ -6,9 +6,9 @@ import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/Profile
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { getFollowers } from "@/lib/api/bsky/social";
 import Alert from "@/components/feedback/alert/Alert";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   handle: string;
@@ -63,7 +63,7 @@ export default function FollowersContainer(props: Props) {
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
       {isFetchingNextPage && (
         <section className="flex flex-1 justify-center mt-3">
-          <Icon icon="eos-icons:loading" className="text-xl" />
+          <AiOutlineLoading3Quarters className="text-xl" />
         </section>
       )}
       <div ref={ref} />

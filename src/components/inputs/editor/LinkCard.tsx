@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { getHostname } from "@/lib/utils/text";
 import Button from "@/components/actions/button/Button";
 import Alert from "@/components/feedback/alert/Alert";
+import { CgClose } from "react-icons/cg";
 
 interface Props {
   link: string;
@@ -43,12 +44,13 @@ export default function LinkCard(props: Props) {
     <article className="relative border rounded-2xl bg-white">
       <Button
         className="absolute z-50 top-0 right-0 m-2 p-1 bg-black/50 text-white rounded-full hover:bg-neutral-700"
-        icon="ph:x-bold"
         onClick={(e) => {
           e.preventDefault();
           onRemoveLinkCard(link);
         }}
-      />
+      >
+        <CgClose className="text-xl" />
+      </Button>
       {data?.image && (
         <div className="relative w-full h-44">
           <Image

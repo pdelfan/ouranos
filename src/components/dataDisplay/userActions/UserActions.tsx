@@ -7,6 +7,13 @@ import useMuteUser from "@/lib/hooks/bsky/feed/useMuteUser";
 import useBlockUser from "@/lib/hooks/bsky/actor/useBlockUser";
 import { ViewerState } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import toast from "react-hot-toast";
+import {
+  BiDotsHorizontalRounded,
+  BiLink,
+  BiSolidBell,
+  BiSolidBellOff,
+} from "react-icons/bi";
+import { BsPersonFill, BsPersonFillSlash } from "react-icons/bs";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -39,15 +46,16 @@ export default function UserActions(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          icon="bx:dots-horizontal-rounded"
           className="flex items-center justify-center gap-1 font-medium text-sm disabled:cursor-not-allowed rounded-full p-2 bg-neutral-100 text-neutral-500 hover:brightness-95"
-        />
+        >
+          <BiDotsHorizontalRounded className="text-lg" />
+        </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>
         <Dropdown.MenuItem
           onSelect={handleShare}
           text="Copy Link to Profile"
-          icon="bx:link"
+          icon={<BiLink />}
         />
 
         {viewerHandle !== author.handle && (
@@ -57,14 +65,14 @@ export default function UserActions(props: Props) {
                 toggleMuteUser.mutate();
               }}
               text={`${muted ? "Unmute User" : "Mute User"}`}
-              icon="bxs:bell-off"
+              icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
             />
             <Dropdown.MenuItem
               onSelect={() => {
                 toggleBlockUser.mutate();
               }}
               text={`${viewer.blocking ? "Unblock User" : "Block User"}`}
-              icon="mdi:user-block"
+              icon={viewer.blocking ? <BsPersonFill /> : <BsPersonFillSlash />}
             />
           </>
         )}

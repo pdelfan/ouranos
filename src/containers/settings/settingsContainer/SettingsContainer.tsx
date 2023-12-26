@@ -1,7 +1,12 @@
 "use client";
 
-import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
+import { FaSlidersH } from "react-icons/fa";
+import { ImBubbles2 } from "react-icons/im";
+import { BiHash } from "react-icons/bi";
+import { MdRemoveRedEye } from "react-icons/md";
+import { BiSolidBellOff } from "react-icons/bi";
+import { BsPersonFillSlash } from "react-icons/bs";
 
 export default function SettingsContainer() {
   return (
@@ -16,24 +21,21 @@ export default function SettingsContainer() {
             href="/dashboard/settings/home-feed"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <Icon
-              icon="heroicons:adjustments-horizontal-20-solid"
-              className="text-neutral-600 text-xl"
-            />
+            <FaSlidersH className="text-neutral-600 text-xl" />
             Home Feed Preferences
           </Link>
           <Link
             href="/dashboard/settings/thread-preferences"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <Icon icon="raphael:chat" className="text-neutral-600 text-xl" />
+            <ImBubbles2 className="text-neutral-600 text-xl" />
             Thread Preferences
           </Link>
           <Link
             href="/dashboard/settings/my-feeds"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <Icon icon="bx:hash" className="text-neutral-600 text-xl" />
+            <BiHash className="text-neutral-600 text-xl" />
             My Feeds
           </Link>
         </section>
@@ -45,24 +47,21 @@ export default function SettingsContainer() {
             href="/dashboard/settings/content-filtering"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <Icon icon="mdi:eye" className="text-neutral-600 text-xl" />
+            <MdRemoveRedEye className="text-neutral-600 text-xl" />
             Content Filtering
           </Link>
           <Link
             href="/dashboard/settings/muted-users"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <Icon icon="bxs:bell-off" className="text-neutral-600 text-xl" />
+            <BiSolidBellOff className="text-neutral-600 text-xl" />
             Muted Users
           </Link>
           <Link
             href="/dashboard/settings/blocked-users"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <Icon
-              icon="mdi:person-block"
-              className="text-neutral-600 text-xl"
-            />
+            <BsPersonFillSlash className="text-neutral-600 text-xl" />
             Blocked Users
           </Link>
         </section>

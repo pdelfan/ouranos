@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiSearch } from "react-icons/bi";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -50,10 +50,7 @@ export default function Search(props: Props) {
           defaultValue={searchParams.get("query")?.toString()}
         />
       )}
-      <Icon
-        icon={"bx:search"}
-        className="absolute left-3 top-1/2 text-lg -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
-      />
+      <BiSearch className="absolute left-3 top-1/2 text-lg -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
     </div>
   );
 }

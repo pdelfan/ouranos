@@ -6,8 +6,8 @@ import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import SearchPost from "@/components/contentDisplay/searchPost/SearchPost";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useInView } from "react-intersection-observer";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   query: string;
@@ -64,7 +64,7 @@ export default function PostSearchContainer(props: Props) {
       {isFetching && !isFetchingNextPage && <FeedPostSkeleton />}
       {isFetchingNextPage && (
         <section className="flex flex-1 justify-center mt-3">
-          <Icon icon="eos-icons:loading" className="text-xl" />
+          <AiOutlineLoading3Quarters className="text-xl" />
         </section>
       )}
       {error && (
