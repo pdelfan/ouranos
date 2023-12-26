@@ -6,12 +6,12 @@ import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { getProfile } from "@/lib/api/bsky/actor";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import useProfilePosts from "@/lib/hooks/bsky/feed/useProfilePosts";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { getContentFilter } from "@/lib/utils/feed";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   mode: UserPostMode;
@@ -89,7 +89,7 @@ export default function UserPostsConatiner(props: Props) {
         !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
       {!isBlocked && isFetchingUserPostsNextPage && (
         <section className="flex flex-1 justify-center mt-3">
-          <Icon icon="eos-icons:loading" className="text-xl" />
+          <AiOutlineLoading3Quarters className="text-xl" />
         </section>
       )}
       {!isBlocked && !hasBlockedYou && userPostsError && (

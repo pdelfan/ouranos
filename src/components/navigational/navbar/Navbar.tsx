@@ -6,6 +6,17 @@ import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import useAgent from "@/lib/hooks/bsky/useAgent";
+import {
+  BiCog,
+  BiHash,
+  BiHome,
+  BiSolidCog,
+  BiSolidHome,
+  BiSolidUser,
+  BiUser,
+} from "react-icons/bi";
+import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
+import { FaBell, FaRegBell } from "react-icons/fa6";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -25,21 +36,24 @@ export default function Navbar() {
     <nav className="inline-flex flex-col gap-6 lg:ml-1.5">
       <NavItem
         href="/dashboard/home"
-        icons={["bxs:home", "bx:home"]}
+        icon={<BiHome className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/home"}
         className="sm:m-0"
       />
       <NavItem
         href="/dashboard/search"
-        icons={["mingcute:search-fill", "bx:search"]}
+        icon={<PiMagnifyingGlassBold className="text-2xl md:text-3xl" />}
+        activeIcon={<PiMagnifyingGlassFill className="text-2xl md:text-3xl" />}
         title="Search"
         isActive={pathname.includes("search")}
         className="sm:m-0"
       />
       <NavItem
         href="/dashboard/feeds"
-        icons={["bx:hash", "bx:hash"]}
+        icon={<BiHash className="text-2xl md:text-3xl" />}
+        activeIcon={<BiHash className="text-2xl md:text-3xl" />}
         title="Feeds"
         isActive={pathname === "/dashboard/feeds"}
         className="sm:m-0"
@@ -47,7 +61,8 @@ export default function Navbar() {
 
       <NavItem
         href="/dashboard/notifications"
-        icons={["mdi:bell", "mdi:bell-outline"]}
+        icon={<FaRegBell className="text-2xl md:text-3xl" />}
+        activeIcon={<FaBell className="text-2xl md:text-3xl" />}
         title="Notifications"
         isActive={pathname.includes("notifications")}
         className="sm:m-0"
@@ -56,14 +71,16 @@ export default function Navbar() {
 
       <NavItem
         href={`/dashboard/user/${session?.user.handle}`}
-        icons={["bxs:user", "bx:user"]}
+        icon={<BiUser className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidUser className="text-2xl md:text-3xl" />}
         title="Profile"
         isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
         className="sm:m-0"
       />
       <NavItem
         href="/dashboard/settings"
-        icons={["bxs:cog", "bx:cog"]}
+        icon={<BiCog className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidCog className="text-2xl md:text-3xl" />}
         title="Settings"
         isActive={pathname.includes("settings")}
         className="sm:m-0"

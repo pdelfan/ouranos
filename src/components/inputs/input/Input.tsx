@@ -1,7 +1,7 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { ReactElement } from "react";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  icon?: string;
+  icon?: ReactElement;
 }
 
 export default function Input(props: Props) {
@@ -9,10 +9,9 @@ export default function Input(props: Props) {
   return (
     <div className="relative">
       {icon && (
-        <Icon
-          icon={icon}
-          className="absolute top-4 left-2 text-lg text-neutral-500"
-        />
+        <div className="absolute top-4 left-2 text-lg text-neutral-500">
+          {icon}
+        </div>
       )}
       <input
         {...props}

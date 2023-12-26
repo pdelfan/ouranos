@@ -11,6 +11,8 @@ import Button from "@/components/actions/button/Button";
 import useSaveFeed from "@/lib/hooks/bsky/feed/useSaveFeed";
 import Alert from "@/components/feedback/alert/Alert";
 import MyFeedsContainerSkeleton from "./MyFeedsContainerSkeleton";
+import { BiSolidTrash } from "react-icons/bi";
+import { BiSolidBookmarkAlt } from "react-icons/bi";
 
 interface FeedItemProps {
   feedItem: SavedFeed;
@@ -49,22 +51,26 @@ function FeedItem(props: FeedItemProps) {
       </div>
       <div className="flex flex-wrap gap-3">
         <Button
-          icon="bxs:trash"
-          iconColor="text-red-600"
           onClick={(e) => {
             e.preventDefault();
             deleteFeed.mutate();
           }}
-        />
+        >
+          <BiSolidTrash className="text-red-600 text-lg" />
+        </Button>
 
         <Button
-          icon="bxs:bookmark-alt"
-          iconColor={`${isPinned ? "text-green-600" : "text-neutral-300"}`}
           onClick={(e) => {
             e.preventDefault();
             togglePin.mutate();
           }}
-        />
+        >
+          <BiSolidBookmarkAlt
+            className={`text-lg ${
+              isPinned ? "text-green-600" : "text-neutral-300"
+            }`}
+          />
+        </Button>
       </div>
     </Link>
   );

@@ -1,9 +1,10 @@
 import Button from "@/components/actions/button/Button";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { PiWarningCircleFill } from "react-icons/pi";
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { SetStateAction, useState } from "react";
 import Textarea from "../textarea/Textarea";
+import { CgClose } from "react-icons/cg";
 
 interface Props {
   images: UploadImage[];
@@ -29,12 +30,13 @@ export default function UploadPreview(props: Props) {
           <div key={image.url} className="relative h-fit animate-fade">
             <Button
               className="absolute top-0 m-2 p-2 bg-black/50 text-white rounded-full hover:bg-neutral-700"
-              icon="ph:x-bold"
               onClick={(e) => {
                 e.preventDefault();
                 handleRemove(image);
               }}
-            />
+            >
+              <CgClose className="text-xl" />
+            </Button>
             <div className="absolute bottom-0 m-2">
               <Dialog.Root open={showAltTextModal}>
                 <Dialog.Trigger>
@@ -62,10 +64,7 @@ export default function UploadPreview(props: Props) {
                             className="rounded-xl object-cover  max-h-80 md:max-w-xl mx-auto"
                           />
                           <div className="flex items-center gap-2 md:max-w-xl mx-auto mt-3">
-                            <Icon
-                              icon="ep:warning-filled"
-                              className="text-2xl text-neutral-600 shrink-0"
-                            />
+                            <PiWarningCircleFill className="text-2xl text-neutral-600 shrink-0" />
                             <small className="text-neutral-500">
                               Alt text describes images for users with
                               disabilities and helps give context to everyone.

@@ -1,6 +1,8 @@
 import Button from "@/components/actions/button/Button";
 import Dropdown from "@/components/actions/dropdown/Dropdown";
 import React from "react";
+import { BiCheck, BiTrash } from "react-icons/bi";
+import { HiOutlineShieldExclamation } from "react-icons/hi";
 
 const options = [
   { label: "Suggestive", value: "sexual" },
@@ -25,20 +27,17 @@ export default function AdultContentPicker(props: Props) {
             e.stopPropagation();
           }}
           disabled={disabled}
-          iconSize="text-xl"
-          iconColor="text-primary hover:text-primary-dark"
-          icon="octicon:shield-16"
           className="p-0"
-        />
+        >
+          <HiOutlineShieldExclamation className="text-2xl text-primary hover:text-primary-dark" />
+        </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>
         {options.map((option) => (
           <Dropdown.MenuItem
             key={option.value}
             text={option.label}
-            icon={
-              selectedLabel === option.value ? "octicon:check-16" : undefined
-            }
+            icon={selectedLabel === option.value ? <BiCheck /> : undefined}
             onSelect={() => onSelectLabel(option.value)}
           />
         ))}
@@ -46,7 +45,7 @@ export default function AdultContentPicker(props: Props) {
           <Dropdown.MenuItem
             text="Remove Label"
             textColor="text-red-500"
-            icon="bx:trash"
+            icon={<BiTrash />}
             onSelect={() => onSelectLabel("")}
           />
         )}

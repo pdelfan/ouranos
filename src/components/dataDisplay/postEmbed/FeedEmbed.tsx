@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { AppBskyFeedDefs } from "@atproto/api";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiSolidHeart } from "react-icons/bi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -52,7 +52,7 @@ export default function FeedEmbed(props: Props) {
             {feed.description}
           </p>
           <small className="flex items-center gap-1 font-medium text-neutral-500">
-            <Icon icon="bxs:heart" />
+            <BiSolidHeart />
             <span>{feed.likeCount ?? 0}</span>
           </small>
         </Link>

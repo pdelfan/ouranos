@@ -8,6 +8,9 @@ import Label from "@/components/inputs/label/Label";
 import { useRouter } from "next/navigation";
 import Button from "@/components/actions/button/Button";
 import Image from "next/image";
+import { PiSignInBold } from "react-icons/pi";
+import { MdAlternateEmail } from "react-icons/md";
+import { BiSolidLockAlt } from "react-icons/bi";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -72,7 +75,7 @@ export default function LoginForm() {
             required
             type="text"
             name="handle"
-            icon="ic:baseline-alternate-email"
+            icon={<MdAlternateEmail />}
             placeholder="handle.bsky.social"
             value={handle}
             onChange={(e) => {
@@ -87,7 +90,7 @@ export default function LoginForm() {
             required
             type="password"
             name="password"
-            icon="bxs:lock-alt"
+            icon={<BiSolidLockAlt />}
             placeholder="password"
             value={password}
             onChange={(e) => {
@@ -106,8 +109,8 @@ export default function LoginForm() {
           }`}
           disabled={loading}
           aria-disabled={loading}
-          icon="mdi:sign-in"
         >
+          <PiSignInBold className="text-lg" />
           {loading && "Logging in..."}
           {!loading && "Log in"}
         </Button>

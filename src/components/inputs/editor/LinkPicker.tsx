@@ -3,6 +3,8 @@ import Button from "@/components/actions/button/Button";
 import { useState } from "react";
 import Popover from "@/components/actions/popover/Popover";
 import Input from "../input/Input";
+import { BiLink, BiUnlink } from "react-icons/bi";
+import { BiPlus } from "react-icons/bi";
 
 interface Props {
   editor: Editor;
@@ -44,11 +46,14 @@ export default function LinkPicker(props: Props) {
               setShowLinkPicker(true);
             }
           }}
-          icon={editor.isActive("link") ? "bx:unlink" : "bx:link"}
-          iconColor="text-primary hover:text-primary-dark"
-          iconSize="text-2xl"
           className="p-0"
-        />
+        >
+          {editor.isActive("link") ? (
+            <BiUnlink className="text-2xl text-primary hover:text-primary-dark" />
+          ) : (
+            <BiLink className="text-2xl text-primary hover:text-primary-dark" />
+          )}
+        </Button>
       </Popover.Trigger>
       <Popover.Content>
         {showLinkPicker && (
@@ -70,9 +75,10 @@ export default function LinkPicker(props: Props) {
                 }
                 onLinkAdd(href);
               }}
-              icon="bx:plus"
               className="bg-primary text-white p-3 rounded-lg hover:bg-primary-dark"
-            />
+            >
+              <BiPlus className="text-lg" />
+            </Button>
           </div>
         )}
       </Popover.Content>

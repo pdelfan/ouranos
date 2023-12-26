@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { ReactNode, forwardRef, ButtonHTMLAttributes } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,12 +29,6 @@ export default forwardRef<HTMLButtonElement, Props>(function Button(
       }`}
       {...rest}
     >
-      {icon && (
-        <Icon
-          icon={icon}
-          className={`${iconColor} ${iconSize ? iconSize : "text-lg"}`}
-        />
-      )}
       {children}
     </button>
   );

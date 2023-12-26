@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiLogOut } from "react-icons/bi";
 import { signOut } from "next-auth/react";
 
 interface Props {
@@ -16,7 +16,7 @@ export default function SignOut(props: Props) {
       className="font-medium text-neutral-500 hover:text-neutral-400"
     >
       {iconOnly ? (
-        <Icon icon="bx:log-out" className="text-neutral-600 text-2xl" />
+        <BiLogOut className="text-2xl text-neutral-600" />
       ) : (
         "Sign out"
       )}

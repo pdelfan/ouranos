@@ -17,6 +17,17 @@ import { abbreviateNumber } from "@/lib/utils/number";
 import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
 import { useComposerControls } from "@/app/providers/composer";
 import toast from "react-hot-toast";
+import {
+  BiHeart,
+  BiLink,
+  BiRepost,
+  BiSolidBell,
+  BiSolidBellOff,
+  BiSolidCopy,
+  BiSolidHeart,
+  BiSolidQuoteAltRight,
+  BiSolidTrash,
+} from "react-icons/bi";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -120,7 +131,7 @@ export default function PostActions(props: Props) {
                   toggleRepost.mutate();
                 }}
                 text={`${reposted ? "Undo repost" : "Repost"}`}
-                icon="bx:repost"
+                icon={<BiRepost />}
               />
               <Dropdown.MenuItem
                 onSelect={() => {
@@ -143,7 +154,7 @@ export default function PostActions(props: Props) {
                   });
                 }}
                 text="Quote Post"
-                icon="bxs:quote-alt-right"
+                icon={<BiSolidQuoteAltRight />}
               />
             </Dropdown.Menu>
           </Dropdown>
@@ -156,8 +167,13 @@ export default function PostActions(props: Props) {
             className={
               liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
             }
-            icon={liked ? "bxs:heart" : "bx:heart"}
-          />
+          >
+            {liked ? (
+              <BiSolidHeart className="text-lg" />
+            ) : (
+              <BiHeart className="text-lg" />
+            )}
+          </Button>
 
           <Dropdown>
             <Dropdown.Trigger>
@@ -173,12 +189,12 @@ export default function PostActions(props: Props) {
               <Dropdown.MenuItem
                 onSelect={handleShare}
                 text="Copy Link to Post"
-                icon="bx:link"
+                icon={<BiLink />}
               />
               <Dropdown.MenuItem
                 onSelect={handleCopyPostText}
                 text="Copy Post Text"
-                icon="bxs:copy"
+                icon={<BiSolidCopy />}
               />
               {session.user?.handle !== post.author.handle && (
                 <Dropdown.MenuItem
@@ -186,7 +202,7 @@ export default function PostActions(props: Props) {
                     toggleMuteUser.mutate();
                   }}
                   text={`${muted ? "Unmute User" : "Mute User"}`}
-                  icon="bxs:bell-off"
+                  icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
                 />
               )}
               {session.user?.handle === post.author.handle && (
@@ -195,7 +211,7 @@ export default function PostActions(props: Props) {
                     deletePost.mutate();
                   }}
                   text="Delete Post"
-                  icon="bxs:trash"
+                  icon={<BiSolidTrash />}
                 />
               )}
             </Dropdown.Menu>
@@ -257,7 +273,7 @@ export default function PostActions(props: Props) {
               toggleRepost.mutate();
             }}
             text={`${reposted ? "Undo repost" : "Repost"}`}
-            icon="bx:repost"
+            icon={<BiRepost />}
           />
           <Dropdown.MenuItem
             onSelect={() => {
@@ -280,7 +296,7 @@ export default function PostActions(props: Props) {
               });
             }}
             text="Quote Post"
-            icon="bxs:quote-alt-right"
+            icon={<BiSolidQuoteAltRight />}
           />
         </Dropdown.Menu>
       </Dropdown>
@@ -290,11 +306,16 @@ export default function PostActions(props: Props) {
           e.stopPropagation();
           toggleLike.mutate();
         }}
-        className={`text-sm font-medium
-          ${liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"}
+        className={`text-sm font-medium ${
+          liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
+        }
           `}
-        icon={liked ? "bxs:heart" : "bx:heart"}
       >
+        {liked ? (
+          <BiSolidHeart className="text-lg" />
+        ) : (
+          <BiHeart className="text-lg" />
+        )}
         {likeCount}
       </Button>
 
@@ -312,12 +333,12 @@ export default function PostActions(props: Props) {
           <Dropdown.MenuItem
             onSelect={handleShare}
             text="Copy Link to Post"
-            icon="bx:link"
+            icon={<BiLink />}
           />
           <Dropdown.MenuItem
             onSelect={handleCopyPostText}
             text="Copy Post Text"
-            icon="bxs:copy"
+            icon={<BiSolidCopy />}
           />
           {session.user?.handle !== post.author.handle && (
             <Dropdown.MenuItem
@@ -325,7 +346,7 @@ export default function PostActions(props: Props) {
                 toggleMuteUser.mutate();
               }}
               text={`${muted ? "Unmute User" : "Mute User"}`}
-              icon="bxs:bell-off"
+              icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
             />
           )}
           {session.user?.handle === post.author.handle && (
@@ -334,7 +355,7 @@ export default function PostActions(props: Props) {
                 deletePost.mutate();
               }}
               text="Delete Post"
-              icon="bxs:trash"
+              icon={<BiSolidTrash />}
             />
           )}
         </Dropdown.Menu>

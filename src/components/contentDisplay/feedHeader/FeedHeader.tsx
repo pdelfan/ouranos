@@ -3,7 +3,6 @@
 import Image from "next/image";
 import useFeedInfo from "@/lib/hooks/bsky/feed/useFeedInfo";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import Button from "@/components/actions/button/Button";
 import { useEffect, useState } from "react";
 import {
@@ -16,6 +15,10 @@ import { useRouter } from "next/navigation";
 import FeedHeaderSkeleton from "./FeedHeaderSkeleton";
 import { useQueryClient } from "@tanstack/react-query";
 import { savedFeedsQueryKey } from "@/containers/settings/myFeedsContainer/MyFeedsContainer";
+import { BiSolidTrash } from "react-icons/bi";
+import { BiSolidBookmarkAlt } from "react-icons/bi";
+import { BiPlus } from "react-icons/bi";
+import { BiSolidHeart } from "react-icons/bi";
 
 interface Props {
   feed: string;
@@ -89,7 +92,7 @@ export default function FeedHeader(props: Props) {
       {isFetchingFeedInfo && <FeedHeaderSkeleton />}
       {feedInfo && (
         <>
-          <article className="flex flex-col gap-2 p-3 border border-x-0 border-t-0 md:border md:rounded-t-2xl ">
+          <article className="flex flex-col gap-2 p-3 -mt-2 border border-x-0 border-t-0 md:border md:rounded-t-2xl ">
             <div className="flex flex-wrap gap-3 items-center justify-between">
               <div className="flex flex-wrap gap-3 items-center">
                 <Image
@@ -110,18 +113,19 @@ export default function FeedHeader(props: Props) {
               </div>
               {isSaved !== null && isPinned !== null && (
                 <div className="flex flex-wrap gap-3">
-                  <Button
-                    icon={`${isSaved ? "bx:trash" : "bx:plus"}`}
-                    iconColor={`${isSaved ? "text-red-500" : "text-green-600"}`}
-                    onClick={toggleSave}
-                  />
-                  <Button
-                    icon="bxs:bookmark-alt"
-                    iconColor={`${
-                      isPinned ? "text-green-600" : "text-neutral-300"
-                    }`}
-                    onClick={togglePin}
-                  />{" "}
+                  <Button onClick={toggleSave}>
+                    {isSaved && (
+                      <BiSolidTrash className="text-lg text-red-600" />
+                    )}
+                    {!isSaved && <BiPlus className="text-lg text-green-600" />}
+                  </Button>
+                  <Button onClick={togglePin}>
+                    <BiSolidBookmarkAlt
+                      className={`text-lg ${
+                        isPinned ? "text-green-600" : "text-neutral-300"
+                      }`}
+                    />
+                  </Button>{" "}
                 </div>
               )}
             </div>
@@ -129,7 +133,7 @@ export default function FeedHeader(props: Props) {
               {feedInfo.view.description}
             </p>
             <small className="flex items-center gap-1 font-medium text-neutral-500">
-              <Icon icon="bxs:heart" />
+              <BiSolidHeart />
               <span>{feedInfo.view.likeCount ?? 0}</span>
             </small>
           </article>

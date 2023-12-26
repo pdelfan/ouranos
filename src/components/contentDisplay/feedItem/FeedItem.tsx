@@ -3,7 +3,7 @@
 import { GeneratorView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import Image from "next/image";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiPlus, BiSolidHeart, BiSolidTrash } from "react-icons/bi";
 import Button from "@/components/actions/button/Button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -71,17 +71,18 @@ export default function FeedItem(props: Props) {
           </div>
         </div>
         <Button
-          icon={`${isSaved ? "bx:trash" : "bx:plus"}`}
-          iconColor={`${isSaved ? "text-red-500" : "text-green-600"}`}
           onClick={(e) => {
             e.preventDefault();
             handleSave();
           }}
-        />
+        >
+          {isSaved && <BiSolidTrash className="text-lg text-red-600" />}
+          {!isSaved && <BiPlus className="text-lg text-green-600" />}
+        </Button>
       </div>
       <p className="text-neutral-700 break-words">{description}</p>
       <small className="flex items-center gap-1 font-medium text-neutral-500">
-        <Icon icon="bxs:heart" />
+        <BiSolidHeart />
         <span>{likeCount ?? 0}</span>
       </small>
     </Link>

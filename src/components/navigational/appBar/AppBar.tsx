@@ -6,6 +6,10 @@ import { useScrollContext } from "@/app/providers/scroll";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import { useQuery } from "@tanstack/react-query";
+import { BiCog, BiHash, BiHome, BiSolidCog, BiSolidHome } from "react-icons/bi";
+import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
+import { FaRegBell } from "react-icons/fa6";
+import { FaBell } from "react-icons/fa";
 
 export default function AppBar() {
   const pathname = usePathname();
@@ -29,26 +33,30 @@ export default function AppBar() {
     >
       <NavItem
         href="/dashboard/home"
-        icons={["bxs:home", "bx:home"]}
+        icon={<BiHome className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/home"}
       />
       <NavItem
         href="/dashboard/search"
-        icons={["mingcute:search-fill", "bx:search"]}
+        icon={<PiMagnifyingGlassBold className="text-2xl md:text-3xl" />}
+        activeIcon={<PiMagnifyingGlassFill className="text-2xl md:text-3xl" />}
         title="Search"
         isActive={pathname.includes("search")}
       />
       <NavItem
         href="/dashboard/feeds"
-        icons={["bx:hash", "bx:hash"]}
+        icon={<BiHash className="text-2xl md:text-3xl" />}
+        activeIcon={<BiHash className="text-2xl md:text-3xl" />}
         title="Feeds"
         isActive={pathname === "/dashboard/feeds"}
       />
 
       <NavItem
         href="/dashboard/notifications"
-        icons={["mdi:bell", "mdi:bell-outline"]}
+        icon={<FaRegBell className="text-2xl md:text-3xl" />}
+        activeIcon={<FaBell className="text-2xl md:text-3xl" />}
         title="Notifications"
         isActive={pathname.includes("notifications")}
         badge={notificationsCount ?? 0}
@@ -56,7 +64,8 @@ export default function AppBar() {
 
       <NavItem
         href="/dashboard/settings"
-        icons={["bxs:cog", "bx:cog"]}
+        icon={<BiCog className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidCog className="text-2xl md:text-3xl" />}
         title="Settings"
         isActive={pathname.includes("settings")}
       />

@@ -1,5 +1,5 @@
 import { AppBskyFeedDefs } from "@atproto/api";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { BiRepost } from "react-icons/bi";
 import Link from "next/link";
 
 interface Props {
@@ -24,7 +24,7 @@ export default function Reason(props: Props) {
           className="max-w-fit"
         >
           <div className="inline-flex flex-wrap items-center gap-1 text-lg text-neutral-600 font-semibold hover:text-neutral-500">
-            <Icon icon="bx:repost" />
+            <BiRepost />
             <small>{reason.by.displayName ?? reason.by.handle} reposted</small>
           </div>
         </Link>

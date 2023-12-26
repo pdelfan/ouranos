@@ -1,4 +1,5 @@
 import Button from "@/components/actions/button/Button";
+import { BiImage } from "react-icons/bi";
 
 interface Props {
   onShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,11 +15,10 @@ export default function ImagePicker(props: Props) {
           e.stopPropagation();
           onShow((prev) => !prev);
         }}
-        icon="bx:image"
-        iconColor="text-primary hover:text-primary-dark"
-        iconSize="text-2xl"
         className="p-0"
-      />
+      >
+        <BiImage className="text-2xl text-primary hover:text-primary-dark" />
+      </Button>
     </div>
   );
 }

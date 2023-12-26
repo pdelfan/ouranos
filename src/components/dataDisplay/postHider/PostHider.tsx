@@ -1,5 +1,5 @@
 import Button from "@/components/actions/button/Button";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { MdNoAdultContent } from "react-icons/md";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
@@ -15,10 +15,7 @@ export default function PostHider(props: Props) {
   return (
     <div className="flex items-center justify-between gap-2 bg-neutral-100 p-3 rounded-lg font-medium text-neutral-600">
       <div className="flex items-center gap-2">
-        <Icon
-          icon="material-symbols:no-adult-content"
-          className="shrink-0 text-2xl"
-        />
+        <MdNoAdultContent className="shrink-0 text-2xl" />
         <span>{message}</span>
       </div>
       {showToggle && (

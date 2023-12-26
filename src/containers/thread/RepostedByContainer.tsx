@@ -6,7 +6,7 @@ import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/Profile
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { getPostReposts } from "@/lib/api/bsky/feed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 
@@ -70,7 +70,7 @@ export default function RepostedByContainer(props: Props) {
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
       {isFetchingNextPage && (
         <section className="flex flex-1 justify-center mt-3">
-          <Icon icon="eos-icons:loading" className="text-xl" />
+          <AiOutlineLoading3Quarters className="text-xl" />
         </section>
       )}
       {isEmpty && !hasNextPage && (

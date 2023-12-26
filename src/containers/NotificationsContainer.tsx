@@ -6,8 +6,8 @@ import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useNotification from "@/lib/hooks/bsky/notification/useNotification";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { Fragment } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function NotificationsContainer() {
   const {
@@ -54,7 +54,7 @@ export default function NotificationsContainer() {
       )}
       {isFetchingNotificationNextPage && (
         <section className="flex flex-1 justify-center mt-3">
-          <Icon icon="eos-icons:loading" className="text-xl" />
+          <AiOutlineLoading3Quarters className="text-xl" />
         </section>
       )}
       {notificationError && (
