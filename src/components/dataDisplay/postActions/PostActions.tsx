@@ -18,8 +18,10 @@ import useDeletePost from "@/lib/hooks/bsky/feed/useDeletePost";
 import { useComposerControls } from "@/app/providers/composer";
 import toast from "react-hot-toast";
 import {
+  BiDotsHorizontalRounded,
   BiHeart,
   BiLink,
+  BiMessageRounded,
   BiRepost,
   BiSolidBell,
   BiSolidBellOff,
@@ -108,8 +110,9 @@ export default function PostActions(props: Props) {
               });
             }}
             className="text-neutral-500 hover:text-primary"
-            icon="bx:message-rounded"
-          />
+          >
+            <BiMessageRounded className="text-lg" />
+          </Button>
 
           <Dropdown>
             <Dropdown.Trigger>
@@ -122,8 +125,9 @@ export default function PostActions(props: Props) {
                     ? "text-green-600"
                     : "text-neutral-500 hover:text-green-600"
                 }
-                icon="bx:repost"
-              />
+              >
+                <BiRepost className="text-xl" />
+              </Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
               <Dropdown.MenuItem
@@ -181,9 +185,10 @@ export default function PostActions(props: Props) {
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
-                icon="bx:dots-horizontal-rounded"
                 className="text-neutral-500 hover:text-neutral-600"
-              />
+              >
+                <BiDotsHorizontalRounded className="text-lg" />
+              </Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
               <Dropdown.MenuItem
@@ -244,8 +249,8 @@ export default function PostActions(props: Props) {
           });
         }}
         className="text-sm font-medium text-neutral-500 hover:text-primary"
-        icon="bx:message-rounded"
       >
+        <BiMessageRounded className="text-lg" />
         {post.replyCount}
       </Button>
 
@@ -262,8 +267,8 @@ export default function PostActions(props: Props) {
                   : "text-neutral-500 hover:text-green-600"
               }
             `}
-            icon="bx:repost"
           >
+            <BiRepost className="text-xl" />
             {repostCount}
           </Button>
         </Dropdown.Trigger>
@@ -325,9 +330,10 @@ export default function PostActions(props: Props) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            icon="bx:dots-horizontal-rounded"
             className="text-neutral-500 hover:text-neutral-600"
-          />
+          >
+            <BiDotsHorizontalRounded className="text-lg" />
+          </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.MenuItem
