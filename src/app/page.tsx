@@ -67,7 +67,7 @@ export default function Home() {
         <Image
           src="/images/screenshot.png"
           alt="Ouranos desktop screenshot"
-          width={1200}
+          width={1000}
           height={830}
           priority
         />
