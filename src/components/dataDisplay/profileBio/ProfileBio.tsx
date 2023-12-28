@@ -1,6 +1,4 @@
-"use client";
-
-import { getHandle, getHostname, getShortAddress } from "@/lib/utils/text";
+import { getHandle, getShortAddress } from "@/lib/utils/text";
 import { RichText as RichTextHelper } from "@atproto/api";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -68,7 +66,11 @@ export default function ProfileBio(props: Props) {
     } else {
       content.push({
         text: segment.text,
-        component: <span key={segment.text} className="text-neutral-700">{segment.text}</span>,
+        component: (
+          <span key={segment.text} className="text-neutral-700">
+            {segment.text}
+          </span>
+        ),
       });
     }
   }
