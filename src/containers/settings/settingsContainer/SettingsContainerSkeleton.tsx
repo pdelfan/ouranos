@@ -9,10 +9,29 @@ function SettingsItemSkeleton() {
   );
 }
 
+function AccountSkeleton() {
+  return (
+    <section>
+      <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Account</h3>
+      <section className="flex flex-wrap gap-3 justify-between items-center mx-3 md:mx-0">
+        <div className="flex items-center gap-3">
+          <div className="bg-gray-200 rounded-full w-12 h-12" />
+          <div className="flex flex-col gap-2">
+            <div className="w-20 h-4 rounded-full bg-gray-200" />
+            <div className="w-24 h-4 rounded-full bg-gray-200" />
+          </div>
+        </div>
+        <div className="bg-gray-200 rounded-full w-16 h-4" />
+      </section>
+    </section>
+  );
+}
+
 export default function SettingsContainerSkeleton() {
   return (
     <section className="flex flex-col gap-5">
       <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Settings</h2>
+      <AccountSkeleton />
       <section>
         <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
           Feeds and Threads
