@@ -1,5 +1,5 @@
 import FeedContainer from "@/containers/FeedContainer";
 
-export default async function Home() {
+export default function Home() {
   return <FeedContainer feed="timeline" />;
 }
