@@ -17,6 +17,7 @@ import UserActions from "@/components/dataDisplay/userActions/UserActions";
 import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
+import EditProfile from "@/components/actions/editProfile/EditProfile";
 
 interface Props {
   handle: string;
@@ -115,6 +116,9 @@ export default function ProfileHeader(props: Props) {
                   viewer={profile.viewer}
                   viewerDID={session?.user.id}
                 />
+                {handle === session?.user.handle && (
+                  <EditProfile profile={profile} />
+                )}
               </div>
             </div>
           )}
