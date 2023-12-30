@@ -13,6 +13,7 @@ function AccountSkeleton() {
   return (
     <section>
       <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Account</h3>
+      <div className="w-1/2 h-4 bg-gray-200 mx-3 md:mx-0 mb-2 rounded-full" />
       <section className="flex flex-wrap gap-3 justify-between items-center mx-3 md:mx-0">
         <div className="flex items-center gap-3">
           <div className="bg-gray-200 rounded-full w-12 h-12" />

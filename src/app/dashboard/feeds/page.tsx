@@ -3,7 +3,9 @@ import FeedListSkeleton from "@/components/contentDisplay/feedList/FeedListSkele
 import SavedFeedList from "@/components/contentDisplay/savedFeedList/SavedFeedList";
 import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/SavedFeedListSkeleton";
 import Search from "@/components/filter/search/Search";
+import Link from "next/link";
 import { Suspense } from "react";
+import { BiCog } from "react-icons/bi";
 
 interface Props {
   searchParams: {
@@ -18,7 +20,12 @@ export default async function Page(props: Props) {
   return (
     <section className="flex flex-col gap-5">
       <section>
-        <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">My feeds</h2>
+        <div className="flex justify-between items-center mx-3 md:mx-0 mb-2">
+          <h2 className="text-2xl font-semibold">My Feeds</h2>
+          <Link href="/dashboard/settings/my-feeds">
+            <BiCog className="text-2xl text-neutral-500 hover:text-neutral-700" />
+          </Link>
+        </div>
         <Suspense fallback={<SavedFeedListSkeleton />}>
           <SavedFeedList />
         </Suspense>
@@ -27,7 +34,7 @@ export default async function Page(props: Props) {
         <div>
           <div className="flex flex-wrap justify-between gap-x-12 gap-y-2 mb-2">
             <h2 className="flex-auto text-2xl font-semibold mx-3 md:mx-0 mb-2">
-              Popular feeds
+              Popular Feeds
             </h2>
             <Search placeholder="Search for feeds" />
           </div>
