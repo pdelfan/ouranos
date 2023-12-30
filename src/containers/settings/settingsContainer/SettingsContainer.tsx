@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaSlidersH } from "react-icons/fa";
 import { ImBubbles2 } from "react-icons/im";
-import { BiHash } from "react-icons/bi";
+import { BiHash, BiSolidEnvelope } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { BiSolidBellOff } from "react-icons/bi";
 import { BsPersonFillSlash } from "react-icons/bs";
@@ -13,28 +13,38 @@ import SignOut from "@/components/actions/signOut/SignOut";
 export default async function SettingsContainer() {
   const session = await getSessionFromServer();
   const profile = await getProfile(session?.user.handle);
+  const isEmailConfirmed = session?.user.emailConfirmed;
 
   return (
     <>
       <section className="flex flex-col gap-5">
         <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Settings</h2>
         {profile && (
-          <section>
-            <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Account</h3>
-            <section className="flex flex-wrap gap-3 justify-between items-center mx-3 md:mx-0">
-              <div className="flex gap-3">
-                <Avatar profile={profile} size="md" />
-                <div className="flex flex-col">
-                  <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
-                    {profile.displayName ?? profile.handle}
-                  </span>
-                  <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
-                    @{profile.handle}
-                  </span>
-                </div>
+          <section className="mx-3 md:mx-0">
+            <h3 className="text-xl font-semibold mb-2">Account</h3>
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <BiSolidEnvelope className="text-neutral-600 text-xl" />
+                <span className="text-neutral-600 break-all">
+                  {session?.user.email}{" "}
+                  {isEmailConfirmed ? "(verified)" : "(not verified)"}
+                </span>
               </div>
-              <SignOut />
-            </section>
+              <div className="flex flex-wrap gap-3 justify-between items-center ">
+                <div className="flex gap-3">
+                  <Avatar profile={profile} size="md" />
+                  <div className="flex flex-col">
+                    <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
+                      {profile.displayName ?? profile.handle}
+                    </span>
+                    <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+                      @{profile.handle}
+                    </span>
+                  </div>
+                </div>
+                <SignOut />
+              </div>
+            </div>
           </section>
         )}
         <section>
