@@ -25,9 +25,9 @@ export default async function SettingsContainer() {
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <BiSolidEnvelope className="text-neutral-600 text-xl" />
-                <span className="text-neutral-600">
+                <span className="text-neutral-600 break-all">
                   {session?.user.email}{" "}
-                  {isEmailConfirmed ? "(verified)" : "not confirmed"}
+                  {isEmailConfirmed ? "(verified)" : "(not verified)"}
                 </span>
               </div>
               <div className="flex flex-wrap gap-3 justify-between items-center ">
