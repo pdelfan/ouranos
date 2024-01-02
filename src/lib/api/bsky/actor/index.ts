@@ -156,3 +156,13 @@ export const unBlockUser = async (
   if (!agent) agent = await getAgent();
   await agent.app.bsky.graph.block.delete({ rkey: rkey, repo: viewerDid });
 };
+
+export const getInviteCodes = async (agent?: BskyAgent) => {
+  if (!agent) agent = await getAgent();
+  const res = await agent.com.atproto.server.getAccountInviteCodes({
+    includeUsed: true,
+  });
+  if (!res.success) throw new Error("Could not get invite codes");
+
+  return res.data.codes;
+};
