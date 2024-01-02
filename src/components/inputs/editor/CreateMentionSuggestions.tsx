@@ -36,7 +36,7 @@ export function CreateMentionSuggestions({
 }): MentionOptions["suggestion"] {
   return {
     items: async ({ query }) => {
-      // TODO: add debounc
+      // TODO: add debounce
       const suggestions = await autoComplete(query);
       if (!suggestions) return [];
       return suggestions.map((suggestion) => ({
