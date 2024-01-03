@@ -13,16 +13,19 @@ function AccountSkeleton() {
   return (
     <section>
       <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Account</h3>
-      <div className="w-1/2 h-4 bg-gray-200 mx-3 md:mx-0 mb-2 rounded-full" />
-      <section className="flex flex-wrap gap-3 justify-between items-center mx-3 md:mx-0">
-        <div className="flex items-center gap-3">
-          <div className="bg-gray-200 rounded-full w-12 h-12" />
-          <div className="flex flex-col gap-2">
-            <div className="w-20 h-4 rounded-full bg-gray-200" />
-            <div className="w-24 h-4 rounded-full bg-gray-200" />
+      <section className="flex flex-col gap-3 p-3 mt-2 w-full rounded-none md:rounded-t-2xl md:rounded-b-2xl border border-x-0 md:border-x">
+        <div className="flex flex-wrap gap-3 justify-between items-center mx-3 md:mx-0">
+          <div className="flex items-center gap-3">
+            <div className="bg-gray-200 rounded-full w-12 h-12" />
+            <div className="flex flex-col gap-2">
+              <div className="w-20 h-4 rounded-full bg-gray-200" />
+              <div className="w-24 h-4 rounded-full bg-gray-200" />
+            </div>
           </div>
+          <div className="bg-gray-200 rounded-full w-16 h-4" />
         </div>
-        <div className="bg-gray-200 rounded-full w-16 h-4" />
+        <hr />
+        <div className="w-1/2 h-4 bg-gray-200 mx-3 md:mx-0 rounded-full" />
       </section>
     </section>
   );
