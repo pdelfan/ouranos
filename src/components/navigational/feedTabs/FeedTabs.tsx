@@ -38,7 +38,7 @@ export default function FeedTabs() {
         } transition-all ease-in-out duration-500 sticky top-[3.2rem] md:top-6 md:translate-y-0  z-50 md:z-50`}
       >
         {isFetching && <FeedTabsSkeleton />}
-        {savedFeeds && (
+        {!isFetching && savedFeeds && (
           <Tabs>
             <TabItem
               key={"Following"}
