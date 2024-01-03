@@ -21,16 +21,9 @@ export default async function SettingsContainer() {
     <section className="flex flex-col gap-5">
       <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Settings</h2>
       {profile && (
-        <section className="mx-3 md:mx-0">
-          <h3 className="text-xl font-semibold mb-2">Account</h3>
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <BiSolidEnvelope className="text-neutral-600 text-xl" />
-              <span className="text-neutral-600 break-all">
-                {session?.user.email}{" "}
-                {isEmailConfirmed ? "(verified)" : "(not verified)"}
-              </span>
-            </div>
+        <section>
+          <h3 className="text-xl font-semibold mb-2 mx-3 md:mx-0">Account</h3>
+          <div className="flex flex-col gap-3 p-3 mt-2 w-full rounded-none md:rounded-t-2xl md:rounded-b-2xl border border-x-0 md:border-x">
             <div className="flex flex-wrap gap-3 justify-between items-center ">
               <div className="flex gap-3">
                 <Avatar profile={profile} size="md" />
@@ -44,6 +37,14 @@ export default async function SettingsContainer() {
                 </div>
               </div>
               <SignOut />
+            </div>
+            <hr />
+            <div className="flex flex-wrap items-center gap-2">
+              <BiSolidEnvelope className="text-neutral-600 text-xl" />
+              <span className="text-neutral-600 break-all">
+                {session?.user.email}{" "}
+                {isEmailConfirmed ? "(verified)" : "(not verified)"}
+              </span>
             </div>
           </div>
         </section>
