@@ -63,8 +63,12 @@ export default function ProfileHeader(props: Props) {
               />
             ) : (
               <Button
-                className="hover:brightness-90"
                 onClick={() => setShowBanner(true)}
+                className={`${
+                  profile.banner
+                    ? "hover:brightness-90 cursor-pointer"
+                    : "cursor-default"
+                }`}
               >
                 <Image
                   src={profile?.banner ?? FallbackBanner}
@@ -95,7 +99,11 @@ export default function ProfileHeader(props: Props) {
                     alt="Avatar"
                     width={95}
                     height={95}
-                    className="object-cover rounded-full hover:brightness-90"
+                    className={`object-cover rounded-full ${
+                      profile.avatar
+                        ? "hover:brightness-90 cursor-pointer"
+                        : "cursor-default"
+                    }`}
                   />
                 </Button>
               )}
