@@ -56,8 +56,8 @@ export default async function SettingsContainer() {
                 </small>
               )}
               {!isEmailConfirmed && (
-                <small className="inline-flex gap-1 items-center px-2 py-1.5 rounded-full bg-red-600/10 font-bold text-[0.6rem] text-red-600">
-                  <BiSolidXCircle className="text-red-600 text-lg" />
+                <small className="inline-flex gap-1 items-center px-2 py-1.5 rounded-full bg-orange-600/10 font-bold text-[0.6rem] text-orange-600">
+                  <BiSolidXCircle className="text-orange-600 text-lg" />
                   Not Verified
                 </small>
               )}
