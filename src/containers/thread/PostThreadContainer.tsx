@@ -16,6 +16,8 @@ import { useRouter } from "next/navigation";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { sortThread } from "@/lib/utils/feed";
+import Link from "next/link";
+import { getPostId } from "@/lib/utils/link";
 
 interface Props {
   id: string;
@@ -26,7 +28,7 @@ export default function PostThreadContainer(props: Props) {
   const { id, handle } = props;
   const agent = useAgent();
   const router = useRouter();
-  const MAX_REPLIES = 6;
+  const MAX_REPLIES = 4;
 
   const {
     data: thread,
@@ -153,10 +155,20 @@ export default function PostThreadContainer(props: Props) {
                       <FeedPost
                         post={reply}
                         filter={contentFilter}
-                        isParent={
-                          j < replyArr.length - 1 && j < MAX_REPLIES - 1
-                        }
+                        isParent={j < replyArr.length - 1 && j < MAX_REPLIES}
                       />
+                    )}
+
+                  {AppBskyFeedDefs.isThreadViewPost(reply) &&
+                    j === MAX_REPLIES && (
+                      <Link
+                        href={`/dashboard/user/${
+                          reply.post.author.handle
+                        }/post/${getPostId(reply.post.uri)}`}
+                        className="bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm rounded-full hover:bg-neutral-200"
+                      >
+                        View Thread
+                      </Link>
                     )}
                 </div>
               ))}
