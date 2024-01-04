@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { FaSlidersH } from "react-icons/fa";
 import { ImBubbles2 } from "react-icons/im";
-import { BiHash, BiSolidEnvelope } from "react-icons/bi";
+import {
+  BiHash,
+  BiSolidCheckCircle,
+  BiSolidEnvelope,
+  BiSolidXCircle,
+} from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { BiSolidBellOff } from "react-icons/bi";
 import { BsPersonFillSlash } from "react-icons/bs";
@@ -43,8 +48,19 @@ export default async function SettingsContainer() {
               <BiSolidEnvelope className="text-neutral-600 text-xl" />
               <span className="text-neutral-600 break-all">
                 {session?.user.email}{" "}
-                {isEmailConfirmed ? "(verified)" : "(not verified)"}
               </span>
+              {isEmailConfirmed && (
+                <small className="inline-flex gap-1 items-center px-2 py-1.5 rounded-full bg-green-600/10 font-bold text-[0.6rem] text-green-600">
+                  <BiSolidCheckCircle className="text-green-600 text-lg" />
+                  Verified
+                </small>
+              )}
+              {!isEmailConfirmed && (
+                <small className="inline-flex gap-1 items-center px-2 py-1.5 rounded-full bg-red-600/10 font-bold text-[0.6rem] text-red-600">
+                  <BiSolidXCircle className="text-red-600 text-lg" />
+                  Not Verified
+                </small>
+              )}
             </div>
           </div>
         </section>
