@@ -165,7 +165,7 @@ export default function PostThreadContainer(props: Props) {
                         href={`/dashboard/user/${
                           reply.post.author.handle
                         }/post/${getPostId(reply.post.uri)}`}
-                        className="bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm rounded-full hover:bg-neutral-200"
+                        className="inline-block bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm rounded-full hover:bg-neutral-200"
                       >
                         View Thread
                       </Link>
