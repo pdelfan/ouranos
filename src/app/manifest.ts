@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Ouranos",
     short_name: "Ouranos",
     description: "Your friendly Bluesky client for the web",
-    start_url: "/",
+    start_url: "/dashboard/home",
     display: "standalone",
     background_color: "#fff",
     theme_color: "#fff",
