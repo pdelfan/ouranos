@@ -30,10 +30,8 @@ export default function InviteCodes(props: Props) {
       <button
         disabled={codes.length === 0}
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`flex items-center gap-2 p-3 mt-2 w-full md:rounded-b-none md:rounded-t-2xl border border-x-0 md:border-x hover:bg-neutral-50 disabled:opacity-30 disabled:contrast-75 disabled:hover:brightness-100 disabled:cursor-not-allowed ${
-          isOpen
-            ? "border-b-0"
-            : "rounded-none md:rounded-t-2xl md:rounded-b-2xl"
+        className={`flex items-center gap-2 p-3 mt-2 w-full border border-x-0 md:border-x rounded-none md:rounded-2xl hover:bg-neutral-50 disabled:opacity-30 disabled:contrast-75 disabled:hover:brightness-100 disabled:cursor-not-allowed ${
+          isOpen ? "border-b-0 md:rounded-b-none" : "md:rounded-2xl"
         }`}
       >
         <FaTicket className="text-neutral-600 text-xl" />
