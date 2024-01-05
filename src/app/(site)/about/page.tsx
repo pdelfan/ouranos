@@ -103,10 +103,9 @@ export default function Page() {
           </Link>{" "}
           is used to gather anonymized information to help me get a general idea
           and provide better support. These include number of visitors, top
-          visited pages, countries, operating systems, and web browsers. These
-          are general data, no cookies and nothing personal is collected that
-          can be linked back to you. However, if you would like to disable
-          tracking, you can use an ad blocker of your choice to do so.
+          visited pages, countries, operating systems, and web browsers. No
+          cookies and nothing personal is collected that can be linked back to
+          you. If you are using an ad blocker, tracking is likely disabled.
         </p>
 
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
