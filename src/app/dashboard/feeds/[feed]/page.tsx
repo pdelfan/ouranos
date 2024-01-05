@@ -1,8 +1,6 @@
 import FeedHeader from "@/components/contentDisplay/feedHeader/FeedHeader";
 import FeedContainer from "@/containers/FeedContainer";
 
-export const dynamic = "force-dynamic";
-
 interface Props {
   searchParams: {
     uri: string;
