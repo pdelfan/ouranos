@@ -72,7 +72,7 @@ export default function Home() {
           priority
         />
       </div>
-      <footer className="mt-16 text-center text-sm font-mono text-neutral-500 animate-fade-up animate-delay-500">
+      <footer className="mt-16 text-center text-sm font-medium text-neutral-400 animate-fade-up animate-delay-500">
         OURANOS · EARLY ACCESS · {new Date().getFullYear()}
       </footer>
     </main>
