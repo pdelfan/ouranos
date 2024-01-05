@@ -1,5 +1,4 @@
-import {
-  AppBskyFeedDefs,
+import {  
   BskyAgent,
   BskyFeedViewPreference,
   BskyLabelPreference,
