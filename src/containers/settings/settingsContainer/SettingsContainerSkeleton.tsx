@@ -67,6 +67,13 @@ export default function SettingsContainerSkeleton() {
           <SettingsItemSkeleton />
         </section>
       </section>
+      <section>
+        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">About</h3>
+        <section className="flex flex-col">
+          <SettingsItemSkeleton />          
+          <SettingsItemSkeleton />
+        </section>
+      </section>
     </section>
   );
 }
