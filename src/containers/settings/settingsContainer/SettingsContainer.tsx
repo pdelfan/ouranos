@@ -3,6 +3,7 @@ import { FaSlidersH } from "react-icons/fa";
 import { ImBubbles2 } from "react-icons/im";
 import {
   BiHash,
+  BiLogoGithub,
   BiSolidCheckCircle,
   BiSolidEnvelope,
   BiSolidXCircle,
@@ -10,6 +11,7 @@ import {
 import { MdRemoveRedEye } from "react-icons/md";
 import { BiSolidBellOff } from "react-icons/bi";
 import { BsPersonFillSlash } from "react-icons/bs";
+import { TbLicense } from "react-icons/tb";
 import { getSessionFromServer } from "@/lib/api/auth/session";
 import { getInviteCodes, getProfile } from "@/lib/api/bsky/actor";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
@@ -127,6 +129,27 @@ export default async function SettingsContainer() {
             Blocked Users
           </Link>
         </section>
+      </section>
+      <section>
+        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">About</h3>
+        <div className="flex flex-col">
+          <Link
+            href="https://github.com/pdelfan/ouranos"
+            target="_blank"
+            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+          >
+            <BiLogoGithub className="text-neutral-600 text-xl" />
+            GitHub Repository
+          </Link>
+          <Link
+            href="https://github.com/pdelfan/ouranos/blob/main/LICENSE"
+            target="_blank"
+            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+          >
+            <TbLicense />
+            License
+          </Link>
+        </div>
       </section>
     </section>
   );
