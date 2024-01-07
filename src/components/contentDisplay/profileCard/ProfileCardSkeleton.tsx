@@ -2,7 +2,7 @@ interface Props {
   rounded?: boolean;
 }
 
-function Skeleton(props: Props) {
+export function Skeleton(props: Props) {
   const { rounded = true } = props;
   return (
     <article

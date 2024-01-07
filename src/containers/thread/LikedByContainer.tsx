@@ -2,13 +2,14 @@
 
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
+import ProfileCardSkeleton, {
+  Skeleton,
+} from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { getPostLikes } from "@/lib/api/bsky/feed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   handle: string;
@@ -72,9 +73,10 @@ export default function LikedByContainer(props: Props) {
       </section>
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
       {isFetchingNextPage && (
-        <section className="flex flex-1 justify-center mt-3">
-          <AiOutlineLoading3Quarters className="text-xl" />
-        </section>
+        <div>
+          <Skeleton />
+          <Skeleton />
+        </div>
       )}
       {isEmpty && !hasNextPage && (
         <div className="px-3 md:px-0">

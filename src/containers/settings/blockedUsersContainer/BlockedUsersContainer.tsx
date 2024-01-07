@@ -1,6 +1,7 @@
 "use client";
 
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
+import { Skeleton } from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import { getBlockedUsers } from "@/lib/api/bsky/social";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -8,7 +9,6 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function BlockedUsersContainer() {
   const agent = useAgent();
@@ -72,9 +72,10 @@ export default function BlockedUsersContainer() {
             </div>
           )}
           {isFetchingNextPage && (
-            <section className="flex flex-1 justify-center mt-3">
-              <AiOutlineLoading3Quarters className="text-xl" />
-            </section>
+            <div>
+              <Skeleton />
+              <Skeleton />
+            </div>
           )}
           <div ref={ref} />
         </section>
