@@ -1,6 +1,8 @@
 "use client";
 
-import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
+import FeedPostSkeleton, {
+  Skeleton,
+} from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import useFeed from "@/lib/hooks/bsky/feed/useFeed";
@@ -9,7 +11,6 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { filterFeed } from "@/lib/utils/feed";
 import Refetch from "@/components/actions/refetch/Refetch";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   feed: string;
@@ -68,9 +69,10 @@ export default function FeedContainer(props: Props) {
         ))}
       {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
       {isFetchingFeedNextPage && (
-        <section className="flex flex-1 justify-center mt-3">
-          <AiOutlineLoading3Quarters className="text-xl" />
-        </section>
+        <div>
+          <Skeleton />
+          <Skeleton />
+        </div>
       )}
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />

@@ -1,13 +1,14 @@
 "use client";
 
 import NotificationItem from "@/components/contentDisplay/notification/NotificationItem";
-import NotificationSkeleton from "@/components/contentDisplay/notification/NotificationSkeleton";
+import NotificationSkeleton, {
+  Skeleton,
+} from "@/components/contentDisplay/notification/NotificationSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useNotification from "@/lib/hooks/bsky/notification/useNotification";
 import { Fragment } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function NotificationsContainer() {
   const {
@@ -53,9 +54,10 @@ export default function NotificationsContainer() {
         <NotificationSkeleton />
       )}
       {isFetchingNotificationNextPage && (
-        <section className="flex flex-1 justify-center mt-3">
-          <AiOutlineLoading3Quarters className="text-xl" />
-        </section>
+        <div>
+          <Skeleton />
+          <Skeleton />
+        </div>
       )}
       {notificationError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />

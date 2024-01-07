@@ -1,6 +1,8 @@
 "use client";
 
-import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
+import FeedPostSkeleton, {
+  Skeleton,
+} from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { getProfile } from "@/lib/api/bsky/actor";
@@ -9,9 +11,7 @@ import useProfilePosts from "@/lib/hooks/bsky/feed/useProfilePosts";
 import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import { getContentFilter } from "@/lib/utils/feed";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   mode: UserPostMode;
@@ -88,9 +88,10 @@ export default function UserPostsConatiner(props: Props) {
         isFetchingUserPosts &&
         !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
       {!isBlocked && isFetchingUserPostsNextPage && (
-        <section className="flex flex-1 justify-center mt-3">
-          <AiOutlineLoading3Quarters className="text-xl" />
-        </section>
+        <div>
+          <Skeleton />
+          <Skeleton />
+        </div>
       )}
       {!isBlocked && !hasBlockedYou && userPostsError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
