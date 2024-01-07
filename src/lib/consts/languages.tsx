@@ -173,7 +173,7 @@ export const LANGUAGES: Language[] = [
   { code: "uz", name: "Uzbek" },
   { code: "ve", name: "Venda" },
   { code: "vi", name: "Vietnamese" },
-  { code: "vo", name: "Volap_k" },
+  { code: "vo", name: "Volapük" },
   { code: "wa", name: "Walloon" },
   { code: "cy", name: "Welsh" },
   { code: "fy", name: "Western Frisian" },
