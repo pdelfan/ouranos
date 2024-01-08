@@ -26,3 +26,7 @@ Latest changes and updates are added to `Ouranos Roadmap` under [Projects](https
 ## FAQ
 
 Please visit [https://useouranos.app/about](https://useouranos.app/about).
+
+## License
+
+MIT License
