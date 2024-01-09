@@ -125,7 +125,10 @@ export default function PostThreadContainer(props: Props) {
       )}
 
       {thread && contentFilter && (
-        <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
+        <ThreadPost
+          post={thread?.post as PostView}
+          filter={contentFilter}          
+        />
       )}
 
       {contentFilter &&
