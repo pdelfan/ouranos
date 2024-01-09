@@ -8,7 +8,7 @@ import { getFormattedDate, getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { useRouter } from "next/navigation";
 import { ContentFilterResult } from "../../../../types/feed";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
 import Link from "next/link";
@@ -45,8 +45,19 @@ export default function ThreadPost(props: Props) {
 
   const router = useRouter();
 
+  const threadPostRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!threadPostRef.current) return;
+    // scroll to thread post
+    threadPostRef.current.scrollIntoView();
+  });
+
   return (
-    <article className="p-3 md:border-x border-t last:border-b md:last:rounded-b-2xl">
+    <article
+      ref={threadPostRef}
+      className="p-3 md:border-x border-t last:border-b md:last:rounded-b-2xl"
+    >
       <div className="relative flex items-start gap-3">
         <button
           onClick={(e) => {
