@@ -2,6 +2,7 @@ import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import { ComposerOptionsQuote } from "@/app/providers/composer";
 import Image from "next/image";
 import { getRelativeTime } from "@/lib/utils/time";
+import { useState } from "react";
 
 interface Props {
   post: ComposerOptionsQuote;
@@ -10,6 +11,15 @@ interface Props {
 export default function QuoteToPreview(props: Props) {
   const { post } = props;
   const { author } = post || {};
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleShowMore = () => {
+    setShowMore((prev) => !prev);
+  };
+
+  const selectedTextClass = showMore
+    ? "max-h-48 overflow-auto"
+    : "line-clamp-3";
 
   return (
     <article className="flex items-start gap-1 p-2 border rounded-2xl">
@@ -32,8 +42,13 @@ export default function QuoteToPreview(props: Props) {
             &nbsp;· {getRelativeTime(post.indexedAt)}
           </span>
         </div>
-
-        <p className="line-clamp-3">{post.text}</p>
+        <p className={selectedTextClass}>{post.text}</p>
+        <button
+          onClick={toggleShowMore}
+          className="mt-1 text-primary font-medium text-start hover:text-primary-dark"
+        >
+          {showMore ? "Show Less" : "Show More"}
+        </button>
       </div>
     </article>
   );
