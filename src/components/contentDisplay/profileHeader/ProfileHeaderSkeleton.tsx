@@ -35,7 +35,8 @@ export default function ProfileHeaderSkeleton() {
         </div>
       </div>
       <div className="flex mr-3 mt-3">
-        <div className="ml-auto">
+        <div className="flex gap-2 ml-auto">
+          <div className="h-9 w-9 bg-gray-200 rounded-full" />
           <div className="h-9 bg-gray-200 rounded-full w-24" />
         </div>
       </div>
