@@ -21,7 +21,10 @@ export default function ReplyToPreview(props: Props) {
     : "line-clamp-3";
 
   return (
-    <article className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative">
+    <article
+      onClick={toggleShowMore}
+      className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative"
+    >
       <div className="absolute left-8 top-0 mt-5 z-10 h-full border-l-2" />
       <Image
         src={author.avatar ?? FallbackAvatar}
@@ -40,12 +43,6 @@ export default function ReplyToPreview(props: Props) {
           </span>
         </div>
         <p className={selectedTextClass}>{post.text}</p>
-        <button
-          onClick={toggleShowMore}
-          className="mt-1 text-primary font-medium text-start hover:text-primary-dark"
-        >
-          {showMore ? "Show Less" : "Show More"}
-        </button>
       </div>
     </article>
   );

@@ -22,7 +22,10 @@ export default function QuoteToPreview(props: Props) {
     : "line-clamp-3";
 
   return (
-    <article className="flex items-start gap-1 p-2 border rounded-2xl">
+    <article
+      onClick={toggleShowMore}
+      className="flex items-start gap-1 p-2 border rounded-2xl"
+    >
       <Image
         src={author.avatar ?? FallbackAvatar}
         alt="Avatar"
@@ -43,12 +46,6 @@ export default function QuoteToPreview(props: Props) {
           </span>
         </div>
         <p className={selectedTextClass}>{post.text}</p>
-        <button
-          onClick={toggleShowMore}
-          className="mt-1 text-primary font-medium text-start hover:text-primary-dark"
-        >
-          {showMore ? "Show Less" : "Show More"}
-        </button>
       </div>
     </article>
   );
