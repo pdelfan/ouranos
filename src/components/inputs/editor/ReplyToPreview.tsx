@@ -1,6 +1,7 @@
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import { ComposerOptionsPostRef } from "@/app/providers/composer";
 import Image from "next/image";
+import { useState } from "react";
 
 interface Props {
   post: ComposerOptionsPostRef;
@@ -9,9 +10,21 @@ interface Props {
 export default function ReplyToPreview(props: Props) {
   const { post } = props;
   const { author } = post || {};
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleShowMore = () => {
+    setShowMore((prev) => !prev);
+  };
+
+  const selectedTextClass = showMore
+    ? "max-h-56 overflow-auto"
+    : "line-clamp-3";
 
   return (
-    <article className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative">
+    <article
+      onClick={toggleShowMore}
+      className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative"
+    >
       <div className="absolute left-8 top-0 mt-5 z-10 h-full border-l-2" />
       <Image
         src={author.avatar ?? FallbackAvatar}
@@ -29,7 +42,7 @@ export default function ReplyToPreview(props: Props) {
             @{author.handle}
           </span>
         </div>
-        <p className="max-h-48 overflow-auto">{post.text}</p>
+        <p className={selectedTextClass}>{post.text}</p>
       </div>
     </article>
   );
