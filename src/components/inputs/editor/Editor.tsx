@@ -60,7 +60,7 @@ export default function Editor(props: Props) {
         listItem: false,
       }),
       CharacterCount.configure({
-        limit: 600,        
+        limit: 600,
       }),
       Placeholder.configure({
         placeholder: placeholderText,
@@ -91,6 +91,18 @@ export default function Editor(props: Props) {
     autofocus: true,
     onUpdate: ({ editor }) => {
       setEmbedSuggestions(detectLinksInEditor(editor.getJSON()));
+    },
+    onCreate: ({ editor }) => {
+      if (mention) {
+        editor.commands.insertContent({
+          type: "mention",
+          attrs: {
+            id: mention + " ",
+          },
+        });
+
+        editor.commands.insertContent(" ");
+      }
     },
   });
 
