@@ -7,7 +7,6 @@ import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import { MAX_REPLIES } from "@/lib/consts/thread";
 import Link from "next/link";
 import { getPostId } from "@/lib/utils/link";
-import { useState } from "react";
 
 interface Props {
   replies: AppBskyFeedDefs.ThreadViewPost[][];
@@ -17,7 +16,6 @@ interface Props {
 
 export default function RepliesContainer(props: Props) {
   const { replies, threadPreferences, contentFilter } = props;
-  const [expandThread, setExpandThread] = useState(false);
 
   return (
     <>
