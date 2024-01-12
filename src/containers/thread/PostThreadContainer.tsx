@@ -6,7 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import useOrganizeThread from "@/lib/hooks/bsky/feed/useOrganizeThread";
-import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ThreadPost from "@/components/contentDisplay/threadPost/ThreadPost";
 import BlockedEmbed from "@/components/dataDisplay/postEmbed/BlockedEmbed";
@@ -17,6 +16,7 @@ import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkele
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import RepliesContainer from "./RepliesContainer";
 import ParentContainer from "./ParentContainer";
+import { sortThread } from "@/lib/utils/feed";
 
 interface Props {
   id: string;
@@ -107,13 +107,22 @@ export default function PostThreadContainer(props: Props) {
         <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
       )}
 
-      {contentFilter && threadPreferences && replyChains && (
-        <RepliesContainer
-          replies={replyChains}
-          threadPreferences={threadPreferences}
-          contentFilter={contentFilter}
-        />
-      )}
+      {contentFilter &&
+        threadPreferences &&
+        replyChains &&
+        replyChains
+          .sort((a, b) => sortThread(a[0], b[0], threadPreferences))
+          .map((replyArr, i) => (
+            <div
+              className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b md:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+              key={i}
+            >
+              <RepliesContainer
+                replies={replyArr}
+                contentFilter={contentFilter}
+              />
+            </div>
+          ))}
     </>
   );
 }
