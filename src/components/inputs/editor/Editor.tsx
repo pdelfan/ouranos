@@ -93,15 +93,14 @@ export default function Editor(props: Props) {
       setEmbedSuggestions(detectLinksInEditor(editor.getJSON()));
     },
     onCreate: ({ editor }) => {
-      if (mention) {
+      if (mention && editor.isEmpty) {
         editor.commands.insertContent({
           type: "mention",
           attrs: {
-            id: mention + " ",
+            id: mention,
+            label: mention,
           },
         });
-
-        editor.commands.insertContent(" ");
       }
     },
   });
