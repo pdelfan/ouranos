@@ -92,7 +92,7 @@ export default function FeedHeader(props: Props) {
       {isFetchingFeedInfo && <FeedHeaderSkeleton />}
       {feedInfo && (
         <>
-          <article className="flex flex-col gap-2 p-3 -mt-2 border border-x-0 border-t-0 md:border md:rounded-t-2xl ">
+          <article className="flex flex-col gap-2 p-3 border border-x-0 border-t-0 md:border md:rounded-t-2xl ">
             <div className="flex flex-wrap gap-3 items-center justify-between">
               <div className="flex flex-wrap gap-3 items-center">
                 <Image
