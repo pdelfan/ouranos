@@ -24,7 +24,7 @@ export default function QuoteToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="flex items-start gap-1 p-2 border rounded-2xl"
+      className="flex items-start gap-1 p-2 border rounded-2xl cursor-pointer"
     >
       <Image
         src={author.avatar ?? FallbackAvatar}

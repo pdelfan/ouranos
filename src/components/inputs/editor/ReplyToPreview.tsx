@@ -23,7 +23,7 @@ export default function ReplyToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative"
+      className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative cursor-pointer"
     >
       <div className="absolute left-8 top-0 mt-5 z-10 h-full border-l-2" />
       <Image
