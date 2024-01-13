@@ -9,12 +9,12 @@ export default async function Aside() {
   const profile = await getProfile(session?.user.bskySession.handle);
 
   return (
-    <aside className="sticky h-full top-6 hidden lg:block">
-      <div className="flex gap-3 items-center">
-        <div className="flex flex-col items-end">
+    <aside className="sticky h-full top-6 hidden md:block">
+      <div className="flex flex-col gap-1 items-center lg:flex-row lg:gap-3">
+        <div className="flex flex-col items-end order-last lg:order-first">
           <Link
             href={`/dashboard/user/${profile?.handle}`}
-            className="font-semibold max-w-[7rem] truncate text-neutral-700 hover:text-neutral-500"
+            className="hidden lg:inline font-semibold max-w-[7rem] truncate text-neutral-700 hover:text-neutral-500"
           >
             {profile?.displayName ?? profile?.handle}
           </Link>
@@ -22,7 +22,7 @@ export default async function Aside() {
         </div>
         <Link
           href={`/dashboard/user/${profile?.handle}`}
-          className="font-semibold max-w-[7rem] truncate hover:brightness-90"
+          className="max-w-[7rem] truncate hover:brightness-90"
         >
           <Avatar profile={profile} />
         </Link>
