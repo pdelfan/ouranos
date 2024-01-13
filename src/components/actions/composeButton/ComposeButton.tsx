@@ -13,7 +13,10 @@ export default function ComposeButton(props: Props) {
   const { mode } = props;
   const show = useScrollContext();
   const pathname = usePathname();
-  const userHandle = pathname.split("/")[3];
+  const userHandle =
+    pathname.includes("/user/") && !pathname.includes("/post/")
+      ? pathname.split("/")[3]
+      : "";
   const { openComposer } = useComposerControls();
 
   return (
