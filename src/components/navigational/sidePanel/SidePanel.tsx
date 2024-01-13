@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Navbar from "../navbar/Navbar";
 import Image from "next/image";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
