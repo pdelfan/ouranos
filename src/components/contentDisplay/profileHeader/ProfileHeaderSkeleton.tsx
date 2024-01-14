@@ -4,14 +4,14 @@ import SkeletonBanner from "@/assets/images/skeletonBanner.png";
 function Skeleton() {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-gray-200 w-20 h-6" />
+      <div className="bg-gray-200 w-20 h-6 rounded" />
     </div>
   );
 }
 
 function TabsSkeleton() {
   return (
-    <div className="flex flex-nowrap gap-5 px-4 overflow-auto no-scrollbar">
+    <div className="flex flex-nowrap gap-6 px-3 overflow-auto no-scrollbar">
       <Skeleton />
       <Skeleton />
       <Skeleton />

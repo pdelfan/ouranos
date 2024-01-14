@@ -9,7 +9,7 @@ export default function Tabs(props: Props) {
     <div
       role="tablist"
       aria-orientation="horizontal"
-      className="flex flex-nowrap gap-3 px-3"
+      className="flex flex-nowrap gap-3 overflow-x-scroll"
     >
       {children}
     </div>
