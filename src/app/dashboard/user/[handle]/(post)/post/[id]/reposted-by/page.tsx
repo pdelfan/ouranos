@@ -7,7 +7,7 @@ interface Props {
   };
 }
 
-export default async function Page(props: Props) {
+export default function Page(props: Props) {
   const { id, handle } = props.params;
 
   return (

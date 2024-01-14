@@ -79,7 +79,6 @@ export default function Editor(props: Props) {
         HTMLAttributes: {
           class: "text-primary text-lg",
         },
-        // TODO: Clean this up
         suggestion: CreateMentionSuggestions({ autoComplete: searchUsers }),
       }),
     ],

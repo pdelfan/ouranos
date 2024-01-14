@@ -29,7 +29,7 @@ export default function useProfile(handle: string) {
     });
   };
 
-  // TODO: resolve issue where unfollow stops working after unfollowing, following, and then unfollowing again
+  // TODO: resolve race condition issue where unfollow stops working after unfollowing, following, and then unfollowing again
   const toggleFollow = useMutation({
     mutationKey: profileKey(handle),
     mutationFn: async () => {
