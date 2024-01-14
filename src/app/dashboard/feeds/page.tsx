@@ -13,7 +13,7 @@ interface Props {
   };
 }
 
-export default async function Page(props: Props) {
+export default function Page(props: Props) {
   const { searchParams } = props;
   const query = searchParams?.query || "";
 

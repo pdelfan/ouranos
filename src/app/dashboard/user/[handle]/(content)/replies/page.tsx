@@ -6,7 +6,7 @@ interface Props {
   };
 }
 
-export default async function Page(props: Props) {
+export default function Page(props: Props) {
   const { handle } = props.params;
 
   return <UserPostsConatiner mode="reposts" handle={handle} />;
