@@ -15,6 +15,7 @@ export default function FeedTabs() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const uri = searchParams.get("uri");
+  const val = useScrollContext();
 
   const {
     status,
@@ -27,15 +28,17 @@ export default function FeedTabs() {
     queryFn: () => getSavedFeeds(agent),
   });
 
-  const show = useScrollContext();
+  const canUpdate = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <>
       <div className="z-40 hidden md:block fixed bg-white top-0 lg:p-5 md:p-5 max-w-xl w-full" />
       <div
-        className={`bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 ${
-          show ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
-        } transition-all ease-in-out duration-500 sticky top-[3.2rem] md:top-6 md:translate-y-0  z-50 md:z-50`}
+        className={`bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 sticky top-[3.2rem] md:top-6 z-50 md:z-50`}
+        style={{
+          opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
+          transform: canUpdate ? `translateY(-${val ?? 0}%)` : "none",
+        }}
       >
         {isFetching && <FeedTabsSkeleton />}
         {!isFetching && savedFeeds && (

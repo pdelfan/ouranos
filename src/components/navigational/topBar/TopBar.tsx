@@ -14,13 +14,17 @@ interface Props {
 
 export default function TopBar(props: Props) {
   const { profile } = props;
-  const show = useScrollContext();
+  const val = useScrollContext();
+
+  const canUpdate = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <div
-      className={`flex justify-between bg-white border-b px-3 py-2.5 sticky md:hidden top-0 z-50 ${
-        show ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
-      } transition-all ease-in-out duration-500`}
+      className="flex justify-between bg-white border-b px-3 py-2.5 sticky md:hidden top-0 z-50"
+      style={{
+        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
+        transform: canUpdate ? `translateY(-${val ?? 0}%)` : "none",
+      }}
     >
       <Link
         href={`/dashboard/user/${profile?.handle}`}
