@@ -13,7 +13,7 @@ import { FaBell } from "react-icons/fa";
 
 export default function AppBar() {
   const pathname = usePathname();
-  const show = useScrollContext();
+  const val = useScrollContext();
   const agent = useAgent();
   const {
     data: notificationsCount,
@@ -25,11 +25,15 @@ export default function AppBar() {
     refetchInterval: 10000,
   });
 
+  const canUpdate = typeof window !== "undefined";
+
   return (
     <nav
-      className={`flex justify-between pb-8 pt-1 px-6 border-t gap-6 fixed bottom-0 z-40 w-full md:hidden bg-white overflow-auto ${
-        show ? "translate-y-0 opacity-100" : "translate-y-36 opacity-0"
-      } transition-all ease-in-out duration-500`}
+      className="flex justify-between pb-8 pt-1 px-6 border-t gap-6 fixed bottom-0 z-40 w-full md:hidden bg-white overflow-auto"
+      style={{
+        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
+        transform: canUpdate ? `translateY(${val ?? 0}%)` : "none",
+      }}
     >
       <NavItem
         href="/dashboard/home"

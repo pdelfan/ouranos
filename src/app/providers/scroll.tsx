@@ -1,9 +1,9 @@
 "use client";
 
-import useHideOnScroll from "@/lib/hooks/useHideOnScroll";
+import useScrollTranslation from "@/lib/hooks/useScrollTranslation";
 import { ReactNode, createContext, useContext } from "react";
 
-const ScrollContext = createContext<boolean | undefined>(undefined);
+const ScrollContext = createContext<number>(0);
 
 export const useScrollContext = () => {
   const context = useContext(ScrollContext);
@@ -18,9 +18,9 @@ interface ScrollProviderProps {
 }
 export const ScrollProvider = (props: ScrollProviderProps) => {
   const { children } = props;
-  const show = useHideOnScroll();
+  const val = useScrollTranslation();
 
   return (
-    <ScrollContext.Provider value={show}>{children}</ScrollContext.Provider>
+    <ScrollContext.Provider value={val}>{children}</ScrollContext.Provider>
   );
 };
