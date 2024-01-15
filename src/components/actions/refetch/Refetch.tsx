@@ -19,7 +19,7 @@ export default function Refetch(props: Props) {
   return (
     <Button
       onClick={debouncedRefetch}
-      className="z-40 p-3 rounded-full fixed bottom-24 md:bottom-8 ml-3 md:ml-[0.80rem] border border-neutral-300 bg-white hover:bg-neutral-50 hover:-rotate-180"
+      className="z-40 p-3 rounded-full fixed bottom-24 md:bottom-8 ml-3 md:ml-[0.80rem] border border-neutral-300 bg-white hover:bg-neutral-50 hover:-rotate-180 ease-linear transition-all"
       style={{
         opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
         transform: canUpdate ? `translateY(${val ?? 0}%)` : "none",

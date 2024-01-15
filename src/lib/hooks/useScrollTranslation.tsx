@@ -22,7 +22,7 @@ const useScrollTranslation = () => {
         return MAX;
       }
 
-      if (nextVal <= MIN) {
+      if (nextVal <= MIN || currY <= 0) {
         return MIN;
       }
 

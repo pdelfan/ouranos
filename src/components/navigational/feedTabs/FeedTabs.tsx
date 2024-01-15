@@ -34,7 +34,7 @@ export default function FeedTabs() {
     <>
       <div className="z-40 hidden md:block fixed bg-white top-0 lg:p-5 md:p-5 max-w-xl w-full" />
       <div
-        className={`bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 sticky top-[3.2rem] md:top-6 z-50 md:z-50`}
+        className={`bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 sticky top-[3.2rem] md:top-6 z-50 md:z-50 ease-linear transition-all`}
         style={{
           opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
           transform: canUpdate ? `translateY(-${val ?? 0}%)` : "none",
