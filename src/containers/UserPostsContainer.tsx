@@ -69,7 +69,7 @@ export default function UserPostsConatiner(props: Props) {
       options: {
         size: 100,
         overscan: 2,
-        scrollMargin: 500,
+        scrollMargin: 750,
         hasNextPage: userPostsHasNextPage,
       },
     });
