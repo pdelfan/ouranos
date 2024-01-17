@@ -5,19 +5,13 @@ import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 
 interface Props {
   profile: ProfileView;
-  rounded?: boolean;
 }
 
 export default function ProfileCard(props: Props) {
-  const { profile, rounded = true } = props;
+  const { profile } = props;
 
   return (
-    <Link
-      href={`/dashboard/user/${profile.handle}`}
-      className={`p-3 border border-x-0 md:border-x ${
-        rounded && "md:first:rounded-t-2xl"
-      } md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50`}
-    >
+    <Link href={`/dashboard/user/${profile.handle}`}>
       <article className="flex flex-col gap-2">
         <div className="flex flex-wrap justify-between gap-3">
           <div className="flex flex-wrap gap-2 items-center">
