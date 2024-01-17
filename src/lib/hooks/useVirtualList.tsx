@@ -7,19 +7,26 @@ interface Props<T> {
     size: number;
     overscan: number;
     hasNextPage: boolean;
+    scrollMargin?: number;
   };
 }
 
 export default function useVirtualList<T>(props: Props<T>) {
   const { items, options } = props;
-  const { size = 50, overscan = 10, hasNextPage = false } = options;
+  const {
+    size = 50,
+    overscan = 10,
+    hasNextPage = false,
+    scrollMargin = 0,
+  } = options;
 
   const viewportRef = useRef<HTMLElement | null>(null);
 
   const virtualizer = useWindowVirtualizer({
     count: hasNextPage ? items.length + 1 : items.length,
     estimateSize: () => size,
-    overscan,
+    overscan: overscan,
+    scrollMargin: scrollMargin,
   });
 
   const virtualMap = (

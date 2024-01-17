@@ -11,6 +11,9 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { filterFeed } from "@/lib/utils/feed";
 import Refetch from "@/components/actions/refetch/Refetch";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
+import useVirtualList from "@/lib/hooks/useVirtualList";
+import useInfiniteList from "@/lib/hooks/useInfiniteList";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   feed: string;
@@ -19,7 +22,6 @@ interface Props {
 export default function FeedContainer(props: Props) {
   const { feed } = props;
   const {
-    observerRef,
     refetchFeed,
     feedStatus,
     feedData,
@@ -28,6 +30,7 @@ export default function FeedContainer(props: Props) {
     isFetchingFeed,
     isFetchingFeedNextPage,
     feedHasNextPage,
+    fetchNextFeedPage,
   } = useFeed(feed);
 
   const isEmpty =
@@ -39,8 +42,38 @@ export default function FeedContainer(props: Props) {
   const contentFilter = preferences?.contentFilter;
   const feedFilter = preferences?.feedFilter;
 
+  const allPosts =
+    feedData && feedFilter
+      ? feedData.pages
+          .flatMap((page) =>
+            page?.data.feed.filter((f) =>
+              feed === "timeline" ? filterFeed(f, feedFilter) : true
+            )
+          )
+          .map((post) => post)
+      : [];
+
+  const { virtualizer, viewportRef, virtualMap, getVirtualItems } =
+    useVirtualList({
+      items: allPosts,
+      options: {
+        size: 500,
+        overscan: 2,
+        scrollMargin: 200,
+        hasNextPage: feedHasNextPage,
+      },
+    });
+
+  useInfiniteList({
+    items: allPosts,
+    fetchNextPage: fetchNextFeedPage,
+    getVirtualItems: getVirtualItems,
+    hasNextPage: feedHasNextPage,
+    isFetchingNextPage: isFetchingFeedNextPage,
+  });
+
   return (
-    <div>
+    <section>
       <Refetch
         onRefetch={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -48,32 +81,52 @@ export default function FeedContainer(props: Props) {
         }}
       />
       <ComposeButton mode="float" />
-      {feedData &&
-        contentFilter &&
-        feedFilter &&
-        feedData?.pages.map((page, i) => (
-          <div key={i}>
-            {page.data.feed
-              .filter((f) =>
-                feed === "timeline" ? filterFeed(f, feedFilter) : true
-              )
-              .map((post, j) => (
-                <PostContainer
-                  key={post.post.uri + j}
-                  post={post}
-                  isReply={post.reply ? true : false}
-                  filter={contentFilter}
-                />
-              ))}
-          </div>
-        ))}
+
+      <section
+        ref={viewportRef}
+        style={{
+          height: `${virtualizer.getTotalSize()}px`,
+          width: "100%",
+          position: "relative",
+        }}
+      >
+        <section className="flex flex-col">
+          {feedData &&
+            contentFilter &&
+            feedFilter &&
+            virtualMap((item) => (
+              <article
+                key={item.key}
+                data-index={item.index}
+                ref={virtualizer.measureElement}
+                style={{
+                  position: "absolute",
+                  transform: `translateY(${
+                    item.start - virtualizer.options.scrollMargin
+                  }px)`,
+                  width: "100%",
+                }}
+                className="flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+              >
+                {allPosts[item.index] && (
+                  <PostContainer
+                    key={allPosts[item.index].post.uri}
+                    post={allPosts[item.index]}
+                    isReply={allPosts[item.index].reply ? true : false}
+                    filter={contentFilter}
+                  />
+                )}
+
+                {item.index > allPosts.length - 1 && (
+                  <section className="flex flex-1 justify-center">
+                    <AiOutlineLoading3Quarters className="text-xl" />
+                  </section>
+                )}
+              </article>
+            ))}
+        </section>
+      </section>
       {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
-      {isFetchingFeedNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
@@ -85,7 +138,6 @@ export default function FeedContainer(props: Props) {
         !isFetchingFeed &&
         !feedHasNextPage &&
         !isFetchingFeedNextPage && <EndOfFeed />}
-      <div ref={observerRef} />
-    </div>
+    </section>
   );
 }

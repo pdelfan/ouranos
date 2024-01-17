@@ -22,14 +22,13 @@ export default function SearchPost(props: Props) {
   const router = useRouter();
 
   return (
-    <article
+    <div
       onClick={(e) => {
         e.stopPropagation();
         router.push(
           `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`
         );
       }}
-      className="p-3 border border-x-0 md:border-x last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:cursor-pointer"
     >
       <div className="relative flex items-start gap-3">
         <Link
@@ -68,6 +67,6 @@ export default function SearchPost(props: Props) {
           </div>
         </div>
       </div>
-    </article>
+    </div>
   );
 }

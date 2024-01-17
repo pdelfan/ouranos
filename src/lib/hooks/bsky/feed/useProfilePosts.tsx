@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   getUserPosts,
   getUserReplyPosts,
@@ -7,7 +6,6 @@ import {
 } from "../../../api/bsky/feed";
 import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useInView } from "react-intersection-observer";
 
 interface Props {
   mode: UserPostMode;
@@ -39,7 +37,6 @@ export default function useProfilePosts(props: Props) {
     }
   };
 
-  const { ref, inView } = useInView();
   const {
     status,
     data: userPosts,
@@ -58,14 +55,7 @@ export default function useProfilePosts(props: Props) {
     refetchOnWindowFocus: true,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
-
   return {
-    observerRef: ref,
     userPostsStatus: status,
     userPostsData: userPosts,
     userPostsError: error,
@@ -73,5 +63,6 @@ export default function useProfilePosts(props: Props) {
     isFetchingUserPosts: isFetching,
     isFetchingUserPostsNextPage: isFetchingNextPage,
     userPostsHasNextPage: hasNextPage,
+    fetchNextUserPostsPage: fetchNextPage,
   };
 }
