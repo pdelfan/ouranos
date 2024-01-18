@@ -4,11 +4,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect } from "react";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import FeedPostSkeleton, {
-  Skeleton,
-} from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
+import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import SearchPost from "@/components/contentDisplay/searchPost/SearchPost";
 import { useInView } from "react-intersection-observer";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   query: string;
@@ -63,12 +62,7 @@ export default function PostSearchContainer(props: Props) {
         </div>
       )}
       {isFetching && !isFetchingNextPage && <FeedPostSkeleton />}
-      {isFetchingNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
+      {isFetchingNextPage && <LoadingSpinner />}
       {error && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}

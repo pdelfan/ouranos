@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import Input from "@/components/inputs/input/Input";
 import Label from "@/components/inputs/label/Label";
 import { useRouter } from "next/navigation";
@@ -11,13 +11,28 @@ import Image from "next/image";
 import { PiSignInBold } from "react-icons/pi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BiSolidLockAlt } from "react-icons/bi";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 export default function LoginForm() {
   const router = useRouter();
+  const { data: session } = useSession();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [handle, setHandle] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (session?.user.bskySession && !formSubmitted) {
+      setIsRedirecting(true);
+      const id = setTimeout(() => {
+        router.push("/dashboard/home");
+      }, 1500);
+
+      return () => clearTimeout(id);
+    }
+  }, [router, session?.user.bskySession, formSubmitted]);
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -35,9 +50,33 @@ export default function LoginForm() {
     }
 
     if (result?.ok) {
+      setFormSubmitted(true);
       router.push("/dashboard/home");
     }
   };
+
+  if (isRedirecting) {
+    return (
+      <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
+        <Image
+          src="/logo.svg"
+          alt="Ouranos logo"
+          width={150}
+          height={50}
+          className="mx-auto mb-3"
+        />
+        <h1 className="text-xl text-center font-semibold text-gray-800 mb-1">
+          Welcome Back
+        </h1>
+
+        <p className="text-sm text-center font-medium text-gray-500 mb-3">
+          Already logged in, redirecting...
+        </p>
+        <LoadingSpinner />
+      </section>
+    );
+  }
+
   return (
     <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
       <Image

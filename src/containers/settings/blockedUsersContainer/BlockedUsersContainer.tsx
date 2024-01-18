@@ -1,7 +1,6 @@
 "use client";
 
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import { Skeleton } from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import { getBlockedUsers } from "@/lib/api/bsky/social";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -9,6 +8,7 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 export default function BlockedUsersContainer() {
   const agent = useAgent();
@@ -71,12 +71,7 @@ export default function BlockedUsersContainer() {
               />
             </div>
           )}
-          {isFetchingNextPage && (
-            <div>
-              <Skeleton />
-              <Skeleton />
-            </div>
-          )}
+          {isFetchingNextPage && <LoadingSpinner />}
           <div ref={ref} />
         </section>
       </section>

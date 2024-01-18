@@ -1,8 +1,6 @@
 "use client";
 
-import FeedPostSkeleton, {
-  Skeleton,
-} from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
+import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import useFeed from "@/lib/hooks/bsky/feed/useFeed";
@@ -11,6 +9,7 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { filterFeed } from "@/lib/utils/feed";
 import Refetch from "@/components/actions/refetch/Refetch";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   feed: string;
@@ -68,12 +67,7 @@ export default function FeedContainer(props: Props) {
           </div>
         ))}
       {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
-      {isFetchingFeedNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
+      {isFetchingFeedNextPage && <LoadingSpinner />}
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}

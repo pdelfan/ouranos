@@ -1,11 +1,10 @@
 "use client";
 
 import NotificationItem from "@/components/contentDisplay/notification/NotificationItem";
-import NotificationSkeleton, {
-  Skeleton,
-} from "@/components/contentDisplay/notification/NotificationSkeleton";
+import NotificationSkeleton from "@/components/contentDisplay/notification/NotificationSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useNotification from "@/lib/hooks/bsky/notification/useNotification";
 import { Fragment } from "react";
@@ -53,12 +52,7 @@ export default function NotificationsContainer() {
       {isFetchingNotification && !isFetchingNotificationNextPage && (
         <NotificationSkeleton />
       )}
-      {isFetchingNotificationNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
+      {isFetchingNotificationNextPage && <LoadingSpinner />}
       {notificationError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
@@ -70,6 +64,7 @@ export default function NotificationsContainer() {
       )}
       {!notificationError &&
         !isFetchingNotification &&
+        !notificationHasNextPage &&
         !isFetchingNotificationNextPage && <EndOfFeed />}
       <div ref={observerRef} />
     </section>

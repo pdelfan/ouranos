@@ -1,8 +1,6 @@
 "use client";
 
-import FeedPostSkeleton, {
-  Skeleton,
-} from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
+import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { getProfile } from "@/lib/api/bsky/actor";
@@ -12,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   mode: UserPostMode;
@@ -87,12 +86,7 @@ export default function UserPostsConatiner(props: Props) {
         !hasBlockedYou &&
         isFetchingUserPosts &&
         !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
-      {!isBlocked && isFetchingUserPostsNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
+      {!isBlocked && isFetchingUserPostsNextPage && <LoadingSpinner />}
       {!isBlocked && !hasBlockedYou && userPostsError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}

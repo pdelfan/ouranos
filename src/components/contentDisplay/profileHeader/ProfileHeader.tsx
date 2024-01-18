@@ -58,8 +58,8 @@ export default function ProfileHeader(props: Props) {
                 src={profile?.banner ?? FallbackBanner}
                 alt="Banner"
                 width={800}
-                height={100}
-                className="object-cover min-h-[9rem] opacity-30 contrast-75"
+                height={191}
+                className="object-cover h-[12rem] opacity-30 contrast-75"
               />
             ) : (
               <Button
@@ -74,8 +74,8 @@ export default function ProfileHeader(props: Props) {
                   src={profile?.banner ?? FallbackBanner}
                   alt="Banner"
                   width={800}
-                  height={100}
-                  className="object-cover min-h-[9rem]"
+                  height={191}
+                  className="object-cover h-[12rem]"
                 />
               </Button>
             )}
