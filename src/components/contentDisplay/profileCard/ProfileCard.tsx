@@ -21,7 +21,7 @@ export default function ProfileCard(props: Props) {
       <article className="flex flex-col gap-2">
         <div className="flex flex-wrap justify-between gap-3">
           <div className="flex flex-wrap gap-2 items-start">
-            <Avatar profile={profile} />
+            <Avatar src={profile.avatar} />
             <div className="flex flex-col">
               <h2 className="font-semibold">
                 {profile?.displayName ?? profile.handle}

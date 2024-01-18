@@ -66,7 +66,7 @@ export default function ThreadPost(props: Props) {
           }}
           className="z-20 shrink-0 hover:brightness-90"
         >
-          <Avatar profile={author} size="md" />
+          <Avatar src={author.avatar} size="md" />
         </button>
         <div className="flex flex-col grow">
           <div className="flex flex-col">

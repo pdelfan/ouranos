@@ -77,7 +77,7 @@ export default function FeedPost(props: Props) {
             }}
             className="z-20 shrink-0 hover:brightness-90"
           >
-            <Avatar profile={author} size="md" />
+            <Avatar src={author.avatar} size="md" />
           </Link>
           <div className={`flex flex-col grow ${isParent && "pb-6"}`}>
             {isParent && !reason && (

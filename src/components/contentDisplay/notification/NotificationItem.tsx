@@ -59,7 +59,7 @@ export default function NotificationItem(props: Props) {
                       href={`/dashboard/user/${author.handle}`}
                       className="max-w-fit hover:brightness-90"
                     >
-                      <Avatar profile={author} />
+                      <Avatar src={author.avatar} />
                     </Link>
                   ))}
                   {allAuthors.length > MAX_AUTHORS_SHOWN && (

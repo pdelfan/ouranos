@@ -24,7 +24,7 @@ export default async function Aside() {
           href={`/dashboard/user/${profile?.handle}`}
           className="max-w-[7rem] truncate hover:brightness-90"
         >
-          <Avatar profile={profile} />
+          <Avatar src={profile?.avatar} />
         </Link>
       </div>
     </aside>
