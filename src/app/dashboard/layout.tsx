@@ -28,7 +28,13 @@ export default async function DashboardLayout({
         {profile && <TopBar profile={profile} />}
         {children}
       </section>
-      <Aside />
+      {profile && (
+        <Aside
+          avatar={profile?.avatar}
+          displayName={profile?.displayName}
+          handle={profile?.handle}
+        />
+      )}
       <AppBar />
     </main>
   );
