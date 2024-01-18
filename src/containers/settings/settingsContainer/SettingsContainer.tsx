@@ -33,7 +33,7 @@ export default async function SettingsContainer() {
           <div className="flex flex-col gap-3 p-3 mt-2 w-full rounded-none md:rounded-t-2xl md:rounded-b-2xl border border-x-0 md:border-x">
             <div className="flex flex-wrap gap-3 justify-between items-center ">
               <div className="flex gap-3">
-                <Avatar profile={profile} size="md" />
+                <Avatar src={profile.avatar} size="md" />
                 <div className="flex flex-col">
                   <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
                     {profile.displayName ?? profile.handle}
