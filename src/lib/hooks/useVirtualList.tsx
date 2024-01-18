@@ -15,7 +15,7 @@ export default function useVirtualList<T>(props: Props<T>) {
   const { items, options } = props;
   const {
     size = 50,
-    overscan = 0,
+    overscan = 10,
     hasNextPage = false,
     scrollMargin = 0,
   } = options;

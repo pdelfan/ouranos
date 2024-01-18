@@ -1,6 +1,8 @@
 "use client";
 
-import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
+import FeedPostSkeleton, {
+  Skeleton,
+} from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import useFeed from "@/lib/hooks/bsky/feed/useFeed";
@@ -55,8 +57,9 @@ export default function FeedContainer(props: Props) {
     useVirtualList({
       items: allPosts,
       options: {
-        size: 250,
-        overscan: 5,
+        size: 500,
+        overscan: 2,
+        scrollMargin: 200,
         hasNextPage: feedHasNextPage,
       },
     });
@@ -78,6 +81,7 @@ export default function FeedContainer(props: Props) {
         }}
       />
       <ComposeButton mode="float" />
+
       <section
         ref={viewportRef}
         style={{
@@ -102,12 +106,13 @@ export default function FeedContainer(props: Props) {
                   }px)`,
                   width: "100%",
                 }}
-                className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+                className="flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
               >
                 {allPosts[item.index] && (
                   <PostContainer
+                    key={allPosts[item.index].post.uri}
                     post={allPosts[item.index]}
-                    isReply={!!allPosts[item.index].reply}
+                    isReply={allPosts[item.index].reply ? true : false}
                     filter={contentFilter}
                   />
                 )}
