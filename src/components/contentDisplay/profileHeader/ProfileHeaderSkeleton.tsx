@@ -22,22 +22,22 @@ function TabsSkeleton() {
 export default function ProfileHeaderSkeleton() {
   return (
     <section className="border md:rounded-t-2xl overflow-hidden animate-pulse">
-      <div className="relative ">
+      <div className="relative">
         <Image
           src={SkeletonBanner}
           alt="Banner"
           width={800}
-          height={100}
-          className="object-cover min-h-[9rem] animate-pulse"
+          height={191}
+          className="object-cover h-[12rem] animate-pulse"
         />
         <div className="absolute bottom-0 transform translate-y-1/2 px-3">
-          <div className="w-[95px] h-[95px] bg-gray-200 rounded-full border-4 border-white" />
+          <div className="w-[99px] h-[99px] bg-gray-200 rounded-full border-4 border-white" />
         </div>
       </div>
       <div className="flex mr-3 mt-3">
         <div className="flex gap-2 ml-auto">
           <div className="h-9 w-9 bg-gray-200 rounded-full" />
-          <div className="h-9 bg-gray-200 rounded-full w-24" />
+          <div className="h-9 bg-gray-200 rounded-full w-[100px]" />
         </div>
       </div>
 
