@@ -20,10 +20,12 @@ export default function ProfileCard(props: Props) {
     >
       <article className="flex flex-col gap-2">
         <div className="flex flex-wrap justify-between gap-3">
-          <div className="flex flex-wrap gap-2 items-center">
+          <div className="flex flex-wrap gap-2 items-start">
             <Avatar profile={profile} />
             <div className="flex flex-col">
-              <h2 className="font-semibold">{profile?.displayName}</h2>
+              <h2 className="font-semibold">
+                {profile?.displayName ?? profile.handle}
+              </h2>
               <h3 className="text-neutral-400 font-medium break-all">
                 @{profile?.handle}
               </h3>

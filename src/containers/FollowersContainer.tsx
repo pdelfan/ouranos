@@ -2,14 +2,13 @@
 
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import ProfileCardSkeleton, {
-  Skeleton,
-} from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
+import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { getFollowers } from "@/lib/api/bsky/social";
 import Alert from "@/components/feedback/alert/Alert";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   handle: string;
@@ -62,12 +61,7 @@ export default function FollowersContainer(props: Props) {
         </div>
       )}
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
-      {isFetchingNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
+      {isFetchingNextPage && <LoadingSpinner />}
       <div ref={ref} />
     </section>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import { Skeleton } from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import { getMutedUsers } from "@/lib/api/bsky/social";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -9,6 +8,7 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import MutedUsersContainerSkeleton from "./MutedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 export default function MutedUsersContainer() {
   const agent = useAgent();
@@ -67,12 +67,7 @@ export default function MutedUsersContainer() {
               </div>
             )}
           </section>
-          {isFetchingNextPage && (
-            <div>
-              <Skeleton />
-              <Skeleton />
-            </div>
-          )}
+          {isFetchingNextPage && <LoadingSpinner />}
           <div ref={ref} />
         </section>
       </section>

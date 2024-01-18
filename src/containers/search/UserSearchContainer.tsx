@@ -7,9 +7,8 @@ import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import ProfileCardSkeleton, {
-  Skeleton,
-} from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
+import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   query: string;
@@ -73,12 +72,7 @@ export default function UserSearchContainer(props: Props) {
       {isFetching && !isFetchingNextPage && (
         <ProfileCardSkeleton rounded={false} />
       )}
-      {isFetchingNextPage && (
-        <div>
-          <Skeleton />
-          <Skeleton />
-        </div>
-      )}
+      {isFetchingNextPage && <LoadingSpinner />}
       <div ref={observerRef} />
     </section>
   );
