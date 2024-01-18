@@ -129,7 +129,7 @@ export default function ImageEmbed(props: Props) {
               alt={images[0].alt}
               width={images[0].aspectRatio?.width ?? 900}
               height={images[0].aspectRatio?.height ?? 900}
-              className="rounded-md object-cover cursor-pointer hover:brightness-90"
+              className="rounded-md max-h-96 object-cover cursor-pointer hover:brightness-90"
               onClick={(e) => {
                 e.stopPropagation();
                 setShowImage(0);
