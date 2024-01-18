@@ -7,7 +7,7 @@ import { useState } from "react";
 import Gallery from "../gallery/Gallery";
 
 interface Props {
-  content: any;
+  content: AppBskyEmbedImages.View;
   depth: number;
 }
 
