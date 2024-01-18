@@ -22,7 +22,7 @@ export default function TopBar(props: Props) {
     <div
       className="flex justify-between bg-white border-b px-3 py-2.5 sticky md:hidden top-0 z-50 ease-linear transition-all"
       style={{
-        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "0%",
+        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
         transform: canUpdate ? `translateY(-${val ?? 0}%)` : "none",
       }}
     >

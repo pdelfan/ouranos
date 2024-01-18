@@ -12,9 +12,6 @@ import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
-import useVirtualList from "@/lib/hooks/useVirtualList";
-import useInfiniteList from "@/lib/hooks/useInfiniteList";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Props {
   mode: UserPostMode;
@@ -37,6 +34,7 @@ export default function UserPostsConatiner(props: Props) {
   const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
 
   const {
+    observerRef,
     userPostsStatus,
     userPostsData,
     userPostsError,
@@ -44,7 +42,6 @@ export default function UserPostsConatiner(props: Props) {
     isFetchingUserPosts,
     isFetchingUserPostsNextPage,
     userPostsHasNextPage,
-    fetchNextUserPostsPage,
   } = useProfilePosts({ mode: mode, handle: handle });
 
   const isEmpty =
@@ -55,91 +52,47 @@ export default function UserPostsConatiner(props: Props) {
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
 
-  const allPosts = userPostsData
-    ? mode === "posts"
-      ? userPostsData.pages.flatMap((page) =>
-          page?.data.feed.filter((post) => !post.reply)
-        )
-      : userPostsData.pages.flatMap((page) => page?.data.feed)
-    : [];
-
-  const { virtualizer, viewportRef, virtualMap, getVirtualItems } =
-    useVirtualList({
-      items: allPosts,
-      options: {
-        size: 100,
-        overscan: 2,
-        scrollMargin: 500,
-        hasNextPage: userPostsHasNextPage,
-      },
-    });
-
-  useInfiniteList({
-    items: allPosts,
-    fetchNextPage: fetchNextUserPostsPage,
-    getVirtualItems: getVirtualItems,
-    hasNextPage: userPostsHasNextPage,
-    isFetchingNextPage: isFetchingUserPostsNextPage,
-  });
-
   return (
-    <section>
+    <div>
       <ComposeButton mode="float" />
-
-      <section
-        ref={viewportRef}
-        style={{
-          height: `${virtualizer.getTotalSize()}px`,
-          width: "100%",
-          position: "relative",
-        }}
-      >
-        <section className="flex flex-col">
-          {!isBlocked &&
-            !hasBlockedYou &&
-            userPostsData &&
-            contentFilter &&
-            virtualMap((item, i) => (
-              <article
-                key={item.key}
-                data-index={item.index}
-                ref={virtualizer.measureElement}
-                style={{
-                  position: "absolute",
-                  transform: `translateY(${
-                    item.start - virtualizer.options.scrollMargin
-                  }px)`,
-                }}
-                className="w-full flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
-              >
-                {allPosts[item.index] && (
-                  <PostContainer
-                    key={allPosts[item.index].post.uri}
-                    post={allPosts[item.index]}
-                    isReply={!!allPosts[item.index].reply}
-                    filter={contentFilter}
-                  />
-                )}
-
-                {item.index > allPosts.length - 1 && (
-                  <section className="flex flex-1 justify-center">
-                    <AiOutlineLoading3Quarters className="text-xl" />
-                  </section>
-                )}
-              </article>
-            ))}
-        </section>
-      </section>
-
       {!isBlocked &&
         !hasBlockedYou &&
         userPostsData &&
         contentFilter &&
-        virtualMap((post, i) => <></>)}
+        userPostsData?.pages.map((page, i) => (
+          <div key={i}>
+            {mode === "posts" &&
+              page.data.feed
+                .filter((post) => !post.reply)
+                .map((post, i) => (
+                  <PostContainer
+                    key={post.post.uri + i}
+                    post={post}
+                    isReply={!!post.reply}
+                    filter={contentFilter}
+                  />
+                ))}
+            {mode !== "posts" &&
+              page.data.feed.map((post, i) => (
+                <PostContainer
+                  key={post.post.uri + i}
+                  post={post}
+                  isReply={!!post.reply}
+                  filter={contentFilter}
+                />
+              ))}
+          </div>
+        ))}
       {!isBlocked &&
         !hasBlockedYou &&
         isFetchingUserPosts &&
         !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
+      {!isBlocked && isFetchingUserPostsNextPage && (
+        <div>
+          <Skeleton />
+          <Skeleton />
+        </div>
+      )}
       {!isBlocked && !hasBlockedYou && userPostsError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
@@ -163,6 +116,7 @@ export default function UserPostsConatiner(props: Props) {
         !isFetchingUserPosts &&
         !userPostsHasNextPage &&
         !isFetchingUserPostsNextPage && <EndOfFeed />}
-    </section>
+      <div ref={observerRef} />
+    </div>
   );
 }

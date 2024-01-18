@@ -42,7 +42,11 @@ export default function NotificationItem(props: Props) {
 
   if (GROUPABLE_NOTIFICATIONS.includes(reason)) {
     return (
-      <div className={` ${!isRead && "bg-neutral-100"}`}>
+      <article
+        className={`flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 md:first:rounded-t-2xl ${
+          !isRead && "bg-neutral-100"
+        }`}
+      >
         <div className="flex gap-2">
           {getNotificationIcon(reason)}
           <div className="flex flex-col gap-2">
@@ -104,11 +108,15 @@ export default function NotificationItem(props: Props) {
             </div>
           </div>
         </div>
-      </div>
+      </article>
     );
   } else {
     return (
-      <div className={` ${!isRead && "bg-neutral-100"}`}>
+      <div
+        className={`flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 first:md:rounded-t-2xl ${
+          !isRead && "bg-neutral-100"
+        }`}
+      >
         <NotificationPost uri={notification.uri} filter={filter} />
       </div>
     );
