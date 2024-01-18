@@ -17,13 +17,14 @@ export default function LoginForm() {
   const router = useRouter();
   const { data: session } = useSession();
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [handle, setHandle] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (session?.user.bskySession) {
+    if (session?.user.bskySession && !formSubmitted) {
       setIsRedirecting(true);
       const id = setTimeout(() => {
         router.push("/dashboard/home");
@@ -31,7 +32,7 @@ export default function LoginForm() {
 
       return () => clearTimeout(id);
     }
-  }, [router, session?.user.bskySession]);
+  }, [router, session?.user.bskySession, formSubmitted]);
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -49,6 +50,7 @@ export default function LoginForm() {
     }
 
     if (result?.ok) {
+      setFormSubmitted(true);
       router.push("/dashboard/home");
     }
   };
