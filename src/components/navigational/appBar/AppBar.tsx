@@ -14,6 +14,7 @@ import { FaBell } from "react-icons/fa";
 export default function AppBar() {
   const pathname = usePathname();
   const val = useScrollContext();
+  const canUpdate = typeof window !== "undefined";
   const agent = useAgent();
   const {
     data: notificationsCount,
@@ -29,8 +30,8 @@ export default function AppBar() {
     <nav
       className="flex justify-between pb-8 pt-1 px-6 border-t gap-6 fixed bottom-0 z-40 w-full md:hidden bg-white overflow-auto ease-linear transition-all"
       style={{
-        opacity: val ? `${100 - (val ?? 0)}%` : "100%",
-        transform: val ? `translateY(${val ?? 0}%)` : "100%",
+        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
+        transform: canUpdate ? `translateY(${val ?? 0}%)` : "none",
       }}
     >
       <NavItem

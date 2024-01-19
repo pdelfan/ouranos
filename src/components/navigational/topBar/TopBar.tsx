@@ -15,13 +15,14 @@ interface Props {
 export default function TopBar(props: Props) {
   const { profile } = props;
   const val = useScrollContext();
+  const canUpdate = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <div
       className="flex justify-between bg-white border-b px-3 py-2.5 sticky md:hidden top-0 z-50 ease-linear transition-all"
       style={{
-        opacity: val ? `${100 - (val ?? 0)}%` : "100%",
-        transform: val ? `translateY(-${val ?? 0}%)` : "100%",
+        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
+        transform: canUpdate ? `translateY(-${val ?? 0}%)` : "none",
       }}
     >
       <Link
