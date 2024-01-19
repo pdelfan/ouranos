@@ -16,6 +16,7 @@ export default function FeedTabs() {
   const searchParams = useSearchParams();
   const uri = searchParams.get("uri");
   const val = useScrollContext();
+  const canUpdate = typeof window !== "undefined" && window.innerWidth < 768;
 
   const {
     status,
@@ -34,8 +35,8 @@ export default function FeedTabs() {
       <div
         className={`bg-white border-x-0 border-t-0 border-b md:border md:rounded-t-2xl overflow-x-hidden hover:overflow-x-auto md:opacity-100 sticky top-[3.2rem] md:top-6 z-50 md:z-50 ease-linear transition-all`}
         style={{
-          opacity: val ? `${100 - (val ?? 0)}%` : "100%",
-          transform: val ? `translateY(-${val ?? 0}%)` : "100%",
+          opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
+          transform: canUpdate ? `translateY(-${val ?? 0}%)` : "none",
         }}
       >
         {isFetching && <FeedTabsSkeleton />}
