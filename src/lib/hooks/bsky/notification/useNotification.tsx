@@ -1,7 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import {
   getNotifications,
   updateSeenNotifications,
@@ -11,7 +11,7 @@ import { Notification } from "@atproto/api/dist/client/types/app/bsky/notificati
 
 export default function useNotification() {
   const agent = useAgent();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "100px" });
 
   const groupNotifications = (
     notifications: Notification[]

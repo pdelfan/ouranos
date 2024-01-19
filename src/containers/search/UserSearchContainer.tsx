@@ -17,7 +17,7 @@ interface Props {
 export default function UserSearchContainer(props: Props) {
   const { query } = props;
   const agent = useAgent();
-  const { ref: observerRef, inView } = useInView();
+  const { ref: observerRef, inView } = useInView({ rootMargin: "100px" });
 
   const {
     status,

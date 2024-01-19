@@ -19,7 +19,7 @@ export default function RepostedByContainer(props: Props) {
   const { handle, id } = props;
 
   const agent = useAgent();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "100px" });
 
   const {
     status,

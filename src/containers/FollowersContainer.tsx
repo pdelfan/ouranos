@@ -17,7 +17,7 @@ interface Props {
 export default function FollowersContainer(props: Props) {
   const { handle } = props;
   const agent = useAgent();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "100px" });
 
   const {
     status,

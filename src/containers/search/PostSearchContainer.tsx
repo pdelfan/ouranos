@@ -37,7 +37,7 @@ export default function PostSearchContainer(props: Props) {
   const isEmpty =
     !isFetching && !isFetchingNextPage && posts?.pages[0]?.posts?.length === 0;
 
-  const { ref: observerRef, inView } = useInView();
+  const { ref: observerRef, inView } = useInView({ rootMargin: "800px" });
 
   useEffect(() => {
     if (inView) {
