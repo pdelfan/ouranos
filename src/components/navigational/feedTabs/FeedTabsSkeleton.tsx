@@ -15,6 +15,8 @@ export default function FeedTabsSkeleton() {
       <TabSkeleton />
       <TabSkeleton />
       <TabSkeleton />
+      <TabSkeleton />
+      <TabSkeleton />
     </div>
   );
 }
