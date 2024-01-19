@@ -39,7 +39,7 @@ export default function useProfilePosts(props: Props) {
     }
   };
 
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "100px" });
   const {
     status,
     data: userPosts,

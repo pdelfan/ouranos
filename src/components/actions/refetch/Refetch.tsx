@@ -14,15 +14,13 @@ export default function Refetch(props: Props) {
   const val = useScrollContext();
   const debouncedRefetch = useDebouncedCallback(onRefetch, 300);
 
-  const canUpdate = typeof window !== "undefined";
-
   return (
     <Button
       onClick={debouncedRefetch}
       className="z-40 p-3 rounded-full fixed bottom-24 md:bottom-8 ml-3 md:ml-[0.80rem] border border-neutral-300 bg-white hover:bg-neutral-50 hover:-rotate-180 ease-linear transition-all"
       style={{
-        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
-        transform: canUpdate ? `translateY(${val ?? 0}%)` : "none",
+        opacity: val ? `${100 - (val ?? 0)}%` : "100%",
+        transform: val ? `translateY(${val ?? 0}%)` : "100%",
       }}
     >
       <LuRefreshCcw className="text-2xl text-neutral-500 hover:text-neutral-600" />

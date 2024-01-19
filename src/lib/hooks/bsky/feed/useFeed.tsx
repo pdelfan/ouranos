@@ -8,7 +8,7 @@ export const useFeedKey = (feed: string) => [feed];
 
 export default function useFeed(feed: string) {
   const agent = useAgent();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "800px" });
   const {
     status,
     data: timeline,

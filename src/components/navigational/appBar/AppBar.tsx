@@ -25,14 +25,12 @@ export default function AppBar() {
     refetchInterval: 10000,
   });
 
-  const canUpdate = typeof window !== "undefined";
-
   return (
     <nav
       className="flex justify-between pb-8 pt-1 px-6 border-t gap-6 fixed bottom-0 z-40 w-full md:hidden bg-white overflow-auto ease-linear transition-all"
       style={{
-        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "none",
-        transform: canUpdate ? `translateY(${val ?? 0}%)` : "none",
+        opacity: val ? `${100 - (val ?? 0)}%` : "100%",
+        transform: val ? `translateY(${val ?? 0}%)` : "100%",
       }}
     >
       <NavItem

@@ -12,7 +12,7 @@ import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 export default function MutedUsersContainer() {
   const agent = useAgent();
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "100px" });
 
   const {
     status,
