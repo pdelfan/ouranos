@@ -4,7 +4,7 @@ import Image from "next/image";
 import useFeedInfo from "@/lib/hooks/bsky/feed/useFeedInfo";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import Button from "@/components/actions/button/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   getSavedFeeds,
   togglePinFeed,
@@ -19,6 +19,7 @@ import { BiSolidTrash } from "react-icons/bi";
 import { BiSolidBookmarkAlt } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { BiSolidHeart } from "react-icons/bi";
+import Link from "next/link";
 
 interface Props {
   feed: string;
@@ -39,21 +40,12 @@ export default function FeedHeader(props: Props) {
     feedInfoError,
   } = useFeedInfo(feed);
 
-  useEffect(() => {
-    const updateFeedInfo = async () => {
-      if (feedInfo && agent) {
-        const savedFeeds = await getSavedFeeds(agent);
-        setIsSaved(savedFeeds.some((savedFeed) => savedFeed.uri === feed));
-        setIsPinned(
-          savedFeeds.some(
-            (savedFeed) => savedFeed.uri === feed && savedFeed.pinned
-          )
-        );
-      }
-    };
-
-    updateFeedInfo();
-  }, [feedInfo, agent, feed]);
+  useLayoutEffect(() => {
+    if (feedInfo) {
+      setIsSaved(feedInfo.isSaved);
+      setIsPinned(feedInfo.isPinned);
+    }
+  }, [feedInfo]);
 
   const toggleSave = async () => {
     if (!agent) return;
@@ -107,7 +99,13 @@ export default function FeedHeader(props: Props) {
                     {feedInfo.view.displayName}
                   </h2>
                   <h3 className="text-neutral-500 break-all">
-                    By @{feedInfo.view.creator.handle}
+                    By{" "}
+                    <Link
+                      href={`/dashboard/user/${feedInfo.view.creator.handle}`}
+                      className="font-medium hover:text-neutral-400"
+                    >
+                      @{feedInfo.view.creator.handle}
+                    </Link>
                   </h3>
                 </div>
               </div>
@@ -125,7 +123,7 @@ export default function FeedHeader(props: Props) {
                         isPinned ? "text-green-600" : "text-neutral-300"
                       }`}
                     />
-                  </Button>{" "}
+                  </Button>
                 </div>
               )}
             </div>
