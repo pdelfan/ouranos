@@ -31,7 +31,7 @@ export default function ProfileHeaderSkeleton() {
           className="object-cover h-[12rem] animate-pulse"
         />
         <div className="absolute bottom-0 transform translate-y-1/2 px-3">
-          <div className="w-[99px] h-[99px] bg-gray-200 rounded-full border-4 border-white" />
+          <div className="w-[103px] h-[103px] bg-gray-200 rounded-full border-4 border-white" />
         </div>
       </div>
       <div className="flex mr-3 mt-3">
