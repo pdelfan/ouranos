@@ -63,7 +63,7 @@ export default function AltTag(props: Props) {
                 </Button>
               </Dialog.Close>
               <div className="cursor-text z-50 bg-black/60  max-w-xl max-h-[calc(100svh-10rem)] overflow-auto p-4  text-white rounded-xl">
-                <div className="flex flex-wrap gap-3 justify-between">
+                <div className="flex flex-wrap gap-3 justify-between mb-4">
                   <Dialog.Title className="text-xl font-semibold">
                     Alternative text
                   </Dialog.Title>
