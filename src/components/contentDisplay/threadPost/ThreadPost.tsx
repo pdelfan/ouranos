@@ -21,7 +21,6 @@ interface Props {
 export default function ThreadPost(props: Props) {
   const { post, filter } = props;
   const { author, indexedAt, reply } = post;
-
   const { isAdultContentHidden, adultContentFilters } = filter;
   const label = post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
   const embedLabel =
@@ -51,7 +50,7 @@ export default function ThreadPost(props: Props) {
     if (!threadPostRef.current) return;
     // scroll to thread post
     threadPostRef.current.scrollIntoView();
-  });
+  }, []);
 
   return (
     <article
