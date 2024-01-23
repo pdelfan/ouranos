@@ -79,7 +79,7 @@ function FeedItem(props: FeedItemProps) {
 export default function MyFeedsContainer() {
   const agent = useAgent();
   const { status, data, error, isLoading, isFetching } = useQuery({
-    queryKey: ["savedFeeds"],
+    queryKey: savedFeedsQueryKey,
     queryFn: () => getSavedFeeds(agent),
   });
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaSlidersH } from "react-icons/fa";
 import { ImBubbles2 } from "react-icons/im";
 import {
-  BiHash,
+  BiCloud,
   BiLogoGithub,
   BiSolidCheckCircle,
   BiSolidEnvelope,
@@ -98,7 +98,7 @@ export default async function SettingsContainer() {
             href="/dashboard/settings/my-feeds"
             className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
           >
-            <BiHash className="text-neutral-600 text-xl" />
+            <BiCloud className="text-neutral-600 text-xl" />
             My Feeds
           </Link>
         </div>
