@@ -8,12 +8,13 @@ import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import {
   BiCog,
-  BiHash,
+  BiCloud,
   BiHome,
   BiSolidCog,
   BiSolidHome,
   BiSolidUser,
   BiUser,
+  BiSolidCloud,
 } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
@@ -52,8 +53,8 @@ export default function Navbar() {
       />
       <NavItem
         href="/dashboard/feeds"
-        icon={<BiHash className="text-2xl md:text-3xl" />}
-        activeIcon={<BiHash className="text-2xl md:text-3xl" />}
+        icon={<BiCloud className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidCloud className="text-2xl md:text-3xl" />}
         title="Feeds"
         isActive={pathname === "/dashboard/feeds"}
         className="sm:m-0"
