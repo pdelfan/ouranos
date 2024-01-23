@@ -121,21 +121,10 @@ export default function Page() {
           Does Ouranos have extra features?
         </h3>
         <p>
-          The current goal is to implement all the functionalities provided by
-          the official app, and add more enhancements (some are currently
-          implemented) without storing anything on our side.
+          The current goal is to implement current and future functionalities
+          provided by the official app, and add more enhancements (some are
+          currently implemented) without storing anything on our side.
         </p>
-
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
-          Will there be a mobile app?
-        </h3>
-        <p>
-          Ouranos is designed to be responsive and works farily well on mobile.
-          At the moment, there are no plans to develop a native mobile app.
-          However, that may change after achieving the project's current goal
-          (see previous answer).
-        </p>
-
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
           Is there a dark mode?
         </h3>

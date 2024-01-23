@@ -23,7 +23,7 @@ interface Props {
 }
 
 export default function FeedPost(props: Props) {
-  const { post, isReply, isParent, filter } = props;
+  const { post, isReply, isParent, filter } = props;  
   const { author, indexedAt } = post.post;
   const { reason, reply } = post;
   const { isAdultContentHidden, adultContentFilters, contentFilters } = filter;
