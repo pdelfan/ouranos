@@ -47,6 +47,7 @@ export default function FeedContainer(props: Props) {
         }}
       />
       <ComposeButton mode="float" />
+      {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
       {feedData &&
         contentFilter &&
         feedFilter &&
@@ -66,7 +67,6 @@ export default function FeedContainer(props: Props) {
               ))}
           </div>
         ))}
-      {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
       {isFetchingFeedNextPage && <LoadingSpinner />}
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
