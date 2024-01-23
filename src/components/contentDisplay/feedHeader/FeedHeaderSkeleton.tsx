@@ -12,6 +12,7 @@ export default function FeedHeaderSkeleton() {
         <div className="flex flex-wrap gap-3">
           <div className="bg-gray-200 w-9 h-9 rounded-lg animate-pulse" />
           <div className="bg-gray-200 w-9 h-9 rounded-lg animate-pulse" />
+          <div className="bg-gray-200 w-9 h-9 rounded-lg animate-pulse" />
         </div>
       </div>
       <div className="bg-gray-200 w-4/5 h-3 mt-2 rounded animate-pulse" />

@@ -88,6 +88,15 @@ export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
   });
 };
 
+export const likeFeed = async (agent: BskyAgent, uri: string, cid: string) => {
+  const like = await agent.like(uri, cid);
+  return like;
+};
+
+export const unlikeFeed = async (agent: BskyAgent, likeUri: string) => {
+  await agent.deleteLike(likeUri);
+};
+
 export const getTimeline = async (agent: BskyAgent, cursor?: string) => {
   const timeline = await agent.getTimeline({ cursor: cursor });
   return timeline;

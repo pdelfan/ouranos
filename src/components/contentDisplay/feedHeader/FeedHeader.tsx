@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import useFeedInfo from "@/lib/hooks/bsky/feed/useFeedInfo";
+import useFeedInfo, { feedInfoKey } from "@/lib/hooks/bsky/feed/useFeedInfo";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import Button from "@/components/actions/button/Button";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
-  getSavedFeeds,
+  likeFeed,
+  unlikeFeed,
   togglePinFeed,
   toggleSaveFeed,
 } from "@/lib/api/bsky/feed";
@@ -15,7 +16,7 @@ import { useRouter } from "next/navigation";
 import FeedHeaderSkeleton from "./FeedHeaderSkeleton";
 import { useQueryClient } from "@tanstack/react-query";
 import { savedFeedsQueryKey } from "@/containers/settings/myFeedsContainer/MyFeedsContainer";
-import { BiSolidTrash } from "react-icons/bi";
+import { BiHeart, BiSolidTrash } from "react-icons/bi";
 import { BiSolidBookmarkAlt } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { BiSolidHeart } from "react-icons/bi";
@@ -31,6 +32,9 @@ export default function FeedHeader(props: Props) {
   const agent = useAgent();
   const [isSaved, setIsSaved] = useState<boolean | null>(null);
   const [isPinned, setIsPinned] = useState<boolean | null>(null);
+  const [isLiked, setIsLiked] = useState<boolean | null>(null);
+  const [likeUri, setLikeUri] = useState<string | undefined>(undefined);
+  const [likeCount, setLikeCount] = useState<number>(0);
   const queryClient = useQueryClient();
   const {
     feedInfo,
@@ -44,6 +48,8 @@ export default function FeedHeader(props: Props) {
     if (feedInfo) {
       setIsSaved(feedInfo.isSaved);
       setIsPinned(feedInfo.isPinned);
+      setIsLiked(feedInfo.isLiked);
+      setLikeUri(feedInfo.view.viewer?.like);
     }
   }, [feedInfo]);
 
@@ -79,10 +85,34 @@ export default function FeedHeader(props: Props) {
     }
   };
 
+  const toggleLike = async () => {
+    if (!agent) return;
+    setIsLiked((prev) => !prev);
+    if (!likeUri && feedInfo) {
+      try {
+        const like = await likeFeed(
+          agent,
+          feedInfo?.view.uri,
+          feedInfo?.view.cid
+        );
+        setLikeUri(like?.uri);
+      } catch (err) {
+        setIsLiked(false);
+      }
+    } else if (likeUri && feedInfo) {
+      try {
+        await unlikeFeed(agent, likeUri);
+        setLikeUri(undefined);
+      } catch (err) {
+        setIsLiked(true);
+      }
+    }
+  };
+
   return (
     <>
       {isFetchingFeedInfo && <FeedHeaderSkeleton />}
-      {feedInfo && (
+      {!isFetchingFeedInfo && feedInfo && (
         <>
           <article className="flex flex-col gap-2 p-3 border border-x-0 border-t-0 md:border md:rounded-t-2xl ">
             <div className="flex flex-wrap gap-3 items-center justify-between">
@@ -124,6 +154,14 @@ export default function FeedHeader(props: Props) {
                       }`}
                     />
                   </Button>
+                  <Button onClick={toggleLike}>
+                    {likeUri && (
+                      <BiSolidHeart className="text-lg text-red-600" />
+                    )}
+                    {!likeUri && (
+                      <BiHeart className="text-lg text-neutral-300" />
+                    )}
+                  </Button>
                 </div>
               )}
             </div>
@@ -132,7 +170,7 @@ export default function FeedHeader(props: Props) {
             </p>
             <small className="flex items-center gap-1 font-medium text-neutral-500">
               <BiSolidHeart />
-              <span>{feedInfo.view.likeCount ?? 0}</span>
+              <span>{feedInfo.view.likeCount}</span>
             </small>
           </article>
         </>
