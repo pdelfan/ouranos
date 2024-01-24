@@ -8,7 +8,7 @@ export function Skeleton(props: Props) {
     <article
       className={`p-3 border border-x-0 md:border-x animate-pulse ${
         rounded && "md:first:rounded-t-2xl"
-      } md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-gray-50`}
+      } md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0`}
     >
       <div className="flex flex-wrap justify-between gap-3">
         <div className="flex flex-wrap gap-2 items-center">
