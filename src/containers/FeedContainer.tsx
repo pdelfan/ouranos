@@ -39,7 +39,7 @@ export default function FeedContainer(props: Props) {
   const feedFilter = preferences?.feedFilter;
 
   return (
-    <div>
+    <section>
       <Refetch
         onRefetch={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -51,7 +51,7 @@ export default function FeedContainer(props: Props) {
       {feedData &&
         contentFilter &&
         feedFilter &&
-        feedData?.pages.map((page, i) => (
+        feedData.pages.map((page, i) => (
           <div key={i}>
             {page.data.feed
               .filter((f) =>
@@ -80,6 +80,6 @@ export default function FeedContainer(props: Props) {
         !feedHasNextPage &&
         !isFetchingFeedNextPage && <EndOfFeed />}
       <div ref={observerRef} />
-    </div>
+    </section>
   );
 }

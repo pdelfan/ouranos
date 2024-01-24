@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAgent from "../useAgent";
 import { getProfile } from "@/lib/api/bsky/actor";
 import { follow, unfollow } from "@/lib/api/bsky/social";
+import { AppBskyActorDefs } from "@atproto/api";
 
 export const profileKey = (handle: string) => ["profile", handle];
 
@@ -10,7 +11,31 @@ export default function useProfile(handle: string) {
   const queryClient = useQueryClient();
   const { data, isLoading, isFetching, isRefetching } = useQuery({
     queryKey: profileKey(handle),
-    queryFn: () => getProfile(handle, agent),
+    queryFn: async (): Promise<
+      | (AppBskyActorDefs.ProfileViewDetailed & {
+          createdAt?: Date;
+        })
+      | undefined
+    > => {
+      const profile = await getProfile(handle, agent);
+      if (profile) {
+        // actor creation date
+        const result = await fetch(
+          `https://plc.directory/${profile.did}/log/audit`
+        );
+        if (result.ok) {
+          const profileAuditLog = (await result.json()) as AuditLog;
+
+          if (profileAuditLog[0]?.createdAt) {
+            return {
+              ...profile,
+              createdAt: new Date(profileAuditLog[0].createdAt),
+            };
+          }
+        }
+        return profile;
+      }
+    },
   });
 
   const updateFollowCount = (mode: "decrease" | "increase") => {

@@ -36,3 +36,8 @@ interface LinkMeta {
   description?: string;
   image?: string;
 }
+
+type AuditLog = {
+  cid: string;
+  createdAt: string;
+}[];

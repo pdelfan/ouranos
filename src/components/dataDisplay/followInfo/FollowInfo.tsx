@@ -11,7 +11,7 @@ export default function FollowInfo(props: Props) {
   const { handle, followsCount, followersCount } = props;
 
   return (
-    <div className="flex flex-gap items-center mt-3 gap-3">
+    <div className="flex flex-gap items-center gap-3">
       <Link
         href={`/dashboard/user/${handle}/following`}
         className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
