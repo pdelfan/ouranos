@@ -17,14 +17,12 @@ export function useUpdateProfile(props: Props) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async () => {
-      if (!displayName && !description && !banner && !avatar) return;
-
       await agent.upsertProfile(async (existing) => {
         const profile = existing || {};
-        if (displayName) {
+        if (displayName || displayName === "") {
           profile.displayName = displayName;
         }
-        if (description) {
+        if (description || description === "") {
           profile.description = description;
         }
         if (banner) {
