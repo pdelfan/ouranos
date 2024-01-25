@@ -1,5 +1,5 @@
 import { AppBskyFeedDefs } from "@atproto/api";
-import { ContentFilterResult, ThreadViewResult } from "../../../types/feed";
+import { ContentFilterResult } from "../../../types/feed";
 import BlockedEmbed from "@/components/dataDisplay/postEmbed/BlockedEmbed";
 import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
 import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
@@ -35,9 +35,12 @@ export default function RepliesContainer(props: Props) {
             j === MAX_REPLIES &&
             replies.length > MAX_REPLIES &&
             !showMore && (
-              <div className="inline-block bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm font-medium rounded-full hover:bg-neutral-200">
-                <button onClick={() => setShowMore(true)}>Show More</button>
-              </div>
+              <button
+                onClick={() => setShowMore(true)}
+                className="inline-block bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm font-medium rounded-full hover:bg-neutral-200"
+              >
+                Show More
+              </button>
             )}
 
           {AppBskyFeedDefs.isThreadViewPost(reply) &&
