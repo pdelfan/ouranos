@@ -46,15 +46,9 @@ export default function RepliesContainer(props: Props) {
               <FeedPost
                 post={reply}
                 filter={contentFilter}
-                isParent={j <= replies.length - 1}
+                isParent={j < replies.length - 1}
               />
             )}
-
-          {j == replies.length - 1 && showMore && (
-            <div className="inline-block bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm font-medium rounded-full hover:bg-neutral-200">
-              <button onClick={() => setShowMore(false)}>Show Less</button>
-            </div>
-          )}
         </div>
       ))}
     </>
