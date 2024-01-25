@@ -108,18 +108,11 @@ export default function PostThreadContainer(props: Props) {
       {thread && contentFilter && (
         <>
           <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
-          <div
-            className={`${
-              replyChains.length === 0
-                ? "border rounded-b-2xl"
-                : "border-x border-t"
-            }`}
-          >
-            <ComposePrompt
-              avatar={viewerAvatar}
-              post={thread?.post as PostView}
-            />
-          </div>
+          <ComposePrompt
+            avatar={viewerAvatar}
+            post={thread?.post as PostView}
+            rounded={replyChains.length === 0}
+          />
         </>
       )}
 

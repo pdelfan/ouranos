@@ -7,10 +7,11 @@ import { AppBskyFeedDefs, AppBskyFeedPost } from "@atproto/api";
 interface Props {
   avatar?: string;
   post: AppBskyFeedDefs.PostView;
+  rounded?: boolean;
 }
 
 export default function ComposePrompt(props: Props) {
-  const { avatar, post } = props;
+  const { avatar, post, rounded } = props;
   const { openComposer } = useComposerControls();
 
   return (
@@ -32,7 +33,9 @@ export default function ComposePrompt(props: Props) {
           },
         });
       }}
-      className="flex items-center w-full gap-3 px-3 py-2 hover:bg-neutral-50"
+      className={`flex items-center w-full gap-3 px-3 py-2 hover:bg-neutral-50 ${
+        rounded ? "border rounded-b-2xl" : "border-x border-t"
+      }`}
     >
       <Avatar src={avatar} />
       <span className="font-medium text-neutral-400">Write your reply</span>
