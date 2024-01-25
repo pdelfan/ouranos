@@ -17,14 +17,16 @@ import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import RepliesContainer from "./RepliesContainer";
 import ParentContainer from "./ParentContainer";
 import { sortThread } from "@/lib/utils/feed";
+import ComposePrompt from "@/components/actions/composePrompt/ComposePrompt";
 
 interface Props {
   id: string;
   handle: string;
+  viewerAvatar?: string;
 }
 
 export default function PostThreadContainer(props: Props) {
-  const { id, handle } = props;
+  const { id, handle, viewerAvatar } = props;
   const agent = useAgent();
   const router = useRouter();
 
@@ -104,7 +106,21 @@ export default function PostThreadContainer(props: Props) {
       )}
 
       {thread && contentFilter && (
-        <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
+        <>
+          <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
+          <div
+            className={`${
+              replyChains.length === 0
+                ? "border rounded-b-2xl"
+                : "border-x border-t"
+            }`}
+          >
+            <ComposePrompt
+              avatar={viewerAvatar}
+              post={thread?.post as PostView}
+            />
+          </div>
+        </>
       )}
 
       {contentFilter &&

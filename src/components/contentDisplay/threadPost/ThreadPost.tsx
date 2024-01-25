@@ -4,7 +4,7 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import PostActions from "@/components/dataDisplay/postActions/PostActions";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
-import { getFormattedDate, getRelativeTime } from "@/lib/utils/time";
+import { getFormattedDate } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { useRouter } from "next/navigation";
 import { ContentFilterResult } from "../../../../types/feed";
