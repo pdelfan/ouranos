@@ -151,7 +151,7 @@ export default function EditProfile(props: Props) {
           </div>
         </div>
         <div className="flex gap-3 mt-2 justify-end">
-          <Dialog.Close className="px-4 py-2 text-sm text-neutral-600g font-semibold border rounded-full hover:bg-neutral-50">
+          <Dialog.Close className="px-4 py-2 text-sm text-neutral-600 font-semibold border rounded-full hover:bg-neutral-50">
             Cancel
           </Dialog.Close>
           <Button
