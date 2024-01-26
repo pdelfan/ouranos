@@ -44,7 +44,7 @@ export default function AltTag(props: Props) {
       <Dialog.Root open={showAlt} onOpenChange={handleCloseAlt}>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 animate-fade animate-duration-200" />
-          <div className="flex items-center justify-center fixed inset-0 z-50 animate-fade animate-duration-200">
+          <div className="flex items-center justify-center fixed inset-0 z-50">
             <Dialog.Content
               onClick={(e) => {
                 e.stopPropagation();

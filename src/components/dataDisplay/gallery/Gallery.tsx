@@ -60,7 +60,7 @@ export default function Gallery(props: Props) {
           e.stopPropagation();
           onClose();
         }}
-        className="z-50 animate-fade animate-duration-200"
+        className="z-50"
       >
         <Button
           className="z-[70] fixed left-3 top-3 p-3.5 bg-black/50 text-white rounded-full hover:bg-neutral-500/90"
