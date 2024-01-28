@@ -15,7 +15,7 @@ export default function ListItem(props: Props) {
   return (
     <Link
       href={{
-        pathname: `/dashboard/user/${creator.handle}/lists/${encodeURIComponent(formattedUri)}`,
+        pathname: `/dashboard/user/${creator.handle}/lists/${formattedUri}`,
         query: { uri: uri },
       }}
       className="flex flex-col gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"

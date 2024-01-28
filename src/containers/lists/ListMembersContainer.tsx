@@ -69,7 +69,9 @@ export default function ListMembersContainer(props: Props) {
       )}
       {isFetchingNextPage && <LoadingSpinner />}
       {error && (
-        <FeedAlert variant="badResponse" message="Something went wrong" />
+        <div className="border-t">
+          <FeedAlert variant="badResponse" message="Something went wrong" />
+        </div>
       )}
       <div ref={ref} />
     </section>
