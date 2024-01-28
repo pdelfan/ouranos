@@ -60,7 +60,7 @@ export default function ListMembersContainer(props: Props) {
             ))}
       </section>
       {profiles?.pages[0].items.length === 0 && (
-        <div className="mx-3 border-t md:mx-0">
+        <div className="border-t">
           <FeedAlert variant="empty" message="No members found" />
         </div>
       )}

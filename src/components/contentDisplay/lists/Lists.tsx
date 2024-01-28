@@ -55,7 +55,7 @@ export default function Lists() {
           ))}
       </section>
       {isEmpty && !hasNextPage && (
-        <div className="mx-3 border-t md:mx-0">
+        <div className="border-t">
           <FeedAlert variant="empty" message="No lists found" />
         </div>
       )}
