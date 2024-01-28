@@ -1,4 +1,4 @@
-import UserPostsConatiner from "@/containers/UserPostsContainer";
+import UserPostsConatiner from "@/containers/posts/UserPostsContainer";
 import { getSessionFromServer } from "@/lib/api/auth/session";
 import { redirect } from "next/navigation";
 

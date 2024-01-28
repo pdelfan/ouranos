@@ -7,6 +7,8 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Image from "next/image";
 import Link from "next/link";
+import NavItem from "../navbar/NavItem";
+import { BiCog, BiSolidCog } from "react-icons/bi";
 
 interface Props {
   profile: ProfileViewDetailed;
@@ -19,7 +21,7 @@ export default function TopBar(props: Props) {
 
   return (
     <div
-      className="flex justify-between bg-white border-b px-3 py-2.5 sticky md:hidden top-0 z-50 ease-linear transition-all"
+      className="sticky top-0 z-50 flex items-center justify-between border-b bg-white px-3 py-2.5 transition-all ease-linear md:hidden"
       style={{
         opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
         transform: canUpdate ? `translateY(-${val ?? 0}%)` : "translateY(-0%)",
@@ -37,7 +39,9 @@ export default function TopBar(props: Props) {
       >
         <Image src="/logo.svg" alt="Ouranos logo" width={100} height={100} />
       </Button>
-      <SignOut iconOnly={true} />
+      <Link href="/dashboard/settings">
+        <BiCog className="text-2xl text-neutral-500 md:text-3xl" />
+      </Link>
     </div>
   );
 }

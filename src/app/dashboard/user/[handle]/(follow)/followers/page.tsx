@@ -1,4 +1,4 @@
-import FollowersContainer from "@/containers/FollowersContainer";
+import FollowersContainer from "@/containers/users/FollowersContainer";
 
 interface Props {
   params: {
@@ -16,7 +16,7 @@ export default function Page(props: Props) {
         <h3 className="text-lg text-neutral-500">@{handle}</h3>
       </div>
 
-      <section className="flex flex-col mt-2">
+      <section className="mt-2 flex flex-col">
         <FollowersContainer handle={handle} />
       </section>
     </section>

@@ -10,7 +10,7 @@ import ToastProvider from "./providers/toast";
 import { ScrollProvider } from "./providers/scroll";
 import { getSessionFromServer } from "@/lib/api/auth/session";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ouranos",
@@ -31,7 +31,7 @@ export default async function RootLayout({
         {/* for making the page fullscreen on iOS when added to home */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
-      <body className={`${inter.variable}`}>
+      <body className={inter.className}>
         <SessionProvider session={session}>
           <ScrollProvider>
             <QueryProvider>

@@ -1,5 +1,5 @@
-import FeedContainer from "@/containers/FeedContainer";
+import FeedContainer from "@/containers/posts/FeedContainer";
 
 export default function Home() {
-  return <FeedContainer feed="timeline" />;
+  return <FeedContainer feed="timeline" mode="feed" />;
 }

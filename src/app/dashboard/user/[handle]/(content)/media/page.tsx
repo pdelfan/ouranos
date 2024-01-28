@@ -1,4 +1,4 @@
-import UserPostsConatiner from "@/containers/UserPostsContainer";
+import UserPostsConatiner from "@/containers/posts/UserPostsContainer";
 
 interface Props {
   params: {

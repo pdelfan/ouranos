@@ -6,10 +6,11 @@ import { useScrollContext } from "@/app/providers/scroll";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import { useQuery } from "@tanstack/react-query";
-import { BiCloud, BiCog, BiHome, BiSolidCloud, BiSolidCog, BiSolidHome } from "react-icons/bi";
+import { BiCloud, BiHome, BiSolidCloud, BiSolidHome } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaRegBell } from "react-icons/fa6";
 import { FaBell } from "react-icons/fa";
+import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 
 export default function AppBar() {
   const pathname = usePathname();
@@ -28,7 +29,7 @@ export default function AppBar() {
 
   return (
     <nav
-      className="flex justify-between pb-8 pt-1 px-6 border-t gap-6 fixed bottom-0 z-40 w-full md:hidden bg-white overflow-auto ease-linear transition-all"
+      className="fixed bottom-0 z-40 flex w-full justify-between gap-6 overflow-auto border-t bg-white px-6 pb-8 pt-1 transition-all ease-linear md:hidden"
       style={{
         opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
         transform: canUpdate ? `translateY(${val ?? 0}%)` : "translateY(0%)",
@@ -57,20 +58,20 @@ export default function AppBar() {
       />
 
       <NavItem
+        href="/dashboard/lists"
+        icon={<HiOutlineClipboardList className="text-2xl md:text-3xl" />}
+        activeIcon={<HiClipboardList className="text-2xl md:text-3xl" />}
+        title="Lists"
+        isActive={pathname === "/dashboard/lists"}
+      />
+
+      <NavItem
         href="/dashboard/notifications"
         icon={<FaRegBell className="text-2xl md:text-3xl" />}
         activeIcon={<FaBell className="text-2xl md:text-3xl" />}
         title="Notifications"
         isActive={pathname.includes("notifications")}
         badge={notificationsCount ?? 0}
-      />
-
-      <NavItem
-        href="/dashboard/settings"
-        icon={<BiCog className="text-2xl md:text-3xl" />}
-        activeIcon={<BiSolidCog className="text-2xl md:text-3xl" />}
-        title="Settings"
-        isActive={pathname.includes("settings")}
       />
     </nav>
   );

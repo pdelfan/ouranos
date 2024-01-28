@@ -13,10 +13,11 @@ import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   feed: string;
+  mode: "feed" | "list";
 }
 
 export default function FeedContainer(props: Props) {
-  const { feed } = props;
+  const { feed, mode } = props;
   const {
     observerRef,
     refetchFeed,
@@ -27,7 +28,10 @@ export default function FeedContainer(props: Props) {
     isFetchingFeed,
     isFetchingFeedNextPage,
     feedHasNextPage,
-  } = useFeed(feed);
+  } = useFeed({
+    feed: feed,
+    mode: mode,
+  });
 
   const isEmpty =
     !isFetchingFeed &&
@@ -53,9 +57,9 @@ export default function FeedContainer(props: Props) {
         feedFilter &&
         feedData.pages.map((page, i) => (
           <div key={i}>
-            {page.data.feed
+            {page?.data.feed
               .filter((f) =>
-                feed === "timeline" ? filterFeed(f, feedFilter) : true
+                feed === "timeline" ? filterFeed(f, feedFilter) : true,
               )
               .map((post, j) => (
                 <PostContainer

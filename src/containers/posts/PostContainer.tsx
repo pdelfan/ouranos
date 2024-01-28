@@ -3,7 +3,7 @@
 import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import { ContentFilterResult } from "../../types/feed";
+import { ContentFilterResult } from "../../../types/feed";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -18,7 +18,7 @@ export default function PostContainer(props: Props) {
   };
 
   return (
-    <div className="flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t-0 last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+    <div className="flex flex-col justify-between border border-x-0 p-3 first:border-t-0 last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       {parent?.post && (
         <FeedPost
           post={parent}

@@ -1,4 +1,4 @@
-import FeedContainer from "@/containers/FeedContainer";
+import FeedContainer from "@/containers/posts/FeedContainer";
 
 interface Props {
   searchParams: {
@@ -9,5 +9,5 @@ interface Props {
 export default function Feed(props: Props) {
   const { searchParams } = props;
 
-  return <FeedContainer feed={searchParams.uri} />;
+  return <FeedContainer feed={searchParams.uri} mode="feed" />;
 }
