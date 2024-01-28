@@ -3,30 +3,34 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-color: #ffffff;
-  }
+    :root {
+        --foreground-rgb: 0, 0, 0;
+        --background-color: #ffffff;
+    }
 
-  body {
-    box-sizing: border-box;
-    font-family: "Inter", -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    background-color: var(--background-color);
-  }
+    body {
+        box-sizing: border-box;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        background-color: var(--background-color);
+    }
 }
 
 @layer utilities {
-  /* hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+    /* hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
 
-  /* hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+    /* hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 }

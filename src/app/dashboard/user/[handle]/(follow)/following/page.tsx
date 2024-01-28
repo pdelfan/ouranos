@@ -1,4 +1,4 @@
-import FollowingContainer from "@/containers/FollowingContainer";
+import FollowingContainer from "@/containers/users/FollowingContainer";
 
 interface Props {
   params: {
@@ -15,7 +15,7 @@ export default function Page(props: Props) {
         <h2 className="text-2xl font-semibold">Following</h2>
         <h3 className="text-lg text-neutral-500">@{handle}</h3>
       </div>
-      <section className="flex flex-col mt-2">
+      <section className="mt-2 flex flex-col">
         <FollowingContainer handle={handle} />
       </section>
     </section>

@@ -16,7 +16,7 @@ export const getPopularFeeds = async (search?: string) => {
 };
 
 export const getSavedFeeds = async (
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ): Promise<SavedFeed[]> => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.app.bsky.actor.getPreferences();
@@ -25,7 +25,7 @@ export const getSavedFeeds = async (
   const feedsPref = prefs.data.preferences.find(
     (pref) =>
       AppBskyActorDefs.isSavedFeedsPref(pref) &&
-      AppBskyActorDefs.validateSavedFeedsPref(pref).success
+      AppBskyActorDefs.validateSavedFeedsPref(pref).success,
   ) as AppBskyActorDefs.SavedFeedsPref | undefined;
 
   if (!feedsPref || feedsPref.saved.length === 0) return [];
@@ -105,7 +105,7 @@ export const getTimeline = async (agent: BskyAgent, cursor?: string) => {
 export const getFeed = async (
   agent: BskyAgent,
   uri: string,
-  cursor: string
+  cursor: string,
 ) => {
   const feed = await agent.app.bsky.feed.getFeed({ feed: uri, cursor: cursor });
   return feed;
@@ -120,7 +120,7 @@ export const getFeedInfo = async (agent: BskyAgent, uri: string) => {
 export const getUserPosts = async (
   agent: BskyAgent,
   handle: string,
-  cursor: string
+  cursor: string,
 ) => {
   const posts = await agent.getAuthorFeed({
     actor: handle,
@@ -135,7 +135,7 @@ export const getUserPosts = async (
 export const getUserReplyPosts = async (
   agent: BskyAgent,
   handle: string,
-  cursor: string
+  cursor: string,
 ) => {
   const posts = await agent.getAuthorFeed({
     actor: handle,
@@ -150,7 +150,7 @@ export const getUserReplyPosts = async (
 export const getUserMediaPosts = async (
   agent: BskyAgent,
   handle: string,
-  cursor: string
+  cursor: string,
 ) => {
   const posts = await agent.getAuthorFeed({
     actor: handle,
@@ -165,7 +165,7 @@ export const getUserMediaPosts = async (
 export const getUserLikes = async (
   agent: BskyAgent,
   handle: string,
-  cursor: string
+  cursor: string,
 ) => {
   if (!agent) agent = await getAgent();
   const likes = await agent.api.app.bsky.feed.getActorLikes({
@@ -244,7 +244,7 @@ export const getPostThread = async (agent: BskyAgent, uri: string) => {
 export const getPostLikes = async (
   agent: BskyAgent,
   uri: string,
-  cursor: string
+  cursor: string,
 ) => {
   try {
     const likes = await agent.getLikes({ uri: uri, cursor: cursor, limit: 50 });
@@ -257,7 +257,7 @@ export const getPostLikes = async (
 export const getPostReposts = async (
   agent: BskyAgent,
   uri: string,
-  cursor: string
+  cursor: string,
 ) => {
   try {
     const likes = await agent.getRepostedBy({

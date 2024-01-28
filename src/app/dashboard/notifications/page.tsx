@@ -1,10 +1,10 @@
-import NotificationsContainer from "@/containers/NotificationsContainer";
+import NotificationsContainer from "@/containers/notifications/NotificationsContainer";
 
 export default function Page() {
   return (
     <section className="flex flex-col gap-5">
       <section>
-        <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+        <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">
           Notifications
         </h2>
         <NotificationsContainer />

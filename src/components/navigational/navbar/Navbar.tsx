@@ -18,6 +18,7 @@ import {
 } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
+import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -59,7 +60,13 @@ export default function Navbar() {
         isActive={pathname === "/dashboard/feeds"}
         className="sm:m-0"
       />
-
+      <NavItem
+        href="/dashboard/lists"
+        icon={<HiOutlineClipboardList className="text-2xl md:text-3xl" />}
+        activeIcon={<HiClipboardList className="text-2xl md:text-3xl" />}
+        title="Lists"
+        isActive={pathname === "/dashboard/lists"}
+      />
       <NavItem
         href="/dashboard/notifications"
         icon={<FaRegBell className="text-2xl md:text-3xl" />}

@@ -1,5 +1,5 @@
 import FeedHeader from "@/components/contentDisplay/feedHeader/FeedHeader";
-import FeedContainer from "@/containers/FeedContainer";
+import FeedContainer from "@/containers/posts/FeedContainer";
 
 interface Props {
   searchParams: {
@@ -13,7 +13,7 @@ export default function Page(props: Props) {
   return (
     <>
       <FeedHeader feed={searchParams.uri} />
-      <FeedContainer feed={searchParams.uri} />
+      <FeedContainer feed={searchParams.uri} mode="feed" />
     </>
   );
 }
