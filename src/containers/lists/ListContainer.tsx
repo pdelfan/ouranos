@@ -19,6 +19,7 @@ export default function ListContainer(props: Props) {
 
   return (
     <section>
+      <p>{uri}</p>
       <ListHeader list={uri} />
       <div
         role="tablist"
