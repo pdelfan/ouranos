@@ -55,8 +55,12 @@ export default function Lists() {
           ))}
       </section>
       {isEmpty && !hasNextPage && (
-        <div className="border-t">
-          <FeedAlert variant="empty" message="No lists found" />
+        <div className="mx-3 md:mx-0">
+          <FeedAlert
+            variant="empty"
+            message="You have no lists"
+            standalone={true}
+          />
         </div>
       )}
       {isFetching && !isFetchingNextPage && <ListsSkeleton />}
