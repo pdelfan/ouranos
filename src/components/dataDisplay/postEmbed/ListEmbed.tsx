@@ -22,14 +22,14 @@ export default function ListEmbed(props: Props) {
   return (
     <>
       {depth < 1 && (
-        <Link
-          href={{
-            pathname: `/dashboard/user/${list.creator.handle}/lists/${encodeURIComponent(formattedUri)}`,
-            query: { uri: list.uri },
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+        <div
+          // href={{
+          //   pathname: `/dashboard/user/${list.creator.handle}/lists/${encodeURIComponent(formattedUri)}`,
+          //   query: { uri: list.uri },
+          // }}
+          // onClick={(e) => {
+          //   e.stopPropagation();
+          // }}
           className="mt-2 block cursor-pointer rounded-xl border bg-white p-3 hover:brightness-95"
         >
           <div className="flex items-start gap-2">
@@ -44,7 +44,7 @@ export default function ListEmbed(props: Props) {
               <p className="break-all">{list.description}</p>
             </div>
           </div>
-        </Link>
+        </div>
       )}
     </>
   );
