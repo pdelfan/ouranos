@@ -6,7 +6,7 @@ interface Props {
   };
 }
 
-export default function Feed(props: Props) {
+export default function Page(props: Props) {
   const { searchParams } = props;
 
   return <FeedContainer feed={searchParams.uri} mode="feed" />;
