@@ -56,13 +56,13 @@ export default function AppBar() {
         title="Feeds"
         isActive={pathname === "/dashboard/feeds"}
       />
-      {/* <NavItem
+      <NavItem
         href="/dashboard/lists"
         icon={<HiOutlineClipboardList className="text-2xl md:text-3xl" />}
         activeIcon={<HiClipboardList className="text-2xl md:text-3xl" />}
         title="Lists"
         isActive={pathname === "/dashboard/lists"}
-      /> */}
+      />
       <NavItem
         href="/dashboard/notifications"
         icon={<FaRegBell className="text-2xl md:text-3xl" />}

@@ -60,13 +60,13 @@ export default function Navbar() {
         isActive={pathname === "/dashboard/feeds"}
         className="sm:m-0"
       />
-      {/* <NavItem
+      <NavItem
         href="/dashboard/lists"
         icon={<HiOutlineClipboardList className="text-2xl md:text-3xl" />}
         activeIcon={<HiClipboardList className="text-2xl md:text-3xl" />}
         title="Lists"
         isActive={pathname === "/dashboard/lists"}
-      /> */}
+      />
       <NavItem
         href="/dashboard/notifications"
         icon={<FaRegBell className="text-2xl md:text-3xl" />}
