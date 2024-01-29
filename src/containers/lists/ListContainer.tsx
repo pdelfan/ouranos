@@ -4,7 +4,6 @@ import ListHeader from "@/components/contentDisplay/listHeader/ListHeader";
 import FeedContainer from "../posts/FeedContainer";
 import { useState } from "react";
 import ListMembersContainer from "./ListMembersContainer";
-import { useSearchParams } from "next/navigation";
 
 interface Props {
   uri: string;
@@ -13,9 +12,6 @@ interface Props {
 export default function ListContainer(props: Props) {
   const { uri } = props;
   const [currenTab, setCurrentTab] = useState<"posts" | "members">("posts");
-  const searchParams = useSearchParams();
-  const uriLookedUp = searchParams.get("uri");
-  console.log("uri received using searchPrams hooks:", uriLookedUp);
 
   const handleTabChange = (tab: "posts" | "members") => {
     setCurrentTab(tab);

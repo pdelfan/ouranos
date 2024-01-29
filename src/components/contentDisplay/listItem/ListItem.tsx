@@ -23,8 +23,7 @@ export default function ListItem(props: Props) {
       }}
       className="flex flex-col gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <>{uri}</>
+      <div className="flex flex-wrap items-center justify-between gap-3">        
         <div className="flex flex-wrap items-center gap-3">
           <Image
             src={avatar ?? FallbackList}
