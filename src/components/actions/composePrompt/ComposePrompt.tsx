@@ -33,8 +33,8 @@ export default function ComposePrompt(props: Props) {
           },
         });
       }}
-      className={`flex items-center w-full gap-3 px-3 py-2 hover:bg-neutral-50 ${
-        rounded ? "border rounded-b-2xl" : "border-x border-t"
+      className={`flex items-center w-full gap-3 px-3 py-2 border-x-0 md:border-x hover:bg-neutral-50 ${
+        rounded ? "border md:rounded-b-2xl" : "border-t"
       }`}
     >
       <Avatar src={avatar} />
