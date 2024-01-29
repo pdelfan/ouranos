@@ -35,6 +35,11 @@ export default function ProfileTabs() {
             isActive={pathname === `${basePath}/likes`}
           />
         )}
+        <TabItem
+          label="Lists"
+          path={`${basePath}/lists`}
+          isActive={pathname === `${basePath}/lists`}
+        />
       </Tabs>
     </div>
   );

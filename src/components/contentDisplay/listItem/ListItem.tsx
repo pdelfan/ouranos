@@ -7,10 +7,11 @@ import FallbackList from "@/assets/images/fallbackList.png";
 
 interface Props {
   list: ListView;
+  rounded?: boolean;
 }
 
 export default function ListItem(props: Props) {
-  const { list } = props;
+  const { list, rounded = true } = props;
   const { avatar, name, description, creator, uri, viewer, indexedAt } = list;
 
   return (
@@ -21,9 +22,11 @@ export default function ListItem(props: Props) {
         )}`,
         query: { uri: uri },
       }}
-      className="flex flex-col gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+      className={`flex flex-col gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x ${
+        rounded ? "md:first:rounded-t-2xl first:border-t" : "first:border-t-0"
+      } md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0`}
     >
-      <div className="flex flex-wrap items-center justify-between gap-3">        
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-3">
           <Image
             src={avatar ?? FallbackList}

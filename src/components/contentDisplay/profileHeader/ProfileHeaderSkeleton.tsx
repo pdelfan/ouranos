@@ -15,6 +15,7 @@ function TabsSkeleton() {
       <Skeleton />
       <Skeleton />
       <Skeleton />
+      <Skeleton />
     </div>
   );
 }
