@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "List",
 };
 
-export default function FeedLayout({
+export default function ListsLayout({
   children,
 }: {
   children: React.ReactNode;

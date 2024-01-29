@@ -1,3 +1,5 @@
+"use client";
+
 import { ListView } from "@atproto/api/dist/client/types/app/bsky/graph/defs";
 import Image from "next/image";
 import Link from "next/link";
