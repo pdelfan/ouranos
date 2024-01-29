@@ -4,6 +4,7 @@ import ListHeader from "@/components/contentDisplay/listHeader/ListHeader";
 import FeedContainer from "../posts/FeedContainer";
 import { useState } from "react";
 import ListMembersContainer from "./ListMembersContainer";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   uri: string;
@@ -12,6 +13,9 @@ interface Props {
 export default function ListContainer(props: Props) {
   const { uri } = props;
   const [currenTab, setCurrentTab] = useState<"posts" | "members">("posts");
+  const searchParams = useSearchParams();
+  const uriLookedUp = searchParams.get("uri");
+  console.log("uri received using searchPrams hooks:", uriLookedUp);
 
   const handleTabChange = (tab: "posts" | "members") => {
     setCurrentTab(tab);
@@ -23,7 +27,9 @@ export default function ListContainer(props: Props) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className={`no-scrollbar flex flex-nowrap gap-3 overflow-auto border border-t-0 ${currenTab === "posts" ? "border-b" : "border-b-0"} px-3 pt-3`}
+        className={`no-scrollbar flex flex-nowrap gap-3 overflow-auto border border-t-0 ${
+          currenTab === "posts" ? "border-b" : "border-b-0"
+        } px-3 pt-3`}
       >
         <button
           role="tab"
