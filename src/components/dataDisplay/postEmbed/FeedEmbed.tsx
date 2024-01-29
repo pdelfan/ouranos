@@ -3,7 +3,6 @@ import { AppBskyFeedDefs } from "@atproto/api";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
 import { BiSolidHeart } from "react-icons/bi";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 interface Props {
   feed: AppBskyFeedDefs.GeneratorView;
@@ -12,7 +11,6 @@ interface Props {
 
 export default function FeedEmbed(props: Props) {
   const { feed, depth } = props;
-  const router = useRouter();
 
   return (
     <>

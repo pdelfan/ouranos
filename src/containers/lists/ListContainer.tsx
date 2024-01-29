@@ -23,7 +23,9 @@ export default function ListContainer(props: Props) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className={`no-scrollbar flex flex-nowrap gap-3 overflow-auto border border-t-0 ${currenTab === "posts" ? "border-b" : "border-b-0"} px-3 pt-3`}
+        className={`no-scrollbar flex flex-nowrap gap-3 overflow-auto border border-t-0 ${
+          currenTab === "posts" ? "border-b" : "border-b-0"
+        } px-3 pt-3`}
       >
         <button
           role="tab"
