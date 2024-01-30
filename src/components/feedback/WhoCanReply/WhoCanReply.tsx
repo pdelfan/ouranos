@@ -109,7 +109,7 @@ export default function WhoCanReply(props: Props) {
           <BiMessageRoundedEdit className=" text-xl text-white" />
         </div>
         <div className="flex flex-col">
-          <span className="font-medium">
+          <span className="font-medium text-neutral-800">
             {canReply ? "You can reply" : "Who can reply?"}
           </span>
           {getLabel()}
