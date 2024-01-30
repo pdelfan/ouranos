@@ -31,15 +31,15 @@ export default function ThreadPost(props: Props) {
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))
       ?.message ?? "Marked content";
   const visibility = adultContentFilters.find((f) =>
-    f.values.includes(label || embedLabel)
+    f.values.includes(label || embedLabel),
   )?.visibility;
 
   const [hidden, setHidden] = useState(
     isAdultContentHidden
       ? true
       : visibility === "hide" || visibility === "warn"
-      ? true
-      : false
+        ? true
+        : false,
   );
 
   const router = useRouter();
@@ -55,7 +55,7 @@ export default function ThreadPost(props: Props) {
   return (
     <article
       ref={threadPostRef}
-      className="p-3 md:border-x border-t last:border-b md:last:rounded-b-2xl"
+      className="border-t p-3 last:border-b md:border-x md:last:rounded-b-2xl"
     >
       <div className="relative flex items-start gap-3">
         <button
@@ -67,7 +67,7 @@ export default function ThreadPost(props: Props) {
         >
           <Avatar src={author.avatar} size="md" />
         </button>
-        <div className="flex flex-col grow">
+        <div className="flex grow flex-col">
           <div className="flex flex-col">
             <Link
               href={`/dashboard/user/${author.handle}`}
@@ -76,11 +76,11 @@ export default function ThreadPost(props: Props) {
               }}
               className="flex gap-1"
             >
-              <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700 hover:text-neutral-500">
+              <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-500">
                 {author.displayName ?? author.handle}{" "}
               </span>
             </Link>
-            <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+            <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
               @{author.handle}
             </span>
           </div>
@@ -103,7 +103,7 @@ export default function ThreadPost(props: Props) {
         {!hidden && (
           <>{post.embed && <PostEmbed content={post.embed} depth={0} />}</>
         )}
-        <div className="mt-3 text-neutral-400 font-medium">
+        <div className="mt-3 font-medium text-neutral-400">
           {getFormattedDate(post.indexedAt)}
         </div>
       </div>

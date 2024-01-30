@@ -18,6 +18,7 @@ import RepliesContainer from "./RepliesContainer";
 import ParentContainer from "./ParentContainer";
 import { sortThread } from "@/lib/utils/feed";
 import ComposePrompt from "@/components/actions/composePrompt/ComposePrompt";
+import WhoCanReply from "@/components/feedback/WhoCanReply/WhoCanReply";
 
 interface Props {
   id: string;
@@ -62,10 +63,10 @@ export default function PostThreadContainer(props: Props) {
   ) {
     return (
       <>
-        <div className="md:border  md:border-x md:rounded-t-2xl">
-          <h2 className="text-xl text-center font-semibold px-3 py-2">Post</h2>
+        <div className="md:rounded-t-2xl  md:border md:border-x">
+          <h2 className="px-3 py-2 text-center text-xl font-semibold">Post</h2>
         </div>
-        <section className="border border-t-0 md:rounded-b-2xl p-3">
+        <section className="border border-t-0 p-3 md:rounded-b-2xl">
           {AppBskyFeedDefs.isBlockedPost(thread) && <BlockedEmbed depth={0} />}
           {AppBskyFeedDefs.isNotFoundPost(thread) && (
             <NotFoundEmbed depth={0} />
@@ -80,7 +81,7 @@ export default function PostThreadContainer(props: Props) {
               standalone={true}
             />
           )}
-          <div className="flex justify-center mt-3">
+          <div className="mt-3 flex justify-center">
             <Button onClick={() => router.push("/dashboard/home")}>
               Go Home
             </Button>
@@ -92,8 +93,8 @@ export default function PostThreadContainer(props: Props) {
 
   return (
     <>
-      <div className="md:border md:border-b-0 border-b-0 md:border-x md:rounded-t-2xl">
-        <h2 className="text-xl text-center font-semibold px-3 py-2">Post</h2>
+      <div className="border-b-0 md:rounded-t-2xl md:border md:border-x md:border-b-0">
+        <h2 className="px-3 py-2 text-center text-xl font-semibold">Post</h2>
       </div>
 
       {(isFetching || isLoading) && <FeedPostSkeleton />}
@@ -108,6 +109,7 @@ export default function PostThreadContainer(props: Props) {
       {thread && contentFilter && (
         <>
           <ThreadPost post={thread?.post as PostView} filter={contentFilter} />
+          <WhoCanReply post={thread?.post as PostView} />
           <ComposePrompt
             avatar={viewerAvatar}
             post={thread?.post as PostView}
@@ -123,7 +125,7 @@ export default function PostThreadContainer(props: Props) {
           .sort((a, b) => sortThread(a[0], b[0], threadPreferences))
           .map((replyArr, i) => (
             <div
-              className="p-3 border border-x-0 md:border-x first:border-t-0 last:border-b md:last:rounded-b-2xl even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0"
+              className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
               key={i}
             >
               <RepliesContainer

@@ -1,4 +1,5 @@
 import { JSONContent } from "@tiptap/react";
+import { AppBskyFeedThreadgate } from "@atproto/api";
 
 export function getHandle(mention: string) {
   return mention.slice(1);

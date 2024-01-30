@@ -81,3 +81,6 @@ export type Thread =
       $type: string;
     }
   | undefined;
+
+export type ThreadgateSetting = "nobody" | "mention" | "following";
+// | { type: "list"; list: string };

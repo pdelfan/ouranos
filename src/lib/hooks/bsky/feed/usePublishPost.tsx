@@ -7,6 +7,7 @@ import {
   AppBskyEmbedImages,
   AppBskyEmbedRecord,
   AppBskyEmbedRecordWithMedia,
+  AppBskyFeedThreadgate,
   AtUri,
   ComAtprotoLabelDefs,
   RichText,
@@ -17,6 +18,7 @@ import { detectLanguage, jsonToText } from "@/lib/utils/text";
 import { compressImage } from "@/lib/utils/image";
 import { JSONContent } from "@tiptap/react";
 import toast from "react-hot-toast";
+import { ThreadgateSetting } from "../../../../../types/feed";
 
 interface Props {
   text: JSONContent;
@@ -26,10 +28,20 @@ interface Props {
   languages: string[];
   images?: UploadImage[];
   label: string;
+  threadGate: ThreadgateSetting[];
 }
 
 export default function usePublishPost(props: Props) {
-  const { text, linkCard, replyTo, quote, languages, images, label } = props;
+  const {
+    text,
+    linkCard,
+    replyTo,
+    quote,
+    languages,
+    images,
+    label,
+    threadGate,
+  } = props;
   const agent = useAgent();
   const queryClient = useQueryClient();
   const MAX_POST_LENGTH = 300;
@@ -42,7 +54,7 @@ export default function usePublishPost(props: Props) {
 
       if (richText.graphemeLength > MAX_POST_LENGTH) {
         throw new Error(
-          "Post length exceeds the maximum length of 300 characters"
+          "Post length exceeds the maximum length of 300 characters",
         );
       }
 
@@ -117,7 +129,7 @@ export default function usePublishPost(props: Props) {
               new Uint8Array(await blob.arrayBuffer()),
               {
                 encoding: blob.type,
-              }
+              },
             );
 
             embedImages.images.push({
@@ -179,13 +191,13 @@ export default function usePublishPost(props: Props) {
               try {
                 const image = await fetch(linkCard.image);
                 const blob = await compressImage(
-                  (await image.blob()) as UploadImage
+                  (await image.blob()) as UploadImage,
                 );
                 const uploaded = await agent.uploadBlob(
                   new Uint8Array(await blob.arrayBuffer()),
                   {
                     encoding: blob.type,
-                  }
+                  },
                 );
                 embedExternal.external.thumb = uploaded.data.blob;
               } catch (e) {
@@ -201,7 +213,8 @@ export default function usePublishPost(props: Props) {
         throw new Error("Your post must contain at least some text or image");
       }
 
-      await agent.post({
+      // publish post
+      const result = await agent.post({
         createdAt: new Date().toISOString(),
         text: richText.text,
         facets: richText.facets,
@@ -210,6 +223,31 @@ export default function usePublishPost(props: Props) {
         reply: reply,
         embed: embed,
       });
+
+      // add threadGate
+      if (threadGate.length > 0) {
+        let allow: (
+          | AppBskyFeedThreadgate.MentionRule
+          | AppBskyFeedThreadgate.FollowingRule
+          | AppBskyFeedThreadgate.ListRule
+        )[] = [];
+        if (!threadGate.find((s) => s === "nobody")) {
+          for (const rule of threadGate) {
+            if (rule === "mention") {
+              allow.push({ $type: "app.bsky.feed.threadgate#mentionRule" });
+            } else if (rule === "following") {
+              allow.push({ $type: "app.bsky.feed.threadgate#followingRule" });
+            }
+          }
+        }
+
+        const submittedPost = new AtUri(result.uri);
+
+        await agent.api.app.bsky.feed.threadgate.create(
+          { repo: agent.session!.did, rkey: submittedPost.rkey },
+          { post: result.uri, createdAt: new Date().toISOString(), allow },
+        );
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["timeline"] });

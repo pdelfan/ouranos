@@ -12,7 +12,10 @@ interface Props {
 
 export default function ComposePrompt(props: Props) {
   const { avatar, post, rounded } = props;
+  const canReply = !post.viewer?.replyDisabled ?? false;
   const { openComposer } = useComposerControls();
+
+  if (!canReply) return null;
 
   return (
     <button
@@ -33,7 +36,7 @@ export default function ComposePrompt(props: Props) {
           },
         });
       }}
-      className={`flex items-center w-full gap-3 px-3 py-2 border-x-0 md:border-x hover:bg-neutral-50 ${
+      className={`flex w-full items-center gap-3 border-x-0 px-3 py-2 hover:bg-neutral-50 md:border-x ${
         rounded ? "border md:rounded-b-2xl" : "border-t"
       }`}
     >

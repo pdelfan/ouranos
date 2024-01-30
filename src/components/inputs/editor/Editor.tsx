@@ -19,6 +19,7 @@ import { detectLinksInEditor } from "@/lib/utils/link";
 import LinkCardPrompt from "./LinkCardPrompt";
 import LinkCard from "./LinkCard";
 import usePublishPost from "@/lib/hooks/bsky/feed/usePublishPost";
+import { ThreadgateSetting } from "../../../../types/feed";
 
 interface Props {
   onCancel: () => void;
@@ -28,12 +29,13 @@ interface Props {
 
 export default function Editor(props: Props) {
   const { onCancel, options, author } = props;
-  const { replyTo, onPost, quote, mention } = options ?? {};
+  const { replyTo, quote, mention } = options ?? {};
   const [label, setLabel] = useState("");
+  const [threadGate, setThreadGate] = useState<ThreadgateSetting[]>([]);
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
   const [embedSuggestions, setEmbedSuggestions] = useState<Set<string>>(
-    new Set("")
+    new Set(""),
   );
   const [linkEmbed, setLinkEmbed] = useState("");
   const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
@@ -42,7 +44,7 @@ export default function Editor(props: Props) {
   const quoteAuthor = quote?.author.displayName ?? quote?.author.handle;
   const placeholderText = getComposerPlaceholder(
     replyTo ? "reply" : quote ? "quote" : "post",
-    replyAuthor ?? quoteAuthor
+    replyAuthor ?? quoteAuthor,
   );
 
   const editor = useEditor({
@@ -112,12 +114,13 @@ export default function Editor(props: Props) {
     languages: languages.map((lang) => lang.code),
     images,
     label,
+    threadGate,
   });
 
   if (!editor) return null;
 
   return (
-    <section className="bg-white p-3 bottom-0 z-50 fixed w-full h-full md:max-h-[80svh] md:h-fit md:border-t shadow-2xl rounded-t-3xl overflow-auto animate-fade-up animate-duration-200">
+    <section className="animate-fade-up animate-duration-200 fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl bg-white p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
           onClose={onCancel}
@@ -135,7 +138,7 @@ export default function Editor(props: Props) {
         <div className="mb-3">
           {quote && <QuoteToPreview post={quote} />}
           {embedSuggestions.size > 0 && (
-            <div className="flex flex-col gap-y-3 mb-3">
+            <div className="mb-3 flex flex-col gap-y-3">
               {Array.from(embedSuggestions).map((link) => (
                 <LinkCardPrompt
                   key={link}
@@ -166,6 +169,8 @@ export default function Editor(props: Props) {
           text={editor.getJSON()}
           languages={languages}
           onSelectLanguages={setLanguages}
+          threadGate={threadGate}
+          onUpdateThreadGate={setThreadGate}
           images={images}
           onUpdateImages={setImages}
         />

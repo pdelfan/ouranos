@@ -65,10 +65,10 @@ export default function PostActions(props: Props) {
   if (mode === "thread") {
     return (
       <div>
-        <div className="flex flex-wrap items-center gap-3 mt-3 border-y p-2">
+        <div className="mt-3 flex flex-wrap items-center gap-3 border-y p-2">
           <Link
             href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-              post.uri
+              post.uri,
             )}/reposted-by`}
             className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
           >
@@ -79,7 +79,7 @@ export default function PostActions(props: Props) {
           </Link>
           <Link
             href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-              post.uri
+              post.uri,
             )}/liked-by`}
             className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
           >
@@ -89,8 +89,9 @@ export default function PostActions(props: Props) {
             </span>
           </Link>
         </div>
-        <div className="flex gap-x-8 mt-3">
+        <div className="mt-3 flex gap-x-8">
           <Button
+            disabled={post.viewer?.replyDisabled}
             onClick={(e) => {
               e.stopPropagation();
               const text =
@@ -109,7 +110,7 @@ export default function PostActions(props: Props) {
                 },
               });
             }}
-            className="text-neutral-500 hover:text-primary"
+            className="hover:text-primary text-neutral-500"
           >
             <BiMessageRounded className="text-lg" />
           </Button>
@@ -229,6 +230,7 @@ export default function PostActions(props: Props) {
   return (
     <div className="flex gap-x-8">
       <Button
+        disabled={post.viewer?.replyDisabled}
         onClick={(e) => {
           e.stopPropagation();
 
@@ -248,7 +250,7 @@ export default function PostActions(props: Props) {
             },
           });
         }}
-        className="text-sm font-medium text-neutral-500 hover:text-primary"
+        className="hover:text-primary text-sm font-medium text-neutral-500"
       >
         <BiMessageRounded className="text-lg" />
         {post.replyCount}
