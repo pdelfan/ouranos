@@ -1,4 +1,4 @@
-import { type BskyAgent, AppBskyActorDefs } from "@atproto/api";
+import { type BskyAgent } from "@atproto/api";
 
 export const getLists = async (
   did: string,
@@ -9,6 +9,7 @@ export const getLists = async (
     actor: did,
     cursor: cursor,
   });
+
   if (!lists.success) throw new Error("Could not fetch list");
   return lists.data;
 };
