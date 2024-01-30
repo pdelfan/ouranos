@@ -29,7 +29,6 @@ export default function WhoCanReply(props: Props) {
       );
     }
 
-    let label: ReactElement = <></>;
     const rules = record.allow;
     let mention = false;
     let follow = false;
@@ -104,12 +103,19 @@ export default function WhoCanReply(props: Props) {
 
   return (
     <section
-      className={`bg-primary/20 flex w-full items-center gap-3 border-x-0 border-t px-3 py-2 md:border-x ${rounded && "md:rounded-b-2xl"}`}
+      className={`w-full  border-x-0 border-t p-2 md:border-x ${rounded && "border-y md:rounded-b-2xl"}`}
     >
-      <div className="bg-primary rounded-2xl p-1.5">
-        <BiMessageRoundedEdit className=" text-xl text-white" />
+      <div className="bg-primary/20 flex items-center gap-3 rounded-xl p-2">
+        <div className="bg-primary rounded-2xl p-1.5">
+          <BiMessageRoundedEdit className=" text-xl text-white" />
+        </div>
+        <div className="flex flex-col">
+          <span className="font-medium">
+            {canReply ? "You can reply" : "Who can reply?"}
+          </span>
+          {getLabel()}
+        </div>
       </div>
-      {getLabel()}
     </section>
   );
 }
