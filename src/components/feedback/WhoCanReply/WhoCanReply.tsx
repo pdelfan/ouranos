@@ -1,6 +1,5 @@
 import { AppBskyFeedDefs, AppBskyFeedThreadgate } from "@atproto/api";
 import Link from "next/link";
-import { ReactElement } from "react";
 import { BiMessageRoundedEdit } from "react-icons/bi";
 
 interface Props {
