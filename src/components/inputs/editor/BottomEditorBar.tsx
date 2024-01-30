@@ -10,6 +10,8 @@ import { BiUpload } from "react-icons/bi";
 import UploadPreview from "./UploadPreview";
 import { RichText } from "@atproto/api";
 import { jsonToText } from "@/lib/utils/text";
+import ThreadGatePicker from "./ThreadGatePicker";
+import { ThreadgateSetting } from "../../../../types/feed";
 
 interface Props {
   editor: Editor;
@@ -20,6 +22,8 @@ interface Props {
   onUpdateImages: React.Dispatch<
     React.SetStateAction<UploadImage[] | undefined>
   >;
+  threadGate: ThreadgateSetting[];
+  onUpdateThreadGate: React.Dispatch<React.SetStateAction<ThreadgateSetting[]>>;
   onSelectLabel: React.Dispatch<React.SetStateAction<string>>;
   onSelectLanguages: React.Dispatch<React.SetStateAction<Language[]>>;
 }
@@ -31,7 +35,9 @@ export default function BottomEditorBar(props: Props) {
     label,
     languages,
     images,
+    threadGate,
     onUpdateImages,
+    onUpdateThreadGate,
     onSelectLabel,
     onSelectLanguages,
   } = props;
@@ -53,7 +59,7 @@ export default function BottomEditorBar(props: Props) {
           ...files.slice(0, 4).map((file) =>
             Object.assign(file, {
               url: URL.createObjectURL(file),
-            })
+            }),
           ),
         ];
         onUpdateImages(updatedImages);
@@ -70,10 +76,14 @@ export default function BottomEditorBar(props: Props) {
             selectedLabel={label}
             disabled={!images || images.length === 0}
           />
+          <ThreadGatePicker
+            onUpdate={onUpdateThreadGate}
+            selected={threadGate}
+          />
           <ImagePicker onShow={setShowDropzone} />
           {/* <LinkPicker editor={editor} /> */}
         </div>
-        <div className="flex flex-wrap just gap-x-5 gap-y-2">
+        <div className="just flex flex-wrap gap-x-5 gap-y-2">
           <LanguagePicker
             languages={languages}
             onSelectLanguages={onSelectLanguages}
@@ -88,10 +98,10 @@ export default function BottomEditorBar(props: Props) {
         <div
           {...getRootProps()}
           className={`
-            cursor-pointer p-6 rounded-2xl border text-center hover:bg-neutral-50 animate-fade animate-duration-200
+            animate-fade animate-duration-200 cursor-pointer rounded-2xl border p-6 text-center hover:bg-neutral-50
             ${
               isDragActive &&
-              "bg-neutral-50 border-neutral-200 ring-2 ring-primary"
+              "ring-primary border-neutral-200 bg-neutral-50 ring-2"
             }
           `}
         >
