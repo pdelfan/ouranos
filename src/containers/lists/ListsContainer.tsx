@@ -4,6 +4,7 @@ import ListItem from "@/components/contentDisplay/listItem/ListItem";
 import ListsSkeleton from "@/components/contentDisplay/lists/ListsSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import { getProfile } from "@/lib/api/bsky/actor";
 import { getLists } from "@/lib/api/bsky/list";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -28,7 +29,11 @@ export default function ListsContainer(props: Props) {
     fetchNextPage,
   } = useInfiniteQuery({
     queryKey: ["user lists", handle],
-    queryFn: ({ pageParam }) => getLists(handle, pageParam, agent),
+    queryFn: async ({ pageParam }) => {
+      const profile = await getProfile(handle, agent);
+      if (!profile) throw new Error("Could not get user id to show lists");
+      return getLists(profile.did, pageParam, agent);
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
