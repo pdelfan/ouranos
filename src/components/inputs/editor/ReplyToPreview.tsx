@@ -2,6 +2,7 @@ import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import { ComposerOptionsPostRef } from "@/app/providers/composer";
 import Image from "next/image";
 import { useState } from "react";
+import Threadline from "@/components/dataDisplay/threadLine/ThreadLine";
 
 interface Props {
   post: ComposerOptionsPostRef;
@@ -23,22 +24,22 @@ export default function ReplyToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="flex items-start gap-3 p-2 mt-3  rounded-2xl relative cursor-pointer"
+      className="relative mt-3 flex cursor-pointer items-start  gap-3 rounded-2xl p-2"
     >
-      <div className="absolute left-8 top-0 mt-5 z-10 h-full border-l-2" />
+      <Threadline className="left-8 mt-5" />
       <Image
         src={author.avatar ?? FallbackAvatar}
         alt="Avatar"
         width={50}
         height={50}
-        className="rounded-full z-50"
+        className="z-50 rounded-full"
       />
       <div className="flex flex-col">
         <div className="flex gap-1">
-          <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
+          <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
             {author.displayName ?? author.handle}
           </span>
-          <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+          <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
             @{author.handle}
           </span>
         </div>

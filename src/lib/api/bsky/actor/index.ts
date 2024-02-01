@@ -1,4 +1,4 @@
-import {  
+import {
   BskyAgent,
   BskyFeedViewPreference,
   BskyLabelPreference,
@@ -9,7 +9,7 @@ import { ContentFilterLabel } from "../../../../../types/feed";
 
 export const getProfile = async (
   handle: string | undefined,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!handle) return;
   if (!agent) agent = await getAgent();
@@ -29,7 +29,7 @@ export const getSuggestions = async () => {
 export const searchProfiles = async (
   agent: BskyAgent,
   term: string,
-  cursor: string
+  cursor: string,
 ) => {
   try {
     const results = await agent.searchActors({ term, cursor });
@@ -43,7 +43,7 @@ export const searchProfiles = async (
 
 export const searchProfilesTypehead = async (
   agent: BskyAgent,
-  term: string
+  term: string,
 ) => {
   try {
     const results = await agent.searchActorsTypeahead({ term, limit: 5 });
@@ -58,7 +58,7 @@ export const searchProfilesTypehead = async (
 export const searchPosts = async (
   term: string,
   cursor: string,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   try {
@@ -85,7 +85,7 @@ export const getPreferences = async (agent?: BskyAgent) => {
 
 export const updateThreadViewPreferences = async (
   pref: Partial<BskyThreadViewPreference>,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setThreadViewPrefs(pref);
@@ -93,7 +93,7 @@ export const updateThreadViewPreferences = async (
 };
 export const updateHomeFeedPreferences = async (
   pref: Partial<BskyFeedViewPreference>,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setFeedViewPrefs("home", pref);
@@ -102,7 +102,7 @@ export const updateHomeFeedPreferences = async (
 
 export const updateIsAdultContentEnabled = async (
   value: boolean,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setAdultContentEnabled(value);
@@ -112,7 +112,7 @@ export const updateIsAdultContentEnabled = async (
 export const updateContentFilterPreferences = async (
   pref: ContentFilterLabel,
   value: BskyLabelPreference,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setContentLabelPref(pref, value);
@@ -136,12 +136,12 @@ export const unMuteUser = async (did: string, agent?: BskyAgent) => {
 export const blockUser = async (
   viewerDid: string,
   did: string,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   const res = await agent.app.bsky.graph.block.create(
     { repo: viewerDid },
-    { createdAt: new Date().toISOString(), subject: did }
+    { createdAt: new Date().toISOString(), subject: did },
   );
 
   return res;
@@ -150,7 +150,7 @@ export const blockUser = async (
 export const unBlockUser = async (
   viewerDid: string,
   rkey: string,
-  agent?: BskyAgent
+  agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
   await agent.app.bsky.graph.block.delete({ rkey: rkey, repo: viewerDid });
