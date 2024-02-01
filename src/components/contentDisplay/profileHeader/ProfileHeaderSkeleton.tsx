@@ -4,14 +4,14 @@ import SkeletonBanner from "@/assets/images/skeletonBanner.png";
 function Skeleton() {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-gray-200 w-20 h-8 rounded" />
+      <div className="h-8 w-20 rounded bg-gray-200" />
     </div>
   );
 }
 
 function TabsSkeleton() {
   return (
-    <div className="flex flex-nowrap gap-6 px-3 mt-5 overflow-auto no-scrollbar">
+    <div className="no-scrollbar mt-5 flex flex-nowrap gap-6 overflow-auto px-3">
       <Skeleton />
       <Skeleton />
       <Skeleton />
@@ -22,40 +22,40 @@ function TabsSkeleton() {
 
 export default function ProfileHeaderSkeleton() {
   return (
-    <section className="md:border md:rounded-t-2xl overflow-hidden animate-pulse">
+    <section className="animate-pulse overflow-hidden md:rounded-t-2xl md:border">
       <div className="relative">
         <Image
           src={SkeletonBanner}
           alt="Banner"
           width={800}
-          height={191}
-          className="object-cover h-[12rem] animate-pulse"
+          height={192}
+          className="h-40 animate-pulse object-cover md:h-48"
         />
-        <div className="absolute bottom-0 transform translate-y-1/2 px-3">
-          <div className="w-[103px] h-[103px] bg-gray-200 rounded-full border-4 border-white" />
+        <div className="absolute bottom-0 translate-y-1/2 transform px-3">
+          <div className="h-[103px] w-[103px] rounded-full border-4 border-white bg-gray-200" />
         </div>
       </div>
-      <div className="flex mr-3 mt-3">
-        <div className="flex gap-2 ml-auto">
-          <div className="h-9 w-9 bg-gray-200 rounded-full" />
-          <div className="h-9 bg-gray-200 rounded-full w-[100px]" />
+      <div className="mr-3 mt-3 flex">
+        <div className="ml-auto flex gap-2">
+          <div className="h-9 w-9 rounded-full bg-gray-200" />
+          <div className="h-9 w-[100px] rounded-full bg-gray-200" />
         </div>
       </div>
 
       <div className="p-3">
-        <div className="h-6 bg-gray-200 rounded w-2/6 mb-2" />
-        <div className="h-4 bg-gray-200 rounded w-1/2 mb-5" />
-        <div className="h-4 bg-gray-200 rounded w-full mb-2" />
-        <div className="h-4 bg-gray-200 rounded w-2/3 mb-4" />
-        <div className="h-3 bg-gray-200 rounded w-1/3 my-3" />
+        <div className="mb-2 h-6 w-2/6 rounded bg-gray-200" />
+        <div className="mb-5 h-4 w-1/2 rounded bg-gray-200" />
+        <div className="mb-2 h-4 w-full rounded bg-gray-200" />
+        <div className="mb-4 h-4 w-2/3 rounded bg-gray-200" />
+        <div className="my-3 h-3 w-1/3 rounded bg-gray-200" />
         <div className="flex items-center gap-3">
           <div className="flex gap-1">
-            <div className="h-4 bg-gray-200 rounded w-8" />
-            <div className="h-4 bg-gray-200 rounded w-16" />
+            <div className="h-4 w-8 rounded bg-gray-200" />
+            <div className="h-4 w-16 rounded bg-gray-200" />
           </div>
           <div className="flex gap-1">
-            <div className="h-4 bg-gray-200 rounded w-8" />
-            <div className="h-4 bg-gray-200 rounded w-16" />
+            <div className="h-4 w-8 rounded bg-gray-200" />
+            <div className="h-4 w-16 rounded bg-gray-200" />
           </div>
         </div>
       </div>

@@ -42,9 +42,11 @@ export default function ProfileCard(props: Props) {
           </div>
         </div>
         <div>
-          <p className="break-words leading-5 text-neutral-700">
-            {profile?.description}
-          </p>
+          {profile.description && (
+            <p className="break-words leading-5 text-neutral-700">
+              {profile.description}
+            </p>
+          )}
         </div>
       </article>
     </Link>
