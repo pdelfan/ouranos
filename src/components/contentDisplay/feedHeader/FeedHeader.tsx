@@ -93,7 +93,7 @@ export default function FeedHeader(props: Props) {
         const like = await likeFeed(
           agent,
           feedInfo?.view.uri,
-          feedInfo?.view.cid
+          feedInfo?.view.cid,
         );
         setLikeUri(like?.uri);
       } catch (err) {
@@ -114,9 +114,9 @@ export default function FeedHeader(props: Props) {
       {isFetchingFeedInfo && <FeedHeaderSkeleton />}
       {!isFetchingFeedInfo && feedInfo && (
         <>
-          <article className="flex flex-col gap-2 p-3 border border-x-0 border-t-0 md:border md:rounded-t-2xl ">
-            <div className="flex flex-wrap gap-3 items-center justify-between">
-              <div className="flex flex-wrap gap-3 items-center">
+          <article className="flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border ">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <Image
                   src={feedInfo.view.avatar ?? FallbackFeed}
                   alt={feedInfo.view.displayName}
@@ -125,10 +125,10 @@ export default function FeedHeader(props: Props) {
                   className={`rounded-lg ${!feedInfo.view.avatar && "border"}`}
                 />
                 <div className="flex flex-col">
-                  <h2 className="text-xl text-neutral-700 font-semibold break-words">
+                  <h2 className="break-words text-xl font-semibold text-neutral-700">
                     {feedInfo.view.displayName}
                   </h2>
-                  <h3 className="text-neutral-500 break-all">
+                  <h3 className="break-all text-neutral-500">
                     By{" "}
                     <Link
                       href={`/dashboard/user/${feedInfo.view.creator.handle}`}
@@ -165,9 +165,11 @@ export default function FeedHeader(props: Props) {
                 </div>
               )}
             </div>
-            <p className="text-neutral-700 break-words" dir="auto">
-              {feedInfo.view.description}
-            </p>
+            {feedInfo.view.description && (
+              <p className="break-words text-neutral-700" dir="auto">
+                {feedInfo.view.description}
+              </p>
+            )}
             <small className="flex items-center gap-1 font-medium text-neutral-500">
               <BiSolidHeart />
               <span>{feedInfo.view.likeCount}</span>

@@ -53,22 +53,22 @@ export default function ProfileHeader(props: Props) {
         <ProfileHeaderSkeleton />
       )}
       {profile && contentFilter && (
-        <section className="border-0 border-y md:border-x md:rounded-t-2xl overflow-hidden">
+        <section className="overflow-hidden border-0 border-y md:rounded-t-2xl md:border-x">
           <div className="relative">
             {isBlocked || hasBlockedYou ? (
               <Image
                 src={profile?.banner ?? FallbackBanner}
                 alt="Banner"
                 width={800}
-                height={191}
-                className="object-cover h-[12rem] opacity-30 contrast-75"
+                height={192}
+                className="h-40 object-cover opacity-30 contrast-75 md:h-48"
               />
             ) : (
               <Button
                 onClick={() => setShowBanner(true)}
                 className={`${
                   profile.banner
-                    ? "hover:brightness-90 cursor-pointer"
+                    ? "cursor-pointer hover:brightness-90"
                     : "cursor-default"
                 }`}
               >
@@ -76,20 +76,20 @@ export default function ProfileHeader(props: Props) {
                   src={profile?.banner ?? FallbackBanner}
                   alt="Banner"
                   width={800}
-                  height={191}
-                  className="object-cover h-[12rem]"
+                  height={192}
+                  className="h-40 object-cover md:h-48"
                 />
               </Button>
             )}
 
-            <div className="absolute bottom-0 transform translate-y-1/2 px-3">
+            <div className="absolute bottom-0 translate-y-1/2 transform px-3">
               {isBlocked || hasBlockedYou ? (
                 <Image
                   src={profile?.avatar ?? FallbackAvatar}
                   alt="Avatar"
                   width={95}
                   height={95}
-                  className="object-cover rounded-full border-4 border-white opacity-30 contrast-75"
+                  className="rounded-full border-4 border-white object-cover opacity-30 contrast-75"
                 />
               ) : (
                 <Button
@@ -101,9 +101,9 @@ export default function ProfileHeader(props: Props) {
                     alt="Avatar"
                     width={95}
                     height={95}
-                    className={`object-cover rounded-full ${
+                    className={`rounded-full object-cover ${
                       profile.avatar
-                        ? "hover:brightness-90 cursor-pointer"
+                        ? "cursor-pointer hover:brightness-90"
                         : "cursor-default"
                     }`}
                   />
@@ -112,8 +112,8 @@ export default function ProfileHeader(props: Props) {
             </div>
           </div>
           {profile?.viewer && session?.user.handle && (
-            <div className="flex mr-3 mt-3">
-              <div className="flex gap-2 ml-auto">
+            <div className="mr-3 mt-3 flex">
+              <div className="ml-auto flex gap-2">
                 <UserActions
                   author={profile}
                   viewer={profile.viewer}
@@ -134,7 +134,7 @@ export default function ProfileHeader(props: Props) {
           )}
           <div className="p-3">
             <div className="flex flex-wrap items-center gap-x-2">
-              <h1 className="text-2xl font-semibold break-all text-neutral-700">
+              <h1 className="break-all text-2xl font-semibold text-neutral-700">
                 {profile?.displayName ||
                   (profile?.handle &&
                     (profile?.displayName ?? profile?.handle))}
@@ -145,7 +145,7 @@ export default function ProfileHeader(props: Props) {
                 )}
               </div>
             </div>
-            <h2 className="text-neutral-400 font-medium break-all">
+            <h2 className="break-all font-medium text-neutral-400">
               @{profile?.handle}
             </h2>
             {profile?.description && (
