@@ -1,4 +1,5 @@
 import { PiWarningCircleFill } from "react-icons/pi";
+import Threadline from "../threadLine/ThreadLine";
 
 interface Props {
   depth: number;
@@ -13,15 +14,13 @@ export default function NotFoundEmbed(props: Props) {
     <>
       {depth < 1 && (
         <div
-          className={`relative p-3 border rounded-xl bg-white ${replyStyle}`}
+          className={`relative rounded-xl border bg-white p-3 ${replyStyle}`}
         >
           <div className="flex gap-2">
             <PiWarningCircleFill className="text-2xl" />
             <span>Deleted post</span>
           </div>
-          {isReply && (
-            <div className="absolute left-6 top-12  h-full border-l-2" />
-          )}
+          {isReply && <Threadline />}
         </div>
       )}
     </>

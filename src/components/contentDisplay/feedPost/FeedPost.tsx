@@ -14,6 +14,7 @@ import { useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
 import Link from "next/link";
+import Threadline from "@/components/dataDisplay/threadLine/ThreadLine";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -23,7 +24,7 @@ interface Props {
 }
 
 export default function FeedPost(props: Props) {
-  const { post, isReply, isParent, filter } = props;  
+  const { post, isReply, isParent, filter } = props;
   const { author, indexedAt } = post.post;
   const { reason, reply } = post;
   const { isAdultContentHidden, adultContentFilters, contentFilters } = filter;
@@ -42,15 +43,15 @@ export default function FeedPost(props: Props) {
     contentFilters.find((f) => f.values.includes(label))?.message ||
     "Marked content";
   const visibility = adultContentFilters.find((f) =>
-    f.values.includes(label || embedLabel)
+    f.values.includes(label || embedLabel),
   )?.visibility;
 
   const [hidden, setHidden] = useState(
     isAdultContentHidden
       ? true
       : visibility === "hide" || visibility === "warn"
-      ? true
-      : false
+        ? true
+        : false,
   );
 
   const router = useRouter();
@@ -63,8 +64,8 @@ export default function FeedPost(props: Props) {
           e.stopPropagation();
           router.push(
             `/dashboard/user/${post.post.author.handle}/post/${getPostId(
-              post.post.uri
-            )}`
+              post.post.uri,
+            )}`,
           );
         }}
         className="cursor-pointer"
@@ -79,10 +80,8 @@ export default function FeedPost(props: Props) {
           >
             <Avatar src={author.avatar} size="md" />
           </Link>
-          <div className={`flex flex-col grow ${isParent && "pb-6"}`}>
-            {isParent && !reason && (
-              <div className="absolute left-6 top-0 z-10 h-full border-l-2" />
-            )}
+          <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
+            {isParent && !reason && <Threadline />}
             <div className="flex">
               <Link
                 href={`/dashboard/user/${author.handle}`}
@@ -91,14 +90,14 @@ export default function FeedPost(props: Props) {
                 }}
                 className="flex gap-1"
               >
-                <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700 hover:text-neutral-500">
+                <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-500">
                   {author.displayName ?? author.handle}{" "}
                 </span>
-                <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+                <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
                   @{author.handle}
                 </span>
               </Link>
-              <span className="text-neutral-400 font-medium whitespace-nowrap">
+              <span className="whitespace-nowrap font-medium text-neutral-400">
                 &nbsp;· {getRelativeTime(indexedAt)}
               </span>
             </div>

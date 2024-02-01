@@ -1,4 +1,5 @@
 import { HiMiniShieldExclamation } from "react-icons/hi2";
+import Threadline from "../threadLine/ThreadLine";
 
 interface Props {
   depth: number;
@@ -13,7 +14,7 @@ export default function BlockedEmbed(props: Props) {
     <>
       {depth < 1 && (
         <div
-          className={`relative p-3 border rounded-xl bg-white ${replyStyle}`}
+          className={`relative rounded-xl border bg-white p-3 ${replyStyle}`}
         >
           <div className="flex gap-2">
             <HiMiniShieldExclamation className="text-2xl" />
@@ -21,9 +22,7 @@ export default function BlockedEmbed(props: Props) {
               Post is from a blocked user or someone who has blocked you.
             </span>
           </div>
-          {isReply && (
-            <div className="absolute left-6 top-12  h-full border-l-2" />
-          )}
+          {isReply && <Threadline />}
         </div>
       )}
     </>
