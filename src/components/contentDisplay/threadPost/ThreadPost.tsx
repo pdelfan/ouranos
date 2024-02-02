@@ -10,8 +10,8 @@ import { useRouter } from "next/navigation";
 import { ContentFilterResult } from "../../../../types/feed";
 import { useEffect, useRef, useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
-import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
 import Link from "next/link";
+import { getThreadPostFilter } from "@/lib/utils/feed";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -20,30 +20,10 @@ interface Props {
 
 export default function ThreadPost(props: Props) {
   const { post, filter } = props;
-  const { author, indexedAt, reply } = post;
-  const { isAdultContentHidden, adultContentFilters } = filter;
-  const label = post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
-  const embedLabel =
-    post.embed && post.embed.record
-      ? (post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ?? ""
-      : "";
-  const message =
-    adultContentFilters.find((f) => f.values.includes(label || embedLabel))
-      ?.message ?? "Marked content";
-  const visibility = adultContentFilters.find((f) =>
-    f.values.includes(label || embedLabel),
-  )?.visibility;
-
-  const [hidden, setHidden] = useState(
-    isAdultContentHidden
-      ? true
-      : visibility === "hide" || visibility === "warn"
-        ? true
-        : false,
-  );
-
+  const { author } = post;
+  const { showToggle, shouldHide, message } = getThreadPostFilter(post, filter);
+  const [hidden, setHidden] = useState(shouldHide);
   const router = useRouter();
-
   const threadPostRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -88,18 +68,16 @@ export default function ThreadPost(props: Props) {
       </div>
       <div className="mt-3">
         <PostText record={post.record} mode="thread" />
-        {visibility !== "show" &&
-          visibility !== "ignore" &&
-          (label || embedLabel) && (
-            <div className="my-2">
-              <PostHider
-                message={message}
-                hidden={hidden}
-                onToggleVisibility={setHidden}
-                showToggle={visibility === "warn"}
-              />
-            </div>
-          )}
+        {showToggle && (
+          <div className="my-2">
+            <PostHider
+              message={message}
+              hidden={hidden}
+              onToggleVisibility={setHidden}
+              showToggle={shouldHide}
+            />
+          </div>
+        )}
         {!hidden && (
           <>{post.embed && <PostEmbed content={post.embed} depth={0} />}</>
         )}
