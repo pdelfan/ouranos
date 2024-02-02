@@ -14,6 +14,7 @@ import { Preferences } from "@atproto/api/dist/client/types/app/bsky/actor/defs"
 import { AppBskyActorDefs } from "@atproto/api";
 import { CONTENT_FILTER_OPTIONS } from "../consts/moderation";
 import { THREAD_VIEW_PREFS } from "../consts/settings";
+import { ViewRecord } from "@atproto/api/dist/client/types/app/bsky/embed/record";
 
 export function filterFeed(feed: FeedViewPost, feedFilter: FeedFilterResult) {
   const post = feed.post;
@@ -45,7 +46,7 @@ export function filterFeed(feed: FeedViewPost, feedFilter: FeedFilterResult) {
 }
 
 export function getFeedFilter(
-  preferences: Preferences | undefined
+  preferences: Preferences | undefined,
 ): FeedFilterResult {
   const getFilters = (prefs?: Preferences) => {
     const defaultFeedViewPref = {
@@ -64,7 +65,7 @@ export function getFeedFilter(
 
     const feedViewPref =
       (prefs.find(
-        (x) => AppBskyActorDefs.isFeedViewPref(x) && x.feed === "home"
+        (x) => AppBskyActorDefs.isFeedViewPref(x) && x.feed === "home",
       ) as AppBskyActorDefs.FeedViewPref | undefined) ?? defaultFeedViewPref;
 
     return feedViewPref;
@@ -83,7 +84,7 @@ export function getFeedFilter(
 }
 
 export function getContentFilter(
-  preferences: Preferences | undefined
+  preferences: Preferences | undefined,
 ): ContentFilterResult {
   const getFilters = (prefs?: Preferences) => {
     const contentFilters: ContentFilter[] = [];
@@ -106,7 +107,7 @@ export function getContentFilter(
       if (isContentPref) {
         const label = pref.label;
         const filter = CONTENT_FILTER_OPTIONS.find(
-          (f) => !f.adult && f.type === label
+          (f) => !f.adult && f.type === label,
         );
         if (filter) {
           filter.visibility = pref.visibility ?? filter?.visibility;
@@ -123,7 +124,7 @@ export function getContentFilter(
       if (isContentPref) {
         const label = pref.label;
         const filter = CONTENT_FILTER_OPTIONS.find(
-          (f) => f.adult && f.type === label
+          (f) => f.adult && f.type === label,
         );
 
         if (filter) {
@@ -143,11 +144,11 @@ export function getContentFilter(
   const filters = getFilters(preferences);
 
   const sortedContentFilters = filters.contentFilters.sort((a, b) =>
-    a.label.localeCompare(b.label)
+    a.label.localeCompare(b.label),
   );
 
   const sortedAdultContentFilters = filters.adultContentFilters.sort((a, b) =>
-    a.label.localeCompare(b.label)
+    a.label.localeCompare(b.label),
   );
 
   return {
@@ -158,7 +159,7 @@ export function getContentFilter(
 }
 
 export default function getThreadPreferences(
-  preferences: Preferences | undefined
+  preferences: Preferences | undefined,
 ) {
   const getFilters = (prefs?: Preferences) => {
     const threadViewPrefs: ThreadViewResult = THREAD_VIEW_PREFS;
@@ -189,7 +190,7 @@ export default function getThreadPreferences(
 export const sortThread = (
   a: AppBskyFeedDefs.ThreadViewPost,
   b: AppBskyFeedDefs.ThreadViewPost,
-  threadPrefs: ThreadViewResult
+  threadPrefs: ThreadViewResult,
 ) => {
   if (threadPrefs.sort === "oldest") {
     const aDate = new Date(a.post.indexedAt);
@@ -217,4 +218,85 @@ export const sortThread = (
   }
 
   return 0;
+};
+
+export const getPostFilter = (
+  post: AppBskyFeedDefs.FeedViewPost,
+  filter: ContentFilterResult,
+) => {
+  const { isAdultContentHidden, adultContentFilters, contentFilters } = filter;
+  const label = post.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
+  const embedRecordLabel = (post?.post?.embed?.record as ViewRecord)
+    ?.record as ViewRecord;
+  const embedLabel =
+    post.post.embed && post.post.embed.record
+      ? (post.post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ??
+        embedRecordLabel?.labels?.map((l) => l.val)[0] ??
+        ""
+      : "";
+
+  const message =
+    adultContentFilters.find((f) => f.values.includes(label || embedLabel))
+      ?.message ||
+    contentFilters.find((f) => f.values.includes(label))?.message ||
+    "Marked content";
+
+  const visibility = adultContentFilters.find((f) =>
+    f.values.includes(label || embedLabel),
+  )?.visibility;
+
+  const shouldHide = isAdultContentHidden
+    ? true
+    : visibility === "hide" || visibility === "warn"
+      ? true
+      : false;
+
+  const showToggle =
+    visibility !== "show" && visibility !== "ignore" && (label || embedLabel)
+      ? true
+      : false;
+
+  return {
+    showToggle,
+    shouldHide,
+    message,
+  };
+};
+
+export const getThreadPostFilter = (
+  post: AppBskyFeedDefs.PostView,
+  filter: ContentFilterResult,
+) => {
+  const { isAdultContentHidden, adultContentFilters } = filter;
+
+  const label = post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
+  const embedLabel =
+    post.embed && post.embed.record
+      ? (post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ?? ""
+      : "";
+
+  const message =
+    adultContentFilters.find((f) => f.values.includes(label || embedLabel))
+      ?.message ?? "Marked content";
+
+  const visibility = adultContentFilters.find((f) =>
+    f.values.includes(label || embedLabel),
+  )?.visibility;
+
+  const shouldHide = isAdultContentHidden
+    ? true
+    : visibility === "hide" || visibility === "warn"
+      ? true
+      : false;
+
+  const showToggle =
+    visibility !== "show" && visibility !== "ignore" && (label || embedLabel)
+      ? true
+      : false;
+
+  return {
+    showToggle,
+    shouldHide,
+    message,
+  };
 };
