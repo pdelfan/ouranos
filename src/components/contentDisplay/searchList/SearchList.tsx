@@ -11,7 +11,7 @@ interface Props {
 
 export default function SearchList(props: Props) {
   const { query } = props;
-  const [currenTab, setCurrentTab] = useState<"posts" | "users">("posts");
+  const [currentTab, setCurrentTab] = useState<"posts" | "users">("posts");
   const { data: session } = useSession();
 
   const handleTabChange = (tab: "posts" | "users") => {
@@ -37,7 +37,7 @@ export default function SearchList(props: Props) {
           role="tab"
           onClick={() => handleTabChange("posts")}
           className={`border-b-3 hover:text-primary shrink-0 cursor-pointer px-3 pb-2 font-semibold ${
-            currenTab === "posts"
+            currentTab === "posts"
               ? "border-primary-600 text-primary border-primary"
               : "border-transparent text-neutral-500"
           }`}
@@ -48,7 +48,7 @@ export default function SearchList(props: Props) {
           role="tab"
           onClick={() => handleTabChange("users")}
           className={`border-b-3 hover:text-primary shrink-0 cursor-pointer px-3 pb-2 font-semibold ${
-            currenTab === "users"
+            currentTab === "users"
               ? "border-primary-600 text-primary border-primary"
               : "border-transparent text-neutral-500"
           }`}
@@ -57,10 +57,10 @@ export default function SearchList(props: Props) {
         </button>
       </div>
 
-      {currenTab === "posts" && (
+      {currentTab === "posts" && (
         <PostSearchContainer query={onSearchPost(query)} />
       )}
-      {currenTab === "users" && <UserSearchContainer query={query} />}
+      {currentTab === "users" && <UserSearchContainer query={query} />}
     </section>
   );
 }
