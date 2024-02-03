@@ -57,7 +57,7 @@ export default function PostSearchContainer(props: Props) {
           ))}
       </section>
       {isEmpty && !hasNextPage && (
-        <div className="mx-3 md:mx-0 border-t">
+        <div className="mx-3 border-t md:mx-0">
           <FeedAlert variant="empty" message="No posts found" />
         </div>
       )}
