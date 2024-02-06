@@ -47,7 +47,7 @@ export default function FeedEmbed(props: Props) {
             </div>
           </div>
           {feed.description && (
-            <p className="line-clamp-3 break-words text-neutral-700">
+            <p className="line-clamp-3 whitespace-pre-wrap text-neutral-700 [overflow-wrap:anywhere]">
               {feed.description}
             </p>
           )}
