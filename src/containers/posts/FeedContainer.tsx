@@ -10,6 +10,7 @@ import { filterFeed } from "@/lib/utils/feed";
 import Refetch from "@/components/actions/refetch/Refetch";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   feed: string;
@@ -19,13 +20,13 @@ interface Props {
 export default function FeedContainer(props: Props) {
   const { feed, mode } = props;
   const {
-    observerRef,
     refetchFeed,
     feedStatus,
     feedData,
     feedError,
     isLoadingFeed,
     isFetchingFeed,
+    fetchNextFeedPage,
     isFetchingFeedNextPage,
     feedHasNextPage,
   } = useFeed({
@@ -33,14 +34,17 @@ export default function FeedContainer(props: Props) {
     mode: mode,
   });
 
-  const isEmpty =
-    !isFetchingFeed &&
-    !isFetchingFeedNextPage &&
-    feedData?.pages[0]?.data?.feed?.length === 0;
-
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
   const feedFilter = preferences?.feedFilter;
+
+  const dataLength = feedData?.pages.reduce(
+    (acc, page) => acc + (page?.data.feed?.length ?? 0),
+    0,
+  );
+
+  const isEmpty =
+    !isFetchingFeed && !isFetchingFeedNextPage && dataLength === 0;
 
   return (
     <section>
@@ -51,27 +55,36 @@ export default function FeedContainer(props: Props) {
         }}
       />
       <ComposeButton mode="float" />
+
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextFeedPage}
+        hasMore={feedHasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar"
+      >
+        {feedData &&
+          contentFilter &&
+          feedFilter &&
+          feedData.pages.map((page, i) => (
+            <div key={i}>
+              {page?.data.feed
+                .filter((f) =>
+                  feed === "timeline" ? filterFeed(f, feedFilter) : true,
+                )
+                .map((post, j) => (
+                  <PostContainer
+                    key={post.post.uri + j}
+                    post={post}
+                    isReply={post.reply ? true : false}
+                    filter={contentFilter}
+                  />
+                ))}
+            </div>
+          ))}
+      </InfiniteScroll>
+
       {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
-      {feedData &&
-        contentFilter &&
-        feedFilter &&
-        feedData.pages.map((page, i) => (
-          <div key={i}>
-            {page?.data.feed
-              .filter((f) =>
-                feed === "timeline" ? filterFeed(f, feedFilter) : true,
-              )
-              .map((post, j) => (
-                <PostContainer
-                  key={post.post.uri + j}
-                  post={post}
-                  isReply={post.reply ? true : false}
-                  filter={contentFilter}
-                />
-              ))}
-          </div>
-        ))}
-      {isFetchingFeedNextPage && <LoadingSpinner />}
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
@@ -83,7 +96,6 @@ export default function FeedContainer(props: Props) {
         !isFetchingFeed &&
         !feedHasNextPage &&
         !isFetchingFeedNextPage && <EndOfFeed />}
-      <div ref={observerRef} />
     </section>
   );
 }

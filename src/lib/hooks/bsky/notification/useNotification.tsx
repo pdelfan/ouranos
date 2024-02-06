@@ -1,7 +1,5 @@
-import { useInView } from "react-intersection-observer";
 import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import {
   getNotifications,
   updateSeenNotifications,
@@ -11,17 +9,15 @@ import { Notification } from "@atproto/api/dist/client/types/app/bsky/notificati
 
 export default function useNotification() {
   const agent = useAgent();
-  const { ref, inView } = useInView({ rootMargin: "100px" });
-
   const groupNotifications = (
-    notifications: Notification[]
+    notifications: Notification[],
   ): GroupedNotification[] => {
     const result: GroupedNotification[] = [];
 
     for (const notif of notifications) {
       const prior = result.find(
         (n) =>
-          n.reason === notif.reason && n.reasonSubject === notif.reasonSubject
+          n.reason === notif.reason && n.reasonSubject === notif.reasonSubject,
       );
 
       if (prior) {
@@ -60,19 +56,13 @@ export default function useNotification() {
     refetchOnWindowFocus: true,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
-
   return {
-    observerRef: ref,
     notificationStatus: status,
     notificationData: data,
     notificationError: error,
     isLoadingNotification: isLoading,
     isFetchingNotification: isFetching,
+    fetchNotificationNextPage: fetchNextPage,
     isFetchingNotificationNextPage: isFetchingNextPage,
     notificationHasNextPage: hasNextPage,
   };

@@ -1,7 +1,5 @@
-import { useInView } from "react-intersection-observer";
 import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { getFeed, getTimeline } from "../../../api/bsky/feed";
 import { getListFeed } from "@/lib/api/bsky/list";
 
@@ -15,7 +13,6 @@ interface Props {
 export default function useFeed(props: Props) {
   const { feed, mode } = props;
   const agent = useAgent();
-  const { ref, inView } = useInView({ rootMargin: "800px" });
   const {
     status,
     data: timeline,
@@ -46,14 +43,7 @@ export default function useFeed(props: Props) {
     getNextPageParam: (lastPage) => lastPage?.data.cursor,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
-
   return {
-    observerRef: ref,
     refetchFeed: refetch,
     feedStatus: status,
     feedData: timeline,
@@ -61,6 +51,7 @@ export default function useFeed(props: Props) {
     isLoadingFeed: isLoading,
     isRefetchingFeed: isRefetching,
     isFetchingFeed: isFetching,
+    fetchNextFeedPage: fetchNextPage,
     isFetchingFeedNextPage: isFetchingNextPage,
     feedHasNextPage: hasNextPage,
   };

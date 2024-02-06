@@ -4,11 +4,11 @@ import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import { Fragment, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { Fragment } from "react";
 import { getFollows } from "@/lib/api/bsky/social";
-import Alert from "@/components/feedback/alert/Alert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import InfiniteScroll from "react-infinite-scroll-component";
+import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 
 interface Props {
   handle: string;
@@ -17,8 +17,6 @@ interface Props {
 export default function FollowingContainer(props: Props) {
   const { handle } = props;
   const agent = useAgent();
-  const { ref, inView } = useInView({ rootMargin: "100px" });
-
   const {
     status,
     data: profiles,
@@ -35,15 +33,22 @@ export default function FollowingContainer(props: Props) {
     getNextPageParam: (lastPage) => lastPage.data.cursor,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const dataLength = profiles?.pages.reduce(
+    (acc, page) => acc + (page?.data.follows.length ?? 0),
+    0,
+  );
+
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   return (
     <section>
-      <section className="flex flex-col">
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {profiles &&
           profiles.pages
             .flatMap((page) => page?.data.follows)
@@ -54,18 +59,18 @@ export default function FollowingContainer(props: Props) {
                 )}
               </Fragment>
             ))}
-      </section>
-      {profiles?.pages[0].data.follows.length === 0 && (
+      </InfiniteScroll>
+
+      {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
+      {isEmpty && (
         <div className="mx-3 md:mx-0">
-          <Alert
-            variant="info"
+          <FeedAlert
+            variant="empty"
             message={`${handle} has not followed anyone... yet`}
+            standalone
           />
         </div>
       )}
-      {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
-      {isFetchingNextPage && <LoadingSpinner />}
-      <div ref={ref} />
     </section>
   );
 }

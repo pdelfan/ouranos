@@ -4,12 +4,12 @@ import { getLists } from "@/lib/api/bsky/list";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import ListItem from "../listItem/ListItem";
-import { useInView } from "react-intersection-observer";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import ListsSkeleton from "./ListsSkeleton";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Lists() {
   const agent = useAgent();
@@ -34,41 +34,42 @@ export default function Lists() {
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
-  const isEmpty =
-    !isFetching && !isFetchingNextPage && lists?.pages[0]?.lists?.length === 0;
+  const dataLength = lists?.pages.reduce(
+    (acc, page) => acc + (page?.lists.length ?? 0),
+    0,
+  );
 
-  const { ref: observerRef, inView } = useInView({ rootMargin: "800px" });
-
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   return (
-    <div>
-      <section className="flex flex-col">
+    <section>
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {lists?.pages
           .flatMap((page) => page?.lists)
           .map((list, i) => (
             <Fragment key={i}>{list && <ListItem list={list} />}</Fragment>
           ))}
-      </section>
+      </InfiniteScroll>
+
+      {isFetching && !isFetchingNextPage && <ListsSkeleton />}
       {isEmpty && !hasNextPage && (
         <div className="mx-3 md:mx-0">
-          <FeedAlert
-            variant="empty"
-            message="You have no lists"
-            standalone={true}
-          />
+          <FeedAlert variant="empty" message="You have no lists" standalone />
         </div>
       )}
-      {isFetching && !isFetchingNextPage && <ListsSkeleton />}
-      {isFetchingNextPage && <LoadingSpinner />}
       {error && (
-        <FeedAlert variant="badResponse" message="Something went wrong" />
+        <FeedAlert
+          variant="badResponse"
+          message="Something went wrong"
+          standalone
+        />
       )}
-      <div ref={observerRef} />
-    </div>
+    </section>
   );
 }

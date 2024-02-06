@@ -3,12 +3,12 @@
 import { searchProfiles } from "@/lib/api/bsky/actor";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Fragment, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { Fragment } from "react";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   query: string;
@@ -17,8 +17,6 @@ interface Props {
 export default function UserSearchContainer(props: Props) {
   const { query } = props;
   const agent = useAgent();
-  const { ref: observerRef, inView } = useInView({ rootMargin: "100px" });
-
   const {
     status,
     data: profiles,
@@ -35,20 +33,22 @@ export default function UserSearchContainer(props: Props) {
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
-  const isEmpty =
-    !isFetching &&
-    !isFetchingNextPage &&
-    profiles?.pages[0]?.actors?.length === 0;
+  const dataLength = profiles?.pages.reduce(
+    (acc, page) => acc + (page?.actors.length ?? 0),
+    0,
+  );
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   return (
     <section>
-      <section className="flex flex-col">
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {profiles &&
           profiles.pages
             .flatMap((page) => page?.actors)
@@ -63,17 +63,16 @@ export default function UserSearchContainer(props: Props) {
                 )}
               </Fragment>
             ))}
-      </section>
+      </InfiniteScroll>
+
       {isEmpty && (
-        <div className="mx-3 md:mx-0 border-t">
+        <div className="mx-3 border-t md:mx-0">
           <FeedAlert variant="empty" message="No users found" />
         </div>
       )}
       {isFetching && !isFetchingNextPage && (
         <ProfileCardSkeleton rounded={false} />
       )}
-      {isFetchingNextPage && <LoadingSpinner />}
-      <div ref={observerRef} />
     </section>
   );
 }

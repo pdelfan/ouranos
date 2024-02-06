@@ -8,8 +8,8 @@ import { getProfile } from "@/lib/api/bsky/actor";
 import { getLists } from "@/lib/api/bsky/list";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Fragment, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { Fragment } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   handle: string;
@@ -38,20 +38,22 @@ export default function ListsContainer(props: Props) {
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
-  const isEmpty =
-    !isFetching && !isFetchingNextPage && lists?.pages[0]?.lists?.length === 0;
+  const dataLength = lists?.pages.reduce(
+    (acc, page) => acc + (page?.lists.length ?? 0),
+    0,
+  );
 
-  const { ref: observerRef, inView } = useInView({ rootMargin: "800px" });
-
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   return (
     <section>
-      <section className="flex flex-col">
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {lists?.pages
           .flatMap((page) => page?.lists)
           .map((list, i) => (
@@ -59,16 +61,15 @@ export default function ListsContainer(props: Props) {
               {list && <ListItem rounded={false} list={list} />}
             </Fragment>
           ))}
-      </section>
+      </InfiniteScroll>
+
+      {isFetching && !isFetchingNextPage && <ListsSkeleton rounded={false} />}
       {isEmpty && !hasNextPage && (
         <FeedAlert variant="empty" message={`${handle} has no lists`} />
       )}
-      {isFetching && !isFetchingNextPage && <ListsSkeleton rounded={false} />}
-      {isFetchingNextPage && <LoadingSpinner />}
       {error && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
-      <div ref={observerRef} />
     </section>
   );
 }

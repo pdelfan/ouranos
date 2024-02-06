@@ -201,8 +201,8 @@ export const sortThread = (
     const bDate = new Date(b.post.indexedAt);
     return bDate.getTime() - aDate.getTime();
   } else if (threadPrefs.sort === "most-likes") {
-    const aLikes = a.post.likeCount || 0;
-    const bLikes = b.post.likeCount || 0;
+    const aLikes = a.post.likeCount ?? 0;
+    const bLikes = b.post.likeCount ?? 0;
     return bLikes - aLikes;
   } else if (threadPrefs.sort === "random") {
     return Math.random() - 0.5;
