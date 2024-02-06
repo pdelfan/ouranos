@@ -11,6 +11,7 @@ import PostContainer from "./PostContainer";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   mode: UserPostMode;
@@ -33,20 +34,23 @@ export default function UserPostsConatiner(props: Props) {
   const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
 
   const {
-    observerRef,
     userPostsStatus,
     userPostsData,
     userPostsError,
     isLoadingUserPosts,
     isFetchingUserPosts,
+    fetchNextUserPostsPage,
     isFetchingUserPostsNextPage,
     userPostsHasNextPage,
   } = useProfilePosts({ mode: mode, handle: handle });
 
+  const dataLength = userPostsData?.pages.reduce(
+    (acc, page) => acc + (page?.data.feed.length ?? 0),
+    0,
+  );
+
   const isEmpty =
-    !isFetchingUserPosts &&
-    !isFetchingUserPostsNextPage &&
-    userPostsData?.pages[0]?.data?.feed?.length === 0;
+    !isFetchingUserPosts && !isFetchingUserPostsNextPage && dataLength === 0;
 
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
@@ -54,16 +58,32 @@ export default function UserPostsConatiner(props: Props) {
   return (
     <div>
       <ComposeButton mode="float" />
-      {!isBlocked &&
-        !hasBlockedYou &&
-        userPostsData &&
-        contentFilter &&
-        userPostsData?.pages.map((page, i) => (
-          <div key={i}>
-            {mode === "posts" &&
-              page.data.feed
-                .filter((post) => !post.reply)
-                .map((post, i) => (
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextUserPostsPage}
+        hasMore={userPostsHasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar"
+      >
+        {!isBlocked &&
+          !hasBlockedYou &&
+          userPostsData &&
+          contentFilter &&
+          userPostsData?.pages.map((page, i) => (
+            <div key={i}>
+              {mode === "posts" &&
+                page.data.feed
+                  .filter((post) => !post.reply)
+                  .map((post, i) => (
+                    <PostContainer
+                      key={post.post.uri + i}
+                      post={post}
+                      isReply={!!post.reply}
+                      filter={contentFilter}
+                    />
+                  ))}
+              {mode !== "posts" &&
+                page.data.feed.map((post, i) => (
                   <PostContainer
                     key={post.post.uri + i}
                     post={post}
@@ -71,22 +91,14 @@ export default function UserPostsConatiner(props: Props) {
                     filter={contentFilter}
                   />
                 ))}
-            {mode !== "posts" &&
-              page.data.feed.map((post, i) => (
-                <PostContainer
-                  key={post.post.uri + i}
-                  post={post}
-                  isReply={!!post.reply}
-                  filter={contentFilter}
-                />
-              ))}
-          </div>
-        ))}
+            </div>
+          ))}
+      </InfiniteScroll>
+
       {!isBlocked &&
         !hasBlockedYou &&
         isFetchingUserPosts &&
         !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
-      {!isBlocked && isFetchingUserPostsNextPage && <LoadingSpinner />}
       {!isBlocked && !hasBlockedYou && userPostsError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
@@ -110,7 +122,6 @@ export default function UserPostsConatiner(props: Props) {
         !isFetchingUserPosts &&
         !userPostsHasNextPage &&
         !isFetchingUserPostsNextPage && <EndOfFeed />}
-      <div ref={observerRef} />
     </div>
   );
 }

@@ -4,16 +4,14 @@ import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { getBlockedUsers } from "@/lib/api/bsky/social";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Fragment, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { Fragment } from "react";
 import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function BlockedUsersContainer() {
   const agent = useAgent();
-  const { ref, inView } = useInView({ rootMargin: "100px" });
-
   const {
     status,
     data: profiles,
@@ -30,11 +28,12 @@ export default function BlockedUsersContainer() {
     getNextPageParam: (lastPage) => lastPage.cursor,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const dataLength = profiles?.pages.reduce(
+    (acc, page) => acc + (page?.blocks.length ?? 0),
+    0,
+  );
+
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   if (isFetching && !isFetchingNextPage) {
     return <BlockedUsersContainerSkeleton />;
@@ -42,12 +41,18 @@ export default function BlockedUsersContainer() {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+      <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">
         Blocked Users
       </h2>
-      <section className="flex flex-col mt-2">
+      <section className="mt-2 flex flex-col">
         <section>
-          <section className="flex flex-col">
+          <InfiniteScroll
+            dataLength={dataLength ?? 0}
+            next={fetchNextPage}
+            hasMore={hasNextPage}
+            loader={<LoadingSpinner />}
+            className="no-scrollbar flex flex-col"
+          >
             {profiles &&
               profiles.pages
                 .flatMap((page) => page.blocks)
@@ -61,8 +66,9 @@ export default function BlockedUsersContainer() {
                     )}
                   </Fragment>
                 ))}
-          </section>
-          {profiles && profiles.pages[0].blocks.length === 0 && (
+          </InfiniteScroll>
+
+          {isEmpty && (
             <div className="mx-3 md:mx-0">
               <FeedAlert
                 variant="empty"
@@ -71,8 +77,6 @@ export default function BlockedUsersContainer() {
               />
             </div>
           )}
-          {isFetchingNextPage && <LoadingSpinner />}
-          <div ref={ref} />
         </section>
       </section>
     </>

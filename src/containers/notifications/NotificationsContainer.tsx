@@ -8,15 +8,16 @@ import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import useNotification from "@/lib/hooks/bsky/notification/useNotification";
 import { Fragment } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function NotificationsContainer() {
   const {
-    observerRef,
     notificationStatus,
     notificationData,
     notificationError,
     isLoadingNotification,
     isFetchingNotification,
+    fetchNotificationNextPage,
     isFetchingNotificationNextPage,
     notificationHasNextPage,
   } = useNotification();
@@ -24,14 +25,25 @@ export default function NotificationsContainer() {
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
 
+  const dataLength = notificationData?.pages.reduce(
+    (acc, page) => acc + (page?.data.notifications.length ?? 0),
+    0,
+  );
+
   const isEmpty =
     !isFetchingNotification &&
     !isFetchingNotificationNextPage &&
-    notificationData?.pages[0]?.data?.notifications.length === 0;
+    dataLength === 0;
 
   return (
     <section>
-      <section className="flex flex-col">
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNotificationNextPage}
+        hasMore={notificationHasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {notificationData &&
           contentFilter &&
           notificationData.pages
@@ -47,26 +59,30 @@ export default function NotificationsContainer() {
                 )}
               </Fragment>
             ))}
-      </section>
+      </InfiniteScroll>
 
       {isFetchingNotification && !isFetchingNotificationNextPage && (
         <NotificationSkeleton />
       )}
-      {isFetchingNotificationNextPage && <LoadingSpinner />}
       {notificationError && (
-        <FeedAlert variant="badResponse" message="Something went wrong" />
+        <FeedAlert
+          variant="badResponse"
+          message="Something went wrong"
+          standalone
+        />
       )}
       {isEmpty && !notificationHasNextPage && (
         <FeedAlert
           variant="empty"
           message="There are no notifications to show... yet"
+          standalone
         />
       )}
-      {!notificationError &&
+      {!isEmpty &&
+        !notificationError &&
         !isFetchingNotification &&
         !notificationHasNextPage &&
         !isFetchingNotificationNextPage && <EndOfFeed />}
-      <div ref={observerRef} />
     </section>
   );
 }

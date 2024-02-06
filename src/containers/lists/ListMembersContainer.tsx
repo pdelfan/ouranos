@@ -5,10 +5,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import { getListMembers } from "@/lib/api/bsky/list";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   list: string;
@@ -17,7 +17,6 @@ interface Props {
 export default function ListMembersContainer(props: Props) {
   const { list } = props;
   const agent = useAgent();
-  const { ref, inView } = useInView({ rootMargin: "100px" });
 
   const {
     status,
@@ -35,15 +34,22 @@ export default function ListMembersContainer(props: Props) {
     getNextPageParam: (lastPage) => lastPage.cursor,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const dataLength = profiles?.pages.reduce(
+    (acc, page) => acc + (page?.items.length ?? 0),
+    0,
+  );
+
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   return (
     <section>
-      <section className="flex flex-col">
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {profiles &&
           profiles.pages
             .flatMap((page) => page?.items)
@@ -58,22 +64,21 @@ export default function ListMembersContainer(props: Props) {
                 )}
               </Fragment>
             ))}
-      </section>
-      {profiles?.pages[0].items.length === 0 && (
+      </InfiniteScroll>
+
+      {isFetching && !isFetchingNextPage && (
+        <ProfileCardSkeleton rounded={false} />
+      )}
+      {isEmpty && (
         <div className="border-t">
           <FeedAlert variant="empty" message="No members found" />
         </div>
       )}
-      {isFetching && !isFetchingNextPage && (
-        <ProfileCardSkeleton rounded={false} />
-      )}
-      {isFetchingNextPage && <LoadingSpinner />}
       {error && (
         <div className="border-t">
           <FeedAlert variant="badResponse" message="Something went wrong" />
         </div>
       )}
-      <div ref={ref} />
     </section>
   );
 }

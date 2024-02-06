@@ -4,11 +4,11 @@ import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
-import { Fragment, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { Fragment } from "react";
 import { getPostLikes } from "@/lib/api/bsky/feed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   handle: string;
@@ -17,10 +17,7 @@ interface Props {
 
 export default function LikedByContainer(props: Props) {
   const { handle, id } = props;
-
   const agent = useAgent();
-  const { ref, inView } = useInView({ rootMargin: "100px" });
-
   const {
     status,
     data: profiles,
@@ -42,20 +39,22 @@ export default function LikedByContainer(props: Props) {
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const dataLength = profiles?.pages.reduce(
+    (acc, page) => acc + (page?.likes.length ?? 0),
+    0,
+  );
 
-  const isEmpty =
-    !isFetching &&
-    !isFetchingNextPage &&
-    profiles?.pages[0]?.likes.length === 0;
+  const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
 
   return (
     <section>
-      <section className="flex flex-col">
+      <InfiniteScroll
+        dataLength={dataLength ?? 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<LoadingSpinner />}
+        className="no-scrollbar flex flex-col"
+      >
         {profiles &&
           profiles.pages
             .flatMap((page) => page?.likes)
@@ -69,9 +68,9 @@ export default function LikedByContainer(props: Props) {
                 )}
               </Fragment>
             ))}
-      </section>
+      </InfiniteScroll>
+
       {isFetching && !isFetchingNextPage && <ProfileCardSkeleton />}
-      {isFetchingNextPage && <LoadingSpinner />}
       {isEmpty && !hasNextPage && (
         <div className="px-3 md:px-0">
           <FeedAlert
@@ -81,7 +80,6 @@ export default function LikedByContainer(props: Props) {
           />
         </div>
       )}
-      <div ref={ref} />
     </section>
   );
 }
