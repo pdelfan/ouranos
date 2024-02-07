@@ -4,6 +4,7 @@ import FeedPost from "@/components/contentDisplay/feedPost/FeedPost";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import { ContentFilterResult } from "../../../types/feed";
+import { memo } from "react";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -11,7 +12,7 @@ interface Props {
   filter: ContentFilterResult;
 }
 
-export default function PostContainer(props: Props) {
+const PostContainer = memo(function PostContainer(props: Props) {
   const { post, isReply, filter } = props;
   const parent = {
     post: post?.reply?.parent as PostView,
@@ -37,4 +38,6 @@ export default function PostContainer(props: Props) {
       }
     </div>
   );
-}
+});
+
+export default PostContainer;

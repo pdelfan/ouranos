@@ -2,13 +2,11 @@
 
 import { useScrollContext } from "@/app/providers/scroll";
 import Button from "@/components/actions/button/Button";
-import SignOut from "@/components/actions/signOut/SignOut";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Image from "next/image";
 import Link from "next/link";
-import NavItem from "../navbar/NavItem";
-import { BiCog, BiSolidCog } from "react-icons/bi";
+import { BiCog } from "react-icons/bi";
 
 interface Props {
   profile: ProfileViewDetailed;
