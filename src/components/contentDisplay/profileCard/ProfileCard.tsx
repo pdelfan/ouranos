@@ -2,13 +2,14 @@ import { ProfileView } from "@atproto/api/dist/client/types/app/bsky/actor/defs"
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import Link from "next/link";
 import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
+import { memo } from "react";
 
 interface Props {
   profile: ProfileView;
   rounded?: boolean;
 }
 
-export default function ProfileCard(props: Props) {
+const ProfileCard = memo(function ProfileCard(props: Props) {
   const { profile, rounded = true } = props;
 
   return (
@@ -51,4 +52,6 @@ export default function ProfileCard(props: Props) {
       </article>
     </Link>
   );
-}
+});
+
+export default ProfileCard;

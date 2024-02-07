@@ -13,13 +13,14 @@ import {
 import NotificationPost from "./NotificationPost";
 import NotificationContnet from "./NotificationContent";
 import { AppBskyNotificationListNotifications } from "@atproto/api";
+import { memo } from "react";
 
 interface Props {
   notification: GroupedNotification;
   filter: ContentFilterResult;
 }
 
-export default function NotificationItem(props: Props) {
+const NotificationItem = memo(function NotificationItem(props: Props) {
   const { notification, filter } = props;
   const { reason, author, indexedAt, isRead, allAuthors } = notification;
   const subjectUri =
@@ -30,11 +31,11 @@ export default function NotificationItem(props: Props) {
   const getNotificationIcon = (reason: string) => {
     switch (reason) {
       case "like":
-        return <BiSolidHeart className="text-2xl text-red-500 shrink-0" />;
+        return <BiSolidHeart className="shrink-0 text-2xl text-red-500" />;
       case "repost":
-        return <BiRepost className="text-2xl text-green-600 shrink-0" />;
+        return <BiRepost className="shrink-0 text-2xl text-green-600" />;
       case "follow":
-        return <BiSolidUserPlus className="text-2xl text-primary shrink-0" />;
+        return <BiSolidUserPlus className="text-primary shrink-0 text-2xl" />;
       default:
         return null;
     }
@@ -43,7 +44,7 @@ export default function NotificationItem(props: Props) {
   if (GROUPABLE_NOTIFICATIONS.includes(reason)) {
     return (
       <article
-        className={`flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 md:first:rounded-t-2xl ${
+        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x md:first:rounded-t-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
           !isRead && "bg-neutral-100"
         }`}
       >
@@ -77,7 +78,7 @@ export default function NotificationItem(props: Props) {
                     <Link
                       key={author.handle}
                       href={`/dashboard/user/${author.handle}`}
-                      className="font-semibold break-all text-neutral-700 hover:text-neutral-500"
+                      className="break-all font-semibold text-neutral-700 hover:text-neutral-500"
                     >
                       {author.displayName ?? author.handle}{" "}
                     </Link>
@@ -90,15 +91,15 @@ export default function NotificationItem(props: Props) {
                 {allAuthors?.length === 1 && (
                   <Link
                     href={`/dashboard/user/${author.handle}`}
-                    className="font-semibold break-all text-neutral-700 hover:text-neutral-500"
+                    className="break-all font-semibold text-neutral-700 hover:text-neutral-500"
                   >
                     {author.displayName ?? author.handle}{" "}
                   </Link>
                 )}
-                <span className="text-neutral-700 font-medium break-words">
+                <span className="break-words font-medium text-neutral-700">
                   {getNotificationLabel(reason)}
                 </span>
-                <span className="text-neutral-400 font-medium whitespace-nowrap">
+                <span className="whitespace-nowrap font-medium text-neutral-400">
                   &nbsp;· {getRelativeTime(indexedAt)}
                 </span>
                 {subjectUri && (
@@ -113,7 +114,7 @@ export default function NotificationItem(props: Props) {
   } else {
     return (
       <div
-        className={`flex flex-col justify-between p-3 border border-x-0 md:border-x first:border-t last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 first:md:rounded-t-2xl ${
+        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x first:md:rounded-t-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
           !isRead && "bg-neutral-100"
         }`}
       >
@@ -121,4 +122,6 @@ export default function NotificationItem(props: Props) {
       </div>
     );
   }
-}
+});
+
+export default NotificationItem;
