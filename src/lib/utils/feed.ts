@@ -192,6 +192,13 @@ export const sortThread = (
   b: AppBskyFeedDefs.ThreadViewPost,
   threadPrefs: ThreadViewResult,
 ) => {
+  if (
+    !AppBskyFeedDefs.isThreadViewPost(a) ||
+    !AppBskyFeedDefs.isThreadViewPost(b)
+  ) {
+    return 0;
+  }
+
   if (threadPrefs.sort === "oldest") {
     const aDate = new Date(a.post.indexedAt);
     const bDate = new Date(b.post.indexedAt);

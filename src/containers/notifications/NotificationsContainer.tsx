@@ -42,6 +42,7 @@ export default function NotificationsContainer() {
         next={fetchNotificationNextPage}
         hasMore={notificationHasNextPage}
         loader={<LoadingSpinner />}
+        scrollThreshold={0.95}
         className="no-scrollbar flex flex-col"
       >
         {notificationData &&

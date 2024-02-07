@@ -61,6 +61,7 @@ export default function FeedContainer(props: Props) {
         next={fetchNextFeedPage}
         hasMore={feedHasNextPage}
         loader={<LoadingSpinner />}
+        scrollThreshold={0.95}
         className="no-scrollbar"
       >
         {feedData &&
