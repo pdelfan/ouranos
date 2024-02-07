@@ -122,7 +122,7 @@ export default function PostThreadContainer(props: Props) {
         threadPreferences &&
         replyChains &&
         replyChains
-          // .sort((a, b) => sortThread(a[0], b[0], threadPreferences))
+          .sort((a, b) => sortThread(a[0], b[0], threadPreferences))
           .map((replyArr, i) => (
             <div
               className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"

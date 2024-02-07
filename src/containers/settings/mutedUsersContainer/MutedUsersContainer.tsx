@@ -46,6 +46,7 @@ export default function MutedUsersContainer() {
           next={fetchNextPage}
           hasMore={hasNextPage}
           loader={<LoadingSpinner />}
+          scrollThreshold={0.95}
           className="no-scrollbar flex flex-col"
         >
           {profiles &&

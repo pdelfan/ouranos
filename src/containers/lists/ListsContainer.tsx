@@ -52,6 +52,7 @@ export default function ListsContainer(props: Props) {
         next={fetchNextPage}
         hasMore={hasNextPage}
         loader={<LoadingSpinner />}
+        scrollThreshold={0.95}
         className="no-scrollbar flex flex-col"
       >
         {lists?.pages

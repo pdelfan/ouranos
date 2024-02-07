@@ -18,7 +18,7 @@ export default function RepliesContainer(props: Props) {
   return (
     <>
       {replies.map((reply, j) => (
-        <div className={reply.post.uri} key={reply.post.uri}>
+        <div key={j}>
           {AppBskyFeedDefs.isBlockedPost(reply) && <BlockedEmbed depth={0} />}
           {AppBskyFeedDefs.isNotFoundPost(reply) && <NotFoundEmbed depth={0} />}
           {AppBskyFeedDefs.isBlockedAuthor(reply) && <BlockedEmbed depth={0} />}
@@ -37,7 +37,7 @@ export default function RepliesContainer(props: Props) {
             !showMore && (
               <button
                 onClick={() => setShowMore(true)}
-                className="inline-block bg-neutral-600/10 py-2 px-2.5 text-neutral-600 text-sm font-medium rounded-full hover:bg-neutral-200"
+                className="inline-block rounded-full bg-neutral-600/10 px-2.5 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-200"
               >
                 Show More
               </button>
