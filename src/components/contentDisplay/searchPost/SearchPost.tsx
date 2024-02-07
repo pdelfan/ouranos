@@ -9,6 +9,7 @@ import { getRelativeTime } from "@/lib/utils/time";
 import { AppBskyFeedDefs } from "@atproto/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { memo } from "react";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -16,7 +17,7 @@ interface Props {
   hasReply?: boolean;
 }
 
-export default function SearchPost(props: Props) {
+const SearchPost = memo(function SearchPost(props: Props) {
   const { post } = props;
   const { author, indexedAt } = post;
   const router = useRouter();
@@ -26,10 +27,10 @@ export default function SearchPost(props: Props) {
       onClick={(e) => {
         e.stopPropagation();
         router.push(
-          `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`
+          `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`,
         );
       }}
-      className="p-3 border border-x-0 md:border-x last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:cursor-pointer"
+      className="border border-x-0 p-3 last:border-b hover:cursor-pointer md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
       <div className="relative flex items-start gap-3">
         <Link
@@ -41,7 +42,7 @@ export default function SearchPost(props: Props) {
         >
           <Avatar src={author.avatar} size="md" />
         </Link>
-        <div className="flex flex-col grow">
+        <div className="flex grow flex-col">
           <div className="flex">
             <Link
               href={`/dashboard/user/${author.handle}`}
@@ -50,14 +51,14 @@ export default function SearchPost(props: Props) {
               }}
               className="flex gap-1"
             >
-              <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700 hover:text-neutral-500">
+              <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-500">
                 {author.displayName ?? author.handle}{" "}
               </span>
-              <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+              <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
                 @{author.handle}
               </span>
             </Link>
-            <span className="text-neutral-400 font-medium whitespace-nowrap">
+            <span className="whitespace-nowrap font-medium text-neutral-400">
               &nbsp;· {getRelativeTime(indexedAt)}
             </span>
           </div>
@@ -70,4 +71,6 @@ export default function SearchPost(props: Props) {
       </div>
     </article>
   );
-}
+});
+
+export default SearchPost;
