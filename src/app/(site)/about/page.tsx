@@ -4,15 +4,15 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="mx-auto p-5 mt-0 md:mt-16">
-      <header className="flex justify-between items-center max-w-xl mx-auto">
+    <main className="mx-auto mt-0 p-5 md:mt-16">
+      <header className="mx-auto flex max-w-xl items-center justify-between">
         <div className="flex items-center gap-3">
           <Image
             src="/ouranos.svg"
             alt="Ouranos logo"
             width={40}
             height={40}
-            className="block transition-transform ease-in-out duration-700 hover:rotate-180"
+            className="block transition-transform duration-700 ease-in-out hover:rotate-180"
           />
           <Image
             src="/ouranosText.svg"
@@ -28,8 +28,8 @@ export default function Page() {
           Home
         </Link>
       </header>
-      <section className="mt-16 max-w-xl mx-auto animate-fade">
-        <h1 className="mb-6 text-4xl font-medium text-neutral-600 max-w-lg">
+      <section className="animate-fade mx-auto mt-16 max-w-xl">
+        <h1 className="mb-6 max-w-lg text-4xl font-medium text-neutral-600">
           About
         </h1>
         <p>
@@ -72,7 +72,7 @@ export default function Page() {
           graduation.
         </p>
 
-        <h2 className="mt-12 mb-6 text-2xl font-medium text-neutral-600">
+        <h2 className="mb-6 mt-12 text-2xl font-medium text-neutral-600">
           Frequently Asked Questions
         </h2>
 
@@ -115,15 +115,6 @@ export default function Page() {
           App passwords allow you to log in and use the app, but restrict
           third-party clients (ex. Ouranos) from certain functionalities such as
           account deletion or generating additional app passwords.
-        </p>
-
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
-          Does Ouranos have extra features?
-        </h3>
-        <p>
-          The current goal is to implement current and future functionalities
-          provided by the official app, and add more enhancements (some are
-          currently implemented) without storing anything on our side.
         </p>
         <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
           Is there a dark mode?
