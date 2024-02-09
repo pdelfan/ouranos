@@ -6,13 +6,14 @@ const useScrollTranslation = () => {
 
   const MAX = 100;
   const MIN = 0;
+  const ACCELERATION = 0.8;
 
   const handleScroll = useCallback(() => {
     const currY = Math.floor(window.scrollY);
     const diff = currY - prevY;
 
     // map the scroll difference to the range [MIN, MAX]
-    const mapped = Math.floor((diff / 100) * 100);
+    const mapped = Math.floor(((diff * ACCELERATION) / 100) * 100);
     // update the value within the range [MIN, MAX]
 
     setVal((prev) => {
