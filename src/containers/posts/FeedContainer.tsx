@@ -64,6 +64,8 @@ export default function FeedContainer(props: Props) {
         scrollThreshold={0.95}
         className="no-scrollbar"
       >
+        {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
+
         {feedData &&
           contentFilter &&
           feedFilter &&
@@ -85,7 +87,6 @@ export default function FeedContainer(props: Props) {
           ))}
       </InfiniteScroll>
 
-      {isFetchingFeed && !isFetchingFeedNextPage && <FeedPostSkeleton />}
       {feedError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}
