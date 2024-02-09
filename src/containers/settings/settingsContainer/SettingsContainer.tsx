@@ -26,19 +26,19 @@ export default async function SettingsContainer() {
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Settings</h2>
+      <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">Settings</h2>
       {profile && (
         <section>
-          <h3 className="text-xl font-semibold mb-2 mx-3 md:mx-0">Account</h3>
-          <div className="flex flex-col gap-3 p-3 mt-2 w-full rounded-none md:rounded-t-2xl md:rounded-b-2xl border border-x-0 md:border-x">
-            <div className="flex flex-wrap gap-3 justify-between items-center ">
+          <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Account</h3>
+          <div className="mt-2 flex w-full flex-col gap-3 rounded-none border border-x-0 p-3 md:rounded-b-2xl md:rounded-t-2xl md:border-x">
+            <div className="flex flex-wrap items-center justify-between gap-3 ">
               <div className="flex gap-3">
                 <Avatar src={profile.avatar} size="md" />
                 <div className="flex flex-col">
-                  <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
-                    {profile.displayName ?? profile.handle}
+                  <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
+                    {profile.displayName || profile.handle}
                   </span>
-                  <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+                  <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
                     @{profile.handle}
                   </span>
                 </div>
@@ -47,19 +47,19 @@ export default async function SettingsContainer() {
             </div>
             <hr />
             <div className="flex flex-wrap items-center gap-2">
-              <BiSolidEnvelope className="text-neutral-600 text-xl" />
-              <span className="text-neutral-600 break-all">
+              <BiSolidEnvelope className="text-xl text-neutral-600" />
+              <span className="break-all text-neutral-600">
                 {session?.user.email}{" "}
               </span>
               {isEmailConfirmed && (
-                <small className="inline-flex gap-1 items-center px-2 py-1.5 rounded-full bg-green-600/10 font-bold text-[0.6rem] text-green-600">
-                  <BiSolidCheckCircle className="text-green-600 text-lg" />
+                <small className="inline-flex items-center gap-1 rounded-full bg-green-600/10 px-2 py-1.5 text-[0.6rem] font-bold text-green-600">
+                  <BiSolidCheckCircle className="text-lg text-green-600" />
                   Verified
                 </small>
               )}
               {!isEmailConfirmed && (
-                <small className="inline-flex gap-1 items-center px-2 py-1.5 rounded-full bg-orange-600/10 font-bold text-[0.6rem] text-orange-600">
-                  <BiSolidXCircle className="text-orange-600 text-lg" />
+                <small className="inline-flex items-center gap-1 rounded-full bg-orange-600/10 px-2 py-1.5 text-[0.6rem] font-bold text-orange-600">
+                  <BiSolidXCircle className="text-lg text-orange-600" />
                   Not Verified
                 </small>
               )}
@@ -69,84 +69,84 @@ export default async function SettingsContainer() {
       )}
 
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
           Invite Codes
         </h3>
         <InviteCodes codes={inviteCodes} />
       </section>
 
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
           Feeds and Threads
         </h3>
         <div className="flex flex-col">
           <Link
             href="/dashboard/settings/home-feed"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <FaSlidersH className="text-neutral-600 text-xl" />
+            <FaSlidersH className="text-xl text-neutral-600" />
             Home Feed Preferences
           </Link>
           <Link
             href="/dashboard/settings/thread-preferences"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <ImBubbles2 className="text-neutral-600 text-xl" />
+            <ImBubbles2 className="text-xl text-neutral-600" />
             Thread Preferences
           </Link>
           <Link
             href="/dashboard/settings/my-feeds"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <BiSolidCloud className="text-neutral-600 text-xl" />
+            <BiSolidCloud className="text-xl text-neutral-600" />
             My Feeds
           </Link>
         </div>
       </section>
 
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Moderation</h3>
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Moderation</h3>
         <section className="flex flex-col">
           <Link
             href="/dashboard/settings/content-filtering"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <MdRemoveRedEye className="text-neutral-600 text-xl" />
+            <MdRemoveRedEye className="text-xl text-neutral-600" />
             Content Filtering
           </Link>
           <Link
             href="/dashboard/settings/muted-users"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <BiSolidBellOff className="text-neutral-600 text-xl" />
+            <BiSolidBellOff className="text-xl text-neutral-600" />
             Muted Users
           </Link>
           <Link
             href="/dashboard/settings/blocked-users"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <BsPersonFillSlash className="text-neutral-600 text-xl" />
+            <BsPersonFillSlash className="text-xl text-neutral-600" />
             Blocked Users
           </Link>
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">About</h3>
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">About</h3>
         <div className="flex flex-col">
           <Link
             href="https://github.com/pdelfan/ouranos"
             target="_blank"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <BiLogoGithub className="text-neutral-600 text-xl" />
+            <BiLogoGithub className="text-xl text-neutral-600" />
             GitHub Repository
           </Link>
           <Link
             href="https://github.com/pdelfan/ouranos/blob/main/LICENSE"
             target="_blank"
-            className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+            className="flex items-center gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <TbLicense className="text-neutral-600 text-xl" />
+            <TbLicense className="text-xl text-neutral-600" />
             License
           </Link>
         </div>

@@ -41,7 +41,7 @@ export default function ListEmbed(props: Props) {
                 {list.name}
               </span>
               <span className="break-all font-medium text-neutral-400">
-                {type} by {list.creator.displayName ?? list.creator.handle}
+                {type} by {list.creator.displayName || list.creator.handle}
               </span>
               {list.description && (
                 <p className="break-all">{list.description}</p>

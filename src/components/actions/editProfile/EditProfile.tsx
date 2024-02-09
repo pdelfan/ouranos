@@ -49,17 +49,17 @@ export default function EditProfile(props: Props) {
       }}
     >
       <Dialog.Trigger asChild>
-        <Button className="flex items-center justify-center gap-1 font-medium text-sm disabled:cursor-not-allowed rounded-full py-2 px-4 bg-neutral-100 text-neutral-500 hover:brightness-95">
+        <Button className="flex items-center justify-center gap-1 rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-500 hover:brightness-95 disabled:cursor-not-allowed">
           Edit Profile
         </Button>
       </Dialog.Trigger>
-      <Dialog.Overlay className="z-50 bg-black/80 fixed inset-0 w-screen h-screen animate-fade animate-duration-200" />
-      <Dialog.Content className="z-50 bg-white w-[90svw] p-3 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] h-fit max-h-[90svh] max-w-xl md:border-t shadow-2xl rounded-2xl overflow-auto animate-fade animate-duration-200">
-        <h2 className="text-2xl font-semibold text-center mb-2">
+      <Dialog.Overlay className="animate-fade animate-duration-200 fixed inset-0 z-50 h-screen w-screen bg-black/80" />
+      <Dialog.Content className="animate-fade animate-duration-200 fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-xl translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl bg-white p-3 shadow-2xl md:border-t">
+        <h2 className="mb-2 text-center text-2xl font-semibold">
           Edit My Profile
         </h2>
         <div className="relative">
-          <div className="absolute  right-3 bottom-3 bg-neutral-200 p-1 rounded-full">
+          <div className="absolute  bottom-3 right-3 rounded-full bg-neutral-200 p-1">
             <BiSolidCamera />
           </div>
           <Dropzone
@@ -87,13 +87,13 @@ export default function EditProfile(props: Props) {
                   alt="Banner"
                   width={800}
                   height={100}
-                  className="object-cover h-[9rem] rounded-2xl hover:cursor-pointer"
+                  className="h-[9rem] rounded-2xl object-cover hover:cursor-pointer"
                 />
               </div>
             )}
           </Dropzone>
-          <div className="absolute bottom-0 transform translate-y-1/2 px-3 ">
-            <div className="absolute right-3 bottom-3 bg-neutral-200 p-1 rounded-full">
+          <div className="absolute bottom-0 translate-y-1/2 transform px-3 ">
+            <div className="absolute bottom-3 right-3 rounded-full bg-neutral-200 p-1">
               <BiSolidCamera />
             </div>
             <Dropzone
@@ -121,25 +121,25 @@ export default function EditProfile(props: Props) {
                     alt="Avatar"
                     width={95}
                     height={95}
-                    className="object-cover rounded-full h-[95px] w-[95px] border-4 border-white hover:cursor-pointer"
+                    className="h-[95px] w-[95px] rounded-full border-4 border-white object-cover hover:cursor-pointer"
                   />
                 </div>
               )}
             </Dropzone>
           </div>
         </div>
-        <div className="mt-14 md:max-w-xl mx-auto">
+        <div className="mx-auto mt-14 md:max-w-xl">
           <div>
-            <h3 className="text-xl font-semibold mb-2">Display Name</h3>
+            <h3 className="mb-2 text-xl font-semibold">Display Name</h3>
             <Input
               maxLength={MAX_DISPLAY_NAME_LENGTH}
               placeholder="Your name"
-              defaultValue={profile.displayName ?? profile.handle}
+              defaultValue={profile.displayName || profile.handle}
               onChange={(e) => setDisplayName(e.currentTarget.value)}
             />
           </div>
           <div>
-            <h3 className="text-xl font-semibold my-2">Description</h3>
+            <h3 className="my-2 text-xl font-semibold">Description</h3>
             <Textarea
               rows={4}
               maxLength={MAX_DESCRIPTION_LENGTH}
@@ -150,8 +150,8 @@ export default function EditProfile(props: Props) {
             />
           </div>
         </div>
-        <div className="flex gap-3 mt-2 justify-end">
-          <Dialog.Close className="px-4 py-2 text-sm text-neutral-600 font-semibold border rounded-full hover:bg-neutral-50">
+        <div className="mt-2 flex justify-end gap-3">
+          <Dialog.Close className="rounded-full border px-4 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-50">
             Cancel
           </Dialog.Close>
           <Button
@@ -164,7 +164,7 @@ export default function EditProfile(props: Props) {
               });
             }}
             disabled={updateProfile.isPending}
-            className={`bg-primary text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-primary-dark ${
+            className={`bg-primary hover:bg-primary-dark rounded-full px-4 py-2 text-sm font-semibold text-white ${
               updateProfile.isPending && "animate-pulse"
             }`}
           >

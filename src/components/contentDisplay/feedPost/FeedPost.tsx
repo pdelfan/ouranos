@@ -66,7 +66,7 @@ export default function FeedPost(props: Props) {
                 className="flex gap-1"
               >
                 <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-500">
-                  {author.displayName ?? author.handle}{" "}
+                  {author.displayName || author.handle}{" "}
                 </span>
                 <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
                   @{author.handle}

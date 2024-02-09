@@ -80,7 +80,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                       href={`/dashboard/user/${author.handle}`}
                       className="break-all font-semibold text-neutral-700 hover:text-neutral-500"
                     >
-                      {author.displayName ?? author.handle}{" "}
+                      {author.displayName || author.handle}{" "}
                     </Link>
                     <span className="text-neutral-700">
                       and {allAuthors.length - 1}{" "}
@@ -93,7 +93,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                     href={`/dashboard/user/${author.handle}`}
                     className="break-all font-semibold text-neutral-700 hover:text-neutral-500"
                   >
-                    {author.displayName ?? author.handle}{" "}
+                    {author.displayName || author.handle}{" "}
                   </Link>
                 )}
                 <span className="break-words font-medium text-neutral-700">

@@ -31,7 +31,7 @@ export function useUpdateProfile(props: Props) {
             new Uint8Array(await blob.arrayBuffer()),
             {
               encoding: blob.type,
-            }
+            },
           );
           profile.banner = uploaded.data.blob;
         }
@@ -41,7 +41,7 @@ export function useUpdateProfile(props: Props) {
             new Uint8Array(await blob.arrayBuffer()),
             {
               encoding: blob.type,
-            }
+            },
           );
           profile.avatar = uploaded.data.blob;
         }

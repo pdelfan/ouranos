@@ -1,24 +1,24 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
-import { getPostThread } from "@/lib/api/bsky/feed";
-import { useQuery } from "@tanstack/react-query";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import useOrganizeThread from "@/lib/hooks/bsky/feed/useOrganizeThread";
-import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ThreadPost from "@/components/contentDisplay/threadPost/ThreadPost";
 import BlockedEmbed from "@/components/dataDisplay/postEmbed/BlockedEmbed";
 import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
 import Button from "@/components/actions/button/Button";
-import { useRouter } from "next/navigation";
 import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import RepliesContainer from "./RepliesContainer";
 import ParentContainer from "./ParentContainer";
-import { sortThread } from "@/lib/utils/feed";
 import ComposePrompt from "@/components/actions/composePrompt/ComposePrompt";
 import WhoCanReply from "@/components/feedback/WhoCanReply/WhoCanReply";
+import useAgent from "@/lib/hooks/bsky/useAgent";
+import useOrganizeThread from "@/lib/hooks/bsky/feed/useOrganizeThread";
+import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
+import { getPostThread } from "@/lib/api/bsky/feed";
+import { sortThread } from "@/lib/utils/feed";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 interface Props {
   id: string;

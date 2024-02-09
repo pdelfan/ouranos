@@ -23,9 +23,9 @@ export default function Reason(props: Props) {
           href={`/dashboard/user/${reason.by.handle}`}
           className="max-w-fit"
         >
-          <div className="inline-flex flex-wrap items-center gap-1 text-lg text-neutral-600 font-semibold hover:text-neutral-500">
+          <div className="inline-flex flex-wrap items-center gap-1 text-lg font-semibold text-neutral-600 hover:text-neutral-500">
             <BiRepost />
-            <small>{reason.by.displayName ?? reason.by.handle} reposted</small>
+            <small>{reason.by.displayName || reason.by.handle} reposted</small>
           </div>
         </Link>
       )}

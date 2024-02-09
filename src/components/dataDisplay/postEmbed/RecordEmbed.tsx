@@ -39,25 +39,25 @@ export default function RecordEmbed(props: Props) {
           onClick={(e) => {
             router.push(
               `/dashboard/user/${record.author.handle}/post/${getPostId(
-                record.uri
-              )}`
+                record.uri,
+              )}`,
             );
             e.stopPropagation();
           }}
-          className="p-3 mt-2 border rounded-xl hover:bg-neutral-50 hover:cursor-pointer"
+          className="mt-2 rounded-xl border p-3 hover:cursor-pointer hover:bg-neutral-50"
         >
           <div className="flex flex-col">
             <div className="flex">
               <span className="flex items-center gap-1">
                 <Avatar src={record.author.avatar} size="xs" />
-                <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
-                  {record.author.displayName ?? record.author.handle}{" "}
+                <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
+                  {record.author.displayName || record.author.handle}{" "}
                 </span>
-                <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+                <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
                   @{record.author.handle}
                 </span>
               </span>
-              <span className="text-neutral-400 font-medium whitespace-nowrap">
+              <span className="whitespace-nowrap font-medium text-neutral-400">
                 &nbsp;· {getRelativeTime(record.indexedAt)}
               </span>
             </div>

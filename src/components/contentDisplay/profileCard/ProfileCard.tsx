@@ -25,7 +25,7 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
             <Avatar src={profile.avatar} />
             <div className="flex flex-col">
               <h2 className="font-semibold">
-                {profile?.displayName ?? profile.handle}
+                {profile.displayName || profile.handle}
               </h2>
               <h3 className="break-all font-medium text-neutral-400">
                 @{profile?.handle}
