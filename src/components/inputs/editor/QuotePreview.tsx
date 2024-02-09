@@ -24,7 +24,7 @@ export default function QuoteToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="flex items-start gap-1 p-2 border rounded-2xl cursor-pointer"
+      className="flex cursor-pointer items-start gap-1 rounded-2xl border p-2"
     >
       <Image
         src={author.avatar ?? FallbackAvatar}
@@ -35,13 +35,13 @@ export default function QuoteToPreview(props: Props) {
       />
       <div className="flex flex-col">
         <div className="flex gap-1">
-          <span className="font-semibold break-all max-w-[90%] shrink-0 line-clamp-1 overflow-ellipsis text-neutral-700">
-            {author.displayName ?? author.handle}
+          <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
+            {author.displayName || author.handle}
           </span>
-          <span className="text-neutral-400 font-medium line-clamp-1 break-all shrink min-w-[10%]">
+          <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
             @{author.handle}
           </span>
-          <span className="text-neutral-400 font-medium whitespace-nowrap">
+          <span className="whitespace-nowrap font-medium text-neutral-400">
             &nbsp;· {getRelativeTime(post.indexedAt)}
           </span>
         </div>

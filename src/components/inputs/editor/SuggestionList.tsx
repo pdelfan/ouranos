@@ -65,7 +65,7 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
 
     const upHandler = () => {
       setSelectedIndex(
-        (selectedIndex + props.items.length - 1) % props.items.length
+        (selectedIndex + props.items.length - 1) % props.items.length,
       );
     };
 
@@ -102,11 +102,11 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
 
     return (
       <div
-        className={`mt-2 mb-2 bg-white rounded-xl p-1 drop-shadow-lg border min-h-fit animate-fade animate-duration-300`}
+        className={`animate-fade animate-duration-300 mb-2 mt-2 min-h-fit rounded-xl border bg-white p-1 drop-shadow-lg`}
       >
         {props.items.length === 0 && (
-          <div className="flex justify-between items-center gap-10 py-1 px-2 rounded-md  focus:bg-neutral-100 focus:outline-none cursor-pointer">
-            <span className="inline-block whitespace-nowrap max-w-xs">
+          <div className="flex cursor-pointer items-center justify-between gap-10 rounded-md px-2  py-1 focus:bg-neutral-100 focus:outline-none">
+            <span className="inline-block max-w-xs whitespace-nowrap">
               No User Found
             </span>
           </div>
@@ -119,7 +119,7 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
                 e.preventDefault();
                 selectItem(index);
               }}
-              className={`flex justify-between items-center py-1 px-2 rounded-md focus:bg-neutral-100 hover:bg-neutral-100 focus:outline-none cursor-pointer ${
+              className={`flex cursor-pointer items-center justify-between rounded-md px-2 py-1 hover:bg-neutral-100 focus:bg-neutral-100 focus:outline-none ${
                 index === selectedIndex && "bg-neutral-100"
               }`}
             >
@@ -144,7 +144,7 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
           ))}
       </div>
     );
-  }
+  },
 );
 
 SuggestionList.displayName = "SuggestionList";

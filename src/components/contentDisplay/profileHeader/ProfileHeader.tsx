@@ -18,7 +18,6 @@ import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import EditProfile from "@/components/actions/editProfile/EditProfile";
-import { getFormattedDate } from "@/lib/utils/time";
 import JoinedDate from "@/components/dataDisplay/joinedDate/JoinedDate";
 
 interface Props {
@@ -135,9 +134,7 @@ export default function ProfileHeader(props: Props) {
           <div className="p-3">
             <div className="flex flex-wrap items-center gap-x-2">
               <h1 className="break-all text-2xl font-semibold text-neutral-700">
-                {profile?.displayName ||
-                  (profile?.handle &&
-                    (profile?.displayName ?? profile?.handle))}
+                {profile.displayName || profile.handle}
               </h1>
               <div className="flex flex-wrap gap-1.5">
                 {profile.viewer?.followedBy && (

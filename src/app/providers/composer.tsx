@@ -80,7 +80,7 @@ export const ComposerProvider: React.FC<ComposerProviderProps> = ({
       openComposer,
       closeComposer,
     }),
-    []
+    [],
   );
 
   const state = {

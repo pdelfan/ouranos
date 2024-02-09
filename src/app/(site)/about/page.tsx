@@ -62,14 +62,13 @@ export default function Page() {
         <p className="mt-3">
           The app is being developed and designed by me,{" "}
           <Link
-            href="https://bsky.app/profile/contrapunctus.bsky.social"
+            href="https://pouriade.com"
             className="underline underline-offset-2"
           >
             Pouria
           </Link>
           . I started the project to learn more about the AT Protocol and as fun
-          way to practice my skills while I look for a full-time role after
-          graduation.
+          way to practice my skills.
         </p>
 
         <h2 className="mb-6 mt-12 text-2xl font-medium text-neutral-600">

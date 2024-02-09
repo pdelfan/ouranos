@@ -31,13 +31,13 @@ function FeedItem(props: FeedItemProps) {
     <Link
       href={{
         pathname: `/dashboard/feeds/${encodeURIComponent(
-          feedItem.uri.split(":")[3].split("/")[0]
+          feedItem.uri.split(":")[3].split("/")[0],
         )}`,
         query: { uri: feedItem.uri },
       }}
-      className="flex justify-between items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 hover:bg-neutral-50"
+      className="flex items-center justify-between gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
-      <div className="flex flex-wrap gap-3 items-center">
+      <div className="flex flex-wrap items-center gap-3">
         <Image
           src={avatar ?? FallbackFeed}
           alt={displayName}
@@ -45,7 +45,7 @@ function FeedItem(props: FeedItemProps) {
           height={40}
           className={`rounded-lg ${!avatar && "border"}`}
         />
-        <h2 className="text-neutral-700 font-semibold break-words">
+        <h2 className="break-words font-semibold text-neutral-700">
           {feedItem.displayName}
         </h2>
       </div>
@@ -56,7 +56,7 @@ function FeedItem(props: FeedItemProps) {
             deleteFeed.mutate();
           }}
         >
-          <BiSolidTrash className="text-red-600 text-lg" />
+          <BiSolidTrash className="text-lg text-red-600" />
         </Button>
 
         <Button
@@ -87,9 +87,9 @@ export default function MyFeedsContainer() {
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">My Feeds</h2>
+      <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">My Feeds</h2>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
           Pinned Feeds
         </h3>
         <section className="flex flex-col">
@@ -104,7 +104,7 @@ export default function MyFeedsContainer() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Saved Feeds</h2>
+        <h2 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Saved Feeds</h2>
         <section className="flex flex-col">
           {data &&
             data
