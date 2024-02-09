@@ -65,11 +65,11 @@ export default function LoginForm() {
           height={50}
           className="mx-auto mb-3"
         />
-        <h1 className="mb-1 text-center text-xl font-semibold text-gray-800">
+        <h1 className="mb-1 text-center text-xl font-semibold text-neutral-800">
           Welcome Back
         </h1>
 
-        <p className="mb-3 text-center text-sm font-medium text-gray-500">
+        <p className="mb-3 text-center text-sm font-medium text-neutral-500">
           Already logged in, redirecting...
         </p>
         <LoadingSpinner />
@@ -86,8 +86,10 @@ export default function LoginForm() {
         height={50}
         className="mx-auto mb-3"
       />
-      <h1 className="mb-1 text-xl font-semibold text-gray-800">Welcome Back</h1>
-      <p className="mb-3 text-sm font-medium text-gray-500">
+      <h1 className="mb-1 text-xl font-semibold text-neutral-800">
+        Welcome Back
+      </h1>
+      <p className="mb-3 text-sm font-medium text-neutral-500">
         We recommend using an{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
@@ -98,11 +100,11 @@ export default function LoginForm() {
         </Link>{" "}
         to log in.
       </p>
-      <p className="text-sm font-medium text-gray-500">
+      <p className="text-sm font-medium text-neutral-500">
         Ouranos is in early access, some features may not work as intended.
       </p>
       <form
-        className="mt-5 text-sm font-medium text-gray-400"
+        className="mt-5 text-sm font-medium text-neutral-400"
         onSubmit={(e) => {
           e.preventDefault();
           handleSignIn();

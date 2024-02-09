@@ -13,14 +13,14 @@ export default function ExternalEmbed(props: Props) {
   return (
     <>
       {depth < 2 && (
-        <article className="mt-2 border rounded-2xl bg-white hover:brightness-95">
+        <article className="mt-2 rounded-2xl border bg-white hover:brightness-95">
           <Link
             href={embed.external.uri}
             target="blank"
             onClick={(e) => e.stopPropagation()}
           >
             {embed.external.thumb && (
-              <div className="relative w-full h-44">
+              <div className="relative h-44 w-full">
                 <Image
                   src={embed.external.thumb}
                   alt={embed.external.description}
@@ -30,10 +30,10 @@ export default function ExternalEmbed(props: Props) {
               </div>
             )}
             <div className="flex flex-col p-3">
-              <span className="break-all text-sm text-gray-500">
+              <span className="break-all text-sm text-neutral-400">
                 {getHostname(embed.external.uri)}
               </span>
-              <span className="[overflow-wrap:anywhere] font-medium">
+              <span className="font-medium [overflow-wrap:anywhere]">
                 {embed.external.title}
               </span>
             </div>

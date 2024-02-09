@@ -1,10 +1,10 @@
 export default function NotificationContentSkeleton() {
   return (
-    <div className="flex items-start gap-3 w-full">
-      <div className="flex flex-col grow">
-        <div className="bg-gray-200 rounded w-[90%] h-4 mt-2" />
-        <div className="bg-gray-200 rounded w-[95%] h-4 mt-2" />
-        <div className="bg-gray-200 rounded w-[88%] h-4 mt-2" />
+    <div className="flex w-full items-start gap-3">
+      <div className="flex grow flex-col">
+        <div className="mt-2 h-4 w-[90%] rounded bg-neutral-200" />
+        <div className="mt-2 h-4 w-[95%] rounded bg-neutral-200" />
+        <div className="mt-2 h-4 w-[88%] rounded bg-neutral-200" />
       </div>
     </div>
   );
