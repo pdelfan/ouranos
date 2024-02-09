@@ -57,7 +57,7 @@ export default function LoginForm() {
 
   if (isRedirecting) {
     return (
-      <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
+      <section className="max-w-xs rounded-2xl bg-neutral-100 p-5">
         <Image
           src="/logo.svg"
           alt="Ouranos logo"
@@ -65,11 +65,11 @@ export default function LoginForm() {
           height={50}
           className="mx-auto mb-3"
         />
-        <h1 className="text-xl text-center font-semibold text-gray-800 mb-1">
+        <h1 className="mb-1 text-center text-xl font-semibold text-neutral-800">
           Welcome Back
         </h1>
 
-        <p className="text-sm text-center font-medium text-gray-500 mb-3">
+        <p className="mb-3 text-center text-sm font-medium text-neutral-500">
           Already logged in, redirecting...
         </p>
         <LoadingSpinner />
@@ -78,7 +78,7 @@ export default function LoginForm() {
   }
 
   return (
-    <section className="bg-neutral-100 rounded-2xl max-w-xs p-5">
+    <section className="max-w-xs rounded-2xl bg-neutral-100 p-5">
       <Image
         src="/logo.svg"
         alt="Ouranos logo"
@@ -86,8 +86,10 @@ export default function LoginForm() {
         height={50}
         className="mx-auto mb-3"
       />
-      <h1 className="text-xl font-semibold text-gray-800 mb-1">Welcome Back</h1>
-      <p className="text-sm font-medium text-gray-500 mb-3">
+      <h1 className="mb-1 text-xl font-semibold text-neutral-800">
+        Welcome Back
+      </h1>
+      <p className="mb-3 text-sm font-medium text-neutral-500">
         We recommend using an{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
@@ -98,11 +100,11 @@ export default function LoginForm() {
         </Link>{" "}
         to log in.
       </p>
-      <p className="text-sm font-medium text-gray-500">
+      <p className="text-sm font-medium text-neutral-500">
         Ouranos is in early access, some features may not work as intended.
       </p>
       <form
-        className="text-sm font-medium text-gray-400 mt-5"
+        className="mt-5 text-sm font-medium text-neutral-400"
         onSubmit={(e) => {
           e.preventDefault();
           handleSignIn();
@@ -123,7 +125,7 @@ export default function LoginForm() {
             }}
           />
         </span>
-        <span className="block mt-3">
+        <span className="mt-3 block">
           <Label htmlFor="password">Password</Label>
           <Input
             required
@@ -139,11 +141,11 @@ export default function LoginForm() {
           />
         </span>
         {error && (
-          <small className="block text-red-500 font-medium mt-1">{error}</small>
+          <small className="mt-1 block font-medium text-red-500">{error}</small>
         )}
         <Button
           type="submit"
-          className={`flex items-center gap-2 justify-center font-semibold px-3 py-3 mt-5 ml-auto w-full rounded-lg bg-zinc-600 text-white disabled:cursor-not-allowed hover:bg-zinc-700 ${
+          className={`ml-auto mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-600 px-3 py-3 font-semibold text-white hover:bg-neutral-700 disabled:cursor-not-allowed ${
             loading && "animate-pulse"
           }`}
           disabled={loading}

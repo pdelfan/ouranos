@@ -7,7 +7,7 @@ export default function Textarea(props: Props) {
   return (
     <textarea
       {...props}
-      className={`p-2.5 w-full rounded-lg text-gray-600 border focus:outline-gray-400 ${className}`}
+      className={`w-full rounded-lg border p-2.5 text-neutral-600 focus:outline-neutral-400 ${className}`}
     />
   );
 }

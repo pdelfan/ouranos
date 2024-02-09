@@ -1,24 +1,24 @@
 export default function FeedHeaderSkeleton() {
   return (
-    <article className="flex flex-col gap-2 p-3 border border-y-0 border-x-0 md:border-t md:border-x md:rounded-t-2xl">
-      <div className="flex flex-wrap gap-3 items-center justify-between">
+    <article className="flex flex-col gap-2 border border-x-0 border-y-0 p-3 md:rounded-t-2xl md:border-x md:border-t">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="rounded-lg bg-gray-200 h-[60px] w-[60px] animate-pulse" />
+          <div className="h-[60px] w-[60px] animate-pulse rounded-lg bg-neutral-200" />
           <div className="flex flex-col gap-3">
-            <div className="bg-gray-200 w-20 h-4 rounded animate-pulse" />
-            <div className="bg-gray-200 w-32 h-4 rounded animate-pulse" />
+            <div className="h-4 w-20 animate-pulse rounded bg-neutral-200" />
+            <div className="h-4 w-32 animate-pulse rounded bg-neutral-200" />
           </div>
         </div>
         <div className="flex flex-wrap gap-3">
-          <div className="bg-gray-200 w-9 h-9 rounded-lg animate-pulse" />
-          <div className="bg-gray-200 w-9 h-9 rounded-lg animate-pulse" />
-          <div className="bg-gray-200 w-9 h-9 rounded-lg animate-pulse" />
+          <div className="h-9 w-9 animate-pulse rounded-lg bg-neutral-200" />
+          <div className="h-9 w-9 animate-pulse rounded-lg bg-neutral-200" />
+          <div className="h-9 w-9 animate-pulse rounded-lg bg-neutral-200" />
         </div>
       </div>
-      <div className="bg-gray-200 w-4/5 h-3 mt-2 rounded animate-pulse" />
-      <div className="bg-gray-200 w-3/4 h-3 rounded animate-pulse" />
-      <div className="bg-gray-200 w-5/6 h-3 rounded animate-pulse" />
-      <div className="bg-gray-200 w-16 h-2 mt-2 rounded animate-pulse" />
+      <div className="mt-2 h-3 w-4/5 animate-pulse rounded bg-neutral-200" />
+      <div className="h-3 w-3/4 animate-pulse rounded bg-neutral-200" />
+      <div className="h-3 w-5/6 animate-pulse rounded bg-neutral-200" />
+      <div className="mt-2 h-2 w-16 animate-pulse rounded bg-neutral-200" />
     </article>
   );
 }

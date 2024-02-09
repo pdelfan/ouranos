@@ -38,7 +38,7 @@ export default function Badge(props: Props) {
 
   return (
     <div
-      className={`${calculatedPosition} ${calculatedVariant} text-xs font-bold text-white bg-primary border-2 border-white rounded-full  dark:border-gray-900 animate-fade animate-duration-300`}
+      className={`${calculatedPosition} ${calculatedVariant} bg-primary animate-fade animate-duration-300 rounded-full border-2 border-white text-xs  font-bold text-white dark:border-neutral-900`}
     >
       {children}
     </div>

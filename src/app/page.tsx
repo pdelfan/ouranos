@@ -3,15 +3,15 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="mx-auto p-5 mt-0 md:mt-16">
-      <header className="flex justify-between items-center max-w-xl mx-auto">
+    <main className="mx-auto mt-0 p-5 md:mt-16">
+      <header className="mx-auto flex max-w-xl items-center justify-between">
         <div className="flex items-center gap-3">
           <Image
             src="/ouranos.svg"
             alt="Ouranos logo"
             width={40}
             height={40}
-            className="block transition-transform ease-in-out duration-700 hover:rotate-180"
+            className="block transition-transform duration-700 ease-in-out hover:rotate-180"
           />
           <Image
             src="/ouranosText.svg"
@@ -27,8 +27,8 @@ export default function Home() {
           About
         </Link>
       </header>
-      <section className="mt-16 max-w-xl mx-auto animate-fade-up animate-delay-150">
-        <small className="inline-flex gap-1 items-center px-3 py-2 mb-1 rounded-full bg-primary/10 font-bold text-[0.6rem] text-primary animate-fade-up animate-delay-[1000ms]">
+      <section className="animate-fade-up animate-delay-150 mx-auto mt-16 max-w-xl">
+        <small className="bg-primary/10 text-primary animate-fade-up animate-delay-[1000ms] mb-1 inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.6rem] font-bold">
           In Early Access
           <Image
             src="/images/confetti.png"
@@ -38,7 +38,7 @@ export default function Home() {
           />
         </small>
 
-        <h1 className="text-4xl font-medium text-neutral-600 max-w-lg">
+        <h1 className="max-w-lg text-4xl font-medium text-neutral-600">
           Your friendly Bluesky client for the web
         </h1>
 
@@ -48,22 +48,22 @@ export default function Home() {
           <li>Open-source</li>
         </ul>
 
-        <div className="flex flex-wrap gap-3 mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="https://bsky.app"
-            className="bg-neutral-200/70 text-neutral-600 font-medium px-5 py-3 rounded-full hover:bg-neutral-300/60"
+            className="rounded-full bg-neutral-200/70 px-5 py-3 font-medium text-neutral-600 hover:bg-neutral-300/60"
           >
             Sign up on Bluesky
           </Link>
           <Link
             href="/login"
-            className="bg-zinc-600 text-white font-medium px-5 py-3 rounded-full hover:bg-zinc-700"
+            className="rounded-full bg-neutral-600 px-5 py-3 font-medium text-white hover:bg-neutral-700"
           >
             Log in
           </Link>
         </div>
       </section>
-      <div className="mx-auto max-w-fit mt-8 animate-fade-up animate-delay-300">
+      <div className="animate-fade-up animate-delay-300 mx-auto mt-8 max-w-fit">
         <Image
           src="/images/screenshot.png"
           alt="Ouranos desktop screenshot"
@@ -72,7 +72,7 @@ export default function Home() {
           priority
         />
       </div>
-      <footer className="mt-16 text-center text-sm font-medium text-neutral-400 animate-fade-up animate-delay-500">
+      <footer className="animate-fade-up animate-delay-500 mt-16 text-center text-sm font-medium text-neutral-400">
         OURANOS · EARLY ACCESS · {new Date().getFullYear()}
       </footer>
     </main>

@@ -2,9 +2,9 @@
 
 function SettingsItemSkeleton() {
   return (
-    <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
-      <div className="w-8 h-6 rounded-full bg-gray-200" />
-      <div className="w-1/3 h-6 rounded-full bg-gray-200" />
+    <div className="flex animate-pulse items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+      <div className="h-6 w-8 rounded-full bg-neutral-200" />
+      <div className="h-6 w-1/3 rounded-full bg-neutral-200" />
     </div>
   );
 }
@@ -12,20 +12,20 @@ function SettingsItemSkeleton() {
 function AccountSkeleton() {
   return (
     <section>
-      <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Account</h3>
-      <section className="flex flex-col gap-3 p-3 mt-2 w-full rounded-none md:rounded-t-2xl md:rounded-b-2xl border border-x-0 md:border-x">
-        <div className="flex flex-wrap gap-3 justify-between items-center">
+      <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Account</h3>
+      <section className="mt-2 flex w-full flex-col gap-3 rounded-none border border-x-0 p-3 md:rounded-b-2xl md:rounded-t-2xl md:border-x">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="bg-gray-200 rounded-full w-12 h-12" />
+            <div className="h-12 w-12 rounded-full bg-neutral-200" />
             <div className="flex flex-col gap-2">
-              <div className="w-20 h-4 rounded-full bg-gray-200" />
-              <div className="w-24 h-4 rounded-full bg-gray-200" />
+              <div className="h-4 w-20 rounded-full bg-neutral-200" />
+              <div className="h-4 w-24 rounded-full bg-neutral-200" />
             </div>
           </div>
-          <div className="bg-gray-200 rounded-full w-16 h-4" />
+          <div className="h-4 w-16 rounded-full bg-neutral-200" />
         </div>
         <hr />
-        <div className="w-1/2 h-4 bg-gray-200 rounded-full" />
+        <div className="h-4 w-1/2 rounded-full bg-neutral-200" />
       </section>
     </section>
   );
@@ -34,23 +34,23 @@ function AccountSkeleton() {
 export default function SettingsContainerSkeleton() {
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Settings</h2>
+      <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">Settings</h2>
       <AccountSkeleton />
 
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
           Invite Codes
         </h3>
         <section className="flex flex-col">
-          <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0 animate-pulse">
-            <div className="w-8 h-6 rounded-full bg-gray-200" />
-            <div className="w-1/3 h-6 rounded-full bg-gray-200" />
+          <div className="flex animate-pulse items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+            <div className="h-6 w-8 rounded-full bg-neutral-200" />
+            <div className="h-6 w-1/3 rounded-full bg-neutral-200" />
           </div>
         </section>
       </section>
 
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
           Feeds and Threads
         </h3>
         <section className="flex flex-col">
@@ -60,7 +60,7 @@ export default function SettingsContainerSkeleton() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">Moderation</h3>
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Moderation</h3>
         <section className="flex flex-col">
           <SettingsItemSkeleton />
           <SettingsItemSkeleton />
@@ -68,9 +68,9 @@ export default function SettingsContainerSkeleton() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">About</h3>
+        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">About</h3>
         <section className="flex flex-col">
-          <SettingsItemSkeleton />          
+          <SettingsItemSkeleton />
           <SettingsItemSkeleton />
         </section>
       </section>

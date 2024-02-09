@@ -25,13 +25,13 @@ export default function Search(props: Props) {
   }, 300);
 
   return (
-    <div className="relative grow flex-shrink-0 mx-3 md:mx-0">
+    <div className="relative mx-3 flex-shrink-0 grow md:mx-0">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
       {enableKeypress ? (
         <input
-          className="peer block w-full rounded-full bg-neutral-100 border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+          className="peer block w-full rounded-full border border-neutral-200 bg-neutral-100 py-[9px] pl-10 text-sm outline-2 placeholder:text-neutral-500"
           placeholder={placeholder}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -42,7 +42,7 @@ export default function Search(props: Props) {
         />
       ) : (
         <input
-          className="peer block w-full rounded-full bg-neutral-100 border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+          className="peer block w-full rounded-full border border-neutral-200 bg-neutral-100 py-[9px] pl-10 text-sm outline-2 placeholder:text-neutral-500"
           placeholder={placeholder}
           onChange={(e) => {
             handleSearch(e.target.value);
@@ -50,7 +50,7 @@ export default function Search(props: Props) {
           defaultValue={searchParams.get("query")?.toString()}
         />
       )}
-      <BiSearch className="absolute left-3 top-1/2 text-lg -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+      <BiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-lg text-neutral-500 peer-focus:text-neutral-900" />
     </div>
   );
 }
