@@ -65,30 +65,36 @@ export default function PostActions(props: Props) {
   if (mode === "thread") {
     return (
       <div>
-        <div className="mt-3 flex flex-wrap items-center gap-3 border-y p-2">
-          <Link
-            href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-              post.uri,
-            )}/reposted-by`}
-            className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
-          >
-            {abbreviateNumber(repostCount)}
-            <span className="font-medium text-neutral-400">
-              Repost{repostCount > 1 && "s"}
-            </span>
-          </Link>
-          <Link
-            href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-              post.uri,
-            )}/liked-by`}
-            className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
-          >
-            {abbreviateNumber(likeCount)}
-            <span className="font-medium text-neutral-400">
-              Like{likeCount > 1 && "s"}
-            </span>
-          </Link>
-        </div>
+        {(likeCount > 0 || repostCount > 0) && (
+          <div className="mt-3 flex flex-wrap items-center gap-3 border-y p-2">
+            {repostCount > 0 && (
+              <Link
+                href={`/dashboard/user/${post.author.handle}/post/${getPostId(
+                  post.uri,
+                )}/reposted-by`}
+                className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
+              >
+                {abbreviateNumber(repostCount)}
+                <span className="font-medium text-neutral-400">
+                  Repost{repostCount > 1 && "s"}
+                </span>
+              </Link>
+            )}
+            {likeCount > 0 && (
+              <Link
+                href={`/dashboard/user/${post.author.handle}/post/${getPostId(
+                  post.uri,
+                )}/liked-by`}
+                className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
+              >
+                {abbreviateNumber(likeCount)}
+                <span className="font-medium text-neutral-400">
+                  Like{likeCount > 1 && "s"}
+                </span>
+              </Link>
+            )}
+          </div>
+        )}
         <div className="mt-3 flex gap-x-8">
           <Button
             disabled={post.viewer?.replyDisabled}
@@ -253,7 +259,7 @@ export default function PostActions(props: Props) {
         className="hover:text-primary text-sm font-medium text-neutral-500"
       >
         <BiMessageRounded className="text-lg" />
-        {post.replyCount}
+        {post.replyCount ? abbreviateNumber(post.replyCount) : null}
       </Button>
 
       <Dropdown>
@@ -271,7 +277,7 @@ export default function PostActions(props: Props) {
             `}
           >
             <BiRepost className="text-xl" />
-            {repostCount}
+            {repostCount > 0 && abbreviateNumber(repostCount)}
           </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>
@@ -323,7 +329,7 @@ export default function PostActions(props: Props) {
         ) : (
           <BiHeart className="text-lg" />
         )}
-        {likeCount}
+        {likeCount > 0 && abbreviateNumber(likeCount)}
       </Button>
 
       <Dropdown>
