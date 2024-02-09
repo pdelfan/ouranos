@@ -253,7 +253,7 @@ export default function PostActions(props: Props) {
         className="hover:text-primary text-sm font-medium text-neutral-500"
       >
         <BiMessageRounded className="text-lg" />
-        {post.replyCount}
+        {abbreviateNumber(post.replyCount ?? 0)}
       </Button>
 
       <Dropdown>
@@ -271,7 +271,7 @@ export default function PostActions(props: Props) {
             `}
           >
             <BiRepost className="text-xl" />
-            {repostCount}
+            {abbreviateNumber(repostCount)}
           </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>
@@ -323,7 +323,7 @@ export default function PostActions(props: Props) {
         ) : (
           <BiHeart className="text-lg" />
         )}
-        {likeCount}
+        {abbreviateNumber(likeCount)}
       </Button>
 
       <Dropdown>
