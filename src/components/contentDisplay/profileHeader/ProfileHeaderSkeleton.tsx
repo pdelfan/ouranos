@@ -9,7 +9,7 @@ function Skeleton() {
   );
 }
 
-function TabsSkeleton() {
+export function TabsSkeleton() {
   return (
     <div className="no-scrollbar mt-5 flex flex-nowrap gap-6 overflow-auto px-3">
       <Skeleton />

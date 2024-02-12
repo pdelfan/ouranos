@@ -5,7 +5,6 @@ import SavedFeedListSkeleton from "@/components/contentDisplay/savedFeedList/Sav
 import Search from "@/components/filter/search/Search";
 import Link from "next/link";
 import { Suspense } from "react";
-import { BiCog } from "react-icons/bi";
 import { FaSlidersH } from "react-icons/fa";
 
 interface Props {

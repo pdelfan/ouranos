@@ -1,6 +1,6 @@
 export function Skeleton() {
   return (
-    <article className="flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x md:first:rounded-t-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+    <article className="flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       <div className="flex flex-wrap gap-2">
         <div className="h-5 w-5 rounded bg-neutral-200" />
         <div className="flex grow flex-col gap-1">
