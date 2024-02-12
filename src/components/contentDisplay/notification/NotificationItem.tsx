@@ -1,10 +1,11 @@
 import { getNotificationLabel } from "@/lib/utils/text";
-import Avatar from "@/components/dataDisplay/avatar/Avatar";
-import { BiSolidHeart } from "react-icons/bi";
-import { BiRepost } from "react-icons/bi";
-import { BiSolidUserPlus } from "react-icons/bi";
 import { getRelativeTime } from "@/lib/utils/time";
-import { GROUPABLE_NOTIFICATIONS } from "@/lib/consts/notification";
+import { getNotificationIcon } from "@/lib/utils/icon";
+import {
+  GROUPABLE_NOTIFICATIONS,
+  MAX_AUTHORS_SHOWN,
+} from "@/lib/consts/notification";
+import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import Link from "next/link";
 import {
   ContentFilterResult,
@@ -26,25 +27,10 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
   const subjectUri =
     notification.reasonSubject as AppBskyNotificationListNotifications.Notification["reasonSubject"];
 
-  const MAX_AUTHORS_SHOWN = 6;
-
-  const getNotificationIcon = (reason: string) => {
-    switch (reason) {
-      case "like":
-        return <BiSolidHeart className="shrink-0 text-2xl text-red-500" />;
-      case "repost":
-        return <BiRepost className="shrink-0 text-2xl text-green-600" />;
-      case "follow":
-        return <BiSolidUserPlus className="text-primary shrink-0 text-2xl" />;
-      default:
-        return null;
-    }
-  };
-
   if (GROUPABLE_NOTIFICATIONS.includes(reason)) {
     return (
       <article
-        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x md:first:rounded-t-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
+        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x  odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
           !isRead && "bg-neutral-100"
         }`}
       >
@@ -114,7 +100,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
   } else {
     return (
       <div
-        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x first:md:rounded-t-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
+        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
           !isRead && "bg-neutral-100"
         }`}
       >

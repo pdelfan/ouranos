@@ -2,7 +2,12 @@ import { FeedAlert } from "../../../types/feed";
 import { HiMiniShieldExclamation } from "react-icons/hi2";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { FaCircleCheck } from "react-icons/fa6";
-import { BiSolidErrorAlt } from "react-icons/bi";
+import {
+  BiRepost,
+  BiSolidErrorAlt,
+  BiSolidHeart,
+  BiSolidUserPlus,
+} from "react-icons/bi";
 import { IoCloudOffline } from "react-icons/io5";
 
 export function getAlertIcon(variant: Alert) {
@@ -38,3 +43,16 @@ export function getFeedAlertIcon(variant: FeedAlert) {
       return <PiWarningCircleFill className="text-2xl" />;
   }
 }
+
+export const getNotificationIcon = (reason: string) => {
+  switch (reason) {
+    case "like":
+      return <BiSolidHeart className="shrink-0 text-2xl text-red-500" />;
+    case "repost":
+      return <BiRepost className="shrink-0 text-2xl text-green-600" />;
+    case "follow":
+      return <BiSolidUserPlus className="text-primary shrink-0 text-2xl" />;
+    default:
+      return null;
+  }
+};
