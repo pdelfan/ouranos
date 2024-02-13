@@ -3,6 +3,8 @@
 import { useState } from "react";
 import FilteredNotificationsContainer from "./FilteredNotificationsContainer";
 import { NOTIFICATION_FILTER } from "@/lib/consts/notification";
+import Tabs from "@/components/navigational/tabs/Tabs";
+import TabItem from "@/components/navigational/tabs/TabItem";
 
 export default function NotificationsContainer() {
   const [currentTab, setCurrentTab] = useState<"all" | NotificationReason>(
@@ -15,26 +17,17 @@ export default function NotificationsContainer() {
 
   return (
     <section>
-      <div
-        role="tablist"
-        aria-orientation="horizontal"
-        className="no-scrollbar mt-5 flex flex-nowrap gap-3 overflow-auto px-3 md:px-0"
-      >
+      <Tabs>
         {NOTIFICATION_FILTER.map((type) => (
-          <button
+          <TabItem
             key={type.label}
-            role="tab"
+            asButton
             onClick={() => handleTabChange(type.value)}
-            className={`border-b-3 hover:text-primary shrink-0 cursor-pointer px-3 pb-2 font-semibold ${
-              currentTab === type.value
-                ? "border-primary-600 text-primary border-primary"
-                : "border-transparent text-neutral-500"
-            }`}
-          >
-            {type.label}
-          </button>
+            label={type.label}
+            isActive={currentTab === type.value}
+          />
         ))}
-      </div>
+      </Tabs>
       <FilteredNotificationsContainer filter={currentTab} />
     </section>
   );
