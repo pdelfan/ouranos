@@ -30,6 +30,9 @@ import {
   BiSolidQuoteAltRight,
   BiSolidTrash,
 } from "react-icons/bi";
+import { useRouter } from "next/navigation";
+import { getTranslateLink } from "@/lib/utils/text";
+import { MdOutlineTranslate } from "react-icons/md";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -38,7 +41,9 @@ interface Props {
 
 export default function PostActions(props: Props) {
   const { post, mode = "feed" } = props;
+  const text = AppBskyFeedPost.isRecord(post.record) && post.record.text;
   const { data: session } = useSession();
+  const router = useRouter();
   const { deletePost } = useDeletePost({ post: post });
   const { liked, toggleLike, likeCount } = useLike({ post: post });
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
@@ -54,11 +59,15 @@ export default function PostActions(props: Props) {
   }, [clipboard, post.uri, post.author.handle]);
 
   const handleCopyPostText = useCallback(() => {
-    const record = post.record as AppBskyEmbedRecord.View["record"];
-    const text = record.text || "";
     toast.success("Post text copied to clipboard");
     clipboard.copy(text);
   }, [clipboard, post.record]);
+
+  const handleTranslation = useCallback(() => {
+    if (text) {
+      window.open(getTranslateLink(text), "_blank");
+    }
+  }, [text]);
 
   if (!session) return null;
 
@@ -100,9 +109,6 @@ export default function PostActions(props: Props) {
             disabled={post.viewer?.replyDisabled}
             onClick={(e) => {
               e.stopPropagation();
-              const text =
-                AppBskyFeedPost.isRecord(post.record) && post.record.text;
-
               openComposer({
                 replyTo: {
                   uri: post.uri,
@@ -146,9 +152,6 @@ export default function PostActions(props: Props) {
               />
               <Dropdown.MenuItem
                 onSelect={() => {
-                  const text =
-                    AppBskyFeedPost.isRecord(post.record) && post.record.text;
-
                   openComposer({
                     quote: {
                       uri: post.uri,
@@ -198,16 +201,25 @@ export default function PostActions(props: Props) {
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
+              {text && (
+                <Dropdown.MenuItem
+                  onSelect={handleTranslation}
+                  text="Translate"
+                  icon={<MdOutlineTranslate />}
+                />
+              )}
               <Dropdown.MenuItem
                 onSelect={handleShare}
                 text="Copy Link to Post"
                 icon={<BiLink />}
               />
-              <Dropdown.MenuItem
-                onSelect={handleCopyPostText}
-                text="Copy Post Text"
-                icon={<BiSolidCopy />}
-              />
+              {text && (
+                <Dropdown.MenuItem
+                  onSelect={handleCopyPostText}
+                  text="Copy Post Text"
+                  icon={<BiSolidCopy />}
+                />
+              )}
               {session.user?.handle !== post.author.handle && (
                 <Dropdown.MenuItem
                   onSelect={() => {
@@ -239,10 +251,6 @@ export default function PostActions(props: Props) {
         disabled={post.viewer?.replyDisabled}
         onClick={(e) => {
           e.stopPropagation();
-
-          const text =
-            AppBskyFeedPost.isRecord(post.record) && post.record.text;
-
           openComposer({
             replyTo: {
               uri: post.uri,
@@ -290,9 +298,6 @@ export default function PostActions(props: Props) {
           />
           <Dropdown.MenuItem
             onSelect={() => {
-              const text =
-                AppBskyFeedPost.isRecord(post.record) && post.record.text;
-
               openComposer({
                 quote: {
                   uri: post.uri,
@@ -344,16 +349,25 @@ export default function PostActions(props: Props) {
           </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>
+          {text && (
+            <Dropdown.MenuItem
+              onSelect={handleTranslation}
+              text="Translate"
+              icon={<MdOutlineTranslate />}
+            />
+          )}
           <Dropdown.MenuItem
             onSelect={handleShare}
             text="Copy Link to Post"
             icon={<BiLink />}
           />
-          <Dropdown.MenuItem
-            onSelect={handleCopyPostText}
-            text="Copy Post Text"
-            icon={<BiSolidCopy />}
-          />
+          {text && (
+            <Dropdown.MenuItem
+              onSelect={handleCopyPostText}
+              text="Copy Post Text"
+              icon={<BiSolidCopy />}
+            />
+          )}
           {session.user?.handle !== post.author.handle && (
             <Dropdown.MenuItem
               onSelect={() => {
