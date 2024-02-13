@@ -3,18 +3,38 @@ import Link from "next/link";
 
 interface Props {
   label: string;
-  path: string | Url;
+  path?: string | Url;
   isActive: boolean;
+  asButton?: boolean;
+  onClick?: () => void;
 }
 
 export default function TabItem(props: Props) {
-  const { label, path, isActive } = props;
+  const { label, path, isActive, asButton, onClick } = props;
+
+  if (asButton) {
+    return (
+      <button
+        onClick={onClick}
+        role="tab"
+        aria-aria-selected={isActive}
+        className={`border-b-3 hover:text-primary inline-block shrink-0 p-3 font-semibold ${
+          isActive
+            ? "border-primary-600 text-primary border-primary"
+            : "border-transparent text-neutral-500"
+        }`}
+      >
+        {label}
+      </button>
+    );
+  }
 
   return (
     <Link
-      href={path}
+      href={path ?? ""}
       role="tab"
-      className={`inline-block shrink-0 border-b-3 p-3 first:ml-3 last:mr-3 font-semibold hover:text-primary ${
+      aria-aria-selected={isActive}
+      className={`border-b-3 hover:text-primary inline-block shrink-0 p-3 font-semibold first:ml-3 last:mr-3 ${
         isActive
           ? "border-primary-600 text-primary border-primary"
           : "border-transparent text-neutral-500"
