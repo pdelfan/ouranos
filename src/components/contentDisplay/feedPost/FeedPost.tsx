@@ -30,6 +30,30 @@ export default function FeedPost(props: Props) {
   const { showToggle, shouldHide, message } = getPostFilter(post, filter);
   const [hidden, setHidden] = useState(shouldHide);
   const router = useRouter();
+  const isAuthorMuted = post.post.author.viewer?.muted;
+  const [showPost, setShowPost] = useState(!isAuthorMuted);
+
+  if (!showPost) {
+    return (
+      <>
+        {reason && <Reason reason={reason} />}
+        <article>
+          <div className="relative flex items-start gap-3">
+            <Avatar size="md" className="z-20 shrink-0" />
+            <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
+              {isParent && !reason && <Threadline />}
+              <PostHider
+                message={"Post by muted user"}
+                hidden={true}
+                onToggleVisibility={() => setShowPost(true)}
+                showToggle={true}
+              />
+            </div>
+          </div>
+        </article>
+      </>
+    );
+  }
 
   return (
     <>

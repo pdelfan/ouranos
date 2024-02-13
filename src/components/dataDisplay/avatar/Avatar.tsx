@@ -5,9 +5,10 @@ import { getAvatarSize } from "@/lib/utils/image";
 interface Props {
   size?: AvatarSize;
   src?: string;
+  className?: string;
 }
 export default function Avatar(props: Props) {
-  const { size, src } = props;
+  const { size, src, className } = props;
   const [width, height] = getAvatarSize(size);
 
   return (
@@ -16,7 +17,7 @@ export default function Avatar(props: Props) {
       alt="Avatar"
       width={width}
       height={height}
-      className="rounded-full"
+      className={`rounded-full ${className}`}
     />
   );
 }
