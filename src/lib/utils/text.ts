@@ -92,3 +92,11 @@ export async function detectLanguage(text: string) {
   const detectedLanguage: string = await res.json();
   return [detectedLanguage.trim()];
 }
+
+// TODO: add language prefs to localStorage to use for lang
+// the default is English for now
+export function getTranslateLink(text: string, lang: string = "en"): string {
+  return `https://translate.google.com/?sl=auto&tl=${lang}&text=${encodeURIComponent(
+    text,
+  )}`;
+}
