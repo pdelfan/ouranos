@@ -17,7 +17,7 @@ export default function TabItem(props: Props) {
       <button
         onClick={onClick}
         role="tab"
-        aria-aria-selected={isActive}
+        aria-selected={isActive}
         className={`border-b-3 hover:text-primary inline-block shrink-0 p-3 font-semibold first:ml-3 last:mr-3 ${
           isActive
             ? "border-primary-600 text-primary border-primary"
@@ -33,7 +33,7 @@ export default function TabItem(props: Props) {
     <Link
       href={path ?? ""}
       role="tab"
-      aria-aria-selected={isActive}
+      aria-selected={isActive}
       className={`border-b-3 hover:text-primary inline-block shrink-0 p-3 font-semibold first:ml-3 last:mr-3 ${
         isActive
           ? "border-primary-600 text-primary border-primary"
