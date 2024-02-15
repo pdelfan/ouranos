@@ -25,7 +25,7 @@ export default function ExternalEmbed(props: Props) {
                   src={embed.external.thumb}
                   alt={embed.external.description}
                   fill
-                  className="rounded-t-2xl object-cover"
+                  className="rounded-t-2xl border-b object-cover"
                 />
               </div>
             )}
