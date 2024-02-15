@@ -57,7 +57,7 @@ export default function LinkCard(props: Props) {
             src={data.image}
             alt="Link image"
             fill
-            className="rounded-t-2xl object-cover"
+            className="rounded-t-2xl border-b object-cover"
           />
         </div>
       )}
