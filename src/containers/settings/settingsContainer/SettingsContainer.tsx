@@ -21,7 +21,7 @@ import InviteCodes from "./InviteCodes";
 export default async function SettingsContainer() {
   const session = await getSessionFromServer();
   const profile = await getProfile(session?.user.handle);
-  const isEmailConfirmed = session?.user.emailConfirmed;
+  const isEmailConfirmed = session?.user.emailConfirmed ?? false;
   const inviteCodes = await getInviteCodes();
 
   return (
@@ -68,12 +68,14 @@ export default async function SettingsContainer() {
         </section>
       )}
 
-      <section>
-        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
-          Invite Codes
-        </h3>
-        <InviteCodes codes={inviteCodes} />
-      </section>
+      {inviteCodes && (
+        <section>
+          <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
+            Invite Codes
+          </h3>
+          <InviteCodes codes={inviteCodes} />
+        </section>
+      )}
 
       <section>
         <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
