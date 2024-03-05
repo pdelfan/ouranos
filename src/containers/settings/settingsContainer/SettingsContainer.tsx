@@ -35,10 +35,10 @@ export default async function SettingsContainer() {
               <div className="flex gap-3">
                 <Avatar src={profile.avatar} size="md" />
                 <div className="flex flex-col">
-                  <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
+                  <span className="line-clamp-1 shrink-0  break-all font-semibold text-neutral-700">
                     {profile.displayName || profile.handle}
                   </span>
-                  <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
+                  <span className="line-clamp-1 shrink break-all font-medium text-neutral-400">
                     @{profile.handle}
                   </span>
                 </div>

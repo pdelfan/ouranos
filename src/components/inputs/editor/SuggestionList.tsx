@@ -133,7 +133,7 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
                 />
                 <div className="flex flex-col">
                   <span className="max-w-xs">
-                    {item.displayName ?? item.handle}
+                    {item.displayName || item.handle}
                   </span>
                   <span className="text-sm text-neutral-400">
                     {item.handle}
