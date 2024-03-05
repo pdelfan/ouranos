@@ -19,7 +19,7 @@ export default async function Aside(props: Props) {
             href={`/dashboard/user/${handle}`}
             className="hidden max-w-[7rem] truncate font-semibold text-neutral-700 hover:text-neutral-500 lg:inline"
           >
-            {displayName ?? handle}
+            {displayName || handle}
           </Link>
           <SignOut />
         </div>
