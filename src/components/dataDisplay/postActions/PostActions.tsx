@@ -30,7 +30,6 @@ import {
   BiSolidQuoteAltRight,
   BiSolidTrash,
 } from "react-icons/bi";
-import { useRouter } from "next/navigation";
 import { getTranslateLink } from "@/lib/utils/text";
 import { MdOutlineTranslate } from "react-icons/md";
 
@@ -43,7 +42,6 @@ export default function PostActions(props: Props) {
   const { post, mode = "feed" } = props;
   const text = AppBskyFeedPost.isRecord(post.record) && post.record.text;
   const { data: session } = useSession();
-  const router = useRouter();
   const { deletePost } = useDeletePost({ post: post });
   const { liked, toggleLike, likeCount } = useLike({ post: post });
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
@@ -61,7 +59,7 @@ export default function PostActions(props: Props) {
   const handleCopyPostText = useCallback(() => {
     toast.success("Post text copied to clipboard");
     clipboard.copy(text);
-  }, [clipboard, post.record]);
+  }, [clipboard, text]);
 
   const handleTranslation = useCallback(() => {
     if (text) {
