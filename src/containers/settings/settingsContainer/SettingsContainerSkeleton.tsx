@@ -39,18 +39,6 @@ export default function SettingsContainerSkeleton() {
 
       <section>
         <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
-          Invite Codes
-        </h3>
-        <section className="flex flex-col">
-          <div className="flex animate-pulse items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
-            <div className="h-6 w-8 rounded-full bg-neutral-200" />
-            <div className="h-6 w-1/3 rounded-full bg-neutral-200" />
-          </div>
-        </section>
-      </section>
-
-      <section>
-        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
           Feeds and Threads
         </h3>
         <section className="flex flex-col">
