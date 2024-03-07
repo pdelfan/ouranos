@@ -28,7 +28,8 @@ export default function FollowingContainer(props: Props) {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["getFollowing", handle],
-    queryFn: ({ pageParam }) => getFollows(handle, agent, pageParam),
+    queryFn: ({ pageParam }) =>
+      getFollows({ handle, agent, cursor: pageParam }),
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
   });
