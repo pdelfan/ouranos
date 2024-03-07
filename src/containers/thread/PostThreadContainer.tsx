@@ -19,6 +19,8 @@ import { getPostThread } from "@/lib/api/bsky/feed";
 import { sortThread } from "@/lib/utils/feed";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { MAX_REPLY_CONTAINERS } from "@/lib/consts/thread";
 
 interface Props {
   id: string;
@@ -28,6 +30,7 @@ interface Props {
 
 export default function PostThreadContainer(props: Props) {
   const { id, handle, viewerAvatar } = props;
+  const [maxReplies, setMaxReplies] = useState(MAX_REPLY_CONTAINERS);
   const agent = useAgent();
   const router = useRouter();
 
@@ -124,16 +127,33 @@ export default function PostThreadContainer(props: Props) {
         replyChains
           .sort((a, b) => sortThread(a[0], b[0], threadPreferences))
           .map((replyArr, i) => (
-            <div
-              className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
-              key={i}
-            >
-              <RepliesContainer
-                replies={replyArr}
-                contentFilter={contentFilter}
-              />
-            </div>
+            <>
+              {i <= maxReplies && (
+                <div
+                  className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+                  key={i}
+                >
+                  <RepliesContainer
+                    replies={replyArr}
+                    contentFilter={contentFilter}
+                  />
+                </div>
+              )}
+            </>
           ))}
+
+      {replyChains && replyChains.length > maxReplies && (
+        <div className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+          <button
+            onClick={() =>
+              setMaxReplies((prevMax) => prevMax + MAX_REPLY_CONTAINERS)
+            }
+            className="mx-auto block rounded-full bg-neutral-600/10 px-2.5 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-200"
+          >
+            Show More Posts
+          </button>
+        </div>
+      )}
     </>
   );
 }
