@@ -13,16 +13,14 @@ import { BiSolidBellOff } from "react-icons/bi";
 import { BsPersonFillSlash } from "react-icons/bs";
 import { TbLicense } from "react-icons/tb";
 import { getSessionFromServer } from "@/lib/api/auth/session";
-import { getInviteCodes, getProfile } from "@/lib/api/bsky/actor";
+import { getProfile } from "@/lib/api/bsky/actor";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import SignOut from "@/components/actions/signOut/SignOut";
-import InviteCodes from "./InviteCodes";
 
 export default async function SettingsContainer() {
   const session = await getSessionFromServer();
   const profile = await getProfile(session?.user.handle);
   const isEmailConfirmed = session?.user.emailConfirmed ?? false;
-  const inviteCodes = await getInviteCodes();
 
   return (
     <section className="flex flex-col gap-5">
@@ -65,15 +63,6 @@ export default async function SettingsContainer() {
               )}
             </div>
           </div>
-        </section>
-      )}
-
-      {inviteCodes && (
-        <section>
-          <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
-            Invite Codes
-          </h3>
-          <InviteCodes codes={inviteCodes} />
         </section>
       )}
 
