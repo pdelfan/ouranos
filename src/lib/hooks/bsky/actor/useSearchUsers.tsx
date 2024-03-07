@@ -1,13 +1,33 @@
 import { useQueryClient } from "@tanstack/react-query";
 import useAgent from "../useAgent";
 import { searchProfilesTypehead } from "@/lib/api/bsky/actor";
+import { getFollows } from "@/lib/api/bsky/social";
 
-export default function useSearchUsers() {
+interface Props {
+  authorHandle?: string;
+}
+
+export default function useSearchUsers(props: Props) {
+  const { authorHandle } = props;
   const agent = useAgent();
   const queryClient = useQueryClient();
 
   return async (term: string) => {
-    if (!term) return;
+    // search is empty
+    // show recent follows instead of no result
+    if (!term && authorHandle) {
+      try {
+        const data = await queryClient.fetchQuery({
+          staleTime: 300 * 1000, // 5 minutes
+          queryKey: ["followers"],
+          queryFn: () => getFollows({ handle: authorHandle, agent, limit: 8 }),
+        });
+        return data.data.follows;
+      } catch (error) {
+        throw new Error("Could not get followings");
+      }
+    }
+
     try {
       const data = await queryClient.fetchQuery({
         staleTime: 60 * 1000, // 1 minute
@@ -16,7 +36,7 @@ export default function useSearchUsers() {
       });
       return data?.actors;
     } catch (error) {
-      console.error(error);
+      throw new Error("Could not search users");
     }
   };
 }

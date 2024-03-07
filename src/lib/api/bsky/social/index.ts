@@ -3,7 +3,7 @@ import { AtUri, BskyAgent } from "@atproto/api";
 export const getFollowers = async (
   handle: string,
   agent: BskyAgent,
-  cursor: string
+  cursor: string,
 ) => {
   const followers = await agent.getFollowers({ actor: handle, cursor: cursor });
 
@@ -11,12 +11,22 @@ export const getFollowers = async (
   return followers;
 };
 
-export const getFollows = async (
-  handle: string,
-  agent: BskyAgent,
-  cursor: string
-) => {
-  const follows = await agent.getFollows({ actor: handle, cursor: cursor });
+export const getFollows = async ({
+  handle,
+  agent,
+  cursor,
+  limit,
+}: {
+  handle: string;
+  agent: BskyAgent;
+  cursor?: string;
+  limit?: number;
+}) => {
+  const follows = await agent.getFollows({
+    actor: handle,
+    cursor: cursor,
+    limit: limit,
+  });
 
   if (!follows.success) throw new Error("Could not fetch follows");
   return follows;
@@ -37,7 +47,7 @@ export const unfollow = async (agent: BskyAgent, did: string) => {
 export const unBlock = async (
   agent: BskyAgent,
   did: string,
-  viewer: string
+  viewer: string,
 ) => {
   const { rkey } = new AtUri(viewer);
   const res = await agent.app.bsky.graph.block.delete({

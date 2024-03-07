@@ -39,7 +39,7 @@ export default function Editor(props: Props) {
   );
   const [linkEmbed, setLinkEmbed] = useState("");
   const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
-  const searchUsers = useSearchUsers();
+  const searchUsers = useSearchUsers({ authorHandle: author?.handle });
   const replyAuthor = replyTo?.author.displayName || replyTo?.author.handle;
   const quoteAuthor = quote?.author.displayName || quote?.author.handle;
   const placeholderText = getComposerPlaceholder(
