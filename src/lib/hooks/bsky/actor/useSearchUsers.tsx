@@ -13,10 +13,12 @@ export default function useSearchUsers(props: Props) {
   const queryClient = useQueryClient();
 
   return async (term: string) => {
+    // search is empty
+    // show recent follows instead of no result
     if (!term && authorHandle) {
       try {
         const data = await queryClient.fetchQuery({
-          staleTime: 300 * 1000,
+          staleTime: 300 * 1000, // 5 minutes
           queryKey: ["followers"],
           queryFn: () => getFollows({ handle: authorHandle, agent, limit: 8 }),
         });
