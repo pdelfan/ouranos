@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import Button from "@/components/actions/button/Button";
 import Dropdown from "@/components/actions/dropdown/Dropdown";
 import { useClipboard } from "use-clipboard-copy";
@@ -14,6 +15,7 @@ import {
   BiSolidBellOff,
 } from "react-icons/bi";
 import { BsPersonFill, BsPersonFillSlash } from "react-icons/bs";
+import { PiMagnifyingGlassBold } from "react-icons/pi";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -24,6 +26,7 @@ interface Props {
 
 export default function UserActions(props: Props) {
   const { author, viewer, viewerHandle, viewerDID } = props;
+  const router = useRouter();
   const { muted, toggleMuteUser } = useMuteUser({ author: author });
   const { toggleBlockUser } = useBlockUser({
     author: author,
@@ -37,7 +40,11 @@ export default function UserActions(props: Props) {
     const shareUrl = `https://useouranos.app/dashboard/user/${author.handle}`;
     clipboard.copy(shareUrl);
     toast.success("Link to profile copied to clipboard");
-  }, [clipboard, author]);
+  }, [clipboard, author.handle]);
+
+  const handleSearch = useCallback(() => {
+    router.push(`/dashboard/search?query=from:${author.handle}+`);
+  }, [router, author.handle]);
 
   return (
     <Dropdown>
@@ -46,7 +53,7 @@ export default function UserActions(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="flex items-center justify-center gap-1 font-medium text-sm disabled:cursor-not-allowed rounded-full p-2 bg-neutral-100 text-neutral-500 hover:brightness-95"
+          className="flex items-center justify-center gap-1 rounded-full bg-neutral-100 p-2 text-sm font-medium text-neutral-500 hover:brightness-95 disabled:cursor-not-allowed"
         >
           <BiDotsHorizontalRounded className="text-lg" />
         </Button>
@@ -56,6 +63,12 @@ export default function UserActions(props: Props) {
           onSelect={handleShare}
           text="Copy Link to Profile"
           icon={<BiLink />}
+        />
+
+        <Dropdown.MenuItem
+          onSelect={handleSearch}
+          text="Search Posts"
+          icon={<PiMagnifyingGlassBold />}
         />
 
         {viewerHandle !== author.handle && (
