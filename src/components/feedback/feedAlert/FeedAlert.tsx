@@ -1,5 +1,5 @@
 import { getFeedAlertIcon } from "@/lib/utils/icon";
-import { FeedAlert } from "../../../../types/feed";
+import type { FeedAlert } from "../../../../types/feed";
 
 interface Props {
   variant: FeedAlert;
@@ -19,7 +19,7 @@ export default function FeedAlert(props: Props) {
       className={`flex flex-col justify-center gap-2 p-3 ${selectedClass} text-neutral-700`}
     >
       <span className="mx-auto">{icon}</span>
-      <span className="text-center font-medium break-words">{message}</span>
+      <span className="break-words text-center font-medium">{message}</span>
     </section>
   );
 }
