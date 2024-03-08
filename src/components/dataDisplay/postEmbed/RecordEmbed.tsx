@@ -23,16 +23,6 @@ export default function RecordEmbed(props: Props) {
 
   return (
     <article className="flex flex-col rounded-xl">
-      {isBlocked && (
-        <div className="mt-2">
-          <BlockedEmbed depth={depth} />
-        </div>
-      )}
-      {notFound && (
-        <div className="mt-2">
-          <NotFoundEmbed depth={depth} />
-        </div>
-      )}
       {media && <PostEmbed content={media} depth={depth + 1} />}
       {isViewable && depth < 1 && (
         <div
@@ -68,6 +58,16 @@ export default function RecordEmbed(props: Props) {
               <PostEmbed content={record.embeds[0]} depth={depth + 1} />
             )}
           </div>
+        </div>
+      )}
+      {isBlocked && (
+        <div className="mt-2">
+          <BlockedEmbed depth={depth} />
+        </div>
+      )}
+      {notFound && (
+        <div className="mt-2">
+          <NotFoundEmbed depth={depth} />
         </div>
       )}
     </article>
