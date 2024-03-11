@@ -66,7 +66,7 @@ export default function UserSearchContainer(props: Props) {
       </InfiniteScroll>
 
       {isEmpty && (
-        <div className="mx-3 border-t md:mx-0">
+        <div className="border-skin-base mx-3 border-t md:mx-0">
           <FeedAlert variant="empty" message="No users found" />
         </div>
       )}

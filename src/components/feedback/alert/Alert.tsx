@@ -10,7 +10,7 @@ export default function Alert(props: Props) {
   const icon = getAlertIcon(variant);
 
   return (
-    <div className="flex flex-wrap items-center gap-2 bg-neutral-100 p-3 rounded-lg font-medium text-neutral-600">
+    <div className="bg-skin-tertiary flex flex-wrap items-center gap-2 rounded-lg p-3 font-medium text-sky-50">
       {icon} {message}
     </div>
   );

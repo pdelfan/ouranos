@@ -17,7 +17,7 @@ export default async function Aside(props: Props) {
         <div className="order-last flex flex-col items-end lg:order-first">
           <Link
             href={`/dashboard/user/${handle}`}
-            className="hidden max-w-[7rem] truncate font-semibold text-neutral-700 hover:text-neutral-500 lg:inline"
+            className="text-skin-base hover:text-skin-secondary hidden max-w-[7rem] truncate font-semibold lg:inline"
           >
             {displayName || handle}
           </Link>

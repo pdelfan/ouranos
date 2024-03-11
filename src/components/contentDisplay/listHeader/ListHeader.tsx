@@ -25,7 +25,7 @@ export default function FeedHeader(props: Props) {
       {isFetchingListInfo && <ListHeaderSkeleton />}
       {!isFetchingListInfo && listInfo && (
         <>
-          <article className="flex flex-col gap-2 border border-x-0 border-y-0 p-3 md:rounded-t-2xl md:border md:border-b-0">
+          <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-y-0 p-3 md:rounded-t-2xl md:border md:border-b-0">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Image
@@ -36,14 +36,14 @@ export default function FeedHeader(props: Props) {
                   className={`rounded-lg ${!listInfo.list.avatar && "border"}`}
                 />
                 <div className="flex flex-col">
-                  <h2 className="break-words text-xl font-semibold text-neutral-700">
+                  <h2 className="text-skin-base break-words text-xl font-semibold">
                     {listInfo.list.name}
                   </h2>
-                  <h3 className="break-all text-neutral-500">
+                  <h3 className="text-skin-secondary break-all">
                     By{" "}
                     <Link
                       href={`/dashboard/user/${listInfo.list.creator.handle}`}
-                      className="font-medium hover:text-neutral-400"
+                      className="hover:text-skin-tertiary font-medium"
                     >
                       @{listInfo.list.creator.handle}
                     </Link>
@@ -52,7 +52,7 @@ export default function FeedHeader(props: Props) {
               </div>
             </div>
             {listInfo.list.description && (
-              <p className="break-words text-neutral-700" dir="auto">
+              <p className="text-skin-base break-words" dir="auto">
                 {listInfo.list.description}
               </p>
             )}

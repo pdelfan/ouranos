@@ -114,7 +114,7 @@ export default function FeedHeader(props: Props) {
       {isFetchingFeedInfo && <FeedHeaderSkeleton />}
       {!isFetchingFeedInfo && feedInfo && (
         <>
-          <article className="flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border ">
+          <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border ">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Image
@@ -122,17 +122,17 @@ export default function FeedHeader(props: Props) {
                   alt={feedInfo.view.displayName}
                   width={60}
                   height={60}
-                  className={`rounded-lg ${!feedInfo.view.avatar && "border"}`}
+                  className={`rounded-lg ${!feedInfo.view.avatar && "border-skin-base border"}`}
                 />
                 <div className="flex flex-col">
-                  <h2 className="break-words text-xl font-semibold text-neutral-700">
+                  <h2 className="text-skin-base break-words text-xl font-semibold">
                     {feedInfo.view.displayName}
                   </h2>
-                  <h3 className="break-all text-neutral-500">
+                  <h3 className="text-skin-secondary break-all">
                     By{" "}
                     <Link
                       href={`/dashboard/user/${feedInfo.view.creator.handle}`}
-                      className="font-medium hover:text-neutral-400"
+                      className="hover:text-skin-tertiary font-medium"
                     >
                       @{feedInfo.view.creator.handle}
                     </Link>
@@ -143,35 +143,39 @@ export default function FeedHeader(props: Props) {
                 <div className="flex flex-wrap gap-3">
                   <Button onClick={toggleSave}>
                     {isSaved && (
-                      <BiSolidTrash className="text-lg text-red-600" />
+                      <BiSolidTrash className="text-status-danger text-lg" />
                     )}
-                    {!isSaved && <BiPlus className="text-lg text-green-600" />}
+                    {!isSaved && (
+                      <BiPlus className="text-skin-icon-base text-lg" />
+                    )}
                   </Button>
                   <Button onClick={togglePin}>
                     <BiSolidBookmarkAlt
                       className={`text-lg ${
-                        isPinned ? "text-green-600" : "text-neutral-300"
+                        isPinned
+                          ? "text-status-success"
+                          : "text-skin-icon-muted"
                       }`}
                     />
                   </Button>
                   <Button onClick={toggleLike}>
                     {likeUri && (
-                      <BiSolidHeart className="text-lg text-red-600" />
+                      <BiSolidHeart className="text-skin-icon-like text-lg" />
                     )}
                     {!likeUri && (
-                      <BiHeart className="text-lg text-neutral-300" />
+                      <BiHeart className="text-skin-icon-muted text-lg" />
                     )}
                   </Button>
                 </div>
               )}
             </div>
             {feedInfo.view.description && (
-              <p className="break-words text-neutral-700" dir="auto">
+              <p className="text-skin-base break-words" dir="auto">
                 {feedInfo.view.description}
               </p>
             )}
-            <small className="flex items-center gap-1 font-medium text-neutral-500">
-              <BiSolidHeart />
+            <small className="text-skin-secondary flex items-center gap-1 font-medium">
+              <BiSolidHeart className="text-skin-icon-base" />
               <span>{feedInfo.view.likeCount}</span>
             </small>
           </article>

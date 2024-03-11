@@ -17,9 +17,9 @@ export default function NavItem(props: Props) {
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 ${
-        isActive ? "text-neutral-700" : "text-neutral-500"
-      } hover:text-neutral-700`}
+      className={`hover:text-skin-base flex items-center gap-3  ${
+        isActive ? "text-skin-base" : "text-skin-secondary"
+      }`}
     >
       <div className="relative m-2 md:m-0">
         {isActive ? activeIcon : icon}
@@ -30,8 +30,8 @@ export default function NavItem(props: Props) {
         )}
       </div>
       <span
-        className={`hidden lg:inline text-lg font-medium ${
-          isActive ? "text-neutral-700" : "text-neutral-500"
+        className={`hover:text-skin-base hidden text-lg font-medium lg:inline ${
+          isActive ? "text-skin-base" : "text-skin-secondary"
         }`}
       >
         {title}

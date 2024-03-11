@@ -11,10 +11,10 @@ export default function LinkCardPrompt(props: Props) {
   return (
     <button
       onClick={() => onAddLinkCard(link)}
-      className="flex items-center gap-3 border p-3 rounded-2xl w-full"
+      className="border-skin-base flex w-full items-center gap-3 rounded-2xl border p-3"
     >
-      <span className="w-fit shrink-0">Add link card:</span>
-      <span className="shrink text-primary text-sm break-all line-clamp-1 overflow-ellipsis">
+      <span className="text-skin-base w-fit shrink-0">Add link card:</span>
+      <span className="text-primary line-clamp-1 shrink overflow-ellipsis break-all text-sm">
         {link}
       </span>
     </button>

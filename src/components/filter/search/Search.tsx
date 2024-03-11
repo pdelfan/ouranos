@@ -32,7 +32,7 @@ export default function Search(props: Props) {
       </label>
       {enableKeypress ? (
         <input
-          className="peer block w-full rounded-full border border-neutral-200 bg-neutral-100 py-[9px] pl-10 text-sm outline-2 placeholder:text-neutral-500"
+          className="border-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
           placeholder={placeholder}
           autoFocus={autoFocus}
           onKeyDown={(e) => {
@@ -44,7 +44,7 @@ export default function Search(props: Props) {
         />
       ) : (
         <input
-          className="peer block w-full rounded-full border border-neutral-200 bg-neutral-100 py-[9px] pl-10 text-sm outline-2 placeholder:text-neutral-500"
+          className="border-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
           placeholder={placeholder}
           autoFocus={autoFocus}
           onChange={(e) => {
@@ -53,7 +53,7 @@ export default function Search(props: Props) {
           defaultValue={searchParams.get("query")?.toString()}
         />
       )}
-      <BiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-lg text-neutral-500 peer-focus:text-neutral-900" />
+      <BiSearch className="text-skin-icon-muted peer-focus:text-icon-base absolute left-3 top-1/2 -translate-y-1/2 text-lg" />
     </div>
   );
 }

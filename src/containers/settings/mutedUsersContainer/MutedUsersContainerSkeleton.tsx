@@ -3,7 +3,9 @@ import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/Profile
 export default function MutedUsersContainerSkeleton() {
   return (
     <>
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">Muted Users</h2>
+      <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
+        Muted Users
+      </h2>
       <ProfileCardSkeleton />
     </>
   );

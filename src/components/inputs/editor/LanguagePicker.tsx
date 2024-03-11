@@ -19,7 +19,7 @@ export default function LanguagePicker(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="text-start font-semibold text-primary hover:text-primary-dark"
+          className="text-primary hover:text-primary-dark text-start font-semibold"
         >
           {languages.length === 0 && <IoLanguage className="text-2xl" />}
           {languages.length === 0 && "(Auto)"}
@@ -32,7 +32,7 @@ export default function LanguagePicker(props: Props) {
           <Dropdown.MenuItem
             text="Remove All Languages"
             icon={<BiTrash />}
-            textColor="text-red-500"
+            textColor="text-status-danger"
             onSelect={() => onSelectLanguages([])}
           />
         )}

@@ -12,7 +12,7 @@ const ToggleGroup = forwardRef<
 
   return (
     <ToggleGroupPrimitive.Root
-      className={`inline-flex divide-x rounded-lg border ${className}`}
+      className={`border-skin-base inline-flex divide-x rounded-lg border ${className}`}
       {...props}
       ref={ref}
     >
@@ -36,7 +36,7 @@ const ToggleGroupItem = React.forwardRef<
   return (
     <ToggleGroupPrimitive.Item
       ref={ref}
-      className="data-[state=on]:bg-primary p-1.5 first:rounded-l last:rounded-r data-[state=on]:text-white"
+      className="data-[state=on]:bg-primary data-[state=on]:text-skin-inverted p-1.5 first:rounded-l last:rounded-r"
       {...props}
     >
       {children}

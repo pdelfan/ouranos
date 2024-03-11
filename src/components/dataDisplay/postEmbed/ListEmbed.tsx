@@ -14,9 +14,9 @@ export default function ListEmbed(props: Props) {
 
   const selectedIcon =
     type === "Moderation List" ? (
-      <BsPersonFillSlash className="text-xl text-white" />
+      <BsPersonFillSlash className="text-skin-icon-inverted text-xl" />
     ) : (
-      <BsFillPeopleFill className="text-xl text-white" />
+      <BsFillPeopleFill className="text-skin-icon-inverted text-xl" />
     );
 
   return (
@@ -32,15 +32,15 @@ export default function ListEmbed(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="mt-2 block cursor-pointer rounded-xl border bg-white p-3 hover:brightness-95"
+          className="border-skin-base bg-skin-base mt-2 block cursor-pointer rounded-xl border p-3 hover:brightness-95"
         >
           <div className="flex items-start gap-2">
             <div className="bg-primary rounded-lg p-2.5">{selectedIcon}</div>
             <div className="flex flex-col">
-              <span className="line-clamp-1 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-600">
+              <span className="text-skin-base hover:text-skin-secondary line-clamp-1 overflow-ellipsis break-all font-semibold">
                 {list.name}
               </span>
-              <span className="break-all font-medium text-neutral-400">
+              <span className="text-skin-tertiary break-all font-medium">
                 {type} by {list.creator.displayName || list.creator.handle}
               </span>
               {list.description && (

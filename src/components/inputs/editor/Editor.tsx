@@ -67,7 +67,7 @@ export default function Editor(props: Props) {
       Placeholder.configure({
         placeholder: placeholderText,
         emptyEditorClass:
-          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-neutral-400 before-pointer-events-none text-lg",
+          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-skin-tertiary before-pointer-events-none text-lg",
       }),
       Link.extend({ inclusive: false }).configure({
         autolink: true,
@@ -84,12 +84,12 @@ export default function Editor(props: Props) {
         suggestion: CreateMentionSuggestions({ autoComplete: searchUsers }),
       }),
     ],
+    autofocus: true,
     editorProps: {
       attributes: {
         class: "focus:outline-none h-48 overflow-y-auto text-lg",
       },
     },
-    autofocus: true,
     onUpdate: ({ editor }) => {
       setEmbedSuggestions(detectLinksInEditor(editor.getJSON()));
     },
@@ -120,7 +120,7 @@ export default function Editor(props: Props) {
   if (!editor) return null;
 
   return (
-    <section className="animate-fade-up animate-duration-200 fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl bg-white p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
+    <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base md:border-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
           onClose={onCancel}

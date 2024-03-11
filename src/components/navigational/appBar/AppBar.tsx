@@ -29,7 +29,7 @@ export default function AppBar() {
 
   return (
     <nav
-      className="fixed bottom-0 z-40 flex w-full justify-between gap-6 overflow-auto border-t bg-white px-6 pb-8 pt-1 transition-all ease-linear md:hidden"
+      className="bg-skin-base fixed bottom-0 z-40 flex w-full justify-between gap-6 overflow-auto border-t px-6 pb-8 pt-1 transition-all ease-linear md:hidden"
       style={{
         opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
         transform: canUpdate ? `translateY(${val ?? 0}%)` : "translateY(0%)",

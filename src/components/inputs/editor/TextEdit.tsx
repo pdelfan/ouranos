@@ -24,10 +24,10 @@ export default function TextEdit(props: Props) {
           className={`z-50 mb-2 rounded-full ${isReply && "ml-2"}`}
         />
         <div className="flex flex-col">
-          <span className="line-clamp-1 shrink-0 overflow-ellipsis break-all font-semibold">
+          <span className="text-skin-base line-clamp-1 shrink-0 overflow-ellipsis break-all font-semibold">
             {author?.displayName || author?.handle}
           </span>
-          <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
+          <span className="text-skin-tertiary line-clamp-1 min-w-[10%] shrink break-all font-medium">
             {author?.handle}
           </span>
         </div>

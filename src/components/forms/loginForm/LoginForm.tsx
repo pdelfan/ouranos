@@ -57,7 +57,7 @@ export default function LoginForm() {
 
   if (isRedirecting) {
     return (
-      <section className="max-w-xs rounded-2xl bg-neutral-100 p-5">
+      <section className="bg-skin-tertiary max-w-xs rounded-2xl p-5">
         <Image
           src="/logo.svg"
           alt="Ouranos logo"
@@ -65,11 +65,11 @@ export default function LoginForm() {
           height={50}
           className="mx-auto mb-3"
         />
-        <h1 className="mb-1 text-center text-xl font-semibold text-neutral-800">
+        <h1 className="text-skin-base mb-1 text-center text-xl font-semibold">
           Welcome Back
         </h1>
 
-        <p className="mb-3 text-center text-sm font-medium text-neutral-500">
+        <p className="text-skin-secondary mb-3 text-center text-sm font-medium">
           Already logged in, redirecting...
         </p>
         <LoadingSpinner />
@@ -78,7 +78,7 @@ export default function LoginForm() {
   }
 
   return (
-    <section className="max-w-xs rounded-2xl bg-neutral-100 p-5">
+    <section className="bg-skin-tertiary max-w-xs rounded-2xl p-5">
       <Image
         src="/logo.svg"
         alt="Ouranos logo"
@@ -86,25 +86,25 @@ export default function LoginForm() {
         height={50}
         className="mx-auto mb-3"
       />
-      <h1 className="mb-1 text-xl font-semibold text-neutral-800">
+      <h1 className="text-skin-base mb-1 text-xl font-semibold">
         Welcome Back
       </h1>
-      <p className="mb-3 text-sm font-medium text-neutral-500">
+      <p className="text-skin-secondary mb-3 text-sm font-medium">
         We recommend using an{" "}
         <Link
           href="https://atproto.com/community/projects#app-passwords"
           target="_blank"
-          className="text-primary hover:text-primary-dark"
+          className="text-skin-link-base hover:text-skin-link-hover"
         >
           app password
         </Link>{" "}
         to log in.
       </p>
-      <p className="text-sm font-medium text-neutral-500">
+      <p className="text-skin-secondary text-sm font-medium">
         Ouranos is in early access, some features may not work as intended.
       </p>
       <form
-        className="mt-5 text-sm font-medium text-neutral-400"
+        className="mt-5 text-sm font-medium"
         onSubmit={(e) => {
           e.preventDefault();
           handleSignIn();
@@ -141,11 +141,13 @@ export default function LoginForm() {
           />
         </span>
         {error && (
-          <small className="mt-1 block font-medium text-red-500">{error}</small>
+          <small className="text-status-danger mt-1 block font-medium">
+            {error}
+          </small>
         )}
         <Button
           type="submit"
-          className={`ml-auto mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-600 px-3 py-3 font-semibold text-white hover:bg-neutral-700 disabled:cursor-not-allowed ${
+          className={`text-skin-inverted bg-skin-inverted hover:bg-skin-inverted ml-auto mt-5 flex w-full items-center justify-center gap-2 rounded-lg px-3 py-3 font-semibold disabled:cursor-not-allowed ${
             loading && "animate-pulse"
           }`}
           disabled={loading}

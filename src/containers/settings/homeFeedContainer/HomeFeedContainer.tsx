@@ -31,7 +31,7 @@ export default function HomeFeedContainer() {
                 ...prefs,
               },
             };
-          }
+          },
         );
         await updateHomeFeedPreferences(prefs, agent);
       } catch (error) {
@@ -49,16 +49,16 @@ export default function HomeFeedContainer() {
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+      <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
         Home Feed Preferences
       </h2>
 
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Hide Replies
         </h3>
         <section className="flex flex-col">
-          <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+          <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
             <Switch
               checked={feedFilter?.hideReplies}
               onCheckedChange={async (value) => {
@@ -72,11 +72,11 @@ export default function HomeFeedContainer() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Hide Replies by Unfollowed Users
         </h3>
         <section className="flex flex-col">
-          <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+          <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
             <Switch
               checked={feedFilter?.hideRepliesByUnfollowed}
               onCheckedChange={async (value) => {
@@ -95,11 +95,11 @@ export default function HomeFeedContainer() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Hide Reposts
         </h3>
         <section className="flex flex-col">
-          <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+          <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
             <Switch
               checked={feedFilter?.hideReposts}
               onCheckedChange={async (value) => {
@@ -113,11 +113,11 @@ export default function HomeFeedContainer() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Hide Quote Posts
         </h3>
         <section className="flex flex-col">
-          <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+          <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
             <Switch
               checked={feedFilter?.hideQuotePosts}
               onCheckedChange={async (value) => {

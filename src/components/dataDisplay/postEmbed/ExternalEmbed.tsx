@@ -13,7 +13,7 @@ export default function ExternalEmbed(props: Props) {
   return (
     <>
       {depth < 2 && (
-        <article className="mt-2 rounded-2xl border bg-white hover:brightness-95">
+        <article className="bg-skin-base border-skin-base mt-2 rounded-2xl border hover:brightness-95">
           <Link
             href={embed.external.uri}
             target="blank"
@@ -25,12 +25,12 @@ export default function ExternalEmbed(props: Props) {
                   src={embed.external.thumb}
                   alt={embed.external.description}
                   fill
-                  className="rounded-t-2xl border-b object-cover"
+                  className="border-b-skin-base rounded-t-2xl border-b object-cover"
                 />
               </div>
             )}
             <div className="flex flex-col p-3">
-              <span className="break-all text-sm text-neutral-400">
+              <span className="text-skin-tertiary break-all text-sm">
                 {getHostname(embed.external.uri)}
               </span>
               <span className="font-medium [overflow-wrap:anywhere]">

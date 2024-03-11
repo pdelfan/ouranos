@@ -13,9 +13,9 @@ export default function PostHider(props: Props) {
   const { message, hidden, onToggleVisibility, showToggle } = props;
 
   return (
-    <div className="flex items-center justify-between gap-2 rounded-lg bg-neutral-100 p-3 font-medium text-neutral-600">
+    <div className="text-skin-base bg-skin-tertiary flex items-center justify-between gap-2 rounded-lg p-3 font-medium">
       <div className="flex items-center gap-2">
-        <MdOutlineVisibilityOff className="shrink-0 text-2xl" />
+        <MdOutlineVisibilityOff className="text-skin-icon-base shrink-0 text-2xl" />
         <span>{message}</span>
       </div>
       {showToggle && (
@@ -24,7 +24,7 @@ export default function PostHider(props: Props) {
             e.stopPropagation();
             onToggleVisibility(hidden ? false : true);
           }}
-          className="rounded-lg border bg-white px-2 py-1 hover:brightness-95"
+          className="bg-skin-base rounded-lg border px-2 py-1 hover:brightness-95"
         >
           {hidden ? "Show" : "Hide"}
         </Button>

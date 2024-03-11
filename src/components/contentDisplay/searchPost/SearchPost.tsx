@@ -30,7 +30,7 @@ const SearchPost = memo(function SearchPost(props: Props) {
           `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`,
         );
       }}
-      className="border border-x-0 p-3 last:border-b hover:cursor-pointer md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+      className="border-skin-base border border-x-0 p-3 last:border-b hover:cursor-pointer md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
       <div className="relative flex items-start gap-3">
         <Link
@@ -51,14 +51,14 @@ const SearchPost = memo(function SearchPost(props: Props) {
               }}
               className="flex gap-1"
             >
-              <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-500">
+              <span className="text-skin-base hover:text-skin-secondary line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
                 {author.displayName || author.handle}{" "}
               </span>
-              <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
+              <span className="text-skin-tertiary line-clamp-1 min-w-[10%] shrink break-all font-medium">
                 @{author.handle}
               </span>
             </Link>
-            <span className="whitespace-nowrap font-medium text-neutral-400">
+            <span className="text-skin-tertiary whitespace-nowrap font-medium">
               &nbsp;· {getRelativeTime(indexedAt)}
             </span>
           </div>

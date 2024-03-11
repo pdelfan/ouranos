@@ -39,7 +39,9 @@ export default function MutedUsersContainer() {
 
   return (
     <>
-      <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">Muted Users</h2>
+      <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
+        Muted Users
+      </h2>
       <section className="mt-2 flex flex-col">
         <InfiniteScroll
           dataLength={dataLength ?? 0}

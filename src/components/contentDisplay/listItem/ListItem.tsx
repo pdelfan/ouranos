@@ -23,7 +23,7 @@ const ListItem = memo(function ListItem(props: Props) {
         )}`,
         query: { uri: uri },
       }}
-      className={`flex flex-col gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x ${
+      className={`border-skin-base hover:bg-skin-secondary flex flex-col gap-2 border border-x-0 p-3 last:border-b md:border-x ${
         rounded ? "first:border-t md:first:rounded-t-2xl" : "first:border-t-0"
       } md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0`}
     >
@@ -37,17 +37,17 @@ const ListItem = memo(function ListItem(props: Props) {
             className={`rounded-lg ${!avatar && "border"}`}
           />
           <div className="flex flex-col">
-            <h2 className="break-words font-semibold text-neutral-700">
+            <h2 className="text-skin-base break-words font-semibold">
               {list.name}
             </h2>
-            <h3 className="break-all text-sm text-neutral-500">
+            <h3 className="text-skin-secondary break-all text-sm">
               By @{creator.handle}
             </h3>
           </div>
         </div>
       </div>
       {description && (
-        <p className="break-words text-neutral-700">{description}</p>
+        <p className="text-skin-base break-words">{description}</p>
       )}
     </Link>
   );

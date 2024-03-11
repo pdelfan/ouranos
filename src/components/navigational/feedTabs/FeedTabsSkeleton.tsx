@@ -1,7 +1,7 @@
 function TabSkeleton() {
   return (
     <div className="flex flex-col items-center">
-      <div className="h-6 w-20 rounded bg-neutral-200" />
+      <div className="bg-skin-muted h-6 w-20 rounded" />
     </div>
   );
 }

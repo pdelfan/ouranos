@@ -53,9 +53,9 @@ export default function UserActions(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="flex items-center justify-center gap-1 rounded-full bg-neutral-100 p-2 text-sm font-medium text-neutral-500 hover:brightness-95 disabled:cursor-not-allowed"
+          className="text-skin-secondary bg-skin-tertiary flex items-center justify-center gap-1 rounded-full p-2 text-sm font-medium hover:brightness-95 disabled:cursor-not-allowed"
         >
-          <BiDotsHorizontalRounded className="text-lg" />
+          <BiDotsHorizontalRounded className="text-skin-icon-base text-lg" />
         </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>

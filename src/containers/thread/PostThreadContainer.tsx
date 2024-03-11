@@ -66,10 +66,12 @@ export default function PostThreadContainer(props: Props) {
   ) {
     return (
       <>
-        <div className="md:rounded-t-2xl  md:border md:border-x">
-          <h2 className="px-3 py-2 text-center text-xl font-semibold">Post</h2>
+        <div className="md:border-skin-base md:rounded-t-2xl md:border md:border-x">
+          <h2 className="text-skin-base px-3 py-2 text-center text-xl font-semibold">
+            Post
+          </h2>
         </div>
-        <section className="border border-t-0 p-3 md:rounded-b-2xl">
+        <section className="border-skin-base border border-t-0 p-3 md:rounded-b-2xl">
           {AppBskyFeedDefs.isBlockedPost(thread) && <BlockedEmbed depth={0} />}
           {AppBskyFeedDefs.isNotFoundPost(thread) && (
             <NotFoundEmbed depth={0} />
@@ -96,8 +98,10 @@ export default function PostThreadContainer(props: Props) {
 
   return (
     <>
-      <div className="border-b-0 md:rounded-t-2xl md:border md:border-x md:border-b-0">
-        <h2 className="px-3 py-2 text-center text-xl font-semibold">Post</h2>
+      <div className="border-skin-base border-b-0 md:rounded-t-2xl md:border md:border-x md:border-b-0">
+        <h2 className="text-skin-base px-3 py-2 text-center text-xl font-semibold">
+          Post
+        </h2>
       </div>
 
       {(isFetching || isLoading) && <FeedPostSkeleton />}
@@ -130,7 +134,7 @@ export default function PostThreadContainer(props: Props) {
             <>
               {i <= maxReplies && (
                 <div
-                  className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+                  className="border-skin-base border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
                   key={i}
                 >
                   <RepliesContainer
@@ -143,12 +147,12 @@ export default function PostThreadContainer(props: Props) {
           ))}
 
       {replyChains && replyChains.length > maxReplies && (
-        <div className="border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+        <div className="border-skin-base border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
           <button
             onClick={() =>
               setMaxReplies((prevMax) => prevMax + MAX_REPLY_CONTAINERS)
             }
-            className="mx-auto block rounded-full bg-neutral-600/10 px-2.5 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-200"
+            className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted mx-auto block rounded-full px-2.5 py-2 text-sm font-medium"
           >
             Show More Posts
           </button>

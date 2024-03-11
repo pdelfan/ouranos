@@ -30,8 +30,8 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
   if (GROUPABLE_NOTIFICATIONS.includes(reason)) {
     return (
       <article
-        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x  odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
-          !isRead && "bg-neutral-100"
+        className={`border-skin-base flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x  odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
+          !isRead && "bg-skin-tertiary"
         }`}
       >
         <div className="flex gap-2">
@@ -50,7 +50,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                     </Link>
                   ))}
                   {allAuthors.length > MAX_AUTHORS_SHOWN && (
-                    <span className="font-medium text-neutral-600">
+                    <span className="text-skin-base font-medium">
                       +{allAuthors.length - MAX_AUTHORS_SHOWN}
                     </span>
                   )}
@@ -64,11 +64,11 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                     <Link
                       key={author.handle}
                       href={`/dashboard/user/${author.handle}`}
-                      className="break-all font-semibold text-neutral-700 hover:text-neutral-500"
+                      className="text-skin-base hover:text-skin-secondary break-all font-semibold"
                     >
                       {author.displayName || author.handle}{" "}
                     </Link>
-                    <span className="text-neutral-700">
+                    <span className="text-skin-base">
                       and {allAuthors.length - 1}{" "}
                       {allAuthors.length - 1 > 1 ? "others" : "other"}{" "}
                     </span>
@@ -77,15 +77,15 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                 {allAuthors?.length === 1 && (
                   <Link
                     href={`/dashboard/user/${author.handle}`}
-                    className="break-all font-semibold text-neutral-700 hover:text-neutral-500"
+                    className="text-skin-base hover:text-skin-secondary break-all font-semibold"
                   >
                     {author.displayName || author.handle}{" "}
                   </Link>
                 )}
-                <span className="break-words font-medium text-neutral-700">
+                <span className="text-skin-base break-words font-medium">
                   {getNotificationLabel(reason)}
                 </span>
-                <span className="whitespace-nowrap font-medium text-neutral-400">
+                <span className="text-skin-tertiary whitespace-nowrap font-medium">
                   &nbsp;· {getRelativeTime(indexedAt)}
                 </span>
                 {subjectUri && (
@@ -100,8 +100,8 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
   } else {
     return (
       <div
-        className={`flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
-          !isRead && "bg-neutral-100"
+        className={`border-skin-base flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
+          !isRead && "bg-skin-tertiary"
         }`}
       >
         <NotificationPost uri={notification.uri} filter={filter} />

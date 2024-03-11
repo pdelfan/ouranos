@@ -30,7 +30,7 @@ export default function PostText(props: Props) {
         text: segment.text,
         component: (
           <Link
-            className="text-primary break-words hover:text-primary-dark"
+            className="text-skin-link-base hover:text-skin-link-hover break-words"
             href={`/dashboard/user/${getHandle(segment.text)}`}
             key={segment.mention?.did}
             onClick={(e) => e.stopPropagation()}
@@ -44,7 +44,7 @@ export default function PostText(props: Props) {
         text: segment.text,
         component: (
           <Link
-            className="text-primary break-all hover:text-primary-dark"
+            className="text-skin-link-base hover:text-skin-link-hover break-all"
             href={segment.link?.uri!}
             target="blank"
             key={segment.link?.uri}
@@ -62,7 +62,7 @@ export default function PostText(props: Props) {
           <Link
             href={`/dashboard/search?query=${encodedTag}`}
             key={segment.text}
-            className="text-primary break-all hover:text-primary-dark"
+            className="text-skin-link-base hover:text-skin-link-hover break-all"
             onClick={(e) => e.stopPropagation()}
           >
             {segment.text}
@@ -73,7 +73,7 @@ export default function PostText(props: Props) {
       content.push({
         text: segment.text,
         component: (
-          <span key={segment.text} className="text-neutral-700">
+          <span key={segment.text} className="text-skin-base">
             {segment.text}
           </span>
         ),
@@ -84,7 +84,7 @@ export default function PostText(props: Props) {
   return (
     <div
       dir="auto"
-      className={`whitespace-pre-wrap [overflow-wrap:anywhere] ${
+      className={`text-skin-base whitespace-pre-wrap [overflow-wrap:anywhere] ${
         truncate && "line-clamp-6"
       } ${mode === "feed" ? "text-base leading-5" : "text-lg leading-6"}`}
     >

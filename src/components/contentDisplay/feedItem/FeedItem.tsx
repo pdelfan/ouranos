@@ -50,7 +50,7 @@ export default function FeedItem(props: Props) {
         )}`,
         query: { uri: feedItem.uri },
       }}
-      className="flex flex-col gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+      className="border-skin-base hover:bg-skin-secondary flex flex-col gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-3">
@@ -59,13 +59,13 @@ export default function FeedItem(props: Props) {
             alt={displayName}
             width={40}
             height={40}
-            className={`rounded-lg ${!avatar && "border"}`}
+            className={`rounded-lg ${!avatar && "border-skin-base border"}`}
           />
           <div className="flex flex-col">
-            <h2 className="break-words font-semibold text-neutral-700">
+            <h2 className="text-skin-base break-words font-semibold">
               {feedItem.displayName}
             </h2>
-            <h3 className="break-all text-sm text-neutral-500">
+            <h3 className="text-skin-secondary break-all text-sm">
               By @{creator.handle}
             </h3>
           </div>
@@ -76,13 +76,13 @@ export default function FeedItem(props: Props) {
             handleSave();
           }}
         >
-          {isSaved && <BiSolidTrash className="text-lg text-red-600" />}
-          {!isSaved && <BiPlus className="text-lg text-green-600" />}
+          {isSaved && <BiSolidTrash className="text-status-danger text-lg" />}
+          {!isSaved && <BiPlus className="text-skin-icon-base text-lg" />}
         </Button>
       </div>
-      <p className="break-words text-neutral-700">{description}</p>
-      <small className="flex items-center gap-1 font-medium text-neutral-500">
-        <BiSolidHeart />
+      <p className="text-skin-base break-words">{description}</p>
+      <small className="text-skin-secondary flex items-center gap-1 font-medium">
+        <BiSolidHeart className="text-skin-icon-base" />
         <span>{likeCount ?? 0}</span>
       </small>
     </Link>

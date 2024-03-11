@@ -22,7 +22,7 @@ export default function Home() {
         </div>
         <Link
           href="/about"
-          className="font-medium text-neutral-500 hover:text-neutral-600"
+          className="text-skin-secondary hover:text-skin-base font-medium"
         >
           About
         </Link>
@@ -38,11 +38,11 @@ export default function Home() {
           />
         </small>
 
-        <h1 className="max-w-lg text-4xl font-medium text-neutral-600">
+        <h1 className="text-skin-base max-w-lg text-4xl font-medium">
           Your friendly Bluesky client for the web
         </h1>
 
-        <ul className="mt-5 text-lg font-medium text-neutral-500">
+        <ul className="text-skin-secondary mt-5 text-lg font-medium">
           <li>Designed for simplicity</li>
           <li>Enhanced features</li>
           <li>Open-source</li>
@@ -51,13 +51,13 @@ export default function Home() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="https://bsky.app"
-            className="rounded-full bg-neutral-200/70 px-5 py-3 font-medium text-neutral-600 hover:bg-neutral-300/60"
+            className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted rounded-full px-5 py-3 font-medium"
           >
             Sign up on Bluesky
           </Link>
           <Link
             href="/login"
-            className="rounded-full bg-neutral-600 px-5 py-3 font-medium text-white hover:bg-neutral-700"
+            className="text-skin-inverted bg-skin-inverted hover:bg-skin-inverted-muted rounded-full px-5 py-3 font-medium"
           >
             Log in
           </Link>
@@ -72,7 +72,7 @@ export default function Home() {
           priority
         />
       </div>
-      <footer className="animate-fade-up animate-delay-500 mt-16 text-center text-sm font-medium text-neutral-400">
+      <footer className="animate-fade-up animate-delay-500 text-skin-tertiary mt-16 text-center text-sm font-medium">
         OURANOS · EARLY ACCESS · {new Date().getFullYear()}
       </footer>
     </main>

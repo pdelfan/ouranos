@@ -22,7 +22,7 @@ export default function WhoCanReply(props: Props) {
   const getLabel = () => {
     if (!record.allow || record.allow.length === 0) {
       return (
-        <p className="text-sm text-neutral-800">
+        <p className="text-skin-base text-sm">
           Replies to this thread are disabled
         </p>
       );
@@ -50,13 +50,13 @@ export default function WhoCanReply(props: Props) {
     }
 
     return (
-      <p className="text-sm text-neutral-800">
+      <p className="text-skin-base text-sm">
         {follow && mention && (
           <>
             Users followed and mentioned by{" "}
             <Link
               href={`/dashboard/user/${post.author.handle}`}
-              className="text-primary hover:text-primary-dark font-medium"
+              className="text-skin-link-base hover:text-skin-link-hover font-medium"
             >
               {post.author.handle}
             </Link>{" "}
@@ -67,7 +67,7 @@ export default function WhoCanReply(props: Props) {
             Users followed by{" "}
             <Link
               href={`/dashboard/user/${post.author.handle}`}
-              className="text-primary hover:text-primary-dark font-medium"
+              className="text-skin-link-base hover:text-skin-link-hover font-medium"
             >
               {post.author.handle}
             </Link>{" "}
@@ -87,7 +87,7 @@ export default function WhoCanReply(props: Props) {
                   )}`,
                   query: { uri: list.uri },
                 }}
-                className="text-primary hover:text-primary-dark font-medium"
+                className="text-skin-link-base hover:text-skin-link-hover font-medium"
               >
                 {list.name}
                 {i < lists?.length - 1 && ", "}
@@ -102,14 +102,14 @@ export default function WhoCanReply(props: Props) {
 
   return (
     <section
-      className={`w-full  border-x-0 border-t p-2 md:border-x ${rounded && "border-y md:rounded-b-2xl"}`}
+      className={`border-t-skin-base md:border-x-skin-base w-full border-x-0 border-t p-2 md:border-x ${rounded && "border-y-skin-base border-y md:rounded-b-2xl"}`}
     >
       <div className="bg-primary/20 flex items-center gap-3 rounded-xl p-2">
         <div className="bg-primary rounded-2xl p-1.5">
-          <BiMessageRoundedEdit className=" text-xl text-white" />
+          <BiMessageRoundedEdit className=" text-skin-inverted text-xl" />
         </div>
         <div className="flex flex-col">
-          <span className="font-medium text-neutral-800">
+          <span className="text-skin-base font-medium">
             {canReply ? "You can reply" : "Who can reply?"}
           </span>
           {getLabel()}

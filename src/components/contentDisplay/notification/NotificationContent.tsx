@@ -42,15 +42,15 @@ export default function NotificationContnet(props: Props) {
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))
       ?.message ?? "Adult content";
   const visibility = adultContentFilters.find((f) =>
-    f.values.includes(label || embedLabel)
+    f.values.includes(label || embedLabel),
   )?.visibility;
 
   const [hidden, setHidden] = useState(
     isAdultContentHidden
       ? true
       : visibility === "hide" || visibility === "warn"
-      ? true
-      : false
+        ? true
+        : false,
   );
 
   useEffect(() => {
@@ -58,8 +58,8 @@ export default function NotificationContnet(props: Props) {
       isAdultContentHidden
         ? true
         : visibility === "hide" || visibility === "warn"
-        ? true
-        : false
+          ? true
+          : false,
     );
   }, [isAdultContentHidden, visibility]);
 
@@ -82,10 +82,10 @@ export default function NotificationContnet(props: Props) {
         onClick={(e) => {
           e.stopPropagation();
           router.push(
-            `/dashboard/user/${post?.post.author.handle}/post/${getPostId(uri)}`
+            `/dashboard/user/${post?.post.author.handle}/post/${getPostId(uri)}`,
           );
         }}
-        className="cursor-pointer text-neutral-500 text-[0.93rem]"
+        className="text-skin-secondary cursor-pointer text-[0.93rem]"
       >
         {!hidden && (
           <>

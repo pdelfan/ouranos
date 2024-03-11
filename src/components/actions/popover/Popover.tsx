@@ -51,7 +51,7 @@ function PopoverContent({ children }: { children: ReactNode }) {
               e.preventDefault(); // remove outline on close
             }}
             align="center"
-            className="z-50 min-w-fit mt-2 mb-2 bg-white rounded-xl p-1 drop-shadow-lg border max-h-44 overflow-y-hidden hover:overflow-y-auto"
+            className="bg-skin-base z-50 mb-2 mt-2 max-h-44 min-w-fit overflow-y-hidden rounded-xl border p-1 drop-shadow-lg hover:overflow-y-auto"
           >
             {children}
           </RadixPopover.Content>

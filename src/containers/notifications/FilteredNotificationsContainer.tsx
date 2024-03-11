@@ -101,13 +101,13 @@ export default function FilteredNotificationsContainer(props: Props) {
         <NotificationSkeleton />
       )}
       {notificationError && (
-        <div className="border-t">
+        <div className="border-skin-base border-t">
           <FeedAlert variant="badResponse" message="Something went wrong" />
         </div>
       )}
       {isFetchingMore && <LoadingSpinner />}
       {isEmpty && !notificationHasNextPage && !isFetchingMore && (
-        <div className="border-t">
+        <div className="border-skin-base border-t">
           <FeedAlert
             variant="empty"
             message="There are no notifications to show... yet"

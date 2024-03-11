@@ -29,7 +29,7 @@ export default function AdultContentPicker(props: Props) {
           disabled={disabled}
           className="p-0"
         >
-          <HiOutlineShieldExclamation className="text-2xl text-primary hover:text-primary-dark" />
+          <HiOutlineShieldExclamation className="text-primary hover:text-primary-dark text-2xl" />
         </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>
@@ -44,7 +44,7 @@ export default function AdultContentPicker(props: Props) {
         {selectedLabel !== "" && (
           <Dropdown.MenuItem
             text="Remove Label"
-            textColor="text-red-500"
+            textColor="text-status-danger"
             icon={<BiTrash />}
             onSelect={() => onSelectLabel("")}
           />
