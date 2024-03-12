@@ -36,7 +36,7 @@ const ToggleGroupItem = React.forwardRef<
   return (
     <ToggleGroupPrimitive.Item
       ref={ref}
-      className="data-[state=on]:bg-primary text-skin-base data-[state=on]:text-skin-icon-inverted p-1.5 px-2 first:rounded-l-xl last:rounded-r-xl"
+      className="data-[state=on]:bg-primary data-[state=on]:hover:bg-primary-dark hover:bg-skin-secondary text-skin-base data-[state=on]:text-skin-icon-inverted p-1.5 px-2 first:rounded-l-xl last:rounded-r-xl"
       {...props}
     >
       {children}

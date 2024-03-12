@@ -9,15 +9,14 @@ interface Props {
   activeIcon: ReactElement;
   isActive: boolean;
   badge?: number;
-  className?: string;
 }
 
 export default function NavItem(props: Props) {
-  const { href, title, icon, activeIcon, isActive, badge, className } = props;
+  const { href, title, icon, activeIcon, isActive, badge } = props;
   return (
     <Link
       href={href}
-      className={`hover:text-skin-base flex items-center gap-3  ${
+      className={`hover:text-skin-base flex items-center gap-3 ${
         isActive ? "text-skin-base" : "text-skin-secondary"
       }`}
     >
@@ -29,13 +28,7 @@ export default function NavItem(props: Props) {
           </Badge>
         )}
       </div>
-      <span
-        className={`hover:text-skin-base hidden text-lg font-medium lg:inline ${
-          isActive ? "text-skin-base" : "text-skin-secondary"
-        }`}
-      >
-        {title}
-      </span>
+      <span className={`text-lg font-medium lg:inline`}>{title}</span>
     </Link>
   );
 }

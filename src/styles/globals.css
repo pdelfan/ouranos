@@ -65,7 +65,7 @@
         /* Text */
         --color-text-base: 245, 245, 245; /* text-neutral-100 */
         --color-text-secondary: 212, 212, 212; /* text-neutral-300 */
-        --color-text-tertiary: 156, 163, 175; /* text-neutral-400 */
+        --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
         --color-text-base-inverted: 64, 64, 64; /* text-neutral-700 */
         --color-text-link-base: 191, 119, 255; /* primary-light */
         --color-text-link-base-hover: 169, 74, 255; /* primary */

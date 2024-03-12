@@ -42,7 +42,6 @@ export default function Navbar() {
         activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/home"}
-        className="sm:m-0"
       />
       <NavItem
         href="/dashboard/search"
@@ -50,7 +49,6 @@ export default function Navbar() {
         activeIcon={<PiMagnifyingGlassFill className="text-2xl md:text-3xl" />}
         title="Search"
         isActive={pathname.includes("search")}
-        className="sm:m-0"
       />
       <NavItem
         href="/dashboard/feeds"
@@ -58,7 +56,6 @@ export default function Navbar() {
         activeIcon={<BiSolidCloud className="text-2xl md:text-3xl" />}
         title="Feeds"
         isActive={pathname === "/dashboard/feeds"}
-        className="sm:m-0"
       />
       <NavItem
         href="/dashboard/lists"
@@ -73,7 +70,6 @@ export default function Navbar() {
         activeIcon={<FaBell className="text-2xl md:text-3xl" />}
         title="Notifications"
         isActive={pathname.includes("notifications")}
-        className="sm:m-0"
         badge={notificationsCount ?? 0}
       />
 
@@ -83,7 +79,6 @@ export default function Navbar() {
         activeIcon={<BiSolidUser className="text-2xl md:text-3xl" />}
         title="Profile"
         isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
-        className="sm:m-0"
       />
       <NavItem
         href="/dashboard/settings"
@@ -91,7 +86,6 @@ export default function Navbar() {
         activeIcon={<BiSolidCog className="text-2xl md:text-3xl" />}
         title="Settings"
         isActive={pathname.includes("settings")}
-        className="sm:m-0"
       />
     </nav>
   );
