@@ -7,7 +7,7 @@ export default function Textarea(props: Props) {
   return (
     <textarea
       {...props}
-      className={`w-full rounded-lg border p-2.5 text-neutral-600 focus:outline-neutral-400 ${className}`}
+      className={`text-skin-base focus:outline-skin-base placeholder:text-skin-secondary bg-skin-base border-skin-base w-full rounded-lg border p-2.5 ${className}`}
     />
   );
 }

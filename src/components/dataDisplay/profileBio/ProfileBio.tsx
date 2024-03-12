@@ -24,7 +24,7 @@ export default function ProfileBio(props: Props) {
         text: segment.text,
         component: (
           <Link
-            className="text-primary break-words hover:text-primary-dark"
+            className="text-skin-link-base hover:text-skin-link-hover break-words"
             href={`/dashboard/user/${getHandle(segment.text)}`}
             key={segment.mention?.did}
             onClick={(e) => e.stopPropagation()}
@@ -38,7 +38,7 @@ export default function ProfileBio(props: Props) {
         text: segment.text,
         component: (
           <Link
-            className="inline-block text-primary break-all hover:text-primary-dark"
+            className="text-skin-link-base hover:text-skin-link-hover inline-block break-all"
             href={segment.link!.uri}
             target="blank"
             key={segment.link!.uri}
@@ -56,7 +56,7 @@ export default function ProfileBio(props: Props) {
           <Link
             href={`/dashboard/search?query=${encodedTag}`}
             key={segment.text}
-            className="text-primary break-all hover:text-primary-dark"
+            className="text-skin-link-base hover:text-skin-link-hover break-all"
             onClick={(e) => e.stopPropagation()}
           >
             {segment.text}
@@ -67,7 +67,7 @@ export default function ProfileBio(props: Props) {
       content.push({
         text: segment.text,
         component: (
-          <span key={segment.text} className="text-neutral-700">
+          <span key={segment.text} className="text-skin-base">
             {segment.text}
           </span>
         ),
@@ -78,7 +78,7 @@ export default function ProfileBio(props: Props) {
   return (
     <div
       dir="auto"
-      className="mt-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
+      className="text-skin-base mt-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
     >
       {content.map((segment, i) => (
         <Fragment key={`${i}+${description}`}>{segment.component}</Fragment>

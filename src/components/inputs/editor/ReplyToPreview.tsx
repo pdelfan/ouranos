@@ -24,7 +24,7 @@ export default function ReplyToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="relative mt-3 flex cursor-pointer items-start  gap-3 rounded-2xl p-2"
+      className="relative mt-3 flex cursor-pointer items-start gap-3 rounded-2xl p-2"
     >
       <Threadline className="left-8 mt-5" />
       <Image
@@ -36,14 +36,14 @@ export default function ReplyToPreview(props: Props) {
       />
       <div className="flex flex-col">
         <div className="flex gap-1">
-          <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
+          <span className="text-skin-base line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
             {author.displayName || author.handle}
           </span>
-          <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
+          <span className="text-skin-tertiary line-clamp-1 min-w-[10%] shrink break-all font-medium">
             @{author.handle}
           </span>
         </div>
-        <p className={selectedTextClass}>{post.text}</p>
+        <p className={`${selectedTextClass} text-skin-base`}>{post.text}</p>
       </div>
     </article>
   );

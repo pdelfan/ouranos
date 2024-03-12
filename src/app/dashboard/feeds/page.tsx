@@ -21,9 +21,9 @@ export default function Page(props: Props) {
     <section className="flex flex-col gap-5">
       <section>
         <div className="mx-3 mb-2 flex items-center justify-between md:mx-0">
-          <h2 className="text-2xl font-semibold">My Feeds</h2>
+          <h2 className="text-skin-base text-2xl font-semibold">My Feeds</h2>
           <Link href="/dashboard/settings/my-feeds">
-            <FaSlidersH className="text-xl text-neutral-500 hover:text-neutral-700" />
+            <FaSlidersH className="text-skin-icon-muted hover:text-skin-icon-base text-xl" />
           </Link>
         </div>
         <Suspense fallback={<SavedFeedListSkeleton />}>
@@ -33,7 +33,7 @@ export default function Page(props: Props) {
       <section>
         <div>
           <div className="mb-2 flex flex-wrap justify-between gap-x-12 gap-y-2">
-            <h2 className="mx-3 mb-2 flex-auto text-2xl font-semibold md:mx-0">
+            <h2 className="text-skin-base mx-3 mb-2 flex-auto text-2xl font-semibold md:mx-0">
               Popular Feeds
             </h2>
             <Search placeholder="Search for feeds" />

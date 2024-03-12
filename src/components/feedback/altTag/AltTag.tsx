@@ -36,14 +36,14 @@ export default function AltTag(props: Props) {
           e.preventDefault();
           handleShowAlt();
         }}
-        className="absolute bottom-1.5 left-1.5 rounded-md bg-black/50 px-2 py-0.5 text-xs font-semibold text-white hover:bg-neutral-500/90"
+        className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-overlay-muted absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold"
       >
         ALT
       </Button>
 
       <Dialog.Root open={showAlt} onOpenChange={handleCloseAlt}>
         <Dialog.Portal>
-          <Dialog.Overlay className="animate-fade animate-duration-200 fixed inset-0 z-50 bg-black/80" />
+          <Dialog.Overlay className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50" />
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <Dialog.Content
               onClick={(e) => {
@@ -58,23 +58,25 @@ export default function AltTag(props: Props) {
               className="m-3.5"
             >
               <Dialog.Close asChild>
-                <Button className="fixed left-3 top-3 z-50 rounded-full bg-black/50 p-3.5 text-white hover:bg-neutral-500/90">
+                <Button className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-3 z-50 rounded-full p-3.5">
                   <CgClose className="text-xl" />
                 </Button>
               </Dialog.Close>
-              <div className="z-50 max-h-[calc(100svh-10rem)] max-w-xl  cursor-text overflow-auto rounded-xl bg-black/60  p-4 text-white">
+              <div className="text-skin-inverted bg-skin-overlay-muted z-50  max-h-[calc(100svh-10rem)] max-w-xl cursor-text overflow-auto rounded-xl p-4">
                 <div className="mb-4 flex flex-wrap justify-between gap-3">
-                  <Dialog.Title className="text-xl font-semibold">
+                  <Dialog.Title className="text-xl font-semibold text-white">
                     Alternative text
                   </Dialog.Title>
                   <Button
                     onClick={handleCopyAltText}
-                    className="rounded-lg bg-neutral-200/20 p-2 hover:bg-neutral-200/30"
+                    className="bg-skin-inverted hover:bg-skin-inverted/90 rounded-lg p-2"
                   >
                     <BiSolidCopy />
                   </Button>
                 </div>
-                <Dialog.Description className="mt-2">{text}</Dialog.Description>
+                <Dialog.Description className="mt-2 text-white">
+                  {text}
+                </Dialog.Description>
               </div>
             </Dialog.Content>
           </div>

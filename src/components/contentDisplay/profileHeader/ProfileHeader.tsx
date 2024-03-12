@@ -52,7 +52,7 @@ export default function ProfileHeader(props: Props) {
         <ProfileHeaderSkeleton />
       )}
       {profile && contentFilter && (
-        <section className="overflow-hidden border-0 border-y md:rounded-t-2xl md:border-x">
+        <section className="md:border-skin-base overflow-hidden border-0 border-y md:rounded-t-2xl md:border-x">
           <div className="relative">
             {isBlocked || hasBlockedYou ? (
               <Image
@@ -88,11 +88,11 @@ export default function ProfileHeader(props: Props) {
                   alt="Avatar"
                   width={95}
                   height={95}
-                  className="rounded-full border-4 border-white object-cover opacity-30 contrast-75"
+                  className="bg-skin-base rounded-full border-4 border-transparent object-cover opacity-30 contrast-75"
                 />
               ) : (
                 <Button
-                  className="rounded-full border-4 border-white"
+                  className="bg-skin-base rounded-full border-4 border-transparent"
                   onClick={() => setShowAvatar(true)}
                 >
                   <Image
@@ -133,7 +133,7 @@ export default function ProfileHeader(props: Props) {
           )}
           <div className="p-3">
             <div className="flex flex-wrap items-center gap-x-2">
-              <h1 className="break-all text-2xl font-semibold text-neutral-700">
+              <h1 className="text-skin-base break-all text-2xl font-semibold">
                 {profile.displayName || profile.handle}
               </h1>
               <div className="flex flex-wrap gap-1.5">
@@ -142,7 +142,7 @@ export default function ProfileHeader(props: Props) {
                 )}
               </div>
             </div>
-            <h2 className="break-all font-medium text-neutral-400">
+            <h2 className="text-skin-tertiary break-all font-medium">
               @{profile?.handle}
             </h2>
             {profile?.description && (

@@ -14,10 +14,10 @@ export default function NotFoundEmbed(props: Props) {
     <>
       {depth < 1 && (
         <div
-          className={`relative rounded-xl border bg-white p-3 ${replyStyle}`}
+          className={`border-skin-base bg-skin-base relative rounded-xl border p-3 ${replyStyle}`}
         >
           <div className="flex gap-2">
-            <PiWarningCircleFill className="text-2xl" />
+            <PiWarningCircleFill className="text-skin-icon-base text-2xl" />
             <span>Deleted post</span>
           </div>
           {isReply && <Threadline />}

@@ -73,16 +73,16 @@ export default function PostActions(props: Props) {
     return (
       <div>
         {(likeCount > 0 || repostCount > 0) && (
-          <div className="mt-3 flex flex-wrap items-center gap-3 border-y p-2">
+          <div className="border-skin-base mt-3 flex flex-wrap items-center gap-3 border-y p-2">
             {repostCount > 0 && (
               <Link
                 href={`/dashboard/user/${post.author.handle}/post/${getPostId(
                   post.uri,
                 )}/reposted-by`}
-                className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
+                className="text-skin-base flex gap-1 font-semibold"
               >
                 {abbreviateNumber(repostCount)}
-                <span className="font-medium text-neutral-400">
+                <span className="text-skin-tertiary font-medium">
                   Repost{repostCount > 1 && "s"}
                 </span>
               </Link>
@@ -92,10 +92,10 @@ export default function PostActions(props: Props) {
                 href={`/dashboard/user/${post.author.handle}/post/${getPostId(
                   post.uri,
                 )}/liked-by`}
-                className="flex gap-1 font-semibold text-neutral-700 hover:brightness-110"
+                className="text-skin-base flex gap-1 font-semibold"
               >
                 {abbreviateNumber(likeCount)}
-                <span className="font-medium text-neutral-400">
+                <span className="text-skin-tertiary font-medium">
                   Like{likeCount > 1 && "s"}
                 </span>
               </Link>
@@ -120,7 +120,7 @@ export default function PostActions(props: Props) {
                 },
               });
             }}
-            className="hover:text-primary text-neutral-500"
+            className="hover:text-primary text-skin-icon-muted"
           >
             <BiMessageRounded className="text-lg" />
           </Button>
@@ -133,8 +133,8 @@ export default function PostActions(props: Props) {
                 }}
                 className={
                   reposted
-                    ? "text-green-600"
-                    : "text-neutral-500 hover:text-green-600"
+                    ? "text-skin-icon-repost"
+                    : "text-skin-icon-muted hover:text-skin-icon-repost"
                 }
               >
                 <BiRepost className="text-xl" />
@@ -177,7 +177,9 @@ export default function PostActions(props: Props) {
               toggleLike.mutate();
             }}
             className={
-              liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
+              liked
+                ? "text-skin-icon-like"
+                : "text-skin-icon-muted hover:text-skin-icon-like"
             }
           >
             {liked ? (
@@ -193,7 +195,7 @@ export default function PostActions(props: Props) {
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
-                className="text-neutral-500 hover:text-neutral-600"
+                className="text-skin-icon-muted hover:text-skin-base"
               >
                 <BiDotsHorizontalRounded className="text-lg" />
               </Button>
@@ -262,7 +264,7 @@ export default function PostActions(props: Props) {
             },
           });
         }}
-        className="hover:text-primary text-sm font-medium text-neutral-500"
+        className="hover:text-primary text-skin-icon-muted text-sm font-medium"
       >
         <BiMessageRounded className="text-lg" />
         {post.replyCount ? abbreviateNumber(post.replyCount) : null}
@@ -277,8 +279,8 @@ export default function PostActions(props: Props) {
             className={`text-sm font-medium
               ${
                 reposted
-                  ? "text-green-600"
-                  : "text-neutral-500 hover:text-green-600"
+                  ? "text-skin-icon-repost"
+                  : "text-skin-icon-muted hover:text-skin-icon-repost"
               }
             `}
           >
@@ -323,7 +325,9 @@ export default function PostActions(props: Props) {
           toggleLike.mutate();
         }}
         className={`text-sm font-medium ${
-          liked ? "text-red-600" : "text-neutral-500 hover:text-red-600"
+          liked
+            ? "text-skin-icon-like"
+            : "text-skin-icon-muted hover:text-skin-icon-like"
         }
           `}
       >
@@ -341,7 +345,7 @@ export default function PostActions(props: Props) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className="text-neutral-500 hover:text-neutral-600"
+            className="text-skin-icon-muted hover:text-skin-base"
           >
             <BiDotsHorizontalRounded className="text-lg" />
           </Button>

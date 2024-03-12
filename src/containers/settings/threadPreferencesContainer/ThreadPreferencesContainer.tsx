@@ -21,7 +21,7 @@ interface ItemProps {
 function SortReplyItem(props: ItemProps) {
   const { value, label } = props;
   return (
-    <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+    <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       <RadioGroupItem value={value}>{value}</RadioGroupItem>
       <Label>{label}</Label>
     </div>
@@ -47,7 +47,7 @@ export default function ThreadPreferencesContainer() {
                 ...prefs,
               },
             };
-          }
+          },
         );
         await updateThreadViewPreferences(prefs, agent);
       } catch (error) {
@@ -65,11 +65,11 @@ export default function ThreadPreferencesContainer() {
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+      <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
         Thread Preferences
       </h2>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Sort Replies
         </h3>
         <section className="flex flex-col">
@@ -90,11 +90,11 @@ export default function ThreadPreferencesContainer() {
         </section>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Prioritize Your Follows
         </h3>
         <section className="flex flex-col">
-          <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+          <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
             <Switch
               checked={preferences?.threadPreferences.prioritizeFollowedUsers}
               onCheckedChange={async (value) => {

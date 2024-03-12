@@ -11,7 +11,9 @@ export default function CharacterCount(props: Props) {
   return (
     <div className="flex gap-2.5">
       {percentage > 100 && (
-        <span className="w-8 font-medium text-red-500">{300 - charCount}</span>
+        <span className="text-status-danger w-8 font-medium">
+          {300 - charCount}
+        </span>
       )}
       <CircularProgressbar
         strokeWidth={14}
@@ -22,7 +24,7 @@ export default function CharacterCount(props: Props) {
           },
         }}
         className={`w-6 ${
-          percentage <= 100 ? "stroke-primary" : "stroke-red-500"
+          percentage <= 100 ? "stroke-primary" : "stroke-status-danger"
         }`}
       />
     </div>

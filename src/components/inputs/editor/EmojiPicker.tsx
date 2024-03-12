@@ -21,10 +21,10 @@ export default function EmojiPicker(props: Props) {
         }}
         className="p-0"
       >
-        <BiSmile className="text-2xl text-primary hover:text-primary-dark" />{" "}
+        <BiSmile className="text-primary hover:text-primary-dark text-2xl" />{" "}
       </Button>
       {showEmojiPicker && (
-        <div className="z-50 absolute mt-2 md:bottom-14 max-h-72 overflow-y-scroll border rounded-2xl shadow-md animate-fade animate-duration-200">
+        <div className="border-skin-base animate-fade animate-duration-200 absolute z-50 mt-2 max-h-72 overflow-y-scroll rounded-2xl border shadow-md md:bottom-14">
           <Picker
             data={data}
             onEmojiSelect={(emoji: EmojiData, e: React.MouseEvent) => {

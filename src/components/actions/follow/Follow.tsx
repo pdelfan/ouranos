@@ -34,16 +34,16 @@ export default function Follow(props: Props) {
       {!isBlocked && !hasBlockedYou && (
         <Button
           onClick={() => onToggleFollow.mutate()}
-          className={`rounded-full px-4 py-2 font-medium text-sm ${
+          className={`rounded-full px-4 py-2 text-sm font-medium ${
             isFollowing
-              ? "bg-neutral-100 hover:brightness-95"
-              : "bg-neutral-700 text-white hover:brightness-90"
+              ? "text-skin-base bg-skin-tertiary hover:brightness-95"
+              : "bg-skin-inverted hover:bg-skin-inverted-muted text-skin-inverted"
           }`}
         >
           {isFollowing ? (
-            <BiCheck className="text-xl" />
+            <BiCheck className="text-skin-icon-base text-xl" />
           ) : (
-            <BiPlus className="text-lg" />
+            <BiPlus className="text-skin-inverted text-lg" />
           )}
           {isFollowing ? "Following" : "Follow"}
         </Button>
@@ -54,8 +54,8 @@ export default function Follow(props: Props) {
           disabled={true}
           className={`rounded-full px-4 py-2 ${
             isFollowing
-              ? "bg-neutral-100 hover:brightness-95"
-              : "bg-neutral-700 text-white hover:brightness-90"
+              ? "bg-skin-tertiary hover:brightness-95"
+              : "text-skin-inverted bg-skin-inverted hover:brightness-90"
           }`}
         >
           Blocked
@@ -67,7 +67,7 @@ export default function Follow(props: Props) {
           onClick={() => {
             toggleBlockUser.mutate();
           }}
-          className="rounded-full px-4 py-2 font-medium text-sm bg-neutral-100 hover:brightness-95"
+          className="bg-skin-tertiary rounded-full px-4 py-2 text-sm font-medium hover:brightness-95"
         >
           Unblock
         </Button>

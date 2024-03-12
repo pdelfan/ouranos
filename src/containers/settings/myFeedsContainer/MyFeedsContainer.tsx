@@ -35,7 +35,7 @@ function FeedItem(props: FeedItemProps) {
         )}`,
         query: { uri: feedItem.uri },
       }}
-      className="flex items-center justify-between gap-2 border border-x-0 p-3 last:border-b hover:bg-neutral-50 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+      className="border-skin-base hover:bg-skin-secondary flex items-center justify-between gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
       <div className="flex flex-wrap items-center gap-3">
         <Image
@@ -43,9 +43,9 @@ function FeedItem(props: FeedItemProps) {
           alt={displayName}
           width={40}
           height={40}
-          className={`rounded-lg ${!avatar && "border"}`}
+          className={`rounded-lg ${!avatar && "border-skin-base bg-skin-muted border"}`}
         />
-        <h2 className="break-words font-semibold text-neutral-700">
+        <h2 className="text-skin-base break-words font-semibold">
           {feedItem.displayName}
         </h2>
       </div>
@@ -56,7 +56,7 @@ function FeedItem(props: FeedItemProps) {
             deleteFeed.mutate();
           }}
         >
-          <BiSolidTrash className="text-lg text-red-600" />
+          <BiSolidTrash className="text-status-danger text-lg" />
         </Button>
 
         <Button
@@ -67,7 +67,7 @@ function FeedItem(props: FeedItemProps) {
         >
           <BiSolidBookmarkAlt
             className={`text-lg ${
-              isPinned ? "text-green-600" : "text-neutral-300"
+              isPinned ? "text-status-success" : "text-skin-icon-muted"
             }`}
           />
         </Button>
@@ -87,9 +87,11 @@ export default function MyFeedsContainer() {
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="mx-3 mb-2 text-2xl font-semibold md:mx-0">My Feeds</h2>
+      <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
+        My Feeds
+      </h2>
       <section>
-        <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Pinned Feeds
         </h3>
         <section className="flex flex-col">
@@ -104,7 +106,9 @@ export default function MyFeedsContainer() {
       </section>
 
       <section>
-        <h2 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Saved Feeds</h2>
+        <h2 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
+          Saved Feeds
+        </h2>
         <section className="flex flex-col">
           {data &&
             data

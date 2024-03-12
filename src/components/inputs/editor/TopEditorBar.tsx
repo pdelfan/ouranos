@@ -22,10 +22,10 @@ export default function TopEditorBar(props: Props) {
   }, [numberOfImages, label, onRemoveLabel]);
 
   return (
-    <div className="flex flex-wrap justify-between items-center gap-2">
+    <div className="flex flex-wrap items-center justify-between gap-2">
       <Button
         onClick={onClose}
-        className="px-4 py-2 text-sm text-neutral-600g font-semibold border rounded-full hover:bg-neutral-50"
+        className="hover:bg-skin-secondary border-skin-base text-skin-base rounded-full border px-4 py-2 text-sm font-semibold"
       >
         Cancel
       </Button>
@@ -33,7 +33,7 @@ export default function TopEditorBar(props: Props) {
       {label !== "" && (
         <Button
           onClick={onRemoveLabel}
-          className="px-4 py-2 rounded-full text-sm text-neutral-600 font-semibold bg-neutral-100 hover:bg-neutral-600 hover:text-neutral-100"
+          className="hover:bg-skin-inverted bg-skin-tertiary text-skin-base hover:text-skin-inverted rounded-full px-4 py-2 text-sm font-semibold"
         >
           <HiOutlineShieldExclamation className="text-xl" />
           {label === "nsfw"
@@ -49,7 +49,7 @@ export default function TopEditorBar(props: Props) {
             },
           });
         }}
-        className={`bg-primary text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-primary-dark ${
+        className={`bg-primary hover:bg-primary-dark rounded-full px-4 py-2 text-sm font-semibold text-white ${
           onPublish.isPending && "animate-pulse"
         }`}
         disabled={onPublish.isPending}

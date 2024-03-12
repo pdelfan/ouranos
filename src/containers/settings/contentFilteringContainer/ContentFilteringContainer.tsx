@@ -18,7 +18,7 @@ import {
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/components/inputs/tabGroup/TabGroup";
+} from "@/components/inputs/toggleGroup/ToggleGroup";
 import { ReactNode } from "react";
 import ContentFilteringContainerSkeleton from "./ContentFilteringContainerSkeleton";
 import toast from "react-hot-toast";
@@ -54,10 +54,10 @@ interface ItemProps {
 function Item(props: ItemProps) {
   const { item, children } = props;
   return (
-    <div className="flex  justify-between items-center gap-3 p-3 border border-x-0 md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+    <div className="border-skin-base flex items-center justify-between gap-3 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       <div className="flex flex-col">
-        <span className="font-medium">{item.label}</span>
-        <span className="text-neutral-500">{item.description}</span>
+        <span className="text-skin-base font-medium">{item.label}</span>
+        <span className="text-skin-secondary">{item.description}</span>
       </div>
       {children}
     </div>
@@ -86,7 +86,7 @@ export default function ContentFilteringContainer() {
                 isAdultContentHidden: value,
               },
             };
-          }
+          },
         );
         await updateIsAdultContentEnabled(!value, agent);
       } catch (error) {
@@ -126,7 +126,7 @@ export default function ContentFilteringContainer() {
                 contentFilters: updatedContentFilters,
               },
             };
-          }
+          },
         );
         await updateContentFilterPreferences(pref, value, agent);
       } catch (error) {
@@ -166,7 +166,7 @@ export default function ContentFilteringContainer() {
                 adultContentFilters: updatedAdultContentFilters,
               },
             };
-          }
+          },
         );
         await updateContentFilterPreferences(pref, value, agent);
       } catch (error) {
@@ -183,14 +183,14 @@ export default function ContentFilteringContainer() {
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold mx-3 md:mx-0 mb-2">
+      <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
         Content Filtering
       </h2>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Hide Adult Content
         </h3>
-        <div className="flex items-center gap-2 p-3 border border-x-0 md:border-x md:rounded-t-2xl md:last:rounded-b-2xl last:border-b even:[&:not(:last-child)]:border-b-0 odd:[&:not(:last-child)]:border-b-0">
+        <div className="border-skin-base flex items-center gap-2 border border-x-0 p-3 last:border-b md:rounded-t-2xl md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
           <Switch
             checked={isAdultContentHidden}
             onCheckedChange={async (value) => {
@@ -201,7 +201,7 @@ export default function ContentFilteringContainer() {
         </div>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Adult Content Filters
         </h3>
         <div>
@@ -232,7 +232,7 @@ export default function ContentFilteringContainer() {
         </div>
       </section>
       <section>
-        <h3 className="text-xl font-semibold mx-3 md:mx-0 mb-2">
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Other Filters
         </h3>
         <div>

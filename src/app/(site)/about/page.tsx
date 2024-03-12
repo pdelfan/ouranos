@@ -23,16 +23,16 @@ export default function Page() {
         </div>{" "}
         <Link
           href="/"
-          className="font-medium text-neutral-500 hover:text-neutral-600"
+          className="text-skin-secondary hover:text-skin-base font-medium"
         >
           Home
         </Link>
       </header>
       <section className="animate-fade mx-auto mt-16 max-w-xl">
-        <h1 className="mb-6 max-w-lg text-4xl font-medium text-neutral-600">
+        <h1 className="text-skin-base mb-6 max-w-lg text-4xl font-medium">
           About
         </h1>
-        <p>
+        <p className="text-skin-base">
           Ouranos is an open-source{" "}
           <Link
             href="https://blueskyweb.xyz/"
@@ -59,7 +59,7 @@ export default function Page() {
           Twitter's API in the past.
         </p>
 
-        <p className="mt-3">
+        <p className="text-skin-base mt-3">
           The app is being developed and designed by me,{" "}
           <Link
             href="https://pouriade.com"
@@ -71,14 +71,14 @@ export default function Page() {
           way to practice my skills.
         </p>
 
-        <h2 className="mb-6 mt-12 text-2xl font-medium text-neutral-600">
+        <h2 className="text-skin-base mb-6 mt-12 text-2xl font-medium">
           Frequently Asked Questions
         </h2>
 
-        <h3 className="mb-1 text-lg font-semibold text-neutral-600">
+        <h3 className="text-skin-base mb-1 text-lg font-semibold">
           Is anything stored on your servers?
         </h3>
-        <p>
+        <p className="text-skin-base">
           Nothing from Bluesky is stored, every request goes through the
           official Bluesky servers. When you log in, your session is stored
           using cookies on your web browser. Any extra feature that exists (or
@@ -92,7 +92,7 @@ export default function Page() {
           on your web browser.
         </p>
 
-        <p className="mt-3">
+        <p className="text-skin-base mt-3">
           Note: When you visit the site,{" "}
           <Link
             href="https://vercel.com/analytics"
@@ -107,23 +107,18 @@ export default function Page() {
           you. If you are using an ad blocker, tracking is likely disabled.
         </p>
 
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+        <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           Why do you recommend using an app password to log in?
         </h3>
-        <p>
+        <p className="text-skin-base">
           App passwords allow you to log in and use the app, but restrict
           third-party clients (ex. Ouranos) from certain functionalities such as
           account deletion or generating additional app passwords.
         </p>
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
-          Is there a dark mode?
-        </h3>
-        <p>Not at the moment, but it will be added soon.</p>
-
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+        <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           Where can I see progress updates?
         </h3>
-        <p>
+        <p className="text-skin-base">
           For the moment, you can see what is being worked on under{" "}
           <Link
             href="https://github.com/users/pdelfan/projects/1"
@@ -134,10 +129,10 @@ export default function Page() {
           on GitHub.{" "}
         </p>
 
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+        <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           How can I provide feedback?
         </h3>
-        <p>
+        <p className="text-skin-base">
           If you have an account on GitHub, you can go to the project's{" "}
           <Link
             href="https://github.com/pdelfan/ouranos"
@@ -158,16 +153,16 @@ export default function Page() {
           handle is @contrapunctus.bsky.social).
         </p>
 
-        <h3 className="mb-1 mt-6 text-lg font-semibold text-neutral-600">
+        <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           Can I support the project?
         </h3>
-        <p className="mt-3">
+        <p className="text-skin-base mt-3">
           If you like to support the project and help keep the site up and
           running, stay tuned for more information! If you enjoy using Ouranos,
           let me know! I'd love to hear from you.
         </p>
       </section>
-      <footer className="mt-16 text-center text-sm font-medium text-neutral-400">
+      <footer className="text-skin-tertiary mt-16 text-center text-sm font-medium">
         OURANOS · EARLY ACCESS · {new Date().getFullYear()}
       </footer>
     </main>

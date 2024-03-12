@@ -51,7 +51,9 @@ export default function ThreadGatePicker(props: Props) {
       </Dropdown.Trigger>
       <Dropdown.Menu>
         <div className="px-2 pb-2 pt-1">
-          <span className="font-medium">Who can reply to this post?</span>
+          <span className="text-skin-base font-medium">
+            Who can reply to this post?
+          </span>
         </div>
         <Dropdown.MenuItem
           key="Everyone"

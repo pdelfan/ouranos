@@ -25,7 +25,7 @@ export default function ComposeButton(props: Props) {
       {mode === "float" && (
         <button
           onClick={() => openComposer({ mention: userHandle })}
-          className="z-40 p-3.5 rounded-full fixed md:hidden right-3 bottom-24 bg-primary text-white hover:bg-primary-dark outline-none ease-linear transition-all"
+          className="bg-primary text-skin-inverted hover:bg-primary-dark fixed bottom-24 right-3 z-40 rounded-full p-3.5 outline-none transition-all ease-linear md:hidden"
           style={{
             opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
             transform: canUpdate
@@ -33,17 +33,19 @@ export default function ComposeButton(props: Props) {
               : "translateY(0%)",
           }}
         >
-          <RiQuillPenFill className="text-2xl" />
+          <RiQuillPenFill className="text-skin-icon-inverted text-2xl" />
         </button>
       )}
 
       {mode === "fixed" && (
         <button
           onClick={() => openComposer({ mention: userHandle })}
-          className="p-3.5 flex items-center gap-2 bg-primary lg:px-3 lg:py-2.5 rounded-full text-white font-semibold hover:brightness-95"
+          className="bg-primary text-skin-inverted flex items-center gap-2 rounded-full p-3.5 font-semibold hover:brightness-95 lg:px-3 lg:py-2.5"
         >
-          <RiQuillPenFill className="text-2xl" />
-          <span className="hidden lg:inline">Write a post</span>
+          <RiQuillPenFill className="text-skin-icon-inverted text-2xl" />
+          <span className="text-skin-icon-inverted hidden lg:inline">
+            Write a post
+          </span>
         </button>
       )}
     </>

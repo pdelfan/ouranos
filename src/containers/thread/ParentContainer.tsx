@@ -17,7 +17,7 @@ export default function ParentContainer(props: Props) {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="flex flex-col justify-between border border-x-0 p-3 first:border-t-0  last:rounded-b-2xl last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+    <div className="border-skin-base flex flex-col justify-between border border-x-0 p-3 first:border-t-0  last:rounded-b-2xl last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       {parentChain.map((parent, i) => (
         <div key={i}>
           {AppBskyFeedDefs.isBlockedPost(parent) && (
@@ -46,7 +46,7 @@ export default function ParentContainer(props: Props) {
                   {i == 2 && !showMore && (
                     <button
                       onClick={() => setShowMore(true)}
-                      className="relative mb-6 inline-block rounded-full bg-neutral-600/10 px-2.5 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-200"
+                      className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted relative mb-6 inline-block rounded-full px-2.5 py-2 text-sm font-medium"
                     >
                       Show More
                       <Threadline className="top-6" />

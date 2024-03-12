@@ -11,8 +11,9 @@ export function getRelativeTime(dates: string) {
   const date = new Date(dates);
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
   const interval = intervals.find((i) => i.seconds < seconds);
-  if (!interval) return;
+  if (!interval) return "now";
   const count = Math.floor(seconds / interval.seconds);
+  if (count < 1) return "now";
   return `${count}${interval.label}`;
 }
 

@@ -68,7 +68,7 @@ export default function BottomEditorBar(props: Props) {
 
   return (
     <section>
-      <div className="flex flex-wrap justify-between gap-5 border-t py-3">
+      <div className="border-skin-base flex flex-wrap justify-between gap-5 border-t py-3">
         <div className="flex gap-4">
           <EmojiPicker onEmojiSelect={editor.commands.insertContent} />
           <AdultContentPicker
@@ -98,26 +98,26 @@ export default function BottomEditorBar(props: Props) {
         <div
           {...getRootProps()}
           className={`
-            animate-fade animate-duration-200 cursor-pointer rounded-2xl border p-6 text-center hover:bg-neutral-50
+            animate-fade animate-duration-200 border-skin-base hover:bg-skin-secondary cursor-pointer rounded-2xl border p-6 text-center
             ${
               isDragActive &&
-              "ring-primary border-neutral-200 bg-neutral-50 ring-2"
+              "ring-primary border-skin-base bg-skin-secondary ring-2"
             }
           `}
         >
           <input {...getInputProps()} />
 
           <div className="flex flex-col items-center gap-2 text-sm font-medium">
-            <BiUpload className="text-2xl text-neutral-600" />
+            <BiUpload className="text-skin-base text-2xl" />
             <>
               {!isDragReject && (
-                <span className="text-neutral-600">
+                <span className="text-skin-base">
                   Drag and drop your images or click to select images <br /> You
                   can upload up to 4 images
                 </span>
               )}
               {isDragReject && (
-                <span className="text-neutral-600">
+                <span className="text-skin-base">
                   You cannot upload this file type
                 </span>
               )}

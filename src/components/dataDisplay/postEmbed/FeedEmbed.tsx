@@ -25,7 +25,7 @@ export default function FeedEmbed(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="mt-2 flex flex-col gap-2 rounded-2xl border bg-white p-3 hover:brightness-95"
+          className="border-skin-base bg-skin-base mt-2 flex flex-col gap-2 rounded-2xl border p-3 hover:brightness-95"
         >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-3">
@@ -34,24 +34,24 @@ export default function FeedEmbed(props: Props) {
                 alt={feed.displayName}
                 width={40}
                 height={40}
-                className={`rounded-lg ${!feed.avatar && "border"}`}
+                className={`rounded-lg ${!feed.avatar && "bg-skin-muted border-skin-base border"}`}
               />
               <div className="flex flex-col">
-                <h2 className="break-words font-semibold text-neutral-700">
+                <h2 className="text-skin-base break-words font-semibold">
                   {feed.displayName}
                 </h2>
-                <h3 className="break-all text-sm text-neutral-500">
+                <h3 className="text-skin-secondary break-all text-sm">
                   By @{feed.creator.handle}
                 </h3>
               </div>
             </div>
           </div>
           {feed.description && (
-            <p className="line-clamp-3 whitespace-pre-wrap text-neutral-700 [overflow-wrap:anywhere]">
+            <p className="text-skin-base line-clamp-3 whitespace-pre-wrap [overflow-wrap:anywhere]">
               {feed.description}
             </p>
           )}
-          <small className="flex items-center gap-1 font-medium text-neutral-500">
+          <small className="text-skin-secondary flex items-center gap-1 font-medium">
             <BiSolidHeart />
             <span>{feed.likeCount ?? 0}</span>
           </small>

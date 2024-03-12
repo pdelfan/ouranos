@@ -41,3 +41,8 @@ type AuditLog = {
   cid: string;
   createdAt: string;
 }[];
+
+interface Theme {
+  label: string;
+  value: string;
+}

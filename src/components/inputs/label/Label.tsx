@@ -5,7 +5,7 @@ interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
 export default function Label(props: Props) {
   const { children, ...rest } = props;
   return (
-    <label {...rest} className="text-md font-medium text-neutral-600">
+    <label {...rest} className="text-md text-skin-secondary font-medium">
       {children}
     </label>
   );

@@ -102,10 +102,10 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
 
     return (
       <div
-        className={`animate-fade animate-duration-300 mb-2 mt-2 min-h-fit rounded-xl border bg-white p-1 drop-shadow-lg`}
+        className={`animate-fade animate-duration-300 bg-skin-base border-skin-base mb-2 mt-2 min-h-fit rounded-xl border p-1 drop-shadow-lg`}
       >
         {props.items.length === 0 && (
-          <div className="flex cursor-pointer items-center justify-between gap-10 rounded-md px-2  py-1 focus:bg-neutral-100 focus:outline-none">
+          <div className="focus:bg-skin-tertiary flex cursor-pointer items-center justify-between gap-10 rounded-md px-2 py-1 focus:outline-none">
             <span className="inline-block max-w-xs whitespace-nowrap">
               No User Found
             </span>
@@ -119,8 +119,8 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
                 e.preventDefault();
                 selectItem(index);
               }}
-              className={`flex cursor-pointer items-center justify-between rounded-md px-2 py-1 hover:bg-neutral-100 focus:bg-neutral-100 focus:outline-none ${
-                index === selectedIndex && "bg-neutral-100"
+              className={`hover:bg-skin-tertiary focus:bg-skin-tertiary flex cursor-pointer items-center justify-between rounded-md px-2 py-1 focus:outline-none ${
+                index === selectedIndex && "bg-skin-tertiary"
               }`}
             >
               <div className="flex items-center gap-2">
@@ -132,10 +132,10 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
                   className="rounded-full"
                 />
                 <div className="flex flex-col">
-                  <span className="max-w-xs">
+                  <span className="text-skin-base max-w-xs">
                     {item.displayName || item.handle}
                   </span>
-                  <span className="text-sm text-neutral-400">
+                  <span className="text-skin-tertiary text-sm">
                     {item.handle}
                   </span>
                 </div>

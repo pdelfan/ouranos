@@ -19,17 +19,17 @@ export default function UploadPreview(props: Props) {
 
   const handleRemove = (image: UploadImage) => {
     onUpdate((prev) =>
-      prev?.filter((prevImage) => prevImage.url !== image.url)
+      prev?.filter((prevImage) => prevImage.url !== image.url),
     );
   };
 
   return (
     <section>
-      <div className="grid grid-cols-2 gap-2 my-2 w-full">
+      <div className="my-2 grid w-full grid-cols-2 gap-2">
         {images.map((image) => (
-          <div key={image.url} className="relative h-fit animate-fade">
+          <div key={image.url} className="animate-fade relative h-fit">
             <Button
-              className="absolute top-0 m-2 p-2 bg-black/50 text-white rounded-full hover:bg-neutral-700"
+              className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted absolute top-0 m-2 rounded-full p-2"
               onClick={(e) => {
                 e.preventDefault();
                 handleRemove(image);
@@ -41,7 +41,7 @@ export default function UploadPreview(props: Props) {
               <Dialog.Root open={showAltTextModal}>
                 <Dialog.Trigger>
                   <div
-                    className="py-2 px-3 bg-black/50 text-white text-sm font-medium rounded-full hover:bg-neutral-700"
+                    className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted rounded-full px-3 py-2 text-sm font-medium"
                     onClick={() => {
                       setSelectedImage(image);
                       setShowAltTextModal(true);
@@ -54,23 +54,23 @@ export default function UploadPreview(props: Props) {
                 <Dialog.Portal>
                   <Dialog.Content>
                     {selectedImage && (
-                      <section className="flex flex-col justify-between bg-white p-3 bottom-0 z-50 fixed  w-full h-full md:h-fit md:border-t shadow-2xl rounded-t-3xl overflow-scroll animate-fade-up animate-duration-200">
+                      <section className="animate-fade-up animate-duration-200 bg-skin-base border-skin-base fixed bottom-0 z-50 flex  h-full w-full flex-col justify-between overflow-scroll rounded-t-3xl p-3 shadow-2xl md:h-fit md:border-t">
                         <div>
                           <Image
                             src={selectedImage.url}
                             alt="Uploaded image"
                             width={200}
                             height={200}
-                            className="rounded-xl object-cover  max-h-80 md:max-w-xl mx-auto"
+                            className="mx-auto max-h-80  rounded-xl object-cover md:max-w-xl"
                           />
-                          <div className="flex items-center gap-2 md:max-w-xl mx-auto mt-3">
-                            <PiWarningCircleFill className="text-2xl text-neutral-600 shrink-0" />
-                            <small className="text-neutral-500">
+                          <div className="mx-auto mt-3 flex items-center gap-2 md:max-w-xl">
+                            <PiWarningCircleFill className="text-skin-base shrink-0 text-2xl" />
+                            <small className="text-skin-secondary">
                               Alt text describes images for users with
                               disabilities and helps give context to everyone.
                             </small>
                           </div>
-                          <div className="mt-2 md:max-w-xl mx-auto">
+                          <div className="mx-auto mt-2 md:max-w-xl">
                             <Textarea
                               rows={6}
                               autoFocus={false}
@@ -81,13 +81,13 @@ export default function UploadPreview(props: Props) {
                               }
                               className="resize-none"
                             />
-                            <div className="flex justify-end gap-3 mt-1">
+                            <div className="mt-1 flex justify-end gap-3">
                               <Button
                                 onClick={() => {
                                   setShowAltTextModal(false);
                                   setAltText("");
                                 }}
-                                className="px-4 py-2 text-sm font-semibold border rounded-full hover:bg-neutral-50"
+                                className="border-skin-base text-skin-base hover:bg-skin-secondary rounded-full border px-4 py-2 text-sm font-semibold"
                               >
                                 Cancel
                               </Button>
@@ -103,11 +103,11 @@ export default function UploadPreview(props: Props) {
                                                 ? altText
                                                 : selectedImage.altText,
                                           })
-                                        : prevImage
-                                    )
+                                        : prevImage,
+                                    ),
                                   );
                                 }}
-                                className="bg-primary py-2 px-6 rounded-full text-sm text-white font-semibold hover:bg-primary-dark"
+                                className="bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-6 py-2 text-sm font-semibold"
                               >
                                 Save
                               </Button>
@@ -125,7 +125,7 @@ export default function UploadPreview(props: Props) {
               alt="Uploaded image"
               width={200}
               height={200}
-              className="rounded-xl object-cover aspect-square w-full max-h-40"
+              className="aspect-square max-h-40 w-full rounded-xl object-cover"
             />
           </div>
         ))}

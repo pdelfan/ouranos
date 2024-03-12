@@ -35,7 +35,7 @@ export default function ThreadPost(props: Props) {
   return (
     <article
       ref={threadPostRef}
-      className="border-t p-3 last:border-b md:border-x md:last:rounded-b-2xl"
+      className="border-skin-base border-t p-3 last:border-b md:border-x md:last:rounded-b-2xl"
     >
       <div className="relative flex items-start gap-3">
         <button
@@ -56,11 +56,11 @@ export default function ThreadPost(props: Props) {
               }}
               className="flex gap-1"
             >
-              <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700 hover:text-neutral-500">
+              <span className="text-skin-base hover:text-skin-secondary line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
                 {author.displayName || author.handle}{" "}
               </span>
             </Link>
-            <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
+            <span className="text-skin-tertiary line-clamp-1 min-w-[10%] shrink break-all font-medium">
               @{author.handle}
             </span>
           </div>
@@ -81,7 +81,7 @@ export default function ThreadPost(props: Props) {
         {!hidden && (
           <>{post.embed && <PostEmbed content={post.embed} depth={0} />}</>
         )}
-        <div className="mt-3 font-medium text-neutral-400">
+        <div className="text-skin-tertiary mt-3 font-medium">
           {getFormattedDate(post.indexedAt)}
         </div>
       </div>

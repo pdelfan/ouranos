@@ -49,18 +49,18 @@ export default function EditProfile(props: Props) {
       }}
     >
       <Dialog.Trigger asChild>
-        <Button className="flex items-center justify-center gap-1 rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-500 hover:brightness-95 disabled:cursor-not-allowed">
+        <Button className="text-skin-secondary bg-skin-tertiary flex items-center justify-center gap-1 rounded-full px-4 py-2 text-sm font-medium hover:brightness-95 disabled:cursor-not-allowed">
           Edit Profile
         </Button>
       </Dialog.Trigger>
-      <Dialog.Overlay className="animate-fade animate-duration-200 fixed inset-0 z-50 h-screen w-screen bg-black/80" />
-      <Dialog.Content className="animate-fade animate-duration-200 fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-xl translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl bg-white p-3 shadow-2xl md:border-t">
-        <h2 className="mb-2 text-center text-2xl font-semibold">
+      <Dialog.Overlay className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50 h-screen w-screen" />
+      <Dialog.Content className="animate-fade animate-duration-200 bg-skin-base fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-xl translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl p-3 shadow-2xl">
+        <h2 className="text-skin-base mb-2 text-center text-2xl font-semibold">
           Edit My Profile
         </h2>
         <div className="relative">
-          <div className="absolute  bottom-3 right-3 rounded-full bg-neutral-200 p-1">
-            <BiSolidCamera />
+          <div className="bg-skin-muted absolute bottom-3 right-3 rounded-full p-1">
+            <BiSolidCamera className="text-skin-icon-base" />
           </div>
           <Dropzone
             maxFiles={1}
@@ -93,8 +93,8 @@ export default function EditProfile(props: Props) {
             )}
           </Dropzone>
           <div className="absolute bottom-0 translate-y-1/2 transform px-3 ">
-            <div className="absolute bottom-3 right-3 rounded-full bg-neutral-200 p-1">
-              <BiSolidCamera />
+            <div className="bg-skin-muted absolute bottom-3 right-3 rounded-full p-1">
+              <BiSolidCamera className="text-skin-icon-base" />
             </div>
             <Dropzone
               maxFiles={1}
@@ -121,7 +121,7 @@ export default function EditProfile(props: Props) {
                     alt="Avatar"
                     width={95}
                     height={95}
-                    className="h-[95px] w-[95px] rounded-full border-4 border-white object-cover hover:cursor-pointer"
+                    className="bg-skin-base h-[95px] w-[95px] rounded-full border-4 border-transparent object-cover hover:cursor-pointer"
                   />
                 </div>
               )}
@@ -130,7 +130,9 @@ export default function EditProfile(props: Props) {
         </div>
         <div className="mx-auto mt-14 md:max-w-xl">
           <div>
-            <h3 className="mb-2 text-xl font-semibold">Display Name</h3>
+            <h3 className="text-skin-base mb-2 text-xl font-semibold">
+              Display Name
+            </h3>
             <Input
               maxLength={MAX_DISPLAY_NAME_LENGTH}
               placeholder="Your name"
@@ -139,7 +141,9 @@ export default function EditProfile(props: Props) {
             />
           </div>
           <div>
-            <h3 className="my-2 text-xl font-semibold">Description</h3>
+            <h3 className="text-skin-base my-2 text-xl font-semibold">
+              Description
+            </h3>
             <Textarea
               rows={4}
               maxLength={MAX_DESCRIPTION_LENGTH}
@@ -151,7 +155,7 @@ export default function EditProfile(props: Props) {
           </div>
         </div>
         <div className="mt-2 flex justify-end gap-3">
-          <Dialog.Close className="rounded-full border px-4 py-2 text-sm font-semibold text-neutral-600 hover:bg-neutral-50">
+          <Dialog.Close className="text-skin-base border-skin-base hover:bg-skin-secondary rounded-full border px-4 py-2 text-sm font-semibold">
             Cancel
           </Dialog.Close>
           <Button
@@ -164,7 +168,7 @@ export default function EditProfile(props: Props) {
               });
             }}
             disabled={updateProfile.isPending}
-            className={`bg-primary hover:bg-primary-dark rounded-full px-4 py-2 text-sm font-semibold text-white ${
+            className={`bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-4 py-2 text-sm font-semibold ${
               updateProfile.isPending && "animate-pulse"
             }`}
           >

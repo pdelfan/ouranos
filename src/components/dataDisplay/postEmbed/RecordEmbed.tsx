@@ -34,20 +34,20 @@ export default function RecordEmbed(props: Props) {
             );
             e.stopPropagation();
           }}
-          className="mt-2 rounded-xl border p-3 hover:cursor-pointer hover:bg-neutral-50"
+          className="border-skin-base hover:bg-skin-secondary mt-2 rounded-xl border p-3 hover:cursor-pointer"
         >
           <div className="flex flex-col">
             <div className="flex">
               <span className="flex items-center gap-1">
                 <Avatar src={record.author.avatar} size="xs" />
-                <span className="line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold text-neutral-700">
+                <span className="text-skin-base line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
                   {record.author.displayName || record.author.handle}{" "}
                 </span>
-                <span className="line-clamp-1 min-w-[10%] shrink break-all font-medium text-neutral-400">
+                <span className="text-skin-tertiary line-clamp-1 min-w-[10%] shrink break-all font-medium">
                   @{record.author.handle}
                 </span>
               </span>
-              <span className="whitespace-nowrap font-medium text-neutral-400">
+              <span className="text-skin-tertiary whitespace-nowrap font-medium">
                 &nbsp;· {getRelativeTime(record.indexedAt)}
               </span>
             </div>

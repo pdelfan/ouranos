@@ -71,12 +71,12 @@ export default function ListMembersContainer(props: Props) {
         <ProfileCardSkeleton rounded={false} />
       )}
       {isEmpty && (
-        <div className="border-t">
+        <div className="border-skin-base border-t">
           <FeedAlert variant="empty" message="No members found" />
         </div>
       )}
       {error && (
-        <div className="border-t">
+        <div className="border-skin-base border-t">
           <FeedAlert variant="badResponse" message="Something went wrong" />
         </div>
       )}

@@ -61,7 +61,7 @@ function DropdownMenu({ children }: { children: ReactNode }) {
               e.preventDefault(); // remove outline on close
             }}
             align="center"
-            className="z-50 min-w-fit mt-2 mb-2 bg-white rounded-xl p-1 shadow-lg border max-h-44 overflow-y-auto animate-fade animate-duration-200"
+            className="animate-fade animate-duration-200 border-skin-base bg-skin-base z-50 mb-2 mt-2 max-h-44 min-w-fit overflow-y-auto rounded-xl border p-1 shadow-lg"
           >
             {children}
           </RadixDropdownMenu.Content>
@@ -91,9 +91,9 @@ function DropdownMenuItem(props: DropdownMenuItemProps) {
         closeMenu();
         onSelect();
       }}
-      className={`flex justify-between items-center gap-5 py-1 px-2 ${
-        textColor ? textColor : "text-neutral-600"
-      } rounded-md hover:bg-neutral-100 hover:outline-none hover:cursor-pointer`}
+      className={`flex cursor-pointer items-center justify-between gap-5 px-2 py-1 ${
+        textColor ? textColor : "text-skin-base"
+      } hover:bg-skin-tertiary hover:cursor-pointerbg-skin-tertiary rounded-md hover:outline-none`}
     >
       <span className="font-medium">{text}</span>
       <span className="text-xl">{icon}</span>

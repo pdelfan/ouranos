@@ -17,7 +17,7 @@ export default function ImagePicker(props: Props) {
         }}
         className="p-0"
       >
-        <BiImage className="text-2xl text-primary hover:text-primary-dark" />
+        <BiImage className="text-primary hover:text-primary-dark text-2xl" />
       </Button>
     </div>
   );
