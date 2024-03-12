@@ -120,7 +120,7 @@ export default function Editor(props: Props) {
   if (!editor) return null;
 
   return (
-    <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base md:border-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
+    <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
           onClose={onCancel}

@@ -52,7 +52,7 @@ export default function ProfileHeader(props: Props) {
         <ProfileHeaderSkeleton />
       )}
       {profile && contentFilter && (
-        <section className="md:border-skin-base overflow-hidden border-0 border-y md:rounded-t-2xl md:border-x">
+        <section className="border-skin-base overflow-hidden border-0 border-y md:rounded-t-2xl md:border-x">
           <div className="relative">
             {isBlocked || hasBlockedYou ? (
               <Image
