@@ -74,12 +74,12 @@ export default function Editor(props: Props) {
         openOnClick: false,
         linkOnPaste: true,
         HTMLAttributes: {
-          class: "text-primary hover:text-primary-dark text-lg",
+          class: "text-skin-link-base hover:text-skin-link-hover text-lg",
         },
       }),
       Mention.configure({
         HTMLAttributes: {
-          class: "text-primary text-lg",
+          class: "text-skin-link-base text-lg",
         },
         suggestion: CreateMentionSuggestions({ autoComplete: searchUsers }),
       }),

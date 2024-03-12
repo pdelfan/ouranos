@@ -14,7 +14,7 @@ export default function LinkCardPrompt(props: Props) {
       className="border-skin-base flex w-full items-center gap-3 rounded-2xl border p-3"
     >
       <span className="text-skin-base w-fit shrink-0">Add link card:</span>
-      <span className="text-primary line-clamp-1 shrink overflow-ellipsis break-all text-sm">
+      <span className="text-skin-link-base line-clamp-1 shrink overflow-ellipsis break-all text-sm">
         {link}
       </span>
     </button>
