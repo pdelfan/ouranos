@@ -24,7 +24,7 @@ function AccountSkeleton() {
           </div>
           <div className="bg-skin-muted h-4 w-16 rounded-full" />
         </div>
-        <hr />
+        <hr className="border-skin-base" />
         <div className="bg-skin-muted h-4 w-1/2 rounded-full" />
       </section>
     </section>
