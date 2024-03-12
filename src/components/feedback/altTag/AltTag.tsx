@@ -36,7 +36,7 @@ export default function AltTag(props: Props) {
           e.preventDefault();
           handleShowAlt();
         }}
-        className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold"
+        className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-overlay-muted absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold"
       >
         ALT
       </Button>
@@ -62,9 +62,9 @@ export default function AltTag(props: Props) {
                   <CgClose className="text-xl" />
                 </Button>
               </Dialog.Close>
-              <div className="text-skin-inverted z-50 max-h-[calc(100svh-10rem)]  max-w-xl cursor-text overflow-auto rounded-xl  bg-black/60 p-4">
+              <div className="text-skin-inverted bg-skin-overlay-muted z-50  max-h-[calc(100svh-10rem)] max-w-xl cursor-text overflow-auto rounded-xl p-4">
                 <div className="mb-4 flex flex-wrap justify-between gap-3">
-                  <Dialog.Title className="text-xl font-semibold">
+                  <Dialog.Title className="text-xl font-semibold text-white">
                     Alternative text
                   </Dialog.Title>
                   <Button
@@ -74,7 +74,9 @@ export default function AltTag(props: Props) {
                     <BiSolidCopy />
                   </Button>
                 </div>
-                <Dialog.Description className="mt-2">{text}</Dialog.Description>
+                <Dialog.Description className="mt-2 text-white">
+                  {text}
+                </Dialog.Description>
               </div>
             </Dialog.Content>
           </div>
