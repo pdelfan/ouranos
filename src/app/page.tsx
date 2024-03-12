@@ -28,7 +28,7 @@ export default function Home() {
         </Link>
       </header>
       <section className="animate-fade-up animate-delay-150 mx-auto mt-16 max-w-xl">
-        <small className="bg-primary/10 text-primary animate-fade-up animate-delay-[1000ms] mb-1 inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.6rem] font-bold">
+        <small className="bg-primary/20 text-primary animate-fade-up animate-delay-[1000ms] mb-1 inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.6rem] font-bold">
           In Early Access
           <Image
             src="/images/confetti.png"

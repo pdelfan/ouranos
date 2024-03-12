@@ -56,7 +56,7 @@ function Item(props: ItemProps) {
   return (
     <div className="border-skin-base flex items-center justify-between gap-3 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       <div className="flex flex-col">
-        <span className="font-medium">{item.label}</span>
+        <span className="text-skin-base font-medium">{item.label}</span>
         <span className="text-skin-secondary">{item.description}</span>
       </div>
       {children}

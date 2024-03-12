@@ -34,7 +34,7 @@ const ListItem = memo(function ListItem(props: Props) {
             alt={name}
             width={40}
             height={40}
-            className={`rounded-lg ${!avatar && "border"}`}
+            className={`rounded-lg ${!avatar && "border-skin-base bg-skin-muted border"}`}
           />
           <div className="flex flex-col">
             <h2 className="text-skin-base break-words font-semibold">

@@ -6,7 +6,7 @@ export function Skeleton(props: Props) {
   const { rounded = true } = props;
   return (
     <article
-      className={`animate-pulse border border-x-0 p-3 md:border-x ${
+      className={`border-skin-base animate-pulse border border-x-0 p-3 md:border-x ${
         rounded && "md:first:rounded-t-2xl"
       } last:border-b md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0`}
     >

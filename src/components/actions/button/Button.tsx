@@ -19,7 +19,7 @@ export default forwardRef<HTMLButtonElement, Props>(
         className={`flex items-center justify-center gap-1 disabled:cursor-not-allowed ${
           className
             ? className
-            : "text-skin-secondary border-skin-base bg-skin-secondary borderbg-skin-secondary rounded-lg p-2 text-sm font-medium hover:brightness-95"
+            : "text-skin-secondary border-skin-base bg-skin-secondary rounded-lg border p-2 text-sm font-medium hover:brightness-95"
         }
       ${
         props.disabled &&

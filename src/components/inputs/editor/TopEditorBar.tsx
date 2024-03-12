@@ -25,7 +25,7 @@ export default function TopEditorBar(props: Props) {
     <div className="flex flex-wrap items-center justify-between gap-2">
       <Button
         onClick={onClose}
-        className="hover:bg-skin-secondary text-skin-base rounded-full border px-4 py-2 text-sm font-semibold"
+        className="hover:bg-skin-secondary border-skin-base text-skin-base rounded-full border px-4 py-2 text-sm font-semibold"
       >
         Cancel
       </Button>

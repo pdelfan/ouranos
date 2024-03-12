@@ -33,7 +33,7 @@ export default function ExternalEmbed(props: Props) {
               <span className="text-skin-tertiary break-all text-sm">
                 {getHostname(embed.external.uri)}
               </span>
-              <span className="font-medium [overflow-wrap:anywhere]">
+              <span className="text-skin-base font-medium [overflow-wrap:anywhere]">
                 {embed.external.title}
               </span>
             </div>

@@ -106,7 +106,7 @@ export default function WhoCanReply(props: Props) {
     >
       <div className="bg-primary/20 flex items-center gap-3 rounded-xl p-2">
         <div className="bg-primary rounded-2xl p-1.5">
-          <BiMessageRoundedEdit className=" text-skin-inverted text-xl" />
+          <BiMessageRoundedEdit className="text-skin-icon-inverted text-xl" />
         </div>
         <div className="flex flex-col">
           <span className="text-skin-base font-medium">

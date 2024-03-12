@@ -73,7 +73,7 @@ export default function PostActions(props: Props) {
     return (
       <div>
         {(likeCount > 0 || repostCount > 0) && (
-          <div className="mt-3 flex flex-wrap items-center gap-3 border-y p-2">
+          <div className="border-skin-base mt-3 flex flex-wrap items-center gap-3 border-y p-2">
             {repostCount > 0 && (
               <Link
                 href={`/dashboard/user/${post.author.handle}/post/${getPostId(
@@ -120,7 +120,7 @@ export default function PostActions(props: Props) {
                 },
               });
             }}
-            className="hover:text-primary text-skin-secondary"
+            className="hover:text-primary text-skin-icon-muted"
           >
             <BiMessageRounded className="text-lg" />
           </Button>
@@ -134,7 +134,7 @@ export default function PostActions(props: Props) {
                 className={
                   reposted
                     ? "text-skin-icon-repost"
-                    : "text-skin-secondary hover:text-skin-icon-repost"
+                    : "text-skin-icon-muted hover:text-skin-icon-repost"
                 }
               >
                 <BiRepost className="text-xl" />
@@ -179,7 +179,7 @@ export default function PostActions(props: Props) {
             className={
               liked
                 ? "text-skin-icon-like"
-                : "text-skin-secondary hover:text-skin-icon-like"
+                : "text-skin-icon-muted hover:text-skin-icon-like"
             }
           >
             {liked ? (
@@ -195,7 +195,7 @@ export default function PostActions(props: Props) {
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
-                className="text-skin-secondary hover:text-skin-base"
+                className="text-skin-icon-muted hover:text-skin-base"
               >
                 <BiDotsHorizontalRounded className="text-lg" />
               </Button>
@@ -264,7 +264,7 @@ export default function PostActions(props: Props) {
             },
           });
         }}
-        className="hover:text-primary text-skin-secondary text-sm font-medium"
+        className="hover:text-primary text-skin-icon-muted text-sm font-medium"
       >
         <BiMessageRounded className="text-lg" />
         {post.replyCount ? abbreviateNumber(post.replyCount) : null}
@@ -280,7 +280,7 @@ export default function PostActions(props: Props) {
               ${
                 reposted
                   ? "text-skin-icon-repost"
-                  : "text-skin-secondary hover:text-skin-icon-repost"
+                  : "text-skin-icon-muted hover:text-skin-icon-repost"
               }
             `}
           >
@@ -327,7 +327,7 @@ export default function PostActions(props: Props) {
         className={`text-sm font-medium ${
           liked
             ? "text-skin-icon-like"
-            : "text-skin-secondary hover:text-skin-icon-like"
+            : "text-skin-icon-muted hover:text-skin-icon-like"
         }
           `}
       >
@@ -345,7 +345,7 @@ export default function PostActions(props: Props) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className="text-skin-secondary hover:text-skin-base"
+            className="text-skin-icon-muted hover:text-skin-base"
           >
             <BiDotsHorizontalRounded className="text-lg" />
           </Button>

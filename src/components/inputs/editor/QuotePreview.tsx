@@ -45,7 +45,7 @@ export default function QuoteToPreview(props: Props) {
             &nbsp;· {getRelativeTime(post.indexedAt)}
           </span>
         </div>
-        <p className={selectedTextClass}>{post.text}</p>
+        <p className={`${selectedTextClass} text-skin-base`}>{post.text}</p>
       </div>
     </article>
   );

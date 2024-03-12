@@ -43,7 +43,7 @@ export default function ReplyToPreview(props: Props) {
             @{author.handle}
           </span>
         </div>
-        <p className={selectedTextClass}>{post.text}</p>
+        <p className={`${selectedTextClass} text-skin-base`}>{post.text}</p>
       </div>
     </article>
   );

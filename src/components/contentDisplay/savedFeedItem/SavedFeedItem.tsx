@@ -29,7 +29,7 @@ export default function SavedFeedItem(props: Props) {
           alt={displayName}
           width={40}
           height={40}
-          className={`rounded-lg ${!avatar && "border-skin-base border"}`}
+          className={`rounded-lg ${!avatar && "border-skin-base bg-skin-muted border"}`}
         />
         <h2 className="text-skin-base break-words font-semibold">
           {feedItem.displayName}

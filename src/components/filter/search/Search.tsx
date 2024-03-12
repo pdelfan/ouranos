@@ -32,7 +32,7 @@ export default function Search(props: Props) {
       </label>
       {enableKeypress ? (
         <input
-          className="border-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
+          className="border-skin-base text-skin-base focus:outline-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
           placeholder={placeholder}
           autoFocus={autoFocus}
           onKeyDown={(e) => {
@@ -44,7 +44,7 @@ export default function Search(props: Props) {
         />
       ) : (
         <input
-          className="border-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
+          className="border-skin-base focus:outline-skin-base text-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
           placeholder={placeholder}
           autoFocus={autoFocus}
           onChange={(e) => {

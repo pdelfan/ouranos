@@ -1,6 +1,6 @@
 export function Skeleton() {
   return (
-    <div className="flex animate-pulse items-center justify-between gap-2 border border-x-0 p-3  last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+    <div className="border-skin-base flex animate-pulse items-center justify-between gap-2 border border-x-0 p-3  last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       <div className="flex w-full items-start gap-3">
         <div className="bg-skin-muted h-12 w-12 flex-shrink-0 flex-grow-0 rounded-full" />
         <div className="flex grow flex-col">

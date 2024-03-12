@@ -1,6 +1,6 @@
 export default function FeedHeaderSkeleton() {
   return (
-    <article className="flex flex-col gap-2 border border-x-0 border-y-0 p-3 md:rounded-t-2xl md:border-x md:border-t">
+    <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-y-0 p-3 md:rounded-t-2xl md:border-x md:border-t">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <div className="bg-skin-muted h-[60px] w-[60px] animate-pulse rounded-lg" />

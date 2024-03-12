@@ -59,7 +59,7 @@ export default function FeedItem(props: Props) {
             alt={displayName}
             width={40}
             height={40}
-            className={`rounded-lg ${!avatar && "border-skin-base border"}`}
+            className={`rounded-lg ${!avatar && "border-skin-base bg-skin-muted border"}`}
           />
           <div className="flex flex-col">
             <h2 className="text-skin-base break-words font-semibold">

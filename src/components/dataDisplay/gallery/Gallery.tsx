@@ -63,7 +63,7 @@ export default function Gallery(props: Props) {
         className="z-50"
       >
         <Button
-          className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-3 z-[70] rounded-full p-3.5"
+          className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-3 z-[70] rounded-full p-3.5"
           onClick={(e) => {
             e.stopPropagation();
             onClose();
@@ -73,7 +73,7 @@ export default function Gallery(props: Props) {
         </Button>
         {imageCount > 1 && currentIndex > 0 && (
           <Button
-            className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-1/2 z-[70] rounded-full p-3.5"
+            className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-1/2 z-[70] rounded-full p-3.5"
             onClick={(e) => {
               e.stopPropagation();
               handleBackward();
@@ -84,7 +84,7 @@ export default function Gallery(props: Props) {
         )}
         {imageCount > 1 && currentIndex < imageCount - 1 && (
           <Button
-            className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted fixed right-3 top-1/2 z-[70] rounded-full p-3.5"
+            className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed right-3 top-1/2 z-[70] rounded-full p-3.5"
             onClick={(e) => {
               e.stopPropagation();
               handleForward();

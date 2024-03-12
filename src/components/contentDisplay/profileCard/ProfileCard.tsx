@@ -24,7 +24,7 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
           <div className="flex flex-wrap items-start gap-2">
             <Avatar src={profile.avatar} />
             <div className="flex flex-col">
-              <h2 className="font-semibold">
+              <h2 className="text-skin-base font-semibold">
                 {profile.displayName || profile.handle}
               </h2>
               <h3 className="text-skin-tertiary break-all font-medium">

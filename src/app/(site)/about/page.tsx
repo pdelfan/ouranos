@@ -116,13 +116,6 @@ export default function Page() {
           account deletion or generating additional app passwords.
         </p>
         <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
-          Is there a dark mode?
-        </h3>
-        <p className="text-skin-base">
-          Not at the moment, but it will be added soon.
-        </p>
-
-        <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           Where can I see progress updates?
         </h3>
         <p className="text-skin-base">

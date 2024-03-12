@@ -7,6 +7,7 @@ import {
   BiSolidCloud,
   BiSolidEnvelope,
   BiSolidXCircle,
+  BiSolidPalette,
 } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { BiSolidBellOff } from "react-icons/bi";
@@ -34,7 +35,10 @@ export default async function SettingsContainer() {
           </h3>
           <div className="border-skin-base mt-2 flex w-full flex-col gap-3 rounded-none border border-x-0 p-3 md:rounded-b-2xl md:rounded-t-2xl md:border-x">
             <div className="flex flex-wrap items-center justify-between gap-3 ">
-              <div className="flex gap-3">
+              <Link
+                href={`/dashboard/user/${profile.handle}`}
+                className="flex gap-3"
+              >
                 <Avatar src={profile.avatar} size="md" />
                 <div className="flex flex-col">
                   <span className="text-skin-base line-clamp-1  shrink-0 break-all font-semibold">
@@ -44,23 +48,23 @@ export default async function SettingsContainer() {
                     @{profile.handle}
                   </span>
                 </div>
-              </div>
+              </Link>
               <SignOut />
             </div>
-            <hr />
+            <hr className="border-skin-base" />
             <div className="flex flex-wrap items-center gap-2">
               <BiSolidEnvelope className="text-skin-icon-base text-xl" />
               <span className="text-skin-base break-all">
                 {session?.user.email}{" "}
               </span>
               {isEmailConfirmed && (
-                <small className="text-status-success bg-status-success/10 inline-flex items-center gap-1 rounded-full px-2 py-1.5 text-[0.6rem] font-bold">
+                <small className="text-status-success bg-status-success/20 inline-flex items-center gap-1 rounded-full px-2 py-1.5 text-[0.6rem] font-bold">
                   <BiSolidCheckCircle className="text-status-success text-lg" />
                   Verified
                 </small>
               )}
               {!isEmailConfirmed && (
-                <small className="text-status-warning bg-status-warning/10 inline-flex items-center gap-1 rounded-full px-2 py-1.5 text-[0.6rem] font-bold">
+                <small className="text-status-warning bg-status-warning/20 inline-flex items-center gap-1 rounded-full px-2 py-1.5 text-[0.6rem] font-bold">
                   <BiSolidXCircle className="text-status-warning text-lg" />
                   Not Verified
                 </small>
@@ -69,6 +73,21 @@ export default async function SettingsContainer() {
           </div>
         </section>
       )}
+
+      <section>
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
+          General
+        </h3>
+        <div className="flex flex-col">
+          <Link
+            href="/dashboard/settings/appearance"
+            className="border-skin-base text-skin-base hover:bg-skin-secondary flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+          >
+            <BiSolidPalette className="text-skin-icon-base text-xl" />
+            Appearance
+          </Link>
+        </div>
+      </section>
 
       <section>
         <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">

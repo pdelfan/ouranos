@@ -43,7 +43,9 @@ export default function ComposeButton(props: Props) {
           className="bg-primary text-skin-inverted flex items-center gap-2 rounded-full p-3.5 font-semibold hover:brightness-95 lg:px-3 lg:py-2.5"
         >
           <RiQuillPenFill className="text-skin-icon-inverted text-2xl" />
-          <span className="hidden lg:inline">Write a post</span>
+          <span className="text-skin-icon-inverted hidden lg:inline">
+            Write a post
+          </span>
         </button>
       )}
     </>

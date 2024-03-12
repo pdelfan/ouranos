@@ -24,7 +24,7 @@ export default function PostHider(props: Props) {
             e.stopPropagation();
             onToggleVisibility(hidden ? false : true);
           }}
-          className="bg-skin-base rounded-lg border px-2 py-1 hover:brightness-95"
+          className="bg-skin-base border-skin-base rounded-lg border px-2 py-1 hover:brightness-95"
         >
           {hidden ? "Show" : "Hide"}
         </Button>

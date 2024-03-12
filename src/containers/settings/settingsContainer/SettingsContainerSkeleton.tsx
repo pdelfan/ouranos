@@ -41,6 +41,15 @@ export default function SettingsContainerSkeleton() {
 
       <section>
         <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
+          General
+        </h3>
+        <section className="flex flex-col">
+          <SettingsItemSkeleton />
+        </section>
+      </section>
+
+      <section>
+        <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
           Feeds and Threads
         </h3>
         <section className="flex flex-col">

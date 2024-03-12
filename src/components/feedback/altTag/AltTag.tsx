@@ -36,7 +36,7 @@ export default function AltTag(props: Props) {
           e.preventDefault();
           handleShowAlt();
         }}
-        className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold"
+        className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold"
       >
         ALT
       </Button>

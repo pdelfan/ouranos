@@ -6,7 +6,7 @@ function Skeleton(props: Props) {
   const { rounded = true } = props;
   return (
     <article
-      className={`flex flex-col gap-2 border p-3 last:border-b ${
+      className={`border-skin-base flex flex-col gap-2 border p-3 last:border-b ${
         rounded ? "first:border-t md:first:rounded-t-2xl" : "first:border-t-0"
       } md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0`}
     >

@@ -20,7 +20,7 @@ export default function TabItem(props: Props) {
         aria-selected={isActive}
         className={`border-b-3 hover:text-primary inline-block shrink-0 p-3 font-semibold first:ml-3 last:mr-3 ${
           isActive
-            ? "text-primary border-primary"
+            ? "text-skin-link-base border-primary"
             : "text-skin-secondary border-transparent"
         }`}
       >
@@ -36,7 +36,7 @@ export default function TabItem(props: Props) {
       aria-selected={isActive}
       className={`border-b-3 hover:text-primary inline-block shrink-0 p-3 font-semibold first:ml-3 last:mr-3 ${
         isActive
-          ? "border-primary text-primary"
+          ? "border-primary text-skin-link-base"
           : "text-skin-secondary border-transparent"
       }`}
     >

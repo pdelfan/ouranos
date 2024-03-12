@@ -33,7 +33,7 @@ export default function FeedHeader(props: Props) {
                   alt={listInfo.list.name}
                   width={60}
                   height={60}
-                  className={`rounded-lg ${!listInfo.list.avatar && "border"}`}
+                  className={`rounded-lg ${!listInfo.list.avatar && "border-skin-base bg-skin-muted border"}`}
                 />
                 <div className="flex flex-col">
                   <h2 className="text-skin-base break-words text-xl font-semibold">

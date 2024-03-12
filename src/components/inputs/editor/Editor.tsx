@@ -67,7 +67,7 @@ export default function Editor(props: Props) {
       Placeholder.configure({
         placeholder: placeholderText,
         emptyEditorClass:
-          "cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-skin-tertiary before-pointer-events-none text-lg",
+          "cursor-text caret-primary before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-0 before:text-skin-tertiary before-pointer-events-none text-lg",
       }),
       Link.extend({ inclusive: false }).configure({
         autolink: true,
@@ -87,7 +87,7 @@ export default function Editor(props: Props) {
     autofocus: true,
     editorProps: {
       attributes: {
-        class: "focus:outline-none h-48 overflow-y-auto text-lg",
+        class: "focus:outline-none h-48 overflow-y-auto text-lg text-skin-base",
       },
     },
     onUpdate: ({ editor }) => {

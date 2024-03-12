@@ -4,6 +4,7 @@
 
 @layer base {
     :root {
+        /* Brand */
         --color-primary: 169, 74, 255;
         --color-primary-light: 191, 119, 255;
         --color-primary-dark: 151, 33, 255;
@@ -43,6 +44,53 @@
         --color-status-success: 22, 163, 74; /* text-green-600 */
         --color-status-warning: 234, 88, 12; /* text-orange-600 */
         --color-status-danger: 220, 38, 38; /* text-red-600 */
+    }
+
+    [data-theme="midnight"] {
+        /* Brand */
+        --color-primary: 169, 74, 255;
+        --color-primary-light: 191, 119, 255;
+        --color-primary-dark: 151, 33, 255;
+
+        /* Background */
+        --color-background-base: 0, 0, 0; /* bg-black */
+        --color-background-secondary: 38, 38, 38; /* bg-neutral-800 */
+        --color-background-tertiary: 64, 64, 64; /* bg-neutral-700 */
+        --color-background-muted: 82, 82, 82; /* bg-neutral-200 */
+        --color-background-inverted: 245, 245, 245; /* bg-neutral-700 */
+        --color-background-inverted-muted: 212, 212, 212; /* bg-neutral-800 */
+        --color-background-overlay: 0, 0, 0; /* bg-black/50, alpha applied in config */
+        --color-background-overlay-muted: 0, 0, 0; /* bg-black/80, alpha applied in config */
+
+        /* Text */
+        --color-text-base: 245, 245, 245; /* text-neutral-700 */
+        --color-text-secondary: 212, 212, 212; /* text-neutral-500 */
+        --color-text-tertiary: 168, 162, 158; /* text-neutral-400 */
+        --color-text-base-inverted: 64, 64, 64; /* text-white */
+        --color-text-link-base: 191, 119, 255; /* primary-light */
+        --color-text-link-base-hover: 169, 74, 255; /* primary */
+
+        /* Border and outline */
+        --color-border-base: 64, 64, 64; /* border-neutral-200 */
+        --color-border-secondary: 163, 163, 163; /* border-neutral-600 */
+        --color-outline-base: 163, 163, 163; /* outline-neutral-400 NOT CHANGED */
+
+        /* Icon */
+        --color-icon-base: 168, 162, 158; /* text-neutral-700 */
+        --color-icon-muted: 115, 115, 115; /* text-neutral-500 */
+        --color-icon-inverted: 255, 255, 255; /* bg-white */
+        --color-icon-like: 239, 68, 68; /* text-red-600 */
+        --color-icon-repost: 74, 222, 128; /* text-green-600 */
+
+        /* Status */
+        --color-status-base: 168, 162, 158; /* text-neutral-600 */
+        --color-status-success: 74, 222, 128; /* text-green-400 */
+        --color-status-warning: 251, 146, 60; /* text-orange-600 */
+        --color-status-danger: 239, 68, 68; /* text-red-600 */
+    }
+
+    html {
+        background-color: var(--color-background-base);
     }
 
     body {

@@ -19,7 +19,7 @@ export default function TopBar(props: Props) {
 
   return (
     <div
-      className="bg-skin-base sticky top-0 z-50 flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden"
+      className="bg-skin-base border-skin-base sticky top-0 z-50 flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden"
       style={{
         opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
         transform: canUpdate ? `translateY(-${val ?? 0}%)` : "translateY(-0%)",
@@ -38,7 +38,7 @@ export default function TopBar(props: Props) {
         <Image src="/logo.svg" alt="Ouranos logo" width={100} height={100} />
       </Button>
       <Link href="/dashboard/settings">
-        <BiCog className="text-skin-icon-muted text-2xl md:text-3xl" />
+        <BiCog className="text-skin-icon-muted hover:text-skin-icon-base text-2xl md:text-3xl" />
       </Link>
     </div>
   );

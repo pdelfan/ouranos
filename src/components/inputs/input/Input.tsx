@@ -9,7 +9,7 @@ export default function Input(props: Props) {
   return (
     <div className="relative">
       {icon && (
-        <div className="text-skin-secondary absolute left-2 top-4 text-lg">
+        <div className="text-skin-icon-base absolute left-2 top-4 text-lg">
           {icon}
         </div>
       )}
@@ -17,7 +17,7 @@ export default function Input(props: Props) {
         {...props}
         className={`${
           icon ? "mt-1 pl-8 pr-4" : "px-4"
-        } text-skin-base  focus:outline-skin-base w-full rounded-lg border py-2.5`}
+        } text-skin-base focus:outline-skin-base placeholder:text-skin-secondary bg-skin-base border-skin-base w-full rounded-lg border py-2.5`}
       />
     </div>
   );

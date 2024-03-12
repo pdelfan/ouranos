@@ -102,7 +102,7 @@ const SuggestionList = forwardRef<SuggestionListRef, SuggestionListProps>(
 
     return (
       <div
-        className={`animate-fade animate-duration-300 bg-skin-base mb-2 mt-2 min-h-fit rounded-xl border p-1 drop-shadow-lg`}
+        className={`animate-fade animate-duration-300 bg-skin-base border-skin-base mb-2 mt-2 min-h-fit rounded-xl border p-1 drop-shadow-lg`}
       >
         {props.items.length === 0 && (
           <div className="focus:bg-skin-tertiary flex cursor-pointer items-center justify-between gap-10 rounded-md px-2 py-1 focus:outline-none">

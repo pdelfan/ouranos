@@ -34,7 +34,7 @@ export default function FeedEmbed(props: Props) {
                 alt={feed.displayName}
                 width={40}
                 height={40}
-                className={`rounded-lg ${!feed.avatar && "border-skin-base border"}`}
+                className={`rounded-lg ${!feed.avatar && "bg-skin-muted border-skin-base border"}`}
               />
               <div className="flex flex-col">
                 <h2 className="text-skin-base break-words font-semibold">
