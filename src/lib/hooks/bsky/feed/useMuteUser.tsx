@@ -41,7 +41,7 @@ export default function useLike(props: Props) {
       }
     },
     onError: () => {
-      toast.error("Could not mute user");
+      toast.error("Could not mute user", { id: "Mute user error" });
     },
   });
 

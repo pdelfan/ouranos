@@ -39,7 +39,7 @@ export default function HomeFeedContainer() {
       }
     },
     onError: () => {
-      toast.error("Could not update preferences");
+      toast.error("Could not update preferences", { id: "Preferences error" });
     },
   });
 

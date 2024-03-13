@@ -3,6 +3,7 @@ import Dropdown from "@/components/actions/dropdown/Dropdown";
 import React from "react";
 import { BiCheck, BiTrash } from "react-icons/bi";
 import { HiOutlineShieldExclamation } from "react-icons/hi";
+import toast from "react-hot-toast";
 
 const options = [
   { label: "Suggestive", value: "sexual" },
@@ -25,22 +26,22 @@ export default function AdultContentPicker(props: Props) {
         <Button
           onClick={(e) => {
             e.stopPropagation();
+            if (disabled) {
+              toast.error(
+                "Content warning is only available for posts with media attachments",
+                {
+                  id: "CW",
+                },
+              );
+            }
           }}
-          disabled={disabled}
+          disabled={false} // this should be false to trigger toast
           className="p-0"
         >
           <HiOutlineShieldExclamation className="text-primary hover:text-primary-dark text-2xl" />
         </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>
-        {options.map((option) => (
-          <Dropdown.MenuItem
-            key={option.value}
-            text={option.label}
-            icon={selectedLabel === option.value ? <BiCheck /> : undefined}
-            onSelect={() => onSelectLabel(option.value)}
-          />
-        ))}
         {selectedLabel !== "" && (
           <Dropdown.MenuItem
             text="Remove Label"
@@ -49,6 +50,14 @@ export default function AdultContentPicker(props: Props) {
             onSelect={() => onSelectLabel("")}
           />
         )}
+        {options.map((option) => (
+          <Dropdown.MenuItem
+            key={option.value}
+            text={option.label}
+            icon={selectedLabel === option.value ? <BiCheck /> : undefined}
+            onSelect={() => onSelectLabel(option.value)}
+          />
+        ))}
       </Dropdown.Menu>
     </Dropdown>
   );

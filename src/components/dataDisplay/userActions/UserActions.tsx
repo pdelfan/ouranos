@@ -39,7 +39,9 @@ export default function UserActions(props: Props) {
   const handleShare = useCallback(() => {
     const shareUrl = `https://useouranos.app/dashboard/user/${author.handle}`;
     clipboard.copy(shareUrl);
-    toast.success("Link to profile copied to clipboard");
+    toast.success("Link to profile copied to clipboard", {
+      id: "Copy profile link",
+    });
   }, [clipboard, author.handle]);
 
   const handleSearch = useCallback(() => {

@@ -253,7 +253,7 @@ export default function usePublishPost(props: Props) {
       queryClient.invalidateQueries({ queryKey: ["timeline"] });
       queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
       queryClient.invalidateQueries({ queryKey: ["postThread"] });
-      toast.success("Post published");
+      toast.success("Post published", { id: "Post publish" });
     },
     onError: (e) => {
       toast.error(e.message);

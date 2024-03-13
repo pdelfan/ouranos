@@ -52,7 +52,7 @@ export function useUpdateProfile(props: Props) {
       queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
     onError: () => {
-      toast.error("Could not update profile");
+      toast.error("Could not update profile", { id: "Profile update error" });
     },
   });
 
