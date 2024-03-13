@@ -24,13 +24,10 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
           <div className="flex flex-wrap items-start gap-2">
             <Avatar src={profile.avatar} />
             <div className="flex flex-col">
-              <h2 className="text-skin-base font-semibold">
-                {profile.displayName || profile.handle}
-              </h2>
-              <h3 className="text-skin-tertiary break-all font-medium">
-                @{profile?.handle}
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-x-1.5">
+                <h2 className="text-skin-base font-semibold">
+                  {profile.displayName || profile.handle}
+                </h2>
                 {profile.viewer?.followedBy && (
                   <ViewerInfo text="Follows you" />
                 )}
@@ -39,6 +36,10 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
                     <ViewerInfo text="Muted user" />
                   ))}
               </div>
+
+              <h3 className="text-skin-tertiary break-all font-medium">
+                @{profile?.handle}
+              </h3>
             </div>
           </div>
         </div>
