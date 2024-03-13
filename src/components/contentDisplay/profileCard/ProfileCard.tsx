@@ -3,6 +3,7 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import Link from "next/link";
 import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 import { memo } from "react";
+import { isInvalidHandle } from "@/lib/utils/text";
 
 interface Props {
   profile: ProfileView;
@@ -37,9 +38,13 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
                   ))}
               </div>
 
-              <h3 className="text-skin-tertiary break-all font-medium">
-                @{profile?.handle}
-              </h3>
+              {isInvalidHandle(profile?.handle) ? (
+                <ViewerInfo text="Invalid Handle" />
+              ) : (
+                <h3 className="text-skin-tertiary break-all font-medium">
+                  @{profile?.handle}
+                </h3>
+              )}
             </div>
           </div>
         </div>

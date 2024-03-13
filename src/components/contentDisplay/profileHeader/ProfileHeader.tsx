@@ -19,6 +19,7 @@ import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import EditProfile from "@/components/actions/editProfile/EditProfile";
 import JoinedDate from "@/components/dataDisplay/joinedDate/JoinedDate";
+import { isInvalidHandle } from "@/lib/utils/text";
 
 interface Props {
   handle: string;
@@ -142,9 +143,14 @@ export default function ProfileHeader(props: Props) {
                 )}
               </div>
             </div>
-            <h2 className="text-skin-tertiary break-all font-medium">
-              @{profile?.handle}
-            </h2>
+            {isInvalidHandle(profile?.handle) ? (
+              <ViewerInfo text="Invalid Handle" />
+            ) : (
+              <h2 className="text-skin-tertiary break-all font-medium">
+                @{profile?.handle}
+              </h2>
+            )}
+
             {profile?.description && (
               <ProfileBio description={profile.description} />
             )}
