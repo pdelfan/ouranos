@@ -4,5 +4,6 @@ export enum LocalStorage {
 
 export const THEMES: Theme[] = [
   { label: "Light", value: "light" },
-  { label: "Midnight", value: "midnight" },
+  { label: "Dim", value: "dim" },
+  { label: "Dark", value: "dark" },
 ];

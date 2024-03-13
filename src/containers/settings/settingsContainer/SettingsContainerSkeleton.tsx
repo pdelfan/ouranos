@@ -12,7 +12,9 @@ function SettingsItemSkeleton() {
 function AccountSkeleton() {
   return (
     <section>
-      <h3 className="mx-3 mb-2 text-xl font-semibold md:mx-0">Account</h3>
+      <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
+        Account
+      </h3>
       <section className="border-skin-base mt-2 flex w-full flex-col gap-3 rounded-none border border-x-0 p-3 md:rounded-b-2xl md:rounded-t-2xl md:border-x">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">

@@ -28,7 +28,7 @@ export default function NavItem(props: Props) {
           </Badge>
         )}
       </div>
-      <span className={`text-lg font-medium lg:inline`}>{title}</span>
+      <span className={`hidden text-lg font-medium lg:inline`}>{title}</span>
     </Link>
   );
 }
