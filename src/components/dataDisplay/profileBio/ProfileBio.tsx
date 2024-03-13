@@ -54,7 +54,7 @@ export default function ProfileBio(props: Props) {
         text: segment.text,
         component: (
           <Link
-            href={`/dashboard/search?query=${encodedTag}`}
+            href={`/dashboard/search?query=%23${encodedTag}`}
             key={segment.text}
             className="text-skin-link-base hover:text-skin-link-hover break-all"
             onClick={(e) => e.stopPropagation()}
