@@ -41,7 +41,7 @@ export default function useLike(props: Props) {
       }
     },
     onError: () => {
-      toast.error("Could not like post");
+      toast.error("Could not like post", { id: "Post like error" });
     },
   });
 

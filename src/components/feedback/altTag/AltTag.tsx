@@ -17,7 +17,7 @@ export default function AltTag(props: Props) {
 
   const handleCopyAltText = () => {
     clipboard.copy(text);
-    toast.success("Alt text copied to clipboard");
+    toast.success("Alt text copied to clipboard", { id: "Copy alt text" });
   };
 
   const handleShowAlt = () => {

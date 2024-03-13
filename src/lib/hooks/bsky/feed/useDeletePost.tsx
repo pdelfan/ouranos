@@ -28,10 +28,10 @@ export default function useDeletePost(props: Props) {
       queryClient.invalidateQueries({ queryKey: ["timeline"] });
       queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
       queryClient.invalidateQueries({ queryKey: ["postThread"] });
-      toast.success("Post deleted");
+      toast.success("Post deleted", { id: "Post deleted" });
     },
     onError: () => {
-      toast.error("Could not delete post");
+      toast.error("Could not delete post", { id: "Post deletion error" });
     },
   });
 

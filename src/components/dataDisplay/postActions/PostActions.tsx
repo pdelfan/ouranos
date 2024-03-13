@@ -53,11 +53,11 @@ export default function PostActions(props: Props) {
     const postId = getPostId(post.uri);
     const shareUrl = `https://useouranos.app/dashboard/user/${post.author.handle}/post/${postId}`;
     clipboard.copy(shareUrl);
-    toast.success("Link to post copied to clipboard");
+    toast.success("Link to post copied to clipboard", { id: "Copy post link" });
   }, [clipboard, post.uri, post.author.handle]);
 
   const handleCopyPostText = useCallback(() => {
-    toast.success("Post text copied to clipboard");
+    toast.success("Post text copied to clipboard", { id: "Copy post text" });
     clipboard.copy(text);
   }, [clipboard, text]);
 

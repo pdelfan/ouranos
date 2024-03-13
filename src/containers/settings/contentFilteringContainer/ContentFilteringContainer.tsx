@@ -94,7 +94,7 @@ export default function ContentFilteringContainer() {
       }
     },
     onError: () => {
-      toast.error("Could not update preferences");
+      toast.error("Could not update preferences", { id: "Preferences error" });
     },
   });
 
@@ -134,7 +134,7 @@ export default function ContentFilteringContainer() {
       }
     },
     onError: () => {
-      toast.error("Could not update preferences");
+      toast.error("Could not update preferences", { id: "Preferences error" });
     },
   });
 
@@ -174,7 +174,7 @@ export default function ContentFilteringContainer() {
       }
     },
     onError: () => {
-      toast.error("Could not update preferences");
+      toast.error("Could not update preferences", { id: "Preferences error" });
     },
   });
 

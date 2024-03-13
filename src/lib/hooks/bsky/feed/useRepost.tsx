@@ -48,7 +48,7 @@ export default function useLike(props: Props) {
       queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
     },
     onError: () => {
-      toast.error("Could not repost");
+      toast.error("Could not repost", { id: "Repost error" });
     },
   });
 

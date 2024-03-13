@@ -58,7 +58,9 @@ export default function useSaveFeed(props: Props) {
       }
     },
     onError: () => {
-      toast.error(`Could not ${feedItem.pinned ? "unpin" : "pin"} feed`);
+      toast.error(`Could not ${feedItem.pinned ? "unpin" : "pin"} feed`, {
+        id: "Feed item pin error",
+      });
     },
   });
 
@@ -73,7 +75,7 @@ export default function useSaveFeed(props: Props) {
       }
     },
     onError: () => {
-      toast.error(`Could not delete feed`);
+      toast.error(`Could not delete feed`, { id: "Feed item deletion error" });
     },
   });
 
@@ -88,7 +90,7 @@ export default function useSaveFeed(props: Props) {
       }
     },
     onError: () => {
-      toast.error(`Could not save feed`);
+      toast.error(`Could not save feed`, { id: "Feed item save error" });
     },
   });
 
