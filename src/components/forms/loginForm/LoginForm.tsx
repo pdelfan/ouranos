@@ -28,7 +28,7 @@ export default function LoginForm() {
       setIsRedirecting(true);
       const id = setTimeout(() => {
         router.push("/dashboard/home");
-      }, 1500);
+      }, 1000);
 
       return () => clearTimeout(id);
     }
