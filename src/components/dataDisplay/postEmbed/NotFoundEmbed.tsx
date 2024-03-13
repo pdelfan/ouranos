@@ -18,7 +18,7 @@ export default function NotFoundEmbed(props: Props) {
         >
           <div className="flex gap-2">
             <PiWarningCircleFill className="text-skin-icon-base text-2xl" />
-            <span className="text-skin-base">Deleted post</span>
+            <span className="text-skin-base">This post is unavailable</span>
           </div>
           {isReply && <Threadline />}
         </div>

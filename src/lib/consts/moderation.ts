@@ -8,7 +8,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     description: "i.e pornography",
     values: ["porn", "nsfl"],
     adult: true,
-    message: "Post contains explicit sexual images",
+    message: "Pornography",
   },
   {
     type: "nudity",
@@ -17,7 +17,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     description: "Including non-sexual and artistic",
     values: ["nudity"],
     adult: true,
-    message: "Post contains nudity",
+    message: "Nudity",
   },
   {
     type: "suggestive",
@@ -26,7 +26,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     description: "Does not include nudity",
     values: ["sexual"],
     adult: true,
-    message: "Post contains sexually suggestive content",
+    message: "Sexually suggestive",
   },
   {
     type: "gore",
@@ -35,7 +35,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     description: "Including self-harm, torture",
     values: ["gore", "self-harm", "torture", "nsfl", "corpse"],
     adult: true,
-    message: "Post contains violent/bloody content",
+    message: "Violent/bloody content",
   },
   {
     type: "hate",
@@ -44,7 +44,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     description: "Images of groups, articles, etc.",
     values: ["icon-kkk", "icon-nazi", "icon-intolerant", "behavior-intolerant"],
     adult: false,
-    message: "Post has political hate content",
+    message: "Political hate content",
   },
   {
     type: "spam",
@@ -53,7 +53,7 @@ export const CONTENT_FILTER_OPTIONS: ContentFilter[] = [
     description: "Excessive unwanted interactions",
     values: ["spam"],
     adult: false,
-    message: "Post has been flagged as spam",
+    message: "Flagged as spam",
   },
   {
     type: "impersonation",
