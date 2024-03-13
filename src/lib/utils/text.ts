@@ -1,5 +1,4 @@
 import { JSONContent } from "@tiptap/react";
-import { AppBskyFeedThreadgate } from "@atproto/api";
 
 export function getHandle(mention: string) {
   return mention.slice(1);
@@ -25,6 +24,10 @@ export function getShortAddress(url: string) {
   }
 
   return text;
+}
+
+export function isInvalidHandle(handle: string): boolean {
+  return handle === "handle.invalid";
 }
 
 export function getNotificationLabel(reason: string) {
