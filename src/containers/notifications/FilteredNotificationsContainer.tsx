@@ -74,7 +74,7 @@ export default function FilteredNotificationsContainer(props: Props) {
         next={fetchNotificationNextPage}
         hasMore={notificationHasNextPage}
         loader={!isFetchingMore && <LoadingSpinner />}
-        scrollThreshold={0.95}
+        scrollThreshold={0.8}
         className="no-scrollbar flex flex-col"
       >
         {notificationData &&

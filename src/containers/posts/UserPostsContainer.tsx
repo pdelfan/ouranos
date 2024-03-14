@@ -63,7 +63,7 @@ export default function UserPostsConatiner(props: Props) {
         next={fetchNextUserPostsPage}
         hasMore={userPostsHasNextPage}
         loader={<LoadingSpinner />}
-        scrollThreshold={0.95}
+        scrollThreshold={0.8}
         className="no-scrollbar"
       >
         {!isBlocked &&
