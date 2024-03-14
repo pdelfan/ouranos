@@ -256,7 +256,7 @@ export default function usePublishPost(props: Props) {
       toast.success("Post published", { id: "Post publish" });
     },
     onError: (e) => {
-      toast.error(e.message);
+      toast.error(e.message, { id: "Post error" });
     },
   });
 }
