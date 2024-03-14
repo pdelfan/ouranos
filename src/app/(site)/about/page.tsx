@@ -119,7 +119,7 @@ export default function Page() {
           Where can I see progress updates?
         </h3>
         <p className="text-skin-base">
-          For the moment, you can see what is being worked on under{" "}
+          You can see what is being worked on under{" "}
           <Link
             href="https://github.com/users/pdelfan/projects/1"
             className="underline underline-offset-2"
