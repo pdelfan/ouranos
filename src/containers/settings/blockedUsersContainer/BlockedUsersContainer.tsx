@@ -51,7 +51,7 @@ export default function BlockedUsersContainer() {
             next={fetchNextPage}
             hasMore={hasNextPage}
             loader={<LoadingSpinner />}
-            scrollThreshold={0.95}
+            scrollThreshold={0.8}
             className="no-scrollbar flex flex-col"
           >
             {profiles &&
