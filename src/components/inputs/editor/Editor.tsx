@@ -1,3 +1,4 @@
+import * as Dialog from "@radix-ui/react-dialog";
 import BottomEditorBar from "./BottomEditorBar";
 import TextEdit from "./TextEdit";
 import TopEditorBar from "./TopEditorBar";
@@ -13,13 +14,15 @@ import useSearchUsers from "@/lib/hooks/bsky/actor/useSearchUsers";
 import { ComposerOptions } from "@/app/providers/composer";
 import ReplyToPreview from "./ReplyToPreview";
 import QuoteToPreview from "./QuotePreview";
-import { getComposerPlaceholder } from "@/lib/utils/text";
+import { getComposerPlaceholder, jsonToText } from "@/lib/utils/text";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import { detectLinksInEditor } from "@/lib/utils/link";
 import LinkCardPrompt from "./LinkCardPrompt";
 import LinkCard from "./LinkCard";
 import usePublishPost from "@/lib/hooks/bsky/feed/usePublishPost";
 import { ThreadgateSetting } from "../../../../types/feed";
+import { RichText } from "@atproto/api";
+import Button from "@/components/actions/button/Button";
 
 interface Props {
   onCancel: () => void;
@@ -46,6 +49,7 @@ export default function Editor(props: Props) {
     replyTo ? "reply" : quote ? "quote" : "post",
     replyAuthor ?? quoteAuthor,
   );
+  const [showCancelModal, setShowCancelModal] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -106,6 +110,19 @@ export default function Editor(props: Props) {
     },
   });
 
+  const onCloseEditor = () => {
+    const richText = new RichText({
+      text: jsonToText(editor?.getJSON() ?? {}),
+    });
+    const hasText = richText.graphemeLength !== 0;
+
+    if (images || linkEmbed || hasText) {
+      setShowCancelModal(true);
+    } else {
+      onCancel();
+    }
+  };
+
   const sendPost = usePublishPost({
     text: editor?.getJSON() ?? {},
     linkCard,
@@ -123,7 +140,7 @@ export default function Editor(props: Props) {
     <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
-          onClose={onCancel}
+          onClose={onCloseEditor}
           onPublish={sendPost}
           label={label}
           onRemoveLabel={() => setLabel("")}
@@ -175,6 +192,31 @@ export default function Editor(props: Props) {
           onUpdateImages={setImages}
         />
       </div>
+      <Dialog.Root open={showCancelModal} onOpenChange={setShowCancelModal}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="bg-skin-overlay-muted fixed inset-0 z-50 h-screen w-screen" />
+          <Dialog.Content className="bg-skin-base fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl p-3 shadow-2xl">
+            <h2 className="text-skin-base mb-2 text-xl font-semibold">
+              Discard Draft
+            </h2>
+            <p className="text-skin-base">Do you want to discard this draft?</p>
+            <div className="mt-2 flex justify-end gap-2">
+              <Dialog.Close className="text-skin-base border-skin-base hover:bg-skin-secondary rounded-full border px-4 py-2 text-sm font-semibold">
+                Cancel
+              </Dialog.Close>
+              <Button
+                className="bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-4 py-2 text-sm font-semibold"
+                onClick={() => {
+                  setShowCancelModal(false);
+                  onCancel();
+                }}
+              >
+                Discard
+              </Button>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </section>
   );
 }

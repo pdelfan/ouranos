@@ -55,7 +55,7 @@ export default function EditProfile(props: Props) {
       </Dialog.Trigger>
       <Dialog.Overlay className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50 h-screen w-screen" />
       <Dialog.Content className="animate-fade animate-duration-200 bg-skin-base fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-xl translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl p-3 shadow-2xl">
-        <h2 className="text-skin-base mb-2 text-center text-2xl font-semibold">
+        <h2 className="text-skin-base mb-2 text-center text-xl font-semibold">
           Edit My Profile
         </h2>
         <div className="relative">
@@ -154,7 +154,7 @@ export default function EditProfile(props: Props) {
             />
           </div>
         </div>
-        <div className="mt-2 flex justify-end gap-3">
+        <div className="mt-2 flex justify-end gap-2">
           <Dialog.Close className="text-skin-base border-skin-base hover:bg-skin-secondary rounded-full border px-4 py-2 text-sm font-semibold">
             Cancel
           </Dialog.Close>
