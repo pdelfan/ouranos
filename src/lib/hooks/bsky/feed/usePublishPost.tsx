@@ -201,7 +201,8 @@ export default function usePublishPost(props: Props) {
                 );
                 embedExternal.external.thumb = uploaded.data.blob;
               } catch (e) {
-                throw new Error("Failed to upload link card image");
+                // broken link card image, remove it from post and continue
+                linkCard.image = undefined;
               }
             }
             embed = embedExternal;
