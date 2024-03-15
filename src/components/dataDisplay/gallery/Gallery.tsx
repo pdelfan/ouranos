@@ -54,66 +54,68 @@ export default function Gallery(props: Props) {
 
   return (
     <Dialog.Root open={true} onOpenChange={onClose}>
-      <Dialog.Overlay className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50 h-screen w-screen" />
-      <Dialog.Content
-        onClick={(e) => {
-          e.stopPropagation();
-          onClose();
-        }}
-        className="z-50"
-      >
-        <Button
-          className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-3 z-[70] rounded-full p-3.5"
+      <Dialog.Portal>
+        <Dialog.Overlay className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50 h-screen w-screen" />
+        <Dialog.Content
           onClick={(e) => {
             e.stopPropagation();
             onClose();
           }}
+          className="z-50 w-full"
         >
-          <CgClose className="text-xl" />
-        </Button>
-        {imageCount > 1 && currentIndex > 0 && (
           <Button
-            className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-1/2 z-[70] rounded-full p-3.5"
+            className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-3 z-[70] rounded-full p-3.5"
             onClick={(e) => {
               e.stopPropagation();
-              handleBackward();
+              onClose();
             }}
           >
-            <BiLeftArrowAlt />
+            <CgClose className="text-xl" />
           </Button>
-        )}
-        {imageCount > 1 && currentIndex < imageCount - 1 && (
-          <Button
-            className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed right-3 top-1/2 z-[70] rounded-full p-3.5"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleForward();
-            }}
-          >
-            <BiRightArrowAlt />
-          </Button>
-        )}
+          {imageCount > 1 && currentIndex > 0 && (
+            <Button
+              className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-1/2 z-[70] rounded-full p-3.5"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleBackward();
+              }}
+            >
+              <BiLeftArrowAlt />
+            </Button>
+          )}
+          {imageCount > 1 && currentIndex < imageCount - 1 && (
+            <Button
+              className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted fixed right-3 top-1/2 z-[70] rounded-full p-3.5"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleForward();
+              }}
+            >
+              <BiRightArrowAlt />
+            </Button>
+          )}
 
-        {Array.isArray(images) && (
-          <Image
-            src={images[currentIndex].fullsize}
-            alt={images[currentIndex].alt}
-            width={images[currentIndex].aspectRatio?.width ?? 900}
-            height={images[currentIndex].aspectRatio?.height ?? 900}
-            className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
-          />
-        )}
+          {Array.isArray(images) && (
+            <Image
+              src={images[currentIndex].fullsize}
+              alt={images[currentIndex].alt}
+              width={images[currentIndex].aspectRatio?.width ?? 900}
+              height={images[currentIndex].aspectRatio?.height ?? 900}
+              className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
+            />
+          )}
 
-        {typeof images === "string" && (
-          <Image
-            src={images}
-            alt={"Image"}
-            width={900}
-            height={900}
-            className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
-          />
-        )}
-      </Dialog.Content>
+          {typeof images === "string" && (
+            <Image
+              src={images}
+              alt={"Image"}
+              width={900}
+              height={900}
+              className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
+            />
+          )}
+        </Dialog.Content>
+      </Dialog.Portal>
     </Dialog.Root>
   );
 }
