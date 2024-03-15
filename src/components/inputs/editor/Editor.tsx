@@ -13,13 +13,14 @@ import useSearchUsers from "@/lib/hooks/bsky/actor/useSearchUsers";
 import { ComposerOptions } from "@/app/providers/composer";
 import ReplyToPreview from "./ReplyToPreview";
 import QuoteToPreview from "./QuotePreview";
-import { getComposerPlaceholder } from "@/lib/utils/text";
+import { getComposerPlaceholder, jsonToText } from "@/lib/utils/text";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import { detectLinksInEditor } from "@/lib/utils/link";
 import LinkCardPrompt from "./LinkCardPrompt";
 import LinkCard from "./LinkCard";
 import usePublishPost from "@/lib/hooks/bsky/feed/usePublishPost";
 import { ThreadgateSetting } from "../../../../types/feed";
+import { RichText } from "@atproto/api";
 
 interface Props {
   onCancel: () => void;
@@ -106,6 +107,13 @@ export default function Editor(props: Props) {
     },
   });
 
+  const richText = new RichText({
+    text: jsonToText(editor?.getJSON() ?? {}),
+  });
+
+  const hasContent =
+    images || linkEmbed || richText.graphemeLength !== 0 ? true : false;
+
   const sendPost = usePublishPost({
     text: editor?.getJSON() ?? {},
     linkCard,
@@ -123,6 +131,8 @@ export default function Editor(props: Props) {
     <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
       <div className="mx-auto max-w-2xl">
         <TopEditorBar
+          editor={editor}
+          hasContent={hasContent}
           onClose={onCancel}
           onPublish={sendPost}
           label={label}
