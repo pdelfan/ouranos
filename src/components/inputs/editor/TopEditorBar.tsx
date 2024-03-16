@@ -82,7 +82,7 @@ export default function TopEditorBar(props: Props) {
       <Dialog.Root open={showCancelModal} onOpenChange={setShowCancelModal}>
         <Dialog.Portal>
           <Dialog.Overlay className="bg-skin-overlay-muted fixed inset-0 z-50 h-screen w-screen" />
-          <Dialog.Content className="bg-skin-base fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl p-3 shadow-2xl">
+          <Dialog.Content className="bg-skin-base border-skin-base fixed left-[50%] top-[50%] z-50 h-fit max-h-[90svh] w-[90svw] max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-auto rounded-2xl border p-3 shadow-2xl">
             <h2 className="text-skin-base mb-2 text-xl font-semibold">
               Discard Draft
             </h2>

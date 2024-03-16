@@ -46,7 +46,7 @@ export default function ParentContainer(props: Props) {
                   {i == 2 && !showMore && (
                     <button
                       onClick={() => setShowMore(true)}
-                      className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted relative mb-6 inline-block rounded-full px-2.5 py-2 text-sm font-medium"
+                      className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted relative z-50 mb-6 inline-block rounded-full px-2.5 py-2 text-sm font-medium"
                     >
                       Show More
                       <Threadline className="top-6" />
