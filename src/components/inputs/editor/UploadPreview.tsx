@@ -29,7 +29,7 @@ export default function UploadPreview(props: Props) {
         {images.map((image) => (
           <div key={image.url} className="animate-fade relative h-fit">
             <Button
-              className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted absolute top-0 m-2 rounded-full p-2"
+              className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted absolute top-0 m-2 rounded-full p-2"
               onClick={(e) => {
                 e.preventDefault();
                 handleRemove(image);
@@ -41,7 +41,7 @@ export default function UploadPreview(props: Props) {
               <Dialog.Root open={showAltTextModal}>
                 <Dialog.Trigger>
                   <div
-                    className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted rounded-full px-3 py-2 text-sm font-medium"
+                    className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted rounded-full px-3 py-2 text-sm font-medium"
                     onClick={() => {
                       setSelectedImage(image);
                       setShowAltTextModal(true);

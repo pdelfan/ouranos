@@ -1,6 +1,6 @@
 import Image from "next/image";
 import useGetLinkMeta from "@/lib/hooks/useGetLinkMeta";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getHostname } from "@/lib/utils/text";
 import Button from "@/components/actions/button/Button";
 import Alert from "@/components/feedback/alert/Alert";
@@ -15,6 +15,7 @@ interface Props {
 export default function LinkCard(props: Props) {
   const { link, onRemoveLinkCard, onAddLinkCard } = props;
   const { status, data, error, isLoading, isFetching } = useGetLinkMeta(link);
+  const [showImage, setShowIamge] = useState(true);
 
   useEffect(() => {
     if (data) {
@@ -43,7 +44,7 @@ export default function LinkCard(props: Props) {
   return (
     <article className="bg-skin-base border-skin-base relative rounded-2xl border">
       <Button
-        className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted absolute right-0 top-0 z-50 m-2 rounded-full p-1"
+        className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted absolute left-0 top-0 z-50 m-2 rounded-full p-1"
         onClick={(e) => {
           e.preventDefault();
           onRemoveLinkCard(link);
@@ -51,11 +52,12 @@ export default function LinkCard(props: Props) {
       >
         <CgClose className="text-xl" />
       </Button>
-      {data?.image && (
+      {data?.image && showImage && (
         <div className="relative h-44 w-full">
           <Image
             src={data.image}
             alt="Link image"
+            onError={() => setShowIamge(false)}
             fill
             className="border-skin-base rounded-t-2xl border-b object-cover"
           />
