@@ -6,7 +6,7 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { Switch } from "@/components/inputs/switch/Switch";
 import { BskyFeedViewPreference } from "@atproto/api";
 import { updateHomeFeedPreferences } from "@/lib/api/bsky/actor";
-import { Label } from "@radix-ui/react-dropdown-menu";
+import Label from "@/components/inputs/label/Label";
 import { PreferencesResult } from "../../../../types/feed";
 import HomeFeedContainerSkeleton from "./HomeFeedContainerSkeleton";
 import toast from "react-hot-toast";
