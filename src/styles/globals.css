@@ -53,31 +53,31 @@
         --color-primary-dark: 151, 33, 255;
 
         /* Background */
-        --color-background-base: 24, 5, 41; /* 180529 */
-        --color-background-secondary: 38, 6, 64; /* 260640 */
-        --color-background-tertiary: 64, 41, 84; /* 402954 */
-        --color-background-muted: 97, 86, 107; /* 61566b */
+        --color-background-base: 38, 38, 38; /* bg-neutral-800 */
+        --color-background-secondary: 64, 64, 64; /* bg-neutral-700 */
+        --color-background-tertiary: 64, 64, 64; /* bg-neutral-700 */
+        --color-background-muted: 82, 82, 82; /* bg-neutral-600 */
         --color-background-inverted: 245, 245, 245; /* bg-neutral-100 */
         --color-background-inverted-muted: 212, 212, 212; /* bg-neutral-300 */
         --color-background-overlay: 0, 0, 0; /* bg-black/50, alpha applied in config */
         --color-background-overlay-muted: 0, 0, 0; /* bg-black/80, alpha applied in config */
 
         /* Text */
-        --color-text-base: 245, 245, 245; /* text-neutral-100 */
-        --color-text-secondary: 229, 229, 229; /* text-neutral-200 */
+        --color-text-base: 229, 229, 229; /* text-neutral-200 */
+        --color-text-secondary: 212, 212, 212; /* text-neutral-300 */
         --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
         --color-text-base-inverted: 64, 64, 64; /* text-neutral-700 */
         --color-text-link-base: 191, 119, 255; /* primary-light */
         --color-text-link-base-hover: 169, 74, 255; /* primary */
 
         /* Border and outline */
-        --color-border-base: 82, 73, 92; /* 52495c */
-        --color-border-secondary: 179, 159, 201; /* b39fc9 */
-        --color-outline-base: 82, 73, 92; /* 52495c */
+        --color-border-base: 64, 64, 64; /* border-neutral-700 */
+        --color-border-secondary: 163, 163, 163; /* border-neutral-400 */
+        --color-outline-base: 163, 163, 163; /* outline-neutral-400 */
 
         /* Icon */
-        --color-icon-base: 139, 123, 156; /* 8b7b9c */
-        --color-icon-muted: 122, 107, 138; /* 7a6b8a */
+        --color-icon-base: 168, 162, 158; /* text-neutral-400 */
+        --color-icon-muted: 115, 115, 115; /* text-neutral-500 */
         --color-icon-inverted: 255, 255, 255; /* bg-white */
         --color-icon-like: 239, 68, 68; /* text-red-500 */
         --color-icon-repost: 74, 222, 128; /* text-green-400 */
@@ -98,7 +98,7 @@
         /* Background */
         --color-background-base: 0, 0, 0; /* bg-black */
         --color-background-secondary: 38, 38, 38; /* bg-neutral-800 */
-        --color-background-tertiary: 64, 64, 64; /* bg-neutral-700 */
+        --color-background-tertiary: 38, 38, 38; /* bg-neutral-800 */
         --color-background-muted: 82, 82, 82; /* bg-neutral-600 */
         --color-background-inverted: 245, 245, 245; /* bg-neutral-100 */
         --color-background-inverted-muted: 212, 212, 212; /* bg-neutral-300 */
@@ -106,7 +106,7 @@
         --color-background-overlay-muted: 0, 0, 0; /* bg-black/80, alpha applied in config */
 
         /* Text */
-        --color-text-base: 245, 245, 245; /* text-neutral-100 */
+        --color-text-base: 229, 229, 229; /* text-neutral-200 */
         --color-text-secondary: 212, 212, 212; /* text-neutral-300 */
         --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
         --color-text-base-inverted: 64, 64, 64; /* text-neutral-700 */
