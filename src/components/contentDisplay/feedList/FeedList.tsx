@@ -1,4 +1,5 @@
 import FeedItem from "../feedItem/FeedItem";
+import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { getPopularFeeds, getSavedFeeds } from "@/lib/api/bsky/feed";
 
 interface Props {
@@ -20,6 +21,11 @@ export default async function FeedList(props: Props) {
             saved={savedFeeds.some((savedFeed) => savedFeed.uri === feed.uri)}
           />
         ))}
+      {popularFeeds.length === 0 && (
+        <div className="border-skin-base border-t">
+          <FeedAlert variant="empty" message="No feeds found" />
+        </div>
+      )}
     </section>
   );
 }
