@@ -15,6 +15,7 @@ import NotificationPost from "./NotificationPost";
 import NotificationContnet from "./NotificationContent";
 import { AppBskyNotificationListNotifications } from "@atproto/api";
 import { memo } from "react";
+import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 
 interface Props {
   notification: GroupedNotification;
@@ -46,7 +47,9 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                       href={`/dashboard/user/${author.handle}`}
                       className="max-w-fit hover:brightness-90"
                     >
-                      <Avatar src={author.avatar} />
+                      <ProfileHoverCard handle={author.handle}>
+                        <Avatar src={author.avatar} />
+                      </ProfileHoverCard>
                     </Link>
                   ))}
                   {allAuthors.length > MAX_AUTHORS_SHOWN && (

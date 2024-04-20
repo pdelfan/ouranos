@@ -15,6 +15,7 @@ import { getRelativeTime } from "@/lib/utils/time";
 import { getPostFilter } from "@/lib/utils/feed";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -77,7 +78,9 @@ export default function FeedPost(props: Props) {
             }}
             className="z-20 shrink-0 hover:brightness-90"
           >
-            <Avatar src={author.avatar} size="md" />
+            <ProfileHoverCard handle={author.handle}>
+              <Avatar src={author.avatar} size="md" />
+            </ProfileHoverCard>
           </Link>
           <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
             {isParent && !reason && <Threadline />}

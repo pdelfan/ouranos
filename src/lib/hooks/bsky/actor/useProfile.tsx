@@ -9,7 +9,7 @@ export const profileKey = (handle: string) => ["profile", handle];
 export default function useProfile(handle: string) {
   const agent = useAgent();
   const queryClient = useQueryClient();
-  const { data, isLoading, isFetching, isRefetching } = useQuery({
+  const { data, isLoading, isFetching, isRefetching, error } = useQuery({
     queryKey: profileKey(handle),
     queryFn: async (): Promise<
       | (AppBskyActorDefs.ProfileViewDetailed & {
@@ -21,7 +21,7 @@ export default function useProfile(handle: string) {
       if (profile) {
         // actor creation date
         const result = await fetch(
-          `https://plc.directory/${profile.did}/log/audit`
+          `https://plc.directory/${profile.did}/log/audit`,
         );
         if (result.ok) {
           const profileAuditLog = (await result.json()) as AuditLog;
@@ -82,6 +82,7 @@ export default function useProfile(handle: string) {
     isLoading,
     isFetching,
     isRefetching,
+    error,
     toggleFollow,
   };
 }

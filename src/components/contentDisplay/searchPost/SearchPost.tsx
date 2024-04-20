@@ -10,6 +10,7 @@ import { AppBskyFeedDefs } from "@atproto/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { memo } from "react";
+import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -40,7 +41,9 @@ const SearchPost = memo(function SearchPost(props: Props) {
           }}
           className="z-20 shrink-0 hover:brightness-90"
         >
-          <Avatar src={author.avatar} size="md" />
+          <ProfileHoverCard handle={author.handle}>
+            <Avatar src={author.avatar} size="md" />
+          </ProfileHoverCard>
         </Link>
         <div className="flex grow flex-col">
           <div className="flex">
