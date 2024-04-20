@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import Link from "next/link";
 import { getThreadPostFilter } from "@/lib/utils/feed";
+import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -45,7 +46,9 @@ export default function ThreadPost(props: Props) {
           }}
           className="z-20 shrink-0 hover:brightness-90"
         >
-          <Avatar src={author.avatar} size="md" />
+          <ProfileHoverCard handle={author.handle}>
+            <Avatar src={author.avatar} size="md" />
+          </ProfileHoverCard>
         </button>
         <div className="flex grow flex-col">
           <div className="flex flex-col">

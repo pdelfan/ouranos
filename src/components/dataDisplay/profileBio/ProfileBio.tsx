@@ -5,10 +5,11 @@ import { Fragment } from "react";
 
 interface Props {
   description: string;
+  truncate?: boolean;
 }
 
 export default function ProfileBio(props: Props) {
-  const { description } = props;
+  const { description, truncate } = props;
 
   const richText = new RichTextHelper({
     text: description.toString(),
@@ -78,7 +79,7 @@ export default function ProfileBio(props: Props) {
   return (
     <div
       dir="auto"
-      className="text-skin-base mt-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
+      className={`text-skin-base mt-3 whitespace-pre-wrap [overflow-wrap:anywhere] ${truncate && "line-clamp-6"}`}
     >
       {content.map((segment, i) => (
         <Fragment key={`${i}+${description}`}>{segment.component}</Fragment>
