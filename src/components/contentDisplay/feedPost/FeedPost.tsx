@@ -16,6 +16,7 @@ import { getPostFilter } from "@/lib/utils/feed";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
+import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -31,8 +32,22 @@ export default function FeedPost(props: Props) {
   const { showToggle, shouldHide, message } = getPostFilter(post, filter);
   const [hidden, setHidden] = useState(shouldHide);
   const router = useRouter();
-  const isAuthorMuted = post.post.author.viewer?.muted;
+  const notFound = post.post.viewer === undefined;
+  const isAuthorMuted = !notFound && post.post.author?.viewer?.muted;
   const [showPost, setShowPost] = useState(!isAuthorMuted);
+
+  if (notFound) {
+    return (
+      <article>
+        <NotFoundEmbed depth={0} />
+        <div className="relative flex items-start gap-3">
+          <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
+            {isParent && !reason && <Threadline />}
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   if (!showPost) {
     return (
