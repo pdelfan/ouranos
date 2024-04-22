@@ -92,7 +92,7 @@ export default function LoginForm() {
       <p className="text-skin-secondary mb-3 text-sm font-medium">
         We recommend using an{" "}
         <Link
-          href="https://atproto.com/community/projects#app-passwords"
+          href="https://atproto.com/specs/xrpc#app-passwords"
           target="_blank"
           className="text-skin-link-base hover:text-skin-link-hover"
         >
