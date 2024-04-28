@@ -30,7 +30,7 @@ export default function ListContainer(props: Props) {
         <button
           role="tab"
           onClick={() => handleTabChange("posts")}
-          className={`border-b-3 border-skin-base hover:text-primary shrink-0 cursor-pointer px-3 pb-2 font-semibold ${
+          className={`border-b-3 hover:text-primary shrink-0 cursor-pointer px-3 pb-2 font-semibold ${
             currenTab === "posts"
               ? "text-primary border-primary"
               : "text-skin-secondary border-transparent"
