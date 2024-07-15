@@ -9,7 +9,7 @@ import {
   ContentFilterLabel,
   PreferencesResult,
 } from "../../../../types/feed";
-import { BskyLabelPreference } from "@atproto/api";
+import { LabelPreference } from "@atproto/api";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import {
   updateContentFilterPreferences,
@@ -105,7 +105,7 @@ export default function ContentFilteringContainer() {
       value,
     }: {
       pref: ContentFilterLabel;
-      value: BskyLabelPreference;
+      value: LabelPreference;
     }) => {
       try {
         queryClient.setQueryData(
@@ -145,7 +145,7 @@ export default function ContentFilteringContainer() {
       value,
     }: {
       pref: ContentFilterLabel;
-      value: BskyLabelPreference;
+      value: LabelPreference;
     }) => {
       try {
         queryClient.setQueryData(
@@ -218,9 +218,7 @@ export default function ContentFilteringContainer() {
                   const updateParams = {
                     pref: item.type as ContentFilterLabel,
                     value:
-                      value === "ignore"
-                        ? "hide"
-                        : (value as BskyLabelPreference),
+                      value === "ignore" ? "hide" : (value as LabelPreference),
                   };
                   updateAdultContentFilter.mutate(updateParams);
                 }}
@@ -248,9 +246,7 @@ export default function ContentFilteringContainer() {
                   const updateParams = {
                     pref: item.type as ContentFilterLabel,
                     value:
-                      value === "ignore"
-                        ? "hide"
-                        : (value as BskyLabelPreference),
+                      value === "ignore" ? "hide" : (value as LabelPreference),
                   };
                   updateContentFilter.mutate(updateParams);
                 }}

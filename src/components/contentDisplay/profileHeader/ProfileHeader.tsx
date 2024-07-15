@@ -18,7 +18,6 @@ import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import EditProfile from "@/components/actions/editProfile/EditProfile";
-import JoinedDate from "@/components/dataDisplay/joinedDate/JoinedDate";
 import { isInvalidHandle } from "@/lib/utils/text";
 
 interface Props {
@@ -153,11 +152,6 @@ export default function ProfileHeader(props: Props) {
 
             {profile?.description && (
               <ProfileBio description={profile.description} />
-            )}
-            {profile?.createdAt && (
-              <div className="my-2">
-                <JoinedDate date={profile.createdAt} />
-              </div>
             )}
             {profile?.handle && (
               <FollowInfo
