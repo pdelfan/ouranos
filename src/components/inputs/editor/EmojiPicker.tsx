@@ -24,7 +24,7 @@ export default function EmojiPicker(props: Props) {
         <BiSmile className="text-primary hover:text-primary-dark text-2xl" />{" "}
       </Button>
       {showEmojiPicker && (
-        <div className="border-skin-base animate-fade animate-duration-200 absolute z-50 mt-2 max-h-72 overflow-y-scroll rounded-2xl border shadow-md md:bottom-14">
+        <div className="border-skin-base animate-fade animate-duration-200 absolute z-50 mt-2  overflow-y-scroll rounded-2xl border shadow-md md:bottom-14">
           <Picker
             data={data}
             onEmojiSelect={(emoji: EmojiData, e: React.MouseEvent) => {
