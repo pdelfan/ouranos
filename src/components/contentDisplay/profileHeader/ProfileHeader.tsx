@@ -19,6 +19,7 @@ import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import EditProfile from "@/components/actions/editProfile/EditProfile";
 import { isInvalidHandle } from "@/lib/utils/text";
+import KnownFollowers from "@/components/dataDisplay/knownFollowers/KnownFollowers";
 
 interface Props {
   handle: string;
@@ -154,12 +155,21 @@ export default function ProfileHeader(props: Props) {
               <ProfileBio description={profile.description} />
             )}
             {profile?.handle && (
-              <FollowInfo
-                handle={profile?.handle}
-                followersCount={profile?.followersCount ?? 0}
-                followsCount={profile?.followsCount ?? 0}
-              />
+              <div className="mt-2">
+                <FollowInfo
+                  handle={profile?.handle}
+                  followersCount={profile?.followersCount ?? 0}
+                  followsCount={profile?.followsCount ?? 0}
+                />
+              </div>
             )}
+            {!isBlocked &&
+              profile?.handle &&
+              profile.handle !== session?.user.handle && (
+                <div className="mt-2 inline-block">
+                  <KnownFollowers handle={profile.handle} />
+                </div>
+              )}
             {showImpersonationWarning && (
               <div className="mt-2">
                 <Alert

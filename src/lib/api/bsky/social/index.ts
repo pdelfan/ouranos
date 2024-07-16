@@ -76,3 +76,20 @@ export const getBlockedUsers = async (agent: BskyAgent, cursor: string) => {
   }
   return blockedUsers.data;
 };
+
+export const getKnownFollowers = async (
+  agent: BskyAgent,
+  did: string,
+  cursor?: string,
+) => {
+  const knownFollowers = await agent.app.bsky.graph.getKnownFollowers({
+    actor: did,
+    cursor: cursor,
+  });
+
+  if (!knownFollowers.success) {
+    throw new Error("Could not fetch known followers");
+  }
+
+  return knownFollowers.data;
+};

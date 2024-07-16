@@ -16,7 +16,7 @@ export default function ProfileHoverCard(props: Props) {
         <HoverCard.Content
           sideOffset={5}
           align="start"
-          className="z-50 max-w-72 max-h-80 shadow-lg animate-fade animate-duration-200 bg-skin-base border-skin-base border p-3 rounded-2xl"
+          className="z-50 max-w-72 shadow-lg animate-fade animate-duration-200 bg-skin-base border-skin-base border p-3 rounded-2xl"
         >
           <ProfileHoverContent handle={handle} />
         </HoverCard.Content>
