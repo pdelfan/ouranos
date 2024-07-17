@@ -6,6 +6,9 @@ import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 import Link from "next/link";
 import ProfileHoverCardSkeleton from "./ProfileHoverCardSkeleton";
 import { isInvalidHandle } from "@/lib/utils/text";
+import useKnownFollowers from "@/lib/hooks/bsky/social/useKnownFollowers";
+import { useSession } from "next-auth/react";
+import KnownFollowers from "@/components/dataDisplay/knownFollowers/KnownFollowers";
 
 interface Props {
   handle: string;
@@ -14,6 +17,15 @@ interface Props {
 export default function ProfileHoverContent(props: Props) {
   const { handle } = props;
   const { data: profile, isLoading, error } = useProfile(handle);
+  const { data: session } = useSession();
+
+  const {
+    knownFollowers,
+    isKnownFollowersEmpty,
+    knownFollowersError,
+    isLoadingKnownFollowers,
+    isFetchingKnownFollowers,
+  } = useKnownFollowers({ handle });
 
   if (error) {
     return <span>Could not get this profile</span>;
@@ -21,8 +33,10 @@ export default function ProfileHoverContent(props: Props) {
 
   if (isLoading || !profile) return <ProfileHoverCardSkeleton />;
 
+  const isBlocked = profile?.viewer?.blocking ? true : false;
+
   return (
-    <article className="flex flex-col gap-2">
+    <article className="flex flex-col gap-2 grow">
       <div className="flex flex-wrap justify-between gap-3">
         <div className="flex flex-wrap items-start gap-2">
           <Link
@@ -69,6 +83,15 @@ export default function ProfileHoverContent(props: Props) {
       {profile?.description && (
         <ProfileBio description={profile.description} truncate={true} />
       )}
+
+      {!isBlocked &&
+        profile?.handle &&
+        profile.viewer?.knownFollowers &&
+        profile.handle !== session?.user.handle && (
+          <div className="mt-2 inline-block">
+            <KnownFollowers handle={profile.handle} />
+          </div>
+        )}
     </article>
   );
 }

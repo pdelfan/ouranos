@@ -1,7 +1,7 @@
 import {
   BskyAgent,
   BskyFeedViewPreference,
-  BskyLabelPreference,
+  LabelPreference,
   BskyThreadViewPreference,
 } from "@atproto/api";
 import { getAgent } from "../agent";
@@ -111,7 +111,7 @@ export const updateIsAdultContentEnabled = async (
 
 export const updateContentFilterPreferences = async (
   pref: ContentFilterLabel,
-  value: BskyLabelPreference,
+  value: LabelPreference,
   agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
