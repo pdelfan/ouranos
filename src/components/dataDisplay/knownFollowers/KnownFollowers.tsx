@@ -51,7 +51,7 @@ export default function KnownFollowers(props: Props) {
               <Avatar
                 size="sm"
                 src={follower.avatar}
-                className="border-2 border-white"
+                className="border-2 border-transparent bg-skin-base"
               />
             </div>
           ))}
