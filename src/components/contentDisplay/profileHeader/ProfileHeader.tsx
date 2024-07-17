@@ -132,7 +132,7 @@ export default function ProfileHeader(props: Props) {
               </div>
             </div>
           )}
-          <div className="p-3">
+          <div className="m-3">
             <div className="flex flex-wrap items-center gap-x-2">
               <h1 className="text-skin-base break-all text-2xl font-semibold">
                 {profile.displayName || profile.handle}
@@ -165,6 +165,7 @@ export default function ProfileHeader(props: Props) {
             )}
             {!isBlocked &&
               profile?.handle &&
+              profile.viewer?.knownFollowers &&
               profile.handle !== session?.user.handle && (
                 <div className="mt-2 inline-block">
                   <KnownFollowers handle={profile.handle} />
