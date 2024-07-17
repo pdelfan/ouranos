@@ -11,7 +11,6 @@ interface Props {
 export default function KnownFollowers(props: Props) {
   const { handle } = props;
   const pathname = usePathname();
-  const basePath = pathname.split("/").slice(0, 4).join("/");
   const {
     knownFollowers,
     isKnownFollowersEmpty,
@@ -43,7 +42,7 @@ export default function KnownFollowers(props: Props) {
   return (
     <Link
       className="flex items-center gap-2 hover:opacity-80"
-      href={`${basePath}/known-followers`}
+      href={`/dashboard/user/${handle}/known-followers`}
     >
       <div className="flex shrink-0 -space-x-4">
         {profiles &&

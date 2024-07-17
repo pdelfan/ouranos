@@ -86,6 +86,7 @@ export default function ProfileHoverContent(props: Props) {
 
       {!isBlocked &&
         profile?.handle &&
+        profile.viewer?.knownFollowers &&
         profile.handle !== session?.user.handle && (
           <div className="mt-2 inline-block">
             <KnownFollowers handle={profile.handle} />
