@@ -1,4 +1,5 @@
 import { JSONContent } from "@tiptap/react";
+import { ThreadgateSetting } from "../../../types/feed";
 
 export function getHandle(mention: string) {
   return mention.slice(1);
@@ -103,3 +104,16 @@ export function getTranslateLink(text: string, lang: string = "en"): string {
     text,
   )}`;
 }
+
+export const getThreadGateComposerTitle = (value: ThreadgateSetting[]) => {
+  if (value.length === 0) return "Everyone can reply";
+  if (value.length === 1) {
+    if (value[0] === "nobody") return "No one can reply";
+    if (value[0] == "following") return "Users you follow can reply";
+    if (value[0] === "mention") return "Users you mention can reply";
+  }
+
+  if (value.length === 2) {
+    return "Some users can reply";
+  }
+};

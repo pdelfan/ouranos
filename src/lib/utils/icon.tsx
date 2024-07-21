@@ -1,4 +1,4 @@
-import { FeedAlert } from "../../../types/feed";
+import { FeedAlert, ThreadgateSetting } from "../../../types/feed";
 import { HiMiniShieldExclamation } from "react-icons/hi2";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { FaCircleCheck } from "react-icons/fa6";
@@ -9,6 +9,11 @@ import {
   BiSolidUserPlus,
 } from "react-icons/bi";
 import { IoCloudOffline } from "react-icons/io5";
+import { IoMdGlobe } from "react-icons/io";
+import { MdBlock } from "react-icons/md";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { VscMention } from "react-icons/vsc";
+import { FaUserCheck } from "react-icons/fa";
 
 export function getAlertIcon(variant: Alert) {
   switch (variant) {
@@ -60,5 +65,18 @@ export const getNotificationIcon = (reason: string) => {
       return <BiSolidUserPlus className="text-primary shrink-0 text-2xl" />;
     default:
       return null;
+  }
+};
+
+export const getThreadGateIcon = (value: ThreadgateSetting[]) => {
+  if (value.length === 0) return <IoMdGlobe />;
+  if (value.length === 1) {
+    if (value[0] === "nobody") return <MdBlock />;
+    if (value[0] == "following") return <FaUserCheck />;
+    if (value[0] === "mention") return <VscMention />;
+  }
+
+  if (value.length === 2) {
+    return <BsFillPeopleFill />;
   }
 };
