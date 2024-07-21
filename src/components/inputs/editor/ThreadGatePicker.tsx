@@ -1,8 +1,10 @@
 import Button from "@/components/actions/button/Button";
-import { BiCheck, BiMessageRoundedEdit } from "react-icons/bi";
+import { BiCheck } from "react-icons/bi";
 import { ThreadgateSetting } from "../../../../types/feed";
 import Dropdown from "@/components/actions/dropdown/Dropdown";
 import { THREADGATE_OPTIONS } from "@/lib/consts/thread";
+import { getThreadGateIcon } from "@/lib/utils/icon";
+import { getThreadGateComposerTitle } from "@/lib/utils/text";
 
 interface Props {
   onUpdate: React.Dispatch<React.SetStateAction<ThreadgateSetting[]>>;
@@ -37,6 +39,10 @@ export default function ThreadGatePicker(props: Props) {
     }
   };
 
+  const whoCanReply = selected.filter((i) =>
+    THREADGATE_OPTIONS.some((op) => op.value === i),
+  );
+
   return (
     <Dropdown>
       <Dropdown.Trigger>
@@ -44,14 +50,15 @@ export default function ThreadGatePicker(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="p-0"
+          className="text-primary hover:text-primary-dark font-semibold"
         >
-          <BiMessageRoundedEdit className="text-primary hover:text-primary-dark text-2xl" />
+          <span className="text-xl">{getThreadGateIcon(whoCanReply)}</span>
+          {getThreadGateComposerTitle(whoCanReply)}
         </Button>
       </Dropdown.Trigger>
       <Dropdown.Menu>
         <div className="px-2 pb-2 pt-1">
-          <span className="text-skin-base font-medium">
+          <span className="text-skin-base font-semibold">
             Who can reply to this post?
           </span>
         </div>

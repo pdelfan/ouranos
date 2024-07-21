@@ -167,7 +167,7 @@ export default function ProfileHeader(props: Props) {
               profile?.handle &&
               profile.viewer?.knownFollowers &&
               profile.handle !== session?.user.handle && (
-                <div className="mt-2 inline-block">
+                <div className="mt-2">
                   <KnownFollowers handle={profile.handle} />
                 </div>
               )}

@@ -68,27 +68,28 @@ export default function BottomEditorBar(props: Props) {
 
   return (
     <section>
-      <div className="border-skin-base flex flex-wrap justify-between gap-5 border-t py-3">
-        <div className="flex gap-4">
-          <EmojiPicker onEmojiSelect={editor.commands.insertContent} />
-          <AdultContentPicker
-            onSelectLabel={onSelectLabel}
-            selectedLabel={label}
-            disabled={!images || images.length === 0}
-          />
-          <ThreadGatePicker
-            onUpdate={onUpdateThreadGate}
-            selected={threadGate}
-          />
-          <ImagePicker onShow={setShowDropzone} />
-          {/* <LinkPicker editor={editor} /> */}
-        </div>
-        <div className="just flex flex-wrap gap-x-5 gap-y-2">
-          <LanguagePicker
-            languages={languages}
-            onSelectLanguages={onSelectLanguages}
-          />
-          <CharacterCount charCount={charCount} />
+      <div className="mb-2">
+        <ThreadGatePicker onUpdate={onUpdateThreadGate} selected={threadGate} />
+      </div>
+      <div className="border-skin-base border-t pb-2">
+        <div className="flex flex-wrap justify-between gap-5 mt-3">
+          <div className="flex gap-4">
+            <EmojiPicker onEmojiSelect={editor.commands.insertContent} />
+            <AdultContentPicker
+              onSelectLabel={onSelectLabel}
+              selectedLabel={label}
+              disabled={!images || images.length === 0}
+            />
+            <ImagePicker onShow={setShowDropzone} />
+            {/* <LinkPicker editor={editor} /> */}
+          </div>
+          <div className="just flex flex-wrap gap-x-5 gap-y-2">
+            <LanguagePicker
+              languages={languages}
+              onSelectLanguages={onSelectLanguages}
+            />
+            <CharacterCount charCount={charCount} />
+          </div>
         </div>
       </div>
       {images && images.length > 0 && (
