@@ -3,6 +3,7 @@ import Avatar from "../avatar/Avatar";
 import Link from "next/link";
 import { MAX_KNOWN_FOLLOWERS } from "@/lib/consts/general";
 import { usePathname } from "next/navigation";
+import KnownFollowersSkeleton from "./KnownFollowersSkeleton";
 
 interface Props {
   handle: string;
@@ -29,6 +30,10 @@ export default function KnownFollowers(props: Props) {
   const names =
     profiles &&
     profiles.map((profile) => profile.displayName ?? profile.handle);
+
+  if (isLoadingKnownFollowers || isFetchingKnownFollowers) {
+    return <KnownFollowersSkeleton />;
+  }
 
   if (isKnownFollowersEmpty || dataLength == 0 || !names) return null;
 
