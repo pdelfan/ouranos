@@ -45,7 +45,22 @@ export default function LinkCard(props: Props) {
 
   if (error) {
     return (
-      <Alert variant="error" message="Could not get info about this link" />
+      <div className="border-skin-base flex flex-wrap items-center justify-between w-full gap-3 rounded-2xl border p-3">
+        <div className="flex flex-col gap-3">
+          <span className="text-skin-base w-fit shrink-0">
+            Could not get info about this link
+          </span>
+          <span className="text-skin-link-base line-clamp-1 shrink overflow-ellipsis break-all text-sm">
+            {link}
+          </span>
+        </div>
+        <Button
+          className="hover:bg-skin-secondary border-skin-base text-skin-base rounded-full border px-4 py-2 text-sm font-semibold"
+          onClick={() => onRemoveLinkCard(link)}
+        >
+          Remove
+        </Button>
+      </div>
     );
   }
 
