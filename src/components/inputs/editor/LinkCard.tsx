@@ -1,6 +1,12 @@
 import Image from "next/image";
 import useGetLinkMeta from "@/lib/hooks/useGetLinkMeta";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { getHostname } from "@/lib/utils/text";
 import Button from "@/components/actions/button/Button";
 import Alert from "@/components/feedback/alert/Alert";
@@ -16,6 +22,8 @@ export default function LinkCard(props: Props) {
   const { link, onRemoveLinkCard, onAddLinkCard } = props;
   const { status, data, error, isLoading, isFetching } = useGetLinkMeta(link);
   const [showImage, setShowIamge] = useState(true);
+
+  const onErrorImage = useCallback(() => setShowIamge(false), []);
 
   useEffect(() => {
     if (data) {
@@ -57,7 +65,7 @@ export default function LinkCard(props: Props) {
           <Image
             src={data.image}
             alt="Link image"
-            onError={() => setShowIamge(false)}
+            onError={onErrorImage}
             fill
             className="border-skin-base rounded-t-2xl border-b object-cover"
           />
