@@ -13,10 +13,12 @@ interface Props {
 
 export default function SearchList(props: Props) {
   const { query } = props;
-  const [currentTab, setCurrentTab] = useState<"posts" | "users">("posts");
+  const [currentTab, setCurrentTab] = useState<"top" | "latest" | "users">(
+    "top",
+  );
   const { data: session } = useSession();
 
-  const handleTabChange = (tab: "posts" | "users") => {
+  const handleTabChange = (tab: "top" | "latest" | "users") => {
     setCurrentTab(tab);
   };
 
@@ -33,11 +35,16 @@ export default function SearchList(props: Props) {
       <Tabs>
         <TabItem
           asButton
-          onClick={() => handleTabChange("posts")}
-          label="Posts"
-          isActive={currentTab === "posts"}
+          onClick={() => handleTabChange("top")}
+          label="Top"
+          isActive={currentTab === "top"}
         />
-
+        <TabItem
+          asButton
+          onClick={() => handleTabChange("latest")}
+          label="Latest"
+          isActive={currentTab === "latest"}
+        />
         <TabItem
           asButton
           onClick={() => handleTabChange("users")}
@@ -46,8 +53,11 @@ export default function SearchList(props: Props) {
         />
       </Tabs>
 
-      {currentTab === "posts" && (
-        <PostSearchContainer query={onSearchPost(query)} />
+      {currentTab === "latest" && (
+        <PostSearchContainer query={onSearchPost(query)} sort={currentTab} />
+      )}
+      {currentTab === "top" && (
+        <PostSearchContainer query={onSearchPost(query)} sort={currentTab} />
       )}
       {currentTab === "users" && <UserSearchContainer query={query} />}
     </section>
