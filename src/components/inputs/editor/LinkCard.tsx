@@ -1,6 +1,12 @@
 import Image from "next/image";
 import useGetLinkMeta from "@/lib/hooks/useGetLinkMeta";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { getHostname } from "@/lib/utils/text";
 import Button from "@/components/actions/button/Button";
 import Alert from "@/components/feedback/alert/Alert";
@@ -16,6 +22,8 @@ export default function LinkCard(props: Props) {
   const { link, onRemoveLinkCard, onAddLinkCard } = props;
   const { status, data, error, isLoading, isFetching } = useGetLinkMeta(link);
   const [showImage, setShowIamge] = useState(true);
+
+  const onErrorImage = useCallback(() => setShowIamge(false), []);
 
   useEffect(() => {
     if (data) {
@@ -37,7 +45,25 @@ export default function LinkCard(props: Props) {
 
   if (error) {
     return (
-      <Alert variant="error" message="Could not get info about this link" />
+      <div className="border-skin-base flex flex-wrap items-center justify-between w-full gap-3 rounded-2xl border p-3">
+        <div className="flex flex-col gap-3">
+          <span className="text-skin-base w-fit shrink-0">
+            Could not get info about this link
+          </span>
+          <span className="text-skin-link-base line-clamp-1 shrink overflow-ellipsis break-all text-sm">
+            {link}
+          </span>
+        </div>
+        <Button
+          className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted rounded-full p-1"
+          onClick={(e) => {
+            e.preventDefault();
+            onRemoveLinkCard(link);
+          }}
+        >
+          <CgClose className="text-xl" />
+        </Button>
+      </div>
     );
   }
 
@@ -57,7 +83,7 @@ export default function LinkCard(props: Props) {
           <Image
             src={data.image}
             alt="Link image"
-            onError={() => setShowIamge(false)}
+            onError={onErrorImage}
             fill
             className="border-skin-base rounded-t-2xl border-b object-cover"
           />

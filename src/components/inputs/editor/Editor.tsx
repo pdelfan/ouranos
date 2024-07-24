@@ -103,6 +103,8 @@ export default function Editor(props: Props) {
             label: mention,
           },
         });
+        const transaction = editor.state.tr.insertText(" ");
+        editor.view.dispatch(transaction);
       }
     },
   });
