@@ -29,7 +29,10 @@ export default function TopBar(props: Props) {
         href={`/dashboard/user/${profile?.handle}`}
         className="hover:brightness-90"
       >
-        <Avatar src={profile.avatar} size="sm" />
+        <Avatar
+          src={profile.avatar?.replace("avatar", "avatar_thumbnail")}
+          size="sm"
+        />
       </Link>
       <Button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

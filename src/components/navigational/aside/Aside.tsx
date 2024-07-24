@@ -27,7 +27,7 @@ export default async function Aside(props: Props) {
           href={`/dashboard/user/${handle}`}
           className="max-w-[7rem] truncate hover:brightness-90"
         >
-          <Avatar src={avatar} />
+          <Avatar src={avatar?.replace("avatar", "avatar_thumbnail")} />
         </Link>
       </div>
     </aside>

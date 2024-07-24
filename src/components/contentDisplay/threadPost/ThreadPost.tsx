@@ -47,7 +47,10 @@ export default function ThreadPost(props: Props) {
           className="z-20 shrink-0 hover:brightness-90"
         >
           <ProfileHoverCard handle={author.handle}>
-            <Avatar src={author.avatar} size="md" />
+            <Avatar
+              src={author.avatar?.replace("avatar", "avatar_thumbnail")}
+              size="md"
+            />
           </ProfileHoverCard>
         </button>
         <div className="flex grow flex-col">

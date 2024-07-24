@@ -42,7 +42,7 @@ export default function ComposePrompt(props: Props) {
           : "border-t-skin-base border-t"
       }`}
     >
-      <Avatar src={avatar} />
+      <Avatar src={avatar?.replace("avatar", "avatar_thumbnail")} />
       <span className="text-skin-tertiary font-medium">Write your reply</span>
     </button>
   );
