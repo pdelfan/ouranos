@@ -58,6 +58,7 @@ export const searchProfilesTypehead = async (
 export const searchPosts = async (
   term: string,
   cursor: string,
+  sort: "latest" | "top",
   agent?: BskyAgent,
 ) => {
   if (!agent) agent = await getAgent();
@@ -65,6 +66,7 @@ export const searchPosts = async (
     const response = await agent.app.bsky.feed.searchPosts({
       q: term,
       cursor: cursor,
+      sort: sort,
       limit: 25,
     });
     if (response.success) {

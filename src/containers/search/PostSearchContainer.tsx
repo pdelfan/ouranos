@@ -11,10 +11,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   query: string;
+  sort: "latest" | "top";
 }
 
 export default function PostSearchContainer(props: Props) {
-  const { query } = props;
+  const { query, sort } = props;
   const decoded = decodeURIComponent(query);
   const agent = useAgent();
 
@@ -28,8 +29,8 @@ export default function PostSearchContainer(props: Props) {
     hasNextPage,
     fetchNextPage,
   } = useInfiniteQuery({
-    queryKey: ["searchPosts", query],
-    queryFn: ({ pageParam }) => searchPosts(decoded, pageParam, agent),
+    queryKey: ["searchPosts", sort, query],
+    queryFn: ({ pageParam }) => searchPosts(decoded, pageParam, sort, agent),
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
