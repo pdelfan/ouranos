@@ -97,7 +97,10 @@ export default function ProfileHeader(props: Props) {
                   onClick={() => setShowAvatar(true)}
                 >
                   <Image
-                    src={profile?.avatar ?? FallbackAvatar}
+                    src={
+                      profile?.avatar?.replace("avatar", "avatar_thumbnail") ??
+                      FallbackAvatar
+                    }
                     alt="Avatar"
                     width={95}
                     height={95}

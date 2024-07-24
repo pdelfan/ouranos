@@ -48,7 +48,12 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                       className="max-w-fit hover:brightness-90"
                     >
                       <ProfileHoverCard handle={author.handle}>
-                        <Avatar src={author.avatar} />
+                        <Avatar
+                          src={author.avatar?.replace(
+                            "avatar",
+                            "avatar_thumbnail",
+                          )}
+                        />
                       </ProfileHoverCard>
                     </Link>
                   ))}

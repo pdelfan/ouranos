@@ -23,7 +23,9 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
       <article className="flex flex-col gap-2">
         <div className="flex flex-wrap justify-between gap-3">
           <div className="flex flex-wrap items-start gap-2">
-            <Avatar src={profile.avatar} />
+            <Avatar
+              src={profile.avatar?.replace("avatar", "avatar_thumbnail")}
+            />
             <div className="flex flex-col">
               <div className="flex flex-wrap gap-x-1.5">
                 <h2 className="text-skin-base font-semibold">

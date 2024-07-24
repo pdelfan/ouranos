@@ -39,7 +39,13 @@ export default function RecordEmbed(props: Props) {
           <div className="flex flex-col">
             <div className="flex">
               <span className="flex items-center gap-1">
-                <Avatar src={record.author.avatar} size="xs" />
+                <Avatar
+                  src={record.author.avatar?.replace(
+                    "avatar",
+                    "avatar_thumbnail",
+                  )}
+                  size="xs"
+                />
                 <span className="text-skin-base line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
                   {record.author.displayName || record.author.handle}{" "}
                 </span>

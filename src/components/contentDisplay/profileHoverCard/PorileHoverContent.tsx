@@ -43,7 +43,10 @@ export default function ProfileHoverContent(props: Props) {
             href={`/dashboard/user/${profile.handle}`}
             className="hover:brightness-90"
           >
-            <Avatar src={profile.avatar} size="md" />
+            <Avatar
+              src={profile.avatar?.replace("avatar", "avatar_thumbnail")}
+              size="md"
+            />
           </Link>
           <div className="flex flex-col">
             <div className="flex flex-wrap gap-x-1.5">

@@ -39,7 +39,10 @@ export default async function SettingsContainer() {
                 href={`/dashboard/user/${profile.handle}`}
                 className="flex gap-3"
               >
-                <Avatar src={profile.avatar} size="md" />
+                <Avatar
+                  src={profile.avatar?.replace("avatar", "avatar_thumbnail")}
+                  size="md"
+                />
                 <div className="flex flex-col">
                   <span className="text-skin-base line-clamp-1  shrink-0 break-all font-semibold">
                     {profile.displayName || profile.handle}
