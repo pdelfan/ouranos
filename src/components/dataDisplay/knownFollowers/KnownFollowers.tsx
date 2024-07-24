@@ -55,7 +55,7 @@ export default function KnownFollowers(props: Props) {
             <div key={follower.did} style={{ zIndex: MAX_KNOWN_FOLLOWERS - i }}>
               <Avatar
                 size="sm"
-                src={follower.avatar}
+                src={follower.avatar?.replace("avatar", "avatar_thumbnail")}
                 className="border-2 border-transparent bg-skin-base"
               />
             </div>
