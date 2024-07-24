@@ -55,10 +55,13 @@ export default function LinkCard(props: Props) {
           </span>
         </div>
         <Button
-          className="hover:bg-skin-secondary border-skin-base text-skin-base rounded-full border px-4 py-2 text-sm font-semibold"
-          onClick={() => onRemoveLinkCard(link)}
+          className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted rounded-full p-1"
+          onClick={(e) => {
+            e.preventDefault();
+            onRemoveLinkCard(link);
+          }}
         >
-          Remove
+          <CgClose className="text-xl" />
         </Button>
       </div>
     );
