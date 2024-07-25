@@ -102,7 +102,7 @@ export default function PostActions(props: Props) {
             )}
           </div>
         )}
-        <div className="mt-3 flex gap-x-8">
+        <div className="mt-3 flex justify-between">
           <Button
             disabled={post.viewer?.replyDisabled}
             onClick={(e) => {
@@ -246,7 +246,7 @@ export default function PostActions(props: Props) {
   }
 
   return (
-    <div className="flex gap-x-8">
+    <div className="flex justify-between">
       <Button
         disabled={post.viewer?.replyDisabled}
         onClick={(e) => {
