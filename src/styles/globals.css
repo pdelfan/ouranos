@@ -22,7 +22,7 @@
         /* Text */
         --color-text-base: 64, 64, 64; /* text-neutral-700 */
         --color-text-secondary: 115, 115, 115; /* text-neutral-500 */
-        --color-text-tertiary: 156, 163, 175; /* text-neutral-400 */
+        --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
         --color-text-base-inverted: 255, 255, 255; /* text-white */
         --color-text-link-base: 169, 74, 255; /* primary */
         --color-text-link-base-hover: 151, 33, 255; /* primary-dark */
