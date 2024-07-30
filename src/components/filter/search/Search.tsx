@@ -3,6 +3,9 @@
 import { BiSearch } from "react-icons/bi";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import Button from "@/components/actions/button/Button";
+import { CgClose } from "react-icons/cg";
+import { useState } from "react";
 
 interface Props {
   placeholder: string;
@@ -14,6 +17,7 @@ export default function Search(props: Props) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const [search, setSearch] = useState(searchParams.get("query") ?? "");
 
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(searchParams);
@@ -27,6 +31,7 @@ export default function Search(props: Props) {
 
   return (
     <div className="relative mx-3 flex-shrink-0 grow md:mx-0">
+      <BiSearch className="text-skin-icon-muted peer-focus:text-icon-base absolute left-3 top-1/2 -translate-y-1/2 text-lg" />
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -37,6 +42,7 @@ export default function Search(props: Props) {
           autoFocus={autoFocus}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
+              setSearch(e.currentTarget.value);
               handleSearch(e.currentTarget.value);
             }
           }}
@@ -48,12 +54,24 @@ export default function Search(props: Props) {
           placeholder={placeholder}
           autoFocus={autoFocus}
           onChange={(e) => {
+            setSearch(e.currentTarget.value);
             handleSearch(e.target.value);
           }}
+          value={search}
           defaultValue={searchParams.get("query")?.toString()}
         />
       )}
-      <BiSearch className="text-skin-icon-muted peer-focus:text-icon-base absolute left-3 top-1/2 -translate-y-1/2 text-lg" />
+      {search.length > 0 && (
+        <Button
+          className="absolute right-3 top-1/2 -translate-y-1/2"
+          onClick={() => {
+            replace(`${pathname}`, { scroll: false });
+            setSearch("");
+          }}
+        >
+          <CgClose className="text-skin-icon-muted peer-focus:text-icon-base text-lg" />
+        </Button>
+      )}
     </div>
   );
 }
