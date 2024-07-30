@@ -3,11 +3,7 @@ import Dropdown from "@/components/actions/dropdown/Dropdown";
 import useLike from "@/lib/hooks/bsky/feed/useLike";
 import useRepost from "@/lib/hooks/bsky/feed/useRepost";
 import { useClipboard } from "use-clipboard-copy";
-import {
-  AppBskyFeedPost,
-  type AppBskyEmbedRecord,
-  type AppBskyFeedDefs,
-} from "@atproto/api";
+import { AppBskyFeedPost, type AppBskyFeedDefs } from "@atproto/api";
 import { useCallback } from "react";
 import { getPostId } from "@/lib/utils/link";
 import useMuteUser from "@/lib/hooks/bsky/feed/useMuteUser";
@@ -20,7 +16,6 @@ import toast from "react-hot-toast";
 import {
   BiDotsHorizontalRounded,
   BiHeart,
-  BiLink,
   BiMessageRounded,
   BiRepost,
   BiSolidBell,
@@ -31,7 +26,7 @@ import {
   BiSolidTrash,
 } from "react-icons/bi";
 import { getTranslateLink } from "@/lib/utils/text";
-import { MdOutlineTranslate } from "react-icons/md";
+import { MdOutlineTranslate, MdIosShare } from "react-icons/md";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -53,11 +48,11 @@ export default function PostActions(props: Props) {
     const postId = getPostId(post.uri);
     const shareUrl = `https://useouranos.app/dashboard/user/${post.author.handle}/post/${postId}`;
     clipboard.copy(shareUrl);
-    toast.success("Link to post copied to clipboard", { id: "Copy post link" });
+    toast.success("Copied link to post", { id: "Copy post link" });
   }, [clipboard, post.uri, post.author.handle]);
 
   const handleCopyPostText = useCallback(() => {
-    toast.success("Post text copied to clipboard", { id: "Copy post text" });
+    toast.success("Copied post text", { id: "Copy post text" });
     clipboard.copy(text);
   }, [clipboard, text]);
 
@@ -124,7 +119,6 @@ export default function PostActions(props: Props) {
           >
             <BiMessageRounded className="text-lg" />
           </Button>
-
           <Dropdown>
             <Dropdown.Trigger>
               <Button
@@ -170,7 +164,6 @@ export default function PostActions(props: Props) {
               />
             </Dropdown.Menu>
           </Dropdown>
-
           <Button
             onClick={(e) => {
               e.stopPropagation();
@@ -188,7 +181,6 @@ export default function PostActions(props: Props) {
               <BiHeart className="text-lg" />
             )}
           </Button>
-
           <Dropdown>
             <Dropdown.Trigger>
               <Button
@@ -211,7 +203,7 @@ export default function PostActions(props: Props) {
               <Dropdown.MenuItem
                 onSelect={handleShare}
                 text="Copy Link to Post"
-                icon={<BiLink />}
+                icon={<MdIosShare />}
               />
               {text && (
                 <Dropdown.MenuItem
@@ -361,7 +353,7 @@ export default function PostActions(props: Props) {
           <Dropdown.MenuItem
             onSelect={handleShare}
             text="Copy Link to Post"
-            icon={<BiLink />}
+            icon={<MdIosShare />}
           />
           {text && (
             <Dropdown.MenuItem
