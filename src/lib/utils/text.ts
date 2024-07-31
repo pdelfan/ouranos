@@ -1,5 +1,7 @@
 import { JSONContent } from "@tiptap/react";
 import { ThreadgateSetting } from "../../../types/feed";
+import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
+import { AppBskyFeedPost } from "@atproto/api";
 
 export function getHandle(mention: string) {
   return mention.slice(1);
@@ -116,4 +118,10 @@ export const getThreadGateComposerTitle = (value: ThreadgateSetting[]) => {
   if (value.length === 2) {
     return "Some users can reply";
   }
+};
+
+export const replyIncludes = (reply: PostView["record"], term: string) => {
+  const text = AppBskyFeedPost.isRecord(reply) && reply.text;
+  if (!text || !text.toLowerCase().includes(term.toLowerCase())) return false;
+  return true;
 };
