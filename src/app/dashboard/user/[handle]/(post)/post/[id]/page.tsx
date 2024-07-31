@@ -7,10 +7,14 @@ interface Props {
     id: string;
     handle: string;
   };
+  searchParams: {
+    query?: string;
+  };
 }
 
 export default async function Page(props: Props) {
   const { id, handle } = props.params;
+  const { query } = props.searchParams;
   const session = await getSessionFromServer();
   const profile = await getProfile(session?.user.bskySession.handle);
 
@@ -19,6 +23,7 @@ export default async function Page(props: Props) {
       id={id}
       handle={handle}
       viewerAvatar={profile?.avatar}
+      repliesTextFilter={query ?? ""}
     />
   );
 }
