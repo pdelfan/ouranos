@@ -1,7 +1,7 @@
 import { JSONContent } from "@tiptap/react";
 import { ThreadgateSetting } from "../../../types/feed";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import { AppBskyFeedPost } from "@atproto/api";
+import { AppBskyFeedPost, Facet, UnicodeString } from "@atproto/api";
 
 export function getHandle(mention: string) {
   return mention.slice(1);
@@ -103,7 +103,7 @@ export async function detectLanguage(text: string) {
 // the default is English for now
 export function getTranslateLink(text: string, lang: string = "en"): string {
   return `https://translate.google.com/?sl=auto&tl=${lang}&text=${encodeURIComponent(
-    text,
+    text
   )}`;
 }
 
