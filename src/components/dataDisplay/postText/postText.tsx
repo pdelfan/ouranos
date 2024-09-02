@@ -5,6 +5,8 @@ import { RichText as RichTextHelper, AppBskyFeedPost } from "@atproto/api";
 import type { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 import Link from "next/link";
 import { Fragment } from "react";
+import * as Tooltip from "@radix-ui/react-tooltip";
+import { BiLinkExternal } from "react-icons/bi";
 
 interface Props {
   record: PostView["record"];
@@ -43,15 +45,41 @@ export default function PostText(props: Props) {
       content.push({
         text: segment.text,
         component: (
-          <Link
-            className="text-skin-link-base hover:text-skin-link-hover break-all"
-            href={segment.link?.uri!}
-            target="blank"
-            key={segment.link?.uri}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {segment.text}
-          </Link>
+          <Tooltip.Provider>
+            <Tooltip.Root>
+              <Tooltip.Trigger asChild>
+                <Link
+                  className="text-skin-link-base hover:text-skin-link-hover break-all"
+                  href={segment.link?.uri!}
+                  target="blank"
+                  key={segment.link?.uri}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {segment.text}
+                </Link>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content className="bg-skin-base z-[60] p-3 border border-skin-base rounded-xl max-w-xs shadow-lg m-3">
+                  <div className="flex flex-wrap items-center gap-2 text-lg">
+                    <span className="block text-skin-base font-medium">
+                      Link
+                    </span>
+                    <BiLinkExternal />
+                  </div>
+
+                  <Link
+                    className="text-skin-link-base hover:text-skin-link-hover break-all"
+                    href={segment.link?.uri!}
+                    target="blank"
+                    key={segment.link?.uri}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {segment.link?.uri}
+                  </Link>
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
+          </Tooltip.Provider>
         ),
       });
     } else if (segment.isTag()) {

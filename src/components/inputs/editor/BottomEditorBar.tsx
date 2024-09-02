@@ -12,6 +12,7 @@ import { RichText } from "@atproto/api";
 import { jsonToText } from "@/lib/utils/text";
 import ThreadGatePicker from "./ThreadGatePicker";
 import { ThreadgateSetting } from "../../../../types/feed";
+import LinkPicker from "./LinkPicker";
 
 interface Props {
   editor: Editor;
@@ -81,7 +82,7 @@ export default function BottomEditorBar(props: Props) {
               disabled={!images || images.length === 0}
             />
             <ImagePicker onShow={setShowDropzone} />
-            {/* <LinkPicker editor={editor} /> */}
+            <LinkPicker editor={editor} />
           </div>
           <div className="just flex flex-wrap gap-x-5 gap-y-2">
             <LanguagePicker
