@@ -20,7 +20,6 @@ export default function Composer(props: Props) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={() => openComposer()}>
       <Dialog.Portal>
-        <Dialog.Overlay />
         <Dialog.Content
           onEscapeKeyDown={(e) => e.preventDefault()}
           onInteractOutside={(e) => e.preventDefault()}
