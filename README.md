@@ -1,3 +1,7 @@
+Note: this is a friendly fork of [Ouranos](https://github.com/pdelfan/ouranos/) for [@bmann](https://github.com/bmann) and [@pdelfan](https://github.com/pdelfan) to collaborate on experimenting with [Polar for funding](https://polar.sh/ATProtoApps/ouranos).
+
+---
+
 ![logo](./public/logo.svg)
 
 # Ouranos
