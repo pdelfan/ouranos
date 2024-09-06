@@ -11,7 +11,7 @@ import {
 } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { BiSolidBellOff } from "react-icons/bi";
-import { BsPersonFillSlash } from "react-icons/bs";
+import { BsFillInfoCircleFill, BsPersonFillSlash } from "react-icons/bs";
 import { TbLicense } from "react-icons/tb";
 import { getSessionFromServer } from "@/lib/api/auth/session";
 import { getProfile } from "@/lib/api/bsky/actor";
@@ -151,7 +151,7 @@ export default async function SettingsContainer() {
       </section>
       <section>
         <h3 className="text-skin-base mx-3 mb-2 text-xl font-semibold md:mx-0">
-          About
+          Learn More
         </h3>
         <div className="flex flex-col">
           <Link
@@ -169,6 +169,14 @@ export default async function SettingsContainer() {
           >
             <TbLicense className="text-skin-icon-base text-xl" />
             License
+          </Link>
+          <Link
+            href="/about"
+            target="_blank"
+            className="border-skin-base text-skin-base hover:bg-skin-secondary flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+          >
+            <BsFillInfoCircleFill className="text-skin-icon-base text-xl" />
+            About
           </Link>
         </div>
       </section>
