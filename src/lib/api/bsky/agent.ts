@@ -1,9 +1,9 @@
-import { BskyAgent } from "@atproto/api";
+import { AtpAgent } from "@atproto/api";
 import { redirect } from "next/navigation";
 import { getSessionFromServer } from "../auth/session";
 
 export const createAgent = () => {
-  const at = new BskyAgent({
+  const at = new AtpAgent({
     service: "https://bsky.social",
   });
 
@@ -12,7 +12,7 @@ export const createAgent = () => {
 
 export const getBskySession = async () => {
   // TODO: allow PDS URL — using bsky.social for now
-  const at = new BskyAgent({
+  const at = new AtpAgent({
     service: "https://bsky.social",
   });
 
@@ -29,6 +29,6 @@ export const getBskySession = async () => {
 };
 
 export const getAgent = async () => {
-  const bskyAgent = await getBskySession();
-  return bskyAgent;
+  const atpAgent = await getBskySession();
+  return atpAgent;
 };

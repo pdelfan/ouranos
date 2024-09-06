@@ -1,4 +1,3 @@
-import { BskyAgent } from "@atproto/api";
 import imageCompression from "browser-image-compression";
 
 export function getAvatarSize(size?: AvatarSize): number[] {

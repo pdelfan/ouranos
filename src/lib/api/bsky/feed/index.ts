@@ -1,4 +1,4 @@
-import { type BskyAgent, AppBskyActorDefs } from "@atproto/api";
+import { type AtpAgent, AppBskyActorDefs } from "@atproto/api";
 import { getAgent } from "../agent";
 import { SavedFeed } from "../../../../../types/feed";
 
@@ -15,9 +15,7 @@ export const getPopularFeeds = async (search?: string) => {
   return popularFeeds.data.feeds;
 };
 
-export const getSavedFeeds = async (
-  agent?: BskyAgent,
-): Promise<SavedFeed[]> => {
+export const getSavedFeeds = async (agent?: AtpAgent): Promise<SavedFeed[]> => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not fetch feeds");
@@ -25,7 +23,7 @@ export const getSavedFeeds = async (
   const feedsPref = prefs.data.preferences.find(
     (pref) =>
       AppBskyActorDefs.isSavedFeedsPref(pref) &&
-      AppBskyActorDefs.validateSavedFeedsPref(pref).success,
+      AppBskyActorDefs.validateSavedFeedsPref(pref).success
   ) as AppBskyActorDefs.SavedFeedsPref | undefined;
 
   if (!feedsPref || feedsPref.saved.length === 0) return [];
@@ -43,7 +41,7 @@ export const getSavedFeeds = async (
   }));
 };
 
-export const togglePinFeed = async (agent: BskyAgent, feed: string) => {
+export const togglePinFeed = async (agent: AtpAgent, feed: string) => {
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not fetch feeds");
 
@@ -65,7 +63,7 @@ export const togglePinFeed = async (agent: BskyAgent, feed: string) => {
   });
 };
 
-export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
+export const toggleSaveFeed = async (agent: AtpAgent, feed: string) => {
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not fetch feeds");
 
@@ -88,39 +86,35 @@ export const toggleSaveFeed = async (agent: BskyAgent, feed: string) => {
   });
 };
 
-export const likeFeed = async (agent: BskyAgent, uri: string, cid: string) => {
+export const likeFeed = async (agent: AtpAgent, uri: string, cid: string) => {
   const like = await agent.like(uri, cid);
   return like;
 };
 
-export const unlikeFeed = async (agent: BskyAgent, likeUri: string) => {
+export const unlikeFeed = async (agent: AtpAgent, likeUri: string) => {
   await agent.deleteLike(likeUri);
 };
 
-export const getTimeline = async (agent: BskyAgent, cursor?: string) => {
+export const getTimeline = async (agent: AtpAgent, cursor?: string) => {
   const timeline = await agent.getTimeline({ cursor: cursor });
   return timeline;
 };
 
-export const getFeed = async (
-  agent: BskyAgent,
-  uri: string,
-  cursor: string,
-) => {
+export const getFeed = async (agent: AtpAgent, uri: string, cursor: string) => {
   const feed = await agent.app.bsky.feed.getFeed({ feed: uri, cursor: cursor });
   return feed;
 };
 
-export const getFeedInfo = async (agent: BskyAgent, uri: string) => {
+export const getFeedInfo = async (agent: AtpAgent, uri: string) => {
   const feed = await agent.app.bsky.feed.getFeedGenerator({ feed: uri });
   if (!feed.success) throw new Error("Could not fetch feed info");
   return feed.data;
 };
 
 export const getUserPosts = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   handle: string,
-  cursor: string,
+  cursor: string
 ) => {
   const posts = await agent.getAuthorFeed({
     actor: handle,
@@ -133,9 +127,9 @@ export const getUserPosts = async (
 };
 
 export const getUserReplyPosts = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   handle: string,
-  cursor: string,
+  cursor: string
 ) => {
   const posts = await agent.getAuthorFeed({
     actor: handle,
@@ -148,9 +142,9 @@ export const getUserReplyPosts = async (
 };
 
 export const getUserMediaPosts = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   handle: string,
-  cursor: string,
+  cursor: string
 ) => {
   const posts = await agent.getAuthorFeed({
     actor: handle,
@@ -163,9 +157,9 @@ export const getUserMediaPosts = async (
 };
 
 export const getUserLikes = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   handle: string,
-  cursor: string,
+  cursor: string
 ) => {
   if (!agent) agent = await getAgent();
   const likes = await agent.api.app.bsky.feed.getActorLikes({
@@ -177,7 +171,7 @@ export const getUserLikes = async (
   return likes;
 };
 
-export const likePost = async (agent: BskyAgent, uri: string, cid: string) => {
+export const likePost = async (agent: AtpAgent, uri: string, cid: string) => {
   try {
     const like = await agent.like(uri, cid);
     return like;
@@ -186,7 +180,7 @@ export const likePost = async (agent: BskyAgent, uri: string, cid: string) => {
   }
 };
 
-export const unlikePost = async (agent: BskyAgent, likeUri: string) => {
+export const unlikePost = async (agent: AtpAgent, likeUri: string) => {
   try {
     const unlike = await agent.deleteLike(likeUri);
     return unlike;
@@ -195,7 +189,7 @@ export const unlikePost = async (agent: BskyAgent, likeUri: string) => {
   }
 };
 
-export const repost = async (agent: BskyAgent, uri: string, cid: string) => {
+export const repost = async (agent: AtpAgent, uri: string, cid: string) => {
   try {
     const like = await agent.repost(uri, cid);
     return like;
@@ -204,7 +198,7 @@ export const repost = async (agent: BskyAgent, uri: string, cid: string) => {
   }
 };
 
-export const unRepost = async (agent: BskyAgent, repostUri: string) => {
+export const unRepost = async (agent: AtpAgent, repostUri: string) => {
   try {
     const unlike = await agent.deleteRepost(repostUri);
     return unlike;
@@ -213,7 +207,7 @@ export const unRepost = async (agent: BskyAgent, repostUri: string) => {
   }
 };
 
-export const removePost = async (agent: BskyAgent, uri: string) => {
+export const removePost = async (agent: AtpAgent, uri: string) => {
   try {
     const post = await agent.deletePost(uri);
     return post;
@@ -222,7 +216,7 @@ export const removePost = async (agent: BskyAgent, uri: string) => {
   }
 };
 
-export const getPost = async (agent: BskyAgent, uri: string) => {
+export const getPost = async (agent: AtpAgent, uri: string) => {
   try {
     const post = await agent.getPostThread({ uri: uri, depth: 1 });
     if (!post.success) throw new Error("Could not fetch post");
@@ -232,7 +226,7 @@ export const getPost = async (agent: BskyAgent, uri: string) => {
   }
 };
 
-export const getPostThread = async (agent: BskyAgent, uri: string) => {
+export const getPostThread = async (agent: AtpAgent, uri: string) => {
   try {
     const posts = await agent.getPostThread({ uri: uri });
     return posts.data.thread;
@@ -242,9 +236,9 @@ export const getPostThread = async (agent: BskyAgent, uri: string) => {
 };
 
 export const getPostLikes = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   uri: string,
-  cursor: string,
+  cursor: string
 ) => {
   try {
     const likes = await agent.getLikes({ uri: uri, cursor: cursor, limit: 50 });
@@ -255,9 +249,9 @@ export const getPostLikes = async (
 };
 
 export const getPostReposts = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   uri: string,
-  cursor: string,
+  cursor: string
 ) => {
   try {
     const likes = await agent.getRepostedBy({
@@ -268,5 +262,22 @@ export const getPostReposts = async (
     return likes.data;
   } catch (e) {
     throw new Error("Could not fetch post reposts");
+  }
+};
+
+export const getPostQuotes = async (
+  agent: AtpAgent,
+  uri: string,
+  cursor: string
+) => {
+  try {
+    const quotes = await agent.app.bsky.feed.getQuotes({
+      uri: uri,
+      cursor: cursor,
+      limit: 50,
+    });
+    return quotes.data;
+  } catch (e) {
+    throw new Error("Could not fetch post quotes");
   }
 };
