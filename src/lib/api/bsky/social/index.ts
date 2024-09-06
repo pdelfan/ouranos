@@ -1,8 +1,8 @@
-import { AtUri, BskyAgent } from "@atproto/api";
+import { AtUri, AtpAgent } from "@atproto/api";
 
 export const getFollowers = async (
   handle: string,
-  agent: BskyAgent,
+  agent: AtpAgent,
   cursor: string,
 ) => {
   const followers = await agent.getFollowers({ actor: handle, cursor: cursor });
@@ -18,7 +18,7 @@ export const getFollows = async ({
   limit,
 }: {
   handle: string;
-  agent: BskyAgent;
+  agent: AtpAgent;
   cursor?: string;
   limit?: number;
 }) => {
@@ -32,20 +32,20 @@ export const getFollows = async ({
   return follows;
 };
 
-export const follow = async (agent: BskyAgent, did: string) => {
+export const follow = async (agent: AtpAgent, did: string) => {
   const follow = await agent.follow(did);
 
   if (!follow.uri) throw new Error("Could not follow");
   return;
 };
 
-export const unfollow = async (agent: BskyAgent, did: string) => {
+export const unfollow = async (agent: AtpAgent, did: string) => {
   const unfollow = await agent.deleteFollow(did);
   return unfollow;
 };
 
 export const unBlock = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   did: string,
   viewer: string,
 ) => {
@@ -57,7 +57,7 @@ export const unBlock = async (
   return res;
 };
 
-export const getMutedUsers = async (agent: BskyAgent, cursor: string) => {
+export const getMutedUsers = async (agent: AtpAgent, cursor: string) => {
   const mutedUsers = await agent.api.app.bsky.graph.getMutes({
     cursor: cursor,
   });
@@ -67,7 +67,7 @@ export const getMutedUsers = async (agent: BskyAgent, cursor: string) => {
   return mutedUsers.data;
 };
 
-export const getBlockedUsers = async (agent: BskyAgent, cursor: string) => {
+export const getBlockedUsers = async (agent: AtpAgent, cursor: string) => {
   const blockedUsers = await agent.api.app.bsky.graph.getBlocks({
     cursor: cursor,
   });
@@ -78,7 +78,7 @@ export const getBlockedUsers = async (agent: BskyAgent, cursor: string) => {
 };
 
 export const getKnownFollowers = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   did: string,
   cursor?: string,
 ) => {

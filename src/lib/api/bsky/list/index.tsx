@@ -1,9 +1,9 @@
-import { type BskyAgent } from "@atproto/api";
+import { type AtpAgent } from "@atproto/api";
 
 export const getLists = async (
   did: string,
   cursor: string,
-  agent: BskyAgent,
+  agent: AtpAgent,
 ) => {
   const lists = await agent.app.bsky.graph.getLists({
     actor: did,
@@ -14,14 +14,14 @@ export const getLists = async (
   return lists.data;
 };
 
-export const getListInfo = async (agent: BskyAgent, uri: string) => {
+export const getListInfo = async (agent: AtpAgent, uri: string) => {
   const feed = await agent.app.bsky.graph.getList({ list: uri });
   if (!feed.success) throw new Error("Could not fetch feed info");
   return feed.data;
 };
 
 export const getListFeed = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   uri: string,
   cursor: string,
 ) => {
@@ -33,7 +33,7 @@ export const getListFeed = async (
 };
 
 export const getListMembers = async (
-  agent: BskyAgent,
+  agent: AtpAgent,
   uri: string,
   cursor: string,
 ) => {
