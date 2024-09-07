@@ -149,8 +149,14 @@ export default function Page() {
           >
             Discussions
           </Link>
-          . If you are not on GitHub, you can also mention me on Bluesky (my
-          handle is @contrapunctus.bsky.social).
+          . If you are not on GitHub, you can also{" "}
+          <Link
+            href="https://bsky.app/profile/did:plc:3sapfnszmvjc6wa4ml3ybkwb"
+            className="underline underline-offset-2"
+          >
+            mention me on Bluesky
+          </Link>
+          .
         </p>
 
         <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
