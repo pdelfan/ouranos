@@ -7,10 +7,12 @@ import {
   AppBskyEmbedRecordWithMedia,
   AppBskyGraphDefs,
   AppBskyFeedDefs,
+  AppBskyEmbedVideo,
 } from "@atproto/api";
 import RecordEmbed from "./RecordEmbed";
 import ListEmbed from "./ListEmbed";
 import FeedEmbed from "./FeedEmbed";
+import VideoEmbed from "./VideoEmbed";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
@@ -52,6 +54,15 @@ export default function PostEmbed(props: Props) {
           record={content.record.record}
           media={content.media}
           depth={depth}
+        />
+      );
+    } else if (AppBskyEmbedVideo.isView(content)) {
+      return (
+        <VideoEmbed
+          aspectRatio={`${content.aspectRatio?.width}/${content.aspectRatio?.height}`}          
+          playlist={content.playlist}
+          thumbnail={content.thumbnail}
+          alt={content.alt}          
         />
       );
     }
