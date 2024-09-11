@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { AppBskyEmbedVideo } from "@atproto/api";
 import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
 import {
   defaultLayoutIcons,
@@ -22,11 +21,10 @@ const VideoEmbed = memo(function VideoEmbed(props: Props) {
     <MediaPlayer
       crossOrigin
       playsInline
-      className="mt-2 rounded-md hover:brightness-90 hover:cursor-pointer"
       viewType="video"
+      className="mt-2 hover:brightness-90 hover:cursor-pointer"
       src={playlist}
       poster={thumbnail ?? ""}
-      aspectRatio={aspectRatio}
       onClick={(e) => e.stopPropagation()}
     >
       <MediaProvider>
@@ -34,7 +32,7 @@ const VideoEmbed = memo(function VideoEmbed(props: Props) {
           <Poster
             src={thumbnail}
             alt={alt}
-            className="absolute inset-0 block h-full w-full bg-black rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+            className="absolute inset-0 block bg-black opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:w-full [&>img]:object-contain"
           />
         )}
       </MediaProvider>
