@@ -169,7 +169,7 @@ export default function EditProfile(props: Props) {
             }}
             disabled={updateProfile.isPending}
             className={`bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-4 py-2 text-sm font-semibold ${
-              updateProfile.isPending && "animate-pulse"
+              updateProfile.isPending && "animate-pulse animate-duration-1000"
             }`}
           >
             {updateProfile.isPending ? "Saving..." : "Save"}

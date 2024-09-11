@@ -11,7 +11,7 @@ interface Props {
 
 export default function ComposePrompt(props: Props) {
   const { avatar, post } = props;
-  const canReply = !post.viewer?.replyDisabled ?? false;
+  const canReply = !post.viewer?.replyDisabled || false;
   const { openComposer } = useComposerControls();
 
   if (!canReply) return null;
