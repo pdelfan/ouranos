@@ -18,26 +18,28 @@ const VideoEmbed = memo(function VideoEmbed(props: Props) {
   const { aspectRatio, playlist, thumbnail, alt } = props;
 
   return (
-    <MediaPlayer
-      crossOrigin
-      playsInline
-      viewType="video"
-      className="mt-2 hover:brightness-90 hover:cursor-pointer"
-      src={playlist}
-      poster={thumbnail ?? ""}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <MediaProvider>
-        {alt && (
-          <Poster
-            src={thumbnail}
-            alt={alt}
-            className="absolute inset-0 block bg-black opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:w-full [&>img]:object-contain"
-          />
-        )}
-      </MediaProvider>
-      <DefaultVideoLayout thumbnails={thumbnail} icons={defaultLayoutIcons} />
-    </MediaPlayer>
+    <div className="aspect-video mt-2 rounded-md hover:brightness-90 hover:cursor-pointer overflow-hidden">
+      <MediaPlayer
+        crossOrigin
+        playsInline
+        viewType="video"
+        className="w-full h-full object-cover"
+        src={playlist}
+        poster={thumbnail ?? ""}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <MediaProvider>
+          {alt && (
+            <Poster
+              src={thumbnail}
+              alt={alt}
+              className="absolute inset-0 block bg-skin-overlay opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:w-full [&>img]:object-contain"
+            />
+          )}
+        </MediaProvider>
+        <DefaultVideoLayout thumbnails={thumbnail} icons={defaultLayoutIcons} />
+      </MediaPlayer>
+    </div>
   );
 });
 
