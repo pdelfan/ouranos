@@ -8,8 +8,7 @@ interface Props {
 
 export default function WhoCanReply(props: Props) {
   const { post } = props;
-  const canReply = !post.viewer?.replyDisabled ?? false;
-  const rounded = !canReply && post.replyCount === 0;
+  const canReply = !post.viewer?.replyDisabled || false;  
   const record =
     post.threadgate &&
     AppBskyFeedThreadgate.isRecord(post.threadgate.record) &&
@@ -102,7 +101,7 @@ export default function WhoCanReply(props: Props) {
 
   return (
     <section
-      className={`border-t-skin-base md:border-x-skin-base w-full border-x-0 border-t p-2 md:border-x ${rounded && "border-y-skin-base border-y md:rounded-b-2xl"}`}
+      className="border-t-skin-base md:border-x-skin-base w-full border-x-0 border-t p-2 md:border-x"
     >
       <div className="bg-primary/20 flex items-center gap-3 rounded-xl p-2">
         <div className="bg-primary rounded-2xl p-1.5">
