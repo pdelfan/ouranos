@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { AppBskyEmbedVideo } from "@atproto/api";
-import { MediaPlayer, MediaProvider } from "@vidstack/react";
+import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
 import {
   defaultLayoutIcons,
   DefaultVideoLayout,
@@ -12,10 +12,11 @@ interface Props {
   aspectRatio: string;
   playlist: string;
   thumbnail?: string;
+  alt?: string;
 }
 
 const VideoEmbed = memo(function VideoEmbed(props: Props) {
-  const { aspectRatio, thumbnail, playlist } = props;
+  const { aspectRatio, playlist, thumbnail, alt } = props;
 
   return (
     <MediaPlayer
@@ -27,9 +28,16 @@ const VideoEmbed = memo(function VideoEmbed(props: Props) {
       poster={thumbnail ?? ""}
       aspectRatio={aspectRatio}
       onClick={(e) => e.stopPropagation()}
-      onError={() => console.log("ERRORORORORORORORROO")}
     >
-      <MediaProvider />
+      <MediaProvider>
+        {alt && (
+          <Poster
+            src={thumbnail}
+            alt={alt}
+            className="absolute inset-0 block h-full w-full bg-black rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
+          />
+        )}
+      </MediaProvider>
       <DefaultVideoLayout thumbnails={thumbnail} icons={defaultLayoutIcons} />
     </MediaPlayer>
   );

@@ -59,9 +59,10 @@ export default function PostEmbed(props: Props) {
     } else if (AppBskyEmbedVideo.isView(content)) {
       return (
         <VideoEmbed
-          aspectRatio={`${content.aspectRatio?.width}/${content.aspectRatio?.height}`}
-          thumbnail={content.thumbnail}
+          aspectRatio={`${content.aspectRatio?.width}/${content.aspectRatio?.height}`}          
           playlist={content.playlist}
+          thumbnail={content.thumbnail}
+          alt={content.alt}          
         />
       );
     }
