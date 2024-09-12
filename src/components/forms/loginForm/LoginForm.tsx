@@ -148,7 +148,7 @@ export default function LoginForm() {
         <Button
           type="submit"
           className={`text-skin-inverted bg-skin-inverted hover:bg-skin-inverted ml-auto mt-5 flex w-full items-center justify-center gap-2 rounded-lg px-3 py-3 font-semibold disabled:cursor-not-allowed ${
-            loading && "animate-pulse"
+            loading && "animate-pulse animate-duration-1000"
           }`}
           disabled={loading}
           aria-disabled={loading}

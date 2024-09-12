@@ -1,4 +1,3 @@
-import { BskyAgent } from "@atproto/api";
 import imageCompression from "browser-image-compression";
 
 export function getAvatarSize(size?: AvatarSize): number[] {
@@ -19,7 +18,7 @@ export function getAvatarSize(size?: AvatarSize): number[] {
 export async function compressImage(image: UploadImage) {
   try {
     const compressed = await imageCompression(image, {
-      maxSizeMB: 1,
+      maxSizeMB: 0.95,      
       maxWidthOrHeight: 3000,
       fileType: "image/jpeg",
       initialQuality: 0.9,

@@ -40,6 +40,7 @@ export default function PostActions(props: Props) {
   const { deletePost } = useDeletePost({ post: post });
   const { liked, toggleLike, likeCount } = useLike({ post: post });
   const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
+  const quoteCount = post.quoteCount ?? 0;
   const { muted, toggleMuteUser } = useMuteUser({ author: post.author });
   const clipboard = useClipboard({ copiedTimeout: 3500 });
   const { openComposer } = useComposerControls();
@@ -72,7 +73,7 @@ export default function PostActions(props: Props) {
             {repostCount > 0 && (
               <Link
                 href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-                  post.uri,
+                  post.uri
                 )}/reposted-by`}
                 className="text-skin-base flex gap-1 font-semibold"
               >
@@ -82,10 +83,23 @@ export default function PostActions(props: Props) {
                 </span>
               </Link>
             )}
+            {quoteCount > 0 && (
+              <Link
+                href={`/dashboard/user/${post.author.handle}/post/${getPostId(
+                  post.uri
+                )}/quotes`}
+                className="text-skin-base flex gap-1 font-semibold"
+              >
+                {abbreviateNumber(quoteCount)}
+                <span className="text-skin-tertiary font-medium">
+                  Quote{quoteCount > 1 && "s"}
+                </span>
+              </Link>
+            )}
             {likeCount > 0 && (
               <Link
                 href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-                  post.uri,
+                  post.uri
                 )}/liked-by`}
                 className="text-skin-base flex gap-1 font-semibold"
               >

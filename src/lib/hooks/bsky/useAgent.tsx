@@ -17,7 +17,7 @@ export default function useAgent() {
 
     const getAgent = async () => {
       const bskySession = session.user.bskySession;
-      agent.session = bskySession;      
+      agent.sessionManager.session = bskySession;
     };
 
     getAgent();
