@@ -2,7 +2,7 @@ import Layout from "@/containers/Layout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ouranos — Settings",
+  title: { template: "%s — Ouranos", default: "Settings" },
   description: "Settings",
 };
 

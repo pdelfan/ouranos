@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import ProfileHeader from "@/components/contentDisplay/profileHeader/ProfileHeader";
+import { getProfile } from "@/lib/api/bsky/actor";
 
-export const metadata: Metadata = {
-  title: "Ouranos — Profile",
-  description: "Profile",
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const profile = await getProfile(params.handle);
+  const title = profile?.displayName
+    ? `${profile.displayName} (@${params.handle})`
+    : params.handle;
+
+  return {
+    title: title,
+    description: "Profile",
+  };
+}
 
 interface Props {
   params: { handle: string };

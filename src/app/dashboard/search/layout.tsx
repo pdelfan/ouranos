@@ -2,7 +2,7 @@ import Layout from "@/containers/Layout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ouranos — Search",
+  title: "Search",
   description: "Search",
 };
 
