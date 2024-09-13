@@ -1,4 +1,15 @@
 import RepostedByContainer from "@/containers/thread/RepostedByContainer";
+import type { Metadata } from "next";
+
+export function generateMetadata({ params }: Props): Metadata {
+  const title = `@${params.handle}'s Post Reposted By`;
+  const descripton = `Users who have reposted @${params.handle}'s post`;
+
+  return {
+    title: title,
+    description: descripton,
+  };
+}
 
 interface Props {
   params: {

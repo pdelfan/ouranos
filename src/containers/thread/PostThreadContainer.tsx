@@ -48,7 +48,7 @@ export default function PostThreadContainer(props: Props) {
       const { data } = await agent.resolveHandle({ handle });
       if (!data) return;
       const uri = `at://${data.did}/app.bsky.feed.post/${id}`;
-      return getPostThread(agent, uri);
+      return getPostThread(uri, agent);
     },
   });
 

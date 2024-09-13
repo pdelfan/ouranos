@@ -1,4 +1,15 @@
 import QuotesContainer from "@/containers/thread/QuotesContainer";
+import type { Metadata } from "next";
+
+export function generateMetadata({ params }: Props): Metadata {
+  const title = `@${params.handle}'s Post Quotes`;
+  const descripton = `Users who have quoted @${params.handle}'s post`;
+
+  return {
+    title: title,
+    description: descripton,
+  };
+}
 
 interface Props {
   params: {

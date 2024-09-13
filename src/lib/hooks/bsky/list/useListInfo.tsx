@@ -9,7 +9,7 @@ export default function useFeedInfo(list: string) {
 
   const { data, isLoading, isFetching, isRefetching, error } = useQuery({
     queryKey: listInfoKey(list),
-    queryFn: () => getListInfo(agent, list),
+    queryFn: () => getListInfo(list, agent),
   });
 
   return {

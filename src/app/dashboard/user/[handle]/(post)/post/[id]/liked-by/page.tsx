@@ -1,4 +1,15 @@
 import LikedByContainer from "@/containers/thread/LikedByContainer";
+import type { Metadata } from "next";
+
+export function generateMetadata({ params }: Props): Metadata {
+  const title = `@${params.handle}'s Post Liked By`;
+  const descripton = `Users who have liked @${params.handle}'s post`;
+
+  return {
+    title: title,
+    description: descripton,
+  };
+}
 
 interface Props {
   params: {

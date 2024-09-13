@@ -8,7 +8,7 @@ import { getProfile } from "@/lib/api/bsky/actor";
 import { getSessionFromServer } from "@/lib/api/auth/session";
 
 export const metadata: Metadata = {
-  title: "Ouranos",
+  title: { template: "%s — Ouranos", default: "Ouranos" },
   description: "Home",
 };
 
