@@ -105,7 +105,8 @@ export const getFeed = async (agent: AtpAgent, uri: string, cursor: string) => {
   return feed;
 };
 
-export const getFeedInfo = async (agent: AtpAgent, uri: string) => {
+export const getFeedInfo = async (uri: string, agent?: AtpAgent) => {
+  if (!agent) agent = await getAgent();
   const feed = await agent.app.bsky.feed.getFeedGenerator({ feed: uri });
   if (!feed.success) throw new Error("Could not fetch feed info");
   return feed.data;
@@ -226,7 +227,9 @@ export const getPost = async (agent: AtpAgent, uri: string) => {
   }
 };
 
-export const getPostThread = async (agent: AtpAgent, uri: string) => {
+export const getPostThread = async (uri: string, agent?: AtpAgent) => {
+  if (!agent) agent = await getAgent();
+
   try {
     const posts = await agent.getPostThread({ uri: uri });
     return posts.data.thread;

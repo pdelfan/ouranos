@@ -13,7 +13,7 @@ export default function ExternalEmbed(props: Props) {
   return (
     <>
       {depth < 2 && (
-        <article className="bg-skin-base border-skin-base mt-2 rounded-2xl border hover:brightness-95">
+        <article className="bg-skin-base border-skin-base mt-2 rounded-lg border hover:brightness-95">
           <Link
             href={embed.external.uri}
             target="blank"
@@ -25,7 +25,7 @@ export default function ExternalEmbed(props: Props) {
                   src={embed.external.thumb}
                   alt={embed.external.description}
                   fill
-                  className="border-b-skin-base rounded-t-2xl border-b object-cover"
+                  className="border-b-skin-base rounded-t-lg border-b object-cover"
                 />
               </div>
             )}

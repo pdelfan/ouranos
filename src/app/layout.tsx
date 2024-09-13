@@ -14,7 +14,7 @@ import ThemeProvider from "./providers/theme";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ouranos",
+  title: { template: "%s — Ouranos", default: "Ouranos" },
   description: "Your friendly Bluesky client for the web",
   metadataBase: new URL("https://useouranos.app"),
 };

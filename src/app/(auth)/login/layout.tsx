@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Ouranos — Login",
+  title: "Login",
   description: "Your Bluesky web client",
 };
 

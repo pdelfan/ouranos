@@ -10,7 +10,7 @@ export default function useFeedInfo(feed: string) {
   const { data, isLoading, isFetching, isRefetching, error } = useQuery({
     queryKey: feedInfoKey(feed),
     queryFn: async () => {
-      const feedInfo = await getFeedInfo(agent, feed);
+      const feedInfo = await getFeedInfo(feed, agent);
       const savedFeeds = await getSavedFeeds(agent);
       const isSaved = savedFeeds.some((savedFeed) => savedFeed.uri === feed);
       const isPinned = savedFeeds.some(
