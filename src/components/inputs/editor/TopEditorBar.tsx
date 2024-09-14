@@ -83,7 +83,7 @@ export default function TopEditorBar(props: Props) {
         </>
       )}
       {showCancelModal && (
-        <div className="flex flex-wrap items-center justify-between gap-6">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
           <h2 className="text-skin-base text-lg font-medium">
             Do you want to discard this draft?
           </h2>
