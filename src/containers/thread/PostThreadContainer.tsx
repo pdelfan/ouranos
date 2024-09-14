@@ -189,7 +189,7 @@ export default function PostThreadContainer(props: Props) {
             }
             className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted mx-auto block rounded-full px-2.5 py-2 text-sm font-medium"
           >
-            Show More Posts
+            Show More Replies
           </button>
         </div>
       )}
