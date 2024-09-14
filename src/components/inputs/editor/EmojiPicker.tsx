@@ -30,7 +30,7 @@ export default function EmojiPicker(props: Props) {
         <BiSmile className="text-primary hover:text-primary-dark text-2xl" />{" "}
       </Button>
       {showEmojiPicker && (
-        <div className="animate-fade animate-duration-200 absolute z-50 mt-2 overflow-y-scroll shadow-md rounded-lg md:bottom-14">
+        <div className="animate-fade animate-duration-200 absolute z-50 mt-2  shadow-md rounded-lg md:bottom-14">
           <Picker
             width={330}
             height={300}
