@@ -1,8 +1,14 @@
 import Button from "@/components/actions/button/Button";
-import data from "@emoji-mart/data";
-import Picker from "@emoji-mart/react";
 import { useState } from "react";
 import { BiSmile } from "react-icons/bi";
+import dynamic from "next/dynamic";
+
+const Picker = dynamic(
+  () => {
+    return import("emoji-picker-react");
+  },
+  { ssr: false },
+);
 
 interface Props {
   onEmojiSelect: (emoji: string) => void;
@@ -24,15 +30,16 @@ export default function EmojiPicker(props: Props) {
         <BiSmile className="text-primary hover:text-primary-dark text-2xl" />{" "}
       </Button>
       {showEmojiPicker && (
-        <div className="border-skin-base animate-fade animate-duration-200 absolute z-50 mt-2  overflow-y-scroll rounded-2xl border shadow-md md:bottom-14">
+        <div className="animate-fade animate-duration-200 absolute z-50 mt-2 overflow-y-scroll shadow-md rounded-lg md:bottom-14">
           <Picker
-            data={data}
-            onEmojiSelect={(emoji: EmojiData, e: React.MouseEvent) => {
+            width={330}
+            height={300}
+            skinTonesDisabled={true}
+            lazyLoadEmojis={true}
+            previewConfig={{ showPreview: false }}
+            onEmojiClick={(emojiData, e: MouseEvent) => {
               e.stopPropagation();
-              onEmojiSelect(emoji.native);
-              setShowEmojiPicker(false);
-            }}
-            onClickOutside={() => {
+              onEmojiSelect(emojiData.emoji);
               setShowEmojiPicker(false);
             }}
           />
