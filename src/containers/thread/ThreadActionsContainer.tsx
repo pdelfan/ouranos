@@ -38,7 +38,7 @@ export default function ThreadActionsContainer(props: Props) {
         <ComposePrompt avatar={avatar} post={post} />
       </div>
       {postHasReplies && (
-        <div className="flex flex-wrap items-center gap-3 justify-between border-x border-t px-3 py-2">
+        <div className="flex flex-wrap items-center gap-3 justify-between border-x border-t border-skin-base px-3 py-2">
           <Dropdown>
             <Dropdown.Trigger>
               <Button>
