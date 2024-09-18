@@ -62,6 +62,10 @@ export default function ThreadActionsContainer(props: Props) {
                 onSelect={() => handleSort("most-likes")}
                 text="Most likes"
               />
+              <Dropdown.MenuItem
+                onSelect={() => handleSort("random")}
+                text="Random"
+              />
             </Dropdown.Menu>
           </Dropdown>
           <div className="w-full sm:w-fit sm:max-w-sm">

@@ -135,6 +135,6 @@ export const getSortLabel = (sort: string) => {
     case "most-likes":
       return "Most likes";
     default:
-      return "random";
+      return "Random";
   }
 };
