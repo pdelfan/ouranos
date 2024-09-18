@@ -37,7 +37,7 @@ export default function PostSearchContainer(props: Props) {
 
   const dataLength = posts?.pages.reduce(
     (acc, page) => acc + (page?.posts.length ?? 0),
-    0,
+    0
   );
 
   const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
@@ -56,7 +56,11 @@ export default function PostSearchContainer(props: Props) {
           .flatMap((page) => page?.posts)
           .map((post, i) => (
             <Fragment key={i}>
-              {post && <SearchPost key={i} post={post} />}
+              {post && (
+                <div className="mx-3">
+                  <SearchPost key={i} post={post} />
+                </div>
+              )}
             </Fragment>
           ))}
       </InfiniteScroll>
