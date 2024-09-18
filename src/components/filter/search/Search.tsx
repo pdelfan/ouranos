@@ -30,7 +30,7 @@ export default function Search(props: Props) {
   }, 300);
 
   return (
-    <div className="relative mx-3 flex-shrink-0 grow md:mx-0">
+    <div className="relative flex-shrink-0 grow md:mx-0">
       <BiSearch className="text-skin-icon-muted peer-focus:text-icon-base absolute left-3 top-1/2 -translate-y-1/2 text-lg" />
       <label htmlFor="search" className="sr-only">
         Search

@@ -74,7 +74,9 @@ export default function Page(props: Props) {
             </Popover.Portal>
           </Popover.Root>
         </div>
-        <Search placeholder="Search for users or posts" autoFocus={true} />
+        <div className="mx-3 md:mx-0">
+          <Search placeholder="Search for users or posts" autoFocus={true} />
+        </div>
         {query && <SearchList query={query} />}
       </section>
       {!query && (

@@ -18,7 +18,9 @@ export default function Loading() {
             <h2 className="text-skin-base mx-3 mb-2 flex-auto text-2xl font-semibold md:mx-0">
               Popular Feeds
             </h2>
-            <Search placeholder="Search for feeds" />
+            <div className="mx-3 md:mx-0">
+              <Search placeholder="Search for feeds" />
+            </div>
           </div>
           <FeedListSkeleton />
         </div>

@@ -22,6 +22,7 @@ import { useRouter } from "next/navigation";
 import { MAX_REPLY_CONTAINERS } from "@/lib/consts/thread";
 import ThreadActionsContainer from "./ThreadActionsContainer";
 import { replyIncludes } from "@/lib/utils/text";
+import { THREAD_VIEW_PREFS } from "@/lib/consts/settings";
 
 interface Props {
   id: string;
@@ -68,17 +69,17 @@ export default function PostThreadContainer(props: Props) {
     setFilteredReplies(
       replyChains
         .map((replyArr) =>
-          replyArr.some((reply) =>
-            replyIncludes(reply.post.record, textSearch),
-          ),
+          replyArr.some((reply) => replyIncludes(reply.post.record, textSearch))
         )
-        .filter(Boolean).length,
+        .filter(Boolean).length
     );
   }, [replyChains, textSearch]);
 
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
-  const threadPreferences = preferences?.threadPreferences;
+  const [threadPreferences, setThreadPreferences] = useState(
+    preferences?.threadPreferences ?? THREAD_VIEW_PREFS
+  );
 
   const hasValidThread =
     !AppBskyFeedDefs.isBlockedPost(thread) &&
@@ -142,6 +143,8 @@ export default function PostThreadContainer(props: Props) {
             avatar={viewerAvatar}
             post={thread?.post as PostView}
             rounded={textSearch === "" && filteredReplies === 0}
+            onThreadSort={setThreadPreferences}
+            preferredSort={threadPreferences.sort}
           />
           {textSearch !== "" && filteredReplies === 0 && (
             <div className="border-skin-base border-t">
@@ -165,7 +168,7 @@ export default function PostThreadContainer(props: Props) {
               <>
                 {showReplies &&
                   replyArr.some((reply) =>
-                    replyIncludes(reply.post.record, textSearch),
+                    replyIncludes(reply.post.record, textSearch)
                   ) && (
                     <div
                       className="border-skin-base border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
