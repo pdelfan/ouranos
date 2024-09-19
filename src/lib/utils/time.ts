@@ -29,8 +29,9 @@ export function getFormattedDate(date: string): string {
 
   const formattedDate: string = new Date(date).toLocaleString("en-US", options);
 
-  // Append "at" between the date and time
-  const formattedWithAt: string = formattedDate.replace(", ", " at ");
+  // Replace second comma with "at"
+  // e.g. Sep 18, 2024, 6:68 PM  -> Sep 18, 2024 at 6:58 PM
+  const formattedWithAt: string = formattedDate.replace(/, (.*),/, ", $1 at ");
 
   return formattedWithAt;
 }
