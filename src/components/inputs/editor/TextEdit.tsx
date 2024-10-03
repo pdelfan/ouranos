@@ -17,7 +17,10 @@ export default function TextEdit(props: Props) {
     <div className="my-5">
       <div className="flex gap-3">
         <Image
-          src={author?.avatar ?? FallbackAvatar}
+          src={
+            author?.avatar?.replace("avatar", "avatar_thumbnail") ??
+            FallbackAvatar
+          }
           alt="Avatar"
           width={50}
           height={50}

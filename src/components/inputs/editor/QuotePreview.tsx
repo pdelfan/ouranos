@@ -27,7 +27,9 @@ export default function QuoteToPreview(props: Props) {
       className="border-skin-base flex cursor-pointer items-start gap-1 rounded-2xl border p-2"
     >
       <Image
-        src={author.avatar ?? FallbackAvatar}
+        src={
+          author.avatar?.replace("avatar", "avatar_thumbnail") ?? FallbackAvatar
+        }
         alt="Avatar"
         width={20}
         height={20}
