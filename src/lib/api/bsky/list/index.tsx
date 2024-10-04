@@ -1,10 +1,10 @@
-import { type AtpAgent } from "@atproto/api";
+import { type Agent } from "@atproto/api";
 import { getAgent } from "../agent";
 
 export const getLists = async (
   did: string,
   cursor: string,
-  agent: AtpAgent,
+  agent: Agent,
 ) => {
   const lists = await agent.app.bsky.graph.getLists({
     actor: did,
@@ -15,7 +15,7 @@ export const getLists = async (
   return lists.data;
 };
 
-export const getListInfo = async (uri: string, agent?: AtpAgent) => {
+export const getListInfo = async (uri: string, agent?: Agent) => {
   if (!agent) agent = await getAgent();
 
   const feed = await agent.app.bsky.graph.getList({ list: uri });
@@ -24,7 +24,7 @@ export const getListInfo = async (uri: string, agent?: AtpAgent) => {
 };
 
 export const getListFeed = async (
-  agent: AtpAgent,
+  agent: Agent,
   uri: string,
   cursor: string,
 ) => {
@@ -36,7 +36,7 @@ export const getListFeed = async (
 };
 
 export const getListMembers = async (
-  agent: AtpAgent,
+  agent: Agent,
   uri: string,
   cursor: string,
 ) => {

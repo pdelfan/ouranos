@@ -1,5 +1,5 @@
 import {
-  AtpAgent,
+  Agent,
   BskyFeedViewPreference,
   LabelPreference,
   BskyThreadViewPreference,
@@ -9,7 +9,7 @@ import { ContentFilterLabel } from "../../../../../types/feed";
 
 export const getProfile = async (
   handle: string | undefined,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!handle) return;
   if (!agent) agent = await getAgent();
@@ -27,7 +27,7 @@ export const getSuggestions = async () => {
 };
 
 export const searchProfiles = async (
-  agent: AtpAgent,
+  agent: Agent,
   term: string,
   cursor: string,
 ) => {
@@ -42,7 +42,7 @@ export const searchProfiles = async (
 };
 
 export const searchProfilesTypehead = async (
-  agent: AtpAgent,
+  agent: Agent,
   term: string,
 ) => {
   try {
@@ -59,7 +59,7 @@ export const searchPosts = async (
   term: string,
   cursor: string,
   sort: "latest" | "top",
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   try {
@@ -78,7 +78,7 @@ export const searchPosts = async (
   }
 };
 
-export const getPreferences = async (agent?: AtpAgent) => {
+export const getPreferences = async (agent?: Agent) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not get preferences");
@@ -87,7 +87,7 @@ export const getPreferences = async (agent?: AtpAgent) => {
 
 export const updateThreadViewPreferences = async (
   pref: Partial<BskyThreadViewPreference>,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setThreadViewPrefs(pref);
@@ -95,7 +95,7 @@ export const updateThreadViewPreferences = async (
 };
 export const updateHomeFeedPreferences = async (
   pref: Partial<BskyFeedViewPreference>,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setFeedViewPrefs("home", pref);
@@ -104,7 +104,7 @@ export const updateHomeFeedPreferences = async (
 
 export const updateIsAdultContentEnabled = async (
   value: boolean,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setAdultContentEnabled(value);
@@ -114,21 +114,21 @@ export const updateIsAdultContentEnabled = async (
 export const updateContentFilterPreferences = async (
   pref: ContentFilterLabel,
   value: LabelPreference,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   const prefs = await agent.setContentLabelPref(pref, value);
   return prefs;
 };
 
-export const muteUser = async (did: string, agent?: AtpAgent) => {
+export const muteUser = async (did: string, agent?: Agent) => {
   if (!agent) agent = await getAgent();
   const mute = await agent.mute(did);
   if (!mute.success) throw new Error("Could not mute user");
   return mute.success;
 };
 
-export const unMuteUser = async (did: string, agent?: AtpAgent) => {
+export const unMuteUser = async (did: string, agent?: Agent) => {
   if (!agent) agent = await getAgent();
   const mute = await agent.unmute(did);
   if (!mute.success) throw new Error("Could not unmute user");
@@ -138,7 +138,7 @@ export const unMuteUser = async (did: string, agent?: AtpAgent) => {
 export const blockUser = async (
   viewerDid: string,
   did: string,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   const res = await agent.app.bsky.graph.block.create(
@@ -152,7 +152,7 @@ export const blockUser = async (
 export const unBlockUser = async (
   viewerDid: string,
   rkey: string,
-  agent?: AtpAgent,
+  agent?: Agent,
 ) => {
   if (!agent) agent = await getAgent();
   await agent.app.bsky.graph.block.delete({ rkey: rkey, repo: viewerDid });
