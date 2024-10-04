@@ -22,6 +22,7 @@ import usePublishPost from "@/lib/hooks/bsky/feed/usePublishPost";
 import { ThreadgateSetting } from "../../../../types/feed";
 import { RichText } from "@atproto/api";
 import UploadPreview from "./UploadPreview";
+import * as ScrollArea from "@radix-ui/react-scroll-area";
 
 interface Props {
   onCancel: () => void;
@@ -37,7 +38,7 @@ export default function Editor(props: Props) {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
   const [embedSuggestions, setEmbedSuggestions] = useState<Set<string>>(
-    new Set(""),
+    new Set("")
   );
   const [linkEmbed, setLinkEmbed] = useState("");
   const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
@@ -46,7 +47,7 @@ export default function Editor(props: Props) {
   const quoteAuthor = quote?.author.displayName || quote?.author.handle;
   const placeholderText = getComposerPlaceholder(
     replyTo ? "reply" : quote ? "quote" : "post",
-    replyAuthor ?? quoteAuthor,
+    replyAuthor ?? quoteAuthor
   );
 
   const editor = useEditor({
@@ -142,7 +143,12 @@ export default function Editor(props: Props) {
           onRemoveLabel={() => setLabel("")}
           numberOfImages={images?.length ?? 0}
         />
-        <section className="max-h-[80svh] md:h-[30svh] my-3 overflow-scroll">
+
+        <ScrollArea.Root className="max-h-[80svh] md:h-[30svh]  my-3 bg-skin-secondary p-3 rounded-2xl overflow-auto">
+          <ScrollArea.Scrollbar>
+            <ScrollArea.Thumb />
+          </ScrollArea.Scrollbar>
+
           {replyTo && <ReplyToPreview post={replyTo} />}
           <TextEdit
             editor={editor}
@@ -150,7 +156,14 @@ export default function Editor(props: Props) {
             isReply={replyAuthor ? true : false}
           />
           <div
-            className={`${quote || linkEmbed || (images && images.length > 0) || embedSuggestions.size > 0 ? "mb-3" : ""}`}
+            className={`${
+              quote ||
+              linkEmbed ||
+              (images && images.length > 0) ||
+              embedSuggestions.size > 0
+                ? "mb-3"
+                : ""
+            }`}
           >
             {quote && <QuoteToPreview post={quote} />}
             {embedSuggestions.size > 0 && (
@@ -186,8 +199,8 @@ export default function Editor(props: Props) {
               </div>
             )}
           </div>
-        </section>
-        <section className="mt-auto">
+        </ScrollArea.Root>
+        <section className="mt-auto mb-3 md:mb-0">
           <BottomEditorBar
             editor={editor}
             label={label}
