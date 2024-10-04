@@ -54,14 +54,14 @@ export default function UploadPreview(props: Props) {
                 <Dialog.Portal>
                   <Dialog.Content>
                     {selectedImage && (
-                      <section className="animate-fade-up animate-duration-200 bg-skin-base border-skin-base fixed bottom-0 z-50 flex  h-full w-full flex-col justify-between overflow-scroll rounded-t-3xl p-3 shadow-2xl md:h-fit md:border-t">
+                      <section className="animate-fade-up animate-duration-200 bg-skin-base border-skin-base fixed bottom-0 z-50 flex h-full w-full flex-col justify-between overflow-scroll rounded-t-3xl p-3 shadow-2xl md:h-fit md:border-t">
                         <div>
                           <Image
                             src={selectedImage.url}
                             alt="Uploaded image"
                             width={200}
                             height={200}
-                            className="mx-auto max-h-80  rounded-xl object-cover md:max-w-xl"
+                            className="mx-auto max-h-80 rounded-xl object-cover md:max-w-xl"
                           />
                           <div className="mx-auto mt-3 flex items-center gap-2 md:max-w-xl">
                             <PiWarningCircleFill className="text-skin-base shrink-0 text-2xl" />

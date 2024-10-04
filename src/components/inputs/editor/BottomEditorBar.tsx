@@ -7,7 +7,6 @@ import LanguagePicker from "./LanguagePicker";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { BiUpload } from "react-icons/bi";
-import UploadPreview from "./UploadPreview";
 import { RichText } from "@atproto/api";
 import { jsonToText } from "@/lib/utils/text";
 import ThreadGatePicker from "./ThreadGatePicker";
@@ -64,6 +63,7 @@ export default function BottomEditorBar(props: Props) {
           ),
         ];
         onUpdateImages(updatedImages);
+        setShowDropzone(false);
       },
     });
 
@@ -93,9 +93,6 @@ export default function BottomEditorBar(props: Props) {
           </div>
         </div>
       </div>
-      {images && images.length > 0 && (
-        <UploadPreview images={images.slice(0, 4)} onUpdate={onUpdateImages} />
-      )}
       {showDropzone && (
         <div
           {...getRootProps()}
