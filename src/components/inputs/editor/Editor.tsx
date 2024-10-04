@@ -21,6 +21,7 @@ import LinkCard from "./LinkCard";
 import usePublishPost from "@/lib/hooks/bsky/feed/usePublishPost";
 import { ThreadgateSetting } from "../../../../types/feed";
 import { RichText } from "@atproto/api";
+import UploadPreview from "./UploadPreview";
 
 interface Props {
   onCancel: () => void;
@@ -88,7 +89,7 @@ export default function Editor(props: Props) {
     autofocus: true,
     editorProps: {
       attributes: {
-        class: "focus:outline-none h-48 overflow-y-auto text-lg text-skin-base",
+        class: "focus:outline-none overflow-y-auto text-lg text-skin-base",
       },
     },
     onUpdate: ({ editor }) => {
@@ -131,7 +132,7 @@ export default function Editor(props: Props) {
 
   return (
     <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-fit md:max-h-[80svh] md:border-t">
-      <div className="mx-auto max-w-2xl">
+      <div className="flex flex-col h-full mx-auto max-w-2xl">
         <TopEditorBar
           editor={editor}
           hasContent={hasContent}
@@ -141,51 +142,65 @@ export default function Editor(props: Props) {
           onRemoveLabel={() => setLabel("")}
           numberOfImages={images?.length ?? 0}
         />
-        {replyTo && <ReplyToPreview post={replyTo} />}
-        <TextEdit
-          editor={editor}
-          author={author}
-          isReply={replyAuthor ? true : false}
-        />
-        <div className="mb-3">
-          {quote && <QuoteToPreview post={quote} />}
-          {embedSuggestions.size > 0 && (
-            <div className="mb-3 flex flex-col gap-y-3">
-              {Array.from(embedSuggestions).map((link) => (
-                <LinkCardPrompt
-                  key={link}
-                  link={link}
-                  onAddLinkCard={() => {
-                    setLinkEmbed(link);
-                    setEmbedSuggestions(new Set(""));
-                  }}
+        <section className="max-h-[80svh] md:h-[30svh] my-3 overflow-scroll">
+          {replyTo && <ReplyToPreview post={replyTo} />}
+          <TextEdit
+            editor={editor}
+            author={author}
+            isReply={replyAuthor ? true : false}
+          />
+          <div
+            className={`${quote || linkEmbed || (images && images.length > 0) || embedSuggestions.size > 0 ? "mb-3" : ""}`}
+          >
+            {quote && <QuoteToPreview post={quote} />}
+            {embedSuggestions.size > 0 && (
+              <div className="mb-3 flex flex-col gap-y-3">
+                {Array.from(embedSuggestions).map((link) => (
+                  <LinkCardPrompt
+                    key={link}
+                    link={link}
+                    onAddLinkCard={() => {
+                      setLinkEmbed(link);
+                      setEmbedSuggestions(new Set(""));
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+            {linkEmbed !== "" && (
+              <LinkCard
+                link={linkEmbed}
+                onRemoveLinkCard={() => {
+                  setLinkEmbed("");
+                  setLinkCard(null);
+                }}
+                onAddLinkCard={setLinkCard}
+              />
+            )}
+            {images && images.length > 0 && (
+              <div className="my-4">
+                <UploadPreview
+                  images={images.slice(0, 4)}
+                  onUpdate={setImages}
                 />
-              ))}
-            </div>
-          )}
-          {linkEmbed !== "" && (
-            <LinkCard
-              link={linkEmbed}
-              onRemoveLinkCard={() => {
-                setLinkEmbed("");
-                setLinkCard(null);
-              }}
-              onAddLinkCard={setLinkCard}
-            />
-          )}
-        </div>
-        <BottomEditorBar
-          editor={editor}
-          label={label}
-          onSelectLabel={setLabel}
-          text={editor.getJSON()}
-          languages={languages}
-          onSelectLanguages={setLanguages}
-          threadGate={threadGate}
-          onUpdateThreadGate={setThreadGate}
-          images={images}
-          onUpdateImages={setImages}
-        />
+              </div>
+            )}
+          </div>
+        </section>
+        <section className="mt-auto">
+          <BottomEditorBar
+            editor={editor}
+            label={label}
+            onSelectLabel={setLabel}
+            text={editor.getJSON()}
+            languages={languages}
+            onSelectLanguages={setLanguages}
+            threadGate={threadGate}
+            onUpdateThreadGate={setThreadGate}
+            images={images}
+            onUpdateImages={setImages}
+          />
+        </section>
       </div>
     </section>
   );

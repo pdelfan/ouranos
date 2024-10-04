@@ -20,7 +20,7 @@ export default function useSearchUsers(props: Props) {
         const data = await queryClient.fetchQuery({
           staleTime: 300 * 1000, // 5 minutes
           queryKey: ["followers"],
-          queryFn: () => getFollows({ handle: authorHandle, agent, limit: 8 }),
+          queryFn: () => getFollows({ handle: authorHandle, agent, limit: 5 }),
         });
         return data.data.follows;
       } catch (error) {

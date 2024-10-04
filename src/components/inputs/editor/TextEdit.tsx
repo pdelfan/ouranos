@@ -14,7 +14,7 @@ export default function TextEdit(props: Props) {
   const { editor, author, isReply } = props;
 
   return (
-    <div className="my-5">
+    <div className="p-3 rounded-2xl bg-skin-secondary overflow-scroll">
       <div className="flex gap-3">
         <Image
           src={
