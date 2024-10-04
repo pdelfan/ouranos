@@ -200,7 +200,7 @@ export default function Editor(props: Props) {
             )}
           </div>
         </ScrollArea.Root>
-        <section className="mt-auto mb-3 md:mb-0">
+        <section className="mt-auto mb-6 md:mb-0">
           <BottomEditorBar
             editor={editor}
             label={label}
