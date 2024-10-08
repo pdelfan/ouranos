@@ -161,13 +161,13 @@ export default function Editor(props: Props) {
               linkEmbed ||
               (images && images.length > 0) ||
               embedSuggestions.size > 0
-                ? "mb-3"
+                ? "my-3"
                 : ""
             }`}
           >
             {quote && <QuoteToPreview post={quote} />}
             {embedSuggestions.size > 0 && (
-              <div className="mb-3 flex flex-col gap-y-3">
+              <div className="my-3 flex flex-col gap-y-3">
                 {Array.from(embedSuggestions).map((link) => (
                   <LinkCardPrompt
                     key={link}
