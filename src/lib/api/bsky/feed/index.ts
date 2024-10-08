@@ -121,6 +121,7 @@ export const getUserPosts = async (
     actor: handle,
     cursor: cursor,
     filter: "posts_no_replies",
+    includePins: true,
   });
 
   if (!posts.success) throw new Error("Could not fetch posts");

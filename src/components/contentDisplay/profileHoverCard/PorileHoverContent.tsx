@@ -1,5 +1,5 @@
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
-import FollowInfo from "@/components/dataDisplay/followInfo/FollowInfo";
+import UserStats from "@/components/dataDisplay/userStats/UserStats";
 import ProfileBio from "@/components/dataDisplay/profileBio/ProfileBio";
 import ViewerInfo from "@/components/dataDisplay/viewerInfo/ViewerInfo";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
@@ -77,10 +77,11 @@ export default function ProfileHoverContent(props: Props) {
         </div>
       </div>
       {profile?.handle && (
-        <FollowInfo
+        <UserStats
           handle={profile?.handle}
-          followersCount={profile?.followersCount ?? 0}
-          followsCount={profile?.followsCount ?? 0}
+          followerCount={profile?.followersCount ?? 0}
+          followCount={profile?.followsCount ?? 0}
+          postsCount={profile.postsCount ?? 0}
         />
       )}
       {profile?.description && (

@@ -1,6 +1,6 @@
 "use client";
 
-import FollowInfo from "@/components/dataDisplay/followInfo/FollowInfo";
+import UserStats from "@/components/dataDisplay/userStats/UserStats";
 import FallbackAvatar from "@/assets/images/fallbackAvatar.png";
 import FallbackBanner from "@/assets/images/fallbackBanner.png";
 import Image from "next/image";
@@ -20,6 +20,7 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import EditProfile from "@/components/actions/editProfile/EditProfile";
 import { isInvalidHandle } from "@/lib/utils/text";
 import KnownFollowers from "@/components/dataDisplay/knownFollowers/KnownFollowers";
+import JoinedDate from "@/components/dataDisplay/joinedDate/JoinedDate";
 
 interface Props {
   handle: string;
@@ -30,6 +31,7 @@ export default function ProfileHeader(props: Props) {
   const [showAvatar, setShowAvatar] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const { data: session } = useSession();
+
   const {
     data: profile,
     isLoading,
@@ -157,12 +159,20 @@ export default function ProfileHeader(props: Props) {
             {profile?.description && (
               <ProfileBio description={profile.description} />
             )}
+
+            {profile.createdAt && (
+              <div className="my-2">
+                <JoinedDate date={new Date(profile.createdAt)} />
+              </div>
+            )}
+
             {profile?.handle && (
               <div className="mt-2">
-                <FollowInfo
+                <UserStats
                   handle={profile?.handle}
-                  followersCount={profile?.followersCount ?? 0}
-                  followsCount={profile?.followsCount ?? 0}
+                  followerCount={profile?.followersCount ?? 0}
+                  followCount={profile?.followsCount ?? 0}
+                  postsCount={profile.postsCount ?? 0}
                 />
               </div>
             )}

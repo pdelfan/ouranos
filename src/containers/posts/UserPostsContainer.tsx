@@ -46,7 +46,7 @@ export default function UserPostsConatiner(props: Props) {
 
   const dataLength = userPostsData?.pages.reduce(
     (acc, page) => acc + (page?.data.feed.length ?? 0),
-    0,
+    0
   );
 
   const isEmpty =
