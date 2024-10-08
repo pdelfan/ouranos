@@ -79,17 +79,17 @@ export default function FeedPost(props: Props) {
           e.stopPropagation();
           router.push(
             `/dashboard/user/${post.post.author.handle}/post/${getPostId(
-              post.post.uri,
-            )}`,
+              post.post.uri
+            )}`
           );
         }}
         className="cursor-pointer"
       >
         <div className="relative flex items-start gap-3">
-          <Link
-            href={`/dashboard/user/${author.handle}`}
+          <div
             onClick={(e) => {
               e.stopPropagation();
+              router.push(`/dashboard/user/${author.handle}`);
             }}
             className="z-20 shrink-0 hover:brightness-90"
           >
@@ -99,7 +99,7 @@ export default function FeedPost(props: Props) {
                 size="md"
               />
             </ProfileHoverCard>
-          </Link>
+          </div>
           <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
             {isParent && !reason && <Threadline />}
             <div className="flex">
