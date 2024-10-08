@@ -1,6 +1,6 @@
-import { type AtpAgent } from "@atproto/api";
+import { type Agent } from "@atproto/api";
 
-export const getNotifications = async (agent: AtpAgent, cursor: string) => {
+export const getNotifications = async (agent: Agent, cursor: string) => {
   const notifications = await agent.listNotifications({
     cursor: cursor,
     limit: 22,
@@ -9,11 +9,11 @@ export const getNotifications = async (agent: AtpAgent, cursor: string) => {
   return notifications;
 };
 
-export const updateSeenNotifications = async (agent: AtpAgent) => {
+export const updateSeenNotifications = async (agent: Agent) => {
   return await agent.updateSeenNotifications();
 };
 
-export const getUnreadNotificationsCount = async (agent: AtpAgent) => {
+export const getUnreadNotificationsCount = async (agent: Agent) => {
   const count = await agent.countUnreadNotifications();
   if (!count.success)
     throw new Error("Could not get unread notifications count");  

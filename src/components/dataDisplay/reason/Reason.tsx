@@ -1,20 +1,23 @@
 import { AppBskyFeedDefs } from "@atproto/api";
-import { BiRepost } from "react-icons/bi";
+import { BiPin, BiRepost } from "react-icons/bi";
 import Link from "next/link";
+import {
+  ReasonPin,
+  ReasonRepost,
+} from "@atproto/api/dist/client/types/app/bsky/feed/defs";
 
 interface Props {
   reason:
-    | AppBskyFeedDefs.ReasonRepost
-    | {
-        [k: string]: unknown;
-        $type: string;
-      }
+    | ReasonRepost
+    | ReasonPin
+    | { [k: string]: unknown; $type: string }
     | undefined;
 }
 
 export default function Reason(props: Props) {
   const { reason } = props;
   const isRepost = AppBskyFeedDefs.isReasonRepost(reason);
+  const isPin = AppBskyFeedDefs.isReasonPin(reason);
 
   return (
     <>
@@ -28,6 +31,12 @@ export default function Reason(props: Props) {
             <small>{reason.by.displayName || reason.by.handle} reposted</small>
           </div>
         </Link>
+      )}
+      {isPin && (
+        <div className="max-w-fit text-skin-secondary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
+          <BiPin />
+          <small>Pinned</small>
+        </div>
       )}
     </>
   );

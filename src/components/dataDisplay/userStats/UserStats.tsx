@@ -3,20 +3,21 @@ import Link from "next/link";
 
 interface Props {
   handle: string;
-  followsCount: number;
-  followersCount: number;
+  followCount: number;
+  followerCount: number;
+  postsCount: number;
 }
 
-export default function FollowInfo(props: Props) {
-  const { handle, followsCount, followersCount } = props;
+export default function UserStats(props: Props) {
+  const { handle, followCount, followerCount, postsCount } = props;
 
   return (
-    <div className="flex-gap flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
       <Link
         href={`/dashboard/user/${handle}/following`}
         className="text-skin-base flex gap-1 font-semibold hover:brightness-110"
       >
-        {abbreviateNumber(followsCount)}
+        {abbreviateNumber(followCount)}
         <span className="text-skin-tertiary font-medium">Following</span>
       </Link>
 
@@ -24,9 +25,15 @@ export default function FollowInfo(props: Props) {
         href={`/dashboard/user/${handle}/followers`}
         className="text-skin-base flex gap-1 font-semibold hover:brightness-110"
       >
-        {abbreviateNumber(followersCount)}
+        {abbreviateNumber(followerCount)}
         <span className="text-skin-tertiary font-medium">Followers</span>
       </Link>
+      <div className=" flex gap-1">
+        <span className="text-skin-base font-semibold">
+          {abbreviateNumber(postsCount)}
+        </span>
+        <span className="text-skin-tertiary font-medium">Posts</span>
+      </div>
     </div>
   );
 }
