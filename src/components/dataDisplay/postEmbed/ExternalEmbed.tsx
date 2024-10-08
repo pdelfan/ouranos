@@ -20,14 +20,13 @@ export default function ExternalEmbed(props: Props) {
             onClick={(e) => e.stopPropagation()}
           >
             {embed.external.thumb && (
-              <div className="relative h-44 w-full">
-                <Image
-                  src={embed.external.thumb}
-                  alt={embed.external.description}
-                  fill
-                  className="border-b-skin-base rounded-t-lg border-b object-cover"
-                />
-              </div>
+              <Image
+                src={embed.external.thumb}
+                alt={embed.external.description}
+                width={900}
+                height={500}
+                className="border-b-skin-base rounded-t-lg border-b aspect-auto"
+              />
             )}
             <div className="flex flex-col p-3">
               <span className="text-skin-tertiary break-all text-sm">
