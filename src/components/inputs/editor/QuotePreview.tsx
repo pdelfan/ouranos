@@ -24,7 +24,7 @@ export default function QuoteToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="border-skin-base flex cursor-pointer items-start gap-1 rounded-2xl border p-2"
+      className="bg-skin-base border-skin-base flex cursor-pointer items-start gap-1 rounded-2xl border p-2"
     >
       <Image
         src={
