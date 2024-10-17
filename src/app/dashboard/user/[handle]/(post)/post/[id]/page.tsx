@@ -1,4 +1,12 @@
 import PostThreadContainer from "@/containers/thread/PostThreadContainer";
+import { Metadata } from "next";
+
+export function generateMetadata({ params }: Props): Metadata {
+  return {
+    title: `Post by ${params.handle}`,
+    description: `${params.handle}'s post thread`,
+  };
+}
 
 interface Props {
   params: {
@@ -10,7 +18,7 @@ interface Props {
   };
 }
 
-export default function Page(props: Props) {
+export default async function Page(props: Props) {
   const { id, handle } = props.params;
   const { query } = props.searchParams;
 
