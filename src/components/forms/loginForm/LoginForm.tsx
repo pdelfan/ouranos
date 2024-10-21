@@ -63,6 +63,7 @@ export default function LoginForm() {
           alt="Ouranos logo"
           width={150}
           height={50}
+          priority
           className="mx-auto mb-3"
         />
         <h1 className="text-skin-base mb-1 text-center text-xl font-semibold">

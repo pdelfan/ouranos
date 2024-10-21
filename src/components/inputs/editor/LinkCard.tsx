@@ -85,6 +85,7 @@ export default function LinkCard(props: Props) {
             alt="Link image"
             onError={onErrorImage}
             fill
+            priority
             className="border-skin-base rounded-t-2xl border-b object-cover"
           />
         </div>

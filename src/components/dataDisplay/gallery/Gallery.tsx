@@ -101,6 +101,7 @@ export default function Gallery(props: Props) {
               alt={images[currentIndex].alt}
               width={images[currentIndex].aspectRatio?.width ?? 900}
               height={images[currentIndex].aspectRatio?.height ?? 900}
+              priority
               className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
             />
           )}
@@ -111,6 +112,7 @@ export default function Gallery(props: Props) {
               alt={"Image"}
               width={900}
               height={900}
+              priority
               className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
             />
           )}
