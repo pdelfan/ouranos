@@ -63,6 +63,7 @@ export default function ProfileHeader(props: Props) {
                 alt="Banner"
                 width={800}
                 height={192}
+                priority
                 className="h-40 object-cover opacity-30 contrast-75 md:h-48"
               />
             ) : (
@@ -79,6 +80,7 @@ export default function ProfileHeader(props: Props) {
                   alt="Banner"
                   width={800}
                   height={192}
+                  priority
                   className="h-40 object-cover md:h-48"
                 />
               </Button>
@@ -106,6 +108,7 @@ export default function ProfileHeader(props: Props) {
                     alt="Avatar"
                     width={95}
                     height={95}
+                    priority
                     className={`rounded-full object-cover ${
                       profile.avatar
                         ? "cursor-pointer hover:brightness-90"

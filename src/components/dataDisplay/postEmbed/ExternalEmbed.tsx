@@ -25,6 +25,7 @@ export default function ExternalEmbed(props: Props) {
                 alt={embed.external.description}
                 width={900}
                 height={500}
+                priority
                 className="border-b-skin-base rounded-t-lg border-b aspect-auto max-h-96 object-cover"
               />
             )}
