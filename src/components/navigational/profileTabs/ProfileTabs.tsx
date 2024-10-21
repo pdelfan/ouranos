@@ -19,7 +19,7 @@ export default function ProfileTabs() {
           isActive={pathname === `${basePath}`}
         />
         <TabItem
-          label="Posts & replies"
+          label="Replies"
           path={`${basePath}/replies`}
           isActive={pathname === `${basePath}/replies`}
         />
