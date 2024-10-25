@@ -69,7 +69,7 @@ export default function PostActions(props: Props) {
     return (
       <div>
         {(likeCount > 0 || repostCount > 0) && (
-          <div className="border-skin-base mt-3 flex flex-wrap items-center gap-3 border-y p-2">
+          <div className="border-skin-base mt-3 flex flex-wrap items-center gap-3 border-y py-2">
             {repostCount > 0 && (
               <Link
                 href={`/dashboard/user/${post.author.handle}/post/${getPostId(
@@ -131,7 +131,7 @@ export default function PostActions(props: Props) {
             }}
             className="hover:text-primary text-skin-icon-muted"
           >
-            <BiMessageRounded className="text-lg" />
+            <BiMessageRounded className="text-xl" />
           </Button>
           <Dropdown>
             <Dropdown.Trigger>
@@ -145,7 +145,7 @@ export default function PostActions(props: Props) {
                     : "text-skin-icon-muted hover:text-skin-icon-repost"
                 }
               >
-                <BiRepost className="text-xl" />
+                <BiRepost className="text-2xl" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
@@ -190,9 +190,9 @@ export default function PostActions(props: Props) {
             }
           >
             {liked ? (
-              <BiSolidHeart className="text-lg" />
+              <BiSolidHeart className="text-xl" />
             ) : (
-              <BiHeart className="text-lg" />
+              <BiHeart className="text-xl" />
             )}
           </Button>
           <Dropdown>
@@ -203,7 +203,7 @@ export default function PostActions(props: Props) {
                 }}
                 className="text-skin-icon-muted hover:text-skin-base"
               >
-                <BiDotsHorizontalRounded className="text-lg" />
+                <BiDotsHorizontalRounded className="text-xl" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>

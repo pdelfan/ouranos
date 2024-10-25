@@ -64,7 +64,10 @@ export default function PostSearchContainer(props: Props) {
       {isFetching && !isFetchingNextPage && <FeedPostSkeleton />}
       {isEmpty && !hasNextPage && (
         <div className="border-skin-base border-t">
-          <FeedAlert variant="empty" message="No posts found" />
+          <FeedAlert
+            variant="empty"
+            message={`No posts found for ${query}`}
+          />
         </div>
       )}
       {error && (

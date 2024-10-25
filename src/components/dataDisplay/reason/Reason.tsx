@@ -1,5 +1,5 @@
 import { AppBskyFeedDefs } from "@atproto/api";
-import { BiPin, BiRepost } from "react-icons/bi";
+import { BiRepost, BiSolidPin } from "react-icons/bi";
 import Link from "next/link";
 import {
   ReasonPin,
@@ -34,8 +34,8 @@ export default function Reason(props: Props) {
       )}
       {isPin && (
         <div className="max-w-fit text-skin-secondary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
-          <BiPin />
-          <small>Pinned</small>
+          <BiSolidPin />
+          <small>Pinned post</small>
         </div>
       )}
     </>

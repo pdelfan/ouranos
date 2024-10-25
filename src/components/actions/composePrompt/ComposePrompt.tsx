@@ -37,7 +37,7 @@ export default function ComposePrompt(props: Props) {
       }}
       className="flex items-center gap-2"
     >
-      <Avatar src={avatar?.replace("avatar", "avatar_thumbnail")} />
+      <Avatar src={avatar?.replace("avatar", "avatar_thumbnail")} size="sm" />
       <span className="text-skin-tertiary font-medium">Write your reply</span>
     </button>
   );

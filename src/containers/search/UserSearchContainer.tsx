@@ -35,7 +35,7 @@ export default function UserSearchContainer(props: Props) {
 
   const dataLength = profiles?.pages.reduce(
     (acc, page) => acc + (page?.actors.length ?? 0),
-    0,
+    0
   );
 
   const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
@@ -67,7 +67,10 @@ export default function UserSearchContainer(props: Props) {
 
       {isEmpty && (
         <div className="border-skin-base border-t">
-          <FeedAlert variant="empty" message="No users found" />
+          <FeedAlert
+            variant="empty"
+            message={`No users found for ${query}`}
+          />
         </div>
       )}
       {isFetching && !isFetchingNextPage && (
