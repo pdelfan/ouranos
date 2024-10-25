@@ -35,7 +35,7 @@ export default function Reason(props: Props) {
       {isPin && (
         <div className="max-w-fit text-skin-secondary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
           <BiSolidPin />
-          <small>Pinned</small>
+          <small>Pinned post</small>
         </div>
       )}
     </>
