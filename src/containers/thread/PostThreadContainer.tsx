@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
@@ -21,7 +22,6 @@ import { useRouter } from "next/navigation";
 import { MAX_REPLY_CONTAINERS } from "@/lib/consts/thread";
 import ThreadActionsContainer from "./ThreadActionsContainer";
 import { replyIncludes } from "@/lib/utils/text";
-import { THREAD_VIEW_PREFS } from "@/lib/consts/settings";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 import { useSession } from "next-auth/react";
 
@@ -80,9 +80,7 @@ export default function PostThreadContainer(props: Props) {
 
   const { preferences } = usePreferences();
   const contentFilter = preferences?.contentFilter;
-  const [threadPreferences, setThreadPreferences] = useState(
-    preferences?.threadPreferences ?? THREAD_VIEW_PREFS
-  );
+  const threadPreferences = preferences?.threadPreferences;
 
   const hasValidThread =
     !AppBskyFeedDefs.isBlockedPost(thread) &&
@@ -147,8 +145,6 @@ export default function PostThreadContainer(props: Props) {
               avatar={profile?.avatar}
               post={thread?.post as PostView}
               rounded={textSearch === "" && filteredReplies === 0}
-              onThreadSort={setThreadPreferences}
-              preferredSort={threadPreferences.sort}
             />
           )}
 

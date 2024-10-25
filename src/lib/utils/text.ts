@@ -125,16 +125,3 @@ export const replyIncludes = (reply: PostView["record"], term: string) => {
   if (!text || !text.toLowerCase().includes(term.toLowerCase())) return false;
   return true;
 };
-
-export const getSortLabel = (sort: string) => {
-  switch (sort) {
-    case "newest":
-      return "Newest";
-    case "oldest":
-      return "Oldest";
-    case "most-likes":
-      return "Most likes";
-    default:
-      return "Random";
-  }
-};
