@@ -10,10 +10,10 @@ import { useState } from "react";
 interface Props {
   placeholder: string;
   autoFocus?: boolean;
-  enableKeypress?: boolean; // search by pressing Enter
 }
+
 export default function Search(props: Props) {
-  const { placeholder, enableKeypress, autoFocus = false } = props;
+  const { placeholder, autoFocus = false } = props;
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -35,32 +35,18 @@ export default function Search(props: Props) {
       <label htmlFor="search" className="sr-only">
         Search
       </label>
-      {enableKeypress ? (
-        <input
-          className="border-skin-base text-skin-base focus:outline-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              setSearch(e.currentTarget.value);
-              handleSearch(e.currentTarget.value);
-            }
-          }}
-          defaultValue={searchParams.get("query")?.toString()}
-        />
-      ) : (
-        <input
-          className="border-skin-base focus:outline-skin-base text-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-full border py-[9px] pl-10 text-sm outline-2"
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          onChange={(e) => {
-            setSearch(e.currentTarget.value);
-            handleSearch(e.target.value);
-          }}
-          value={search}
-          defaultValue={searchParams.get("query")?.toString()}
-        />
-      )}
+      <input
+        className="border-skin-base focus:outline-skin-base text-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-xl border py-2.5 pl-10 text-sm outline-2"
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        onChange={(e) => {
+          setSearch(e.currentTarget.value);
+          handleSearch(e.target.value);
+        }}
+        value={search}
+        defaultValue={searchParams.get("query")?.toString()}
+      />
+
       {search.length > 0 && (
         <Button
           className="absolute right-3 top-1/2 -translate-y-1/2"
