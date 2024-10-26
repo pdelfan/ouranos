@@ -140,7 +140,7 @@ export default function ProfileHeader(props: Props) {
               </div>
             </div>
           )}
-          <div className="m-3">
+          <div className="mx-3 mb-3 mt-1">
             <div className="flex flex-wrap items-center gap-x-2">
               <h1 className="text-skin-base break-all text-2xl font-semibold">
                 {profile.displayName || profile.handle}

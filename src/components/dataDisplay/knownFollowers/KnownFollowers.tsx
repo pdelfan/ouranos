@@ -2,7 +2,6 @@ import useKnownFollowers from "@/lib/hooks/bsky/social/useKnownFollowers";
 import Avatar from "../avatar/Avatar";
 import Link from "next/link";
 import { MAX_KNOWN_FOLLOWERS } from "@/lib/consts/general";
-import { usePathname } from "next/navigation";
 import KnownFollowersSkeleton from "./KnownFollowersSkeleton";
 
 interface Props {
@@ -11,7 +10,6 @@ interface Props {
 
 export default function KnownFollowers(props: Props) {
   const { handle } = props;
-  const pathname = usePathname();
   const {
     knownFollowers,
     isKnownFollowersEmpty,
