@@ -26,6 +26,7 @@ export default function SidePanel() {
             alt="Ouranos text"
             width={84}
             height={26}
+            priority
             className="hidden lg:block"
           />
         </div>
