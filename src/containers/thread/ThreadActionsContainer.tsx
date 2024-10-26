@@ -10,7 +10,6 @@ interface Props {
 
 export default function ThreadActionsContainer(props: Props) {
   const { avatar, post, rounded } = props;
-  const postHasReplies = !!post.replyCount;
 
   return (
     <div>
@@ -22,11 +21,9 @@ export default function ThreadActionsContainer(props: Props) {
         }`}
       >
         <ComposePrompt avatar={avatar} post={post} />
-        {postHasReplies && (
-          <div className="w-full sm:w-fit">
-            <Search placeholder="Search for replies" />
-          </div>
-        )}
+        <div className="w-full sm:w-fit ml-auto">
+          <Search placeholder="Search for replies" />
+        </div>
       </div>
     </div>
   );
