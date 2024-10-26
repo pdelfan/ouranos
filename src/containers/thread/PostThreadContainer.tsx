@@ -37,7 +37,6 @@ export default function PostThreadContainer(props: Props) {
   const agent = useAgent();
   const router = useRouter();
   const { data: session } = useSession();
-
   const { data: profile } = useProfile(session?.user.bskySession.handle);
 
   const {
@@ -72,9 +71,11 @@ export default function PostThreadContainer(props: Props) {
     setFilteredReplies(
       replyChains
         .map((replyArr) =>
-          replyArr.some((reply) => replyIncludes(reply.post.record, textSearch))
+          replyArr.some((reply) =>
+            replyIncludes(reply.post.record, textSearch),
+          ),
         )
-        .filter(Boolean).length
+        .filter(Boolean).length,
     );
   }, [replyChains, textSearch]);
 
@@ -170,7 +171,7 @@ export default function PostThreadContainer(props: Props) {
               <>
                 {showReplies &&
                   replyArr.some((reply) =>
-                    replyIncludes(reply.post.record, textSearch)
+                    replyIncludes(reply.post.record, textSearch),
                   ) && (
                     <div
                       className="border-skin-base border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
