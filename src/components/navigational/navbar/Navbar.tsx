@@ -35,7 +35,7 @@ export default function Navbar() {
   });
 
   return (
-    <nav className="inline-flex flex-col gap-6 lg:ml-1.5">
+    <nav className="inline-flex flex-col gap-5 lg:ml-1.5">
       <NavItem
         href="/dashboard/home"
         icon={<BiHome className="text-2xl md:text-3xl" />}

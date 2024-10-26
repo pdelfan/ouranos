@@ -21,7 +21,7 @@ export default async function DashboardLayout({
   const profile = await getProfile(session?.user.bskySession.handle);
 
   return (
-    <main className="bg-skin-base flex justify-center gap-6 pb-20 md:mt-6 lg:gap-12">
+    <main className="bg-skin-base flex justify-center gap-6 pb-20 md:mt-6 lg:gap-12 animate-fade">
       {profile && <Composer author={profile} />}
       <SidePanel />
       <section className="w-full md:max-w-xl">

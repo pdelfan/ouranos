@@ -8,7 +8,7 @@ interface Props {
   avatar?: string;
 }
 
-export default async function Aside(props: Props) {
+export default function Aside(props: Props) {
   const { displayName, handle, avatar } = props;
 
   return (

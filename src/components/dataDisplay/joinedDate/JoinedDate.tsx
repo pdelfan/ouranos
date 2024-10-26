@@ -10,7 +10,7 @@ export default function JoinedDate(props: Props) {
   return (
     <div className="flex items-center gap-1">
       <BiCalendar className="text-skin-tertiary" />
-      <span className="text-skin-tertiary text-sm font-medium">
+      <span className="text-skin-tertiary font-medium">
         Joined {""}
         {date.toLocaleDateString("en-US", {
           year: "numeric",
