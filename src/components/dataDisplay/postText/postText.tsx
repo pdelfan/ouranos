@@ -32,7 +32,7 @@ export default function PostText(props: Props) {
         text: segment.text,
         component: (
           <Link
-            className="text-skin-link-base hover:text-skin-link-hover break-words"
+            className="text-skin-link-base hover:text-skin-link-hover break-after-auto"
             href={`/dashboard/user/${getHandle(segment.text)}`}
             key={segment.mention?.did}
             onClick={(e) => e.stopPropagation()}
