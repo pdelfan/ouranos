@@ -36,7 +36,7 @@ export default function Search(props: Props) {
         Search
       </label>
       <input
-        className="border-skin-base focus:outline-skin-base text-skin-base placeholder:text-skin-secondary bg-skin-tertiary peer block w-full rounded-xl border py-2.5 pl-10 text-sm outline-2"
+        className="border-skin-base focus:outline-skin-base focus:bg-skin-tertiary text-skin-base placeholder:text-skin-secondary bg-skin-secondary peer block w-full rounded-xl border py-2.5 pl-10 text-sm outline outline-transparent hover:bg-skin-tertiary"
         placeholder={placeholder}
         autoFocus={autoFocus}
         onChange={(e) => {
