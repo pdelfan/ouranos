@@ -1,10 +1,9 @@
 "use client";
 
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
-import SignOut from "@/components/actions/signOut/SignOut";
 import Link from "next/link";
 import NavItem from "../navbar/NavItem";
-import { FaBell, FaRegBell } from "react-icons/fa6";
+import { FaRegBell } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
