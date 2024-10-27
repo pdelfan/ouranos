@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+import { BiLogOut } from "react-icons/bi";
 
 export default function SignOut() {
   return (
@@ -8,7 +9,7 @@ export default function SignOut() {
       onClick={() => signOut({ callbackUrl: "/" })}
       className="text-skin-tertiary hover:text-skin-base font-medium"
     >
-      Sign out
+      <BiLogOut className="text-2xl text-skin-secondary hover:text-skin-base" />
     </button>
   );
 }

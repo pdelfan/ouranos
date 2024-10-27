@@ -4,10 +4,10 @@ import { ReactElement } from "react";
 
 interface Props {
   href: string;
-  title: string;
   icon: ReactElement;
-  activeIcon: ReactElement;
-  isActive: boolean;
+  title?: string;
+  activeIcon?: ReactElement;
+  isActive?: boolean;
   badge?: number;
 }
 
@@ -16,9 +16,9 @@ export default function NavItem(props: Props) {
   return (
     <Link
       href={href}
-      className={`hover:text-skin-base flex items-center gap-3 ${
+      className={`hover:text-skin-base flex items-center ${
         isActive ? "text-skin-base" : "text-skin-secondary"
-      }`}
+      } ${title && "gap-3"}`}
     >
       <div className="relative m-2 md:m-0">
         {isActive ? activeIcon : icon}

@@ -6,7 +6,7 @@ import { useScrollContext } from "@/app/providers/scroll";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import { useQuery } from "@tanstack/react-query";
-import { BiCloud, BiHome, BiSolidCloud, BiSolidHome } from "react-icons/bi";
+import { BiHome, BiPlanet, BiSolidHome, BiSolidPlanet } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaRegBell } from "react-icons/fa6";
 import { FaBell } from "react-icons/fa";
@@ -51,8 +51,8 @@ export default function AppBar() {
       />
       <NavItem
         href="/dashboard/feeds"
-        icon={<BiCloud className="text-2xl md:text-3xl" />}
-        activeIcon={<BiSolidCloud className="text-2xl md:text-3xl" />}
+        icon={<BiPlanet className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidPlanet className="text-2xl md:text-3xl" />}
         title="Feeds"
         isActive={pathname === "/dashboard/feeds"}
       />
