@@ -4,10 +4,10 @@ import { ImBubbles2 } from "react-icons/im";
 import {
   BiLogoGithub,
   BiSolidCheckCircle,
-  BiSolidCloud,
   BiSolidEnvelope,
   BiSolidXCircle,
   BiSolidPalette,
+  BiSolidPlanet,
 } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
 import { BiSolidBellOff } from "react-icons/bi";
@@ -115,7 +115,7 @@ export default async function SettingsContainer() {
             href="/dashboard/settings/my-feeds"
             className="border-skin-base text-skin-base hover:bg-skin-secondary flex items-center gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
           >
-            <BiSolidCloud className="text-skin-icon-base text-xl" />
+            <BiSolidPlanet className="text-skin-icon-base text-xl" />
             My Feeds
           </Link>
         </div>
