@@ -4,7 +4,6 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import Link from "next/link";
 import NavItem from "../navbar/NavItem";
 import { FaRegBell } from "react-icons/fa6";
-import { usePathname } from "next/navigation";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
