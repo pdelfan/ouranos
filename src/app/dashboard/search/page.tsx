@@ -1,5 +1,5 @@
 import SearchList from "@/components/contentDisplay/searchList/SearchList";
-import SuggestionsList from "@/components/contentDisplay/suggestionsList/SuggestionsList";
+import WhoToFollowList from "@/components/contentDisplay/whoToFollowList/WhoToFollowList";
 import Search from "@/components/filter/search/Search";
 import { BiSolidHelpCircle } from "react-icons/bi";
 import * as Popover from "@radix-ui/react-popover";
@@ -82,9 +82,9 @@ export default function Page(props: Props) {
       {!query && (
         <section>
           <h2 className="text-skin-base mb-2 px-3 text-2xl font-semibold md:px-0">
-            Suggestions
+            Who to follow
           </h2>
-          <SuggestionsList />
+          <WhoToFollowList />
         </section>
       )}
     </section>
