@@ -15,7 +15,7 @@ export default function TextEdit(props: Props) {
 
   return (
     <div>
-      <div className="flex gap-3">
+      <div className={`flex gap-3 ${isReply && "mt-3"}`}>
         <Image
           src={
             author?.avatar?.replace("avatar", "avatar_thumbnail") ??
