@@ -2,7 +2,6 @@
 
 import Navbar from "../navbar/Navbar";
 import Image from "next/image";
-import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 import Button from "@/components/actions/button/Button";
 
 export default function SidePanel() {
@@ -32,9 +31,6 @@ export default function SidePanel() {
         </div>
       </Button>
       <Navbar />
-      <div className="mt-20">
-        <ComposeButton mode="fixed" />
-      </div>
     </menu>
   );
 }
