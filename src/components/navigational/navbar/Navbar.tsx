@@ -1,23 +1,35 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import NavItem from "./NavItem";
 import { usePathname } from "next/navigation";
 
 import {
   BiHome,
   BiSolidHome,
-  BiSolidUser,
-  BiUser,
   BiPlanet,
   BiSolidPlanet,
+  BiCog,
+  BiSolidCog,
 } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
+import { FaBell, FaRegBell } from "react-icons/fa6";
+import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
+import useAgent from "@/lib/hooks/bsky/useAgent";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { data: session } = useSession();
+  const agent = useAgent();
+  const {
+    data: notificationsCount,
+    error,
+    isFetching,
+  } = useQuery({
+    queryKey: ["notificationsCount"],
+    queryFn: () => getUnreadNotificationsCount(agent),
+    refetchInterval: 10000,
+  });
 
   return (
     <nav className="inline-flex flex-col gap-5 lg:ml-1.5">
@@ -50,11 +62,19 @@ export default function Navbar() {
         isActive={pathname === "/dashboard/lists"}
       />
       <NavItem
-        href={`/dashboard/user/${session?.user.handle}`}
-        icon={<BiUser className="text-2xl md:text-3xl" />}
-        activeIcon={<BiSolidUser className="text-2xl md:text-3xl" />}
-        title="Profile"
-        isActive={pathname.includes(`/dashboard/user/${session?.user.handle}`)}
+        href="/dashboard/notifications"
+        icon={<FaRegBell className="text-2xl md:text-3xl" />}
+        activeIcon={<FaBell className="text-2xl md:text-3xl" />}
+        title="Notifications"
+        isActive={pathname.includes("notifications")}
+        badge={notificationsCount ?? 0}
+      />
+      <NavItem
+        href="/dashboard/settings"
+        icon={<BiCog className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidCog className="text-2xl md:text-3xl" />}
+        title="Settings"
+        isActive={pathname.includes("settings")}
       />
     </nav>
   );

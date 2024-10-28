@@ -57,7 +57,7 @@ export default function UserPostsConatiner(props: Props) {
 
   return (
     <div>
-      <ComposeButton mode="float" />
+      <ComposeButton float={true} />
       <InfiniteScroll
         dataLength={dataLength ?? 0}
         next={fetchNextUserPostsPage}

@@ -40,7 +40,7 @@ export default function FeedContainer(props: Props) {
 
   const dataLength = feedData?.pages.reduce(
     (acc, page) => acc + (page?.data.feed?.length ?? 0),
-    0,
+    0
   );
 
   const isEmpty =
@@ -54,7 +54,7 @@ export default function FeedContainer(props: Props) {
           refetchFeed();
         }}
       />
-      <ComposeButton mode="float" />
+      <ComposeButton float={true} />
 
       <InfiniteScroll
         dataLength={dataLength ?? 0}
@@ -73,7 +73,7 @@ export default function FeedContainer(props: Props) {
             <div key={i}>
               {page?.data.feed
                 .filter((f) =>
-                  feed === "timeline" ? filterFeed(f, feedFilter) : true,
+                  feed === "timeline" ? filterFeed(f, feedFilter) : true
                 )
                 .map((post, j) => (
                   <PostContainer
