@@ -21,7 +21,7 @@ export const getProfile = async (
 
 export const getSuggestions = async () => {
   const agent = await getAgent();
-  const suggestions = await agent.getSuggestions({ limit: 30 });
+  const suggestions = await agent.getSuggestions({ limit: 10 });
   if (!suggestions.success) return null;
   return suggestions.data.actors;
 };

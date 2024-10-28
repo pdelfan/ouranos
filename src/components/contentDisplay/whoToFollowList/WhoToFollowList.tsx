@@ -1,7 +1,7 @@
 import { getSuggestions } from "@/lib/api/bsky/actor";
 import ProfileCard from "../profileCard/ProfileCard";
 
-export default async function SuggestionsList() {
+export default async function WhoToFollowList() {
   const suggestions = await getSuggestions();
 
   return (

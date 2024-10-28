@@ -24,9 +24,9 @@ export default function ReplyToPreview(props: Props) {
   return (
     <article
       onClick={toggleShowMore}
-      className="relative mt-3 flex cursor-pointer items-start gap-3 rounded-2xl p-2"
+      className="relative flex cursor-pointer items-start gap-3 rounded-2xl p-2"
     >
-      <Threadline className="left-8 mt-5" />
+      <Threadline className="left-8" />
       <Image
         src={
           author.avatar?.replace("avatar", "avatar_thumbnail") ?? FallbackAvatar
