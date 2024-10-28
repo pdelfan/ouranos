@@ -12,7 +12,7 @@ export default function Badge(props: Props) {
       case "block":
         return "block";
       case "overlay":
-        return "absolute inline-flex items-center justify-center w-6 h-6";
+        return "absolute inline-flex items-center justify-center w-5 h-5";
       default:
         return "inline-flex items-center justify-center px-2 py-1.5";
     }
@@ -21,7 +21,7 @@ export default function Badge(props: Props) {
   const getPosition = () => {
     switch (position) {
       case "topRight":
-        return "-top-2 -end-3";
+        return "-top-2 -end-1.5";
       case "topLeft":
         return "top-0 start-0";
       case "bottomRight":
