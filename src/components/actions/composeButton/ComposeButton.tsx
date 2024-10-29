@@ -38,7 +38,7 @@ export default function ComposeButton(props: Props) {
   return (
     <button
       onClick={() => openComposer({ mention: userHandle })}
-      className="bg-primary text-skin-inverted flex items-center gap-2 rounded-full font-semibold hover:brightness-95 p-3.5 lg:px-3 lg:py-2"
+      className="bg-primary text-skin-inverted flex items-center gap-2 rounded-full font-semibold hover:brightness-95 p-2 lg:px-3 lg:py-2"
     >
       <RiQuillPenFill className="text-skin-icon-inverted text-2xl" />
       <span className="text-skin-icon-inverted hidden lg:inline">Post</span>
