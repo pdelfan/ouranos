@@ -132,7 +132,7 @@ export default function Editor(props: Props) {
   if (!editor) return null;
 
   return (
-    <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base fixed bottom-0 z-50 w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-auto md:max-h-[80svh] md:border-t">
+    <section className="border-skin-base animate-fade-up animate-duration-200 bg-skin-base fixed bottom-0 z-50 h-full w-full overflow-auto rounded-t-3xl p-3 shadow-2xl md:h-auto md:max-h-[80svh] md:border-t">
       <div className="flex flex-col h-full mx-auto max-w-2xl">
         <TopEditorBar
           editor={editor}
