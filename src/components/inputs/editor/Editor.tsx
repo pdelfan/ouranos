@@ -126,7 +126,7 @@ export default function Editor(props: Props) {
     languages: languages.map((lang) => lang.code),
     images,
     label,
-    threadGate,
+    threadGate,    
   });
 
   if (!editor) return null;

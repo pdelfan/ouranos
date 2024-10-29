@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { BiLinkExternal } from "react-icons/bi";
+import PostTag from "../postTag/PostTag";
 
 interface Props {
   record: PostView["record"];
@@ -18,6 +19,7 @@ export default function PostText(props: Props) {
   const { record, truncate, mode = "feed" } = props;
   const text = AppBskyFeedPost.isRecord(record) && record.text;
   const facet = AppBskyFeedPost.isRecord(record) && record.facets;
+  const tags = AppBskyFeedPost.isRecord(record) && record.tags;
 
   const richText = new RichTextHelper({
     text: text.toString(),
@@ -119,6 +121,13 @@ export default function PostText(props: Props) {
       {content.map((segment, i) => (
         <Fragment key={`${i}+${text}`}>{segment.component}</Fragment>
       ))}
+      {tags && (
+        <div className="flex flex-wrap gap-2 mt-3">
+          {tags.map((t, i) => (
+            <PostTag key={i} tag={t} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
