@@ -231,7 +231,7 @@ export default function usePublishPost(props: Props) {
         langs: lang,
         labels: selfLabels,
         reply: reply,
-        embed: embed,              
+        embed: embed,
       });
 
       // add threadGate
@@ -260,9 +260,6 @@ export default function usePublishPost(props: Props) {
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["timeline"] });
-      queryClient.invalidateQueries({ queryKey: ["profilePosts"] });
-      queryClient.invalidateQueries({ queryKey: ["postThread"] });
       toast.success("Post published", { id: "Post publish" });
     },
     onError: (e) => {
