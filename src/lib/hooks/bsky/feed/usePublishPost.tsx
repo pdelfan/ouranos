@@ -231,7 +231,7 @@ export default function usePublishPost(props: Props) {
         langs: lang,
         labels: selfLabels,
         reply: reply,
-        embed: embed,
+        embed: embed,              
       });
 
       // add threadGate
