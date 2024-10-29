@@ -75,7 +75,7 @@ export default function TopEditorBar(props: Props) {
             className={`bg-primary hover:bg-primary-dark rounded-full px-4 py-2 gap-2 text-sm font-semibold text-white ${
               onPublish.isPending && "animate-pulse animate-duration-1000"
             }`}
-            disabled={onPublish.isPending}
+            disabled={onPublish.isPending || !hasContent}
           >
             <BiLogoTelegram className="text-xl" />
             {onPublish.isPending ? "Sending..." : "Send"}
