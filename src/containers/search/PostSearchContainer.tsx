@@ -1,3 +1,5 @@
+"use client";
+
 import { searchPosts } from "@/lib/api/bsky/actor";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -64,10 +66,7 @@ export default function PostSearchContainer(props: Props) {
       {isFetching && !isFetchingNextPage && <FeedPostSkeleton />}
       {isEmpty && !hasNextPage && (
         <div className="border-skin-base border-t">
-          <FeedAlert
-            variant="empty"
-            message={`No posts found for ${query}`}
-          />
+          <FeedAlert variant="empty" message={`No posts found`} />
         </div>
       )}
       {error && (
