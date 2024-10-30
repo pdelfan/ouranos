@@ -19,7 +19,7 @@ export default function TopicHeader(props: Props) {
   if (isLoading && !data) return <TopicHeaderSkeleton />;
 
   return (
-    <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:border md:rounded-t-2xl">
+    <article className="border-skin-base flex flex-col gap-2 border-x-0 border-t-0 p-3 md:border md:border-b-0 md:rounded-t-2xl">
       {error && (
         <FeedAlert
           variant="badResponse"

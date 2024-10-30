@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { BiLinkExternal } from "react-icons/bi";
 import PostTag from "../postTag/PostTag";
+import ProfileHoverCard from "@/components/contentDisplay/profileHoverCard/ProfileHoverCard";
 
 interface Props {
   record: PostView["record"];
@@ -33,14 +34,20 @@ export default function PostText(props: Props) {
       content.push({
         text: segment.text,
         component: (
-          <Link
-            className="text-skin-link-base hover:text-skin-link-hover break-after-auto"
-            href={`/dashboard/user/${getHandle(segment.text)}`}
-            key={segment.mention?.did}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {segment.text}
-          </Link>
+          <>
+            {segment.mention?.did && (
+              <Link
+                className="text-skin-link-base hover:text-skin-link-hover break-after-auto"
+                href={`/dashboard/user/${getHandle(segment.text)}`}
+                key={segment.mention?.did}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ProfileHoverCard handle={segment.mention.did}>
+                  {segment.text}
+                </ProfileHoverCard>
+              </Link>
+            )}
+          </>
         ),
       });
     } else if (segment.isLink()) {
@@ -61,12 +68,12 @@ export default function PostText(props: Props) {
                 </Link>
               </Tooltip.Trigger>
               <Tooltip.Portal>
-                <Tooltip.Content className="bg-skin-base z-[60] p-3 border border-skin-base rounded-xl max-w-xs shadow-lg m-3">
+                <Tooltip.Content className="flex flex-col gap-1 bg-skin-base z-[60] p-3 border border-skin-base rounded-xl max-w-xs shadow-lg m-3">
                   <div className="flex flex-wrap items-center gap-2 text-lg">
+                    <BiLinkExternal />
                     <span className="block text-skin-base font-medium">
                       Link
                     </span>
-                    <BiLinkExternal />
                   </div>
 
                   <Link
