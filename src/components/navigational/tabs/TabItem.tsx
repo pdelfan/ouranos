@@ -38,7 +38,7 @@ export default function TabItem(props: Props) {
         isActive
           ? "border-primary text-skin-link-base"
           : "text-skin-secondary border-transparent"
-      }`}
+      }`}      
     >
       {label}
     </Link>
