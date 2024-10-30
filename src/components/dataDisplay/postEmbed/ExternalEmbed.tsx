@@ -36,6 +36,11 @@ export default function ExternalEmbed(props: Props) {
               <span className="text-skin-base font-medium [overflow-wrap:anywhere]">
                 {embed.external.title}
               </span>
+              {embed.external.description && (
+                <span className="text-skin-secondary text-sm">
+                  {embed.external.description}
+                </span>
+              )}
             </div>
           </Link>
         </article>
