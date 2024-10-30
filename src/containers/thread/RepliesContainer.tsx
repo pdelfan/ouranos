@@ -37,7 +37,7 @@ export default function RepliesContainer(props: Props) {
             !showMore && (
               <button
                 onClick={() => setShowMore(true)}
-                className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted inline-block rounded-full px-2.5 py-2 text-sm font-medium"
+                className="text-skin-secondary bg-skin-muted hover:bg-skin-muted/90 inline-block rounded-full px-2.5 py-2 m-3 text-sm font-medium"
               >
                 Show More
               </button>

@@ -31,7 +31,7 @@ const SearchPost = memo(function SearchPost(props: Props) {
           `/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}`,
         );
       }}
-      className="border-skin-base border border-x-0 p-3 last:border-b hover:cursor-pointer md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+      className="border-skin-base border border-x-0 p-3 last:border-b hover:cursor-pointer hover:bg-skin-secondary md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
     >
       <div className="relative flex items-start gap-3">
         <Link
