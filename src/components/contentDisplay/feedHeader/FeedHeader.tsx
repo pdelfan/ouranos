@@ -114,7 +114,7 @@ export default function FeedHeader(props: Props) {
       {isFetchingFeedInfo && <FeedHeaderSkeleton />}
       {!isFetchingFeedInfo && feedInfo && (
         <>
-          <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border ">
+          <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Image

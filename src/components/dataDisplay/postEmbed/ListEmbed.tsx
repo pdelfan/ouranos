@@ -32,7 +32,7 @@ export default function ListEmbed(props: Props) {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="border-skin-base bg-skin-base mt-2 block cursor-pointer rounded-xl border p-3 hover:brightness-95"
+          className="border-skin-base bg-skin-base mt-2 block cursor-pointer rounded-xl border p-3 hover:bg-skin-secondary"
         >
           <div className="flex items-start gap-2">
             <div className="bg-primary rounded-lg p-2.5">{selectedIcon}</div>
