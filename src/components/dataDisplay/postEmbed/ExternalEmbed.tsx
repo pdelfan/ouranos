@@ -19,7 +19,7 @@ export default function ExternalEmbed(props: Props) {
           <div className="bg-skin-base hover:bg-skin-secondary rounded-t-lg">
             <Link
               href={embed.external.uri}
-              target="blank"
+              target="_blank"
               onClick={(e) => e.stopPropagation()}
             >
               {embed.external.thumb && (

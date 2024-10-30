@@ -41,7 +41,7 @@ export default function ProfileBio(props: Props) {
           <Link
             className="text-skin-link-base hover:text-skin-link-hover inline-block break-all"
             href={segment.link!.uri}
-            target="blank"
+            target="_blank"
             key={segment.link!.uri}
             onClick={(e) => e.stopPropagation()}
           >

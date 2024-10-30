@@ -60,7 +60,7 @@ export default function PostText(props: Props) {
                 <Link
                   className="text-skin-link-base hover:text-skin-link-hover break-all"
                   href={segment.link?.uri!}
-                  target="blank"
+                  target="_blank"
                   key={segment.link?.uri}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -79,7 +79,7 @@ export default function PostText(props: Props) {
                   <Link
                     className="text-skin-link-base hover:text-skin-link-hover break-all"
                     href={segment.link?.uri!}
-                    target="blank"
+                    target="_blank"
                     key={segment.link?.uri}
                     onClick={(e) => e.stopPropagation()}
                   >

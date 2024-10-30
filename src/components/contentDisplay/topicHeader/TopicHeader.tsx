@@ -6,6 +6,9 @@ import { SiGooglemessages } from "react-icons/si";
 import TopicHeaderSkeleton from "./TopicHeaderSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { useState } from "react";
+import Link from "next/link";
+import { BiLinkExternal } from "react-icons/bi";
+import { getHostname } from "@/lib/utils/text";
 
 interface Props {
   url: string;
@@ -19,7 +22,7 @@ export default function TopicHeader(props: Props) {
   if (isLoading && !data) return <TopicHeaderSkeleton />;
 
   return (
-    <article className="border-skin-base flex flex-col gap-2 border-x-0 border-t-0 p-3 md:border md:border-b-0 md:rounded-t-2xl">
+    <article className="border-skin-base md:border-x">
       {error && (
         <FeedAlert
           variant="badResponse"
@@ -34,28 +37,32 @@ export default function TopicHeader(props: Props) {
           alt={`Image from ${url}`}
           width={900}
           height={500}
-          className="rounded-lg"
           onError={() => setHideImage(true)}
+          className="max-h-96 object-cover"
         />
       )}
 
       {data && (
-        <>
-          <div className="flex flex-wrap items-center gap-2 text-skin-secondary mt-2">
-            <SiGooglemessages className="text-2xl" />
-            <span className="font-medium text-lg">Topic</span>
-          </div>
-          <div className="flex flex-col gap-1 mt-1">
+        <div className="p-3">
+          <div className="flex flex-col gap-1">
+            <Link
+              href={url}
+              target="_blank"
+              className="flex flex-wrap items-center gap-2 mt-2 font-medium text-skin-tertiary hover:text-skin-base"
+            >
+              <BiLinkExternal />
+              {getHostname(url)}
+            </Link>
             {data?.title && (
-              <h3 className="text-skin-base break-words text-xl font-medium">
+              <h1 className="text-skin-base break-words text-xl font-medium">
                 {data.title}
-              </h3>
+              </h1>
             )}
             {data?.description && (
               <p className="text-skin-secondary">{data.description}</p>
             )}
           </div>
-        </>
+        </div>
       )}
     </article>
   );
