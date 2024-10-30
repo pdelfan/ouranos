@@ -16,7 +16,7 @@ export default function ExternalEmbed(props: Props) {
     <>
       {depth < 2 && (
         <article className="border border-skin-base mt-2 rounded-lg group">
-          <div className="bg-skin-base hover:bg-skin-secondary">
+          <div className="bg-skin-base hover:bg-skin-secondary rounded-t-lg">
             <Link
               href={embed.external.uri}
               target="blank"

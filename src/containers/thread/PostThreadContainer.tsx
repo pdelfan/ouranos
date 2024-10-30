@@ -174,7 +174,7 @@ export default function PostThreadContainer(props: Props) {
                     replyIncludes(reply.post.record, textSearch),
                   ) && (
                     <div
-                      className="border-skin-base border border-x-0 p-3 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+                      className="border-skin-base border border-x-0 first:border-t-0 last:border-b md:border-x md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
                       key={i}
                     >
                       <RepliesContainer
@@ -193,7 +193,7 @@ export default function PostThreadContainer(props: Props) {
             onClick={() =>
               setMaxReplies((prevMax) => prevMax + MAX_REPLY_CONTAINERS)
             }
-            className="text-skin-base bg-skin-muted/70 hover:bg-skin-muted mx-auto block rounded-full px-2.5 py-2 text-sm font-medium"
+            className="text-skin-secondary bg-skin-muted hover:bg-skin-muted/90 mx-auto block rounded-full px-2.5 py-2 text-sm font-medium"
           >
             Show More Replies
           </button>

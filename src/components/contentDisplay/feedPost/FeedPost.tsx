@@ -52,7 +52,11 @@ export default function FeedPost(props: Props) {
   if (!showPost) {
     return (
       <>
-        {reason && <Reason reason={reason} />}
+        {reason && (
+          <div className="px-3 pt-3">
+            <Reason reason={reason} />
+          </div>
+        )}
         <article>
           <div className="relative flex items-start gap-3">
             <Avatar size="md" className="z-20 shrink-0" />
@@ -73,7 +77,11 @@ export default function FeedPost(props: Props) {
 
   return (
     <>
-      {reason && <Reason reason={reason} />}
+      {reason && (
+        <div className="px-3 pt-3">
+          <Reason reason={reason} />
+        </div>
+      )}
       <article
         onClick={(e) => {
           e.stopPropagation();
@@ -83,7 +91,7 @@ export default function FeedPost(props: Props) {
             )}`
           );
         }}
-        className="cursor-pointer"
+        className="cursor-pointer hover:bg-skin-secondary p-3"
       >
         <div className="relative flex items-start gap-3">
           <div
@@ -138,7 +146,7 @@ export default function FeedPost(props: Props) {
                   <PostEmbed content={post.post.embed} depth={0} />
                 )}
               </>
-            )}            
+            )}
             <div className="mt-2">
               <PostActions post={post.post} />
             </div>
