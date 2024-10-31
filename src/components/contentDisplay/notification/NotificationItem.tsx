@@ -108,7 +108,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
   } else {
     return (
       <div
-        className={`border-skin-base flex flex-col justify-between border border-x-0 p-3 first:border-t last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
+        className={`border-skin-base flex flex-col justify-between border border-x-0 first:border-t last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0 ${
           !isRead && "bg-skin-tertiary"
         }`}
       >

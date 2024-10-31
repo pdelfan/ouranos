@@ -29,7 +29,21 @@ export default function TopBar(props: Props) {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="inline"
       >
-        <Image src="/logo.svg" alt="Ouranos logo" width={100} height={100} />
+        <div className="flex items-center gap-2 group">
+          <Image
+            src="/ouranos.svg"
+            alt="Ouranos logo"
+            width={30}
+            height={30}
+            className="block transition-transform duration-700 ease-in-out group-hover:rotate-180"
+          />
+          <Image
+            src="/ouranosText.svg"
+            alt="Ouranos text"
+            width={60}
+            height={20}
+          />
+        </div>{" "}
       </Button>
       <Link href="/dashboard/settings">
         <BiCog className="text-skin-icon-muted hover:text-skin-icon-base text-2xl md:text-3xl" />
