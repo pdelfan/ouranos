@@ -81,7 +81,7 @@ export default function UploadPreview(props: Props) {
                               }
                               className="resize-none"
                             />
-                            <div className="mt-1 flex justify-end gap-3">
+                            <div className="mt-2 flex justify-end gap-3">
                               <Button
                                 onClick={() => {
                                   setShowAltTextModal(false);
