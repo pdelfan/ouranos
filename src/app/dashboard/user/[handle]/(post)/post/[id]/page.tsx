@@ -23,10 +23,17 @@ export default async function Page(props: Props) {
   const { query } = props.searchParams;
 
   return (
-    <PostThreadContainer
-      id={id}
-      handle={handle}
-      repliesTextFilter={query ?? ""}
-    />
+    <>
+      <div className="border-skin-base border-b md:rounded-t-2xl md:border">
+        <h2 className="text-skin-base px-3 py-2 text-center text-xl font-semibold">
+          Post
+        </h2>
+      </div>
+      <PostThreadContainer
+        id={id}
+        handle={handle}
+        repliesTextFilter={query ?? ""}
+      />
+    </>
   );
 }
