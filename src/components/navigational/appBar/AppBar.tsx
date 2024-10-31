@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import NavItem from "../navbar/NavItem";
-import { useScrollContext } from "@/app/providers/scroll";
 import useAgent from "@/lib/hooks/bsky/useAgent";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import { useQuery } from "@tanstack/react-query";
@@ -14,8 +13,6 @@ import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 
 export default function AppBar() {
   const pathname = usePathname();
-  const val = useScrollContext();
-  const canUpdate = typeof window !== "undefined";
   const agent = useAgent();
   const {
     data: notificationsCount,
@@ -28,13 +25,7 @@ export default function AppBar() {
   });
 
   return (
-    <nav
-      className="bg-skin-base border-skin-base fixed bottom-0 z-40 flex w-full justify-between gap-6 overflow-auto border-t px-6 pb-8 pt-1 transition-all ease-linear md:hidden"
-      style={{
-        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
-        transform: canUpdate ? `translateY(${val ?? 0}%)` : "translateY(0%)",
-      }}
-    >
+    <nav className="bg-skin-base border-skin-base fixed bottom-0 z-40 flex w-full justify-between gap-6 overflow-auto border-t px-6 pb-8 pt-1 transition-all ease-linear md:hidden">
       <NavItem
         href="/dashboard/home"
         icon={<BiHome className="text-2xl md:text-3xl" />}
