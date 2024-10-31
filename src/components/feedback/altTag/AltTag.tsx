@@ -36,7 +36,7 @@ export default function AltTag(props: Props) {
           e.preventDefault();
           handleShowAlt();
         }}
-        className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold"
+        className="text-skin-secondary bg-skin-secondary hover:bg-skin-muted hover:text-skin-base absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold border border-skin-base"
       >
         ALT
       </Button>
@@ -58,11 +58,11 @@ export default function AltTag(props: Props) {
               className="m-3.5"
             >
               <Dialog.Close asChild>
-                <Button className="text-skin-inverted bg-skin-overlay hover:bg-skin-inverted fixed left-3 top-3 z-50 rounded-full p-3.5">
+                <Button className="text-skin-secondary bg-skin-secondary hover:bg-skin-muted hover:text-skin-base fixed left-3 top-3 z-50 rounded-full p-3.5 border border-skin-base">
                   <CgClose className="text-xl" />
                 </Button>
               </Dialog.Close>
-              <div className="text-skin-inverted bg-skin-overlay-muted z-50  max-h-[calc(100svh-10rem)] max-w-xl cursor-text overflow-auto rounded-xl p-4">
+              <div className="text-skin-inverted bg-skin-overlay-muted z-50 max-h-[calc(100svh-10rem)] max-w-xl cursor-text overflow-auto rounded-xl p-4">
                 <div className="mb-4 flex flex-wrap justify-between gap-3">
                   <Dialog.Title className="text-xl font-semibold text-white">
                     Alternative text

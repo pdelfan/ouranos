@@ -30,7 +30,7 @@ export default async function RootLayout({
     <html lang="en" className="bg-skin-base">
       <head>
         {/* for making the page fullscreen on iOS when added to home */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={inter.className}>
         <ThemeProvider>
