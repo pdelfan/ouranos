@@ -13,7 +13,7 @@ export default async function TopicsLayout({
 }) {
   return (
     <>
-      <article className="border-skin-base flex flex-col gap-2 border-x-0 border-t-0 px-3 py-2 md:border md:rounded-t-2xl">
+      <article className="border-skin-base flex flex-col gap-2 border-x-0 border-t-0 border-b px-3 py-2 md:border md:rounded-t-2xl">
         <div className="flex flex-wrap items-center gap-2 text-skin-secondary">
           <div className="bg-primary/10 p-3 rounded-full">
             <SiGooglemessages className="text-primary text-2xl" />
