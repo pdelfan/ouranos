@@ -21,7 +21,7 @@ export default async function TopicsLayout({
           <div className="flex flex-col">
             <span className="font-semibold text-lg text-skin-base">Topic</span>
             <span className="font-medium text-skin-secondary">
-              Posts that mention this topic
+              Posts that mention this content
             </span>
           </div>
         </div>
