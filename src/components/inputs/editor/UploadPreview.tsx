@@ -19,7 +19,7 @@ export default function UploadPreview(props: Props) {
 
   const handleRemove = (image: UploadImage) => {
     onUpdate((prev) =>
-      prev?.filter((prevImage) => prevImage.url !== image.url),
+      prev?.filter((prevImage) => prevImage.url !== image.url)
     );
   };
 
@@ -29,7 +29,7 @@ export default function UploadPreview(props: Props) {
         {images.map((image) => (
           <div key={image.url} className="animate-fade relative h-fit">
             <Button
-              className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted absolute top-0 m-2 rounded-full p-2"
+              className="text-skin-secondary bg-skin-secondary hover:bg-skin-muted border border-skin-base hover:text-skin-base absolute top-0 m-2 rounded-full p-2"
               onClick={(e) => {
                 e.preventDefault();
                 handleRemove(image);
@@ -40,8 +40,8 @@ export default function UploadPreview(props: Props) {
             <div className="absolute bottom-0 m-2">
               <Dialog.Root open={showAltTextModal}>
                 <Dialog.Trigger>
-                  <div
-                    className="text-skin-icon-inverted bg-skin-overlay hover:bg-skin-inverted hover:text-skin-inverted rounded-full px-3 py-2 text-sm font-medium"
+                  <Button
+                    className="text-skin-secondary bg-skin-secondary hover:bg-skin-muted border border-skin-base hover:text-skin-base rounded-full px-3 py-2 text-sm font-medium"
                     onClick={() => {
                       setSelectedImage(image);
                       setShowAltTextModal(true);
@@ -49,7 +49,7 @@ export default function UploadPreview(props: Props) {
                     }}
                   >
                     {image.altText ? "Edit alt text" : "Add alt text"}
-                  </div>
+                  </Button>
                 </Dialog.Trigger>
                 <Dialog.Portal>
                   <Dialog.Content>
@@ -61,7 +61,7 @@ export default function UploadPreview(props: Props) {
                             alt="Uploaded image"
                             width={200}
                             height={200}
-                            className="mx-auto max-h-80 rounded-xl object-cover md:max-w-xl"
+                            className="mx-auto max-h-80 rounded-xl object-cover md:max-w-xl border border-skin-base"
                           />
                           <div className="mx-auto mt-3 flex items-center gap-2 md:max-w-xl">
                             <PiWarningCircleFill className="text-skin-base shrink-0 text-2xl" />
@@ -103,8 +103,8 @@ export default function UploadPreview(props: Props) {
                                                 ? altText
                                                 : selectedImage.altText,
                                           })
-                                        : prevImage,
-                                    ),
+                                        : prevImage
+                                    )
                                   );
                                 }}
                                 className="bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-6 py-2 text-sm font-semibold"
@@ -125,7 +125,7 @@ export default function UploadPreview(props: Props) {
               alt="Uploaded image"
               width={200}
               height={200}
-              className="aspect-square max-h-40 w-full rounded-xl object-cover"
+              className="aspect-square max-h-40 w-full rounded-xl object-cover border border-skin-base"
             />
           </div>
         ))}
