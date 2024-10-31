@@ -18,7 +18,7 @@ export default function ImageEmbed(props: Props) {
 
   const generateImageLayout = (
     count: number,
-    images: AppBskyEmbedImages.ViewImage[]
+    images: AppBskyEmbedImages.ViewImage[],
   ) => {
     // adjust image grid layout based on number of images
     switch (count) {
@@ -129,19 +129,23 @@ export default function ImageEmbed(props: Props) {
       default:
         return (
           <div className="relative">
-            <Image
-              src={images[0].thumb}
-              alt={images[0].alt}
-              width={images[0].aspectRatio?.width ?? 900}
-              height={images[0].aspectRatio?.height ?? 900}
-              priority
-              className="rounded-md max-h-96 w-full object-cover cursor-pointer hover:brightness-90"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowImage(0);
-              }}
-            />
-            {images[0].alt && <AltTag text={images[0].alt} />}
+            {images[0] && (
+              <>
+                <Image
+                  src={images[0].thumb}
+                  alt={images[0].alt}
+                  width={images[0].aspectRatio?.width ?? 900}
+                  height={images[0].aspectRatio?.height ?? 900}
+                  priority
+                  className="rounded-md max-h-96 w-full object-cover cursor-pointer hover:brightness-90"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowImage(0);
+                  }}
+                />
+                {images[0].alt && <AltTag text={images[0].alt} />}
+              </>
+            )}
           </div>
         );
     }
