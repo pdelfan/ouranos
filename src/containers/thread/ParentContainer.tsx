@@ -17,7 +17,7 @@ export default function ParentContainer(props: Props) {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="border-skin-base flex flex-col justify-between border border-x-0 first:border-t-0  last:rounded-b-2xl last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+    <div className="border-skin-base flex flex-col justify-between border border-x-0 first:border-t-0 last:rounded-b-2xl last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
       {parentChain.map((parent, i) => (
         <div key={i}>
           {AppBskyFeedDefs.isBlockedPost(parent) && (

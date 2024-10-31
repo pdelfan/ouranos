@@ -24,6 +24,7 @@ export default function Reason(props: Props) {
       {isRepost && (
         <Link
           href={`/dashboard/user/${reason.by.handle}`}
+          onClick={(e) => e.stopPropagation()}
           className="max-w-fit"
         >
           <div className="text-skin-secondary hover:text-skin-tertiary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
