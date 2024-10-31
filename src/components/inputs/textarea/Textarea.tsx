@@ -7,7 +7,8 @@ export default function Textarea(props: Props) {
   return (
     <textarea
       {...props}
-      className={`text-skin-base focus:outline-skin-base placeholder:text-skin-secondary bg-skin-base border-skin-base w-full rounded-lg border p-2.5 ${className}`}
+      className={`border-skin-base focus:outline-skin-base focus:bg-skin-tertiary text-skin-base placeholder:text-skin-secondary bg-skin-secondary peer block w-full rounded-xl border p-2.5 text-sm outline outline-transparent hover:bg-skin-tertiary 
+       ${className}`}
     />
   );
 }

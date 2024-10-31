@@ -1,6 +1,6 @@
 export default function NotificationPostSkeleton() {
   return (
-    <div className="flex animate-pulse items-center justify-between gap-2">
+    <div className="flex animate-pulse items-center justify-between gap-2 p-3">
       <div className="flex w-full items-start gap-3">
         <div className="bg-skin-muted h-12 w-12 flex-shrink-0 flex-grow-0 rounded-full" />
         <div className="flex grow flex-col">
