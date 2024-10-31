@@ -1,6 +1,5 @@
 "use client";
 
-import { useScrollContext } from "@/app/providers/scroll";
 import Button from "@/components/actions/button/Button";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
@@ -14,17 +13,9 @@ interface Props {
 
 export default function TopBar(props: Props) {
   const { profile } = props;
-  const val = useScrollContext();
-  const canUpdate = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
-    <div
-      className="bg-skin-base border-skin-base sticky top-0 z-50 flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden"
-      style={{
-        opacity: canUpdate ? `${100 - (val ?? 0)}%` : "100%",
-        transform: canUpdate ? `translateY(-${val ?? 0}%)` : "translateY(-0%)",
-      }}
-    >
+    <div className="bg-skin-base border-skin-base sticky top-0 z-[60] flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden">
       <Link
         href={`/dashboard/user/${profile?.handle}`}
         className="hover:brightness-90"
