@@ -11,14 +11,14 @@ export default function SidePanel() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="inline mb-8"
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 group">
           <Image
             src="/ouranos.svg"
             alt="Ouranos logo"
             width={44}
             height={44}
             priority
-            className="block transition-transform ease-in-out duration-700 hover:rotate-180"
+            className="block transition-transform ease-in-out duration-700 group-hover:rotate-180"
           />
           <Image
             src="/ouranosText.svg"
