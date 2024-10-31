@@ -24,11 +24,13 @@ export default function TopicHeader(props: Props) {
   return (
     <article className="border-skin-base md:border-x">
       {error && (
-        <FeedAlert
-          variant="badResponse"
-          message="Something went wrong"
-          standalone
-        />
+        <div className="p-3">
+          <FeedAlert
+            variant="badResponse"
+            message="Could not load this topic"
+            standalone
+          />
+        </div>
       )}
 
       {data?.image && !hideImage && (

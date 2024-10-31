@@ -47,7 +47,7 @@ export default function PostThreadLayout({
 }) {
   return (
     <>
-      <div className="border-skin-base md:rounded-t-2xl border-b-0 md:border md:border-b-0">
+      <div className="border-skin-base border-b md:rounded-t-2xl md:border">
         <h2 className="text-skin-base px-3 py-2 text-center text-xl font-semibold">
           Post
         </h2>
