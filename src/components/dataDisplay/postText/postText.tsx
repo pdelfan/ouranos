@@ -8,7 +8,6 @@ import { Fragment } from "react";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { BiLinkExternal } from "react-icons/bi";
 import PostTag from "../postTag/PostTag";
-import ProfileHoverCard from "@/components/contentDisplay/profileHoverCard/ProfileHoverCard";
 
 interface Props {
   record: PostView["record"];
@@ -42,9 +41,7 @@ export default function PostText(props: Props) {
                 key={segment.mention?.did}
                 onClick={(e) => e.stopPropagation()}
               >
-                <ProfileHoverCard handle={segment.mention.did}>
-                  {segment.text}
-                </ProfileHoverCard>
+                {segment.text}
               </Link>
             )}
           </>

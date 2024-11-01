@@ -59,7 +59,7 @@ export default function BottomEditorBar(props: Props) {
           ...files.slice(0, 4).map((file) =>
             Object.assign(file, {
               url: URL.createObjectURL(file),
-            }),
+            })
           ),
         ];
         onUpdateImages(updatedImages);
@@ -76,12 +76,12 @@ export default function BottomEditorBar(props: Props) {
         <div className="flex flex-wrap justify-between gap-5 mt-3">
           <div className="flex gap-4">
             <EmojiPicker onEmojiSelect={editor.commands.insertContent} />
+            <ImagePicker onShow={setShowDropzone} />
             <AdultContentPicker
               onSelectLabel={onSelectLabel}
               selectedLabel={label}
               disabled={!images || images.length === 0}
             />
-            <ImagePicker onShow={setShowDropzone} />
             <LinkPicker editor={editor} />
           </div>
           <div className="just flex flex-wrap gap-x-5 gap-y-2">

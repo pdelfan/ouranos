@@ -3,7 +3,6 @@ import Dropdown from "@/components/actions/dropdown/Dropdown";
 import React from "react";
 import { BiCheck, BiTrash } from "react-icons/bi";
 import { HiOutlineShieldExclamation } from "react-icons/hi";
-import toast from "react-hot-toast";
 
 const options = [
   { label: "Suggestive", value: "sexual" },
@@ -23,21 +22,7 @@ export default function AdultContentPicker(props: Props) {
   return (
     <Dropdown>
       <Dropdown.Trigger disabled={disabled}>
-        <Button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (disabled) {
-              toast.error(
-                "Content warning is only available for posts with media attachments",
-                {
-                  id: "CW",
-                },
-              );
-            }
-          }}
-          disabled={false} // this should be false to trigger toast
-          className="p-0"
-        >
+        <Button className="p-0">
           <HiOutlineShieldExclamation className="text-primary hover:text-primary-dark text-2xl" />
         </Button>
       </Dropdown.Trigger>
