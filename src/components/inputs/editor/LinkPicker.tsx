@@ -73,7 +73,7 @@ export default function LinkPicker(props: Props) {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Content>
-          <section className="animate-fade-up animate-duration-200 bg-skin-base border-skin-base fixed bottom-0 z-50 flex h-fit w-full flex-col justify-between overflow-scroll rounded-t-3xl p-3 pb-16 shadow-2xl border-t">
+          <section className="animate-fade-up animate-duration-200 bg-skin-base border-skin-base fixed bottom-0 z-50 flex h-fit w-full flex-col justify-between overflow-scroll rounded-t-3xl p-3 pb-16 shadow-2xl border-t no-scrollbar">
             <h2 className="text-skin-base mb-2 text-center text-xl font-semibold">
               Add a link
             </h2>
