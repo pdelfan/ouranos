@@ -37,10 +37,10 @@ export default function FeedEmbed(props: Props) {
                 className={`rounded-lg ${!feed.avatar && "bg-skin-muted border-skin-base border"}`}
               />
               <div className="flex flex-col">
-                <h2 className="text-skin-base break-words font-semibold">
+                <h2 className="text-skin-base break-words font-medium">
                   {feed.displayName}
                 </h2>
-                <h3 className="text-skin-secondary break-all text-sm">
+                <h3 className="text-skin-tertiary font-medium break-all text-sm">
                   By @{feed.creator.handle}
                 </h3>
               </div>
