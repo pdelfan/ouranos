@@ -20,7 +20,7 @@ export default function NotFoundEmbed(props: Props) {
             <PiWarningCircleFill className="text-skin-icon-base text-2xl" />
             <span className="text-skin-base">This post is unavailable</span>
           </div>
-          {isReply && <Threadline className="top-12" />}
+          {isReply && <Threadline className="mt-6" />}
         </div>
       )}
     </>
