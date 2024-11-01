@@ -35,9 +35,10 @@ export default function LinkCard(props: Props) {
     return (
       <article className="border-skin-base relative animate-pulse rounded-2xl border">
         <div className="bg-skin-muted relative h-44 w-full rounded-t-2xl" />
-        <div className="flex grow flex-col gap-3 p-3">
-          <div className="bg-skin-muted h-5 w-2/5" />
-          <div className="bg-skin-muted h-5 w-full" />
+        <div className="flex grow flex-col gap-1 p-3">
+          <div className="bg-skin-muted h-3 w-2/5" />
+          <div className="bg-skin-muted h-4 w-1/2" />
+          <div className="bg-skin-muted h-3 w-3/4" />
         </div>
       </article>
     );
@@ -97,6 +98,11 @@ export default function LinkCard(props: Props) {
         {data?.title && (
           <span className="text-skin-base font-medium [overflow-wrap:anywhere]">
             {data.title}
+          </span>
+        )}
+        {data?.description && (
+          <span className="text-skin-secondary text-sm line-clamp-2">
+            {data.description}
           </span>
         )}
       </div>
