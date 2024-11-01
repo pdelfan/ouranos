@@ -13,7 +13,7 @@ export default async function InventoryLayout({
 }) {
   return (
     <>
-      <main className="relative z-10 min-h-[100svh] flex items-center justify-center animate-fade animate-delay-300 animate-duration-[600ms]">
+      <main className="relative z-10 min-h-[100svh] flex items-center justify-center animate-fade animate-delay-500 animate-duration-[600ms]">
         {children}
       </main>
       <Image
