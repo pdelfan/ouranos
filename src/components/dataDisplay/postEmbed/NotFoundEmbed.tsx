@@ -14,13 +14,13 @@ export default function NotFoundEmbed(props: Props) {
     <>
       {depth < 1 && (
         <div
-          className={`border-skin-base bg-skin-base relative rounded-xl border p-3 ${replyStyle}`}
+          className={`border-skin-base bg-skin-base relative rounded-xl border p-3 m-3 ${replyStyle}`}
         >
           <div className="flex gap-2">
             <PiWarningCircleFill className="text-skin-icon-base text-2xl" />
             <span className="text-skin-base">This post is unavailable</span>
           </div>
-          {isReply && <Threadline />}
+          {isReply && <Threadline className="top-12" />}
         </div>
       )}
     </>
