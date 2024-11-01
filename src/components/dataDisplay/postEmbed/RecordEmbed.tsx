@@ -34,7 +34,7 @@ export default function RecordEmbed(props: Props) {
             );
             e.stopPropagation();
           }}
-          className="border-skin-base hover:bg-skin-secondary mt-2 rounded-xl border p-3 hover:cursor-pointer"
+          className="border-skin-base bg-skin-base hover:bg-skin-secondary mt-2 rounded-xl border p-3 hover:cursor-pointer"
         >
           <div className="flex flex-col">
             <div className="flex">
