@@ -53,7 +53,7 @@ export function getComposerPlaceholder(type: string, name?: string) {
     case "quote":
       return `Quoting ${name}`;
     default:
-      return "What's up?";
+      return "What's on your mind?";
   }
 }
 
