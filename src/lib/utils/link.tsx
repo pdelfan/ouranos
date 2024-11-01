@@ -1,4 +1,10 @@
-import { AppBskyRichtextFacet, RichText, UnicodeString } from "@atproto/api";
+import {
+  AppBskyGraphDefs,
+  AppBskyRichtextFacet,
+  AtUri,
+  RichText,
+  UnicodeString,
+} from "@atproto/api";
 import { JSONContent } from "@tiptap/react";
 import { jsonToText } from "./text";
 
@@ -100,4 +106,20 @@ export function isValidUrl(url: string): boolean {
   } catch {
     return false;
   }
+}
+
+export function getStarterPackImage(
+  starterPack: AppBskyGraphDefs.StarterPackView
+) {
+  const rkey = new AtUri(starterPack.uri).rkey;
+  return `https://ogcard.cdn.bsky.app/start/${starterPack.creator.did}/${rkey}`;
+}
+
+export function getStarterPackHref(
+  starterPack: AppBskyGraphDefs.StarterPackViewBasic
+) {
+  const rkey = new AtUri(starterPack.uri).rkey;
+  const handleOrDid = starterPack.creator.handle || starterPack.creator.did;
+  // TODO: Add starter pack screen to Ouranos
+  return `https://bsky.app/starter-pack/${handleOrDid}/${rkey}`;   
 }

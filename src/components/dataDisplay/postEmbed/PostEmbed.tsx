@@ -13,6 +13,7 @@ import RecordEmbed from "./RecordEmbed";
 import ListEmbed from "./ListEmbed";
 import FeedEmbed from "./FeedEmbed";
 import VideoEmbed from "./VideoEmbed";
+import StarterPackEmbed from "./StarterPackEmbed";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
@@ -25,6 +26,8 @@ export default function PostEmbed(props: Props) {
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
       return <ImageEmbed content={content} depth={depth} />;
+    } else if (AppBskyGraphDefs.isStarterPackViewBasic(content?.record)) {
+      return <StarterPackEmbed embed={content.record} depth={depth} />;
     } else if (AppBskyEmbedExternal.isView(content)) {
       return <ExternalEmbed embed={content} depth={depth} />;
     } else if (
@@ -59,10 +62,10 @@ export default function PostEmbed(props: Props) {
     } else if (AppBskyEmbedVideo.isView(content)) {
       return (
         <VideoEmbed
-          aspectRatio={`${content.aspectRatio?.width}/${content.aspectRatio?.height}`}          
+          aspectRatio={`${content.aspectRatio?.width}/${content.aspectRatio?.height}`}
           playlist={content.playlist}
           thumbnail={content.thumbnail}
-          alt={content.alt}          
+          alt={content.alt}
         />
       );
     }
