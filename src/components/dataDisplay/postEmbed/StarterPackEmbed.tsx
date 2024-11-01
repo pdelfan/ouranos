@@ -21,7 +21,7 @@ export default function StarterPackEmbed(props: Props) {
     <>
       {depth < 2 && (
         <article className="border border-skin-base mt-2 rounded-lg group">
-          <div className="bg-skin-base hover:bg-skin-secondary rounded-t-lg">
+          <div className="bg-skin-base hover:bg-skin-secondary rounded-lg">
             <Link
               href={starterPackHref}
               target="_blank"
