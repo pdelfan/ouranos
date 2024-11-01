@@ -28,20 +28,10 @@ export default function Home() {
         </Link>
       </header>
       <section className="animate-fade-up animate-delay-150 mx-auto mt-16 max-w-xl">
-        <small className="bg-primary/20 text-primary animate-fade-up animate-delay-[1000ms] mb-1 inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.6rem] font-bold">
-          In Early Access
-          <Image
-            src="/images/confetti.png"
-            alt="Confetti emoji"
-            width={14}
-            height={14}
-          />
-        </small>
-
         <h1 className="text-skin-base max-w-lg text-4xl font-medium">
           Your friendly Bluesky client for the web
         </h1>
-
+        
         <ul className="text-skin-secondary mt-5 text-lg font-medium">
           <li>Designed for simplicity</li>
           <li>Enhanced features</li>
@@ -74,7 +64,7 @@ export default function Home() {
         />
       </div>
       <footer className="animate-fade-up animate-delay-500 text-skin-tertiary mt-16 text-center text-sm font-medium">
-        OURANOS · EARLY ACCESS · {new Date().getFullYear()}
+        OURANOS · {new Date().getFullYear()}
       </footer>
     </main>
   );

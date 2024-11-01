@@ -169,7 +169,7 @@ export default function Page() {
         </p>
       </section>
       <footer className="text-skin-tertiary mt-16 text-center text-sm font-medium">
-        OURANOS · EARLY ACCESS · {new Date().getFullYear()}
+        OURANOS · {new Date().getFullYear()}
       </footer>
     </main>
   );

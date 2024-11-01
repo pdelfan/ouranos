@@ -101,9 +101,6 @@ export default function LoginForm() {
         </Link>{" "}
         to log in.
       </p>
-      <p className="text-skin-secondary text-sm font-medium">
-        Ouranos is in early access, some features may not be available yet.
-      </p>
       <form
         className="mt-5 text-sm font-medium"
         onSubmit={(e) => {

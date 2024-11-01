@@ -59,7 +59,7 @@ export default function BottomEditorBar(props: Props) {
           ...files.slice(0, 4).map((file) =>
             Object.assign(file, {
               url: URL.createObjectURL(file),
-            }),
+            })
           ),
         ];
         onUpdateImages(updatedImages);
@@ -81,7 +81,7 @@ export default function BottomEditorBar(props: Props) {
               onSelectLabel={onSelectLabel}
               selectedLabel={label}
               disabled={!images || images.length === 0}
-            />            
+            />
             <LinkPicker editor={editor} />
           </div>
           <div className="just flex flex-wrap gap-x-5 gap-y-2">
