@@ -38,13 +38,17 @@ export default function FeedPost(props: Props) {
 
   if (notFound) {
     return (
-      <article className="p-3">
+      <article>
         <NotFoundEmbed depth={0} />
-        <div className="relative flex items-start gap-3">
-          <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
-            {isParent && !reason && <Threadline />}
+        {isParent && !reason && (
+          <div className="px-3 -mt-9">
+            <div className="relative flex items-start gap-3">
+              <div className={`flex grow flex-col ${isParent && "pb-12"}`}>
+                <Threadline />
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </article>
     );
   }
@@ -75,8 +79,8 @@ export default function FeedPost(props: Props) {
         e.stopPropagation();
         router.push(
           `/dashboard/user/${post.post.author.handle}/post/${getPostId(
-            post.post.uri
-          )}`
+            post.post.uri,
+          )}`,
         );
       }}
       className="cursor-pointer hover:bg-skin-secondary p-3"
