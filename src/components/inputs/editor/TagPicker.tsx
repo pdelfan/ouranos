@@ -90,11 +90,13 @@ export default function TagPicker(props: Props) {
                 </small>
               )}
 
-              <div className="flex flex-wrap gap-2 mt-1 mb-4">
-                {newTags.map((t, i) => (
-                  <PostTag key={i} tag={t} onRemove={() => onRemoveTag(i)} />
-                ))}
-              </div>
+              {newTags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-1 mb-4">
+                  {newTags.map((t, i) => (
+                    <PostTag key={i} tag={t} onRemove={() => onRemoveTag(i)} />
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="mt-2 gap-2 md:max-w-2xl w-full justify-end mr-auto flex items-center md:mx-auto">

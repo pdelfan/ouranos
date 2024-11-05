@@ -57,7 +57,7 @@ export default function LoginForm() {
 
   if (isRedirecting) {
     return (
-      <section className="bg-skin-base border border-skin-base/30 shadow-2xl shadow-primary-light/30 max-w-xs rounded-2xl p-5">
+      <section className="bg-skin-base border border-skin-base shadow-2xl shadow-primary-light/30 max-w-xs rounded-2xl p-5">
         <Image
           src="/logo.svg"
           alt="Ouranos logo"
@@ -79,7 +79,7 @@ export default function LoginForm() {
   }
 
   return (
-    <section className="bg-skin-base border border-skin-base/30 max-w-xs rounded-2xl p-5 shadow-2xl shadow-primary-light/30">
+    <section className="bg-skin-base border border-skin-base max-w-xs rounded-2xl p-5 shadow-2xl shadow-primary-light/30">
       <Image
         src="/logo.svg"
         alt="Ouranos logo"
