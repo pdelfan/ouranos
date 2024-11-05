@@ -28,6 +28,7 @@ interface Props {
   quote?: ComposerOptionsQuote;
   languages: string[];
   images?: UploadImage[];
+  tags: string[];
   label: string;
   threadGate: ThreadgateSetting[];
 }
@@ -39,6 +40,7 @@ export default function usePublishPost(props: Props) {
     replyTo,
     quote,
     languages,
+    tags,
     images,
     label,
     threadGate,
@@ -63,7 +65,7 @@ export default function usePublishPost(props: Props) {
 
       if (richText.graphemeLength > MAX_POST_LENGTH) {
         throw new Error(
-          "Post length exceeds the maximum length of 300 characters"
+          "Post length exceeds the maximum length of 300 characters",
         );
       }
 
@@ -138,7 +140,7 @@ export default function usePublishPost(props: Props) {
               new Uint8Array(await blob.arrayBuffer()),
               {
                 encoding: blob.type,
-              }
+              },
             );
 
             embedImages.images.push({
@@ -200,13 +202,13 @@ export default function usePublishPost(props: Props) {
               try {
                 const image = await fetch(linkCard.image);
                 const blob = await compressImage(
-                  (await image.blob()) as UploadImage
+                  (await image.blob()) as UploadImage,
                 );
                 const uploaded = await agent.uploadBlob(
                   new Uint8Array(await blob.arrayBuffer()),
                   {
                     encoding: blob.type,
-                  }
+                  },
                 );
                 embedExternal.external.thumb = uploaded.data.blob;
               } catch (e) {
@@ -229,6 +231,7 @@ export default function usePublishPost(props: Props) {
         text: richText.text,
         facets: richText.facets,
         langs: lang,
+        tags: tags.length > 0 ? tags : undefined,
         labels: selfLabels,
         reply: reply,
         embed: embed,
@@ -255,7 +258,7 @@ export default function usePublishPost(props: Props) {
 
         await agent.api.app.bsky.feed.threadgate.create(
           { repo: agent.session!.did, rkey: submittedPost.rkey },
-          { post: result.uri, createdAt: new Date().toISOString(), allow }
+          { post: result.uri, createdAt: new Date().toISOString(), allow },
         );
       }
     },

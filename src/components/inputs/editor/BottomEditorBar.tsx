@@ -12,12 +12,15 @@ import { jsonToText } from "@/lib/utils/text";
 import ThreadGatePicker from "./ThreadGatePicker";
 import { ThreadgateSetting } from "../../../../types/feed";
 import LinkPicker from "./LinkPicker";
+import TagPicker from "./TagPicker";
 
 interface Props {
   editor: Editor;
   text: JSONContent;
   label: string;
   languages: Language[];
+  tags: string[];
+  onUpdateTags: React.Dispatch<React.SetStateAction<string[]>>;
   images?: UploadImage[];
   onUpdateImages: React.Dispatch<
     React.SetStateAction<UploadImage[] | undefined>
@@ -33,6 +36,8 @@ export default function BottomEditorBar(props: Props) {
     editor,
     text,
     label,
+    tags,
+    onUpdateTags,
     languages,
     images,
     threadGate,
@@ -59,7 +64,7 @@ export default function BottomEditorBar(props: Props) {
           ...files.slice(0, 4).map((file) =>
             Object.assign(file, {
               url: URL.createObjectURL(file),
-            })
+            }),
           ),
         ];
         onUpdateImages(updatedImages);
@@ -74,9 +79,10 @@ export default function BottomEditorBar(props: Props) {
       </div>
       <div className="border-skin-base border-t pb-2">
         <div className="flex flex-wrap justify-between gap-5 mt-3">
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             <EmojiPicker onEmojiSelect={editor.commands.insertContent} />
             <ImagePicker onShow={setShowDropzone} />
+            <TagPicker tags={tags} onUpdateTags={onUpdateTags} />
             <AdultContentPicker
               onSelectLabel={onSelectLabel}
               selectedLabel={label}
