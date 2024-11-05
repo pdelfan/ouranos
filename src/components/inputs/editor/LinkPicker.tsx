@@ -2,9 +2,8 @@ import type { Editor } from "@tiptap/react";
 import Button from "@/components/actions/button/Button";
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import Input from "../input/Input";
+import Input from "@/components/inputs/input/Input";
 import { BiLink, BiUnlink } from "react-icons/bi";
-import { BiPlus } from "react-icons/bi";
 import { isValidUrl } from "@/lib/utils/link";
 
 interface Props {

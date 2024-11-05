@@ -23,6 +23,7 @@ import { ThreadgateSetting } from "../../../../types/feed";
 import { RichText } from "@atproto/api";
 import UploadPreview from "./UploadPreview";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
+import PostTag from "@/components/dataDisplay/postTag/PostTag";
 
 interface Props {
   onCancel: () => void;
@@ -34,11 +35,12 @@ export default function Editor(props: Props) {
   const { onCancel, options, author } = props;
   const { replyTo, quote, mention } = options ?? {};
   const [label, setLabel] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const [threadGate, setThreadGate] = useState<ThreadgateSetting[]>([]);
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
   const [embedSuggestions, setEmbedSuggestions] = useState<Set<string>>(
-    new Set("")
+    new Set(""),
   );
   const [linkEmbed, setLinkEmbed] = useState("");
   const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
@@ -47,7 +49,7 @@ export default function Editor(props: Props) {
   const quoteAuthor = quote?.author.displayName || quote?.author.handle;
   const placeholderText = getComposerPlaceholder(
     replyTo ? "reply" : quote ? "quote" : "post",
-    replyAuthor ?? quoteAuthor
+    replyAuthor ?? quoteAuthor,
   );
 
   const editor = useEditor({
@@ -116,7 +118,9 @@ export default function Editor(props: Props) {
   });
 
   const hasContent =
-    quote || images || linkEmbed || richText.graphemeLength !== 0 ? true : false;
+    quote || images || linkEmbed || richText.graphemeLength !== 0
+      ? true
+      : false;
 
   const sendPost = usePublishPost({
     text: editor?.getJSON() ?? {},
@@ -124,9 +128,10 @@ export default function Editor(props: Props) {
     replyTo,
     quote,
     languages: languages.map((lang) => lang.code),
+    tags,
     images,
     label,
-    threadGate,    
+    threadGate,
   });
 
   if (!editor) return null;
@@ -159,6 +164,7 @@ export default function Editor(props: Props) {
             className={`${
               quote ||
               linkEmbed ||
+              tags.length > 0 ||
               (images && images.length > 0) ||
               embedSuggestions.size > 0
                 ? "my-3"
@@ -198,6 +204,17 @@ export default function Editor(props: Props) {
                 />
               </div>
             )}
+            <div className="flex flex-wrap gap-2">
+              {tags.map((t, i) => (
+                <PostTag
+                  key={i}
+                  tag={t}
+                  onRemove={() => {
+                    setTags((prev) => prev.filter((_, index) => index !== i));
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </ScrollArea.Root>
         <section className="mt-auto mb-6 md:mb-0">
@@ -205,6 +222,8 @@ export default function Editor(props: Props) {
             editor={editor}
             label={label}
             onSelectLabel={setLabel}
+            tags={tags}
+            onUpdateTags={setTags}
             text={editor.getJSON()}
             languages={languages}
             onSelectLanguages={setLanguages}
