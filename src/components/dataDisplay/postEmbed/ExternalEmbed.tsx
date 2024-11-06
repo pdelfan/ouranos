@@ -50,10 +50,10 @@ export default function ExternalEmbed(props: Props) {
           <div className="bg-skin-base border-t border-skin-base rounded-b-lg hover:bg-skin-secondary">
             <Link
               href={`/dashboard/topics/${encodeURIComponent(
-                embed.external.uri
+                embed.external.uri,
               )}`}
               onClick={(e) => e.stopPropagation()}
-              className="flex flex-wrap items-center gap-2 text-skin-tertiary px-3 py-2 hover:text-skin-secondary"
+              className="flex flex-wrap items-center gap-2 text-skin-tertiary px-3 py-2"
             >
               <SiGooglemessages className="text-lg" />
               <div className="flex flex-wrap items-center">
