@@ -56,10 +56,7 @@ export default function ExternalEmbed(props: Props) {
               className="flex flex-wrap items-center gap-2 text-skin-tertiary px-3 py-2"
             >
               <SiGooglemessages className="text-lg" />
-              <div className="flex flex-wrap items-center">
-                <span className="font-medium text-sm">View topic</span>
-                <BiRightArrowAlt className="text-lg" />
-              </div>
+              <span className="font-medium text-sm">View topic</span>
             </Link>
           </div>
         </article>
