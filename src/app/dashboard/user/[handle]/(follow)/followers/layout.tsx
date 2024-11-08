@@ -2,9 +2,22 @@ import Layout from "@/containers/Layout";
 
 interface Props {
   children: React.ReactNode;
+  params: {
+    handle: string;
+  };
 }
 
 export default function FollowersLayout(props: Props) {
-  const { children } = props;
-  return <Layout>{children}</Layout>;
+  const { children, params } = props;
+  return (
+    <Layout>
+      <section>
+        <div className="px-3 md:px-0">
+          <h2 className="text-skin-base text-2xl font-semibold">Followers</h2>
+          <h3 className="text-skin-secondary text-lg">@{params.handle}</h3>
+        </div>
+        <section className="mt-2 flex flex-col">{children}</section>
+      </section>
+    </Layout>
+  );
 }

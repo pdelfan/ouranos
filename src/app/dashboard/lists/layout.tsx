@@ -11,5 +11,14 @@ export default function FeedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Layout>{children}</Layout>;
+  return (
+    <Layout>
+      <section>
+        <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
+          My Lists
+        </h2>
+        {children}
+      </section>
+    </Layout>
+  );
 }
