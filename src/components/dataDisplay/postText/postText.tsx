@@ -126,7 +126,7 @@ export default function PostText(props: Props) {
         <Fragment key={`${i}+${text}`}>{segment.component}</Fragment>
       ))}
       {tags && (
-        <div className="flex flex-wrap gap-2 mt-3">
+        <div className="flex flex-wrap gap-x-2 gap-y-1 mt-3">
           {tags.map((t, i) => (
             <PostTag key={i} tag={t} />
           ))}
