@@ -40,7 +40,7 @@ export default function ExternalEmbed(props: Props) {
                   {embed.external.title}
                 </span>
                 {embed.external.description && (
-                  <span className="text-skin-secondary text-sm line-clamp-2">
+                  <span className="text-skin-secondary text-sm line-clamp-2 [overflow-wrap:anywhere]">
                     {embed.external.description}
                   </span>
                 )}
