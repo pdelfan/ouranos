@@ -1,11 +1,7 @@
 import { type Agent } from "@atproto/api";
-import { getAgent } from "../agent";
+import { getAgentFromServer } from "../agent";
 
-export const getLists = async (
-  did: string,
-  cursor: string,
-  agent: Agent,
-) => {
+export const getLists = async (did: string, cursor: string, agent: Agent) => {
   const lists = await agent.app.bsky.graph.getLists({
     actor: did,
     cursor: cursor,
@@ -16,7 +12,7 @@ export const getLists = async (
 };
 
 export const getListInfo = async (uri: string, agent?: Agent) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
 
   const feed = await agent.app.bsky.graph.getList({ list: uri });
   if (!feed.success) throw new Error("Could not fetch feed info");

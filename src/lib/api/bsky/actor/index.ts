@@ -4,15 +4,12 @@ import {
   LabelPreference,
   BskyThreadViewPreference,
 } from "@atproto/api";
-import { getAgent } from "../agent";
+import { getAgentFromServer } from "../agent";
 import { ContentFilterLabel } from "../../../../../types/feed";
 
-export const getProfile = async (
-  handle: string | undefined,
-  agent?: Agent,
-) => {
+export const getProfile = async (handle: string | undefined, agent?: Agent) => {
   if (!handle) return;
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const profile = await agent.getProfile({ actor: handle });
 
   if (!profile.success) throw new Error("Could not get profile");
@@ -20,7 +17,7 @@ export const getProfile = async (
 };
 
 export const getSuggestions = async () => {
-  const agent = await getAgent();
+  const agent = await getAgentFromServer();
   const suggestions = await agent.getSuggestions({ limit: 10 });
   if (!suggestions.success) return null;
   return suggestions.data.actors;
@@ -41,10 +38,7 @@ export const searchProfiles = async (
   }
 };
 
-export const searchProfilesTypehead = async (
-  agent: Agent,
-  term: string,
-) => {
+export const searchProfilesTypehead = async (agent: Agent, term: string) => {
   try {
     const results = await agent.searchActorsTypeahead({ term, limit: 5 });
     if (!results.success) return null;
@@ -61,7 +55,7 @@ export const searchPosts = async (
   sort: "latest" | "top",
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   try {
     const response = await agent.app.bsky.feed.searchPosts({
       q: term,
@@ -79,7 +73,7 @@ export const searchPosts = async (
 };
 
 export const getPreferences = async (agent?: Agent) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const prefs = await agent.app.bsky.actor.getPreferences();
   if (!prefs.success) throw new Error("Could not get preferences");
   return prefs.data.preferences;
@@ -89,7 +83,7 @@ export const updateThreadViewPreferences = async (
   pref: Partial<BskyThreadViewPreference>,
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const prefs = await agent.setThreadViewPrefs(pref);
   return prefs;
 };
@@ -97,7 +91,7 @@ export const updateHomeFeedPreferences = async (
   pref: Partial<BskyFeedViewPreference>,
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const prefs = await agent.setFeedViewPrefs("home", pref);
   return prefs;
 };
@@ -106,7 +100,7 @@ export const updateIsAdultContentEnabled = async (
   value: boolean,
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const prefs = await agent.setAdultContentEnabled(value);
   return prefs;
 };
@@ -116,20 +110,20 @@ export const updateContentFilterPreferences = async (
   value: LabelPreference,
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const prefs = await agent.setContentLabelPref(pref, value);
   return prefs;
 };
 
 export const muteUser = async (did: string, agent?: Agent) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const mute = await agent.mute(did);
   if (!mute.success) throw new Error("Could not mute user");
   return mute.success;
 };
 
 export const unMuteUser = async (did: string, agent?: Agent) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const mute = await agent.unmute(did);
   if (!mute.success) throw new Error("Could not unmute user");
   return mute.success;
@@ -140,7 +134,7 @@ export const blockUser = async (
   did: string,
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   const res = await agent.app.bsky.graph.block.create(
     { repo: viewerDid },
     { createdAt: new Date().toISOString(), subject: did },
@@ -154,6 +148,6 @@ export const unBlockUser = async (
   rkey: string,
   agent?: Agent,
 ) => {
-  if (!agent) agent = await getAgent();
+  if (!agent) agent = await getAgentFromServer();
   await agent.app.bsky.graph.block.delete({ rkey: rkey, repo: viewerDid });
 };

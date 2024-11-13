@@ -4,9 +4,9 @@ import FeedPost from "../feedPost/FeedPost";
 import { getPost } from "@/lib/api/bsky/feed";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { ContentFilterResult } from "../../../../types/feed";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
 import NotificationPostSkeleton from "./NotificationPostSkeleton";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   uri: string;
@@ -15,7 +15,6 @@ interface Props {
 
 export default function NotificationPost(props: Props) {
   const { uri, filter } = props;
-  const agent = useAgent();
 
   const {
     status,
@@ -25,7 +24,10 @@ export default function NotificationPost(props: Props) {
     isFetching,
   } = useQuery({
     queryKey: ["notificationPost", uri],
-    queryFn: () => getPost(agent, uri),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getPost(agent, uri);
+    },
   });
 
   return (

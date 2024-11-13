@@ -4,7 +4,6 @@ import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkele
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import { getProfile } from "@/lib/api/bsky/actor";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import useProfilePosts from "@/lib/hooks/bsky/feed/useProfilePosts";
 import { useQuery } from "@tanstack/react-query";
 import PostContainer from "./PostContainer";
@@ -12,6 +11,7 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   mode: UserPostMode;
@@ -20,7 +20,6 @@ interface Props {
 
 export default function UserPostsConatiner(props: Props) {
   const { mode, handle } = props;
-  const agent = useAgent();
   const {
     data: profile,
     isLoading,
@@ -28,7 +27,10 @@ export default function UserPostsConatiner(props: Props) {
     isRefetching,
   } = useQuery({
     queryKey: ["profile", handle],
-    queryFn: () => getProfile(handle, agent),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getProfile(handle, agent);
+    },
   });
   const isBlocked = profile?.viewer?.blocking ? true : false;
   const hasBlockedYou = profile?.viewer?.blockedBy ? true : false;
@@ -46,7 +48,7 @@ export default function UserPostsConatiner(props: Props) {
 
   const dataLength = userPostsData?.pages.reduce(
     (acc, page) => acc + (page?.data.feed.length ?? 0),
-    0
+    0,
   );
 
   const isEmpty =

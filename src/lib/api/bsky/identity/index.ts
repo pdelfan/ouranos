@@ -1,0 +1,27 @@
+import { HandleResolver } from "@atproto/identity";
+
+export const getDidFromHandle = async (handle: string) => {
+  const handleResolver = new HandleResolver({});
+  const did = await handleResolver.resolve(handle);
+  if (!did) {
+    throw new Error("Could not get DID");
+  }
+
+  return did;
+};
+
+export const getPDS = async (did: string) => {
+  const res = await fetch(`https://plc.directory/${did}`);
+  if (!res.ok) throw new Error("PDS not found");
+
+  const pds = (await res.json()) as {
+    service: {
+      id: string;
+      type: string;
+      serviceEndpoint: string;
+    }[];
+  };
+  const service = pds.service.find((x) => x.id === "#atproto_pds");
+  if (!service) throw new Error("PDS not found");
+  return service.serviceEndpoint;
+};

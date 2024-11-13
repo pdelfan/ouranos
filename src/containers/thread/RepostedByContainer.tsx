@@ -1,6 +1,5 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
@@ -9,6 +8,7 @@ import { getPostReposts } from "@/lib/api/bsky/feed";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   handle: string;
@@ -17,7 +17,7 @@ interface Props {
 
 export default function RepostedByContainer(props: Props) {
   const { handle, id } = props;
-  const agent = useAgent();
+
   const {
     status,
     data: profiles,
@@ -30,6 +30,7 @@ export default function RepostedByContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["getPostReposts", id],
     queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
       const { data } = await agent.resolveHandle({ handle });
       if (!data) return;
       const uri = `at://${data.did}/app.bsky.feed.post/${id}`;

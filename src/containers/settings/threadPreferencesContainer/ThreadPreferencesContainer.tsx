@@ -6,12 +6,12 @@ import { Switch } from "@/components/inputs/switch/Switch";
 import { updateThreadViewPreferences } from "@/lib/api/bsky/actor";
 import { THREAD_VIEW_OPTIONS } from "@/lib/consts/settings";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { BskyThreadViewPreference } from "@atproto/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PreferencesResult } from "../../../../types/feed";
 import ThreadPreferencesContainerSkeleton from "./ThreadPreferencesContainerSkeleton";
 import toast from "react-hot-toast";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface ItemProps {
   value: string;
@@ -30,7 +30,6 @@ function SortReplyItem(props: ItemProps) {
 
 export default function ThreadPreferencesContainer() {
   const { isFetchingPreferences, preferences } = usePreferences();
-  const agent = useAgent();
   const queryClient = useQueryClient();
 
   const updateThreadPrefs = useMutation({
@@ -49,6 +48,7 @@ export default function ThreadPreferencesContainer() {
             };
           },
         );
+        const agent = await getAgentFromClient();
         await updateThreadViewPreferences(prefs, agent);
       } catch (error) {
         console.log(error);

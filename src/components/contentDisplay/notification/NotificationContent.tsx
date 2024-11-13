@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { ContentFilterResult } from "../../../../types/feed";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { getPost } from "@/lib/api/bsky/feed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import { AppBskyFeedDefs } from "@atproto/api";
@@ -12,6 +11,7 @@ import { useEffect, useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import NotificationContentSkeleton from "./NotificationContentSkeleton";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   uri: string;
@@ -20,12 +20,14 @@ interface Props {
 
 export default function NotificationContnet(props: Props) {
   const { uri, filter } = props;
-  const agent = useAgent();
   const router = useRouter();
 
   const { status, data, error, isLoading, isFetching } = useQuery({
     queryKey: ["notificationContent", uri],
-    queryFn: () => getPost(agent, uri),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getPost(agent, uri);
+    },
   });
 
   const post =
@@ -35,8 +37,8 @@ export default function NotificationContnet(props: Props) {
   const label = post?.post.labels?.map((l) => l.val)[0] ?? ""; // ex. "nsfw", "suggestive"
   const embedLabel =
     post?.post.embed && post?.post.embed.record
-      ? (post.post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ??
-        ""
+      ? ((post.post.embed.record as ViewRecord)?.labels?.map((l) => l.val)[0] ??
+        "")
       : "";
   const message =
     adultContentFilters.find((f) => f.values.includes(label || embedLabel))

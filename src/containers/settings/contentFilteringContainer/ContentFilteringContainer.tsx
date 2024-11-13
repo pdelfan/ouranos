@@ -10,7 +10,6 @@ import {
   PreferencesResult,
 } from "../../../../types/feed";
 import { LabelPreference } from "@atproto/api";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import {
   updateContentFilterPreferences,
   updateIsAdultContentEnabled,
@@ -22,6 +21,7 @@ import {
 import { ReactNode } from "react";
 import ContentFilteringContainerSkeleton from "./ContentFilteringContainerSkeleton";
 import toast from "react-hot-toast";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface OptionsProps {
   item: ContentFilter;
@@ -69,7 +69,6 @@ export default function ContentFilteringContainer() {
   const adultContentFilters = preferences?.contentFilter?.adultContentFilters;
   const contentFilters = preferences?.contentFilter.contentFilters;
   const isAdultContentHidden = preferences?.contentFilter.isAdultContentHidden;
-  const agent = useAgent();
   const queryClient = useQueryClient();
 
   const updateIsAdultContentHidden = useMutation({
@@ -88,6 +87,7 @@ export default function ContentFilteringContainer() {
             };
           },
         );
+        const agent = await getAgentFromClient();
         await updateIsAdultContentEnabled(!value, agent);
       } catch (error) {
         console.log(error);
@@ -128,6 +128,7 @@ export default function ContentFilteringContainer() {
             };
           },
         );
+        const agent = await getAgentFromClient();
         await updateContentFilterPreferences(pref, value, agent);
       } catch (error) {
         console.log(error);
@@ -168,6 +169,7 @@ export default function ContentFilteringContainer() {
             };
           },
         );
+        const agent = await getAgentFromClient();
         await updateContentFilterPreferences(pref, value, agent);
       } catch (error) {
         console.log(error);

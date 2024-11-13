@@ -3,6 +3,7 @@ import NextAuth, { NextAuthOptions, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { jwtDecode } from "jwt-decode";
 import { createAgent } from "@/lib/api/bsky/agent";
+import { getService } from "@/app/api/auth/identity/actions";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -23,27 +24,30 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const at = createAgent();
+        const service = await getService(credentials.handle);
+        const agent = createAgent(service);
 
-        const result = await at.login({
+        const result = await agent.login({
           identifier: credentials.handle,
           password: credentials.password,
         });
 
-        if (result.success && at.session) {
+        if (result.success && agent.session) {
           const user = {
-            id: at.session.did,
-            handle: at.session.handle,
-            email: at.session.email!,
-            emailConfirmed: at.session.emailConfirmed ?? false,
-            bskySession: at.session,
+            id: agent.session.did,
+            service: service,
+            handle: agent.session.handle,
+            email: agent.session.email!,
+            emailConfirmed: agent.session.emailConfirmed ?? false,
+            bskySession: agent.session,
           };
+
           return user;
         } else {
-          // an error will be displayed advising the user to check their details.
+          // an error will be displayed advising the user to check their details
           return null;
 
-          // (Optional) can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+          // (optional) can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
@@ -52,6 +56,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user && user.bskySession) {
+        token.service = user.service;
         token.id = user.id;
         token.handle = user.handle;
         token.email = user.email;
@@ -63,10 +68,10 @@ export const authOptions: NextAuthOptions = {
 
     // add extra properties to session
     async session({ session, token }): Promise<Session> {
-      const at = createAgent();
-
       const receivedToken = token as JWT & User;
+      const agent = createAgent(receivedToken.service);
 
+      session.user.service = receivedToken.service;
       session.user.email = receivedToken.email;
       session.user.id = receivedToken.id;
       session.user.handle = receivedToken.handle;
@@ -74,7 +79,7 @@ export const authOptions: NextAuthOptions = {
       session.user.bskySession = receivedToken.bskySession;
 
       const refreshToken: { iat: number; exp: number } = jwtDecode(
-        receivedToken.bskySession.refreshJwt
+        receivedToken.bskySession.refreshJwt,
       );
 
       const now = Date.now();
@@ -84,18 +89,18 @@ export const authOptions: NextAuthOptions = {
       }
 
       const accessToken: { iat: number; exp: number } = jwtDecode(
-        receivedToken.bskySession.accessJwt
+        receivedToken.bskySession.accessJwt,
       );
 
       if (now >= accessToken.exp * 1000) {
         console.log("Access token expired, refreshing");
-        const { data } = await at.api.com.atproto.server.refreshSession(
+        const { data } = await agent.com.atproto.server.refreshSession(
           undefined,
           {
             headers: {
               authorization: "Bearer " + session.user.bskySession.refreshJwt,
             },
-          }
+          },
         );
         session.user.bskySession.refreshJwt = data.refreshJwt;
         session.user.bskySession.accessJwt = data.accessJwt;

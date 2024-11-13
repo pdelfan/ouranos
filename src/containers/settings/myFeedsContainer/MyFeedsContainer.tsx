@@ -1,7 +1,6 @@
 "use client";
 
 import { getSavedFeeds } from "@/lib/api/bsky/feed";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import FallbackFeed from "@/assets/images/fallbackFeed.png";
@@ -13,6 +12,7 @@ import Alert from "@/components/feedback/alert/Alert";
 import MyFeedsContainerSkeleton from "./MyFeedsContainerSkeleton";
 import { BiSolidTrash } from "react-icons/bi";
 import { BiSolidBookmarkAlt } from "react-icons/bi";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface FeedItemProps {
   feedItem: SavedFeed;
@@ -77,10 +77,12 @@ function FeedItem(props: FeedItemProps) {
 }
 
 export default function MyFeedsContainer() {
-  const agent = useAgent();
   const { status, data, error, isLoading, isFetching } = useQuery({
     queryKey: savedFeedsQueryKey,
-    queryFn: () => getSavedFeeds(agent),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getSavedFeeds(agent);
+    },
   });
 
   if (isLoading || isFetching) return <MyFeedsContainerSkeleton />;

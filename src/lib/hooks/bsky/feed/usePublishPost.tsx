@@ -12,7 +12,6 @@ import {
   ComAtprotoLabelDefs,
   RichText,
 } from "@atproto/api";
-import useAgent from "../useAgent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { detectLanguage, jsonToText } from "@/lib/utils/text";
 import { compressImage } from "@/lib/utils/image";
@@ -20,6 +19,7 @@ import { JSONContent } from "@tiptap/react";
 import toast from "react-hot-toast";
 import { ThreadgateSetting } from "../../../../../types/feed";
 import { getLinkFacets } from "@/lib/utils/link";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   text: JSONContent;
@@ -45,13 +45,13 @@ export default function usePublishPost(props: Props) {
     label,
     threadGate,
   } = props;
-  const agent = useAgent();
   const queryClient = useQueryClient();
   const MAX_POST_LENGTH = 300;
 
   return useMutation({
     mutationKey: ["publishPost"],
     mutationFn: async () => {
+      const agent = await getAgentFromClient();
       const richText = new RichText({ text: jsonToText(text) });
       const linkFacets = getLinkFacets(text);
       await richText.detectFacets(agent);

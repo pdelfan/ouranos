@@ -1,14 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import useAgent from "../useAgent";
 import { getPreferences } from "@/lib/api/bsky/actor";
 import getThreadPreferences, {
   getContentFilter,
   getFeedFilter,
 } from "@/lib/utils/feed";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export default function usePreferences() {
-  const agent = useAgent();
-
   const {
     status: statusPreferences,
     data: preferences,
@@ -18,6 +16,7 @@ export default function usePreferences() {
   } = useQuery({
     queryKey: ["preferences"],
     queryFn: async () => {
+      const agent = await getAgentFromClient();
       const preferences = await getPreferences(agent);
       const feedFilter = getFeedFilter(preferences);
       const contentFilter = getContentFilter(preferences);

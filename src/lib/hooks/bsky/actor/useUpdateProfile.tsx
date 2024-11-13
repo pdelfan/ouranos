@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import useAgent from "../useAgent";
 import { compressImage } from "@/lib/utils/image";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   displayName: string | null;
@@ -12,11 +12,11 @@ interface Props {
 
 export function useUpdateProfile(props: Props) {
   const { displayName, description, banner, avatar } = props;
-  const agent = useAgent();
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async () => {
+      const agent = await getAgentFromClient();
       await agent.upsertProfile(async (existing) => {
         const profile = existing || {};
         if (displayName || displayName === "") {

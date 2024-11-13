@@ -1,11 +1,8 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { Fragment } from "react";
-import { getFollowers } from "@/lib/api/bsky/social";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
@@ -17,7 +14,6 @@ interface Props {
 
 export default function KnownFollowersContainer(props: Props) {
   const { handle } = props;
-  const agent = useAgent();
   const {
     knownFollowers,
     isKnownFollowersEmpty,
