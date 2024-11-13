@@ -1,6 +1,5 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import TabItem from "../tabs/TabItem";
 import Tabs from "../tabs/Tabs";
 import { getSavedFeeds } from "@/lib/api/bsky/feed";
@@ -9,9 +8,9 @@ import FeedTabsSkeleton from "./FeedTabsSkeleton";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useScrollContext } from "@/app/providers/scroll";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export default function FeedTabs() {
-  const agent = useAgent();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const uri = searchParams.get("uri");
@@ -26,7 +25,10 @@ export default function FeedTabs() {
     isFetching,
   } = useQuery({
     queryKey: ["savedFeeds"],
-    queryFn: () => getSavedFeeds(agent),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getSavedFeeds(agent);
+    },
   });
 
   return (

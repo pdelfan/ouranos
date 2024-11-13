@@ -1,7 +1,6 @@
 "use client";
 
 import { searchProfiles } from "@/lib/api/bsky/actor";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
@@ -9,6 +8,7 @@ import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   query: string;
@@ -16,7 +16,6 @@ interface Props {
 
 export default function UserSearchContainer(props: Props) {
   const { query } = props;
-  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -28,14 +27,17 @@ export default function UserSearchContainer(props: Props) {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["searchProfiles", query],
-    queryFn: ({ pageParam }) => searchProfiles(agent, query, pageParam),
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+      return searchProfiles(agent, query, pageParam);
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
   const dataLength = profiles?.pages.reduce(
     (acc, page) => acc + (page?.actors.length ?? 0),
-    0
+    0,
   );
 
   const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;
@@ -67,10 +69,7 @@ export default function UserSearchContainer(props: Props) {
 
       {isEmpty && (
         <div className="border-skin-base border-t">
-          <FeedAlert
-            variant="empty"
-            message={`No users found for ${query}`}
-          />
+          <FeedAlert variant="empty" message={`No users found for ${query}`} />
         </div>
       )}
       {isFetching && !isFetchingNextPage && (

@@ -87,9 +87,7 @@ export default function LoginForm() {
         height={50}
         className="mx-auto mb-3"
       />
-      <h1 className="text-skin-base mb-1 text-xl font-semibold">
-        Welcome Back
-      </h1>
+      <h1 className="text-skin-base mb-1 text-xl font-semibold">Welcome</h1>
       <p className="text-skin-secondary mb-3 text-sm font-medium">
         We recommend using an{" "}
         <Link

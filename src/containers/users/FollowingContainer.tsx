@@ -1,6 +1,5 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
@@ -9,6 +8,7 @@ import { getFollows } from "@/lib/api/bsky/social";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   handle: string;
@@ -16,7 +16,6 @@ interface Props {
 
 export default function FollowingContainer(props: Props) {
   const { handle } = props;
-  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -28,8 +27,10 @@ export default function FollowingContainer(props: Props) {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["getFollowing", handle],
-    queryFn: ({ pageParam }) =>
-      getFollows({ handle, agent, cursor: pageParam }),
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+      return getFollows({ handle, agent, cursor: pageParam });
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.data.cursor,
   });

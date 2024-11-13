@@ -11,7 +11,6 @@ import {
   togglePinFeed,
   toggleSaveFeed,
 } from "@/lib/api/bsky/feed";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useRouter } from "next/navigation";
 import FeedHeaderSkeleton from "./FeedHeaderSkeleton";
 import { useQueryClient } from "@tanstack/react-query";
@@ -21,6 +20,7 @@ import { BiSolidBookmarkAlt } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { BiSolidHeart } from "react-icons/bi";
 import Link from "next/link";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   feed: string;
@@ -29,7 +29,6 @@ interface Props {
 export default function FeedHeader(props: Props) {
   const { feed } = props;
   const router = useRouter();
-  const agent = useAgent();
   const [isSaved, setIsSaved] = useState<boolean | null>(null);
   const [isPinned, setIsPinned] = useState<boolean | null>(null);
   const [isLiked, setIsLiked] = useState<boolean | null>(null);
@@ -54,9 +53,9 @@ export default function FeedHeader(props: Props) {
   }, [feedInfo]);
 
   const toggleSave = async () => {
-    if (!agent) return;
     setIsSaved((prev) => !prev);
     try {
+      const agent = await getAgentFromClient();
       const response = await toggleSaveFeed(agent, feed);
       if (!response.success) {
         setIsSaved((prev) => !prev);
@@ -70,9 +69,9 @@ export default function FeedHeader(props: Props) {
   };
 
   const togglePin = async () => {
-    if (!agent) return;
     setIsPinned((prev) => !prev);
     try {
+      const agent = await getAgentFromClient();
       const response = await togglePinFeed(agent, feed);
       if (!response.success) {
         setIsPinned((prev) => !prev);
@@ -86,7 +85,7 @@ export default function FeedHeader(props: Props) {
   };
 
   const toggleLike = async () => {
-    if (!agent) return;
+    const agent = await getAgentFromClient();
     setIsLiked((prev) => !prev);
     if (!likeUri && feedInfo) {
       try {

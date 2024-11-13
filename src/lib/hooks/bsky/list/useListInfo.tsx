@@ -1,15 +1,16 @@
-import useAgent from "../useAgent";
 import { useQuery } from "@tanstack/react-query";
 import { getListInfo } from "@/lib/api/bsky/list";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export const listInfoKey = (list: string) => ["listInfo", list];
 
 export default function useFeedInfo(list: string) {
-  const agent = useAgent();
-
   const { data, isLoading, isFetching, isRefetching, error } = useQuery({
     queryKey: listInfoKey(list),
-    queryFn: () => getListInfo(list, agent),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getListInfo(list, agent);
+    },
   });
 
   return {

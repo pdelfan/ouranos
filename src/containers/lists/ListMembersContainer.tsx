@@ -1,6 +1,5 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
@@ -9,6 +8,7 @@ import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import { getListMembers } from "@/lib/api/bsky/list";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   list: string;
@@ -16,7 +16,6 @@ interface Props {
 
 export default function ListMembersContainer(props: Props) {
   const { list } = props;
-  const agent = useAgent();
 
   const {
     status,
@@ -29,7 +28,10 @@ export default function ListMembersContainer(props: Props) {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["list members", list],
-    queryFn: ({ pageParam }) => getListMembers(agent, list, pageParam),
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+      return getListMembers(agent, list, pageParam);
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.cursor,
   });

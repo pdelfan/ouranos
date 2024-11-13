@@ -1,6 +1,5 @@
 "use client";
 
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
@@ -10,6 +9,7 @@ import SearchPost from "@/components/contentDisplay/searchPost/SearchPost";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getPostQuotes } from "@/lib/api/bsky/feed";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   id: string;
@@ -18,7 +18,6 @@ interface Props {
 
 export default function QuotesContainer(props: Props) {
   const { id, handle } = props;
-  const agent = useAgent();
 
   const {
     status,
@@ -32,6 +31,7 @@ export default function QuotesContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["postQuotes", id],
     queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
       const { data } = await agent.resolveHandle({ handle });
       if (!data) return;
       const uri = `at://${data.did}/app.bsky.feed.post/${id}`;
@@ -43,7 +43,7 @@ export default function QuotesContainer(props: Props) {
 
   const dataLength = quotes?.pages.reduce(
     (acc, page) => acc + (page?.posts.length ?? 0),
-    0
+    0,
   );
 
   const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;

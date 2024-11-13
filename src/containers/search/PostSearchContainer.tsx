@@ -1,7 +1,6 @@
 "use client";
 
 import { searchPosts } from "@/lib/api/bsky/actor";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
 import EndOfFeed from "@/components/feedback/endOfFeed/EndOfFeed";
@@ -10,6 +9,7 @@ import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkele
 import SearchPost from "@/components/contentDisplay/searchPost/SearchPost";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   query: string;
@@ -19,7 +19,6 @@ interface Props {
 export default function PostSearchContainer(props: Props) {
   const { query, sort } = props;
   const decoded = decodeURIComponent(query);
-  const agent = useAgent();
 
   const {
     status,
@@ -32,14 +31,17 @@ export default function PostSearchContainer(props: Props) {
     fetchNextPage,
   } = useInfiniteQuery({
     queryKey: ["searchPosts", sort, query],
-    queryFn: ({ pageParam }) => searchPosts(decoded, pageParam, sort, agent),
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+      return searchPosts(decoded, pageParam, sort, agent);
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage?.cursor,
   });
 
   const dataLength = posts?.pages.reduce(
     (acc, page) => acc + (page?.posts.length ?? 0),
-    0
+    0,
   );
 
   const isEmpty = !isFetching && !isFetchingNextPage && dataLength === 0;

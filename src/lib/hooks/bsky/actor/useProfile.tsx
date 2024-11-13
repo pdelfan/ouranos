@@ -1,19 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import useAgent from "../useAgent";
 import { getProfile } from "@/lib/api/bsky/actor";
 import { follow, unfollow } from "@/lib/api/bsky/social";
 import { AppBskyActorDefs } from "@atproto/api";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export const profileKey = (handle: string) => ["profile", handle];
 
 export default function useProfile(handle: string) {
-  const agent = useAgent();
   const queryClient = useQueryClient();
   const { data, isLoading, isFetching, isRefetching, error } = useQuery({
     queryKey: profileKey(handle),
     queryFn: async (): Promise<
       AppBskyActorDefs.ProfileViewDetailed | undefined
     > => {
+      const agent = await getAgentFromClient();
       const profile = await getProfile(handle, agent);
       if (profile) {
         return profile;
@@ -48,6 +48,7 @@ export default function useProfile(handle: string) {
       updateFollowCount(isCurrentlyFollowing ? "decrease" : "increase");
 
       try {
+        const agent = await getAgentFromClient();
         if (isCurrentlyFollowing && data.viewer?.following) {
           await unfollow(agent, data.viewer.following);
         } else {

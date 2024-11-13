@@ -2,16 +2,15 @@
 
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { getMutedUsers } from "@/lib/api/bsky/social";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
 import MutedUsersContainerSkeleton from "./MutedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export default function MutedUsersContainer() {
-  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -23,7 +22,10 @@ export default function MutedUsersContainer() {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["getMutedUsers"],
-    queryFn: ({ pageParam }) => getMutedUsers(agent, pageParam),
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+      return getMutedUsers(agent, pageParam);
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.cursor,
   });

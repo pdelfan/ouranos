@@ -7,11 +7,11 @@ import { BiPlus, BiSolidHeart, BiSolidTrash } from "react-icons/bi";
 import Button from "@/components/actions/button/Button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { toggleSaveFeed } from "@/lib/api/bsky/feed";
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { savedFeedsQueryKey } from "@/containers/settings/myFeedsContainer/MyFeedsContainer";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   feedItem: GeneratorView;
@@ -23,13 +23,12 @@ export default function FeedItem(props: Props) {
   const { avatar, displayName, description, likeCount, creator } = feedItem;
   const [isSaved, setIsSaved] = useState(saved);
   const router = useRouter();
-  const agent = useAgent();
   const queryClient = useQueryClient();
 
   const handleSave = async () => {
-    if (!agent) return;
     setIsSaved((prev) => !prev);
     try {
+      const agent = await getAgentFromClient();
       const response = await toggleSaveFeed(agent, feedItem.uri);
       if (!response.success) {
         setIsSaved((prev) => !prev);

@@ -1,10 +1,10 @@
 import { AppBskyFeedDefs } from "@atproto/api";
-import useAgent from "../useAgent";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { blockUser, unBlockUser } from "@/lib/api/bsky/actor";
 import { profileKey } from "../actor/useProfile";
 import { ViewerState } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -16,7 +16,6 @@ export const useBlockKey = (did: string) => ["block", did];
 
 export default function useBlockUser(props: Props) {
   const { author, viewer, viewerDID } = props;
-  const agent = useAgent();
   const [blocked, setBlocked] = useState(!!author.viewer?.blocking);
   const queryClient = useQueryClient();
 
@@ -26,6 +25,7 @@ export default function useBlockUser(props: Props) {
       if (!blocked) {
         try {
           setBlocked(true);
+          const agent = await getAgentFromClient();
           const res = await blockUser(viewerDID, author.did, agent);
           queryClient.setQueryData(
             profileKey(author.handle),
@@ -37,7 +37,7 @@ export default function useBlockUser(props: Props) {
                   blocking: res.uri,
                 },
               };
-            }
+            },
           );
         } catch (err) {
           setBlocked(false);
@@ -51,13 +51,14 @@ export default function useBlockUser(props: Props) {
                   blocking: undefined,
                 },
               };
-            }
+            },
           );
         }
       } else {
         try {
           setBlocked(false);
-          const rkey = viewer!.blocking!.split("/").pop()!;          
+          const agent = await getAgentFromClient();
+          const rkey = viewer!.blocking!.split("/").pop()!;
           await unBlockUser(viewerDID, rkey, agent);
           queryClient.setQueryData(
             profileKey(author.handle),
@@ -69,7 +70,7 @@ export default function useBlockUser(props: Props) {
                   blocking: undefined,
                 },
               };
-            }
+            },
           );
         } catch (err) {
           setBlocked(true);
@@ -83,7 +84,7 @@ export default function useBlockUser(props: Props) {
                   blocking: author.did,
                 },
               };
-            }
+            },
           );
         }
       }

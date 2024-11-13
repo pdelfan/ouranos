@@ -12,7 +12,6 @@ import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import RepliesContainer from "./RepliesContainer";
 import ParentContainer from "./ParentContainer";
 import WhoCanReply from "@/components/feedback/WhoCanReply/WhoCanReply";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import useOrganizeThread from "@/lib/hooks/bsky/feed/useOrganizeThread";
 import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { getPostThread } from "@/lib/api/bsky/feed";
@@ -24,6 +23,7 @@ import ThreadActionsContainer from "./ThreadActionsContainer";
 import { replyIncludes } from "@/lib/utils/text";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 import { useSession } from "next-auth/react";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   id: string;
@@ -34,7 +34,6 @@ interface Props {
 export default function PostThreadContainer(props: Props) {
   const { id, handle, repliesTextFilter } = props;
   const [maxReplies, setMaxReplies] = useState(MAX_REPLY_CONTAINERS);
-  const agent = useAgent();
   const router = useRouter();
   const { data: session } = useSession();
   const { data: profile } = useProfile(session?.user.bskySession.handle);
@@ -48,6 +47,7 @@ export default function PostThreadContainer(props: Props) {
   } = useQuery({
     queryKey: ["postThread", id],
     queryFn: async () => {
+      const agent = await getAgentFromClient();
       const uri = `at://${handle}/app.bsky.feed.post/${id}`;
       return getPostThread(uri, agent);
     },

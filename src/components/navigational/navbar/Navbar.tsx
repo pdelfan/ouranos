@@ -15,19 +15,21 @@ import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useQuery } from "@tanstack/react-query";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const agent = useAgent();
   const {
     data: notificationsCount,
     error,
     isFetching,
   } = useQuery({
     queryKey: ["notificationsCount"],
-    queryFn: () => getUnreadNotificationsCount(agent),
+    queryFn: async () => {
+      const agent = await getAgentFromClient();
+      return getUnreadNotificationsCount(agent);
+    },
     refetchInterval: 10000,
   });
 

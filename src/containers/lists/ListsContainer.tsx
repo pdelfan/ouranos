@@ -5,8 +5,8 @@ import ListsSkeleton from "@/components/contentDisplay/lists/ListsSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import { getProfile } from "@/lib/api/bsky/actor";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 import { getLists } from "@/lib/api/bsky/list";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -17,7 +17,6 @@ interface Props {
 
 export default function ListsContainer(props: Props) {
   const { handle } = props;
-  const agent = useAgent();
   const {
     status,
     data: lists,
@@ -30,6 +29,7 @@ export default function ListsContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["user lists", handle],
     queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
       const profile = await getProfile(handle, agent);
       if (!profile) throw new Error("Could not get user id to show lists");
       return getLists(profile.did, pageParam, agent);

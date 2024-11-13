@@ -2,16 +2,15 @@
 
 import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import { getBlockedUsers } from "@/lib/api/bsky/social";
-import useAgent from "@/lib/hooks/bsky/useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment } from "react";
 import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export default function BlockedUsersContainer() {
-  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -23,7 +22,10 @@ export default function BlockedUsersContainer() {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ["getBlockedUsers"],
-    queryFn: ({ pageParam }) => getBlockedUsers(agent, pageParam),
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+      return getBlockedUsers(agent, pageParam);
+    },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.cursor,
   });

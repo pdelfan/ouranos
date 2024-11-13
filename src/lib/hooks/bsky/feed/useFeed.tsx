@@ -1,7 +1,7 @@
-import useAgent from "../useAgent";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getFeed, getTimeline } from "../../../api/bsky/feed";
 import { getListFeed } from "@/lib/api/bsky/list";
+import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 export const useFeedKey = (feed: string) => [feed];
 
@@ -12,7 +12,7 @@ interface Props {
 
 export default function useFeed(props: Props) {
   const { feed, mode } = props;
-  const agent = useAgent();
+
   const {
     status,
     data: timeline,
@@ -26,7 +26,9 @@ export default function useFeed(props: Props) {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: useFeedKey(feed),
-    queryFn: ({ pageParam }) => {
+    queryFn: async ({ pageParam }) => {
+      const agent = await getAgentFromClient();
+
       if (mode === "feed") {
         if (feed === "timeline") {
           return getTimeline(agent, pageParam);
