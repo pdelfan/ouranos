@@ -74,8 +74,8 @@ export default function usePublishPost(props: Props) {
       if (languages.length > 0) {
         lang = languages;
       } else {
-        const detectedLanguage = await detectLanguage(richText.text);
-        lang = detectedLanguage ?? [];
+        const detectedLanguage = detectLanguage(richText.text);
+        lang = detectedLanguage ? [detectedLanguage] : [];
       }
 
       let selfLabels: ComAtprotoLabelDefs.SelfLabels | undefined;
