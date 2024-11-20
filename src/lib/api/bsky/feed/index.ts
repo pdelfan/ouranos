@@ -2,8 +2,8 @@ import { type Agent, AppBskyActorDefs } from "@atproto/api";
 import { getAgentFromServer } from "../agent";
 import { SavedFeed } from "../../../../../types/feed";
 
-export const getPopularFeeds = async (search?: string) => {
-  const agent = await getAgentFromServer();
+export const getPopularFeeds = async (search?: string, agent?: Agent) => {
+  if (!agent) agent = await getAgentFromServer();
   const popularFeeds = await agent.app.bsky.unspecced.getPopularFeedGenerators({
     query: search,
   });

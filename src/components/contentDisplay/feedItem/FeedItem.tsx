@@ -15,11 +15,12 @@ import { getAgentFromClient } from "@/lib/api/bsky/agent";
 
 interface Props {
   feedItem: GeneratorView;
-  saved: boolean;
+  saved?: boolean;
+  rounded?: boolean;
 }
 
 export default function FeedItem(props: Props) {
-  const { feedItem, saved } = props;
+  const { feedItem, saved, rounded = true } = props;
   const { avatar, displayName, description, likeCount, creator } = feedItem;
   const [isSaved, setIsSaved] = useState(saved);
   const router = useRouter();
@@ -45,11 +46,13 @@ export default function FeedItem(props: Props) {
     <Link
       href={{
         pathname: `/dashboard/feeds/${encodeURIComponent(
-          feedItem.uri.split(":")[3].split("/")[0],
+          feedItem.uri.split(":")[3].split("/")[0]
         )}`,
         query: { uri: feedItem.uri },
       }}
-      className="border-skin-base hover:bg-skin-secondary flex flex-col gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0"
+      className={`border-skin-base hover:bg-skin-secondary flex flex-col gap-2 border border-x-0 p-3 last:border-b md:border-x ${
+        rounded && "md:first:rounded-t-2xl"
+      } md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0`}
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-3">
@@ -58,7 +61,9 @@ export default function FeedItem(props: Props) {
             alt={displayName}
             width={40}
             height={40}
-            className={`rounded-lg ${!avatar && "border-skin-base bg-skin-muted border"}`}
+            className={`rounded-lg ${
+              !avatar && "border-skin-base bg-skin-muted border"
+            }`}
           />
           <div className="flex flex-col">
             <h2 className="text-skin-base break-words font-semibold">

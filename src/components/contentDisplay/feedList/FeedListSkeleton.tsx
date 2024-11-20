@@ -1,6 +1,16 @@
-function Skeleton() {
+interface Props {
+  rounded?: boolean;
+}
+
+function Skeleton(props: Props) {
+  const { rounded = false } = props;
+
   return (
-    <article className="border-skin-base flex flex-col gap-2 border border-x-0 p-3 last:border-b md:border-x md:first:rounded-t-2xl md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
+    <article
+      className={`border-skin-base flex flex-col gap-2 border border-x-0 p-3 last:border-b md:border-x ${
+        rounded && "md:first:rounded-t-2xl"
+      } md:last:rounded-b-2xl odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0`}
+    >
       <div className="flex flex-wrap items-center gap-3">
         <div className="bg-skin-muted h-10 w-10 rounded-lg" />
         <div className="flex flex-col gap-3">
@@ -16,21 +26,23 @@ function Skeleton() {
   );
 }
 
-export default function FeedListSkeleton() {
+export default function FeedListSkeleton(props: Props) {
+  const { rounded = false } = props;
+
   return (
     <section className="flex flex-col">
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
+      <Skeleton rounded={rounded} />
     </section>
   );
 }

@@ -43,7 +43,7 @@ export default function Page(props: Props) {
               <Search placeholder="Search for feeds" />
             </div>
           </div>
-          <Suspense key={query} fallback={<FeedListSkeleton />}>
+          <Suspense key={query} fallback={<FeedListSkeleton rounded={true} />}>
             <FeedList query={query} />
           </Suspense>
         </div>
