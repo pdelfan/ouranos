@@ -77,7 +77,7 @@ export default function BottomEditorBar(props: Props) {
       <div className="mb-2">
         <ThreadGatePicker onUpdate={onUpdateThreadGate} selected={threadGate} />
       </div>
-      <div className="border-skin-base border-t pb-2">
+      <div className="border-skin-base border-t">
         <div className="flex flex-wrap justify-between gap-5 mt-3">
           <div className="flex gap-3">
             <EmojiPicker onEmojiSelect={editor.commands.insertContent} />

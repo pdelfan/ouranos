@@ -3,7 +3,6 @@ import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CgClose } from "react-icons/cg";
 import { useClipboard } from "use-clipboard-copy";
-import toast from "react-hot-toast";
 import { BiSolidCopy } from "react-icons/bi";
 
 interface Props {
@@ -13,12 +12,7 @@ interface Props {
 export default function AltTag(props: Props) {
   const { text } = props;
   const [showAlt, setShowAlt] = useState(false);
-  const clipboard = useClipboard({ copiedTimeout: 3500 });
-
-  const handleCopyAltText = () => {
-    clipboard.copy(text);
-    toast.success("Alt text copied to clipboard", { id: "Copy alt text" });
-  };
+  const { copy, copied } = useClipboard({ copiedTimeout: 3500 });
 
   const handleShowAlt = () => {
     setShowAlt(!showAlt);
@@ -62,19 +56,20 @@ export default function AltTag(props: Props) {
                   <CgClose className="text-xl" />
                 </Button>
               </Dialog.Close>
-              <div className="text-skin-inverted bg-skin-overlay-muted z-50 max-h-[calc(100svh-10rem)] max-w-xl cursor-text overflow-auto rounded-xl p-4">
-                <div className="mb-4 flex flex-wrap justify-between gap-3">
-                  <Dialog.Title className="text-xl font-semibold text-white">
+              <div className="text-skin-inverted bg-skin-base border border-skin-base z-50 max-h-[calc(100svh-10rem)] max-w-xl cursor-text overflow-auto rounded-xl p-4">
+                <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 mb-4 bg-skin-tertiary p-2 rounded-lg">
+                  <Dialog.Title className="text-xl font-semibold text-skin-base">
                     Alternative text
                   </Dialog.Title>
                   <Button
-                    onClick={handleCopyAltText}
-                    className="bg-skin-inverted hover:bg-skin-inverted/90 rounded-lg p-2"
+                    onClick={() => copy(text)}
+                    className="bg-skin-base text-skin-base px-3 py-1.5 rounded-lg border border-skin-base"
                   >
                     <BiSolidCopy />
+                    {copied ? "Copied" : "Copy"}
                   </Button>
                 </div>
-                <Dialog.Description className="mt-2 text-white">
+                <Dialog.Description className="mt-2 text-skin-base">
                   {text}
                 </Dialog.Description>
               </div>

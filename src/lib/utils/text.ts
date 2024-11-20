@@ -1,7 +1,8 @@
 import { JSONContent } from "@tiptap/react";
 import { ThreadgateSetting } from "../../../types/feed";
 import { PostView } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
-import { AppBskyFeedPost, Facet, UnicodeString } from "@atproto/api";
+import { AppBskyFeedPost } from "@atproto/api";
+import { detect } from "tinyld";
 
 export function getHandle(mention: string) {
   return mention.slice(1);
@@ -86,24 +87,18 @@ export function jsonToText(json: JSONContent) {
   return text;
 }
 
-export async function detectLanguage(text: string) {
+export function detectLanguage(text: string) {
   if (text === "") return;
-  const res = await fetch(`/api/language-detection`, {
-    method: "post",
-    body: JSON.stringify({
-      text: text,
-    }),
-  });
+  const language = detect(text);
 
-  const detectedLanguage: string = await res.json();
-  return [detectedLanguage.trim()];
+  return language;
 }
 
 // TODO: add language prefs to localStorage to use for lang
 // the default is English for now
 export function getTranslateLink(text: string, lang: string = "en"): string {
   return `https://translate.google.com/?sl=auto&tl=${lang}&text=${encodeURIComponent(
-    text
+    text,
   )}`;
 }
 
