@@ -40,7 +40,7 @@ export default function Editor(props: Props) {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
   const [embedSuggestions, setEmbedSuggestions] = useState<Set<string>>(
-    new Set(""),
+    new Set("")
   );
   const [linkEmbed, setLinkEmbed] = useState("");
   const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
@@ -49,7 +49,7 @@ export default function Editor(props: Props) {
   const quoteAuthor = quote?.author.displayName || quote?.author.handle;
   const placeholderText = getComposerPlaceholder(
     replyTo ? "reply" : quote ? "quote" : "post",
-    replyAuthor ?? quoteAuthor,
+    replyAuthor ?? quoteAuthor
   );
 
   const editor = useEditor({
@@ -118,7 +118,10 @@ export default function Editor(props: Props) {
   });
 
   const hasContent =
-    quote || images || linkEmbed || richText.graphemeLength !== 0
+    quote ||
+    (images && images.length > 0) ||
+    linkEmbed ||
+    richText.graphemeLength !== 0
       ? true
       : false;
 
