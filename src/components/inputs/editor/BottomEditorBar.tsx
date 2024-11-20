@@ -103,7 +103,7 @@ export default function BottomEditorBar(props: Props) {
         <div
           {...getRootProps()}
           className={`
-            animate-fade animate-duration-200 border-skin-base hover:bg-skin-secondary cursor-pointer rounded-2xl border p-6 text-center
+            animate-fade animate-duration-200 border-skin-base hover:bg-skin-secondary cursor-pointer rounded-2xl border mt-2 p-6 text-center
             ${
               isDragActive &&
               "ring-primary border-skin-base bg-skin-secondary ring-2"
