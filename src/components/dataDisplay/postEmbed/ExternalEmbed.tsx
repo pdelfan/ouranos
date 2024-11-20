@@ -29,7 +29,7 @@ export default function ExternalEmbed(props: Props) {
                   width={900}
                   height={500}
                   priority
-                  className="border-b-skin-base rounded-t-lg border-b aspect-auto max-h-96 object-cover group-hover:brightness-95"
+                  className="border-b-skin-base rounded-t-lg border-b aspect-video max-h-96 object-cover group-hover:brightness-95"
                 />
               )}
               <div className="flex flex-col p-3">
