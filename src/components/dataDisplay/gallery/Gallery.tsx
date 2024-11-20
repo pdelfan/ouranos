@@ -43,7 +43,7 @@ export default function Gallery(props: Props) {
           break;
       }
     },
-    [handleBackward, handleForward]
+    [handleBackward, handleForward],
   );
 
   useEffect(() => {
