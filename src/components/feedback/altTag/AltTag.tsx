@@ -14,40 +14,35 @@ export default function AltTag(props: Props) {
   const [showAlt, setShowAlt] = useState(false);
   const { copy, copied } = useClipboard({ copiedTimeout: 3500 });
 
-  const handleShowAlt = () => {
-    setShowAlt(!showAlt);
-  };
-
-  const handleCloseAlt = () => {
-    setShowAlt(false);
-  };
-
   return (
     <>
       <Button
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
-          handleShowAlt();
+          setShowAlt((prev) => !prev);
         }}
         className="text-skin-secondary bg-skin-secondary hover:bg-skin-muted hover:text-skin-base absolute bottom-1.5 left-1.5 rounded-md px-2 py-0.5 text-xs font-semibold border border-skin-base"
       >
         ALT
       </Button>
 
-      <Dialog.Root open={showAlt} onOpenChange={handleCloseAlt}>
+      <Dialog.Root
+        open={showAlt}
+        onOpenChange={() => setShowAlt((prev) => !prev)}
+      >
         <Dialog.Portal>
-          <Dialog.Overlay className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50" />
+          <Dialog.Overlay
+            className="animate-fade animate-duration-200 bg-skin-overlay-muted fixed inset-0 z-50"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowAlt(false);
+            }}
+          />
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <Dialog.Content
               onClick={(e) => {
                 e.stopPropagation();
-                e.preventDefault();
-              }}
-              onPointerDownOutside={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                handleCloseAlt();
               }}
               className="m-3.5"
             >
