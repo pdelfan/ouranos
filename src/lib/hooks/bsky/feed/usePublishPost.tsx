@@ -12,7 +12,7 @@ import {
   ComAtprotoLabelDefs,
   RichText,
 } from "@atproto/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { detectLanguage, jsonToText } from "@/lib/utils/text";
 import { compressImage } from "@/lib/utils/image";
 import { JSONContent } from "@tiptap/react";
@@ -45,7 +45,6 @@ export default function usePublishPost(props: Props) {
     label,
     threadGate,
   } = props;
-  const queryClient = useQueryClient();
   const MAX_POST_LENGTH = 300;
 
   return useMutation({
@@ -65,7 +64,7 @@ export default function usePublishPost(props: Props) {
 
       if (richText.graphemeLength > MAX_POST_LENGTH) {
         throw new Error(
-          "Post length exceeds the maximum length of 300 characters",
+          "Post length exceeds the maximum length of 300 characters"
         );
       }
 
@@ -140,7 +139,7 @@ export default function usePublishPost(props: Props) {
               new Uint8Array(await blob.arrayBuffer()),
               {
                 encoding: blob.type,
-              },
+              }
             );
 
             embedImages.images.push({
@@ -202,13 +201,13 @@ export default function usePublishPost(props: Props) {
               try {
                 const image = await fetch(linkCard.image);
                 const blob = await compressImage(
-                  (await image.blob()) as UploadImage,
+                  (await image.blob()) as UploadImage
                 );
                 const uploaded = await agent.uploadBlob(
                   new Uint8Array(await blob.arrayBuffer()),
                   {
                     encoding: blob.type,
-                  },
+                  }
                 );
                 embedExternal.external.thumb = uploaded.data.blob;
               } catch (e) {
@@ -258,7 +257,7 @@ export default function usePublishPost(props: Props) {
 
         await agent.api.app.bsky.feed.threadgate.create(
           { repo: agent.session!.did, rkey: submittedPost.rkey },
-          { post: result.uri, createdAt: new Date().toISOString(), allow },
+          { post: result.uri, createdAt: new Date().toISOString(), allow }
         );
       }
     },
