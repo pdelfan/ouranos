@@ -17,7 +17,7 @@ function AtmosphereItem(props: Props) {
 
   return (
     <Link href={url}>
-      <article className="flex items-start gap-3 p-3 border rounded-xl bg-skin-base hover:bg-skin-secondary">
+      <article className="flex items-start gap-3 p-3 border border-skin-base rounded-xl bg-skin-base hover:bg-skin-secondary">
         <Avatar src={logo} size="md" />
         <div className="flex flex-col">
           <span className="text-skin-base font-medium">{title}</span>
@@ -30,7 +30,7 @@ function AtmosphereItem(props: Props) {
 
 export default function AtmosphereNotFoundContainer() {
   return (
-    <section className="p-3 bg-skin-base md:border-x border-b md:rounded-b-2xl">
+    <section className="p-3 bg-skin-base border-skin-base md:border-x border-b md:rounded-b-2xl">
       <Alert variant="info" message="No apps found" />
       <p className="font-medium text-skin-base mt-5">
         Ouranos currently supports the following apps in the atmosphere:
