@@ -33,7 +33,7 @@ export default function ImageEmbed(props: Props) {
                   width={500}
                   height={250}
                   priority
-                  className="rounded-md h-full max-h-62 object-cover cursor-pointer hover:brightness-90"
+                  className="rounded-md h-full max-h-62 object-cover cursor-pointer hover:brightness-90 border border-skin-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowImage(i);
@@ -57,7 +57,7 @@ export default function ImageEmbed(props: Props) {
                     width={images[0].aspectRatio?.width ?? 450}
                     height={images[0].aspectRatio?.height ?? 450}
                     priority
-                    className="rounded-md object-cover h-full cursor-pointer hover:brightness-90"
+                    className="rounded-md object-cover h-full cursor-pointer hover:brightness-90 border border-skin-base"
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowImage(0);
@@ -75,7 +75,7 @@ export default function ImageEmbed(props: Props) {
                     width={images[1].aspectRatio?.width ?? 450}
                     height={images[1].aspectRatio?.height ?? 450}
                     priority
-                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
+                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90 border border-skin-base"
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowImage(1);
@@ -91,7 +91,7 @@ export default function ImageEmbed(props: Props) {
                     width={images[2].aspectRatio?.width ?? 450}
                     height={images[2].aspectRatio?.height ?? 450}
                     priority
-                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90"
+                    className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90 border border-skin-base"
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowImage(2);
@@ -114,7 +114,7 @@ export default function ImageEmbed(props: Props) {
                   width={images[i].aspectRatio?.width ?? 450}
                   height={images[i].aspectRatio?.height ?? 450}
                   priority
-                  className="object-cover aspect-square rounded-md h-full max-h-64 cursor-pointer hover:brightness-90"
+                  className="object-cover aspect-square rounded-md h-full max-h-64 cursor-pointer hover:brightness-90 border border-skin-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowImage(i);
@@ -137,7 +137,7 @@ export default function ImageEmbed(props: Props) {
                   width={images[0].aspectRatio?.width ?? 900}
                   height={images[0].aspectRatio?.height ?? 900}
                   priority
-                  className="rounded-md max-h-96 w-full object-cover cursor-pointer hover:brightness-90"
+                  className="rounded-md max-h-96 w-full object-cover cursor-pointer hover:brightness-90 border border-skin-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowImage(0);
