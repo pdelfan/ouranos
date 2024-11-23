@@ -1,6 +1,7 @@
 "use server";
 
-import { getDidFromHandle, getPDS } from "@/lib/api/bsky/identity";
+import { getDidFromHandle } from "@/lib/api/bsky/identity/did";
+import { getPDS } from "@/lib/api/bsky/identity/service";
 
 export async function getService(handle: string) {
   const userDID = await getDidFromHandle(handle);
