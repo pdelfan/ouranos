@@ -90,14 +90,16 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
                     {author.displayName || author.handle}{" "}
                   </Link>
                 )}
-                <span className="text-skin-base break-words font-medium">
+                <span className="text-skin-tertiary break-words font-medium">
                   {getNotificationLabel(reason)}
                 </span>
                 <span className="text-skin-tertiary whitespace-nowrap font-medium">
                   &nbsp;· {getRelativeTime(indexedAt)}
                 </span>
                 {subjectUri && (
-                  <NotificationContnet uri={subjectUri} filter={filter} />
+                  <div className="mt-2">
+                    <NotificationContnet uri={subjectUri} filter={filter} />
+                  </div>
                 )}
               </div>
             </div>
