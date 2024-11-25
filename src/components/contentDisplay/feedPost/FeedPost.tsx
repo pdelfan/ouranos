@@ -134,12 +134,8 @@ export default function FeedPost(props: Props) {
               />
             </div>
           )}
-          {!hidden && (
-            <>
-              {post.post.embed && (
-                <PostEmbed content={post.post.embed} depth={0} />
-              )}
-            </>
+          {!hidden && post.post.embed && (
+            <PostEmbed content={post.post.embed} depth={0} />
           )}
           <div className="mt-2">
             <PostActions post={post.post} />

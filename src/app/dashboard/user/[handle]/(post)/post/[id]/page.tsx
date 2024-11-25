@@ -13,14 +13,10 @@ interface Props {
     id: string;
     handle: string;
   };
-  searchParams: {
-    query?: string;
-  };
 }
 
 export default async function Page(props: Props) {
   const { id, handle } = props.params;
-  const { query } = props.searchParams;
 
   return (
     <>
@@ -29,11 +25,7 @@ export default async function Page(props: Props) {
           Post
         </h2>
       </div>
-      <PostThreadContainer
-        id={id}
-        handle={handle}
-        repliesTextFilter={query ?? ""}
-      />
+      <PostThreadContainer id={id} handle={handle} />
     </>
   );
 }
