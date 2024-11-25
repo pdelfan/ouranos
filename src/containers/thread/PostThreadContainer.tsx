@@ -17,7 +17,7 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import { getPostThread } from "@/lib/api/bsky/feed";
 import { sortThread } from "@/lib/utils/feed";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { MAX_REPLY_CONTAINERS } from "@/lib/consts/thread";
 import ThreadActionsContainer from "./ThreadActionsContainer";
 import { replyIncludes } from "@/lib/utils/text";
@@ -28,11 +28,12 @@ import { getAgentFromClient } from "@/lib/api/bsky/agent";
 interface Props {
   id: string;
   handle: string;
-  repliesTextFilter: string;
 }
 
 export default function PostThreadContainer(props: Props) {
-  const { id, handle, repliesTextFilter } = props;
+  const { id, handle } = props;
+  const searchParams = useSearchParams();
+  const search = searchParams.get("query") ?? "";
   const [maxReplies, setMaxReplies] = useState(MAX_REPLY_CONTAINERS);
   const router = useRouter();
   const { data: session } = useSession();
@@ -57,13 +58,13 @@ export default function PostThreadContainer(props: Props) {
     thread: thread,
   });
 
-  const [textSearch, setTextSearch] = useState(repliesTextFilter);
+  const [textSearch, setTextSearch] = useState(search);
   const [filteredReplies, setFilteredReplies] = useState(0);
 
   // Update textFilter and filteredReplies
   useEffect(() => {
-    setTextSearch(repliesTextFilter);
-  }, [repliesTextFilter]);
+    setTextSearch(search);
+  }, [search]);
 
   useEffect(() => {
     setFilteredReplies(
