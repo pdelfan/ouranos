@@ -81,9 +81,7 @@ export default function ThreadPost(props: Props) {
             />
           </div>
         )}
-        {!hidden && (
-          <>{post.embed && <PostEmbed content={post.embed} depth={0} />}</>
-        )}
+        {!hidden && post.embed && <PostEmbed content={post.embed} depth={0} />}
         <div className="text-sm text-skin-tertiary mt-3 font-medium">
           {getFormattedDate(post.indexedAt)}
         </div>
