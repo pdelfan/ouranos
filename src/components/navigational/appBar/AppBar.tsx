@@ -9,10 +9,12 @@ import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaRegBell } from "react-icons/fa6";
 import { FaBell } from "react-icons/fa";
 import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function AppBar() {
   const pathname = usePathname();
+  const agent = useAgent();
+
   const {
     data: notificationsCount,
     error,
@@ -20,7 +22,6 @@ export default function AppBar() {
   } = useQuery({
     queryKey: ["notificationsCount"],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getUnreadNotificationsCount(agent);
     },
     refetchInterval: 10000,

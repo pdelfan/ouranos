@@ -3,9 +3,9 @@
 import { getPopularFeeds } from "@/lib/api/bsky/feed";
 import { useQuery } from "@tanstack/react-query";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
 import FeedListSkeleton from "@/components/contentDisplay/feedList/FeedListSkeleton";
 import FeedItem from "@/components/contentDisplay/feedItem/FeedItem";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   query: string;
@@ -13,10 +13,10 @@ interface Props {
 
 export default function FeedSearchContainer(props: Props) {
   const { query } = props;
+  const agent = useAgent();
   const { data: feeds, isFetching } = useQuery({
     queryKey: ["searchFeeds", query],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getPopularFeeds(query, agent);
     },
   });

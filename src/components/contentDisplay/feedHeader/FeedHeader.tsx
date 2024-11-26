@@ -20,7 +20,7 @@ import { BiSolidBookmarkAlt } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { BiSolidHeart } from "react-icons/bi";
 import Link from "next/link";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   feed: string;
@@ -28,6 +28,7 @@ interface Props {
 
 export default function FeedHeader(props: Props) {
   const { feed } = props;
+  const agent = useAgent();
   const router = useRouter();
   const [isSaved, setIsSaved] = useState<boolean | null>(null);
   const [isPinned, setIsPinned] = useState<boolean | null>(null);
@@ -55,7 +56,6 @@ export default function FeedHeader(props: Props) {
   const toggleSave = async () => {
     setIsSaved((prev) => !prev);
     try {
-      const agent = await getAgentFromClient();
       const response = await toggleSaveFeed(agent, feed);
       if (!response.success) {
         setIsSaved((prev) => !prev);
@@ -71,7 +71,6 @@ export default function FeedHeader(props: Props) {
   const togglePin = async () => {
     setIsPinned((prev) => !prev);
     try {
-      const agent = await getAgentFromClient();
       const response = await togglePinFeed(agent, feed);
       if (!response.success) {
         setIsPinned((prev) => !prev);
@@ -85,7 +84,6 @@ export default function FeedHeader(props: Props) {
   };
 
   const toggleLike = async () => {
-    const agent = await getAgentFromClient();
     setIsLiked((prev) => !prev);
     if (!likeUri && feedInfo) {
       try {

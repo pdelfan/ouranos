@@ -11,7 +11,7 @@ import usePreferences from "@/lib/hooks/bsky/actor/usePreferences";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   mode: UserPostMode;
@@ -20,6 +20,7 @@ interface Props {
 
 export default function UserPostsConatiner(props: Props) {
   const { mode, handle } = props;
+  const agent = useAgent();
   const {
     data: profile,
     isLoading,
@@ -28,7 +29,6 @@ export default function UserPostsConatiner(props: Props) {
   } = useQuery({
     queryKey: ["profile", handle],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getProfile(handle, agent);
     },
   });

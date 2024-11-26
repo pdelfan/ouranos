@@ -11,7 +11,7 @@ import { toggleSaveFeed } from "@/lib/api/bsky/feed";
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { savedFeedsQueryKey } from "@/containers/settings/myFeedsContainer/MyFeedsContainer";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   feedItem: GeneratorView;
@@ -21,6 +21,7 @@ interface Props {
 
 export default function FeedItem(props: Props) {
   const { feedItem, saved, rounded = true } = props;
+  const agent = useAgent();
   const { avatar, displayName, description, likeCount, creator } = feedItem;
   const [isSaved, setIsSaved] = useState(saved);
   const router = useRouter();
@@ -29,7 +30,6 @@ export default function FeedItem(props: Props) {
   const handleSave = async () => {
     setIsSaved((prev) => !prev);
     try {
-      const agent = await getAgentFromClient();
       const response = await toggleSaveFeed(agent, feedItem.uri);
       if (!response.success) {
         setIsSaved((prev) => !prev);
@@ -46,7 +46,7 @@ export default function FeedItem(props: Props) {
     <Link
       href={{
         pathname: `/dashboard/feeds/${encodeURIComponent(
-          feedItem.uri.split(":")[3].split("/")[0]
+          feedItem.uri.split(":")[3].split("/")[0],
         )}`,
         query: { uri: feedItem.uri },
       }}

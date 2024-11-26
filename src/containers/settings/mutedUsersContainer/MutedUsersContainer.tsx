@@ -8,9 +8,10 @@ import MutedUsersContainerSkeleton from "./MutedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function MutedUsersContainer() {
+  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -23,7 +24,6 @@ export default function MutedUsersContainer() {
   } = useInfiniteQuery({
     queryKey: ["getMutedUsers"],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return getMutedUsers(agent, pageParam);
     },
     initialPageParam: "",

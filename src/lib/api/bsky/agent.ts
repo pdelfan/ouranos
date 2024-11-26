@@ -50,13 +50,3 @@ export const getAgentFromServer = async () => {
     redirect("/");
   }
 };
-
-export const getAgentFromClient = async () => {
-  try {
-    const agent = await getBskySession();
-
-    return agent;
-  } catch (error) {
-    throw new Error("Could not get agent");
-  }
-};

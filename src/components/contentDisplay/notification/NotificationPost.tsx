@@ -6,7 +6,7 @@ import { AppBskyFeedDefs } from "@atproto/api";
 import { ContentFilterResult } from "../../../../types/feed";
 import { useQuery } from "@tanstack/react-query";
 import NotificationPostSkeleton from "./NotificationPostSkeleton";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   uri: string;
@@ -15,6 +15,7 @@ interface Props {
 
 export default function NotificationPost(props: Props) {
   const { uri, filter } = props;
+  const agent = useAgent();
 
   const {
     status,
@@ -25,7 +26,6 @@ export default function NotificationPost(props: Props) {
   } = useQuery({
     queryKey: ["notificationPost", uri],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getPost(agent, uri);
     },
   });

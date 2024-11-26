@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import NotificationContentSkeleton from "./NotificationContentSkeleton";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   uri: string;
@@ -20,12 +20,12 @@ interface Props {
 
 export default function NotificationContnet(props: Props) {
   const { uri, filter } = props;
+  const agent = useAgent();
   const router = useRouter();
 
   const { status, data, error, isLoading, isFetching } = useQuery({
     queryKey: ["notificationContent", uri],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getPost(agent, uri);
     },
   });

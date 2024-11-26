@@ -8,7 +8,7 @@ import { getFollowers } from "@/lib/api/bsky/social";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   handle: string;
@@ -16,6 +16,7 @@ interface Props {
 
 export default function FollowersContainer(props: Props) {
   const { handle } = props;
+  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -28,7 +29,6 @@ export default function FollowersContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["getFollowers", handle],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return getFollowers(handle, agent, pageParam);
     },
     initialPageParam: "",

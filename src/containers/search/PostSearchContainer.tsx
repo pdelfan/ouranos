@@ -9,7 +9,7 @@ import FeedPostSkeleton from "@/components/contentDisplay/feedPost/FeedPostSkele
 import SearchPost from "@/components/contentDisplay/searchPost/SearchPost";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   query: string;
@@ -18,6 +18,7 @@ interface Props {
 
 export default function PostSearchContainer(props: Props) {
   const { query, sort } = props;
+  const agent = useAgent();
   const decoded = decodeURIComponent(query);
 
   const {
@@ -32,7 +33,6 @@ export default function PostSearchContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["searchPosts", sort, query],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return searchPosts(decoded, pageParam, sort, agent);
     },
     initialPageParam: "",

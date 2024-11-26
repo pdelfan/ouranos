@@ -8,7 +8,7 @@ import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import { getListMembers } from "@/lib/api/bsky/list";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   list: string;
@@ -16,6 +16,7 @@ interface Props {
 
 export default function ListMembersContainer(props: Props) {
   const { list } = props;
+  const agent = useAgent();
 
   const {
     status,
@@ -29,7 +30,6 @@ export default function ListMembersContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["list members", list],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return getListMembers(agent, list, pageParam);
     },
     initialPageParam: "",

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { repost, unRepost } from "../../../api/bsky/feed";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -13,6 +13,7 @@ export const useRepostKey = (postUri: string) => ["repost", postUri];
 
 export default function useLike(props: Props) {
   const { post } = props;
+  const agent = useAgent();
   const queryClient = useQueryClient();
   const [reposted, setReposted] = useState(!!post.viewer?.repost);
   const [repostUri, setRepostUri] = useState(post.viewer?.repost);
@@ -24,7 +25,6 @@ export default function useLike(props: Props) {
   const toggleRepost = useMutation({
     mutationKey: useRepostKey(post.uri),
     mutationFn: async () => {
-      const agent = await getAgentFromClient();
       if (!repostUri) {
         try {
           setReposted(true);

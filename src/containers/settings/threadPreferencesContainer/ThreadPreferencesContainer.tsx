@@ -11,7 +11,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PreferencesResult } from "../../../../types/feed";
 import ThreadPreferencesContainerSkeleton from "./ThreadPreferencesContainerSkeleton";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface ItemProps {
   value: string;
@@ -29,6 +29,7 @@ function SortReplyItem(props: ItemProps) {
 }
 
 export default function ThreadPreferencesContainer() {
+  const agent = useAgent();
   const { isFetchingPreferences, preferences } = usePreferences();
   const queryClient = useQueryClient();
 
@@ -48,7 +49,6 @@ export default function ThreadPreferencesContainer() {
             };
           },
         );
-        const agent = await getAgentFromClient();
         await updateThreadViewPreferences(prefs, agent);
       } catch (error) {
         console.log(error);

@@ -23,7 +23,7 @@ import ThreadActionsContainer from "./ThreadActionsContainer";
 import { replyIncludes } from "@/lib/utils/text";
 import useProfile from "@/lib/hooks/bsky/actor/useProfile";
 import { useSession } from "next-auth/react";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   id: string;
@@ -32,6 +32,7 @@ interface Props {
 
 export default function PostThreadContainer(props: Props) {
   const { id, handle } = props;
+  const agent = useAgent();
   const searchParams = useSearchParams();
   const search = searchParams.get("query") ?? "";
   const [maxReplies, setMaxReplies] = useState(MAX_REPLY_CONTAINERS);
@@ -48,7 +49,6 @@ export default function PostThreadContainer(props: Props) {
   } = useQuery({
     queryKey: ["postThread", id],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       const uri = `at://${handle}/app.bsky.feed.post/${id}`;
       return getPostThread(uri, agent);
     },

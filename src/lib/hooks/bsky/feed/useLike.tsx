@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { likePost, unlikePost } from "../../../api/bsky/feed";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -13,6 +13,7 @@ export const useLikeKey = (postUri: string) => ["like", postUri];
 
 export default function useLike(props: Props) {
   const { post } = props;
+  const agent = useAgent();
   const [liked, setLiked] = useState(!!post.viewer?.like);
   const [likeUri, setLikeUri] = useState(post.viewer?.like);
   const likeCount =
@@ -21,7 +22,6 @@ export default function useLike(props: Props) {
   const toggleLike = useMutation({
     mutationKey: useLikeKey(post.uri),
     mutationFn: async () => {
-      const agent = await getAgentFromClient();
       if (!likeUri) {
         try {
           setLiked(true);
