@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { searchProfilesTypehead } from "@/lib/api/bsky/actor";
 import { getFollows } from "@/lib/api/bsky/social";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   authorHandle?: string;
@@ -9,6 +9,7 @@ interface Props {
 
 export default function useSearchUsers(props: Props) {
   const { authorHandle } = props;
+  const agent = useAgent();
   const queryClient = useQueryClient();
 
   return async (term: string) => {
@@ -20,7 +21,6 @@ export default function useSearchUsers(props: Props) {
           staleTime: 300 * 1000, // 5 minutes
           queryKey: ["followers"],
           queryFn: async () => {
-            const agent = await getAgentFromClient();
             return getFollows({ handle: authorHandle, agent, limit: 5 });
           },
         });
@@ -35,7 +35,6 @@ export default function useSearchUsers(props: Props) {
         staleTime: 60 * 1000, // 1 minute
         queryKey: ["search", term],
         queryFn: async () => {
-          const agent = await getAgentFromClient();
           return searchProfilesTypehead(agent, term);
         },
       });

@@ -1,4 +1,4 @@
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 import {
   getUserPosts,
   getUserReplyPosts,
@@ -19,6 +19,7 @@ export const useProfilePostsKey = (handle?: string, mode?: UserPostMode) => [
 
 export default function useProfilePosts(props: Props) {
   const { mode, handle } = props;
+  const agent = useAgent();
   const actor = handle;
 
   const chooseFetchFunction = (mode: string) => {
@@ -48,7 +49,6 @@ export default function useProfilePosts(props: Props) {
   } = useInfiniteQuery({
     queryKey: useProfilePostsKey(handle, mode),
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return chooseFetchFunction(mode)(agent, actor, pageParam);
     },
     initialPageParam: "",

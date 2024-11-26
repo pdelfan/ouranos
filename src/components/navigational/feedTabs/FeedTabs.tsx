@@ -8,9 +8,10 @@ import FeedTabsSkeleton from "./FeedTabsSkeleton";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useScrollContext } from "@/app/providers/scroll";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function FeedTabs() {
+  const agent = useAgent();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const uri = searchParams.get("uri");
@@ -26,7 +27,6 @@ export default function FeedTabs() {
   } = useQuery({
     queryKey: ["savedFeeds"],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getSavedFeeds(agent);
     },
   });

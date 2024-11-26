@@ -16,10 +16,12 @@ import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import { useQuery } from "@tanstack/react-query";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function Navbar() {
+  const agent = useAgent();
   const pathname = usePathname();
+
   const {
     data: notificationsCount,
     error,
@@ -27,7 +29,6 @@ export default function Navbar() {
   } = useQuery({
     queryKey: ["notificationsCount"],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getUnreadNotificationsCount(agent);
     },
     refetchInterval: 10000,

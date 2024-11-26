@@ -9,7 +9,7 @@ import SearchPost from "@/components/contentDisplay/searchPost/SearchPost";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getPostQuotes } from "@/lib/api/bsky/feed";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   id: string;
@@ -18,6 +18,7 @@ interface Props {
 
 export default function QuotesContainer(props: Props) {
   const { id, handle } = props;
+  const agent = useAgent();
 
   const {
     status,
@@ -31,7 +32,6 @@ export default function QuotesContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["postQuotes", id],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       const { data } = await agent.resolveHandle({ handle });
       if (!data) return;
       const uri = `at://${data.did}/app.bsky.feed.post/${id}`;

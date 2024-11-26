@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { blockUser, unBlockUser } from "@/lib/api/bsky/actor";
 import { profileKey } from "../actor/useProfile";
 import { ViewerState } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -16,6 +16,7 @@ export const useBlockKey = (did: string) => ["block", did];
 
 export default function useBlockUser(props: Props) {
   const { author, viewer, viewerDID } = props;
+  const agent = useAgent();
   const [blocked, setBlocked] = useState(!!author.viewer?.blocking);
   const queryClient = useQueryClient();
 
@@ -25,7 +26,6 @@ export default function useBlockUser(props: Props) {
       if (!blocked) {
         try {
           setBlocked(true);
-          const agent = await getAgentFromClient();
           const res = await blockUser(viewerDID, author.did, agent);
           queryClient.setQueryData(
             profileKey(author.handle),
@@ -57,7 +57,6 @@ export default function useBlockUser(props: Props) {
       } else {
         try {
           setBlocked(false);
-          const agent = await getAgentFromClient();
           const rkey = viewer!.blocking!.split("/").pop()!;
           await unBlockUser(viewerDID, rkey, agent);
           queryClient.setQueryData(

@@ -9,10 +9,11 @@ import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import ListsSkeleton from "./ListsSkeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function Lists() {
   const { data: session } = useSession();
+  const agent = useAgent();
 
   const {
     status,
@@ -27,7 +28,6 @@ export default function Lists() {
     queryKey: ["lists"],
     queryFn: async ({ pageParam }) => {
       if (!session?.user.id) return;
-      const agent = await getAgentFromClient();
       return getLists(session.user.id, pageParam, agent);
     },
     initialPageParam: "",

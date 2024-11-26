@@ -9,9 +9,10 @@ import Label from "@/components/inputs/label/Label";
 import { PreferencesResult } from "../../../../types/feed";
 import HomeFeedContainerSkeleton from "./HomeFeedContainerSkeleton";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function HomeFeedContainer() {
+  const agent = useAgent();
   const { isFetchingPreferences, preferences } = usePreferences();
   const feedFilter = preferences?.feedFilter;
   const queryClient = useQueryClient();
@@ -32,7 +33,6 @@ export default function HomeFeedContainer() {
             };
           },
         );
-        const agent = await getAgentFromClient();
         await updateHomeFeedPreferences(prefs, agent);
       } catch (error) {
         console.log(error);

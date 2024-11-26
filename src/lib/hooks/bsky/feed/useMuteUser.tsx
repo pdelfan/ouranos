@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { muteUser, unMuteUser } from "@/lib/api/bsky/actor";
 import { profileKey } from "../actor/useProfile";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   author: AppBskyFeedDefs.PostView["author"];
@@ -14,6 +14,7 @@ export const useMuteKey = (did: string) => ["mute", did];
 
 export default function useLike(props: Props) {
   const { author } = props;
+  const agent = useAgent();
   const [muted, setMuted] = useState(!!author.viewer?.muted);
   const queryClient = useQueryClient();
   const queryKey = profileKey(author.handle);
@@ -21,8 +22,6 @@ export default function useLike(props: Props) {
   const toggleMuteUser = useMutation({
     mutationKey: useMuteKey(author.did),
     mutationFn: async () => {
-      const agent = await getAgentFromClient();
-
       if (!muted) {
         try {
           setMuted(true);

@@ -3,7 +3,7 @@ import { SavedFeed } from "../../../../../types/feed";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { togglePinFeed, toggleSaveFeed } from "@/lib/api/bsky/feed";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   feedItem: SavedFeed;
@@ -11,6 +11,7 @@ interface Props {
 
 export default function useSaveFeed(props: Props) {
   const { feedItem } = props;
+  const agent = useAgent();
   const [isPinned, setIsPinned] = useState(feedItem.pinned);
   const queryClient = useQueryClient();
 
@@ -49,7 +50,6 @@ export default function useSaveFeed(props: Props) {
       updatePinnedFeeds(isCurrentlyPinned ? "unpin" : "pin");
 
       try {
-        const agent = await getAgentFromClient();
         await togglePinFeed(agent, feedItem.uri);
       } catch (error) {
         // revert to the old state in case of an error
@@ -69,7 +69,6 @@ export default function useSaveFeed(props: Props) {
     mutationFn: async () => {
       updateSavedFeeds("remove");
       try {
-        const agent = await getAgentFromClient();
         await toggleSaveFeed(agent, feedItem.uri);
       } catch (error) {
         updateSavedFeeds("add");
@@ -85,7 +84,6 @@ export default function useSaveFeed(props: Props) {
     mutationFn: async () => {
       updateSavedFeeds("add");
       try {
-        const agent = await getAgentFromClient();
         await toggleSaveFeed(agent, feedItem.uri);
       } catch (error) {
         updateSavedFeeds("remove");

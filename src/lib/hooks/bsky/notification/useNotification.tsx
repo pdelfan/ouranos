@@ -5,7 +5,7 @@ import {
 } from "@/lib/api/bsky/notification";
 import { GroupedNotification } from "../../../../../types/feed";
 import { Notification } from "@atproto/api/dist/client/types/app/bsky/notification/listNotifications";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   notificationType: NotificationReason | "all";
@@ -13,6 +13,7 @@ interface Props {
 
 export default function useNotification(props: Props) {
   const { notificationType } = props;
+  const agent = useAgent();
   const groupNotifications = (
     notifications: Notification[],
   ): GroupedNotification[] => {
@@ -49,7 +50,6 @@ export default function useNotification(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["notifications", notificationType],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       const res = await getNotifications(agent, pageParam);
       await updateSeenNotifications(agent);
       res.data.notifications = groupNotifications(res.data.notifications);

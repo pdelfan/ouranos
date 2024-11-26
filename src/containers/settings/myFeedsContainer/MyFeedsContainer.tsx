@@ -12,7 +12,7 @@ import Alert from "@/components/feedback/alert/Alert";
 import MyFeedsContainerSkeleton from "./MyFeedsContainerSkeleton";
 import { BiSolidTrash } from "react-icons/bi";
 import { BiSolidBookmarkAlt } from "react-icons/bi";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface FeedItemProps {
   feedItem: SavedFeed;
@@ -77,10 +77,10 @@ function FeedItem(props: FeedItemProps) {
 }
 
 export default function MyFeedsContainer() {
+  const agent = useAgent();
   const { status, data, error, isLoading, isFetching } = useQuery({
     queryKey: savedFeedsQueryKey,
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       return getSavedFeeds(agent);
     },
   });

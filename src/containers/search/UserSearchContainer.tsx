@@ -8,7 +8,7 @@ import ProfileCard from "@/components/contentDisplay/profileCard/ProfileCard";
 import ProfileCardSkeleton from "@/components/contentDisplay/profileCard/ProfileCardSkeleton";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface Props {
   query: string;
@@ -16,6 +16,7 @@ interface Props {
 
 export default function UserSearchContainer(props: Props) {
   const { query } = props;
+  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -28,7 +29,6 @@ export default function UserSearchContainer(props: Props) {
   } = useInfiniteQuery({
     queryKey: ["searchProfiles", query],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return searchProfiles(agent, query, pageParam);
     },
     initialPageParam: "",

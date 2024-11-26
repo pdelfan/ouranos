@@ -4,9 +4,10 @@ import getThreadPreferences, {
   getContentFilter,
   getFeedFilter,
 } from "@/lib/utils/feed";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function usePreferences() {
+  const agent = useAgent();
   const {
     status: statusPreferences,
     data: preferences,
@@ -16,7 +17,6 @@ export default function usePreferences() {
   } = useQuery({
     queryKey: ["preferences"],
     queryFn: async () => {
-      const agent = await getAgentFromClient();
       const preferences = await getPreferences(agent);
       const feedFilter = getFeedFilter(preferences);
       const contentFilter = getContentFilter(preferences);

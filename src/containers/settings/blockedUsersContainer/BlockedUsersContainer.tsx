@@ -8,9 +8,10 @@ import BlockedUsersContainerSkeleton from "./BlockedUsersContainerSkeleton";
 import FeedAlert from "@/components/feedback/feedAlert/FeedAlert";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 export default function BlockedUsersContainer() {
+  const agent = useAgent();
   const {
     status,
     data: profiles,
@@ -23,7 +24,6 @@ export default function BlockedUsersContainer() {
   } = useInfiniteQuery({
     queryKey: ["getBlockedUsers"],
     queryFn: async ({ pageParam }) => {
-      const agent = await getAgentFromClient();
       return getBlockedUsers(agent, pageParam);
     },
     initialPageParam: "",

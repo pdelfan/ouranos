@@ -21,7 +21,7 @@ import {
 import { ReactNode } from "react";
 import ContentFilteringContainerSkeleton from "./ContentFilteringContainerSkeleton";
 import toast from "react-hot-toast";
-import { getAgentFromClient } from "@/lib/api/bsky/agent";
+import { useAgent } from "@/app/providers/agent";
 
 interface OptionsProps {
   item: ContentFilter;
@@ -29,6 +29,8 @@ interface OptionsProps {
 
 function Options(props: OptionsProps) {
   const { item } = props;
+  const agent = useAgent();
+
   return (
     <>
       <ToggleGroupItem type="button" value={"hide"}>
@@ -65,6 +67,7 @@ function Item(props: ItemProps) {
 }
 
 export default function ContentFilteringContainer() {
+  const agent = useAgent();
   const { preferences, isFetchingPreferences } = usePreferences();
   const adultContentFilters = preferences?.contentFilter?.adultContentFilters;
   const contentFilters = preferences?.contentFilter.contentFilters;
@@ -87,7 +90,6 @@ export default function ContentFilteringContainer() {
             };
           },
         );
-        const agent = await getAgentFromClient();
         await updateIsAdultContentEnabled(!value, agent);
       } catch (error) {
         console.log(error);
@@ -128,7 +130,6 @@ export default function ContentFilteringContainer() {
             };
           },
         );
-        const agent = await getAgentFromClient();
         await updateContentFilterPreferences(pref, value, agent);
       } catch (error) {
         console.log(error);
@@ -169,7 +170,6 @@ export default function ContentFilteringContainer() {
             };
           },
         );
-        const agent = await getAgentFromClient();
         await updateContentFilterPreferences(pref, value, agent);
       } catch (error) {
         console.log(error);
