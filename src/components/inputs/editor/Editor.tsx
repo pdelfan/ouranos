@@ -40,7 +40,7 @@ export default function Editor(props: Props) {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [images, setImages] = useState<UploadImage[]>();
   const [embedSuggestions, setEmbedSuggestions] = useState<Set<string>>(
-    new Set("")
+    new Set(""),
   );
   const [linkEmbed, setLinkEmbed] = useState("");
   const [linkCard, setLinkCard] = useState<LinkMeta | null>(null);
@@ -49,7 +49,7 @@ export default function Editor(props: Props) {
   const quoteAuthor = quote?.author.displayName || quote?.author.handle;
   const placeholderText = getComposerPlaceholder(
     replyTo ? "reply" : quote ? "quote" : "post",
-    replyAuthor ?? quoteAuthor
+    replyAuthor ?? quoteAuthor,
   );
 
   const editor = useEditor({
@@ -152,7 +152,7 @@ export default function Editor(props: Props) {
           numberOfImages={images?.length ?? 0}
         />
 
-        <ScrollArea.Root className="max-h-[80svh] md:h-[30svh]  my-3 bg-skin-secondary p-3 rounded-2xl overflow-auto">
+        <ScrollArea.Root className="max-h-[80svh] md:h-[32svh]  my-3 bg-skin-secondary p-3 rounded-2xl overflow-auto">
           <ScrollArea.Scrollbar>
             <ScrollArea.Thumb />
           </ScrollArea.Scrollbar>
