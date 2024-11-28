@@ -138,7 +138,7 @@ export default function AtmosphereContainer(props: Props) {
                       }}
                       className={`${
                         c.name === service
-                          ? "bg-primary text-skin-inverted"
+                          ? "bg-skin-inverted text-skin-inverted"
                           : "bg-skin-tertiary text-skin-secondary hover:brightness-95"
                       } font-medium rounded-full px-2.5 py-2 min-w-fit gap-2`}
                     >
