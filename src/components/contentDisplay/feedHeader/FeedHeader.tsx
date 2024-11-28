@@ -106,78 +106,67 @@ export default function FeedHeader(props: Props) {
     }
   };
 
+  if (isFetchingFeedInfo || !feedInfo) return <FeedHeaderSkeleton />;
+
   return (
-    <>
-      {isFetchingFeedInfo && <FeedHeaderSkeleton />}
-      {!isFetchingFeedInfo && feedInfo && (
-        <>
-          <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <Image
-                  src={feedInfo.view.avatar ?? FallbackFeed}
-                  alt={feedInfo.view.displayName}
-                  width={60}
-                  height={60}
-                  className={`rounded-lg ${!feedInfo.view.avatar && "border-skin-base bg-skin-muted border"}`}
-                />
-                <div className="flex flex-col">
-                  <h2 className="text-skin-base break-words text-xl font-semibold">
-                    {feedInfo.view.displayName}
-                  </h2>
-                  <h3 className="text-skin-secondary break-all">
-                    By{" "}
-                    <Link
-                      href={`/dashboard/user/${feedInfo.view.creator.handle}`}
-                      className="hover:text-skin-tertiary font-medium"
-                    >
-                      @{feedInfo.view.creator.handle}
-                    </Link>
-                  </h3>
-                </div>
-              </div>
-              {isSaved !== null && isPinned !== null && (
-                <div className="flex flex-wrap gap-3">
-                  <Button onClick={toggleSave}>
-                    {isSaved && (
-                      <BiSolidTrash className="text-status-danger text-lg" />
-                    )}
-                    {!isSaved && (
-                      <BiPlus className="text-skin-icon-base text-lg" />
-                    )}
-                  </Button>
-                  <Button onClick={togglePin}>
-                    <BiSolidBookmarkAlt
-                      className={`text-lg ${
-                        isPinned
-                          ? "text-status-success"
-                          : "text-skin-icon-muted"
-                      }`}
-                    />
-                  </Button>
-                  <Button onClick={toggleLike}>
-                    {likeUri && (
-                      <BiSolidHeart className="text-skin-icon-like text-lg" />
-                    )}
-                    {!likeUri && (
-                      <BiHeart className="text-skin-icon-muted text-lg" />
-                    )}
-                  </Button>
-                </div>
+    <article className="border-skin-base flex flex-col gap-2 border border-x-0 border-t-0 p-3 md:rounded-t-2xl md:border">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Image
+            src={feedInfo.view.avatar ?? FallbackFeed}
+            alt={feedInfo.view.displayName}
+            width={60}
+            height={60}
+            className={`rounded-lg ${!feedInfo.view.avatar && "border-skin-base bg-skin-muted border"}`}
+          />
+          <div className="flex flex-col">
+            <h2 className="text-skin-base break-words text-xl font-semibold">
+              {feedInfo.view.displayName}
+            </h2>
+            <h3 className="text-skin-secondary break-all">
+              By{" "}
+              <Link
+                href={`/dashboard/user/${feedInfo.view.creator.handle}`}
+                className="hover:text-skin-tertiary font-medium"
+              >
+                @{feedInfo.view.creator.handle}
+              </Link>
+            </h3>
+          </div>
+        </div>
+        {isSaved !== null && isPinned !== null && (
+          <div className="flex flex-wrap gap-3">
+            <Button onClick={toggleSave}>
+              {isSaved && (
+                <BiSolidTrash className="text-status-danger text-lg" />
               )}
-            </div>
-            {feedInfo.view.description && (
-              <p className="text-skin-base break-words" dir="auto">
-                {feedInfo.view.description}
-              </p>
-            )}
-            <small className="text-skin-secondary flex items-center gap-1 font-medium">
-              <BiSolidHeart className="text-skin-icon-base" />
-              <span>{feedInfo.view.likeCount}</span>
-            </small>
-          </article>
-        </>
+              {!isSaved && <BiPlus className="text-skin-icon-base text-lg" />}
+            </Button>
+            <Button onClick={togglePin}>
+              <BiSolidBookmarkAlt
+                className={`text-lg ${
+                  isPinned ? "text-status-success" : "text-skin-icon-muted"
+                }`}
+              />
+            </Button>
+            <Button onClick={toggleLike}>
+              {likeUri && (
+                <BiSolidHeart className="text-skin-icon-like text-lg" />
+              )}
+              {!likeUri && <BiHeart className="text-skin-icon-muted text-lg" />}
+            </Button>
+          </div>
+        )}
+      </div>
+      {feedInfo.view.description && (
+        <p className="text-skin-base break-words" dir="auto">
+          {feedInfo.view.description}
+        </p>
       )}
-    </>
+      <small className="text-skin-secondary flex items-center gap-1 font-medium">
+        <BiSolidHeart className="text-skin-icon-base" />
+        <span>{feedInfo.view.likeCount}</span>
+      </small>
+    </article>
   );
 }
