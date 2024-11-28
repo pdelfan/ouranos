@@ -4,7 +4,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { KeyboardEvent, useState, useEffect, useCallback } from "react";
 import Button from "@/components/actions/button/Button";
 import { CgClose } from "react-icons/cg";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import {
+  BiLeftArrowAlt,
+  BiRightArrowAlt,
+  BiSolidCloudDownload,
+} from "react-icons/bi";
 
 interface Props {
   images: AppBskyEmbedImages.ViewImage[] | string;
@@ -46,6 +50,15 @@ export default function Gallery(props: Props) {
     [handleBackward, handleForward],
   );
 
+  const handleSaveImage = () => {
+    const imageUrl = Array.isArray(images)
+      ? images[currentIndex].fullsize
+      : images;
+    const a = document.createElement("a");
+    a.href = imageUrl;
+    a.click();
+  };
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyboard);
 
@@ -63,15 +76,28 @@ export default function Gallery(props: Props) {
           }}
           className="z-50 w-full"
         >
-          <Button
-            className="text-skin-secondary bg-skin-secondary hover:bg-skin-base hover:text-skin-base fixed left-3 top-3 z-[70] rounded-full p-3.5 border border-skin-base"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-          >
-            <CgClose className="text-xl" />
-          </Button>
+          <div className="fixed left-3 top-3 z-[70] flex felx-wrap items-center gap-3">
+            <Button
+              className="text-skin-secondary bg-skin-secondary hover:bg-skin-base hover:text-skin-base rounded-full p-3.5 border border-skin-base"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+            >
+              <CgClose className="text-xl" />
+            </Button>
+            <Button
+              className="gap-2 font-medium text-skin-secondary bg-skin-secondary hover:bg-skin-base hover:text-skin-base rounded-full p-3.5 border border-skin-base"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSaveImage();
+              }}
+            >
+              <BiSolidCloudDownload className="text-xl" />
+            </Button>
+          </div>
+
+          {/* Navigation Buttons */}
           {imageCount > 1 && currentIndex > 0 && (
             <Button
               className="text-skin-secondary bg-skin-secondary hover:bg-skin-base hover:text-skin-base fixed left-3 top-1/2 z-[70] rounded-full p-3.5 border border-skin-base"
@@ -95,6 +121,7 @@ export default function Gallery(props: Props) {
             </Button>
           )}
 
+          {/* Image Display */}
           {Array.isArray(images) && (
             <Image
               src={images[currentIndex].fullsize}
