@@ -17,6 +17,22 @@ export const metadata: Metadata = {
   title: { template: "%s — Ouranos", default: "Ouranos" },
   description: "Your friendly Bluesky client for the web",
   metadataBase: new URL("https://useouranos.app"),
+  other: {
+    "fc:frame": "vNext",
+    "of:version": "vNext",
+    "of:accepts:anonymous": "vNext",
+    "of:image": "https://useouranos.app/opengraph-image.png",
+    "fc:frame:image": "https://useouranos.app/opengraph-image.png",
+    "fc:frame:button:1": "Home",
+    "fc:frame:button:1:action": "link",
+    "fc:frame:button:1:target": "https://useouranos.app",
+    "fc:frame:button:2": "About",
+    "fc:frame:button:2:action": "link",
+    "fc:frame:button:2:target": "https://useouranos.app/about",
+    "fc:frame:button:3": "GitHub",
+    "fc:frame:button:3:action": "link",
+    "fc:frame:button:3:target": "https://github.com/pdelfan/ouranos",
+  },
 };
 
 export default async function RootLayout({
