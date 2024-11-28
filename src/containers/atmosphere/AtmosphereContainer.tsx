@@ -39,13 +39,13 @@ export default function AtmosphereContainer(props: Props) {
       const frontpageRecords = await getATRecords(
         did,
         "fyi.unravel.frontpage.post",
-        agent
+        agent,
       );
       const linkatRecords = await getATRecords(did, "blue.linkat.board", agent);
       const whtwndRecords = await getATRecords(
         did,
         "com.whtwnd.blog.entry",
-        agent
+        agent,
       );
 
       return [
@@ -87,7 +87,7 @@ export default function AtmosphereContainer(props: Props) {
       }
       return acc;
     },
-    {} as Record<string, any[]>
+    {} as Record<string, any[]>,
   );
 
   const renderContainer = () => {
@@ -123,10 +123,10 @@ export default function AtmosphereContainer(props: Props) {
 
   return (
     <section>
-      <div className="sticky top-12 md:top-0 p-3 bg-skin-base border-skin-base md:border-x border-b">
+      <div className="sticky top-12 md:top-0 bg-skin-base border-skin-base md:border-x border-b">
         {hasCollection && (
           <ScrollArea.Root role="tablist">
-            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto">
+            <div className="flex flex-nowrap items-center gap-2 overflow-x-auto p-3">
               {collections.map((c) => (
                 <>
                   {c.records.length !== 0 && (
