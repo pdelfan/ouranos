@@ -5,6 +5,8 @@ import Image from "next/image";
 import { SetStateAction, useState } from "react";
 import Textarea from "../textarea/Textarea";
 import { CgClose } from "react-icons/cg";
+import CharacterCount from "./CharacterCount";
+import { MAX_ALT_TEXT_LENGTH } from "@/lib/consts/general";
 
 interface Props {
   images: UploadImage[];
@@ -19,7 +21,7 @@ export default function UploadPreview(props: Props) {
 
   const handleRemove = (image: UploadImage) => {
     onUpdate((prev) =>
-      prev?.filter((prevImage) => prevImage.url !== image.url)
+      prev?.filter((prevImage) => prevImage.url !== image.url),
     );
   };
 
@@ -74,6 +76,7 @@ export default function UploadPreview(props: Props) {
                             <Textarea
                               rows={6}
                               autoFocus={false}
+                              maxLength={MAX_ALT_TEXT_LENGTH}
                               placeholder="Describe what's happening in this image"
                               defaultValue={selectedImage.altText ?? ""}
                               onChange={(e) =>
@@ -81,36 +84,43 @@ export default function UploadPreview(props: Props) {
                               }
                               className="resize-none"
                             />
-                            <div className="mt-2 flex justify-end gap-3">
-                              <Button
-                                onClick={() => {
-                                  setShowAltTextModal(false);
-                                  setAltText("");
-                                }}
-                                className="border-skin-base text-skin-base hover:bg-skin-secondary rounded-full border px-4 py-2 text-sm font-semibold"
-                              >
-                                Cancel
-                              </Button>
-                              <Button
-                                onClick={() => {
-                                  setShowAltTextModal(false);
-                                  onUpdate((prev) =>
-                                    prev?.map((prevImage) =>
-                                      prevImage.url === selectedImage.url
-                                        ? Object.assign(prevImage, {
-                                            altText:
-                                              altText !== selectedImage.altText
-                                                ? altText
-                                                : selectedImage.altText,
-                                          })
-                                        : prevImage
-                                    )
-                                  );
-                                }}
-                                className="bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-6 py-2 text-sm font-semibold"
-                              >
-                                Save
-                              </Button>
+                            <div className="flex flex-wrap gap-2 items-center justify-between mt-2 ">
+                              <CharacterCount
+                                charCount={altText.length}
+                                max={MAX_ALT_TEXT_LENGTH}
+                              />
+                              <div className="flex justify-end gap-3">
+                                <Button
+                                  onClick={() => {
+                                    setShowAltTextModal(false);
+                                    setAltText("");
+                                  }}
+                                  className="border-skin-base text-skin-base hover:bg-skin-secondary rounded-full border px-4 py-2 text-sm font-semibold"
+                                >
+                                  Cancel
+                                </Button>
+                                <Button
+                                  onClick={() => {
+                                    setShowAltTextModal(false);
+                                    onUpdate((prev) =>
+                                      prev?.map((prevImage) =>
+                                        prevImage.url === selectedImage.url
+                                          ? Object.assign(prevImage, {
+                                              altText:
+                                                altText !==
+                                                selectedImage.altText
+                                                  ? altText
+                                                  : selectedImage.altText,
+                                            })
+                                          : prevImage,
+                                      ),
+                                    );
+                                  }}
+                                  className="bg-primary hover:bg-primary-dark text-skin-icon-inverted rounded-full px-6 py-2 text-sm font-semibold"
+                                >
+                                  Save
+                                </Button>
+                              </div>
                             </div>
                           </div>
                         </div>

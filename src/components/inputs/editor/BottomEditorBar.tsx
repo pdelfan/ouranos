@@ -95,7 +95,7 @@ export default function BottomEditorBar(props: Props) {
               languages={languages}
               onSelectLanguages={onSelectLanguages}
             />
-            <CharacterCount charCount={charCount} />
+            <CharacterCount charCount={charCount} max={300} />
           </div>
         </div>
       </div>
