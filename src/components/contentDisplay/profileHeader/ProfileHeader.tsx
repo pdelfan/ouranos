@@ -219,13 +219,13 @@ export default function ProfileHeader(props: Props) {
 
           {showAvatar && profile.avatar && (
             <Gallery
-              images={profile.avatar}
+              images={[{ src: profile.avatar }]}
               onClose={() => setShowAvatar(false)}
             />
           )}
           {showBanner && profile.banner && (
             <Gallery
-              images={profile.banner}
+              images={[{ src: profile.banner }]}
               onClose={() => setShowBanner(false)}
             />
           )}
