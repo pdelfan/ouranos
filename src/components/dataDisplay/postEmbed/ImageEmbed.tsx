@@ -14,11 +14,11 @@ interface Props {
 export default function ImageEmbed(props: Props) {
   const { content, depth } = props;
   const imageCount = content.images.length;
-  const [showImage, setShowImage] = useState<number | undefined>(undefined);
+  const [currentImage, setCurrentImage] = useState<number>();
 
   const generateImageLayout = (
     count: number,
-    images: AppBskyEmbedImages.ViewImage[],
+    images: AppBskyEmbedImages.ViewImage[]
   ) => {
     // adjust image grid layout based on number of images
     switch (count) {
@@ -36,7 +36,7 @@ export default function ImageEmbed(props: Props) {
                   className="rounded-md h-full max-h-62 object-cover cursor-pointer hover:brightness-90 border border-skin-base"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowImage(i);
+                    setCurrentImage(i);
                   }}
                 />
                 {image.alt && <AltTag text={image.alt} />}
@@ -60,7 +60,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover h-full cursor-pointer hover:brightness-90 border border-skin-base"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setShowImage(0);
+                      setCurrentImage(0);
                     }}
                   />
                   {images[2].alt && <AltTag text={images[2].alt} />}
@@ -78,7 +78,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90 border border-skin-base"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setShowImage(1);
+                      setCurrentImage(1);
                     }}
                   />
                   {images[1].alt && <AltTag text={images[1].alt} />}
@@ -94,7 +94,7 @@ export default function ImageEmbed(props: Props) {
                     className="rounded-md object-cover w-full h-full cursor-pointer hover:brightness-90 border border-skin-base"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setShowImage(2);
+                      setCurrentImage(2);
                     }}
                   />
                   {images[2].alt && <AltTag text={images[2].alt} />}
@@ -117,7 +117,7 @@ export default function ImageEmbed(props: Props) {
                   className="object-cover aspect-square rounded-md h-full max-h-64 cursor-pointer hover:brightness-90 border border-skin-base"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowImage(i);
+                    setCurrentImage(i);
                   }}
                 />
                 {images[i].alt && <AltTag text={images[i].alt} />}
@@ -140,7 +140,7 @@ export default function ImageEmbed(props: Props) {
                   className="rounded-md max-h-96 w-full object-cover cursor-pointer hover:brightness-90 border border-skin-base"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setShowImage(0);
+                    setCurrentImage(0);
                   }}
                 />
                 {images[0].alt && <AltTag text={images[0].alt} />}
@@ -153,11 +153,15 @@ export default function ImageEmbed(props: Props) {
 
   return (
     <>
-      {showImage !== undefined && (
+      {currentImage !== undefined && (
         <Gallery
-          images={content.images}
-          startingIndex={showImage}
-          onClose={() => setShowImage(undefined)}
+          images={content.images.map((img) => ({
+            src: img.fullsize,
+            alt: img.alt,
+            aspectRatio: img.aspectRatio,
+          }))}
+          startingIndex={currentImage}
+          onClose={() => setCurrentImage(undefined)}
         />
       )}
       {depth < 2 && (

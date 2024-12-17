@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { AppBskyEmbedImages } from "@atproto/api";
 import * as Dialog from "@radix-ui/react-dialog";
 import { KeyboardEvent, useState, useEffect, useCallback } from "react";
 import Button from "@/components/actions/button/Button";
@@ -10,15 +9,24 @@ import {
   BiSolidCloudDownload,
 } from "react-icons/bi";
 
+type GalleryImage = {
+  src: string;
+  alt?: string;
+  aspectRatio?: {
+    width: number;
+    height: number;
+  };
+};
+
 interface Props {
-  images: AppBskyEmbedImages.ViewImage[] | string;
+  images: GalleryImage[];
   startingIndex?: number;
   onClose: () => void;
 }
 
 export default function Gallery(props: Props) {
   const { images, startingIndex = 0, onClose } = props;
-  const imageCount = Array.isArray(images) ? images.length : 0;
+  const imageCount = images.length;
   const [currentIndex, setCurrentIndex] = useState(startingIndex);
 
   const handleBackward = useCallback(() => {
@@ -47,13 +55,11 @@ export default function Gallery(props: Props) {
           break;
       }
     },
-    [handleBackward, handleForward],
+    [handleBackward, handleForward]
   );
 
   const handleSaveImage = () => {
-    const imageUrl = Array.isArray(images)
-      ? images[currentIndex].fullsize
-      : images;
+    const imageUrl = images[currentIndex].src;
     const a = document.createElement("a");
     a.href = imageUrl;
     a.click();
@@ -121,28 +127,14 @@ export default function Gallery(props: Props) {
             </Button>
           )}
 
-          {/* Image Display */}
-          {Array.isArray(images) && (
-            <Image
-              src={images[currentIndex].fullsize}
-              alt={images[currentIndex].alt}
-              width={images[currentIndex].aspectRatio?.width ?? 900}
-              height={images[currentIndex].aspectRatio?.height ?? 900}
-              priority
-              className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
-            />
-          )}
-
-          {typeof images === "string" && (
-            <Image
-              src={images}
-              alt={"Image"}
-              width={900}
-              height={900}
-              priority
-              className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
-            />
-          )}
+          <Image
+            src={images[currentIndex].src}
+            alt={images[currentIndex].alt ?? ""}
+            width={images[currentIndex].aspectRatio?.width ?? 900}
+            height={images[currentIndex].aspectRatio?.height ?? 900}
+            priority
+            className="fixed inset-0 z-[60] mx-auto h-full w-fit object-contain"
+          />
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
