@@ -1,34 +1,36 @@
-![logo](./public/logo.svg)
-
-# Ouranos
-
-Your friendly Bluesky client for the web. Made with Next.js.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-Install NPM packages in the project directory.
+First, run the development server:
 
 ```bash
-npm install
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Run `npm run dev` and open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The following environment variables are required:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- `NEXTAUTH_SECRET` (generate one using `openssl rand -base64 32` or visit [https://generate-secret.vercel.app/32](https://generate-secret.vercel.app/32)). You won't need to prefix it with `NEXT_PUBLIC` if you are deploying to Vercel.
-- `NEXTAUTH_URL` (`http://localhost:3000` while running locally. You won't need this variable in production if you're deploying to Vercel.)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-To make changes, you can create a new branch and merge with development, or push directly to development. When you are ready to deploy, you can merge into preview (staging) or main (production) branches, which will automatically build and deploy to Vercel.
+## Learn More
 
-## Project Roadmap
+To learn more about Next.js, take a look at the following resources:
 
-Latest changes and updates are added to `Ouranos Roadmap` under [Projects](https://github.com/users/pdelfan/projects/1).
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## FAQ
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Please visit [https://useouranos.app/about](https://useouranos.app/about).
+## Deploy on Vercel
 
-## License
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-MIT License
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
