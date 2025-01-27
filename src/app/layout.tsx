@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: { template: "%s — Ouranos", default: "Ouranos" },
@@ -31,8 +33,13 @@ interface Props {
 
 export default function RootLayout(props: Props) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{props.children}</body>
+    <html lang="en" {...mantineHtmlProps}>
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body className={inter.className}>
+        <Providers>{props.children}</Providers>
+      </body>
     </html>
   );
 }
