@@ -2,6 +2,7 @@
 
 import MantineProvider from "./mantine";
 import "@mantine/core/styles.css";
+import "@/styles/globals.css";
 
 interface Props {
   children: React.ReactNode;

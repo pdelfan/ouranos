@@ -14,24 +14,31 @@ import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 import { BsChatDots, BsBookmark, BsStars } from "react-icons/bs";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import { useDisclosure } from "@mantine/hooks";
+import { useAgent } from "@/app/providers/agent";
+import AccountSwitchMenu from "./AccountSwitchMenu";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export function Shell(props: Props) {
+export default function Shell(props: Props) {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <AppShell
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      aside={{
+        width: 300,
+        breakpoint: "md",
+        collapsed: { desktop: false, mobile: true },
+      }}
       padding="md"
     >
-      <AppShell.Navbar p="md">
-        <AppShell.Section>
+      <AppShell.Navbar>
+        <AppShell.Section p="md">
           <Image src={"/logoFull.svg"} alt="Ouranos logo" w={137} h={40} />
         </AppShell.Section>
-        <AppShell.Section grow my="md" component={ScrollArea}>
+        <AppShell.Section grow component={ScrollArea} p="md">
           <NavLink href="/dashboard" label="Home" leftSection={<BiHome />} />
           <NavLink
             href="/dashboard/search"
@@ -73,13 +80,14 @@ export function Shell(props: Props) {
             label="Settings"
             leftSection={<BiCog />}
           />
+          <NavLink href="/api/auth/logout" lang="Log out" />
         </AppShell.Section>
         <AppShell.Section>
-          Navbar footer – always at the bottom
+          <AccountSwitchMenu />
         </AppShell.Section>
       </AppShell.Navbar>
-
       <AppShell.Main>{props.children}</AppShell.Main>
+      <AppShell.Aside p="md">Aside</AppShell.Aside>
     </AppShell>
   );
 }

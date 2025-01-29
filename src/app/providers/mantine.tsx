@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  MantineProvider as BaseProvider,
-  createTheme,
-  rem,
-} from "@mantine/core";
+import { MantineProvider as BaseProvider, createTheme } from "@mantine/core";
 import "@mantine/core/styles.css";
 
 const theme = createTheme({

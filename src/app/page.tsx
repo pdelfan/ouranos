@@ -1,6 +1,6 @@
 import { Button, Center, Group, Stack, Text, Title } from "@mantine/core";
 
-export default function Home() {
+export default function Page() {
   return (
     <Center h={"100svh"}>
       <Stack align="center">
@@ -15,11 +15,11 @@ export default function Home() {
             color="gray"
             radius={"xl"}
           >
-            Sign up
+            Sign up on Bluesky
           </Button>
           <Button
             component="a"
-            href="/dashboard"
+            href="login"
             size="md"
             color="gray.7"
             radius={"xl"}
