@@ -80,7 +80,6 @@ export default function Shell(props: Props) {
             label="Settings"
             leftSection={<BiCog />}
           />
-          <NavLink href="/api/auth/logout" lang="Log out" />
         </AppShell.Section>
         <AppShell.Section>
           <AccountSwitchMenu />
