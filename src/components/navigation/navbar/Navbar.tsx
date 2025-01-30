@@ -5,22 +5,19 @@ import {
   Image,
   ScrollArea,
   Divider,
-  NavLink,
 } from "@mantine/core";
 import {
   BiHome,
   BiSolidHome,
-  BiPlanet,
   BiCog,
-  BiCloud,
+  BiPlanet,
   BiSolidCloud,
   BiSolidCog,
 } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
-import { HiOutlineClipboardList } from "react-icons/hi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import AccountSwitchMenu from "@/components/navigation/appShell/AccountSwitchMenu";
-import { BiMessageRounded, BiBookmark, BiSolidBookmark } from "react-icons/bi";
+import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 import ChatNavList from "@/features/chat/components/chatNavList/ChatNavList";
 import FeedNavList from "@/features/feeds/components/feedNavList/FeedNavList";
 import ListNavList from "@/features/lists/components/listNavList/ListNavList";
@@ -47,7 +44,7 @@ export default function Navbar() {
         <NavItem
           href="/dashboard/explore"
           label="Explore"
-          icon={<BiCloud size={25} />}
+          icon={<BiPlanet size={25} />}
           activeIcon={<BiSolidCloud size={25} />}
         />
         <NavItem

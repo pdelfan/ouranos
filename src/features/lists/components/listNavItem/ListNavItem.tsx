@@ -1,4 +1,5 @@
 import { Avatar, Button } from "@mantine/core";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 interface Props {
   name: string;
@@ -16,7 +17,13 @@ export default function ListNavItem(props: Props) {
       fullWidth
       justify="start"
       leftSection={
-        <Avatar src={props.iconSrc ?? null} size={"sm"} radius={"sm"} />
+        props.iconSrc ? (
+          <Avatar src={props.iconSrc} size={"sm"} radius={"sm"} />
+        ) : (
+          <Avatar size={"sm"} radius={"sm"}>
+            <BsFillPeopleFill size={20} />
+          </Avatar>
+        )
       }
     >
       {props.name}

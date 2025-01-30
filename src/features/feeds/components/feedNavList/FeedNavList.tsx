@@ -1,16 +1,17 @@
 import { Alert, Button, NavLink } from "@mantine/core";
 import { Fragment } from "react";
-import { BiPlanet, BiPlus, BiRightArrowAlt } from "react-icons/bi";
+import { BiCloud, BiRightArrowAlt } from "react-icons/bi";
 import { LuInfo } from "react-icons/lu";
 import FeedNavItem from "../feedNavItem/FeedNavItem";
+import { getSavedFeeds } from "@/lib/atproto/bsky/feed";
 
-interface Props {}
+export default async function FeedNavList() {
+  const savedFeeds = await getSavedFeeds({});
 
-export default async function FeedNavList(props: Props) {
   return (
     <NavLink
       label={"Feeds"}
-      leftSection={<BiPlanet size={25} />}
+      leftSection={<BiCloud size={25} />}
       c={"gray"}
       px={"6"}
     >
@@ -25,6 +26,27 @@ export default async function FeedNavList(props: Props) {
       >
         View all
       </Button>
+      {savedFeeds.length === 0 ? (
+        <Alert
+          variant="light"
+          icon={<LuInfo size={25} />}
+          title="No lists found"
+          radius={"sm"}
+          color="gray"
+          p={"xs"}
+        />
+      ) : (
+        <Fragment>
+          {savedFeeds.map((feed) => (
+            <FeedNavItem
+              key={feed.uri}
+              name={feed.displayName}
+              url={`/dashboard/user/${feed.creator.handle}/lists/${feed.name}`}
+              iconSrc={feed.avatar}
+            />
+          ))}
+        </Fragment>
+      )}
     </NavLink>
   );
 }

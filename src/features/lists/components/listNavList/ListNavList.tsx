@@ -1,6 +1,6 @@
 import { getLists } from "@/lib/atproto/bsky/list";
 import { getSession } from "@/lib/auth/session";
-import { Alert, Button, Divider, NavLink, Text } from "@mantine/core";
+import { Alert, Button, NavLink } from "@mantine/core";
 import ListNavItem from "../listNavItem/ListNavItem";
 import { HiOutlineClipboardList } from "react-icons/hi";
 import { BiPlus, BiRightArrowAlt } from "react-icons/bi";
