@@ -1,5 +1,5 @@
 import { getSession } from "@/lib/auth/session";
-import Shell from "@/components/navigation/shell/Shell";
+import AppShell from "@/components/navigation/appShell/AppShell";
 import TanStackQueryProvider from "@/app/providers/tanstack";
 import AgentProvider from "@/app/providers/agent";
 import type { Metadata } from "next";
@@ -19,7 +19,7 @@ export default async function Layout(props: Props) {
   return (
     <TanStackQueryProvider>
       <AgentProvider did={session.did}>
-        <Shell>{props.children}</Shell>
+        <AppShell>{props.children}</AppShell>
       </AgentProvider>
     </TanStackQueryProvider>
   );

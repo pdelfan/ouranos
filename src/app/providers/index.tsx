@@ -1,5 +1,6 @@
 "use client";
 
+import TanStackQueryProvider from "./tanstack";
 import MantineProvider from "./mantine";
 import "@mantine/core/styles.css";
 import "@/styles/globals.css";
@@ -9,5 +10,9 @@ interface Props {
 }
 
 export default function Providers(props: Props) {
-  return <MantineProvider>{props.children}</MantineProvider>;
+  return (
+    <TanStackQueryProvider>
+      <MantineProvider>{props.children}</MantineProvider>
+    </TanStackQueryProvider>
+  );
 }

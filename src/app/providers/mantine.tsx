@@ -19,7 +19,6 @@ const theme = createTheme({
     ],
   },
   primaryColor: "purple",
-  primaryShade: 4,
 });
 
 interface Props {

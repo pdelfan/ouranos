@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Agent } from "@atproto/api";
 
 const AgentContext = createContext<Agent | null>(null);
@@ -12,39 +18,26 @@ interface Props {
 
 export default function AgentProvider({ children, did }: Props) {
   if (!did) throw new Error("No DID passed to Agent Provider");
-
   const [agent, setAgent] = useState<Agent | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getAgent = async () => {
       try {
+        // TODO: cache
         const response = await fetch("/api/auth/session");
         if (!response.ok) {
           throw new Error("Failed to fetch session");
         }
         const session = await response.json();
-
-        if (session) {
-          const agent = new Agent(session);
-          setAgent(agent);
-        } else {
-          throw new Error("Session data is invalid");
-        }
-      } catch (error) {
-        console.error("Error creating agent:", error);
-        setAgent(null);
-      } finally {
-        setLoading(false);
+        const agent = new Agent(session);
+        setAgent(agent);
+      } catch {
+        throw new Error("Could not set agent");
       }
     };
 
     getAgent();
-  }, [did]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  }, []);
 
   return (
     <AgentContext.Provider value={agent}>{children}</AgentContext.Provider>
