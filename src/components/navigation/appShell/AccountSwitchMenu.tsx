@@ -19,7 +19,7 @@ export default async function AccountSwitchMenu() {
   const profile = await getProfile({ handleOrDid: session.did });
 
   return (
-    <Group justify="space-between" p={"md"}>
+    <Group justify="space-between" px={"md"} py={"xs"}>
       <Group gap={"sm"}>
         <Avatar
           component="a"

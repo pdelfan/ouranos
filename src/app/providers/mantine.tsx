@@ -1,6 +1,10 @@
 "use client";
 
-import { MantineProvider as BaseProvider, createTheme } from "@mantine/core";
+import {
+  MantineProvider as BaseProvider,
+  createTheme,
+  NavLink,
+} from "@mantine/core";
 import "@mantine/core/styles.css";
 
 const theme = createTheme({
@@ -19,6 +23,16 @@ const theme = createTheme({
     ],
   },
   primaryColor: "purple",
+  components: {
+    NavLink: NavLink.extend({
+      styles: {
+        label: {
+          fontWeight: 600,
+          fontSize: "1rem",
+        },
+      },
+    }),
+  },
 });
 
 interface Props {

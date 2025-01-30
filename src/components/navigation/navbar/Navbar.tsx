@@ -1,32 +1,29 @@
+import NavItem from "./NavItem";
 import {
   AppShellSection,
   AppShellNavbar,
   Image,
   ScrollArea,
   Divider,
+  NavLink,
 } from "@mantine/core";
 import {
   BiHome,
   BiSolidHome,
   BiPlanet,
-  BiSolidPlanet,
   BiCog,
   BiCloud,
   BiSolidCloud,
   BiSolidCog,
 } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
-import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
-import { BsStars } from "react-icons/bs";
+import { HiOutlineClipboardList } from "react-icons/hi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import AccountSwitchMenu from "@/components/navigation/appShell/AccountSwitchMenu";
-import {
-  BiMessageRounded,
-  BiSolidMessageRounded,
-  BiBookmark,
-  BiSolidBookmark,
-} from "react-icons/bi";
-import NavItem from "./NavItem";
+import { BiMessageRounded, BiBookmark, BiSolidBookmark } from "react-icons/bi";
+import ChatNavList from "@/features/chat/components/chatNavList/ChatNavList";
+import FeedNavList from "@/features/feeds/components/feedNavList/FeedNavList";
+import ListNavList from "@/features/lists/components/listNavList/ListNavList";
 
 export default function Navbar() {
   return (
@@ -54,24 +51,6 @@ export default function Navbar() {
           activeIcon={<BiSolidCloud size={25} />}
         />
         <NavItem
-          href="/dashboard/feeds"
-          label="Feeds"
-          icon={<BiPlanet size={25} />}
-          activeIcon={<BiSolidPlanet size={25} />}
-        />
-        <NavItem
-          href="/dashboard/lists"
-          label="Lists"
-          icon={<HiOutlineClipboardList size={25} />}
-          activeIcon={<HiClipboardList size={25} />}
-        />
-        <NavItem
-          href="/dashboard/chat"
-          label="Chat"
-          icon={<BiMessageRounded size={25} />}
-          activeIcon={<BiSolidMessageRounded size={25} />}
-        />
-        <NavItem
           href="/dashboard/bookmarks"
           label="Bookmarks"
           icon={<BiBookmark size={25} />}
@@ -89,6 +68,10 @@ export default function Navbar() {
           icon={<BiCog size={25} />}
           activeIcon={<BiSolidCog size={25} />}
         />
+        <Divider my={"sm"} />
+        <FeedNavList />
+        <ListNavList />
+        {/* <ChatNavList /> */}
       </AppShellSection>
       <Divider />
       <AppShellSection>
