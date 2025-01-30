@@ -1,5 +1,5 @@
 import { AppShell as Shell, AppShellMain } from "@mantine/core";
-import Navbar from "./Navbar";
+import Navbar from "@/components/navigation/navbar/Navbar";
 
 interface Props {
   children: React.ReactNode;

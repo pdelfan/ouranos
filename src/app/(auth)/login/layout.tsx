@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
 import { Box, Image } from "@mantine/core";
 
 export const metadata: Metadata = {

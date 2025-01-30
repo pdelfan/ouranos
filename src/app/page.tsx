@@ -1,4 +1,4 @@
-import { Button, Center, Group, Stack, Text, Title } from "@mantine/core";
+import { Button, Center, Stack, Text, Title } from "@mantine/core";
 import { FaBluesky } from "react-icons/fa6";
 
 export default function Page() {

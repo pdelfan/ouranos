@@ -17,7 +17,7 @@ export async function GET() {
     const session = await oauthClient.restore(did);
 
     return Response.json({ session });
-  } catch (e) {
+  } catch {
     redirect("/");
   }
 }

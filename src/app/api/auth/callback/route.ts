@@ -17,7 +17,7 @@ export async function GET({ nextUrl }: NextRequest) {
 
     cookieSession.did = session.did;
     await cookieSession.save();
-  } catch (e) {
+  } catch {
     throw new Error("Could not process callback");
   }
 

@@ -15,14 +15,17 @@ export default function Page() {
   return (
     <Center h={"100svh"}>
       <Stack align="center" gap={"xl"}>
-        <Image src={"/logoFull.svg"} alt="Ouranos logo" w={150} />
+        <Stack align="center">
+          <Image src={"/logo.svg"} alt="Ouranos logo" w={60} />
+          <Text fz={"lg"} fw={500}>
+            What's your handle?
+          </Text>
+        </Stack>
         <Form action={"/api/auth/login"}>
           <Stack align="center" gap={"xs"}>
-            <Group gap={"xs"} align="end">
+            <Group gap={"xs"}>
               <TextInput
                 required
-                withAsterisk={false}
-                label="Handle"
                 name="handle"
                 placeholder="you.bsky.social"
                 leftSection={<MdAlternateEmail />}
@@ -34,7 +37,7 @@ export default function Page() {
               </Button>
             </Group>
             <Text size="sm">
-              Don't have an account?{" "}
+              {"Don't have an account? "}
               <Anchor href="https://bsky.app" target="_blank">
                 Sign up on Bluesky
               </Anchor>
