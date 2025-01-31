@@ -1,4 +1,6 @@
+import TopBar from "@/components/navigation/topBar/TopBar";
 import type { Metadata } from "next";
+import { Fragment } from "react";
 
 export const metadata: Metadata = {
   title: "Explore",
@@ -8,6 +10,16 @@ interface Props {
   children: React.ReactNode;
 }
 
+const BREAD_CRUMBS = [
+  { label: "Home", href: "/dashboard" },
+  { label: "Explore", href: "/dashboard/explore" },
+];
+
 export default async function Layout(props: Props) {
-  return props.children;
+  return (
+    <Fragment>
+      <TopBar breadcrumbs={BREAD_CRUMBS} />
+      {props.children}
+    </Fragment>
+  );
 }

@@ -22,7 +22,7 @@ import {
   Title,
 } from "@mantine/core";
 import { Fragment } from "react";
-import { BsArrowRightCircleFill } from "react-icons/bs";
+import { BsArrowRightCircleFill, BsFilter } from "react-icons/bs";
 import { MdOutlineRssFeed } from "react-icons/md";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 
@@ -46,7 +46,58 @@ export default async function ExploreContainer() {
                 size="md"
                 radius={"md"}
               />
-              <Group>
+              <Group mt={"xl"} justify="space-between" align="end">
+                <Stack gap={"xs"}>
+                  <Group gap={"xs"}>
+                    <BsFilter />
+                    <Text fz={"sm"} fw={500} c="gray.7">
+                      Search options
+                    </Text>
+                  </Group>
+                  <Group gap={"xs"}>
+                    <Button
+                      variant="light"
+                      color="gray"
+                      size="xs"
+                      radius={"xl"}
+                    >
+                      from: @user
+                    </Button>
+                    <Button
+                      variant="light"
+                      color="gray"
+                      size="xs"
+                      radius={"xl"}
+                    >
+                      mentions: @user
+                    </Button>
+                    <Button
+                      variant="light"
+                      color="gray"
+                      size="xs"
+                      radius={"xl"}
+                    >
+                      since: yyyy-mm-dd
+                    </Button>
+                    <Button
+                      variant="light"
+                      color="gray"
+                      size="xs"
+                      radius={"xl"}
+                    >
+                      until: yyyy-mm-dd
+                    </Button>
+                    <Button
+                      variant="light"
+                      color="gray"
+                      size="xs"
+                      radius={"xl"}
+                    >
+                      lang: en
+                    </Button>
+                  </Group>
+                </Stack>
+
                 <Button
                   radius={"md"}
                   color="gray.7"

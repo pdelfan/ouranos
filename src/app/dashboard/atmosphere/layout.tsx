@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 
 export const metadata: Metadata = {
   title: "Atmosphere",
@@ -9,5 +10,5 @@ interface Props {
 }
 
 export default async function Layout(props: Props) {
-  return props.children;
+  return <Fragment>{props.children}</Fragment>;
 }
