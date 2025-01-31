@@ -5,6 +5,7 @@ import {
   Image,
   ScrollArea,
   Divider,
+  Button,
 } from "@mantine/core";
 import {
   BiHome,
@@ -14,6 +15,7 @@ import {
   BiSolidCloud,
   BiSolidCog,
 } from "react-icons/bi";
+import { RiQuillPenFill } from "react-icons/ri";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import AccountSwitchMenu from "@/components/navigation/appShell/AccountSwitchMenu";
@@ -28,7 +30,13 @@ export default function Navbar() {
       <AppShellSection p="md">
         <Image src={"/logoFull.svg"} alt="Ouranos logo" w={137} h={40} />
       </AppShellSection>
-      <AppShellSection grow component={ScrollArea} p={"md"}>
+      <AppShellSection
+        grow
+        component={ScrollArea}
+        px={"md"}
+        pb={"md"}
+        pt={"xs"}
+      >
         <NavItem
           href="/dashboard"
           label="Home"
@@ -69,6 +77,16 @@ export default function Navbar() {
         <FeedNavList />
         <ListNavList />
         {/* <ChatNavList /> */}
+      </AppShellSection>
+      <AppShellSection px={"md"} pb={"md"}>
+        <Button
+          size="md"
+          radius={"md"}
+          fullWidth
+          leftSection={<RiQuillPenFill size={20} />}
+        >
+          New post
+        </Button>
       </AppShellSection>
       <Divider />
       <AppShellSection>

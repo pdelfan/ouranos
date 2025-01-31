@@ -23,6 +23,13 @@ const theme = createTheme({
     ],
   },
   primaryColor: "purple",
+  headings: {
+    sizes: {
+      h1: {
+        fontWeight: "600",
+      },
+    },
+  },
   components: {
     NavLink: NavLink.extend({
       styles: {
