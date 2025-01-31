@@ -8,6 +8,7 @@ import {
   MenuItem,
   MenuTarget,
   Stack,
+  Box,
 } from "@mantine/core";
 import { BsThreeDots } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
@@ -19,8 +20,8 @@ export default async function AccountSwitchMenu() {
   const profile = await getProfile({ handleOrDid: session.did });
 
   return (
-    <Group justify="space-between" px={"md"} py={"xs"}>
-      <Group gap={"sm"}>
+    <Group justify="space-between" px={"md"} py={"xs"} wrap="nowrap" gap={"md"}>
+      <Group gap={"sm"} wrap="nowrap">
         <Avatar
           component="a"
           href={`/dashboard/user/${profile.handle}`}
@@ -30,14 +31,15 @@ export default async function AccountSwitchMenu() {
           color="purple"
           variant="filled"
         />
-        <Stack gap={0}>
+        <Stack gap={0} w={170}>
           {profile.displayName && (
-            <Text fw={500} size="sm">
+            <Text fw={500} size="sm" truncate="end">
               {profile.displayName}
             </Text>
           )}
-          <Text c="gray" size="sm">
-            {profile.handle}
+
+          <Text c="gray" size="sm" truncate="end">
+            spouriawefawfawfawfwfade.coms
           </Text>
         </Stack>
       </Group>
