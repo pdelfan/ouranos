@@ -1,7 +1,6 @@
-import { Alert, Button, NavLink, Text } from "@mantine/core";
+import { Button, NavLink } from "@mantine/core";
 import { Fragment } from "react";
 import { BiCloud, BiRightArrowAlt } from "react-icons/bi";
-import { LuInfo } from "react-icons/lu";
 import FeedNavItem from "../feedNavItem/FeedNavItem";
 import { getSavedFeeds } from "@/lib/atproto/bsky/feed";
 
@@ -27,16 +26,16 @@ export default async function FeedNavList() {
         View more feeds
       </Button>
 
-        <Fragment>
-          {savedFeeds.map((feed) => (
-            <FeedNavItem
-              key={feed.uri}
-              name={feed.displayName}
-              url={`/dashboard/user/${feed.creator.handle}/lists/${feed.name}`}
-              iconSrc={feed.avatar}
-            />
-          ))}
-        </Fragment>
+      <Fragment>
+        {savedFeeds.map((feed) => (
+          <FeedNavItem
+            key={feed.uri}
+            name={feed.displayName}
+            url={`/dashboard/user/${feed.creator.handle}/lists/${feed.name}`}
+            iconSrc={feed.avatar}
+          />
+        ))}
+      </Fragment>
     </NavLink>
   );
 }
