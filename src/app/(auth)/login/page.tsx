@@ -18,7 +18,7 @@ export default function Page() {
         <Stack align="center">
           <Image src={"/logo.svg"} alt="Ouranos logo" w={60} />
           <Text fz={"lg"} fw={500}>
-            What's your handle?
+            {"What's your handle?"}
           </Text>
         </Stack>
         <Form action={"/api/auth/login"}>
@@ -30,9 +30,9 @@ export default function Page() {
                 placeholder="you.bsky.social"
                 leftSection={<MdAlternateEmail />}
                 size="md"
-                radius={"xl"}
+                radius={"md"}
               />
-              <Button type="submit" size="md" color="gray.7" radius={"xl"}>
+              <Button type="submit" size="md" color="gray.7" radius={"md"}>
                 Log in
               </Button>
             </Group>

@@ -31,7 +31,7 @@ export default async function FeedNavList() {
           <FeedNavItem
             key={feed.uri}
             name={feed.displayName}
-            url={`/dashboard/user/${feed.creator.handle}/lists/${feed.name}`}
+            url={`/dashboard/user/${feed.creator.handle}/feed/${feed.name}`}
             iconSrc={feed.avatar}
           />
         ))}

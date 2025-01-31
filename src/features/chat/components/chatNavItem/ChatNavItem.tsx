@@ -10,9 +10,9 @@ export default function ChatNavItem(props: Props) {
 
   return (
     <Card component="a" href={url}>
-      {props.convo.members.map((m, i) => (
+      {/* {props.convo.members.map((m, i) => (
         <Text>{m.displayName ?? m.handle}</Text>
-      ))}
+      ))} */}
       <Text>{props.convo.rev}</Text>
     </Card>
   );

@@ -11,7 +11,7 @@ export const getSavedFeeds = async ({ agent }: { agent?: Agent }) => {
   const feeds = preferences.data.preferences.find(
     (pref) =>
       AppBskyActorDefs.isSavedFeedsPref(pref) &&
-      AppBskyActorDefs.validateSavedFeedsPref(pref).success,
+      AppBskyActorDefs.validateSavedFeedsPref(pref).success
   ) as AppBskyActorDefs.SavedFeedsPref | undefined;
 
   if (!feeds || feeds.saved.length === 0) return [];
@@ -26,4 +26,24 @@ export const getSavedFeeds = async ({ agent }: { agent?: Agent }) => {
   const savedFeeds = [...generators.data.feeds];
 
   return savedFeeds;
+};
+
+export const getPopularFeeds = async ({
+  limit = 30,
+  agent,
+}: {
+  limit?: number;
+  agent?: Agent;
+}) => {
+  if (!agent) agent = await getBskyAgent();
+
+  const popularFeeds = await agent.app.bsky.unspecced.getPopularFeedGenerators({
+    limit: limit,
+  });
+
+  if (!popularFeeds.success) {
+    throw new Error("Could not get popular feeds");
+  }
+
+  return popularFeeds.data;
 };

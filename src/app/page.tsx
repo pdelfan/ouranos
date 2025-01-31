@@ -37,7 +37,7 @@ export default function Page() {
           href="login"
           size="md"
           color="gray.7"
-          radius={"xl"}
+          radius={"md"}
           leftSection={<FaBluesky />}
         >
           Log in with Bluesky

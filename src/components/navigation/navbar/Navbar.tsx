@@ -20,7 +20,6 @@ import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
 import { FaBell, FaRegBell } from "react-icons/fa6";
 import AccountSwitchMenu from "@/components/navigation/appShell/AccountSwitchMenu";
 import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
-import ChatNavList from "@/features/chat/components/chatNavList/ChatNavList";
 import FeedNavList from "@/features/feeds/components/feedNavList/FeedNavList";
 import ListNavList from "@/features/lists/components/listNavList/ListNavList";
 
@@ -44,14 +43,14 @@ export default function Navbar() {
           activeIcon={<BiSolidHome size={25} />}
         />
         <NavItem
-          href="/dashboard/search"
-          label="Search"
+          href="/dashboard/explore"
+          label="Explore"
           icon={<PiMagnifyingGlassBold size={25} />}
           activeIcon={<PiMagnifyingGlassFill size={25} />}
         />
         <NavItem
-          href="/dashboard/explore"
-          label="Explore"
+          href="/dashboard/atmosphere"
+          label="Atmosphere"
           icon={<BiPlanet size={25} />}
           activeIcon={<BiSolidCloud size={25} />}
         />

@@ -10,13 +10,15 @@ export const getChatConvos = async ({
 }) => {
   if (!agent) agent = await getBskyAgent();
 
-  const convos = await agent.chat.bsky.convo.listConvos(
-    {
-      cursor: cursor,
-      limit: 30,
-    },
-    { headers: { "atproto-proxy": "did:web:api.bsky.chat#bsky_chat" } },
+  const proxy = agent.withProxy(
+    "atproto-proxy",
+    "did:web:api.bsky.chat#bsky_chat"
   );
+
+  const convos = await proxy.chat.bsky.convo.listConvos({
+    cursor: cursor,
+    limit: 30,
+  });
 
   if (!convos.success) throw new Error("Could not get chat convos");
 

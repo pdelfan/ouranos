@@ -15,9 +15,9 @@ export default async function ChatNavList() {
       c={"gray"}
       px={"6"}
     >
-      {/* {convos.map((convo) => (
+      {convos.map((convo) => (
         <ChatNavItem key={convo.id} convo={convo} />
-      ))} */}
+      ))}
     </NavLink>
   );
 }
