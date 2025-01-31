@@ -23,6 +23,9 @@ const theme = createTheme({
     ],
   },
   primaryColor: "purple",
+  autoContrast: true,
+  cursorType: "pointer",
+
   headings: {
     sizes: {
       h1: {

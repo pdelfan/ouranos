@@ -85,7 +85,7 @@ export default function Navbar() {
           fullWidth
           leftSection={<RiQuillPenFill size={20} />}
         >
-          New post
+          New Post
         </Button>
       </AppShellSection>
       <Divider />

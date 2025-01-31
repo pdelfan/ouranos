@@ -1,4 +1,4 @@
-import { Alert, Button, NavLink } from "@mantine/core";
+import { Alert, Button, NavLink, Text } from "@mantine/core";
 import { Fragment } from "react";
 import { BiCloud, BiRightArrowAlt } from "react-icons/bi";
 import { LuInfo } from "react-icons/lu";
@@ -24,18 +24,9 @@ export default async function FeedNavList() {
         justify="start"
         leftSection={<BiRightArrowAlt size={25} />}
       >
-        View all
+        View more feeds
       </Button>
-      {savedFeeds.length === 0 ? (
-        <Alert
-          variant="light"
-          icon={<LuInfo size={25} />}
-          title="No lists found"
-          radius={"sm"}
-          color="gray"
-          p={"xs"}
-        />
-      ) : (
+
         <Fragment>
           {savedFeeds.map((feed) => (
             <FeedNavItem
@@ -46,7 +37,6 @@ export default async function FeedNavList() {
             />
           ))}
         </Fragment>
-      )}
     </NavLink>
   );
 }
