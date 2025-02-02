@@ -122,7 +122,7 @@ export default async function ExploreContainer() {
                     size={"md"}
                     bd={"3px solid gray.1"}
                     component="a"
-                    href={`/dashboard/user/${p.handle}`}
+                    href={`/dashboard/profile/${p.handle}`}
                   />
                 ))}
               </AvatarGroup>
@@ -149,7 +149,7 @@ export default async function ExploreContainer() {
                     radius={"md"}
                     bd={"3px solid gray.1"}
                     component="a"
-                    href={`/dashboard/user/${f.creator.handle}/feed/${f.name}`}
+                    href={`/dashboard/profile/${f.creator.handle}/feed/${f.name}`}
                   >
                     {!f.avatar && <MdOutlineRssFeed size={20} />}
                   </Avatar>

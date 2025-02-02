@@ -20,6 +20,8 @@ interface Props {
 }
 
 export default function TopBar(props: Props) {
+  const showBackButton = props.breadcrumbs.length > 1;
+
   return (
     <Paper
       style={{
@@ -35,15 +37,17 @@ export default function TopBar(props: Props) {
     >
       <Group p={"sm"} justify="space-between">
         <Group>
-          <ActionIcon
-            variant="light"
-            color="gray"
-            radius={"xl"}
-            component="a"
-            href="./"
-          >
-            <BiLeftArrowAlt />
-          </ActionIcon>
+          {showBackButton && (
+            <ActionIcon
+              variant="light"
+              color="gray"
+              radius={"xl"}
+              component="a"
+              href="./"
+            >
+              <BiLeftArrowAlt />
+            </ActionIcon>
+          )}
           <Breadcrumbs>
             {props.breadcrumbs.map((b, i) => (
               <Anchor key={i} href={b.href} fz={"sm"} fw={600} c={"gray"}>

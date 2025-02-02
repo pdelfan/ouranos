@@ -23,7 +23,7 @@ export default async function AccountSwitchMenu() {
       <Group gap={"sm"} wrap="nowrap">
         <Avatar
           component="a"
-          href={`/dashboard/user/${profile.handle}`}
+          href={`/dashboard/profile/${profile.handle}`}
           src={profile.avatar?.replace("avatar", "avatar_thumbnail") ?? null}
           alt={`${profile.handle}s avatar`}
           name={profile.handle}

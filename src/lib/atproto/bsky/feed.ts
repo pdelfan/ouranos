@@ -23,7 +23,10 @@ export const getSavedFeeds = async ({ agent }: { agent?: Agent }) => {
     throw new Error("Could not get feed generators");
   }
 
-  const savedFeeds = [...generators.data.feeds];
+  const savedFeeds = generators.data.feeds.map((feed) => ({
+    ...feed,    
+    pinned: feeds.pinned.includes(feed.uri),
+  }));
 
   return savedFeeds;
 };

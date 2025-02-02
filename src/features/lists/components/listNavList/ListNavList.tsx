@@ -42,7 +42,7 @@ export default async function ListNavList() {
         <ListNavItem
           key={list.uri}
           name={list.name}
-          url={`/dashboard/user/${list.creator.handle}/lists/${list.name}`}
+          url={`/dashboard/profile/${list.creator.handle}/lists/${list.name}`}
           iconSrc={list.avatar}
         />
       ))}

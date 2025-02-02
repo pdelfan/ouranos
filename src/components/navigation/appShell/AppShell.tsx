@@ -12,10 +12,10 @@ export default function AppShell(props: Props) {
         width: 300,
         breakpoint: "sm",
       }}
-      padding="0"
+      padding="md"
     >
       <Navbar />
-      <AppShellMain>{props.children}</AppShellMain>
+      <AppShellMain py={"0"}>{props.children}</AppShellMain>
     </Shell>
   );
 }
