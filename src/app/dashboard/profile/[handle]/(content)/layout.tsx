@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 interface Props {
-  params: { handle: string };
+  params: Promise<{ handle: string }>;
   children: React.ReactNode;
 }
 

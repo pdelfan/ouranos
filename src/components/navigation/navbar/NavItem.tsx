@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@mantine/core";
+import { NavLink } from "@mantine/core";
 import { usePathname } from "next/navigation";
 
 interface Props {
@@ -16,18 +16,14 @@ export default function NavItem(props: Props) {
   const isActive = pathname === props.href;
 
   return (
-    <Button
+    <NavLink
       component="a"
       href={props.href}
       variant="subtle"
-      color="gray"
-      size="md"
-      fullWidth
-      justify="start"
+      c="gray"
       px={"6"}
+      label={props.label}
       leftSection={isActive ? props.activeIcon : props.icon}
-    >
-      {props.label}
-    </Button>
+    />
   );
 }

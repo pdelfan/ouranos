@@ -22,6 +22,7 @@ import AccountSwitchMenu from "@/components/navigation/appShell/AccountSwitchMen
 import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 import FeedNavList from "@/features/feeds/components/feedNavList/FeedNavList";
 import ListNavList from "@/features/lists/components/listNavList/ListNavList";
+import ChatNavList from "@/features/chat/components/chatNavList/ChatNavList";
 
 export default function Navbar() {
   return (
@@ -75,7 +76,7 @@ export default function Navbar() {
         <Divider my={"sm"} />
         <FeedNavList />
         <ListNavList />
-        {/* <ChatNavList /> */}
+        <ChatNavList />
       </AppShellSection>
       <AppShellSection px={"md"} pb={"md"}>
         <Button

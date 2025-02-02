@@ -4,7 +4,7 @@ import { SessionStore, StateStore } from "./storage";
 import { db } from "./db";
 
 const isDevelopment = process.env.NODE_ENV === "development";
-const SCOPE = "atproto transition:generic";
+const SCOPE = "atproto transition:generic transition:chat.bsky";
 const ORIGIN = isDevelopment
   ? "http://127.0.0.1:3000"
   : "https://useouranos.app";

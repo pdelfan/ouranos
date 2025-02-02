@@ -1,12 +1,23 @@
 import { getChatConvos } from "@/lib/atproto/bsky/chat";
-import { NavLink } from "@mantine/core";
-import { BiMessageRounded } from "react-icons/bi";
+import { Button, NavLink } from "@mantine/core";
+import { BiMessageRounded, BiRightArrowAlt } from "react-icons/bi";
 import ChatNavItem from "../chatNavItem/ChatNavItem";
+import { log } from "console";
+import { getSession } from "@/lib/auth/session";
 
 export default async function ChatNavList() {
   const { convos } = await getChatConvos({});
+  const session = await getSession();
 
-  if (convos.length === 0) return null;
+  // filter out the user from members list
+  const chats = convos.map((convo) => {
+    return {
+      ...convo,
+      members: convo.members.filter((m) => m.did !== session.did),
+    };
+  });
+
+  log(chats);
 
   return (
     <NavLink
@@ -15,9 +26,19 @@ export default async function ChatNavList() {
       c={"gray"}
       px={"6"}
     >
-      {convos.map((convo) => (
-        <ChatNavItem key={convo.id} convo={convo} />
-      ))}
+      <Button
+        component="a"
+        href="/dashboard/chats"
+        variant="subtle"
+        color="gray.5"
+        fullWidth
+        justify="start"
+        leftSection={<BiRightArrowAlt size={25} />}
+      >
+        View more
+      </Button>
+      {chats.length > 0 &&
+        chats.map((convo) => <ChatNavItem key={convo.id} convo={convo} />)}
     </NavLink>
   );
 }

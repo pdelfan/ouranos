@@ -5,7 +5,6 @@ import {
   Divider,
   Group,
   Paper,
-  Text,
 } from "@mantine/core";
 import { BiLeftArrowAlt } from "react-icons/bi";
 
