@@ -89,14 +89,16 @@ export default function ProfileHeader(props: Props) {
                 Edit profile
               </Button>
             )}
-            <Button
-              variant="light"
-              color="gray"
-              radius={"md"}
-              leftSection={<BiSolidMessageRounded size={20} />}
-            >
-              Message
-            </Button>
+            {session.did !== profile.did && (
+              <Button
+                variant="light"
+                color="gray"
+                radius={"md"}
+                leftSection={<BiSolidMessageRounded size={20} />}
+              >
+                Message
+              </Button>
+            )}
           </Group>
         </Group>
       </Container>
