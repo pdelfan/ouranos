@@ -1,3 +1,5 @@
+"use client";
+
 import NavItem from "./NavItem";
 import {
   AppShellSection,
@@ -6,14 +8,17 @@ import {
   ScrollArea,
   Divider,
   Button,
+  Group,
+  ActionIcon,
 } from "@mantine/core";
 import {
   BiHome,
   BiSolidHome,
   BiCog,
   BiPlanet,
-  BiSolidCloud,
   BiSolidCog,
+  BiSolidPlanet,
+  BiMenu,
 } from "react-icons/bi";
 import { RiQuillPenFill } from "react-icons/ri";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
@@ -23,12 +28,31 @@ import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 import FeedNavList from "@/features/feeds/components/feedNavList/FeedNavList";
 import ListNavList from "@/features/lists/components/listNavList/ListNavList";
 import ChatNavList from "@/features/chat/components/chatNavList/ChatNavList";
+import { useComposerControls } from "@/app/providers/composer";
 
-export default function Navbar() {
+interface Props {
+  onToggleNavbar: () => void;
+}
+
+export default function Navbar(props: Props) {
+  const { openComposer } = useComposerControls();
+
   return (
     <AppShellNavbar>
       <AppShellSection p="md">
-        <Image src={"/logoFull.svg"} alt="Ouranos logo" w={137} h={40} />
+        <Group justify="space-between">
+          <Image src={"/logoFull.svg"} alt="Ouranos logo" w={137} h={40} />
+          <ActionIcon
+            variant="subtle"
+            color="gray"
+            size={"md"}
+            radius={"xl"}
+            onClick={props.onToggleNavbar}
+            hiddenFrom="md"
+          >
+            <BiMenu size={25} />
+          </ActionIcon>
+        </Group>
       </AppShellSection>
       <AppShellSection
         grow
@@ -53,7 +77,7 @@ export default function Navbar() {
           href="/dashboard/atmosphere"
           label="Atmosphere"
           icon={<BiPlanet size={25} />}
-          activeIcon={<BiSolidCloud size={25} />}
+          activeIcon={<BiSolidPlanet size={25} />}
         />
         <NavItem
           href="/dashboard/bookmarks"
@@ -84,6 +108,7 @@ export default function Navbar() {
           radius={"md"}
           fullWidth
           leftSection={<RiQuillPenFill size={20} />}
+          onClick={() => openComposer()}
         >
           New Post
         </Button>

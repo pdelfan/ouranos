@@ -1,13 +1,13 @@
-import { getLists } from "@/lib/atproto/bsky/list";
-import { getSession } from "@/lib/auth/session";
+"use client";
+
 import { Button, NavLink } from "@mantine/core";
 import ListNavItem from "../listNavItem/ListNavItem";
 import { HiOutlineClipboardList } from "react-icons/hi";
 import { BiPlus, BiRightArrowAlt } from "react-icons/bi";
+import useLists from "../../lib/queries/useLists";
 
-export default async function ListNavList() {
-  const session = await getSession();
-  const { lists } = await getLists({ did: session.did, limit: 15 });
+export default function ListNavList() {
+  const { lists } = useLists();
 
   return (
     <NavLink
@@ -38,7 +38,7 @@ export default async function ListNavList() {
       >
         View more lists
       </Button>
-      {lists.map((list) => (
+      {lists && lists.lists.map((list) => (
         <ListNavItem
           key={list.uri}
           name={list.name}

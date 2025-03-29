@@ -1,6 +1,7 @@
 import TopBar from "@/components/navigation/topBar/TopBar";
 import type { Metadata } from "next";
 import { Fragment } from "react";
+import { Container } from "@mantine/core";
 
 export const metadata: Metadata = {
   title: "Explore",
@@ -19,7 +20,7 @@ export default async function Layout(props: Props) {
   return (
     <Fragment>
       <TopBar breadcrumbs={BREAD_CRUMBS} />
-      {props.children}
+      <Container>{props.children}</Container>
     </Fragment>
   );
 }

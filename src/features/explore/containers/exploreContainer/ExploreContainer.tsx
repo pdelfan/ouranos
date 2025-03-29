@@ -117,8 +117,9 @@ export default async function ExploreContainer() {
                 {peopleSuggestions.actors.map((p) => (
                   <Avatar
                     key={p.did}
-                    src={p.avatar ?? null}
+                    src={p.avatar || null}
                     alt={`${p.handle}'s avatar`}
+                    name={p.handle}
                     size={"md"}
                     bd={"3px solid gray.1"}
                     component="a"
@@ -143,7 +144,7 @@ export default async function ExploreContainer() {
                 {popularFeeds.feeds.map((f) => (
                   <Avatar
                     key={f.uri}
-                    src={f.avatar ?? null}
+                    src={f.avatar || null}
                     alt={`${f.displayName}'s image`}
                     size={"md"}
                     radius={"md"}

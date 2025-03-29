@@ -1,11 +1,14 @@
+"use client";
+
 import { Button, NavLink } from "@mantine/core";
 import { Fragment } from "react";
 import { BiCloud, BiRightArrowAlt } from "react-icons/bi";
 import FeedNavItem from "../feedNavItem/FeedNavItem";
-import { getSavedFeeds } from "@/lib/atproto/bsky/feed";
+import useSavedFeeds from "../../lib/queries/useSavedFeeds";
+import Link from "next/link";
 
-export default async function FeedNavList() {
-  const savedFeeds = await getSavedFeeds({});
+export default function FeedNavList() {
+  const {savedFeeds} = useSavedFeeds();
 
   return (
     <NavLink
@@ -15,7 +18,7 @@ export default async function FeedNavList() {
       px={"6"}
     >
       <Button
-        component="a"
+        component={Link}
         href="/dashboard/feeds"
         variant="subtle"
         color="gray.5"
@@ -27,7 +30,7 @@ export default async function FeedNavList() {
       </Button>
 
       <Fragment>
-        {savedFeeds.map((feed) => (
+        {savedFeeds && savedFeeds.map((feed) => (
           <FeedNavItem
             key={feed.uri}
             name={feed.displayName}

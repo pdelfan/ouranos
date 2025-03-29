@@ -1,6 +1,7 @@
 "use client";
 
 import { NavLink } from "@mantine/core";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface Props {
@@ -17,7 +18,7 @@ export default function NavItem(props: Props) {
 
   return (
     <NavLink
-      component="a"
+      component={Link}
       href={props.href}
       variant="subtle"
       c="gray"

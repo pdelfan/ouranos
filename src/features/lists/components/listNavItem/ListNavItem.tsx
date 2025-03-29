@@ -1,4 +1,5 @@
 import { Avatar, Button } from "@mantine/core";
+import Link from "next/link";
 import { BsFillPeopleFill } from "react-icons/bs";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 export default function ListNavItem(props: Props) {
   return (
     <Button
-      component="a"
+      component={Link}
       href={props.url}
       variant="subtle"
       color="gray"

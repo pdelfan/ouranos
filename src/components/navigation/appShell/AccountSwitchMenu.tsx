@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Text,
   ActionIcon,
@@ -11,20 +13,23 @@ import {
 } from "@mantine/core";
 import { BsThreeDots } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
-import { getProfile } from "@/lib/atproto/bsky/actor";
-import { getSession } from "@/lib/auth/session";
+import { useSession } from "@/app/providers/atproto";
+import useProfile from "@/features/profile/lib/queries/useProfile";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default async function AccountSwitchMenu() {
-  const session = await getSession();
-  const profile = await getProfile({ handleOrDid: session.did });
+export default function AccountSwitchMenu() {
+  const router = useRouter();
+  const session = useSession();
+  const {profile} = useProfile({handleOrDid: session.did});
 
   return (
     <Group justify="space-between" px={"md"} py={"xs"} wrap="nowrap" gap={"md"}>
-      <Group gap={"sm"} wrap="nowrap">
+      {profile && (<Group gap={"sm"} wrap="nowrap">
         <Avatar
-          component="a"
+          component={Link}
           href={`/dashboard/profile/${profile.handle}`}
-          src={profile.avatar?.replace("avatar", "avatar_thumbnail") ?? null}
+          src={profile.avatar?.replace("avatar", "avatar_thumbnail") || null}
           alt={`${profile.handle}s avatar`}
           name={profile.handle}
           color="purple"
@@ -41,18 +46,20 @@ export default async function AccountSwitchMenu() {
             {profile.handle}
           </Text>
         </Stack>
-      </Group>
+      </Group>)}
       <Menu shadow="md" radius={"md"}>
         <MenuTarget>
-          <ActionIcon variant="light" color="gray" radius={"xl"}>
+          <ActionIcon variant="light" color="gray" radius={"md"}>
             <BsThreeDots />
           </ActionIcon>
         </MenuTarget>
         <MenuDropdown>
           <MenuItem
-            component="a"
-            href="/api/auth/logout"
             leftSection={<BiLogOut />}
+            onClick={async () => {
+              await session.signOut();
+              router.push("/");
+            }}
           >
             Sign out
           </MenuItem>

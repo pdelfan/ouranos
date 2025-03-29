@@ -1,3 +1,6 @@
+"use client";
+
+import { useOAuthClient } from "@/app/providers/atproto";
 import {
   Anchor,
   Button,
@@ -8,10 +11,19 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
+import { useForm } from '@mantine/form';
 import Form from "next/form";
 import { MdAlternateEmail } from "react-icons/md";
 
+
 export default function Page() {
+  const form = useForm({ mode: "uncontrolled", initialValues: { handle: "" }});
+  const oauthClient = useOAuthClient();
+
+  const onSubmit = async () => {
+    await oauthClient.signIn(form.getValues().handle);    
+  }
+
   return (
     <Center h={"100svh"}>
       <Stack align="center" gap={"xl"}>
@@ -21,7 +33,7 @@ export default function Page() {
             {"What's your handle?"}
           </Text>
         </Stack>
-        <Form action={"/api/auth/login"}>
+        <Form action={onSubmit}>
           <Stack align="center" gap={"xs"}>
             <Group gap={"xs"}>
               <TextInput
@@ -31,6 +43,7 @@ export default function Page() {
                 leftSection={<MdAlternateEmail />}
                 size="md"
                 radius={"md"}
+                {...form.getInputProps('handle')}
               />
               <Button type="submit" size="md" color="gray.7" radius={"md"}>
                 Log in

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ActionIcon,
   Anchor,
@@ -20,6 +22,14 @@ interface Props {
 
 export default function TopBar(props: Props) {
   const showBackButton = props.breadcrumbs.length > 1;
+  const onNavigateBack = () => {
+    if (document.referrer) {
+      window.history.back();
+    } else {
+      // no previous page, navigate to home
+      window.location.href = "/dashboard";
+    }
+  };
 
   return (
     <Paper
@@ -28,11 +38,8 @@ export default function TopBar(props: Props) {
         top: 0,
         left: 0,
         right: 0,
-        height: 60,
-        zIndex: 1000000,
+        zIndex: 100,
       }}
-      radius={"0"}
-      mb={"md"}
     >
       <Group p={"sm"} justify="space-between">
         <Group>
@@ -41,8 +48,7 @@ export default function TopBar(props: Props) {
               variant="light"
               color="gray"
               radius={"xl"}
-              component="a"
-              href="./"
+              onClick={onNavigateBack}
             >
               <BiLeftArrowAlt />
             </ActionIcon>

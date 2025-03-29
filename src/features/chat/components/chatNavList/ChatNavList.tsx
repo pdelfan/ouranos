@@ -1,23 +1,13 @@
-import { getChatConvos } from "@/lib/atproto/bsky/chat";
+"use client";
+
 import { Button, NavLink } from "@mantine/core";
 import { BiMessageRounded, BiRightArrowAlt } from "react-icons/bi";
 import ChatNavItem from "../chatNavItem/ChatNavItem";
-import { log } from "console";
-import { getSession } from "@/lib/auth/session";
+import Link from "next/link";
+import useConvos from "../../lib/queries/useConvos";
 
-export default async function ChatNavList() {
-  const { convos } = await getChatConvos({});
-  const session = await getSession();
-
-  // filter out the user from members list
-  const chats = convos.map((convo) => {
-    return {
-      ...convo,
-      members: convo.members.filter((m) => m.did !== session.did),
-    };
-  });
-
-  log(chats);
+export default function ChatNavList() {
+  const { convos } = useConvos();
 
   return (
     <NavLink
@@ -27,7 +17,7 @@ export default async function ChatNavList() {
       px={"6"}
     >
       <Button
-        component="a"
+        component={Link}
         href="/dashboard/chats"
         variant="subtle"
         color="gray.5"
@@ -37,8 +27,8 @@ export default async function ChatNavList() {
       >
         View more
       </Button>
-      {chats.length > 0 &&
-        chats.map((convo) => <ChatNavItem key={convo.id} convo={convo} />)}
+      {convos && convos.length > 0 &&
+        convos.map((convo) => <ChatNavItem key={convo.id} convo={convo} />)}
     </NavLink>
   );
 }

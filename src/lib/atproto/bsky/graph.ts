@@ -1,13 +1,28 @@
-import { getBskyAgent } from "@/lib/auth/session";
 import { Agent } from "@atproto/api";
 
-export const getSuggestedStarterPacks = async ({
+export const getStartPacks = async ({
+  handleOrDid,
+  cursor,
+  limit,
   agent,
 }: {
-  agent?: Agent;
+  handleOrDid: string;
+  cursor?: string;
+  limit?: number;
+  agent: Agent;
 }) => {
-  if (!agent) agent = await getBskyAgent();
+  const starterPacks = await agent.app.bsky.graph.getActorStarterPacks({
+    actor: handleOrDid,
+    cursor: cursor,
+    limit: limit,
+  });
 
+  if (!starterPacks.success) throw new Error("Could not fetch starter packs");
+
+  return starterPacks.data;
+};
+
+export const getSuggestedStarterPacks = async ({ agent }: { agent: Agent }) => {
   const starterPacks = await agent.app.bsky.graph.getStarterPacks({
     uris: [
       "at://did:plc:f4mo3gf7alxz32fvlt6wgtfb/app.bsky.graph.starterpack/3lbkrfks7lz2k",

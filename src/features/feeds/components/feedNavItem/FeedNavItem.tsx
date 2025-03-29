@@ -18,7 +18,7 @@ export default function FeedNavItem(props: Props) {
       justify="start"
       leftSection={
         props.iconSrc ? (
-          <Avatar src={props.iconSrc ?? null} size={"sm"} radius={"sm"} />
+          <Avatar src={props.iconSrc || null} size={"sm"} radius={"sm"} />
         ) : (
           <Avatar size={"sm"} radius={"sm"}>
             <MdOutlineRssFeed size={20} />

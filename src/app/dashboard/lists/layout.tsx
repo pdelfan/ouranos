@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Lists",
   description: "Lists",
 };
+
 interface Props {
   children: React.ReactNode;
 }

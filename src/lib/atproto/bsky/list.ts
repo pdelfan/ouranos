@@ -1,4 +1,3 @@
-import { getBskyAgent } from "@/lib/auth/session";
 import { Agent } from "@atproto/api";
 
 export const getLists = async ({
@@ -10,10 +9,8 @@ export const getLists = async ({
   did: string;
   cursor?: string;
   limit?: number;
-  agent?: Agent;
+  agent: Agent;
 }) => {
-  if (!agent) agent = await getBskyAgent();
-
   const lists = await agent.app.bsky.graph.getLists({
     actor: did,
     cursor: cursor,
