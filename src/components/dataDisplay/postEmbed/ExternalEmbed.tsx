@@ -6,6 +6,7 @@ import Link from "next/link";
 import { detectExternalEmbedType } from "@/lib/utils/embed";
 import { ExternalEmbedType } from "@/lib/utils/embed";
 import GifEmbed from "./GifEmbed";
+import SembleLogo from "@/assets/logos/semble-logo.svg";
 
 interface Props {
   embed: AppBskyEmbedExternal.View;
@@ -60,14 +61,24 @@ export default function ExternalEmbed(props: Props) {
           </div>
         </Link>
       </div>
-      <div className="bg-skin-base border-t border-skin-base rounded-b-lg hover:bg-skin-secondary">
+      <div className="flex grow justify-between bg-skin-base border-t border-skin-base rounded-b-lg">
         <Link
           href={`/dashboard/topics/${encodeURIComponent(embed.external.uri)}`}
           onClick={(e) => e.stopPropagation()}
-          className="flex flex-wrap items-center gap-2 text-skin-tertiary px-3 py-2"
+          className="flex flex-wrap items-center gap-2 text-skin-tertiary px-3 py-2 hover:bg-skin-secondary"
         >
           <SiGooglemessages className="text-lg" />
           <span className="font-medium text-sm">View topic</span>
+        </Link>
+
+        <Link
+          href={`https://semble.so/url?id=${embed.external.uri}`}
+          target="_blank"
+          onClick={(e) => e.stopPropagation()}
+          className="flex flex-wrap items-center gap-2 text-skin-tertiary px-3 py-2 hover:bg-skin-secondary"
+        >
+          <Image src={SembleLogo} alt="Semble logo" height={20} />
+          <span className="font-medium text-sm">View semble</span>
         </Link>
       </div>
     </article>
